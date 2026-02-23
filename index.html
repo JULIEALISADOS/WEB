@@ -649,6 +649,14 @@
             navMenu.classList.toggle('active');
         });
 
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Banner Lógica: Movimiento Permanente (Marquee) con Controles
         const track = document.getElementById('promo-track');
         const nextBtn = document.getElementById('slider-next');
