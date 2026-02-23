@@ -1437,37 +1437,40 @@ footer .section-title::after {
 }
 
 .footer-sic {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.footer-sic a {
+    margin: 40px auto 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--dark-text);
+    gap: 12px;
 }
 
-.sic-logo-img {
-    width: 150px;
+.footer-sic a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.footer-sic a:hover {
+    transform: scale(1.05);
+}
+
+.sic-logo {
+    width: 130px;
     height: auto;
     display: block;
-    margin: 20px auto;
     background: #fff;
-    /* Asegura contraste en cualquier fondo */
-    padding: 5px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    object-fit: contain;
+    padding: 8px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.footer-sic a:hover .sic-logo-img {
-    transform: scale(1.1);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) brightness(1.05);
+.sic-text {
+    font-size: 0.75rem;
+    color: var(--dark-text);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .copyright {
