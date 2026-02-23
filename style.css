@@ -592,7 +592,8 @@ header {
     border: 2px solid var(--gold);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    height: 525px;
+    height: 560px;
+    /* Ajustado a 9:16 exacto para 315px de ancho */
     display: flex;
     flex-direction: column;
 }
@@ -653,10 +654,11 @@ header {
 .banner-video {
     width: 100%;
     height: 100%;
-    object-fit: cover !important;
-    /* Ajuste perfecto que llena el cuadro */
+    object-fit: contain !important;
+    /* Cambiado a contain para ver términos legales */
     display: block;
-    background: transparent;
+    background: #000;
+    /* Fondo negro para que no se vea el fondo rosa si hay desfase */
 }
 
 .placeholder-img-large {
@@ -1518,7 +1520,8 @@ footer .section-title::after {
         width: 280px !important;
         max-width: 280px !important;
         min-width: 240px !important;
-        height: 450px !important;
+        height: 500px !important;
+        /* Ajustado a 9:16 para 280px de ancho */
     }
 
     .product-line .image-card {
