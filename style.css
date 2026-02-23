@@ -206,7 +206,13 @@ header {
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .hamburger {
+        position: relative;
+        z-index: 2000;
+        /* Asegurar que el botón esté por encima de todo */
     }
 
     .nav-menu {
@@ -230,13 +236,17 @@ header {
 
     .nav-menu.active {
         right: 0;
+        visibility: visible;
+        opacity: 1;
     }
 
     .nav-menu ul {
-        flex-direction: column;
-        align-items: center;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         width: 100%;
-        gap: 20px;
+        gap: 25px !important;
+        margin-top: 20px;
     }
 
     .nav-menu li {
