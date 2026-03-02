@@ -748,6 +748,11 @@ header {
     transition: transform 0.8s ease;
 }
 
+.product-line .placeholder-img-large {
+    object-fit: contain !important;
+    /* Asegura que los productos se vean completos */
+}
+
 .image-card:hover .placeholder-img-large {
     transform: scale(1.1);
 }
