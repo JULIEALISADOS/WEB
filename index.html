@@ -943,20 +943,21 @@
             setTimeout(() => track.style.transition = 'none', 500);
         });
 
-        // Lógica de Banner de Promociones (Sin cambios)
+        // Lógica de Banner de Promociones y Resultados (Modal de Video)
         const modal = document.getElementById('video-modal');
         const modalVideo = document.getElementById('modal-video');
         const modalClose = document.querySelector('.modal-close');
-        const promoVideos = document.querySelectorAll('.promo-slider-wrapper .banner-video');
+        // Seleccionamos tanto los videos de promociones como los de resultados
+        const allExpandableVideos = document.querySelectorAll('.banner-video, .result-video');
 
-        promoVideos.forEach(video => {
+        allExpandableVideos.forEach(video => {
             video.addEventListener('click', () => {
                 const source = video.querySelector('source').src;
                 modalVideo.querySelector('source').src = source;
                 modalVideo.load();
                 modal.classList.add('active');
                 modalVideo.play();
-                isPaused = true; // Pausar el slider
+                isPaused = true; // Pausar el carrusel de promos si está activo
             });
         });
 

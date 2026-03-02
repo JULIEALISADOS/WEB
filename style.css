@@ -978,15 +978,20 @@ header {
     background: #fff;
     box-shadow: var(--shadow-soft);
     overflow: hidden;
-    width: 100%;
-    /* Ensure it fills column */
+    width: 240px;
+    /* Reducido para que no sea gigante */
+    margin: 0 auto;
+    /* Centrado en su columna */
 }
 
 .result-video {
     width: 100%;
-    height: auto;
+    height: 426px;
+    /* Mantener proporción 9:16 igual a las promos */
     display: block;
     border-radius: 12px;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .result-label {
