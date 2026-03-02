@@ -604,9 +604,9 @@ header {
 
 /* Ajustes finales de tarjeta para modo fluido */
 .image-card {
-    width: 315px !important;
-    max-width: 315px !important;
-    min-width: 250px !important;
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 240px !important;
     flex-shrink: 0;
     background: #fdf4f7 !important;
     /* Fondo suave por si el video tarda en cargar */
@@ -616,8 +616,8 @@ header {
     border: 2px solid var(--gold);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    height: 560px;
-    /* Ajustado a 9:16 exacto para 315px de ancho */
+    height: 497px;
+    /* Ajustado a 9:16 exacto para 280px de ancho */
     display: flex;
     flex-direction: column;
 }
