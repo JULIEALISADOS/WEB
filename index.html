@@ -900,7 +900,7 @@
                 currentX -= speed;
                 // Si ha pasado un tercio del track (un bloque completo de 6 videos), reseteamos
                 // El track tiene 18 videos (3 bloques), reseteamos al llegar al final del primer bloque
-                const blockWidth = (315 + 10) * 6;
+                const blockWidth = (280 + 10) * 6;
                 if (Math.abs(currentX) >= blockWidth) {
                     currentX = 0;
                 }
@@ -918,7 +918,7 @@
         });
 
         nextBtn.addEventListener('click', () => {
-            const cardWidth = 315 + 10;
+            const cardWidth = 280 + 10;
             currentX -= cardWidth;
             track.style.transition = 'transform 0.5s ease-out';
             track.style.transform = `translateX(${currentX}px)`;
@@ -926,9 +926,9 @@
         });
 
         prevBtn.addEventListener('click', () => {
-            const cardWidth = 315 + 10;
+            const cardWidth = 280 + 10;
             currentX += cardWidth;
-            if (currentX > 0) currentX = -((315 + 10) * 6);
+            if (currentX > 0) currentX = -((280 + 10) * 6);
             track.style.transition = 'transform 0.5s ease-out';
             track.style.transform = `translateX(${currentX}px)`;
             setTimeout(() => track.style.transition = 'none', 500);
