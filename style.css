@@ -583,6 +583,12 @@ header {
         max-width: 400px !important;
         height: 480px !important;
     }
+
+    /* Ajuste para que los productos no se vean gigantes en móvil */
+    .product-line .image-card {
+        height: 280px !important;
+        width: 100% !important;
+    }
 }
 
 /* Solo las que no son estáticas o centradas se mueven */
@@ -675,10 +681,31 @@ header {
     color: var(--gold);
 }
 
-/* Ajuste específico para la Línea de Productos */
+/* Ajuste específico para la Línea de Productos - OPTIMIZADO PREMIUM */
 .product-line .image-card {
-    height: 385px;
-    /* Reducido un 30% de 550px */
+    width: 450px !important;
+    max-width: 90% !important;
+    height: 320px !important;
+    /* Más horizontal para que coincida con tus fotos */
+    background: #fff !important;
+    border: 1px solid var(--gold);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.product-line .placeholder-img-large {
+    object-fit: contain !important;
+    /* Ahora sí se verá completa y sin huecos grandes */
+    padding: 10px;
+    background-color: #fff;
+}
+
+.product-line .product-label {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 15px;
 }
 
 .image-card:hover {
@@ -751,6 +778,8 @@ header {
 .product-line .placeholder-img-large {
     object-fit: contain !important;
     /* Asegura que los productos se vean completos */
+    padding: 5px;
+    background: #fff;
 }
 
 .image-card:hover .placeholder-img-large {
