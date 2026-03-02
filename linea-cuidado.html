@@ -73,8 +73,8 @@
 
         .product-image-container {
             width: 100%;
-            height: 350px;
-            /* Espacio fijo para la imagen limpia */
+            height: 450px;
+            /* Aumentado para mayor impacto visual */
             overflow: hidden;
             background-color: #fff;
         }
@@ -82,11 +82,12 @@
         .product-card-large img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            /* Para que la info no se corte */
+            object-fit: cover;
+            /* ¡Ahora rellena todo el espacio sin bordes blancos! */
             display: block;
             background-color: #fff;
-            padding: 10px;
+            padding: 0;
+            /* Espacios eliminados */
             transition: transform 0.8s ease;
         }
 
