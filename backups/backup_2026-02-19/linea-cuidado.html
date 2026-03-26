@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea de Cuidado Capilar | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-detail-section {
+            padding: 140px 0 60px;
+            background-color: var(--soft-cream);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Títulos forzados para visibilidad */
+        .product-detail-section .section-title {
+            color: var(--dark-text) !important;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+        }
+
+        .product-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card-large {
+            background: transparent;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--gold);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+            height: 550px;
+            /* Altura de banner para que las imágenes se luzcan */
+        }
+
+        .product-card-large:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.3);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .product-card-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Llena todo el espacio sin deformarse */
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card-large:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+            border-top: none;
+            color: #fff;
+            transition: all 0.4s ease;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-heading);
+            color: var(--gold-light) !important;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-info p {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin: 0;
+            /* Ocultar descripción larga por defecto y mostrarla al pasar el mouse opcionalmente, 
+               pero para posters a veces es mejor que sea corta */
+        }
+
+        .back-nav {
+            margin-bottom: 40px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-back:hover {
+            color: var(--pearl-white);
+            background: var(--gold);
+            transform: translateX(-5px);
+        }
+
+        .btn-back svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-section {
+                padding-top: 120px;
+            }
+
+            .product-detail-section .section-title {
+                font-size: 2rem;
+            }
+
+            .product-intro {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-brand">
+                <a href="index.html" class="logo-link">
+                    <img src="logo 1.png" alt="Julie Alisados Logo" class="logo-img">
+                </a>
+                <div class="header-titles">
+                    <h1 class="header-title">JULIE ALISADOS <span>By Julie Valencia</span></h1>
+                    <p class="header-subtitle">liso perfecto</p>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#resultados">Resultados</a></li>
+                    <li><a href="index.html#testimonios">Testimonios</a></li>
+                    <li><a href="https://wa.me/573043588180" class="btn-nav">Agendar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <main class="product-detail-section">
+        <div class="container">
+            <div class="back-nav">
+                <a href="index.html#cuidado-ja" class="btn-back">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Volver al Inicio
+                </a>
+            </div>
+
+            <h2 class="section-title">Línea de Cuidado Capilar</h2>
+            <p class="product-intro">
+                Nuestra colección premium ha sido formulada para nutrir, proteger y prolongar la salud de tu cabello.
+                Cada producto utiliza ingredientes de la más alta calidad para garantizar un brillo y suavidad
+                excepcionales.
+            </p>
+
+            <div class="product-grid">
+                <!-- 1. SHAMPOO EXTRACTOS -->
+                <div class="product-card-large" onclick="openModal('shampoo extractos.jpeg')">
+                    <div class="product-image-container">
+                        <img src="shampoo extractos.jpeg" alt="Shampoo Extractos Naturales">
+                    </div>
+                    <div class="product-info">
+                        <h3>Shampoo Extractos Naturales</h3>
+                        <p><strong>Dale a tu pelo la frescura que se merece.</strong> Este shampoo es una bendición para
+                            el cuero cabelludo con tendencia a graso; limpia profundamente sin maltratarlo, dejándolo
+                            ligero y con una sensación de limpieza pura que dura todo el día. Con sus 12 extractos
+                            naturales, vas a notar cómo tu cabello crece más fuerte y saludable desde la raíz.</p>
+                    </div>
+                </div>
+
+                <!-- 2. ACONDICIONADOR EXTRACTOS -->
+                <div class="product-card-large" onclick="openModal('acondiconador extractos.jpeg')">
+                    <div class="product-image-container">
+                        <img src="acondiconador extractos.jpeg" alt="Acondicionador Extractos Naturales">
+                    </div>
+                    <div class="product-info">
+                        <h3>Acondicionador Extractos Naturales</h3>
+                        <p><strong>El aliado perfecto para un cabello suave y fácil de peinar.</strong> Este
+                            acondicionador hidrata justo lo necesario sin dejar el pelo pesado, ideal si buscas frescura
+                            y movimiento. Sella la cutícula después de la limpieza, aportando un brillo natural y una
+                            manejabilidad que te va a encantar desde la primera aplicación.</p>
+                    </div>
+                </div>
+
+                <!-- 3. SHAMPOO ARGÁN -->
+                <div class="product-card-large" onclick="openModal('shampoo-argan.jpeg')">
+                    <div class="product-image-container">
+                        <img src="shampoo-argan.jpeg" alt="Shampoo Aceite de Argán">
+                    </div>
+                    <div class="product-info">
+                        <h3>Shampoo Aceite de Argán</h3>
+                        <p><strong>¿Pelo decolorado o muy seco? Este shampoo es tu salvación.</strong> Su fórmula libre
+                            de sal y cargada con biotina limpia con total delicadeza, devolviéndole la elasticidad a tu
+                            cabello. Es el favorito para quienes tienen procesos químicos o alisados, porque mantiene la
+                            salud de la hebra y evita que se quiebre, dejándolo listo para brillar.</p>
+                    </div>
+                </div>
+
+                <!-- 4. ACONDICIONADOR ARGÁN -->
+                <div class="product-card-large" onclick="openModal('acondiconador argan.jpeg')">
+                    <div class="product-image-container">
+                        <img src="acondiconador argan.jpeg" alt="Acondicionador Aceite de Argán">
+                    </div>
+                    <div class="product-info">
+                        <h3>Acondicionador Aceite de Argán</h3>
+                        <p><strong>Dile adiós al pelo rebelde y seco.</strong> Este acondicionador es como un abrazo de
+                            suavidad para tu cabello; nutre profundamente y sella la hidratación del argán para que tu
+                            liso dure mucho más. Vas a sentir el pelo sedoso, brillante y tan fácil de peinar que no lo
+                            vas a creer. Es la nutrición que tu cabello estaba pidiendo.</p>
+                    </div>
+                </div>
+
+                <!-- 5. MASCARILLA ORO LÍQUIDO -->
+                <div class="product-card-large" onclick="openModal('mascarilla-oro.jpeg')">
+                    <div class="product-image-container">
+                        <img src="mascarilla-oro.jpeg" alt="Mascarilla Capilar Oro Líquido">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mascarilla Capilar Oro Líquido</h3>
+                        <p><strong>¡Una bomba de hidratación para rescatar tu cabello!</strong> Si sientes el pelo
+                            dañado o sin vida, esta mascarilla de Jojoba y Keratina es lo que necesitas. Controla el
+                            frizz al instante y le devuelve esa textura suave que tanto nos gusta. Es el tratamiento de
+                            lujo en casa para restaurar la vitalidad y que tu pelo luzca como nuevo.</p>
+                    </div>
+                </div>
+
+                <!-- 6. TRATAMIENTO MULTIACTIVO -->
+                <div class="product-card-large" onclick="openModal('tratamiento-multiactivo.jpeg')">
+                    <div class="product-image-container">
+                        <img src="tratamiento-multiactivo.jpeg" alt="Tratamiento Multiactivo 12 Ingredientes">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tratamiento Multiactivo 12-en-1</h3>
+                        <p><strong>La solución "todo en uno" que no te puede faltar.</strong> Este tratamiento combina
+                            12 ingredientes poderosos que trabajan juntos para transformar hasta el cabello más opaco.
+                            Nutre, repara y protege, dejando tu pelo manejable, con un brillo espectacular y una
+                            suavidad increíble. ¡Es el toque de salud que marca la diferencia!</p>
+                    </div>
+                </div>
+
+                <!-- 7. AMPOLLA REPARACIÓN S.O.S. -->
+                <div class="product-card-large" onclick="openModal('la ampolla.jpg')">
+                    <div class="product-image-container">
+                        <img src="la ampolla.jpg" alt="Ampolla de Reparación S.O.S.">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ampolla de Reparación S.O.S.</h3>
+                        <p><strong>¡Rescate inmediato para tu cabello!</strong> Esta ampolla es un "milagro" concentrado
+                            para esos momentos donde el pelo se siente muy maltratado. Reconstruye la fibra capilar en
+                            minutos, sellando la cutícula y devolviendo el brillo que creías perdido. Es el tratamiento
+                            de choque perfecto para lucir un cabello radiante y renovado al instante.</p>
+                    </div>
+                </div>
+
+                <!-- 8. TERMOPROTECTOR Y PERFUME -->
+                <div class="product-card-large" onclick="openModal('el termoprotector.jpg')">
+                    <div class="product-image-container">
+                        <img src="el termoprotector.jpg" alt="Termoprotector y Perfume Capilar">
+                    </div>
+                    <div class="product-info">
+                        <h3>Termoprotector y Perfume Capilar</h3>
+                        <p><strong>Protege tu cabello del calor y huele delicioso todo el día.</strong> Este spray es
+                            obligatorio antes de usar plancha o secador, porque crea una barrera protectora que evita el
+                            daño por las altas temperaturas. Además, controla el frizz y deja una fragancia de lujo en
+                            tu pelo que te va a acompañar a donde vayas. ¡Protección y aroma en un solo paso!</p>
+                    </div>
+                </div>
+
+                <!-- 9. ACEITE REPARADOR -->
+                <div class="product-card-large" onclick="openModal('aceite-reparador.jpeg')">
+                    <div class="product-image-container">
+                        <img src="aceite-reparador.jpeg" alt="Aceite Reparador de Argán">
+                    </div>
+                    <div class="product-info">
+                        <h3>Aceite Reparador de Argán</h3>
+                        <p><strong>El toque final para un brillo de espejo.</strong> Este aceite es liviano, no deja
+                            sensación grasosa y hace maravillas por tus puntas. Repara el daño diario, elimina el frizz
+                            y protege tu cabello del sol. Es ideal para aplicar después del planchado y dejar tu pelo
+                            con una apariencia profesional, suave y súper brillante.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; text-align: center;">
+                <p style="color: var(--gold-dark); font-weight: 700; margin-bottom: 20px;">¿Quieres adquirir estos
+                    productos?</p>
+                <a href="https://wa.me/573043588180?text=Hola%20Julie%2C%20estoy%20interesada%20en%20adquirir%20los%20productos%20de%20la%20Línea%20de%20Cuidado%20Capilar"
+                    class="btn-gold" target="_blank">Consúltanos por WhatsApp</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+
+            <p class="copyright">&copy; 2024 Julie Alisados By Julie Valencia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("imgFull");
+        const span = document.getElementById("closeModal");
+
+        function openModal(imgSrc) {
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+            document.body.style.overflow = "hidden"; // Bloquear scroll
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+
+</html>
