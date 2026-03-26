@@ -2,6 +2,15 @@
 <html lang="es">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17986280702');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julie Alisados | La Ciencia del Alisado Saludable</title>
@@ -11,6 +20,7 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- PRUEBA DE CAMBIO PARA GITHUB DESKTOP 2 -->
     <link rel="icon" type="image/png" href="logo 1.png">
     <link rel="apple-touch-icon" href="logo 1.png">
     <meta name="description"
@@ -24,6 +34,23 @@
     <meta property="og:type" content="website">
 
     <meta name="google-site-verification" content="jWDvmFZaIf2edq9obpK6RLJqt-ZG3Y25oqVUa__96fY" />
+    <link rel="canonical" href="https://juliealisados.com/" />
+
+    <!-- Datos Estructurados para Google (Logo e Identidad) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Julie Alisados",
+      "url": "https://juliealisados.com",
+      "logo": "https://juliealisados.com/logo%201.png",
+      "sameAs": [
+        "https://www.instagram.com/juliealisados/",
+        "https://www.facebook.com/Juliealisados?locale=es_LA",
+        "https://www.tiktok.com/@juliealisados?lang=es-419"
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -31,7 +58,9 @@
         <div class="header-container">
             <div class="header-brand">
                 <a href="#" class="logo-link">
-                    <img src="logo 1.png" alt="Julie Alisados Logo" class="logo-img">
+                    <img src="logo 1.png"
+                        alt="Julie Alisados - Expertos en Alisado Orgánico y Saludable en Tunja y Moniquirá"
+                        class="logo-img">
                 </a>
                 <div class="header-titles">
                     <h1 class="header-title">JULIE ALISADOS <span>By Julie Valencia</span></h1>
@@ -80,7 +109,9 @@
                         </a>
                     </li>
                     <li><a href="https://wa.me/573043588180?text=Hola%20Julie,%20estoy%20interesada%20en%20los%20servicios%20y%20productos"
-                            class="btn-nav">Agendar</a></li>
+                            class="btn-nav"
+                            onclick="gtag('event', 'conversion', {'send_to': 'AW-17986280702/ti6gCIzhz4EcEP65w4BD'});">Agendar</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -95,7 +126,7 @@
             <!-- Full Width Promo Banner - Manual Slider -->
             <div class="hero-image-banner fade-in" id="promo-slider-container" style="animation-delay: 0.5s;">
                 <div class="banner-title">
-                    <h3>PROMOCIONES DEL MES FEBRERO</h3>
+                    <h3>PROMOCIONES DEL MES MARZO</h3>
                 </div>
 
                 <div class="slider-controls">
@@ -125,95 +156,113 @@
                     <div class="image-banner-track manual-track" id="promo-track">
                         <!-- BLOQUE 1 -->
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="PROMO FEBRERO.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Mensual Marzo - Alisado Orgánico Julie Alisados">
+                                <source src="promos marzo.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="HIDRA - HAIR.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 2 - Julie Alisados">
+                                <source src="marzo 2.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="EMULSION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 3 - Julie Alisados">
+                                <source src="marzo 3.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="REPOSICION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 4 - Julie Alisados">
+                                <source src="marzo 4.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="ALISADO SALUDABLE.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 5 - Julie Alisados">
+                                <source src="marzo 5.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="RITUAL ANTICAIDA.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 6 - Julie Alisados">
+                                <source src="marzo 6.mp4" type="video/mp4">
                             </video>
                         </div>
                         <!-- BLOQUE 2 (DUPLICADO PARA BUCLe INFINITO) -->
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="PROMO FEBRERO.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Mensual Marzo - Alisado Orgánico Julie Alisados">
+                                <source src="promos marzo.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="HIDRA - HAIR.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 2 - Julie Alisados">
+                                <source src="marzo 2.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="EMULSION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 3 - Julie Alisados">
+                                <source src="marzo 3.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="REPOSICION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 4 - Julie Alisados">
+                                <source src="marzo 4.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="ALISADO SALUDABLE.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 5 - Julie Alisados">
+                                <source src="marzo 5.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="RITUAL ANTICAIDA.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 6 - Julie Alisados">
+                                <source src="marzo 6.mp4" type="video/mp4">
                             </video>
                         </div>
                         <!-- BLOQUE 3 (TRIPLICADO PARA PANTALLAS ANCHAS) -->
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="PROMO FEBRERO.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Mensual Marzo - Alisado Orgánico Julie Alisados">
+                                <source src="promos marzo.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="HIDRA - HAIR.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 2 - Julie Alisados">
+                                <source src="marzo 2.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="EMULSION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 3 - Julie Alisados">
+                                <source src="marzo 3.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="REPOSICION.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 4 - Julie Alisados">
+                                <source src="marzo 4.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="ALISADO SALUDABLE.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 5 - Julie Alisados">
+                                <source src="marzo 5.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="image-card">
-                            <video autoplay loop muted playsinline class="banner-video">
-                                <source src="RITUAL ANTICAIDA.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline class="banner-video"
+                                title="Promoción Marzo 6 - Julie Alisados">
+                                <source src="marzo 6.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -230,13 +279,16 @@
                     <div class="image-banner-track banner-centered">
                         <!-- LÍNEA CUIDADO CAPILAR -->
                         <a href="linea-cuidado.html" class="image-card product-link">
-                            <img src="linea de cuidado.jpg" alt="Línea de Cuidado Capilar"
+                            <img src="linea de cuidado.jpg"
+                                alt="Línea de Cuidado Capilar Julie Alisados - Mantenimiento en Casa Argán y Extractos"
                                 class="placeholder-img-large">
                             <div class="product-label">Línea de Cuidado Capilar</div>
                         </a>
                         <!-- LÍNEA PROFESIONAL -->
                         <a href="linea-profesional.html" class="image-card product-link">
-                            <img src="linea profesional.jpg" alt="Línea Profesional" class="placeholder-img-large">
+                            <img src="linea profesional.jpg"
+                                alt="Línea Profesional Julie Alisados - Kit Alisado Saludable Orgánico para Estilistas"
+                                class="placeholder-img-large">
                             <div class="product-label">Línea Profesional</div>
                         </a>
                     </div>
@@ -257,6 +309,13 @@
                 </div>
                 <p class="certification-text">Lo que nuestras clientas dicen: Opiniones 100% reales y verificables que
                     respaldan nuestro trabajo.</p>
+
+                <!-- Google Reviews Widget (Elfsight) -->
+                <div class="google-reviews-widget-container"
+                    style="margin: 0 auto 50px; max-width: 1200px; padding: 0 20px;">
+                    <script src="https://elfsightcdn.com/platform.js" async></script>
+                    <div class="elfsight-app-be277a4f-073e-4adc-803f-ef7aedef92ad" data-elfsight-app-lazy></div>
+                </div>
 
                 <div class="testimonials-infinite-container">
                     <div class="testimonials-infinite-track">
@@ -476,7 +535,8 @@
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="icon-gold">
-                            <img src="logo 1.png" alt="Logo Julie Alisados" class="service-logo">
+                            <img src="logo 1.png" alt="Servicio de Alisado Orgánico Saludable en Tunja - Julie Alisados"
+                                class="service-logo">
                         </div>
                         <h4>Alisados</h4>
                         <p>Alisados orgánicos y saludables libres de formol para un liso perfecto, brillante y duradero.
@@ -484,7 +544,9 @@
                     </div>
                     <div class="service-card">
                         <div class="icon-gold">
-                            <img src="logo 1.png" alt="Logo Julie Alisados" class="service-logo">
+                            <img src="logo 1.png"
+                                alt="Terapias Disciplinantes Capilares en Moniquirá - Control de Frizz"
+                                class="service-logo">
                         </div>
                         <h4>Terapias Disciplinantes</h4>
                         <p>Control de frizz y volumen mediante tratamientos que disciplinan la fibra capilar sin perder
@@ -492,7 +554,8 @@
                     </div>
                     <div class="service-card">
                         <div class="icon-gold">
-                            <img src="logo 1.png" alt="Logo Julie Alisados" class="service-logo">
+                            <img src="logo 1.png" alt="Restauración Capilar Profunda R.C.P. en Boyacá - Julie Alisados"
+                                class="service-logo">
                         </div>
                         <h4>Terapias Restauradoras</h4>
                         <p>Recuperación intensiva para cabellos dañados, devolviendo la fuerza y elasticidad perdida.
@@ -500,7 +563,8 @@
                     </div>
                     <div class="service-card">
                         <div class="icon-gold">
-                            <img src="logo 1.png" alt="Logo Julie Alisados" class="service-logo">
+                            <img src="logo 1.png" alt="Hidratación Capilar Intensiva - Cabello Sedoso en Tunja"
+                                class="service-logo">
                         </div>
                         <h4>Terapias Hidratantes</h4>
                         <p>Aporte de humedad profunda para combatir la sequedad y devolver la suavidad y el movimiento.
@@ -508,7 +572,9 @@
                     </div>
                     <div class="service-card">
                         <div class="icon-gold">
-                            <img src="logo 1.png" alt="Logo Julie Alisados" class="service-logo">
+                            <img src="logo 1.png"
+                                alt="Nutrición Capilar Avanzada - Vitaminas para el Cabello en Moniquirá"
+                                class="service-logo">
                         </div>
                         <h4>Terapias Nutritivas</h4>
                         <p>Tratamientos ricos en lípidos y vitaminas que alimentan el cabello desde el interior para un
@@ -523,19 +589,22 @@
                 <h3 class="section-title">Nuestros Resultados</h3>
                 <div class="results-grid">
                     <div class="image-container">
-                        <video autoplay loop muted playsinline class="result-video">
+                        <video autoplay loop muted playsinline class="result-video"
+                            title="Cambio Real: Antes y Después de Alisado Orgánico Julie Alisados">
                             <source src="ANTES DESPUES  ALISADO SALUDABLE 1.mp4" type="video/mp4">
                         </video>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container">
-                        <video autoplay loop muted playsinline class="result-video">
+                        <video autoplay loop muted playsinline class="result-video"
+                            title="Resultado Cabello Liso y Sano en Tunja - Técnica Saludable">
                             <source src="ANTES DESPUES  ALISADO SALUDABLE 2.mp4" type="video/mp4">
                         </video>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container">
-                        <video autoplay loop muted playsinline class="result-video">
+                        <video autoplay loop muted playsinline class="result-video"
+                            title="Brillo Espejo y Suavidad - Alisado By Julie Valencia en Moniquirá">
                             <source src="ANTES DESPUES  ALISADO SALUDABLE 3.mp4" type="video/mp4">
                         </video>
                         <div class="result-label">Antes / Después</div>
@@ -574,6 +643,139 @@
 
 
     </main>
+
+    <!-- Sección de Dudas Frecuentes (SEO) -->
+    <section class="faq-section" id="dudas">
+        <div class="container">
+            <h2 class="section-title">Dudas Frecuentes</h2>
+            <p class="section-subtitle">Todo lo que necesitas saber sobre nuestro Alisado Saludable</p>
+
+            <div class="faq-container">
+                <!-- Pregunta 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué es el Alisado Saludable de Julie Alisados?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Es mucho más que un servicio de peluquería; es la fusión perfecta entre nuestra
+                            <strong>técnica profesional exclusiva y productos de alta gama de nuestra propia
+                                marca</strong>. No es solo un alisado común, es un proceso que utiliza la ciencia
+                            capilar para transformar y alinear la estructura del cabello desde la cutícula hasta el
+                            córtex sin agredir la fibra. Al ser productos exclusivos de nuestra marca y nosotros los
+                            creadores de la técnica, garantizamos un resultado personalizado donde cada fibra recibe la
+                            nutrición exacta para quedar <strong>liso, fuerte, sedoso y con un brillo de espejo
+                                profundo.</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Sus productos contienen formol u otros químicos tóxicos?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>La respuesta es un <strong>no rotundo</strong>. Tu salud y la de nuestro equipo son el pilar
+                            fundamental de Julie Alisados. Trabajamos bajo los más estrictos estándares de la cosmética
+                            capilar en Colombia. Nuestras fórmulas son <strong>100% libres de formol y cuentan con
+                                Registro INVIMA vigente</strong>. Esto garantiza que durante el procedimiento no se
+                            generen nubes de vapores tóxicos, olores fuertes ni irritaciones en los ojos o garganta. Es
+                            una experiencia de belleza relajante, segura y totalmente orgánica.</p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cuánto tiempo dura el resultado y qué cuidados debo tener?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El efecto del Alisado Saludable tiene una duración promedio de <strong>4 a 6 meses</strong>,
+                            dependiendo del crecimiento natural de tu raíz y de tus hábitos de cuidado. Para asegurar
+                            que la inversión en tu cabello valga la pena, es vital el uso de nuestra <strong>Línea de
+                                Post-Cuidado JA (Argán o Extractos)</strong>, la cual ha sido formulada para mantener
+                            los aminoácidos dentro de la hebra. Un detalle técnico fundamental: nuestro alisado es
+                            <strong>termo-activado</strong>. Esto significa que, aunque tu cabello secará liso al aire,
+                            para obtener ese acabado 'wow' de revista, <strong>debes usar el secador después de cada
+                                lavado</strong>. El calor activa las propiedades de brillo y disciplina del producto,
+                            dejando un liso perfecto al instante.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedo realizarme el alisado si tengo el cabello decolorado o con mechas?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Somos expertos en rescate de cabellos sensibilizados. Antes de cualquier proceso, realizamos
+                            un <strong>diagnóstico profesional de resistencia capilar</strong>. Si el diagnóstico arroja
+                            que tu cabello está en condiciones ideales, procederemos con el alisado. En caso de que la
+                            fibra esté muy maltratada por procesos anteriores, <strong>no te arriesgamos</strong>. En su
+                            lugar, te ofrecemos alternativas de restauración profunda como <strong>Emulsión Zero o
+                                R.C.P.</strong>, que recuperan la masa capilar, sellan la porosidad y controlan el
+                            frizz. Una vez que hayamos recuperado la salud y fuerza de tu cabello con el tiempo,
+                            podremos realizar tu Alisado Saludable con total éxito.</p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Es seguro para mujeres embarazadas o en periodo de lactancia?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>¡Claro que sí! Gracias a que nuestro producto estrella es orgánico y libre de agentes
+                            tóxicos, es totalmente seguro realizarlo <strong>a partir del segundo trimestre de gestación
+                                (4 meses)</strong> con nuestro producto estrella <strong>Alisado Saludable</strong>.
+                            Puedes vivir tu proceso de maternidad sintiéndote hermosa y con un cabello manejable en todo
+                            momento. Nuestra técnica no genera gases nocivos, por lo que tanto tú como tu bebé estarán
+                            protegidos durante toda la sesión en nuestro salón.</p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Pueden darme un mejor precio o descuentos?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>En Julie Alisados nos encanta que siempre luzcas increíble. Por eso, <strong>cada mes
+                                lanzamos promociones especiales y paquetes diseñados para ti</strong>, tanto en
+                            servicios de salón como en nuestra línea de productos. Queremos que el alisado profesional
+                            sea accesible sin comprometer la calidad. Te recomendamos seguirnos de cerca en nuestras
+                            redes sociales o preguntarle directamente a nuestras asesoras por WhatsApp para conocer la
+                            promoción vigente de este mes y agendar tu cupo antes de que se agoten.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container footer-content">
@@ -637,26 +839,69 @@
                 <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos Personales</a>
             </div>
 
+            <div class="footer-sic">
+                <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
+                    <img src="logo sic.jpg" alt="Superintendencia de Industria y Comercio" class="sic-logo">
+                </a>
+                <p class="sic-text">Superintendencia de Industria y Comercio</p>
+            </div>
+
             <p class="copyright">&copy; 2024 Julie Alisados By Julie Valencia. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/573043588180?text=Hola%20Julie,%20estoy%20interesada%20en%20los%20servicios%20y%20productos"
-        class="btn-whatsapp-floating" target="_blank" rel="noopener noreferrer">
+        class="btn-whatsapp-floating" target="_blank" rel="noopener noreferrer"
+        onclick="gtag('event', 'conversion', {'send_to': 'AW-17986280702/ti6gCIzhz4EcEP65w4BD'});">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
             <path
                 d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
         </svg>
     </a>
+
+    <!-- Video Modal (En Grande al hacer click) -->
+    <div id="video-modal" class="video-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content">
+            <video id="modal-video" controls playsinline>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
     <script>
+        // Funcionalidad de Acordeón FAQ
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // Cerrar otros abiertos opcionalmente
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Hamburger Menu
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
         });
 
         // Banner Lógica: Movimiento Permanente (Marquee) con Controles
@@ -676,7 +921,7 @@
                 currentX -= speed;
                 // Si ha pasado un tercio del track (un bloque completo de 6 videos), reseteamos
                 // El track tiene 18 videos (3 bloques), reseteamos al llegar al final del primer bloque
-                const blockWidth = (315 + 10) * 6;
+                const blockWidth = (240 + 10) * 6;
                 if (Math.abs(currentX) >= blockWidth) {
                     currentX = 0;
                 }
@@ -694,7 +939,7 @@
         });
 
         nextBtn.addEventListener('click', () => {
-            const cardWidth = 315 + 10;
+            const cardWidth = 240 + 10;
             currentX -= cardWidth;
             track.style.transition = 'transform 0.5s ease-out';
             track.style.transform = `translateX(${currentX}px)`;
@@ -702,15 +947,45 @@
         });
 
         prevBtn.addEventListener('click', () => {
-            const cardWidth = 315 + 10;
+            const cardWidth = 240 + 10;
             currentX += cardWidth;
-            if (currentX > 0) currentX = -((315 + 10) * 6);
+            if (currentX > 0) currentX = -((240 + 10) * 6);
             track.style.transition = 'transform 0.5s ease-out';
             track.style.transform = `translateX(${currentX}px)`;
             setTimeout(() => track.style.transition = 'none', 500);
         });
 
-        // Lógica de Banner de Promociones (Sin cambios)
+        // Lógica de Banner de Promociones y Resultados (Modal de Video)
+        const modal = document.getElementById('video-modal');
+        const modalVideo = document.getElementById('modal-video');
+        const modalClose = document.querySelector('.modal-close');
+        // Seleccionamos tanto los videos de promociones como los de resultados
+        const allExpandableVideos = document.querySelectorAll('.banner-video, .result-video');
+
+        allExpandableVideos.forEach(video => {
+            video.addEventListener('click', () => {
+                const source = video.querySelector('source').src;
+                modalVideo.querySelector('source').src = source;
+                modalVideo.load();
+                modal.classList.add('active');
+                modalVideo.play();
+                isPaused = true; // Pausar el carrusel de promos si está activo
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            modalVideo.pause();
+            isPaused = false;
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                modalVideo.pause();
+                isPaused = false;
+            }
+        });
     </script>
 </body>
 
