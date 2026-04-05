@@ -761,8 +761,8 @@ header {
     object-fit: contain !important;
     /* Cambiado a contain para ver términos legales */
     display: block;
-    background: #000;
-    /* Fondo negro para que no se vea el fondo rosa si hay desfase */
+    background: transparent;
+    /* Fondo transparente para evitar cuadros negros */
 }
 
 .placeholder-img-large {
