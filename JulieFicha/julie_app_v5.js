@@ -531,7 +531,7 @@ window.goBack = function() {
 
 
 window.deleteFicha = async function(consecutivo) {
-    if (!localStorage.getItem('julie_user_name') === "Julia Alisados") return alert('Solo admin puede borrar.');
+    if (localStorage.getItem('julie_user_name') !== "Julia Alisados") return alert('Solo admin puede borrar.');
     if (!confirm('¿Seguro quieres borrar la ficha ' + consecutivo + '? Esta acción es irreversible.')) return;
     
     try {
