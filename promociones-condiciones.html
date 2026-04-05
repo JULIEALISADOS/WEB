@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condiciones de Promociones Mensuales | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --pearl-white: #FFFFFF;
+            --soft-cream: #FFF0F5;
+            --gold: #D4AF37;
+            --gold-light: #F2D06B;
+            --gold-dark: #B4941F;
+            --dark-text: #1A1A1A;
+            --light-text: #444444;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--soft-cream);
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding: 60px 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('FONDO WEB.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-small {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold-dark);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--light-text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-style: italic;
+            color: var(--light-text);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .service-category {
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-category:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        strong {
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        .important-box {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--gold);
+            margin: 40px 0;
+        }
+
+        .important-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--gold-dark);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: var(--gold-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(180, 148, 31, 0.3);
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(180, 148, 31, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="back-nav" style="margin-bottom: 30px;">
+            <a href="index.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--gold-dark); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Volver al Inicio
+            </a>
+        </div>
+        <div class="header">
+            <img src="logo 1.png" alt="Julie Alisados Logo" class="logo-small">
+            <h1>Términos de Promociones</h1>
+            <span class="subtitle">Abril 2026</span>
+        </div>
+
+        <p class="intro-text">"En Julie Alisados, nos apasiona la transparencia. Aquí encontrarás los detalles específicos de cada una de nuestras promociones vigentes este mes."</p>
+
+        <div class="terms-grid">
+            <!-- ALISADOS -->
+            <div class="service-category">
+                <h2><i>01.</i> Alisado Saludable Premium</h2>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; background: #fff; padding: 20px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid rgba(212, 175, 55, 0.1);">
+                    <img src="guia-largos.png" alt="Guía de Largos Alisado" style="width: 100%; max-width: 400px; border-radius: 15px; margin-bottom: 20px;">
+                    
+                    <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                        <div style="padding: 10px; background: var(--soft-cream); border-radius: 10px;">
+                            <p style="font-size: 0.8rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">A LA AXILA</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">$200.000</p>
+                        </div>
+                        <div style="padding: 10px; background: var(--soft-cream); border-radius: 10px;">
+                            <p style="font-size: 0.8rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">A LA CINTURA</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">$230.000</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; width: 100%; text-align: center; border-top: 1px dashed var(--gold); padding-top: 15px;">
+                        <p style="font-weight: 700; color: #d63384; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Incluye GRATIS:</p>
+                        <p style="font-size: 0.95rem; font-weight: 600;">✦ Shot de Proteínas &nbsp; &nbsp; ✦ Crioterapia Capilar</p>
+                    </div>
+                </div>
+
+                <ul>
+                    <li>Cabellos <strong>abundantes o muy largos (que sobrepasen la línea de la cintura)</strong> tienen un recargo de <strong>$30.000</strong> adicionales.</li>
+                    <li>Esta promoción <strong>no aplica para cabellos tipo Afro</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- BIOCOMPLEX -->
+            <div class="service-category">
+                <h2><i>02.</i> Promoción Biocomplex 2x1 (Plan Amigas)</h2>
+                <ul>
+                    <li>No es obligatorio que las dos personas asistan de forma simultánea.</li>
+                    <li><strong>Condición de Pago:</strong> La primera persona en asistir al salón debe realizar el <strong>pago completo del paquete (las dos personas)</strong> para activar la promoción.</li>
+                    <li>Esta promoción <strong>no tiene restricciones de largo o cantidad</strong> de cabello; el precio es único independientemente de las dimensiones capilares.</li>
+                </ul>
+            </div>
+
+            <!-- R.C.P Y DETOX -->
+            <div class="service-category">
+                <h2><i>03.</i> R.C.P & Terapia Detox</h2>
+                <ul>
+                    <li><strong>Tarifa Plana Garantizada:</strong> Incluyen cualquier largo y cantidad de cabello sin cargos adicionales por dimensiones capilares.</li>
+                </ul>
+            </div>
+
+            <!-- EMULSIÓN / REPOSICIÓN -->
+            <div class="service-category">
+                <h2><i>04.</i> Emulsión Zero & Reposición de Aminoácidos</h2>
+                <ul>
+                    <li><strong>Recargos por dimensiones:</strong> Cabellos abundantes o muy largos tienen un recargo de <strong>$30.000</strong> (para Emulsión Zero) y <strong>$20.000</strong> (para Reposición de Aminoácidos).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="important-box">
+            <h3>MÉTODOS DE PAGO Y CONDICIONES LEGALES</h3>
+            <p><strong>Plataformas de Crédito:</strong> Ninguna de las promociones aquí descritas aplica para pagos mediante la plataforma <strong>Addi</strong>.</p>
+            <p><strong>Medios Aceptados para Promociones:</strong> Efectivo, Transferencia Bancaria, Tarjeta de Crédito (presencial) y Tarjeta de Débito.</p>
+        </div>
+
+        <center>
+            <a href="index.html" class="back-btn">Volver al Inicio</a>
+        </center>
+    </div>
+</body>
+
+</html>
