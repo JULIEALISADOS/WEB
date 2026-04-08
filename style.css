@@ -629,6 +629,42 @@ header {
     cursor: pointer;
 }
 
+/* Efecto de Carga para Videos */
+.video-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--gold);
+    animation: spin 1s linear infinite;
+    display: none;
+    z-index: 5;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.image-card.loading-active .video-loader,
+.image-container.loading-active .video-loader {
+    display: block;
+}
+
+/* Pulso suave mientras no carga el video */
+.lazy-video {
+    opacity: 0.9;
+    transition: opacity 0.5s ease;
+}
+
+.lazy-video[src] {
+    opacity: 1;
+}
+
 /* Modal de Video (Lightbox) */
 .video-modal {
     position: fixed;
