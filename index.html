@@ -156,13 +156,13 @@
                     <div class="image-banner-track manual-track" id="promo-track">
                         <!-- BLOQUE 1 -->
                         <div class="image-card">
-                            <video src="abril 1.mp4" loop muted playsinline preload="metadata" class="banner-video lazy-video"
+                            <video data-src="abril 1.mp4" loop muted playsinline preload="none" class="banner-video lazy-video"
                                 poster="abril 1.jpg" title="Promoción Mensual Abril - Alisado Orgánico Julie Alisados">
                             </video>
                             <div class="video-loader"></div>
                         </div>
                         <div class="image-card">
-                            <video src="abril 2.mp4" loop muted playsinline preload="metadata" class="banner-video lazy-video"
+                            <video data-src="abril 2.mp4" loop muted playsinline preload="none" class="banner-video lazy-video"
                                 poster="abril 2.jpg" title="Promoción Abril 2 - Julie Alisados">
                             </video>
                             <div class="video-loader"></div>
@@ -576,25 +576,22 @@
                 <h3 class="section-title">Nuestros Resultados</h3>
                 <div class="results-grid">
                     <div class="image-container">
-                        <video autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
+                        <video data-src="ANTES DESPUES  ALISADO SALUDABLE 1.mp4" autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
                             title="Cambio Real: Antes y Después de Alisado Orgánico Julie Alisados">
-                            <source data-src="ANTES DESPUES  ALISADO SALUDABLE 1.mp4" type="video/mp4">
                         </video>
                         <div class="video-loader"></div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container">
-                        <video autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
+                        <video data-src="ANTES DESPUES  ALISADO SALUDABLE 2.mp4" autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
                             title="Resultado Cabello Liso y Sano en Tunja - Técnica Saludable">
-                            <source data-src="ANTES DESPUES  ALISADO SALUDABLE 2.mp4" type="video/mp4">
                         </video>
                         <div class="video-loader"></div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container">
-                        <video autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
+                        <video data-src="ANTES DESPUES  ALISADO SALUDABLE 3.mp4" autoplay loop muted playsinline preload="none" poster="logo 1.png" class="result-video lazy-video"
                             title="Brillo Espejo y Suavidad - Alisado By Julie Valencia en Moniquirá">
-                            <source data-src="ANTES DESPUES  ALISADO SALUDABLE 3.mp4" type="video/mp4">
                         </video>
                         <div class="video-loader"></div>
                         <div class="result-label">Antes / Después</div>
@@ -987,7 +984,7 @@
             });
         }, { 
             threshold: 0.1,
-            rootMargin: "0px 300px 0px 300px" // Margen amplio para cargar antes de que aparezcan
+            rootMargin: "50px" // Margen ajustado para cargar progresivamente y no saturar la red
         });
 
         allExpandableVideos.forEach(video => {
