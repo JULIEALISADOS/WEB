@@ -206,6 +206,9 @@
                             </div>
                         </div>
                         <!-- BLOQUE 2 -->
+                        <div class="image-card">
+                            <img src="pago%20a%20cuotas%20banner%20promociones.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta">
+                        </div>
                         <div class="image-card" style="position: relative;">
                             <img src="abril%201.png" data-video="abril%201.mp4" class="banner-video lazy-img-clickable" style="cursor: pointer; width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 1">
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
@@ -265,7 +268,7 @@
                     <div class="payment-text">
                         <span class="badge-gold">💳 Financia tus compras</span>
                         <h3>Fácil, rápido y a tu medida</h3>
-                        <p>¡Paga a cuotas con <strong>Addi</strong> o con <strong>Tarjeta de Crédito</strong>!<br>También aceptamos <strong>PSE y Efectivo</strong> para todos tus servicios y productos.</p>
+                        <p>¡Paga a cuotas con <strong>Addi</strong> o con <strong>Tarjeta de Crédito</strong>!<br>También aceptamos <strong>Efectivo</strong> para todos tus servicios y productos.</p>
                     </div>
                     <div class="payment-logos-container">
                         <!-- Addi - imagen real -->
@@ -276,15 +279,7 @@
                         <div class="logo-card tc" title="Visa y Mastercard">
                             <img src="pago%20tarjeta.jpg" alt="Visa y Mastercard" loading="lazy">
                         </div>
-                        <!-- PSE SVG inline -->
-                        <div class="logo-card pse" title="PSE - Pagos Seguros en Línea">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" width="100" height="38" role="img" aria-label="PSE">
-                                <rect width="160" height="60" rx="6" fill="white"/>
-                                <text x="80" y="28" font-family="Arial Black, Arial" font-weight="900" font-size="22" fill="#003087" text-anchor="middle">PSE</text>
-                                <text x="80" y="45" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Pagos Seguros en Línea</text>
-                                <rect x="10" y="52" width="140" height="3" rx="2" fill="#003087"/>
-                            </svg>
-                        </div>
+
                         <!-- Efectivo -->
                         <div class="logo-card" title="Efectivo">
                             <div class="cash-badge">
@@ -967,7 +962,7 @@
                     const cardStyle = window.getComputedStyle(firstCard);
                     const marginRight = parseFloat(cardStyle.marginRight) || 0;
                     const cardWidth = firstCard.offsetWidth + marginRight;
-                    const blockWidth = cardWidth * 8; // 8 videos por bloque
+                    const blockWidth = cardWidth * 9; // 9 cards por bloque (8 promos + banner de pago)
 
                     if (Math.abs(currentX) >= blockWidth) {
                         currentX = 0;
