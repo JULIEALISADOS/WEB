@@ -268,18 +268,55 @@
                         <p>¡Paga a cuotas con <strong>Addi</strong> o con <strong>Tarjeta de Crédito</strong>!<br>También aceptamos <strong>PSE y Efectivo</strong> para todos tus servicios y productos.</p>
                     </div>
                     <div class="payment-logos-container">
-                        <!-- Addi -->
-                        <div class="logo-card addi" title="Addi">
-                            <img src="https://logodownload.org/wp-content/uploads/2022/02/addi-logo.png" alt="Addi" loading="lazy">
+                        <!-- Addi SVG inline -->
+                        <div class="logo-card addi" title="Paga a cuotas con Addi">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="90" height="36" role="img" aria-label="Addi">
+                                <circle cx="28" cy="40" r="24" fill="#5B7BFF"/>
+                                <circle cx="28" cy="40" r="12" fill="#fff"/>
+                                <rect x="16" y="40" width="12" height="24" rx="6" fill="#5B7BFF"/>
+                                <circle cx="72" cy="52" r="16" fill="#5B7BFF"/>
+                                <circle cx="72" cy="52" r="8" fill="#fff"/>
+                                <rect x="52" y="16" width="12" height="54" rx="6" fill="#5B7BFF"/>
+                                <circle cx="116" cy="52" r="16" fill="#5B7BFF"/>
+                                <circle cx="116" cy="52" r="8" fill="#fff"/>
+                                <rect x="96" y="16" width="12" height="54" rx="6" fill="#5B7BFF"/>
+                                <rect x="140" y="28" width="12" height="42" rx="6" fill="#5B7BFF"/>
+                                <circle cx="146" cy="20" r="8" fill="#5B7BFF"/>
+                            </svg>
                         </div>
-                        <!-- Tarjetas -->
-                        <div class="logo-card tc" title="Tarjetas de Crédito">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/800px-Mastercard_2019_logo.svg.png" alt="Mastercard" loading="lazy">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/800px-Visa_2021.svg.png" alt="Visa" loading="lazy">
+                        <!-- Visa SVG inline -->
+                        <div class="logo-card" title="Visa">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 48" width="80" height="28" role="img" aria-label="Visa">
+                                <rect width="152" height="48" rx="6" fill="white"/>
+                                <text x="76" y="36" font-family="Arial Black, Arial" font-weight="900" font-size="38" fill="#1A1F71" text-anchor="middle" letter-spacing="-1">VISA</text>
+                            </svg>
                         </div>
-                        <!-- PSE -->
-                        <div class="logo-card pse" title="PSE">
-                            <img src="https://www.pse.com.co/o/pse-theme/images/logo-pse.png" alt="PSE" loading="lazy">
+                        <!-- Mastercard SVG inline -->
+                        <div class="logo-card" title="Mastercard">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 80" width="70" height="44" role="img" aria-label="Mastercard">
+                                <circle cx="46" cy="40" r="32" fill="#EB001B"/>
+                                <circle cx="84" cy="40" r="32" fill="#F79E1B"/>
+                                <path d="M65 16.3A32 32 0 0 1 84 8a32 32 0 0 1 0 64 32 32 0 0 1-19-7.7A32 32 0 0 0 78 40a32 32 0 0 0-13-23.7z" fill="#FF5F00"/>
+                            </svg>
+                        </div>
+                        <!-- PSE SVG inline -->
+                        <div class="logo-card pse" title="PSE - Pagos Seguros en Línea">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" width="90" height="34" role="img" aria-label="PSE">
+                                <rect width="160" height="60" rx="6" fill="white"/>
+                                <rect x="4" y="4" width="152" height="52" rx="4" fill="#003087" opacity="0.05"/>
+                                <text x="80" y="24" font-family="Arial Black, Arial" font-weight="900" font-size="18" fill="#003087" text-anchor="middle">PSE</text>
+                                <text x="80" y="44" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Pagos Seguros en Línea</text>
+                                <rect x="10" y="50" width="140" height="3" rx="2" fill="#003087"/>
+                            </svg>
+                        </div>
+                        <!-- Efectivo -->
+                        <div class="logo-card" title="Efectivo">
+                            <div class="cash-badge">
+                                <svg viewBox="0 0 24 24" width="28" height="28">
+                                    <path fill="#2e7d32" d="M3,6H21V18H3V6M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M7,8A1,1 0 0,1 6,7A1,1 0 0,1 7,6A1,1 0 0,1 8,7A1,1 0 0,1 7,8M17,8A1,1 0 0,1 16,7A1,1 0 0,1 17,6A1,1 0 0,1 18,7A1,1 0 0,1 17,8M7,18A1,1 0 0,1 6,17A1,1 0 0,1 7,16A1,1 0 0,1 8,17A1,1 0 0,1 7,18M17,18A1,1 0 0,1 16,17A1,1 0 0,1 17,16A1,1 0 0,1 18,17A1,1 0 0,1 17,18Z"/>
+                                </svg>
+                                <span>Efectivo</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -863,10 +900,36 @@
                     <p class="sic-text">Superintendencia de Industria y Comercio</p>
                 </div>
                 <div class="footer-payments">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/800px-Mastercard_2019_logo.svg.png" alt="Mastercard">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/800px-Visa_2021.svg.png" alt="Visa">
-                    <img src="https://www.pse.com.co/o/pse-theme/images/logo-pse.png" alt="PSE">
-                    <img src="https://logodownload.org/wp-content/uploads/2022/02/addi-logo.png" alt="Addi" style="height: 15px;">
+                    <!-- Mastercard SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 80" height="28" role="img" aria-label="Mastercard" title="Mastercard">
+                        <circle cx="46" cy="40" r="32" fill="#EB001B"/>
+                        <circle cx="84" cy="40" r="32" fill="#F79E1B"/>
+                        <path d="M65 16.3A32 32 0 0 1 84 8a32 32 0 0 1 0 64 32 32 0 0 1-19-7.7A32 32 0 0 0 78 40a32 32 0 0 0-13-23.7z" fill="#FF5F00"/>
+                    </svg>
+                    <!-- Visa SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 48" height="22" role="img" aria-label="Visa" title="Visa">
+                        <text x="76" y="36" font-family="Arial Black, Arial" font-weight="900" font-size="38" fill="#1A1F71" text-anchor="middle" letter-spacing="-1">VISA</text>
+                    </svg>
+                    <!-- PSE SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" height="26" role="img" aria-label="PSE" title="PSE - Pagos Seguros en Línea">
+                        <text x="50" y="22" font-family="Arial Black, Arial" font-weight="900" font-size="18" fill="#003087" text-anchor="middle">PSE</text>
+                        <text x="50" y="35" font-family="Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">Pagos en Línea</text>
+                        <rect x="5" y="37" width="90" height="2" rx="1" fill="#003087"/>
+                    </svg>
+                    <!-- Addi SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" height="24" role="img" aria-label="Addi" title="Addi">
+                        <circle cx="28" cy="40" r="24" fill="#5B7BFF"/>
+                        <circle cx="28" cy="40" r="12" fill="#fff"/>
+                        <rect x="16" y="40" width="12" height="24" rx="6" fill="#5B7BFF"/>
+                        <circle cx="72" cy="52" r="16" fill="#5B7BFF"/>
+                        <circle cx="72" cy="52" r="8" fill="#fff"/>
+                        <rect x="52" y="16" width="12" height="54" rx="6" fill="#5B7BFF"/>
+                        <circle cx="116" cy="52" r="16" fill="#5B7BFF"/>
+                        <circle cx="116" cy="52" r="8" fill="#fff"/>
+                        <rect x="96" y="16" width="12" height="54" rx="6" fill="#5B7BFF"/>
+                        <rect x="140" y="28" width="12" height="42" rx="6" fill="#5B7BFF"/>
+                        <circle cx="146" cy="20" r="8" fill="#5B7BFF"/>
+                    </svg>
                     <div class="cash-icon">
                         <svg viewBox="0 0 24 24" width="24" height="24">
                             <path fill="currentColor" d="M3,6H21V18H3V6M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M7,8A1,1 0 0,1 6,7A1,1 0 0,1 7,6A1,1 0 0,1 8,7A1,1 0 0,1 7,8M17,8A1,1 0 0,1 16,7A1,1 0 0,1 17,6A1,1 0 0,1 18,7A1,1 0 0,1 17,8M7,18A1,1 0 0,1 6,17A1,1 0 0,1 7,16A1,1 0 0,1 8,17A1,1 0 0,1 7,18M17,18A1,1 0 0,1 16,17A1,1 0 0,1 17,16A1,1 0 0,1 18,17A1,1 0 0,1 17,18Z"/>

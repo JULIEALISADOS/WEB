@@ -2061,6 +2061,25 @@ footer .section-title::after {
     opacity: 1;
 }
 
+.cash-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #2e7d32;
+    letter-spacing: 0.5px;
+}
+
+.footer-payments svg {
+    display: block;
+}
+
+.footer-payments .cash-icon {
+    color: #2e7d32;
+}
 .cash-icon {
     display: flex;
     align-items: center;
