@@ -1915,8 +1915,17 @@ footer .section-title::after {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+}
+
+.payment-urgency {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    margin: 0 0 10px 0;
+    font-family: var(--font-heading);
+    letter-spacing: 0.3px;
 }
 
 .payment-text h3 {
