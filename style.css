@@ -2023,4 +2023,65 @@ footer .section-title::after {
         height: 22px !important;
     }
 }
+
+.footer-sic-payments {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px auto 30px;
+    width: 100%;
+}
+
+.footer-sic {
+    margin: 0 !important;
+}
+
+.footer-payments {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.footer-payments img {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.footer-payments img:hover {
+    opacity: 1;
+}
+
+.cash-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #444;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .footer-sic-payments {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .footer-payments {
+        gap: 10px;
+        padding: 8px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
