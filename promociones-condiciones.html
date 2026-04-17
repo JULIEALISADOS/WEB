@@ -200,6 +200,30 @@
             }
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17986280702');
+    </script>
+    <!-- Event snippet for WhatsApp Contact conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
 </head>
 
 <body>

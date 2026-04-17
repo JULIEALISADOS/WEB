@@ -232,6 +232,21 @@
             transform: rotate(90deg) scale(1.2);
         }
     </style>
+    <!-- Event snippet for WhatsApp Contact conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
 </head>
 
 <body>
@@ -259,7 +274,7 @@
                     <li><a href="index.html#resultados">Resultados</a></li>
                     <li><a href="index.html#testimonios">Testimonios</a></li>
                     <li><a href="https://wa.me/573043588180" class="btn-nav"
-                            onclick="gtag('event', 'conversion', {'send_to': 'AW-17986280702/ti6gCIzhz4EcEP65w4BD'});">Agendar</a>
+                            onclick="return gtag_report_conversion(this.href);">Agendar</a>
                     </li>
                 </ul>
             </nav>
@@ -343,7 +358,7 @@
                     adquirir estos productos?</p>
                 <a href="https://wa.me/573043588180?text=Hola%20Julie%2C%20soy%20profesional%20y%20estoy%20interesada%20en%20adquirir%20los%20productos%20de%20la%20Línea%20Profesional"
                     class="btn-gold" target="_blank"
-                    onclick="gtag('event', 'conversion', {'send_to': 'AW-17986280702/ti6gCIzhz4EcEP65w4BD'});">Escríbenos
+                    onclick="return gtag_report_conversion(this.href);">Escríbenos
                     por WhatsApp</a>
             </div>
         </div>
