@@ -1410,14 +1410,14 @@ footer .section-title::after {
     gap: 12px;
     /* Reducción adicional */
     width: 95%;
-    max-width: 640px;
+    max-width: 950px;
     /* Reducción adicional */
     margin: 0 auto;
 }
 
 @media (min-width: 768px) {
     .footer-sedes {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 25px;
         /* Reducción adicional */
     }
