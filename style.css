@@ -1725,7 +1725,7 @@ footer .section-title::after {
     }
 
     .footer-sedes {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 30px;
     }
 
