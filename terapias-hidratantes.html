@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17986280702');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo 1.png">
+    <link rel="apple-touch-icon" href="logo 1.png">
+    <meta name="description" content="Terapias de Hidratación Capilar Julie Alisados. Biocomplex, Choco Fix, Hidra-Complex y más para un cabello sedoso.">
+    <meta property="og:image" content="https://juliealisados.com/logo%201.png">
+    <title>Terapias de Hidratación | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .service-detail-page {
+            padding-top: 100px;
+            background: var(--pearl-white);
+        }
+
+        .service-hero {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .service-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        .hero-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('HIDRA - HAIR.mp4'); /* Usando video thumb o imagen */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .service-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .service-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-light);
+        }
+
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .description-text h2 {
+            font-family: var(--font-heading);
+            color: var(--gold-dark);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .therapy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            border-top: 4px solid var(--gold);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(197,160,89,0.1);
+        }
+
+        .feature-box h3 {
+            color: var(--gold-dark);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+        }
+
+        .feature-box p {
+            font-size: 1rem;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--soft-cream);
+        }
+
+        @media (max-width: 768px) {
+            .service-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-brand">
+                <a href="index.html" class="logo-link">
+                    <img src="logo 1.png" alt="Julie Alisados Logo" class="logo-img">
+                </a>
+                <div class="header-titles">
+                    <h1 class="header-title">JULIE ALISADOS <span>By Julie Valencia</span></h1>
+                    <p class="header-subtitle">liso perfecto</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#resultados">Resultados</a></li>
+                    <li><a href="index.html#testimonios">Testimonios</a></li>
+                    <li><a href="https://wa.me/573043588180" class="btn-nav" onclick="return gtag_report_conversion(this.href);">Agendar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="service-detail-page">
+        <section class="service-hero fade-in-up">
+            <div class="hero-placeholder"></div>
+            <div class="service-hero-content">
+                <h1>Terapias de Hidratación</h1>
+                <p>Devuelve el brillo y la sedosidad a tu melena</p>
+            </div>
+        </section>
+
+        <section class="content-section fade-in-up" style="animation-delay: 0.2s;">
+            <div class="container">
+                <a href="index.html#servicios" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Volver a Servicios
+                </a>
+
+                <h2>Nuestras Terapias Hidratantes</h2>
+                <div class="therapy-grid">
+                    <div class="feature-box">
+                        <h3>BIOCOMPLEX</h3>
+                        <p>Es un complejo biológico compuesto por extractos vegetales, vitaminas, proteínas, minerales, aceites esenciales y/o activos biotecnológicos, formulado para estimular el crecimiento del cabello, fortalecer la fibra capilar y equilibrar el cuero cabelludo.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>CHOCO FIX</h3>
+                        <p>Tratamiento a base de chocolate, para cabellos débiles y maltratados, repara, acondiciona, aporta brillo y sedosidad.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>HIDRA - COMPLEX</h3>
+                        <p>Tratamiento intensivo diseñado para cabellos secos, opacos y deshidratados. A base de extractos de aguacate y aloe vera.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>HIDRA - HAIR</h3>
+                        <p>Aporta hidratación, brillo y suavidad irresistible, tratamiento perfecto para cabellos opacos.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>OZONOTERAPIA</h3>
+                        <p>Acción antimicrobiana (bactericida, fungicida y virucida), tiene capacidad antioxidante, regenerativa, estimula la circulación y oxigenación celular, aporta hidratación.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>RELLENO MOLECULAR</h3>
+                        <p>Tratamiento intensivo diseñado para hidratar, actuando directamente sobre la estructura molecular de la fibra capilar. Se basa en la aplicación de moléculas activas como aminoácidos, proteínas, ácido hialurónico, colágeno y otros principios que rellenan los daños microscópicos.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>HIDRATACION S.O.S</h3>
+                        <p>Tratamiento intensivo para restaurar la humedad y los nutrientes perdidos, especialmente en cabellos dañados o muy secos. Es un tratamiento de rescate que busca reparar la fibra capilar y devolverle brillo, suavidad y elasticidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section fade-in-up" style="animation-delay: 0.4s;">
+            <div class="container">
+                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 30px;">¿Cabello opaco o reseco?</h2>
+                <a href="https://wa.me/573043588180?text=Hola%20Julie,%20vengo%20por%20una%20Terapia%20de%20Hidratación.%20Mi%20cabello%20está%20opaco" 
+                   class="btn-gold" 
+                   onclick="return gtag_report_conversion(this.href);">Agendar mi Hidratación</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p class="copyright">&copy; 2024 Julie Alisados By Julie Valencia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
