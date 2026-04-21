@@ -23,219 +23,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .service-detail-page {
-            padding-top: 100px;
-            background: var(--pearl-white);
-        }
-
-        .service-hero {
-            position: relative;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            overflow: hidden;
-            background: #1a1a1a;
-        }
-
-        .service-hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-            z-index: 1;
-        }
-
         .hero-placeholder {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('rcp-restauracion.jpg');
+            background-image: url('PROFESIONAL LINEA.png');
             background-size: cover;
             background-position: center;
             opacity: 0.6;
             z-index: 0;
-        }
-
-        .service-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .service-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-        }
-
-        .service-hero p {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .content-section {
-            padding: 80px 0;
-        }
-
-        .description-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .description-text h2 {
-            font-family: var(--font-heading);
-            color: var(--gold-dark);
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .description-text p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .media-placeholder {
-            background: #f4f4f4;
-            border: 2px dashed var(--gold);
-            border-radius: 20px;
-            height: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold-dark);
-            text-align: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .media-placeholder.video::before {
-            content: '▶';
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .feature-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            border-left: 5px solid var(--gold);
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: scale(1.02);
-        }
-
-        .feature-box h3 {
-            color: var(--gold-dark);
-            margin-bottom: 15px;
-            font-family: var(--font-heading);
-        }
-
-        .results-preview {
-            background-color: var(--soft-cream);
-            padding: 80px 0;
-        }
-
-        .results-grid-desc {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .result-placeholder {
-            aspect-ratio: 9/16;
-            background: #eee;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-weight: 700;
-            border: 1px solid #ddd;
-        }
-
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('FONDO WEB.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--gold-dark);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .back-link:hover {
-            transform: translateX(-5px);
-            color: var(--gold);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @media (max-width: 768px) {
-            .description-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .media-placeholder {
-                height: 350px;
-            }
-
-            .results-grid-desc {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -254,9 +52,7 @@
             </div>
 
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
 
             <nav class="nav-menu" id="nav-menu">
@@ -277,7 +73,7 @@
             <div class="hero-placeholder"></div>
             <div class="service-hero-content">
                 <h1>Terapias Restauradoras</h1>
-                <p>El milagro que tu cabello dañado estaba esperando</p>
+                <p>Rescata la salud y vitalidad de tu cabello</p>
             </div>
         </section>
 
@@ -290,13 +86,13 @@
 
                 <div class="services-list">
                     <!-- Servicio 1: RCP -->
-                    <div class="description-grid" style="margin-bottom: 80px;">
-                        <div class="feature-box" style="margin-bottom: 0;">
+                    <div class="description-grid">
+                        <div class="feature-box">
                             <h3>R.C.P. (Restauración Capilar Profunda)</h3>
-                            <p>¡No lo cortes todavía! Si sientes que tu pelo ya no tiene salvación, que está elástico (como un chicle), extremadamente poroso o que se rompe con solo mirarlo, el <strong>RCP</strong> es el milagro que estabas buscando.</p>
-                            <p>Trabajamos en lo más profundo de la hebra para reconstruir los puentes de hidrógeno y devolverle la fuerza que ha perdido. Es como volver a construir los cimientos de una casa; tu cabello recupera su estructura, su firmeza y su salud desde la médula. ¡Es un antes y un después garantizado!</p>
+                            <p>¡No lo cortes todavía! Si sientes que tu pelo está elástico (como un chicle), muy poroso o que se rompe con solo mirarlo, el <strong>RCP</strong> es el milagro que buscabas.</p>
+                            <p>Trabajamos en lo más profundo para reconstruir los puentes de hidrógeno. Tu cabello recupera su estructura firmeza y salud desde la médula.</p>
                         </div>
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="ANTES DESPUES  ALISADO SALUDABLE 2.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
@@ -306,16 +102,16 @@
 
                     <!-- Servicio 2: Emulsión Zero -->
                     <div class="description-grid">
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="videos de servicios/video emulsion zero 1.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
                             </video>
                         </div>
-                        <div class="feature-box" style="margin-bottom: 0;">
+                        <div class="feature-box">
                             <h3>Emulsión Zero</h3>
-                            <p>¿Tu pelo se siente áspero al tacto y se ve "erizado" hasta cuando está limpio? La <strong>Emulsión Zero</strong> es la solución definitiva para sellar la porosidad al máximo.</p>
-                            <p>Aporta una suavidad incomparable y un brillo que parece sacado de un filtro de Instagram. Es el complemento ideal para cabellos que han pasado por procesos químicos y necesitan recuperar ese tacto de seda y el aspecto saludable de raíz a puntas. ¡Vas a amar cómo se siente tu pelo después de esto!</p>
+                            <p>¿Tu pelo se siente áspero? La <strong>Emulsión Zero</strong> es la solución definitiva para sellar la porosidad al máximo.</p>
+                            <p>Aporta una suavidad incomparable y un brillo de Instagram. Recupera ese tacto de seda de raíz a puntas.</p>
                         </div>
                     </div>
                 </div>
