@@ -23,34 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .service-detail-page {
-            padding-top: 100px;
-            background: var(--pearl-white);
-        }
-
-        .service-hero {
-            position: relative;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            overflow: hidden;
-            background: #1a1a1a;
-        }
-
-        .service-hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-            z-index: 1;
-        }
-
         .hero-placeholder {
             position: absolute;
             top: 0;
@@ -62,97 +34,6 @@
             background-position: center;
             opacity: 0.6;
             z-index: 0;
-        }
-
-        .service-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .service-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-        }
-
-        .content-section {
-            padding: 80px 0;
-        }
-
-        .therapy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .feature-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            border-bottom: 4px solid var(--gold);
-            height: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 50px rgba(197,160,89,0.1);
-        }
-
-        .feature-box h3 {
-            color: var(--gold-dark);
-            margin-bottom: 20px;
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            border-bottom: 1px solid rgba(197,160,89,0.2);
-            padding-bottom: 15px;
-        }
-
-        .feature-box p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-            line-height: 1.8;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--gold-dark);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            background-color: var(--soft-cream);
-        }
-
-        @media (max-width: 768px) {
-            .service-hero h1 { font-size: 2.2rem; }
-            .therapy-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -199,18 +80,14 @@
                     Volver a Servicios
                 </a>
 
-                <h2 style="font-family: var(--font-heading); color: var(--gold-dark); font-size: 2.5rem; text-align: center; margin-bottom: 30px;">Nutrición Avanzada</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--light-text); font-size: 1.1rem;">Nuestras terapias de nutrición aportan los lípidos y proteínas que tu cabello pierde con el tiempo, devolviéndole su fuerza y brillo natural.</p>
-
                 <div class="services-list">
                     <!-- Servicio 1: Vita Plus -->
-                    <div class="description-grid" style="margin-bottom: 80px;">
-                        <div class="feature-box" style="margin-bottom: 0;">
+                    <div class="description-grid">
+                        <div class="feature-box">
                             <h3>VITA PLUS</h3>
-                            <p>¿Sientes que tu pelo está "debilucho" o que se cae más de lo normal? La terapia <strong>Vita Plus</strong> es el cóctel de energía que tu melena está pidiendo a gritos.</p>
-                            <p>Combinamos vitaminas del complejo B y biotina para alimentar cada hebra desde su interior. Tu pelo crecerá con una resistencia que te va a sorprender. ¡Dile adiós al pelo quebradizo!</p>
+                            <p>Cóctel de energía con vitaminas B y biotina. Tu pelo crecerá con una resistencia que te va a sorprender.</p>
                         </div>
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="abril 1.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
@@ -220,16 +97,15 @@
 
                     <!-- Servicio 2: Proteína Gol -->
                     <div class="description-grid">
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="abril 2.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
                             </video>
                         </div>
-                        <div class="feature-box" style="margin-bottom: 0;">
+                        <div class="feature-box">
                             <h3>PROTEINA GOL</h3>
-                            <p>Rescate estructural completo para cabellos agotados por químicos o calor constante. La queratina pura rellena las fisuras de la cutícula y sella las puntas abiertas.</p>
-                            <p>Obtén un cabello con cuerpo, extremadamente manejable y con un brillo que parece de mentira. Es darle una segunda oportunidad a tu melena.</p>
+                            <p>Rescate estructural con queratina pura. Rellena fisuras y sella puntas. Brillo que parece de mentira.</p>
                         </div>
                     </div>
                 </div>
