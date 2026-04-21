@@ -2139,22 +2139,25 @@ footer .section-title::after {
 
 .service-hero {
     position: relative;
-    height: 350px;
+    height: 220px; /* Mas delgado como pediste */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
     overflow: hidden;
-    background-image: url('service_hero_bg_premium_1776804102678.png');
-    background-size: cover;
-    background-position: center;
+    background-color: #0a0a0a; /* Fondo base elegante */
 }
 
 .service-hero-content {
     position: relative;
     z-index: 10;
     text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+.service-hero h1 {
+    font-size: 2.8rem; /* Ajustado para el nuevo alto */
+    margin-bottom: 10px;
 }
 
 .service-hero::after {
@@ -2164,7 +2167,7 @@ footer .section-title::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
     z-index: 1;
 }
 
