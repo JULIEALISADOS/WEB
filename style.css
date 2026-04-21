@@ -481,6 +481,7 @@ header {
     width: 100%;
     /* Cambiado de max-content para permitir centrado */
     padding: 0;
+    will-change: transform;
 }
 
 .image-banner-track.banner-centered {
