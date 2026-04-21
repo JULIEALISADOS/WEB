@@ -23,34 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .service-detail-page {
-            padding-top: 100px;
-            background: var(--pearl-white);
-        }
-
-        .service-hero {
-            position: relative;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            overflow: hidden;
-            background: #1a1a1a;
-        }
-
-        .service-hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-            z-index: 1;
-        }
-
         .hero-placeholder {
             position: absolute;
             top: 0;
@@ -62,180 +34,6 @@
             background-position: center;
             opacity: 0.6;
             z-index: 0;
-        }
-
-        .service-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .service-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-        }
-
-        .service-hero p {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .content-section {
-            padding: 80px 0;
-        }
-
-        .description-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .description-text h2 {
-            font-family: var(--font-heading);
-            color: var(--gold-dark);
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .description-text p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .media-placeholder {
-            background: #f4f4f4;
-            border: 2px dashed var(--gold);
-            border-radius: 20px;
-            height: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold-dark);
-            text-align: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .media-placeholder.video::before {
-            content: '▶';
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .feature-box {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            border-left: 5px solid var(--gold);
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: scale(1.02);
-        }
-
-        .feature-box h3 {
-            color: var(--gold-dark);
-            margin-bottom: 15px;
-            font-family: var(--font-heading);
-        }
-
-        .results-preview {
-            background-color: var(--soft-cream);
-            padding: 80px 0;
-        }
-
-        .results-grid-desc {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .result-placeholder {
-            aspect-ratio: 9/16;
-            background: #eee;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-weight: 700;
-            border: 1px solid #ddd;
-        }
-
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('FONDO WEB.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--gold-dark);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .back-link:hover {
-            transform: translateX(-5px);
-            color: var(--gold);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @media (max-width: 768px) {
-            .description-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .service-hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .media-placeholder {
-                height: 350px;
-            }
-
-            .results-grid-desc {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -254,9 +52,7 @@
             </div>
 
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
 
             <nav class="nav-menu" id="nav-menu">
@@ -277,7 +73,7 @@
             <div class="hero-placeholder"></div>
             <div class="service-hero-content">
                 <h1>Alisado Saludable</h1>
-                <p>El Alisado Saludable #1 de Colombia: Cabello Radiante, Fuerte y Liso</p>
+                <p>La evolución del liso orgánico sin formol</p>
             </div>
         </section>
 
@@ -290,18 +86,18 @@
 
                 <div class="services-list">
                     <!-- Servicio 1 -->
-                    <div class="description-grid" style="margin-bottom: 80px;">
-                        <div class="feature-box" style="margin-bottom: 0;">
+                    <div class="description-grid">
+                        <div class="feature-box">
                             <h3>Alisado Saludable By Julie Valencia</h3>
-                            <p>¡Es el servicio estrella de la casa y el que todas aman! No es solo un alisado, es una transformación total para que por fin tengas ese <strong>pelo de comercial</strong> que siempre has soñado. Nuestra fórmula exclusiva es 100% orgánica y, lo mejor de todo, <strong>cero formol</strong>. Olvídate de los ojos llorosos o los olores fuertes; aquí vienes es a que te consintamos.</p>
-                            <p>Este alisado trabaja desde el corazón de tu fibra capilar, reponiendo los aminoácidos que el pelo ha perdido por el sol, la contaminación o la plancha. ¿El resultado? Un liso perfecto, con una caída natural envidiable y un brillo "espejo" que deja a todo el mundo con la boca abierta.</p>
+                            <p>¡Es el servicio estrella de la casa y el que todas aman! Nuestra fórmula exclusiva es 100% orgánica y <strong>cero formol</strong>. Olvídate de los ojos llorosos; aquí vienes es a que te consintamos.</p>
+                            <p>Este alisado trabaja desde el corazón de tu fibra capilar, reponiendo los aminoácidos perdidos. ¿El resultado? Un liso perfecto, con caída natural y un brillo "espejo" impactante.</p>
                             <ul style="margin-top: 10px; color: var(--light-text); padding-left: 20px;">
                                 <li>Liso 100% garantizado (decile adiós a las ondas).</li>
                                 <li>Brillo de alto impacto y sedosidad de infarto.</li>
                                 <li>Salud total para tu hebra.</li>
                             </ul>
                         </div>
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls poster="alisado-saludable-pro.jpg">
                                 <source src="videos de servicios/video alisado saludable 1.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
@@ -310,33 +106,32 @@
                     </div>
 
                     <!-- Servicio 2 -->
-                    <div class="description-grid" style="margin-bottom: 80px;">
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div class="description-grid">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="videos de servicios/video alisado saludable 2.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
                             </video>
                         </div>
-                        <div class="feature-box" style="margin-bottom: 0;">
+                        <div class="feature-box">
                             <h3>Alisado Light</h3>
-                            <p>¿Ya tienes un alisado pero sientes que el brillo se está apagando o que el frizz quiere volver a aparecer? El <strong>Alisado Light</strong> es tu mejor aliado. Está diseñado especialmente para cabellos que ya han pasado por procesos de alisado y solo necesitan ese "refuerzo" de nutrición y disciplina.</p>
-                            <p>Nos enfocamos en devolverle la hidratación extrema a tu melena sin saturarla. Es como darle un vaso de agua gigante a tu pelo; queda súper manejable, con un volumen controlado y tan suave que no vas a dejar de tocártelo.</p>
+                            <p>¿Ya tienes un alisado pero sientes que el brillo se apaga? El <strong>Alisado Light</strong> es tu mejor aliado. Diseñado para cabellos que necesitan ese "refuerzo" de nutrición y disciplina.</p>
+                            <p>Nos enfocamos en devolverle la hidratación extrema sin saturarla. Un acabado ligero, con mucho movimiento y vida.</p>
                             <ul style="margin-top: 10px; color: var(--light-text); padding-left: 20px;">
                                 <li>El retoque perfecto para cabellos ya alisados.</li>
                                 <li>Cero frizz y máxima hidratación.</li>
-                                <li>Un acabado ligero, con mucho movimiento y vida.</li>
+                                <li>Acabado natural y brillante.</li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Servicio 3 -->
-                    <div class="description-grid" style="margin-bottom: 80px;">
-                        <div class="feature-box" style="margin-bottom: 0;">
+                    <div class="description-grid">
+                        <div class="feature-box">
                             <h3>Retoque de Raíz</h3>
-                            <p>Sabemos que después de unos meses, esa raíz nueva empieza a asomarse y a dañar tu look. Pero no te preocupes, ¡no hay que hacerlo todo de nuevo! Nuestro <strong>Retoque de Raíz</strong> es la solución clave para mantener tu inversión.</p>
-                            <p>Trabajamos solo ese crecimiento nuevo para unificarlo perfectamente con el largo que ya tienes liso. Así, no maltratamos las puntas y mantenemos todo el pelo parejito y brillante. Es la forma más inteligente de cuidar tu bolsillo y la salud de tu melena a largo plazo.</p>
+                            <p>Mantén tu inversión impecable. Trabajamos solo el crecimiento nuevo para unificarlo perfectamente con el largo que ya tienes liso, cuidando la salud de tus puntas.</p>
                         </div>
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="ANTES DESPUES  ALISADO SALUDABLE 1.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
@@ -346,16 +141,15 @@
 
                     <!-- Servicio 4 -->
                     <div class="description-grid">
-                        <div class="video-container" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <div class="video-container">
                             <video width="100%" height="auto" controls>
                                 <source src="ANTES DESPUES  ALISADO SALUDABLE 3.mp4" type="video/mp4">
                                 Tu navegador no soporta el formato de video.
                             </video>
                         </div>
-                        <div class="feature-box" style="margin-bottom: 0;">
+                        <div class="feature-box">
                             <h3>Balaca (Retoque Frontal)</h3>
-                            <p>¿Te molestan esos "pelitos bebés" o el frizz que sale justo en el contorno de la cara? Para eso creamos la <strong>Balaca</strong>. Es un servicio rápido y súper efectivo para disciplinar esos pelitos del frente que tanto nos estresan al peinarnos.</p>
-                            <p>Logramos que esa zona frontal quede pulida y perfecta, para que cuando te sueltes el pelo o te hagas una colita, todo se vea ordenado y brillante. ¡Es el secreto mejor guardado para lucir impecable en todo momento!</p>
+                            <p>Disciplina esos "pelitos bebés" o el frizz del contorno de la cara. Un servicio rápido y efectivo para lucir un rostro siempre pulido y perfecto.</p>
                         </div>
                     </div>
                 </div>
