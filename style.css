@@ -2327,3 +2327,94 @@ footer .section-title::after {
         flex-direction: column;
     }
 }
+
+/* Privacy Banner Styles */
+.privacy-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 2px solid var(--gold);
+    z-index: 9999;
+    padding: 20px 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+}
+
+.privacy-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.privacy-content p {
+    font-size: 0.95rem;
+    color: var(--dark-text);
+    margin: 0;
+}
+
+.privacy-content a {
+    color: var(--gold-dark);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.btn-privacy {
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-privacy:hover {
+    background: var(--gold-dark);
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+.slide-down {
+    animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+@media (max-width: 768px) {
+    .privacy-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .privacy-banner {
+        padding: 15px 10px;
+    }
+
+    .privacy-content p {
+        font-size: 0.85rem;
+    }
+}

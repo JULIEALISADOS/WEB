@@ -773,7 +773,37 @@
             </video>
         </div>
     </div>
+    <!-- Privacy Banner (Habeas Data) -->
+    <div id="privacy-banner" class="privacy-banner hidden">
+        <div class="privacy-content">
+            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar en nuestra web, aceptas nuestra 
+               <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos</a>.
+            </p>
+            <button id="accept-privacy" class="btn-privacy">Aceptar</button>
+        </div>
+    </div>
+
     <script>
+        // Lógica de Banner de Privacidad
+        window.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('privacy-banner');
+            const acceptBtn = document.getElementById('accept-privacy');
+
+            if (!localStorage.getItem('privacyAccepted')) {
+                setTimeout(() => {
+                    banner.classList.remove('hidden');
+                    banner.classList.add('slide-up');
+                }, 2000); // Aparece a los 2 segundos
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('privacyAccepted', 'true');
+                banner.classList.remove('slide-up');
+                banner.classList.add('slide-down');
+                setTimeout(() => banner.classList.add('hidden'), 500);
+            });
+        });
+
         // Funcionalidad de Acordeón FAQ
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
