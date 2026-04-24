@@ -2062,6 +2062,31 @@ footer .section-title::after {
 
 .footer-sic {
     margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.sic-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.sic-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
 }
 
 .footer-payments {
@@ -2069,23 +2094,22 @@ footer .section-title::after {
     align-items: center;
     gap: 15px;
     background: #fff;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+    border: 1.5px solid var(--gold-light);
 }
 
 .footer-payments img {
-    height: 28px;
+    height: 30px;
     width: auto;
     object-fit: contain;
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
-    border-radius: 4px;
+    opacity: 1; /* Máximo color y visibilidad */
+    transition: transform 0.3s ease;
 }
 
 .footer-payments img:hover {
-    opacity: 1;
+    transform: scale(1.1);
 }
 
 .cash-badge {
@@ -2111,11 +2135,10 @@ footer .section-title::after {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: #444;
+    color: #2e7d32;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    opacity: 0.7;
 }
 
 @media (max-width: 768px) {
