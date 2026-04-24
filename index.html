@@ -725,8 +725,7 @@
                 <a href="#">Política de Servicio</a>
                 <a href="#">Política de Garantía</a>
                 <a href="#">Política de Envío</a>
-                <a href="#">Política de Privacidad</a>
-                <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos Personales</a>
+                <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos (Privacidad)</a>
             </div>
 
             <div class="footer-sic-payments">
@@ -776,28 +775,23 @@
     <!-- Privacy Banner (Habeas Data) -->
     <div id="privacy-banner" class="privacy-banner hidden">
         <div class="privacy-content">
-            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra 
-               <a href="politica-datos.html" target="_blank">Política de Tratamiento de Datos</a>.
-            </p>
+            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra Política de Tratamiento de Datos.</p>
             <button id="accept-privacy" class="btn-privacy">Aceptar</button>
         </div>
     </div>
 
     <script>
-        // Lógica de Banner de Privacidad
+        // Lógica de Banner de Privacidad (Aparece siempre por solicitud)
         window.addEventListener('DOMContentLoaded', () => {
             const banner = document.getElementById('privacy-banner');
             const acceptBtn = document.getElementById('accept-privacy');
 
-            if (!localStorage.getItem('privacyAccepted')) {
-                setTimeout(() => {
-                    banner.classList.remove('hidden');
-                    banner.classList.add('slide-up');
-                }, 2000); // Aparece a los 2 segundos
-            }
+            setTimeout(() => {
+                banner.classList.remove('hidden');
+                banner.classList.add('slide-up');
+            }, 1000); 
 
             acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('privacyAccepted', 'true');
                 banner.classList.remove('slide-up');
                 banner.classList.add('slide-down');
                 setTimeout(() => banner.classList.add('hidden'), 500);
