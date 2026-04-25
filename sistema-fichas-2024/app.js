@@ -54,7 +54,7 @@ loginForm.addEventListener('submit', (e) => {
     const email = document.getElementById('loginEmail').value;
     const pass = document.getElementById('loginPass').value;
 
-    if (email === 'admin@juliealisados.com' && pass === 'julie2024') {
+    if (email === '80200013' && pass === 'Lisolaloca01:') {
         currentUser = "Julia Alisados";
         localStorage.setItem('julie_session', 'true');
         localStorage.setItem('julie_user_name', currentUser);
