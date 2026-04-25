@@ -1,5 +1,9 @@
 // --- JULIEFICHA V5.0: REINICIO MAESTRO ---
-alert('🚀 JulieFicha V5.0: Sistema Actualizado a Versión 5.0 (Blindado Total)');
+// alert('🚀 JulieFicha V5.0: Sistema Actualizado a Versión 5.0 (Blindado Total)');
+
+if (window.location.protocol === 'file:') {
+    alert('⚠️ ATENCIÓN: Estás abriendo la aplicación como un archivo local. El guardado NO funcionará por seguridad del navegador. \n\nPor favor, usa la dirección web: https://juliealisados.github.io/WEB/sistema-fichas-2024/');
+}
 
 const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
 const SB_KEY = 'sb_publishable_TBCjJHsY-vSi_BX-sWqDUA_PR3dMwvV';
@@ -211,7 +215,26 @@ window.addEventListener('load', () => {
     lucide.createIcons();
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     setNextID();
+    populateStylistsSelect();
 });
+
+async function populateStylistsSelect() {
+    if(!responsableInput) return;
+    try {
+        const { data: stylists, error } = await sb.from('estilistas').select('nombre').order('nombre');
+        if (error) throw error;
+        
+        responsableInput.innerHTML = '<option value="">Seleccione estilista...</option>';
+        stylists.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.nombre;
+            opt.textContent = s.nombre;
+            responsableInput.appendChild(opt);
+        });
+    } catch (e) {
+        console.error("Error al cargar estilistas para el select:", e);
+    }
+}
 
 // HELPERS GLOBALES
 window.setSede = function(s) { 
