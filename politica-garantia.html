@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Garantía Limitada | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo 1.png">
+    <style>
+        :root {
+            --light-pink: #FFF5F8;
+            --dark-grey: #333333;
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--dark-grey);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .header-logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        h3 {
+            font-family: var(--font-body);
+            color: var(--gold-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--gold-dark);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+            margin: 35px 0;
+        }
+
+        .commitment-box {
+            background: rgba(197, 160, 89, 0.06);
+            border-left: 4px solid var(--gold);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .care-box {
+            background: rgba(197, 160, 89, 0.04);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            margin: 20px 0;
+        }
+
+        .care-box h3 {
+            margin-top: 15px;
+        }
+
+        .care-box h3:first-child {
+            margin-top: 0;
+        }
+
+        .exclusion-box {
+            background: #fef8f8;
+            border-left: 4px solid #d9534f;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .exclusion-box ul {
+            margin-bottom: 0;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .result-card {
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .result-card.valid {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+        }
+
+        .result-card.invalid {
+            background: #fff3e0;
+            border: 1px solid #ffcc80;
+        }
+
+        .result-card h3 {
+            margin-top: 0;
+            font-size: 0.95rem;
+        }
+
+        .result-card.valid h3 { color: #2e7d32; }
+        .result-card.invalid h3 { color: #e65100; }
+
+        .important-box {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .important-box h2 {
+            color: var(--gold);
+            border-bottom: none;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .important-box p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .important-box strong {
+            color: var(--gold);
+        }
+
+        .contact-box {
+            background: rgba(197, 160, 89, 0.06);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .contact-box a {
+            color: var(--gold-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .legal-note {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .company-info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .container { padding: 25px 20px; }
+            h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header-logo">
+            <img src="logo 1.png" alt="Julie Alisados">
+        </div>
+
+        <h1>Política de Garantía Limitada para Alisados Progresivos</h1>
+        <p class="subtitle">Sustentada en el Estatuto del Consumidor — Ley 1480 de 2011 (Artículos 7, 8 y 16)</p>
+
+        <hr>
+
+        <!-- Compromiso -->
+        <div class="commitment-box">
+            <p>En <strong>Julie Alisados</strong> la satisfacción de nuestras clientas es nuestra prioridad. Por eso, nos apegamos estrictamente a la normatividad colombiana vigente y estamos siempre dispuestos a resolver cualquier inquietud o reclamo. Para cualquier solicitud, comunícate directamente a nuestro <a href="https://wa.me/573043588180?text=Hola%20Julie,%20necesito%20iniciar%20mi%20proceso%20de%20garantía" target="_blank" style="color: var(--gold-dark); font-weight: 700;">WhatsApp: 304 358 8180</a>.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 1 -->
+        <h2>1. Objeto de la Garantía</h2>
+        <p>Esta política de <strong>garantía limitada</strong> aplica exclusivamente a los alisados progresivos realizados en los locales de Julie Alisados. Cubre cualquier defecto relacionado con el procedimiento o los productos utilizados durante el servicio. Julie Alisados garantiza que todos los procesos y políticas establecidos cumplen con las disposiciones legales de la <strong>Superintendencia de Industria y Comercio (SIC)</strong> y demás normatividad vigente en Colombia en materia de protección al consumidor.</p>
+        <p class="legal-note">Fundamento legal: Ley 1480 de 2011, Artículos 7 y 8.</p>
+
+        <hr>
+
+        <!-- Sección 2 -->
+        <h2>2. Factores Clave para Mantener los Resultados</h2>
+        <p>El alisado progresivo es un tratamiento capilar diseñado para reducir el volumen, eliminar el encrespamiento y alisar el cabello de manera progresiva, proporcionando un acabado brillante y manejable. Para conservar los resultados, es fundamental que el cliente cumpla con lo siguiente:</p>
+
+        <div class="care-box">
+            <h3>Uso del Secador (Lo óptimo)</h3>
+            <p>Aunque tu cabello permanecerá liso si decides dejarlo secar al aire, el uso del secador es lo que marca la diferencia entre un liso básico y un acabado de salón. El calor es la llave que revela la verdadera magia de nuestro tratamiento: al secarlo tras cada lavado, "despiertas" la fórmula para que tu cabello recupere ese brillo efecto espejo y esa caída perfecta que tanto te gusta.</p>
+
+            <h3>Hidratación</h3>
+            <p>La hidratación del cabello es fundamental para conservar los resultados del alisado.</p>
+
+            <h3>Marcaciones y ondas</h3>
+            <p>Cualquier marcación que no haya sido realizada con herramientas de calor diseñadas para cambios permanentes o procesos químicos (incluyendo las generadas por dormir, usar ganchos, moñas o casco) es temporal y desaparecerá por completo al realizar un lavado adecuado y secado siguiendo las recomendaciones dadas.</p>
+
+            <h3>Higiene capilar</h3>
+            <p>Mantener una buena higiene capilar es esencial. Se recomienda lavar el cabello como mínimo cada 2 días, siendo ideal realizar un lavado diario.</p>
+
+            <h3>Cabello con Canas y Beneficios</h3>
+            <p>Nuestro alisado es <strong>100% libre de formol</strong>, priorizando la salud de tu fibra capilar. Debido a esta fórmula orgánica y segura, el producto puede amarillar la cana temporalmente (especialmente en alisados intensos). <strong>Beneficios de nuestra fórmula:</strong> Sin olores fuertes, sin irritación en ojos o garganta, y con un acabado natural que protege la salud del cabello y del profesional.</p>
+            <p>Si deseas recuperar el tono original de tu cana, puedes realizar un matizado con total seguridad <strong>5 días después</strong> del procedimiento.</p>
+        </div>
+
+        <h3>Factores que pueden dañar el alisado:</h3>
+        <ol>
+            <li>No seguir las recomendaciones dadas por el personal de Julie Alisados.</li>
+            <li>Exposición a condiciones extremas como piscinas, agua salada, <strong>aguas termales</strong>, agua caliente excesiva, o cloro.</li>
+            <li>Uso de productos no recomendados, como champús con sal u otros que alteren el efecto del tratamiento.</li>
+            <li>Aplicación de otros procedimientos químicos (tintes, decoloraciones, permanentes), ya que estos pueden alterar el resultado del alisado y anular la garantía.</li>
+        </ol>
+
+        <div class="commitment-box" style="background: rgba(217, 83, 79, 0.05); border-left-color: #d9534f;">
+            <p><strong>Nota importante sobre idoneidad:</strong> El alisado progresivo requiere un compromiso real con el cuidado posterior. Si el cliente no está dispuesto a seguir una rutina estricta de cuidado e hidratación, tal vez no sea el candidato ideal para este procedimiento. En tales casos, recomendamos consultar por otros tratamientos disponibles en nuestros locales que puedan adaptarse mejor a sus necesidades.</p>
+        </div>
+        <p class="legal-note">Fundamento legal: Art. 16 Ley 1480 de 2011.</p>
+
+        <hr>
+
+        <!-- Sección 3 -->
+        <h2>3. Condiciones Generales</h2>
+        <ul>
+            <li>La garantía es válida únicamente si el cliente cumple con las instrucciones de cuidado proporcionadas al finalizar el servicio.</li>
+            <li>Aunque no es obligatorio el uso exclusivo de productos de post-cuidado de la marca Julie Alisados (poseemos nuestra propia línea desarrollada bajo altos estándares de calidad), el cliente <strong>debe utilizar obligatoriamente productos de uso profesional, libres de sal y sin químicos agresivos</strong> que puedan alterar el resultado.</li>
+            <li>La garantía cubre únicamente procedimientos realizados en los locales de Julie Alisados.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Sección 4 -->
+        <h2>4. Período de Garantía</h2>
+        <p>La garantía tiene una duración de <strong>veinte (20) días calendario</strong>, contados a partir de la fecha en que se realizó el procedimiento. No se procesarán solicitudes de garantía presentadas después de los veinte (20) días calendario.</p>
+        <p class="legal-note">Fundamento legal: Art. 8 Ley 1480 de 2011.</p>
+
+        <hr>
+
+        <!-- Sección 5 -->
+        <h2>5. Exclusiones</h2>
+        <p>La garantía no será aplicable en los siguientes casos:</p>
+
+        <div class="exclusion-box">
+            <ul>
+                <li>Uso de productos no aptos para cabellos con alisado progresivo (con sal o químicos agresivos).</li>
+                <li>Exposición a condiciones extremas como piscinas, agua salada, <strong>aguas termales</strong>, agua caliente excesiva, o cloro.</li>
+                <li>Procedimientos realizados en otro establecimiento tras el alisado.</li>
+                <li>Cambios en el estado del cabello debido a tratamientos químicos adicionales (como tintes o decoloraciones).</li>
+                <li>Insatisfacción por estilos o cambios previamente aprobados por el cliente.</li>
+            </ul>
+        </div>
+        <p class="legal-note">Fundamento legal: Art. 16 Ley 1480 de 2011.</p>
+
+        <hr>
+
+        <!-- Sección 6 -->
+        <h2>6. Proceso de Reclamación</h2>
+        <p>Para solicitar la garantía, el cliente debe:</p>
+        <ol>
+            <li>Presentar la reclamación dentro del período de veinte (20) días calendario.</li>
+            <li>Grabar un video del cabello recién lavado y secado con secador, sin uso de planchas, realizando el lavado de acuerdo a las recomendaciones dadas al finalizar el proceso y usando los productos recomendados al finalizar el proceso.</li>
+            <li>El video debe mostrar de manera clara las ondas o el problema para ser evaluado.</li>
+            <li>Confirmar qué productos se han utilizado tras el procedimiento.</li>
+        </ol>
+
+        <h3>Evaluación del video</h3>
+        <p>Si en el video se evidencia la presencia de garantía, Julie Alisados citará al cliente en la sede para realizar un lavado del cabello de acuerdo a las recomendaciones dadas para cuidado en casa. Durante este lavado, se verificará si el problema reportado persiste.</p>
+
+        <h3>Resultados del lavado en sede</h3>
+        <div class="result-grid">
+            <div class="result-card valid">
+                <h3>Garantía Válida</h3>
+                <p>Si al realizar el lavado se confirma la falla en el procedimiento, se corregirá la parte del cabello afectada <strong>sin costo alguno</strong>.</p>
+            </div>
+            <div class="result-card invalid">
+                <h3>Garantía No Válida</h3>
+                <p>Si el lavado evidencia que no hay fallos en el procedimiento y que el problema surge por no seguir los cuidados recomendados, el cliente deberá cancelar un valor de <strong>$20.000 COP</strong> por el servicio de lavado y secado por profesional en la sede. La garantía se cerrará mostrando al cliente que no existían fallos en el procedimiento.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Sección 7 -->
+        <h2>7. Responsabilidad del Cliente</h2>
+        <p>El cliente debe seguir estrictamente las recomendaciones de cuidado proporcionadas, incluyendo:</p>
+        <ul>
+            <li>Usar champús y productos sin sal recomendados por Julie Alisados.</li>
+            <li>Mantener una buena higiene capilar, lavando el cabello como mínimo cada 2 días, siendo ideal un lavado diario.</li>
+            <li>Evitar exposiciones que comprometan el resultado del alisado, como el uso de ganchos o dormir con el cabello mojado.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Importante -->
+        <div class="important-box">
+            <h2>Importante</h2>
+            <p>Cuando el procedimiento de alisado progresivo se realice con <strong>distribuidores o terceras personas</strong>, JULIE ALISADOS® no se hará responsable por ningún tipo de reclamaciones; estas deberán realizarse ante el distribuidor o estilista externo que realizó el procedimiento.</p>
+            <br>
+            <p><strong>JULIE ALISADOS®</strong> no se hace responsable de procesos que se hayan realizado fuera de nuestros locales oficiales. Así mismo, JULIE ALISADOS® no se hace responsable de la mala utilización de los productos por terceros y los posibles cambios que esto genere.</p>
+        </div>
+
+        <hr>
+
+        <!-- Canal de Atención -->
+        <div class="contact-box">
+            <h2 style="margin-top: 0; border: none;">Canal de Atención</h2>
+            <p>Para cualquier inquietud, reclamo o solicitud, comunícate con nosotros:</p>
+            <p><a href="https://wa.me/573043588180?text=Hola%20Julie,%20necesito%20iniciar%20mi%20proceso%20de%20garantía" target="_blank">WhatsApp: 304 358 8180</a></p>
+            <p>Correo: juliealisados@gmail.com</p>
+            <br>
+            <p><em>En Julie Alisados creemos que la confianza se construye con transparencia. Estamos para ti.</em></p>
+        </div>
+
+        <hr>
+
+        <p class="company-info">
+            <strong>JULIE ALISADOS S.A.S.</strong> — NIT: 901.918.276-0<br>
+            Moniquirá, Boyacá · Tunja, Boyacá
+        </p>
+
+        <center><a href="index.html" class="back-link">← Volver a la página principal</a></center>
+    </div>
+</body>
+
+</html>
