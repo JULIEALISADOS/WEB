@@ -778,7 +778,7 @@
             <div class="footer-sic-payments">
                 <div class="footer-sic">
                     <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
-                        <img src="LOGO SIC NUEVO.png" alt="Superintendencia de Industria y Comercio" class="sic-logo">
+                        <img src="LOGO%20SIC%20NUEVO.png" alt="Superintendencia de Industria y Comercio" class="sic-logo">
                     </a>
                     <p class="sic-text">Superintendencia de Industria y Comercio</p>
                 </div>
@@ -820,27 +820,39 @@
         </div>
     </div>
     <!-- Privacy Banner (Habeas Data) -->
+    <div id="privacy-overlay" class="privacy-overlay hidden"></div>
     <div id="privacy-banner" class="privacy-banner hidden">
         <div class="privacy-content">
-            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el uso de <strong>cookies</strong>, el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra <a href="politica-datos.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Tratamiento de Datos</a> y <a href="politica-garantia.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Términos de Garantía</a>.</p>
+            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el uso de <strong>cookies</strong>, el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra <a href="politica-datos.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Tratamiento de Datos</a>, <a href="politica-garantia.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Términos de Garantía</a> y <a href="politica-servicio.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Servicio</a>.</p>
             <button id="accept-privacy" class="btn-privacy">Aceptar</button>
         </div>
     </div>
 
     <script>
-        // Lógica de Banner de Privacidad (Aparece siempre por solicitud)
+        // Lógica de Banner de Privacidad (Mandatorio y una sola vez)
         window.addEventListener('DOMContentLoaded', () => {
             const banner = document.getElementById('privacy-banner');
+            const overlay = document.getElementById('privacy-overlay');
             const acceptBtn = document.getElementById('accept-privacy');
+            
+            // Verificar si ya aceptó previamente
+            const hasAccepted = localStorage.getItem('privacyAccepted');
 
-            setTimeout(() => {
-                banner.classList.remove('hidden');
-                banner.classList.add('slide-up');
-            }, 1000); 
+            if (!hasAccepted) {
+                setTimeout(() => {
+                    banner.classList.remove('hidden');
+                    overlay.classList.remove('hidden');
+                    banner.classList.add('slide-up');
+                    document.body.style.overflow = 'hidden'; // Bloquear scroll
+                }, 1000); 
+            }
 
             acceptBtn.addEventListener('click', () => {
                 banner.classList.remove('slide-up');
                 banner.classList.add('slide-down');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = ''; // Liberar scroll
+                localStorage.setItem('privacyAccepted', 'true');
                 setTimeout(() => banner.classList.add('hidden'), 500);
             });
         });

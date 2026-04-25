@@ -1588,8 +1588,8 @@ footer .section-title::after {
 }
 
 .sic-logo {
-    width: 100px;
-    /* Más pequeño y discreto */
+    width: 200px;
+    /* Tamaño aumentado para mayor visibilidad */
     height: auto;
     display: block;
     background: #fff;
@@ -1743,14 +1743,29 @@ footer .section-title::after {
     right: 30px;
     width: 65px;
     height: 65px;
-    background-color: #25d366;
+    background-color: #fff;
+    border: 2px solid #25d366;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     z-index: 2000;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    color: #25d366;
+    animation: luminous-pulse 2s infinite;
+}
+
+@keyframes luminous-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
 }
 
 @media (max-width: 600px) {
@@ -1765,10 +1780,10 @@ footer .section-title::after {
 
 .btn-whatsapp-floating:hover {
     transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 240, 245, 0.8);
-    background-color: var(--soft-cream);
-    color: var(--gold);
-    border: 1px solid var(--gold);
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+    background-color: #f0fff4; /* Verde muy clarito casi blanco */
+    color: #128c7e; /* Verde más oscuro de WhatsApp */
+    border-color: #128c7e;
 }
 
 .btn-whatsapp-floating svg {
@@ -2074,7 +2089,7 @@ footer .section-title::after {
 }
 
 .sic-logo {
-    height: 45px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -2326,6 +2341,17 @@ footer .section-title::after {
         display: flex;
         flex-direction: column;
     }
+}
+
+.privacy-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
 }
 
 /* Privacy Banner Styles */
