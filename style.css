@@ -1882,7 +1882,7 @@ footer .section-title::after {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 2500px;
+    max-height: 5000px;
     /* Ajustado para el texto largo en celular */
 }
 
