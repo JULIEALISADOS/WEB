@@ -2434,6 +2434,17 @@ footer .section-title::after {
     transform: scale(1.05);
 }
 
+.btn-privacy.reject {
+    background: transparent;
+    color: var(--gold-dark);
+    border: 2px solid var(--gold);
+}
+
+.btn-privacy.reject:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--dark-text);
+}
+
 .hidden {
     display: none;
 }
