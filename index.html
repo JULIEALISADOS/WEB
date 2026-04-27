@@ -823,8 +823,11 @@
     <div id="privacy-overlay" class="privacy-overlay hidden"></div>
     <div id="privacy-banner" class="privacy-banner hidden">
         <div class="privacy-content">
-            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el uso de <strong>cookies</strong>, el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra <a href="politica-datos.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Tratamiento de Datos</a>, <a href="politica-garantia.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Términos de Garantía</a> y <a href="politica-servicio.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Servicio</a>.</p>
-            <button id="accept-privacy" class="btn-privacy">Aceptar</button>
+            <p>En <strong>Julie Alisados</strong> protegemos tu privacidad. Al navegar o contactarnos, aceptas el uso de <strong>cookies</strong>, el tratamiento de tus datos y su uso compartido con socios comerciales según nuestra <a href="politica-datos.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Tratamiento de Datos</a>, <a href="politica-garantia.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Términos de Garantía</a>, <a href="politica-servicio.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Servicio</a> y <a href="politica-cookies.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Política de Cookies</a>.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button id="reject-privacy" class="btn-privacy reject">Rechazar no esenciales</button>
+                <button id="accept-privacy" class="btn-privacy">Aceptar todas</button>
+            </div>
         </div>
     </div>
 
@@ -834,8 +837,9 @@
             const banner = document.getElementById('privacy-banner');
             const overlay = document.getElementById('privacy-overlay');
             const acceptBtn = document.getElementById('accept-privacy');
+            const rejectBtn = document.getElementById('reject-privacy');
             
-            // Verificar si ya aceptó previamente
+            // Verificar si ya interactuó
             const hasAccepted = localStorage.getItem('privacyAccepted');
 
             if (!hasAccepted) {
@@ -847,14 +851,20 @@
                 }, 1000); 
             }
 
-            acceptBtn.addEventListener('click', () => {
+            const closeBanner = (status) => {
+                localStorage.setItem('privacyAccepted', status);
                 banner.classList.remove('slide-up');
                 banner.classList.add('slide-down');
                 overlay.classList.add('hidden');
-                document.body.style.overflow = ''; // Liberar scroll
-                localStorage.setItem('privacyAccepted', 'true');
-                setTimeout(() => banner.classList.add('hidden'), 500);
-            });
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+                setTimeout(() => {
+                    banner.classList.add('hidden');
+                }, 500);
+            };
+
+            acceptBtn.addEventListener('click', () => closeBanner('true'));
+            rejectBtn.addEventListener('click', () => closeBanner('false'));
+
         });
 
         // Funcionalidad de Acordeón FAQ
