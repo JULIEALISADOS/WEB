@@ -154,7 +154,7 @@
             <!-- Full Width Promo Banner - Manual Slider -->
             <div class="hero-image-banner fade-in" id="promo-slider-container" style="animation-delay: 0.5s;">
                 <div class="banner-title">
-                    <h3>PROMOCIONES DEL MES ABRIL</h3>
+                    <h3>PROMOCIONES DEL MES MAYO - MES DE LAS MADRES</h3>
                 </div>
 
                 <div class="slider-controls">
@@ -182,60 +182,20 @@
 
                 <div class="image-banner-wrapper promo-slider-wrapper">
                     <div class="image-banner-track manual-track" id="promo-track">
+                        <!-- PROMOCIONES MAYO -->
                         <div class="image-card">
                             <img src="pago%20a%20cuotas%20banner%20promociones.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta" title="Financia tu liso perfecto">
                         </div>
-                        <div class="image-card">
-                            <img src="abril%201.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 1" title="Promoción Mensual Abril">
+                        <div class="image-card" style="display: flex; align-items: center; justify-content: center; background: #fff;">
+                            <img src="logo%201.png" class="banner-video" style="width: 80%; height: auto; object-fit: contain;" alt="Julie Alisados - Próximamente promociones de Mayo" title="Julie Alisados">
                         </div>
-                        <div class="image-card">
-                            <img src="abril%202.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 2">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%203.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 3">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%204.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 4">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%205.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 5">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%206.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 6">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%207.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 7">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%208.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 8">
-                        </div>
+                        
                         <!-- BLOQUE 2 PARA LOOP -->
                         <div class="image-card">
                             <img src="pago%20a%20cuotas%20banner%20promociones.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta">
                         </div>
-                        <div class="image-card">
-                            <img src="abril%201.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 1">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%202.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 2">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%203.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 3">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%204.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 4">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%205.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 5">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%206.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 6">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%207.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 7">
-                        </div>
-                        <div class="image-card">
-                            <img src="abril%208.png" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Promoción Abril 8">
+                        <div class="image-card" style="display: flex; align-items: center; justify-content: center; background: #fff;">
+                            <img src="logo%201.png" class="banner-video" style="width: 80%; height: auto; object-fit: contain;" alt="Julie Alisados">
                         </div>
                     </div>
                 </div>
@@ -944,7 +904,9 @@
                 const cardStyle = window.getComputedStyle(firstCard);
                 const marginRight = parseFloat(cardStyle.marginRight) || 0;
                 cardWidth = firstCard.offsetWidth + marginRight;
-                blockWidth = cardWidth * 9; 
+                // Contar cuántos elementos hay para el loop (dividido por 2 porque están duplicados)
+                const uniqueCards = track.querySelectorAll('.image-card').length / 2;
+                blockWidth = cardWidth * uniqueCards; 
             }
         }
 
