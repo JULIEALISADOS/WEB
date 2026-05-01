@@ -601,6 +601,35 @@ header {
     }
 }
 
+/* Estilos para placeholders de video */
+.video-card-container {
+    position: relative;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.video-card-container:hover .play-overlay {
+    background: rgba(197, 160, 89, 0.6);
+    transform: translate(-50%, -50%) scale(1.1);
+    border-color: #fff;
+}
+
 /* Solo las que no son estáticas o centradas se mueven */
 .image-banner-track:not(.banner-static):not(.banner-centered) {
     width: max-content;
