@@ -1893,43 +1893,38 @@ footer .section-title::after {
     fill: currentColor;
 }
 
-.whatsapp-tooltip {
+.whatsapp-label {
     position: absolute;
-    right: 100%;
-    margin-right: 15px;
+    right: 75px;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: #128c7e;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: var(--gold-dark);
     padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-family: var(--font-main, sans-serif);
+    border-radius: 6px;
+    font-size: 0.8rem;
     font-weight: 700;
     white-space: nowrap;
-    border: 1px solid rgba(37, 211, 102, 0.4);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    opacity: 0.9;
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     pointer-events: none;
     transition: all 0.3s ease;
-}
-
-.btn-whatsapp-floating:hover .whatsapp-tooltip {
-    opacity: 1;
-    background: #fff;
-    margin-right: 20px;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-body);
 }
 
 @media (max-width: 600px) {
-    .whatsapp-tooltip {
-        margin-right: 10px;
+    .whatsapp-label {
+        right: 65px;
         padding: 5px 10px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 }
+
+
 
 /* --- SECCIÓN FAQ (ACORDEÓN) --- */
 .faq-section {
