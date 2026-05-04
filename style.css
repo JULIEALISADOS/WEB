@@ -1848,6 +1848,13 @@ footer .section-title::after {
     align-items: center;
     gap: 15px;
     pointer-events: none; /* Allows clicking through the container itself if needed */
+    transition: all 0.3s ease;
+}
+
+.whatsapp-floating-container:hover .whatsapp-label {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
 }
 
 .whatsapp-floating-container * {
@@ -1914,6 +1921,7 @@ footer .section-title::after {
     font-family: var(--font-body);
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     animation: label-fade-cycle 33s infinite;
 }
 
