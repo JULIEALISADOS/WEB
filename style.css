@@ -1893,6 +1893,44 @@ footer .section-title::after {
     fill: currentColor;
 }
 
+.whatsapp-tooltip {
+    position: absolute;
+    right: 100%;
+    margin-right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #128c7e;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: var(--font-main, sans-serif);
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    opacity: 0.9;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-floating:hover .whatsapp-tooltip {
+    opacity: 1;
+    background: #fff;
+    margin-right: 20px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+}
+
+@media (max-width: 600px) {
+    .whatsapp-tooltip {
+        margin-right: 10px;
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+}
+
 /* --- SECCIÓN FAQ (ACORDEÓN) --- */
 .faq-section {
     padding: 100px 0;
