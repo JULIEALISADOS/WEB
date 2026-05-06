@@ -166,11 +166,23 @@ window.clearSignature = function(type) {
 };
 
 
-// SAVE DATA BLINDADO V5.1
+// SAVE DATA BLINDADO V5.2 (MODO PRUEBA)
 saveBtn.addEventListener('click', async () => {
-    // 1. Validaciones Previas
-    if(!validateStep(5)) return;
-    if(padClient.isEmpty() || padTech.isEmpty()) return alert('⚠️ Por favor, ambas firmas son obligatorias.');
+    console.log('🔵 BOTÓN GUARDAR PRESIONADO');
+    
+    // Auto-seleccionar estilista si no hay ninguno seleccionado
+    if(responsableInput && (!responsableInput.value || responsableInput.value === '')) {
+        if(responsableInput.options.length > 1) {
+            responsableInput.selectedIndex = 1;
+        } else {
+            responsableInput.innerHTML = '<option value="Julie Valencia" selected>Julie Valencia</option>';
+        }
+    }
+    
+    // Validación simplificada para pruebas
+    // if(!validateStep(5)) return;
+    if(padClient && padClient.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DE LA CLIENTE.');
+    if(padTech && padTech.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DEL TÉCNICO.');
     
     const fileA = document.querySelector('[name="foto_antes"]').files[0];
     const fileD = document.querySelector('[name="foto_despues"]').files[0];
