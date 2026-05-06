@@ -84,6 +84,10 @@ export async function generatePDF(currentStep) {
         
         // 6. Generar PDF desde el template (temporalmente visible para html2pdf)
         template.style.display = 'block';
+        
+        // Pequeño retraso extra para asegurar que el navegador "pinte" los cambios en el DOM
+        await new Promise(r => setTimeout(r, 200));
+
         await window.html2pdf().set(opt).from(template).save();
         template.style.display = 'none';
         

@@ -56,7 +56,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V9.1</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V9.2</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <input type="text" id="loginEmail" placeholder="Usuario" required>
@@ -80,7 +80,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V9.1</span>
+                    <span class="version-badge">V9.2</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -630,102 +630,111 @@
     </div>
 
     <!-- PDF Print Template (Hidden from UI) -->
-    <div id="pdf-template" style="display: none; width: 800px; padding: 40px; font-family: 'Outfit', sans-serif; background: white; color: #1a1a1a;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px; page-break-inside: avoid;">
-            <img src="logo.png" style="height: 80px;">
-            <div style="text-align: right;">
-                <h1 style="font-family: 'Playfair Display', serif; color: #D4AF37; margin: 0; font-size: 24px;">HISTORIA CLÍNICA CAPILAR</h1>
+    <div id="pdf-template" style="display: none; width: 750px; padding: 30px; font-family: 'Outfit', sans-serif; background: white; color: #1a1a1a;">
+        <!-- Header -->
+        <div style="border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px; overflow: hidden;">
+            <div style="float: left; width: 40%;">
+                <img src="logo.png" style="height: 70px;">
+            </div>
+            <div style="float: right; width: 55%; text-align: right;">
+                <h1 style="font-family: 'Playfair Display', serif; color: #D4AF37; margin: 0; font-size: 22px;">HISTORIA CLÍNICA CAPILAR</h1>
                 <p style="margin: 5px 0; font-weight: 700;">FICHA N°: <span id="pdf-ficha-id">---</span></p>
-                <p style="margin: 0; opacity: 0.7; font-size: 12px;">Julie Alisados | Diagnóstico Profesional</p>
+                <p style="margin: 0; opacity: 0.7; font-size: 11px;">Julie Alisados | Diagnóstico Profesional</p>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; background: #fcfaf5; padding: 20px; border-radius: 12px; page-break-inside: avoid;">
+        <!-- Client Info Block -->
+        <div style="background: #fcfaf5; padding: 20px; border-radius: 12px; margin-bottom: 30px; overflow: hidden; page-break-inside: avoid;">
+            <div style="float: left; width: 50%;">
+                <p style="font-size: 10px; color: #D4AF37; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;">Datos de la Cliente</p>
+                <h2 id="pdf-nombre" style="margin: 0; font-size: 17px;">---</h2>
+                <p style="margin: 5px 0; font-size: 12px;">Documento: <span id="pdf-doc">---</span> | Edad: <span id="pdf-edad">---</span></p>
+                <p style="margin: 0; font-size: 12px;">Teléfono: <span id="pdf-tel">---</span></p>
+            </div>
+            <div style="float: right; width: 45%; text-align: right;">
+                <p style="font-size: 10px; color: #D4AF37; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;">Información de Sede</p>
+                <p style="margin: 5px 0; font-size: 13px; font-weight: 700;">Sede: <span id="pdf-sede">---</span></p>
+                <p style="margin: 0; font-size: 12px;">Fecha: <span id="pdf-fecha">---</span></p>
+                <p style="margin: 5px 0; font-size: 12px;">Técnico: <span id="pdf-tecnico-resp">---</span></p>
+            </div>
+        </div>
+
+        <!-- Diagnostic Sections -->
+        <div style="margin-bottom: 30px; page-break-inside: avoid;">
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 15px; margin-bottom: 15px;">DIAGNÓSTICO TÉCNICO</h3>
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px; margin-right: 2%;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Patrón de Rizo</p>
+                    <p id="pdf-patron" style="margin:0; font-size: 12px;">---</p>
+                </div>
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px; margin-right: 2%;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Longitud</p>
+                    <p id="pdf-longitud" style="margin:0; font-size: 12px;">---</p>
+                </div>
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Textura</p>
+                    <p id="pdf-textura" style="margin:0; font-size: 12px;">---</p>
+                </div>
+            </div>
             <div>
-                <p style="font-size: 11px; color: #D4AF37; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;">Datos de la Cliente</p>
-                <h2 id="pdf-nombre" style="margin: 0; font-size: 18px;">---</h2>
-                <p style="margin: 5px 0; font-size: 13px;">Documento: <span id="pdf-doc">---</span> | Edad: <span id="pdf-edad">---</span></p>
-                <p style="margin: 0; font-size: 13px;">Teléfono: <span id="pdf-tel">---</span></p>
-            </div>
-            <div style="text-align: right;">
-                <p style="font-size: 11px; color: #D4AF37; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;">Información de Sede</p>
-                <p style="margin: 5px 0; font-size: 14px; font-weight: 700;">Sede: <span id="pdf-sede">---</span></p>
-                <p style="margin: 0; font-size: 13px;">Fecha: <span id="pdf-fecha">---</span></p>
-                <p style="margin: 5px 0; font-size: 13px;">Técnico: <span id="pdf-tecnico-resp">---</span></p>
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px; margin-right: 2%;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Crecimiento</p>
+                    <p id="pdf-crecimiento" style="margin:0; font-size: 12px;">---</p>
+                </div>
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px; margin-right: 2%;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Medios</p>
+                    <p id="pdf-medios" style="margin:0; font-size: 12px;">---</p>
+                </div>
+                <div style="display: inline-block; width: 31%; border: 1px solid #eee; padding: 8px; border-radius: 8px;">
+                    <p style="font-weight: 700; margin: 0 0 5px 0; font-size: 11px;">Puntas</p>
+                    <p id="pdf-puntas" style="margin:0; font-size: 12px;">---</p>
+                </div>
             </div>
         </div>
 
+        <!-- Procedure Block -->
         <div style="margin-bottom: 30px; page-break-inside: avoid;">
-            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">DIAGNÓSTICO TÉCNICO</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 12px;">
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Patrón de Rizo</p>
-                    <p id="pdf-patron">---</p>
-                </div>
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Longitud</p>
-                    <p id="pdf-longitud">---</p>
-                </div>
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Textura</p>
-                    <p id="pdf-textura">---</p>
-                </div>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 12px; margin-top: 15px;">
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Crecimiento</p>
-                    <p id="pdf-crecimiento">---</p>
-                </div>
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Medios</p>
-                    <p id="pdf-medios">---</p>
-                </div>
-                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
-                    <p style="font-weight: 700; margin-bottom: 5px;">Puntas</p>
-                    <p id="pdf-puntas">---</p>
-                </div>
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 15px; margin-bottom: 15px;">PROCEDIMIENTO REALIZADO</h3>
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; font-size: 12px;">
+                <p style="margin: 0 0 8px 0;"><strong>Servicio:</strong> <span id="pdf-procedimiento">---</span></p>
+                <p style="margin: 0 0 8px 0;"><strong>Técnica Utilizada:</strong> <span id="pdf-tecnica">---</span></p>
+                <p style="margin: 0;"><strong>Porcentaje de Liso:</strong> <span id="pdf-porcentaje">---</span></p>
             </div>
         </div>
 
+        <!-- Photos Section -->
         <div style="margin-bottom: 30px; page-break-inside: avoid;">
-            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">PROCEDIMIENTO REALIZADO</h3>
-            <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; font-size: 13px;">
-                <p style="margin-bottom: 10px;"><strong>Servicio:</strong> <span id="pdf-procedimiento">---</span></p>
-                <p style="margin-bottom: 10px;"><strong>Técnica Utilizada:</strong> <span id="pdf-tecnica">---</span></p>
-                <p><strong>Porcentaje de Liso:</strong> <span id="pdf-porcentaje">---</span></p>
-            </div>
-        </div>
-
-        <div class="pdf-section" style="page-break-before: always;">
-            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">EVIDENCIA FOTOGRÁFICA</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div style="text-align: center;">
-                    <p style="font-size: 12px; font-weight: 700; margin-bottom: 10px;">REGISTRO ANTES</p>
-                    <div id="pdf-foto-antes" style="width: 100%; height: 350px; background: #eee; border-radius: 15px; overflow: hidden; border: 2px solid #D4AF37;"></div>
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 15px; margin-bottom: 15px;">EVIDENCIA FOTOGRÁFICA</h3>
+            <div style="overflow: hidden;">
+                <div style="float: left; width: 48%; text-align: center;">
+                    <p style="font-size: 11px; font-weight: 700; margin-bottom: 10px;">REGISTRO ANTES</p>
+                    <div id="pdf-foto-antes" style="width: 100%; height: 320px; background: #eee; border-radius: 12px; overflow: hidden; border: 2px solid #D4AF37;"></div>
                 </div>
-                <div style="text-align: center;">
-                    <p style="font-size: 12px; font-weight: 700; margin-bottom: 10px;">REGISTRO DESPUÉS</p>
-                    <div id="pdf-foto-despues" style="width: 100%; height: 350px; background: #eee; border-radius: 15px; overflow: hidden; border: 2px solid #D4AF37;"></div>
+                <div style="float: right; width: 48%; text-align: center;">
+                    <p style="font-size: 11px; font-weight: 700; margin-bottom: 10px;">REGISTRO DESPUÉS</p>
+                    <div id="pdf-foto-despues" style="width: 100%; height: 320px; background: #eee; border-radius: 12px; overflow: hidden; border: 2px solid #D4AF37;"></div>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; page-break-inside: avoid;">
-            <div style="text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
-                <div id="pdf-firma-cliente" style="height: 80px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;"></div>
-                <p style="font-size: 12px; font-weight: 700;">FIRMA CLIENTE</p>
+        <!-- Signatures Block -->
+        <div style="margin-top: 40px; overflow: hidden; page-break-inside: avoid;">
+            <div style="float: left; width: 45%; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
+                <div id="pdf-firma-cliente" style="height: 70px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;"></div>
+                <p style="font-size: 11px; font-weight: 700;">FIRMA CLIENTE</p>
             </div>
-            <div style="text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
-                <div id="pdf-firma-tecnico" style="height: 80px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;"></div>
-                <p style="font-size: 12px; font-weight: 700;">FIRMA TÉCNICO</p>
+            <div style="float: right; width: 45%; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
+                <div id="pdf-firma-tecnico" style="height: 70px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center;"></div>
+                <p style="font-size: 11px; font-weight: 700;">FIRMA TÉCNICO</p>
             </div>
         </div>
         
-        <div style="margin-top: 30px; font-size: 9px; text-align: center; opacity: 0.5; border-top: 1px dashed #eee; padding-top: 20px; page-break-inside: avoid;">
+        <!-- Legal Footer -->
+        <div style="margin-top: 30px; font-size: 8px; text-align: center; opacity: 0.5; border-top: 1px dashed #eee; padding-top: 15px; page-break-inside: avoid;">
             Este documento certifica el diagnóstico y procedimiento realizado por Julie Alisados. Información confidencial y para uso técnico profesional.
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=9.1"></script>
+    <script type="module" src="js/app.js?v=9.2"></script>
 </body>
 </html>
