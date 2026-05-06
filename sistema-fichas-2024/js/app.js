@@ -344,9 +344,13 @@ if(saveBtn) saveBtn.addEventListener('click', async () => {
     if(padClient && padClient.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DE LA CLIENTE.');
     if(padTech && padTech.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DEL TÉCNICO.');
     
-    const fileA = document.querySelector('[name="foto_antes"]').files[0];
-    const fileD = document.querySelector('[name="foto_despues"]').files[0];
-    if(!fileA || !fileD) return alert('⚠️ Es obligatorio subir las fotos del ANTES y DESPUÉS.');
+    const fileA = document.getElementById('fotoAntesInput').files[0];
+    const fileD = document.getElementById('fotoDespuesInput').files[0];
+    
+    if(!fileA || !fileD) {
+        alert('⚠️ FALTAN FOTOS: Debes seleccionar la foto del ANTES y la del DESPUÉS para poder guardar.');
+        return;
+    }
 
     saveBtn.innerText = '⌛ PROCESANDO...';
     saveBtn.classList.add('loading');
