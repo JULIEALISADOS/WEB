@@ -24,16 +24,29 @@ export async function generatePDF() {
         const pageHeight = doc.internal.pageSize.getHeight();
         let y = 15;
 
+        // Función para cargar imágenes (Logo)
+        const loadImg = (url) => new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null);
+            img.src = url;
+        });
+
+        const logoImg = await loadImg('logo.png');
+
         // --- ENCABEZADO ---
-        doc.setFillColor(212, 175, 55); // Dorado Julie
+        doc.setFillColor(212, 175, 55); 
         doc.rect(0, 0, pageWidth, 5, 'F');
         y += 10;
 
-        // Logo (Usando el logo.png del proyecto si es posible, o texto por ahora)
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(22);
-        doc.setTextColor(212, 175, 55);
-        doc.text('JULIE ALISADOS', 15, y);
+        if (logoImg) {
+            doc.addImage(logoImg, 'PNG', 15, y - 5, 40, 15);
+        } else {
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(18);
+            doc.setTextColor(212, 175, 55);
+            doc.text('JULIE ALISADOS', 15, y);
+        }
         
         doc.setFontSize(10);
         doc.setTextColor(100);
@@ -107,7 +120,28 @@ export async function generatePDF() {
         doc.text('Servicio: ' + getVal('procedimiento'), 20, y + 6);
         doc.text('Técnica: ' + getVal('tecnica_utilizada'), 20, y + 11);
         doc.text('Porcentaje Liso: ' + getVal('porcentaje_liso'), 20, y + 16);
-        y += 30;
+        y += 25;
+
+        // --- SALUD Y SEGURIDAD ---
+        doc.setFontSize(11);
+        doc.setTextColor(212, 175, 55);
+        doc.text('INFORMACIÓN DE SALUD', 15, y);
+        doc.line(15, y + 2, 65, y + 2);
+        y += 8;
+
+        doc.setFontSize(9);
+        doc.setTextColor(50);
+        doc.text('¿Embarazo?: ' + getVal('embarazo'), 20, y);
+        doc.text('¿Alergias?: ' + getVal('alergias'), 100, y);
+        y += 5;
+        if(getVal('alergias') === 'Si') {
+            doc.setFontSize(8);
+            doc.text('Descripción Alergias: ' + getVal('alergias_descripcion'), 20, y + 3);
+            y += 8;
+        } else {
+            y += 5;
+        }
+        y += 10;
 
         // --- EVIDENCIA (Nueva Página si no cabe) ---
         if (y > 180) { doc.addPage(); y = 20; }
@@ -152,10 +186,9 @@ export async function generatePDF() {
             sigC = window.lastViewedFicha.firma_cliente;
             sigT = window.lastViewedFicha.firma_tecnico;
         } else {
-            const canvasC = document.getElementById('signature-pad-cliente');
-            const canvasT = document.getElementById('signature-pad-tecnico');
-            if(canvasC) sigC = canvasC.toDataURL();
-            if(canvasT) sigT = canvasT.toDataURL();
+            // Intentar obtener de los SignaturePads globales si existen
+            if(window.padClient && !window.padClient.isEmpty()) sigC = window.padClient.toDataURL();
+            if(window.padTech && !window.padTech.isEmpty()) sigT = window.padTech.toDataURL();
         }
 
         const drawSig = (src, label, x, y) => {
