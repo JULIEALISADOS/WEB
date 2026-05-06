@@ -14,37 +14,21 @@
     <meta name="theme-color" content="#D4AF37">
     <link rel="apple-touch-icon" href="logo.png">
     <script>
-        // Registro del Service Worker con Blindado Automático
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js?v=5.6')
-            navigator.serviceWorker.register('sw.js?v=8.1')
+            navigator.serviceWorker.register('sw.js')
             .then(reg => {
                 reg.onupdatefound = () => {
                     const installingWorker = reg.installing;
                     installingWorker.onstatechange = () => {
-                        if (installingWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                console.log('Nueva versión detectada, recargando...');
-                                window.location.reload();
-                            }
+                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('🔄 Nueva versión disponible. Reiniciando...');
+                            setTimeout(() => window.location.reload(), 1000);
                         }
                     };
                 };
             })
             .catch(err => console.error("Error Registrando SW:", err));
         }
-
-        window.directPDF = async (consecutivo) => {
-            try {
-                await viewFicha(consecutivo);
-                // Aumentamos el tiempo de espera para asegurar carga de imágenes pesadas y renderizado de firmas
-                setTimeout(() => {
-                    generatePDF();
-                }, 1200);
-            } catch(e) {
-                console.error('Error direct PDF:', e);
-            }
-        };
 
         async function forceUpdate() {
             if(!confirm("¿Deseas forzar la actualización del sistema? Esto limpiará la memoria caché.")) return;
@@ -72,7 +56,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V8.2</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V9.0</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <input type="text" id="loginEmail" placeholder="Usuario" required>
@@ -96,7 +80,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V8.2</span>
+                    <span class="version-badge">V9.0</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -742,6 +726,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=8.2"></script>
+    <script type="module" src="js/app.js?v=9.0"></script>
 </body>
 </html>
