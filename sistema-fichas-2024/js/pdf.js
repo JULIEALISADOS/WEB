@@ -1,7 +1,6 @@
 export async function generatePDF(currentStep) {
-    const element = document.getElementById('fichaForm');
     const pdfBtn = document.getElementById('pdfBtn');
-    const fichaID = document.getElementById('fichaID');
+    const template = document.getElementById('pdf-template');
     
     if(pdfBtn) {
         pdfBtn.disabled = true;
@@ -9,58 +8,72 @@ export async function generatePDF(currentStep) {
     }
     
     try {
-        // Clonamos para no romper la UI actual durante el proceso
-        const clone = element.cloneNode(true);
-        clone.style.width = '800px'; // Ancho fijo para consistencia
-        clone.style.background = 'white';
-        clone.style.color = 'black';
+        // 1. Recopilar datos actuales del formulario
+        const f = document.getElementById('fichaForm');
+        const formData = new FormData(f);
+        const data = Object.fromEntries(formData.entries());
         
-        // Aseguramos que todos los pasos sean visibles en el clon
-        const cloneSteps = clone.querySelectorAll('.step');
-        cloneSteps.forEach(s => {
-            s.style.display = 'block';
-            s.style.opacity = '1';
-            s.style.transform = 'none';
-            s.style.animation = 'none';
-            s.classList.add('active');
-        });
-
-        // Ocultamos botones y elementos no deseados en el PDF
-        clone.querySelectorAll('button, .btn-clear-sig, .file-upload input').forEach(el => el.style.display = 'none');
+        // 2. Llenar el template
+        document.getElementById('pdf-ficha-id').innerText = data.consecutivo || '---';
+        document.getElementById('pdf-nombre').innerText = data.nombre_completo || '---';
+        document.getElementById('pdf-doc').innerText = data.numero_documento || '---';
+        document.getElementById('pdf-edad').innerText = data.edad || '---';
+        document.getElementById('pdf-tel').innerText = data.telefono || '---';
+        document.getElementById('pdf-sede').innerText = data.sede || '---';
+        document.getElementById('pdf-fecha').innerText = data.fecha_diligenciamiento || '---';
+        document.getElementById('pdf-tecnico-resp').innerText = data.estilista_responsable || '---';
         
-        // Manejo de firmas en el clon (los canvas no se clonan con contenido automáticamente)
-        const originalPads = document.querySelectorAll('.signature-pad');
-        const clonePads = clone.querySelectorAll('.signature-pad');
-        originalPads.forEach((orig, i) => {
-            if (clonePads[i]) {
-                const img = document.createElement('img');
-                img.src = orig.toDataURL();
-                img.style.width = '100%';
-                img.style.border = '1px solid #eee';
-                clonePads[i].parentNode.replaceChild(img, clonePads[i]);
-            }
-        });
+        document.getElementById('pdf-patron').innerText = data.tipo_cabello || '---';
+        document.getElementById('pdf-longitud').innerText = data.longitud || '---';
+        document.getElementById('pdf-textura').innerText = data.textura || '---';
+        document.getElementById('pdf-crecimiento').innerText = data.estado_crecimiento || '---';
+        document.getElementById('pdf-medios').innerText = data.estado_medios || '---';
+        document.getElementById('pdf-puntas').innerText = data.estado_puntas || '---';
+        
+        document.getElementById('pdf-procedimiento').innerText = data.procedimiento || '---';
+        document.getElementById('pdf-tecnica').innerText = data.tecnica_utilizada || '---';
+        document.getElementById('pdf-porcentaje').innerText = data.porcentaje_liso || '---';
 
+        // 3. Manejo de Imágenes de Evidencia (Alta Calidad)
+        const previewAntes = document.getElementById('previewAntes').querySelector('img');
+        const previewDespues = document.getElementById('previewDespues').querySelector('img');
+        const containerAntes = document.getElementById('pdf-foto-antes');
+        const containerDespues = document.getElementById('pdf-foto-despues');
+        
+        containerAntes.innerHTML = previewAntes ? `<img src="${previewAntes.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
+        containerDespues.innerHTML = previewDespues ? `<img src="${previewDespues.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
+
+        // 4. Manejo de Firmas
+        const canvasC = document.getElementById('signature-pad-cliente');
+        const canvasT = document.getElementById('signature-pad-tecnico');
+        const destC = document.getElementById('pdf-firma-cliente');
+        const destT = document.getElementById('pdf-firma-tecnico');
+        
+        if(canvasC) destC.innerHTML = `<img src="${canvasC.toDataURL()}" style="max-height:80px;">`;
+        if(canvasT) destT.innerHTML = `<img src="${canvasT.toDataURL()}" style="max-height:80px;">`;
+
+        // 5. Configuración de Exportación
         const opt = {
-            margin: [10, 5],
-            filename: 'Ficha_' + (fichaID ? fichaID.value : 'SinID') + '.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
+            margin: [5, 5],
+            filename: 'HistoriaCapilar_' + (data.consecutivo || 'DOC') + '.pdf',
+            image: { type: 'jpeg', quality: 1.0 },
             html2canvas: { 
-                scale: 2, 
-                useCORS: true, 
-                letterRendering: true,
-                scrollX: 0,
-                scrollY: 0
+                scale: 3, // Mayor nitidez
+                useCORS: true,
+                letterRendering: true
             },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
         
-        await window.html2pdf().set(opt).from(clone).save();
+        // 6. Generar PDF desde el template (temporalmente visible para html2pdf)
+        template.style.display = 'block';
+        await window.html2pdf().set(opt).from(template).save();
+        template.style.display = 'none';
         
     } catch (err) {
-        console.error('Error PDF:', err);
-        alert('❌ Error al generar PDF. Intenta de nuevo.');
+        console.error('Error PDF Premium:', err);
+        alert('❌ Error al generar Historia Clínica. Intenta de nuevo.');
+        template.style.display = 'none';
     } finally {
         if(pdfBtn) {
             pdfBtn.disabled = false;
