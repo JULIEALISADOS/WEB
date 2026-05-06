@@ -308,6 +308,42 @@ body::before {
     font-weight: 700;
 }
 
+.quick-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.btn-step {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-gold);
+    background: white;
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-step:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+    transform: scale(1.1);
+}
+
+.btn-step.active {
+    background: var(--gold-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+}
+
 /* --- Modern Form Elements --- */
 .form-wrapper {
     padding: 32px;
@@ -605,6 +641,53 @@ input:disabled {
     color: white;
     border-color: transparent;
     box-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
+}
+
+.prominent-check {
+    background: rgba(212, 175, 55, 0.05);
+    border: 2px solid var(--gold-primary);
+    padding: 24px !important;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.prominent-check.error {
+    background: rgba(239, 68, 68, 0.05);
+    border-color: var(--error);
+    animation: pulse-error 1.5s infinite;
+}
+
+@keyframes pulse-error {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.auth-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.auth-text strong {
+    color: var(--gold-dark);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.auth-text p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.checkbox-container input {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
 .checkbox-group {

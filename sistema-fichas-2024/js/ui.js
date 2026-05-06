@@ -54,7 +54,14 @@ export function validateStep(idx, steps) {
         }
     });
 
-    if(!valid) alert('⚠️ Campo obligatorio faltante o muy corto en el Paso ' + idx);
+    if(!valid) {
+        alert('⚠️ Campo obligatorio faltante o muy corto en el Paso ' + idx);
+        // Si el error es la autorización, nos aseguramos de que sea visible
+        const authCheck = steps[idx-1].querySelector('#authCheckbox');
+        if(authCheck && (authCheck.closest('.error'))) {
+            authCheck.closest('.prominent-check').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
     return valid;
 }
 

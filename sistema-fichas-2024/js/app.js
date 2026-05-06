@@ -57,14 +57,19 @@ function updateStep(direction) {
     }
 
     steps.forEach((s, i) => s.classList.toggle('active', i === currentStep - 1));
+    document.querySelectorAll('.btn-step').forEach((b, i) => b.classList.toggle('active', i === currentStep - 1));
     
     if(nextBtn) nextBtn.classList.toggle('hidden', currentStep === totalSteps);
     if(saveBtn) saveBtn.classList.toggle('hidden', currentStep !== totalSteps);
     if(prevBtn) prevBtn.classList.toggle('hidden', currentStep === 1);
 
     const percent = (currentStep / totalSteps) * 100;
-    document.getElementById('progressBar').style.setProperty('--progress', percent + '%');
-    document.getElementById('currentStepNum').innerText = currentStep;
+    const progressEl = document.getElementById('progressBar');
+    if(progressEl) progressEl.style.setProperty('--progress', percent + '%');
+    
+    const numEl = document.getElementById('currentStepNum');
+    if(numEl) numEl.innerText = currentStep;
+    
     window.scrollTo(0,0);
 
     if (currentStep === 5) setTimeout(initSignatures, 300);
@@ -103,6 +108,137 @@ window.switchTab = function(tab) {
         renderStylists();
     }
 };
+
+async function renderHistory(filter = '') {
+    if(!historyList) return;
+    historyList.innerHTML = '<div class="loading-spinner">Cargando historial...</div>';
+    try {
+        const history = await fetchHistory();
+        if(!history || history.length === 0) {
+            historyList.innerHTML = '<p class="empty-msg">No hay fichas registradas aún.</p>';
+            return;
+        }
+        
+        const filtered = history.filter(item => 
+            item.nombre_completo.toLowerCase().includes(filter.toLowerCase()) ||
+            item.numero_documento.includes(filter) ||
+            item.consecutivo.includes(filter)
+        );
+
+        historyList.innerHTML = '';
+        filtered.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'history-card';
+            card.innerHTML = `
+                <div class="card-info">
+                    <h4>${item.nombre_completo}</h4>
+                    <p>Ficha: ${item.consecutivo} | Doc: ${item.numero_documento}</p>
+                    <small>${new Date(item.created_at).toLocaleDateString()}</small>
+                </div>
+                <div class="card-actions">
+                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view">Ver</button>
+                    <button onclick="deleteFicha('${item.consecutivo}')" class="btn-delete-record">Borrar</button>
+                </div>
+            `;
+            historyList.appendChild(card);
+        });
+    } catch(e) {
+        historyList.innerHTML = '<p class="error-msg">Error al cargar historial: ' + e.message + '</p>';
+    }
+}
+
+async function renderStylists() {
+    if(!stylistList) return;
+    stylistList.innerHTML = '<div class="loading-spinner">Cargando...</div>';
+    try {
+        const stylists = await fetchStylists();
+        stylistList.innerHTML = '';
+        stylists.forEach(s => {
+            const item = document.createElement('div');
+            item.className = 'stylist-item';
+            item.innerHTML = `
+                <span>${s.nombre}</span>
+                <button onclick="deleteStylist('${s.id}')" class="btn-delete-mini"><i data-lucide="trash-2"></i></button>
+            `;
+            stylistList.appendChild(item);
+        });
+        if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
+    } catch(e) { console.error(e); }
+}
+
+window.deleteStylist = async (id) => {
+    if(confirm('¿Eliminar estilista?')) {
+        await deleteStylistDb(id);
+        renderStylists();
+        loadInitialData();
+    }
+};
+
+window.addStylist = async () => {
+    const name = stylistInput.value.trim();
+    if(!name) return;
+    await addStylistDb(name);
+    stylistInput.value = '';
+    renderStylists();
+    loadInitialData();
+};
+
+window.viewFicha = async (consecutivo) => {
+    try {
+        const data = await getFichaByConsecutivo(consecutivo);
+        if(!data) return alert('No se encontró la ficha');
+        
+        // Bloquear y llenar
+        switchTab('new');
+        isLocked = true;
+        lockForm(true, form);
+        
+        // Llenar campos
+        for(let key in data) {
+            const input = form.querySelector(`[name="${key}"]`);
+            if(input) {
+                if(input.type === 'checkbox') input.checked = data[key];
+                else input.value = data[key];
+            }
+            // Chips y botones
+            if(['longitud', 'crecimiento', 'medios', 'puntas', 'textura', 'elasticidad', 'resistencia', 'porosidad', 'densidad', 'piel', 'lavado', 'dermatitis', 'caida', 'descamacion', 'embarazo', 'alergias', 'procedimiento', 'porcentaje'].includes(key)) {
+                setChip(key, data[key]);
+            }
+        }
+        
+        if(data.sede) setSede(data.sede);
+        if(data.tipo_cabello) setHairType('', data.tipo_cabello);
+        
+        // Fotos
+        if(data.foto_antes_url) document.getElementById('previewAntes').innerHTML = `<img src="${data.foto_antes_url}" style="width:100%; border-radius:12px;">`;
+        if(data.foto_despues_url) document.getElementById('previewDespues').innerHTML = `<img src="${data.foto_despues_url}" style="width:100%; border-radius:12px;">`;
+        
+        // Firmas (Cargamos como imágenes sobre los canvas o simplemente guardamos los datos)
+        setTimeout(() => loadSignaturesFromData(data), 500);
+        
+        currentStep = 1;
+        updateStep('init');
+        
+    } catch(e) { alert('Error al cargar ficha: ' + e.message); }
+};
+
+window.deleteFicha = async (consecutivo) => {
+    if(confirm('¿Eliminar esta ficha permanentemente?')) {
+        await deleteFichaDb(consecutivo);
+        renderHistory();
+    }
+};
+
+window.jumpToStep = function(step) {
+    // Si estamos en historial o estilistas, volvemos a Nueva Ficha
+    if(tabActive !== 'new') switchTab('new');
+    currentStep = step;
+    updateStep('jump');
+};
+let tabActive = 'new';
+const originalSwitchTab = window.switchTab;
+window.switchTab = (tab) => { tabActive = tab; originalSwitchTab(tab); };
+
 
 // LOADERS
 async function loadInitialData() {
