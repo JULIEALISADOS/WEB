@@ -1,8 +1,8 @@
-const CACHE_NAME = 'julie-ficha-v5.2';
+﻿const CACHE_NAME = 'julie-ficha-v5.3';
 const ASSETS = [
   'index.html',
-  'style.css?v=5.2',
-  'julie_app_v5.js?v=5.2',
+  'style.css?v=5.3',
+  'julie_app_v5.js?v=5.3',
   'manifest.json',
   'logo.png',
   'guia_cabello_tecnico_completa_julie_es_1774539016850.png',
@@ -12,18 +12,18 @@ const ASSETS = [
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'
 ];
 
-// Instalación: Guardar archivos en el cache
+// Instalacion: Guardar archivos en el cache
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('SW: Cacheando archivos V5.2...');
+      console.log('SW: Cacheando archivos V5.3...');
       return cache.addAll(ASSETS);
     })
   );
 });
 
-// Activación: Borrar caches antiguos (ESTO ES CRUCIAL)
+// Activacion: Borrar caches antiguos
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -40,7 +40,6 @@ self.addEventListener('activate', (event) => {
 });
 
 // Estrategia: Network First (Red primero, si no hay internet usar cache)
-// Esto asegura que si el usuario tiene internet, SIEMPRE vea la última versión
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request).catch(() => {
