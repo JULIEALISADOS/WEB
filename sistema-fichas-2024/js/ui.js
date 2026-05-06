@@ -76,16 +76,31 @@ export function monitorMinorSettings() {
 }
 
 export function lockForm(lock, form) {
+    // Bloquear todos los inputs, selects y textareas
     form.querySelectorAll('input, select, textarea').forEach(el => {
-        if (el.id !== 'fichaID' && el.id !== 'currentDateTime') { el.disabled = lock; }
+        el.disabled = lock;
+        if(lock) el.classList.add('locked');
+        else el.classList.remove('locked');
     });
-    document.querySelectorAll('.btn-option, .btn-hair, .chip, .chip-sm').forEach(b => {
+
+    // Bloquear botones interactivos: chips, opciones de sede, tipo de cabello y botones de limpiar firma
+    document.querySelectorAll('.btn-option, .btn-hair, .chip, .chip-sm, .btn-clear-sig').forEach(b => {
         b.style.pointerEvents = lock ? 'none' : 'auto';
-        b.style.opacity = lock ? '0.8' : '1';
+        b.style.opacity = lock ? '0.7' : '1';
+        if(b.tagName === 'BUTTON') b.disabled = lock;
     });
+
+    // Asegurar que el botón de PDF sea la excepción y esté visible al ver fichas antiguas
     const pdfBtn = document.getElementById('pdfBtn');
     if(pdfBtn) {
+        pdfBtn.disabled = false;
+        pdfBtn.style.pointerEvents = 'auto';
+        pdfBtn.style.opacity = '1';
         pdfBtn.classList.toggle('hidden', !lock);
-        if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
+        if(lock && typeof window.lucide !== 'undefined') window.lucide.createIcons();
     }
+
+    // Ocultar el botón de finalizar/guardar si estamos en modo lectura
+    const saveBtn = document.getElementById('saveBtn');
+    if(saveBtn) saveBtn.classList.toggle('hidden', lock);
 }

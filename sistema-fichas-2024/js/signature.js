@@ -1,4 +1,4 @@
-﻿let padClient, padTech, padTutor;
+let padClient, padTech, padTutor;
 
 export function resizeCanvas(canvas) {
     if(!canvas) return;
@@ -33,8 +33,20 @@ export function getSignaturePads() {
     return { padClient, padTech, padTutor };
 }
 
+export function toggleSignatures(lock) {
+    if(padClient) lock ? padClient.off() : padClient.on();
+    if(padTech) lock ? padTech.off() : padTech.on();
+    if(padTutor) lock ? padTutor.off() : padTutor.on();
+}
+
 export function loadSignaturesFromData(data) {
+    // Nos aseguramos de que los pads existan antes de cargar
+    initSignatures();
+    
     if(data.firma_cliente && padClient) padClient.fromDataURL(data.firma_cliente);
     if(data.firma_tecnico && padTech) padTech.fromDataURL(data.firma_tecnico);
     if(data.firma_tutor_legal && padTutor) padTutor.fromDataURL(data.firma_tutor_legal);
+    
+    // Si estamos viendo, bloqueamos la edición inmediatamente
+    toggleSignatures(true);
 }
