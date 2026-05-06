@@ -52,9 +52,10 @@ function updateStep(direction) {
         currentStep++;
     } else if (direction === 'prev') {
         currentStep--;
-    } else {
+    } else if (direction === 'init') {
         currentStep = 1;
     }
+    // Si direction es 'jump', currentStep ya fue asignado en jumpToStep()
 
     steps.forEach((s, i) => s.classList.toggle('active', i === currentStep - 1));
     document.querySelectorAll('.btn-step').forEach((b, i) => b.classList.toggle('active', i === currentStep - 1));
