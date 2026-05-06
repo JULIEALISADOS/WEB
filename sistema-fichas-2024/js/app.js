@@ -306,7 +306,6 @@ window.addEventListener('load', () => {
     if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     loadInitialData();
-    setTimeout(preFillTestData, 800);
 });
 
 // EVENT LISTENERS Y WINDOW BINDS
