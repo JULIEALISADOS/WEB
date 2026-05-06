@@ -1,4 +1,4 @@
-﻿import { SB_URL, SB_KEY } from './config.js';
+import { SB_URL, SB_KEY } from './config.js';
 
 let sb;
 try { 
@@ -16,7 +16,7 @@ export const getDb = () => sb;
 export const uploadImg = async (file, prefix, consecutivo) => {
     if (!file) return 'sin-foto';
     const ext = file.name.split('.').pop();
-    const fileName = ${prefix}_${consecutivo}_ + Date.now() + . + ext;
+    const fileName = prefix + '_' + consecutivo + '_' + Date.now() + '.' + ext;
     const { data, error } = await sb.storage.from('evidencia').upload(fileName, file);
     if (error) throw new Error('Error al subir imagen: ' + error.message);
     const { data: publicUrlData } = sb.storage.from('evidencia').getPublicUrl(fileName);

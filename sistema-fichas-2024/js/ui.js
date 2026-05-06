@@ -1,4 +1,4 @@
-﻿export function setSede(s) { 
+export function setSede(s) { 
     document.getElementById('sedeInput').value = s;
     document.querySelectorAll('.btn-option').forEach(b => b.classList.toggle('selected', b.innerText === s.toUpperCase()));
 }
@@ -24,7 +24,7 @@ export function previewImage(input, previewId) {
     const prev = document.getElementById(previewId);
     if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = (e) => { prev.innerHTML = <img src=" + e.target.result + " style="width:100%; border-radius:12px; margin-top:10px;">; };
+        reader.onload = (e) => { prev.innerHTML = '<img src="' + e.target.result + '" style="width:100%; border-radius:12px; margin-top:10px;">'; };
         reader.readAsDataURL(input.files[0]);
     }
 }
