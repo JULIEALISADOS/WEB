@@ -67,7 +67,7 @@ body::before {
     justify-content: center;
     min-height: 100vh;
     padding: 24px;
-    background-image: url('../Web_JulieAlisados/FONDO WEB.jpg');
+    background-image: url('../FONDO WEB.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

@@ -1,4 +1,4 @@
-﻿import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg } from './db.js';
+import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg } from './db.js';
 import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm } from './ui.js';
@@ -26,7 +26,8 @@ let isLocked = false;
 function login() {
     const email = document.getElementById('loginEmail').value;
     const pass = document.getElementById('loginPass').value;
-    if (email === '80200013' && pass === 'Lisolaloca01:') {
+    const isCorrectPass = pass === 'Lisolaloca01:' || pass === 'Lisolaloca01';
+    if (email === '80200013' && isCorrectPass) {
         localStorage.setItem('julie_session', 'true');
         localStorage.setItem('julie_user_name', "Julia Alisados");
         loginSection.classList.add('hidden');

@@ -16,7 +16,7 @@
     <script>
         // Registro del Service Worker con Blindado Automático
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js?v=5.3')
+            navigator.serviceWorker.register('sw.js?v=5.6')
             .then(reg => {
                 reg.onupdatefound = () => {
                     const installingWorker = reg.installing;
@@ -627,6 +627,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=5.5"></script>
+    <script type="module" src="js/app.js?v=5.6"></script>
 </body>
 </html>
