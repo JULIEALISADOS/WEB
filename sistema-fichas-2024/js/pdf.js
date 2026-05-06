@@ -36,14 +36,15 @@ export async function generatePDF(currentStep) {
         document.getElementById('pdf-tecnica').innerText = getVal('tecnica_utilizada');
         document.getElementById('pdf-porcentaje').innerText = getVal('porcentaje_liso');
 
-        // 3. Manejo de Imágenes de Evidencia (Alta Calidad)
+        // 3. Manejo de Imágenes de Evidencia (Alta Calidad y Estabilidad)
         const previewAntes = document.getElementById('previewAntes').querySelector('img');
         const previewDespues = document.getElementById('previewDespues').querySelector('img');
         const containerAntes = document.getElementById('pdf-foto-antes');
         const containerDespues = document.getElementById('pdf-foto-despues');
         
-        containerAntes.innerHTML = previewAntes ? `<img src="${previewAntes.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
-        containerDespues.innerHTML = previewDespues ? `<img src="${previewDespues.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
+        // Usamos display block y width 100% para evitar problemas de posicionamiento
+        containerAntes.innerHTML = previewAntes ? `<img src="${previewAntes.src}" style="display:block; width:100%; min-height:100%;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
+        containerDespues.innerHTML = previewDespues ? `<img src="${previewDespues.src}" style="display:block; width:100%; min-height:100%;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
 
         // 4. Manejo de Firmas (Mejorado: usar datos directamente si están disponibles)
         const destC = document.getElementById('pdf-firma-cliente');
