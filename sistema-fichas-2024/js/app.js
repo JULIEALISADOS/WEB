@@ -197,8 +197,9 @@ if(saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.foto_antes_url = urlAntes;
         cleanData.foto_despues_url = urlDespues;
 
-        console.log('Insertando en PostgreSQL...');
+        console.log('Insertando en PostgreSQL...', cleanData);
         await insertFicha(cleanData);
+        console.log('✅ Inserción Exitosa');
 
         document.getElementById('successModal').classList.remove('hidden');
         if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
