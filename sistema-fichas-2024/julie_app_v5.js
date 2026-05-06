@@ -204,6 +204,10 @@ saveBtn.addEventListener('click', async () => {
         for (let key in rawData) {
             cleanData[key] = rawData[key] ? rawData[key].toString().trim() : '';
         }
+        
+        // Eliminar campos de archivo que NO son columnas en la BD
+        delete cleanData.foto_antes;
+        delete cleanData.foto_despues;
 
         // 4. Firmas a Base64
         cleanData.firma_cliente = padClient.toDataURL();
