@@ -45,14 +45,26 @@ export async function generatePDF(currentStep) {
         containerAntes.innerHTML = previewAntes ? `<img src="${previewAntes.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
         containerDespues.innerHTML = previewDespues ? `<img src="${previewDespues.src}" style="width:100%; height:100%; object-fit:cover;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
 
-        // 4. Manejo de Firmas
-        const canvasC = document.getElementById('signature-pad-cliente');
-        const canvasT = document.getElementById('signature-pad-tecnico');
+        // 4. Manejo de Firmas (Mejorado: usar datos directamente si están disponibles)
         const destC = document.getElementById('pdf-firma-cliente');
         const destT = document.getElementById('pdf-firma-tecnico');
         
-        if(canvasC) destC.innerHTML = `<img src="${canvasC.toDataURL()}" style="max-height:80px;">`;
-        if(canvasT) destT.innerHTML = `<img src="${canvasT.toDataURL()}" style="max-height:80px;">`;
+        let sigC = '', sigT = '';
+        
+        // Si estamos en historial, los datos están en window.lastViewedFicha
+        if(window.isLocked && window.lastViewedFicha) {
+            sigC = window.lastViewedFicha.firma_cliente;
+            sigT = window.lastViewedFicha.firma_tecnico;
+        } else {
+            // Si es ficha nueva, capturar de los pads
+            const canvasC = document.getElementById('signature-pad-cliente');
+            const canvasT = document.getElementById('signature-pad-tecnico');
+            if(canvasC && !canvasC.getContext('2d').getImageData(0,0,canvasC.width,canvasC.height).data.every(p => p === 0)) sigC = canvasC.toDataURL();
+            if(canvasT && !canvasT.getContext('2d').getImageData(0,0,canvasT.width,canvasT.height).data.every(p => p === 0)) sigT = canvasT.toDataURL();
+        }
+
+        destC.innerHTML = sigC ? `<img src="${sigC}" style="max-height:80px; width: auto;">` : '<p style="opacity:0.2; font-size:10px;">Sin Firma</p>';
+        destT.innerHTML = sigT ? `<img src="${sigT}" style="max-height:80px; width: auto;">` : '<p style="opacity:0.2; font-size:10px;">Sin Firma</p>';
 
         // 5. Configuración de Exportación (Mejorada para evitar cortes)
         const opt = {
