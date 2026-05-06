@@ -1,101 +1,187 @@
-export async function generatePDF(currentStep) {
+export async function generatePDF() {
     const pdfBtn = document.getElementById('pdfBtn');
-    const template = document.getElementById('pdf-template');
-    
     if(pdfBtn) {
         pdfBtn.disabled = true;
         pdfBtn.innerHTML = '⌛';
     }
     
     try {
-        // 1. Recopilar datos (Incluso si están disabled/locked)
         const f = document.getElementById('fichaForm');
         const getVal = (name) => {
             const el = f.querySelector(`[name="${name}"]`);
             return el ? el.value : '---';
         };
 
-        // Llenar el template
-        document.getElementById('pdf-ficha-id').innerText = getVal('consecutivo');
-        document.getElementById('pdf-nombre').innerText = getVal('nombre_completo');
-        document.getElementById('pdf-doc').innerText = getVal('numero_documento');
-        document.getElementById('pdf-edad').innerText = getVal('edad');
-        document.getElementById('pdf-tel').innerText = getVal('telefono');
-        document.getElementById('pdf-sede').innerText = getVal('sede');
-        document.getElementById('pdf-fecha').innerText = getVal('fecha_diligenciamiento');
-        document.getElementById('pdf-tecnico-resp').innerText = getVal('estilista_responsable');
-        
-        document.getElementById('pdf-patron').innerText = getVal('tipo_cabello');
-        document.getElementById('pdf-longitud').innerText = getVal('longitud');
-        document.getElementById('pdf-textura').innerText = getVal('textura');
-        document.getElementById('pdf-crecimiento').innerText = getVal('estado_crecimiento');
-        document.getElementById('pdf-medios').innerText = getVal('estado_medios');
-        document.getElementById('pdf-puntas').innerText = getVal('estado_puntas');
-        
-        document.getElementById('pdf-procedimiento').innerText = getVal('procedimiento');
-        document.getElementById('pdf-tecnica').innerText = getVal('tecnica_utilizada');
-        document.getElementById('pdf-porcentaje').innerText = getVal('porcentaje_liso');
+        // 1. Inicializar jsPDF (A4)
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+            orientation: 'p',
+            unit: 'mm',
+            format: 'a4'
+        });
 
-        // 3. Manejo de Imágenes de Evidencia (Alta Calidad y Estabilidad)
-        const previewAntes = document.getElementById('previewAntes').querySelector('img');
-        const previewDespues = document.getElementById('previewDespues').querySelector('img');
-        const containerAntes = document.getElementById('pdf-foto-antes');
-        const containerDespues = document.getElementById('pdf-foto-despues');
-        
-        // Usamos display block y width 100% para evitar problemas de posicionamiento
-        containerAntes.innerHTML = previewAntes ? `<img src="${previewAntes.src}" style="display:block; width:100%; min-height:100%;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
-        containerDespues.innerHTML = previewDespues ? `<img src="${previewDespues.src}" style="display:block; width:100%; min-height:100%;">` : '<p style="margin-top:150px; opacity:0.3;">Sin Registro</p>';
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        let y = 15;
 
-        // 4. Manejo de Firmas (Mejorado: usar datos directamente si están disponibles)
-        const destC = document.getElementById('pdf-firma-cliente');
-        const destT = document.getElementById('pdf-firma-tecnico');
+        // --- ENCABEZADO ---
+        doc.setFillColor(212, 175, 55); // Dorado Julie
+        doc.rect(0, 0, pageWidth, 5, 'F');
+        y += 10;
+
+        // Logo (Usando el logo.png del proyecto si es posible, o texto por ahora)
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(212, 175, 55);
+        doc.text('JULIE ALISADOS', 15, y);
         
+        doc.setFontSize(10);
+        doc.setTextColor(100);
+        doc.text('HISTORIA CLÍNICA CAPILAR', pageWidth - 15, y, { align: 'right' });
+        y += 6;
+        doc.text('FICHA N°: ' + getVal('consecutivo'), pageWidth - 15, y, { align: 'right' });
+        y += 10;
+
+        // --- BLOQUE CLIENTE ---
+        doc.setFillColor(252, 250, 245);
+        doc.roundedRect(15, y, pageWidth - 30, 25, 3, 3, 'F');
+        
+        doc.setFontSize(9);
+        doc.setTextColor(212, 175, 55);
+        doc.text('DATOS DE LA CLIENTE', 20, y + 7);
+        doc.text('INFORMACIÓN DE SEDE', pageWidth - 20, y + 7, { align: 'right' });
+
+        doc.setFontSize(12);
+        doc.setTextColor(0);
+        doc.text(getVal('nombre_completo'), 20, y + 14);
+        
+        doc.setFontSize(10);
+        doc.text('Sede: ' + getVal('sede'), pageWidth - 20, y + 14, { align: 'right' });
+        
+        doc.setFontSize(9);
+        doc.setTextColor(80);
+        doc.text(`Documento: ${getVal('numero_documento')} | Edad: ${getVal('edad')}`, 20, y + 20);
+        doc.text(`Fecha: ${getVal('fecha_diligenciamiento')}`, pageWidth - 20, y + 20, { align: 'right' });
+        y += 35;
+
+        // --- DIAGNÓSTICO ---
+        doc.setFontSize(11);
+        doc.setTextColor(212, 175, 55);
+        doc.text('DIAGNÓSTICO TÉCNICO', 15, y);
+        doc.setDrawColor(212, 175, 55);
+        doc.line(15, y + 2, 60, y + 2);
+        y += 10;
+
+        const drawBox = (label, value, x, y, w) => {
+            doc.setDrawColor(230);
+            doc.roundedRect(x, y, w, 12, 2, 2, 'D');
+            doc.setFontSize(8);
+            doc.setTextColor(100);
+            doc.text(label, x + 3, y + 4);
+            doc.setFontSize(9);
+            doc.setTextColor(0);
+            doc.text(value, x + 3, y + 9);
+        };
+
+        const colW = (pageWidth - 40) / 3;
+        drawBox('Patrón de Rizo', getVal('tipo_cabello'), 15, y, colW);
+        drawBox('Longitud', getVal('longitud'), 15 + colW + 5, y, colW);
+        drawBox('Textura', getVal('textura'), 15 + (colW + 5) * 2, y, colW);
+        y += 15;
+        drawBox('Crecimiento', getVal('estado_crecimiento'), 15, y, colW);
+        drawBox('Medios', getVal('estado_medios'), 15 + colW + 5, y, colW);
+        drawBox('Puntas', getVal('estado_puntas'), 15 + (colW + 5) * 2, y, colW);
+        y += 20;
+
+        // --- PROCEDIMIENTO ---
+        doc.setFontSize(11);
+        doc.setTextColor(212, 175, 55);
+        doc.text('PROCEDIMIENTO REALIZADO', 15, y);
+        doc.line(15, y + 2, 70, y + 2);
+        y += 8;
+
+        doc.setFillColor(249);
+        doc.roundedRect(15, y, pageWidth - 30, 20, 2, 2, 'F');
+        doc.setFontSize(9);
+        doc.setTextColor(50);
+        doc.text('Servicio: ' + getVal('procedimiento'), 20, y + 6);
+        doc.text('Técnica: ' + getVal('tecnica_utilizada'), 20, y + 11);
+        doc.text('Porcentaje Liso: ' + getVal('porcentaje_liso'), 20, y + 16);
+        y += 30;
+
+        // --- EVIDENCIA (Nueva Página si no cabe) ---
+        if (y > 180) { doc.addPage(); y = 20; }
+        
+        doc.setFontSize(11);
+        doc.setTextColor(212, 175, 55);
+        doc.text('EVIDENCIA FOTOGRÁFICA', 15, y);
+        doc.line(15, y + 2, 65, y + 2);
+        y += 10;
+
+        const imgA = document.getElementById('previewAntes').querySelector('img');
+        const imgD = document.getElementById('previewDespues').querySelector('img');
+
+        const addPhoto = async (imgEl, x, y) => {
+            if(!imgEl) {
+                doc.setDrawColor(240);
+                doc.rect(x, y, 85, 90, 'D');
+                doc.setFontSize(8);
+                doc.text('Sin Registro', x + 35, y + 45);
+                return;
+            }
+            try {
+                // Dibujar un borde dorado para la foto
+                doc.setDrawColor(212, 175, 55);
+                doc.rect(x - 1, y - 1, 87, 92, 'D');
+                doc.addImage(imgEl.src, 'JPEG', x, y, 85, 90);
+            } catch(e) {
+                console.warn('Error al añadir imagen:', e);
+            }
+        };
+
+        await addPhoto(imgA, 15, y);
+        await addPhoto(imgD, pageWidth - 100, y);
+        y += 100;
+
+        // --- FIRMAS ---
+        if (y > 250) { doc.addPage(); y = 30; }
+        
+        y += 10;
         let sigC = '', sigT = '';
-        
-        // Si estamos en historial, los datos están en window.lastViewedFicha
         if(window.isLocked && window.lastViewedFicha) {
             sigC = window.lastViewedFicha.firma_cliente;
             sigT = window.lastViewedFicha.firma_tecnico;
         } else {
-            // Si es ficha nueva, capturar de los pads
             const canvasC = document.getElementById('signature-pad-cliente');
             const canvasT = document.getElementById('signature-pad-tecnico');
-            if(canvasC && !canvasC.getContext('2d').getImageData(0,0,canvasC.width,canvasC.height).data.every(p => p === 0)) sigC = canvasC.toDataURL();
-            if(canvasT && !canvasT.getContext('2d').getImageData(0,0,canvasT.width,canvasT.height).data.every(p => p === 0)) sigT = canvasT.toDataURL();
+            if(canvasC) sigC = canvasC.toDataURL();
+            if(canvasT) sigT = canvasT.toDataURL();
         }
 
-        destC.innerHTML = sigC ? `<img src="${sigC}" style="max-height:80px; width: auto;">` : '<p style="opacity:0.2; font-size:10px;">Sin Firma</p>';
-        destT.innerHTML = sigT ? `<img src="${sigT}" style="max-height:80px; width: auto;">` : '<p style="opacity:0.2; font-size:10px;">Sin Firma</p>';
-
-        // 5. Configuración de Exportación (Mejorada para evitar cortes)
-        const opt = {
-            margin: [10, 10, 10, 10], // Márgenes más amplios
-            filename: 'HistoriaCapilar_' + (getVal('numero_documento') || 'DOC') + '.pdf',
-            image: { type: 'jpeg', quality: 1.0 },
-            html2canvas: { 
-                scale: 2, // Scale 2 es más estable para evitar cortes que 3
-                useCORS: true,
-                letterRendering: true,
-                logging: false,
-                windowWidth: 800
-            },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // CRITICO: evita cortes en medio de fotos
+        const drawSig = (src, label, x, y) => {
+            doc.line(x, y, x + 70, y);
+            doc.setFontSize(8);
+            doc.text(label, x + 35, y + 5, { align: 'center' });
+            if(src) {
+                try {
+                    doc.addImage(src, 'PNG', x + 10, y - 15, 50, 15);
+                } catch(e) {}
+            }
         };
-        
-        // 6. Generar PDF desde el template (temporalmente visible para html2pdf)
-        template.style.display = 'block';
-        
-        // Pequeño retraso extra para asegurar que el navegador "pinte" los cambios en el DOM
-        await new Promise(r => setTimeout(r, 200));
 
-        await window.html2pdf().set(opt).from(template).save();
-        template.style.display = 'none';
-        
+        drawSig(sigC, 'FIRMA CLIENTE', 15, y + 20);
+        drawSig(sigT, 'FIRMA TÉCNICO', pageWidth - 85, y + 20);
+
+        // Footer Legal
+        doc.setFontSize(7);
+        doc.setTextColor(150);
+        doc.text('Este documento certifica el diagnóstico y procedimiento realizado por Julie Alisados.', pageWidth / 2, pageHeight - 10, { align: 'center' });
+
+        doc.save('HistoriaCapilar_' + (getVal('numero_documento') || 'DOC') + '.pdf');
+
     } catch (err) {
-        console.error('Error PDF Premium:', err);
-        alert('❌ Error al generar Historia Clínica. Intenta de nuevo.');
-        template.style.display = 'none';
+        console.error('Error PDF Pure jsPDF:', err);
+        alert('❌ Error al generar PDF. Asegúrate de haber llenado todo.');
     } finally {
         if(pdfBtn) {
             pdfBtn.disabled = false;
