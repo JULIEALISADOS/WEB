@@ -1,4 +1,4 @@
-// --- JULIEFICHA V5.0: REINICIO MAESTRO ---
+﻿// --- JULIEFICHA V5.0: REINICIO MAESTRO ---
 // alert('🚀 JulieFicha V5.0: Sistema Actualizado a Versión 5.0 (Blindado Total)');
 
 if (window.location.protocol === 'file:') {
@@ -272,7 +272,52 @@ window.addEventListener('load', () => {
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     setNextID();
     populateStylistsSelect();
+    setTimeout(preFillTestData, 800);
 });
+
+// PRE-LLENADO PARA PRUEBA — solo toca agregar fotos y firmas
+function preFillTestData() {
+    // Paso 1
+    setSede('Moniquira');
+    const f = document.getElementById('fichaForm');
+    f.querySelector('[name="tipo_documento"]').value = 'CC';
+    f.querySelector('[name="numero_documento"]').value = '80200013';
+    f.querySelector('[name="edad"]').value = '35';
+    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA DE PRUEBA JULIE';
+    f.querySelector('[name="telefono"]').value = '3101234567';
+
+    // Paso 2
+    setHairType('2B', '2B: Ondas más definidas');
+    setChip('longitud', 'Largo');
+    setChip('crecimiento', 'Natural');
+    setChip('medios', 'Alisado');
+    setChip('puntas', 'Alisado');
+
+    // Paso 3
+    f.querySelector('[name="procesos_quimicos"]').value = 'Ninguno en los últimos 6 meses';
+    f.querySelector('[name="terapias_capilares"]').value = 'Hidratación con mascarilla casera';
+    setChip('textura', 'Medio');
+    setChip('elasticidad', 'Media');
+    setChip('resistencia', 'Media');
+    setChip('porosidad', 'Media');
+    setChip('densidad', 'Regular');
+
+    // Paso 4
+    setChip('piel', 'Equilibrado');
+    setChip('lavado', 'Día por medio');
+    setChip('dermatitis', 'No presenta');
+    setChip('caida', 'Normal');
+    setChip('descamacion', 'No presenta');
+
+    // Paso 5
+    setChip('embarazo', 'No');
+    setChip('alergias', 'No');
+    setChip('procedimiento', 'Alisado Saludable');
+    setChip('porcentaje', '100%');
+    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie Alisados Saludable - Fórmula estándar';
+
+    console.log('✅ Formulario pre-llenado. Solo falta: fotos y firmas.');
+}
 
 
 
