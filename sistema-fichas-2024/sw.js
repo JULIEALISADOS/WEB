@@ -1,8 +1,8 @@
-const CACHE_NAME = 'julie-ficha-v5.0';
+const CACHE_NAME = 'julie-ficha-v5.2';
 const ASSETS = [
   'index.html',
-  'style.css?v=5.0',
-  'julie_app_v5.js?v=5.0',
+  'style.css?v=5.2',
+  'julie_app_v5.js?v=5.2',
   'manifest.json',
   'logo.png',
   'guia_cabello_tecnico_completa_julie_es_1774539016850.png',
@@ -17,7 +17,7 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('SW: Cacheando archivos...');
+      console.log('SW: Cacheando archivos V5.2...');
       return cache.addAll(ASSETS);
     })
   );
@@ -48,4 +48,3 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
-

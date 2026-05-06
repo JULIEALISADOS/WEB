@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="style.css?v=5.2">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -16,7 +16,7 @@
     <script>
         // Registro del Service Worker con Blindado Automático
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js?v=5.0')
+            navigator.serviceWorker.register('sw.js?v=5.2')
             .then(reg => {
                 reg.onupdatefound = () => {
                     const installingWorker = reg.installing;
@@ -90,7 +90,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V5.0</span>
+                    <span class="version-badge">V5.2</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -627,6 +627,6 @@
         </div>
     </div>
 
-    <script src="julie_app_v5.js?v=5.0"></script>
+    <script src="julie_app_v5.js?v=5.2"></script>
 </body>
 </html>
