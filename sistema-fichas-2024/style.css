@@ -242,7 +242,7 @@ body::before {
 }
 
 .btn-pdf {
-    background: var(--gold);
+    background: var(--gold-primary);
     border: none;
     color: white;
     padding: 8px;
@@ -297,7 +297,7 @@ body::before {
     left: 0;
     top: 0;
     height: 100%;
-    background: var(--gold);
+    background: var(--gold-primary);
     transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     width: var(--progress, 16.66%);
 }
@@ -765,7 +765,7 @@ input:disabled {
 
 .camera-placeholder:hover {
     background: #f0f0f0;
-    border-color: var(--gold);
+    border-color: var(--gold-primary);
 }
 
 .camera-placeholder img {
@@ -882,7 +882,7 @@ input:disabled {
     gap: 8px;
 }
 
-.btn-view, .btn-followup {
+.btn-view, .btn-followup, .btn-pdf-history {
     padding: 8px 16px;
     border-radius: 8px;
     font-size: 0.75rem;
@@ -901,6 +901,12 @@ input:disabled {
     background: var(--gold-primary);
     color: white;
     box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+}
+
+.btn-pdf-history {
+    background: #3b82f6;
+    color: white;
+    margin-top: 5px;
 }
 
 .btn-delete-record {
@@ -948,7 +954,7 @@ input:disabled {
 }
 
 .btn-add {
-    background: var(--gold);
+    background: var(--gold-primary);
     color: white;
     border: none;
     width: 45px;
@@ -957,7 +963,7 @@ input:disabled {
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: var(--shadow-gold);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
 }
 
 .stylist-item {
@@ -1093,4 +1099,28 @@ input:disabled {
     .form-group {
         flex: 1 1 100%;
     }
+}
+.btn-pdf-list {
+    background: #e67e22;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-pdf-list:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+}
+
+.btn-pdf-list i {
+    width: 14px;
+    height: 14px;
 }
