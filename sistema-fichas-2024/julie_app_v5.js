@@ -5,11 +5,20 @@ if (window.location.protocol === 'file:') {
     alert('⚠️ ATENCIÓN: Estás abriendo la aplicación como un archivo local. El guardado NO funcionará por seguridad del navegador. \n\nPor favor, usa la dirección web: https://juliealisados.github.io/WEB/sistema-fichas-2024/');
 }
 
+// CONFIGURACIÓN DE BASE DE DATOS (Verificada 06/05/2026)
 const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
-const SB_KEY = 'sb_publishable_TBCjJHsY-vSi_BX-sWqDUA_PR3dMwvV';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
 let sb;
 
-try { sb = supabase.createClient(SB_URL, SB_KEY); } catch (e) { alert('❌ Error Supabase: ' + e.message); }
+try { 
+    if (typeof supabase !== 'undefined') {
+        sb = supabase.createClient(SB_URL, SB_KEY); 
+    } else {
+        console.error('Supabase Library not loaded');
+    }
+} catch (e) { 
+    console.error('❌ Error Inicializando Supabase:', e.message); 
+}
 
 const form = document.getElementById('fichaForm');
 const steps = Array.from(document.querySelectorAll('.step'));
@@ -157,43 +166,73 @@ window.clearSignature = function(type) {
 };
 
 
-// SAVE DATA BLINDADO
+// SAVE DATA BLINDADO V5.1
 saveBtn.addEventListener('click', async () => {
+    // 1. Validaciones Previas
     if(!validateStep(5)) return;
-    if(padClient.isEmpty() || padTech.isEmpty()) return alert('⚠️ Firmas obligatorias.');
+    if(padClient.isEmpty() || padTech.isEmpty()) return alert('⚠️ Por favor, ambas firmas son obligatorias.');
     
     const fileA = document.querySelector('[name="foto_antes"]').files[0];
     const fileD = document.querySelector('[name="foto_despues"]').files[0];
-    if(!fileA || !fileD) return alert('⚠️ Faltan fotos obligatorias del ANTES o DESPUÉS.');
+    if(!fileA || !fileD) return alert('⚠️ Es obligatorio subir las fotos del ANTES y DESPUÉS.');
 
-    saveBtn.innerText = '⌛ GUARDANDO...';
+    // 2. Preparación de Interfaz
+    saveBtn.innerText = '⌛ PROCESANDO...';
+    saveBtn.classList.add('loading');
     saveBtn.disabled = true;
 
     try {
+        // 3. Recolección de Datos
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        delete data.foto_antes; delete data.foto_despues;
-        data.firma_cliente = padClient.toDataURL();
-        data.firma_tecnico = padTech.toDataURL();
-        if(padTutor && !padTutor.isEmpty()) data.firma_tutor_legal = padTutor.toDataURL();
+        const rawData = Object.fromEntries(formData.entries());
         
-        const pathA = `antes_${data.consecutivo}_${Date.now()}.jpg`;
-        await sb.storage.from('evidencia').upload(pathA, fileA);
-        const { data: dUrlA } = sb.storage.from('evidencia').getPublicUrl(pathA);
-        data.foto_antes_url = dUrlA.publicUrl;
+        // Limpiar datos para evitar nulos o objetos que rompan SQL
+        const cleanData = {};
+        for (let key in rawData) {
+            cleanData[key] = rawData[key] ? rawData[key].toString().trim() : '';
+        }
 
-        const pathD = `despues_${data.consecutivo}_${Date.now()}.jpg`;
-        await sb.storage.from('evidencia').upload(pathD, fileD);
-        const { data: dUrlD } = sb.storage.from('evidencia').getPublicUrl(pathD);
-        data.foto_despues_url = dUrlD.publicUrl;
+        // 4. Firmas a Base64
+        cleanData.firma_cliente = padClient.toDataURL();
+        cleanData.firma_tecnico = padTech.toDataURL();
+        if(padTutor && !padTutor.isEmpty()) {
+            cleanData.firma_tutor_legal = padTutor.toDataURL();
+        }
 
-        const { error } = await sb.from('fichas').insert([data]);
-        if(error) throw error;
+        // 5. Subida de Imágenes a Storage (Bucket: evidencia)
+        console.log('Subiendo imágenes...');
+        
+        const uploadImg = async (file, prefix) => {
+            const ext = file.name.split('.').pop();
+            const fileName = `${prefix}_${cleanData.consecutivo}_${Date.now()}.${ext}`;
+            const { data, error } = await sb.storage.from('evidencia').upload(fileName, file);
+            if (error) throw new Error('Error al subir imagen: ' + error.message);
+            const { data: publicUrlData } = sb.storage.from('evidencia').getPublicUrl(fileName);
+            return publicUrlData.publicUrl;
+        };
+
+        cleanData.foto_antes_url = await uploadImg(fileA, 'antes');
+        cleanData.foto_despues_url = await uploadImg(fileD, 'despues');
+
+        // 6. Insertar en Tabla 'fichas'
+        console.log('Insertando datos en tabla fichas:', cleanData);
+        const { error: insertError } = await sb.from('fichas').insert([cleanData]);
+        
+        if(insertError) {
+            console.error('Error de Inserción:', insertError);
+            throw new Error(`Error en base de datos: ${insertError.message} (Campo: ${insertError.details || 'N/A'})`);
+        }
+
+        // 7. Éxito
         document.getElementById('successModal').classList.remove('hidden');
+        if(typeof lucide !== 'undefined') lucide.createIcons();
+
     } catch (e) {
-        alert('❌ Error: ' + e.message);
+        console.error('FALLO TOTAL EN GUARDADO:', e);
+        alert('❌ ERROR AL GUARDAR:\n' + e.message + '\n\nRevisa la consola para más detalles.');
     } finally {
         saveBtn.innerText = 'Finalizar y Guardar';
+        saveBtn.classList.remove('loading');
         saveBtn.disabled = false;
     }
 });
