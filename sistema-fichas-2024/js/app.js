@@ -1,5 +1,5 @@
 import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg } from './db.js';
-import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData } from './signature.js';
+import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData, toggleSignatures } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm } from './ui.js';
 
@@ -82,7 +82,15 @@ function updateStep(direction) {
     
     window.scrollTo(0,0);
 
-    if (currentStep === 5) setTimeout(initSignatures, 300);
+    if (currentStep === 5) {
+        setTimeout(() => {
+            initSignatures();
+            // Si estamos en modo lectura, cargar las firmas guardadas
+            if(isLocked && window.lastViewedFicha) {
+                loadSignaturesFromData(window.lastViewedFicha);
+            }
+        }, 400);
+    }
 }
 
 if(nextBtn) nextBtn.addEventListener('click', () => updateStep('next'));
@@ -104,6 +112,10 @@ window.switchTab = function(tab) {
              form.reset();
              lockForm(false, form);
              isLocked = false;
+             // RE-HABILITAR FIRMAS
+             if(typeof toggleSignatures === 'function') toggleSignatures(false);
+             else if(window.toggleSignatures) window.toggleSignatures(false);
+             
              document.getElementById('previewAntes').innerHTML = '';
              document.getElementById('previewDespues').innerHTML = '';
              loadInitialData(); 
@@ -228,11 +240,11 @@ window.viewFicha = async (consecutivo) => {
         if(data.foto_antes_url) document.getElementById('previewAntes').innerHTML = `<img src="${data.foto_antes_url}" style="width:100%; border-radius:12px;">`;
         if(data.foto_despues_url) document.getElementById('previewDespues').innerHTML = `<img src="${data.foto_despues_url}" style="width:100%; border-radius:12px;">`;
         
-        // Firmas (Cargamos como imágenes sobre los canvas o simplemente guardamos los datos)
-        setTimeout(() => loadSignaturesFromData(data), 500);
-        
         currentStep = 1;
         updateStep('init');
+        
+        // Guardar datos de firma temporalmente para cargarlos cuando se llegue al paso 5
+        window.lastViewedFicha = data;
         
     } catch(e) { alert('Error al cargar ficha: ' + e.message); }
 };

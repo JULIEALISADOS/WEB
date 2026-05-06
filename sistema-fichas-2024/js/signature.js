@@ -13,13 +13,34 @@ export function initSignatures() {
     const cT = document.getElementById('signature-pad-tecnico');
     const cMinor = document.getElementById('signature-pad-tutor');
     
-    // Pattern Singleton: solo inicializa si no existe
-    if (cC && !padClient) { resizeCanvas(cC); padClient = new window.SignaturePad(cC); }
-    if (cT && !padTech) { resizeCanvas(cT); padTech = new window.SignaturePad(cT); }
+    if (cC) {
+        if (!padClient) {
+            resizeCanvas(cC);
+            padClient = new window.SignaturePad(cC);
+        } else if (cC.offsetWidth > 0 && cC.getAttribute('width') === null) {
+            resizeCanvas(cC);
+        }
+    }
+    
+    if (cT) {
+        if (!padTech) {
+            resizeCanvas(cT);
+            padTech = new window.SignaturePad(cT);
+        } else if (cT.offsetWidth > 0 && cT.getAttribute('width') === null) {
+            resizeCanvas(cT);
+        }
+    }
     
     const tutorBox = document.getElementById('tutorSignatureBox');
     const visibleMinor = tutorBox && !tutorBox.classList.contains('hidden');
-    if (cMinor && visibleMinor && !padTutor) { resizeCanvas(cMinor); padTutor = new window.SignaturePad(cMinor); }
+    if (cMinor && visibleMinor) {
+        if (!padTutor) {
+            resizeCanvas(cMinor);
+            padTutor = new window.SignaturePad(cMinor);
+        } else if (cMinor.offsetWidth > 0 && cMinor.getAttribute('width') === null) {
+            resizeCanvas(cMinor);
+        }
+    }
 }
 
 export function clearSignature(type, isLocked) {
