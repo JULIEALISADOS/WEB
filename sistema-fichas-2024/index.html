@@ -48,13 +48,19 @@
                 // 2. Clear Caches
                 if (window.caches) {
                     const CACHE_NAME = 'julie-ficha-v5.9';
-                    const names = await caches.keys();
-                    for (let name of names) {
-                        await caches.delete(name);
-                    }
+        async function forceUpdate() {
+            if(!confirm("¿Deseas forzar la actualización del sistema? Esto limpiará la memoria caché.")) return;
+            try {
+                // 1. Desregistrar Service Workers
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for(let registration of registrations) {
+                    await registration.unregister();
                 }
-
-                alert('✅ Sistema Reiniciado. Cargando última versión...');
+                // 2. Limpiar Caches
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                
+                // 3. Recargar Hard
                 window.location.reload(true);
             } catch (err) {
                 console.error("Error en forceUpdate:", err);
@@ -67,7 +73,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V6.4</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V7.0</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <input type="text" id="loginEmail" placeholder="Usuario" required>
@@ -91,7 +97,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V6.4</span>
+                    <span class="version-badge">V7.0</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -737,6 +743,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=5.9"></script>
+    <script type="module" src="js/app.js?v=7.0"></script>
 </body>
 </html>
