@@ -252,10 +252,10 @@ window.viewFicha = async (consecutivo) => {
 window.directPDF = async (consecutivo) => {
     try {
         await viewFicha(consecutivo);
-        // Pequeña espera para asegurar que las imágenes y firmas se rendericen en el DOM antes de capturar el PDF
+        // Aumentamos el tiempo de espera para asegurar carga de imágenes pesadas y renderizado de firmas
         setTimeout(() => {
             generatePDF();
-        }, 800);
+        }, 1200);
     } catch(e) {
         console.error('Error direct PDF:', e);
     }

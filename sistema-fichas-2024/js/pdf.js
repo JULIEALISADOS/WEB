@@ -8,31 +8,33 @@ export async function generatePDF(currentStep) {
     }
     
     try {
-        // 1. Recopilar datos actuales del formulario
+        // 1. Recopilar datos (Incluso si están disabled/locked)
         const f = document.getElementById('fichaForm');
-        const formData = new FormData(f);
-        const data = Object.fromEntries(formData.entries());
+        const getVal = (name) => {
+            const el = f.querySelector(`[name="${name}"]`);
+            return el ? el.value : '---';
+        };
+
+        // Llenar el template
+        document.getElementById('pdf-ficha-id').innerText = getVal('consecutivo');
+        document.getElementById('pdf-nombre').innerText = getVal('nombre_completo');
+        document.getElementById('pdf-doc').innerText = getVal('numero_documento');
+        document.getElementById('pdf-edad').innerText = getVal('edad');
+        document.getElementById('pdf-tel').innerText = getVal('telefono');
+        document.getElementById('pdf-sede').innerText = getVal('sede');
+        document.getElementById('pdf-fecha').innerText = getVal('fecha_diligenciamiento');
+        document.getElementById('pdf-tecnico-resp').innerText = getVal('estilista_responsable');
         
-        // 2. Llenar el template
-        document.getElementById('pdf-ficha-id').innerText = data.consecutivo || '---';
-        document.getElementById('pdf-nombre').innerText = data.nombre_completo || '---';
-        document.getElementById('pdf-doc').innerText = data.numero_documento || '---';
-        document.getElementById('pdf-edad').innerText = data.edad || '---';
-        document.getElementById('pdf-tel').innerText = data.telefono || '---';
-        document.getElementById('pdf-sede').innerText = data.sede || '---';
-        document.getElementById('pdf-fecha').innerText = data.fecha_diligenciamiento || '---';
-        document.getElementById('pdf-tecnico-resp').innerText = data.estilista_responsable || '---';
+        document.getElementById('pdf-patron').innerText = getVal('tipo_cabello');
+        document.getElementById('pdf-longitud').innerText = getVal('longitud');
+        document.getElementById('pdf-textura').innerText = getVal('textura');
+        document.getElementById('pdf-crecimiento').innerText = getVal('estado_crecimiento');
+        document.getElementById('pdf-medios').innerText = getVal('estado_medios');
+        document.getElementById('pdf-puntas').innerText = getVal('estado_puntas');
         
-        document.getElementById('pdf-patron').innerText = data.tipo_cabello || '---';
-        document.getElementById('pdf-longitud').innerText = data.longitud || '---';
-        document.getElementById('pdf-textura').innerText = data.textura || '---';
-        document.getElementById('pdf-crecimiento').innerText = data.estado_crecimiento || '---';
-        document.getElementById('pdf-medios').innerText = data.estado_medios || '---';
-        document.getElementById('pdf-puntas').innerText = data.estado_puntas || '---';
-        
-        document.getElementById('pdf-procedimiento').innerText = data.procedimiento || '---';
-        document.getElementById('pdf-tecnica').innerText = data.tecnica_utilizada || '---';
-        document.getElementById('pdf-porcentaje').innerText = data.porcentaje_liso || '---';
+        document.getElementById('pdf-procedimiento').innerText = getVal('procedimiento');
+        document.getElementById('pdf-tecnica').innerText = getVal('tecnica_utilizada');
+        document.getElementById('pdf-porcentaje').innerText = getVal('porcentaje_liso');
 
         // 3. Manejo de Imágenes de Evidencia (Alta Calidad)
         const previewAntes = document.getElementById('previewAntes').querySelector('img');
@@ -55,7 +57,7 @@ export async function generatePDF(currentStep) {
         // 5. Configuración de Exportación (Mejorada para evitar cortes)
         const opt = {
             margin: [10, 10, 10, 10], // Márgenes más amplios
-            filename: 'HistoriaCapilar_' + (data.numero_documento || 'DOC') + '.pdf',
+            filename: 'HistoriaCapilar_' + (getVal('numero_documento') || 'DOC') + '.pdf',
             image: { type: 'jpeg', quality: 1.0 },
             html2canvas: { 
                 scale: 2, // Scale 2 es más estable para evitar cortes que 3

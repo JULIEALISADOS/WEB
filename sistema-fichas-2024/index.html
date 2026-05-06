@@ -17,6 +17,7 @@
         // Registro del Service Worker con Blindado Automático
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js?v=5.6')
+            navigator.serviceWorker.register('sw.js?v=8.1')
             .then(reg => {
                 reg.onupdatefound = () => {
                     const installingWorker = reg.installing;
@@ -33,11 +34,19 @@
             .catch(err => console.error("Error Registrando SW:", err));
         }
 
-        async function forceUpdate() {
+        window.directPDF = async (consecutivo) => {
             try {
-                console.log('Iniciando actualización forzada...');
-                
-                // 1. Unregister Service Workers
+                await viewFicha(consecutivo);
+                // Aumentamos el tiempo de espera para asegurar carga de imágenes pesadas y renderizado de firmas
+                setTimeout(() => {
+                    generatePDF();
+                }, 1200);
+            } catch(e) {
+                console.error('Error direct PDF:', e);
+            }
+        };
+
+        async function forceUpdate() {
             if(!confirm("¿Deseas forzar la actualización del sistema? Esto limpiará la memoria caché.")) return;
             try {
                 // 1. Desregistrar Service Workers
@@ -47,6 +56,7 @@
                 }
                 // 2. Limpiar Caches
                 const cacheNames = await caches.keys();
+                const CACHE_NAME = 'julie-ficha-v8.1';
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 
                 // 3. Recargar Hard
@@ -62,7 +72,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V8.0</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V8.1</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <input type="text" id="loginEmail" placeholder="Usuario" required>
@@ -86,7 +96,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V8.0</span>
+                    <span class="version-badge">V8.1</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -636,8 +646,8 @@
     </div>
 
     <!-- PDF Print Template (Hidden from UI) -->
-    <div id="pdf-template" class="pdf-print-template" style="display: none;">
-        <div class="pdf-header">
+    <div id="pdf-template" style="display: none; width: 800px; padding: 40px; font-family: 'Outfit', sans-serif; background: white; color: #1a1a1a;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px; page-break-inside: avoid;">
             <img src="logo.png" style="height: 80px;">
             <div style="text-align: right;">
                 <h1 style="font-family: 'Playfair Display', serif; color: #D4AF37; margin: 0; font-size: 24px;">HISTORIA CLÍNICA CAPILAR</h1>
@@ -646,7 +656,7 @@
             </div>
         </div>
 
-        <div class="pdf-client-grid">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; background: #fcfaf5; padding: 20px; border-radius: 12px; page-break-inside: avoid;">
             <div>
                 <p style="font-size: 11px; color: #D4AF37; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;">Datos de la Cliente</p>
                 <h2 id="pdf-nombre" style="margin: 0; font-size: 18px;">---</h2>
@@ -661,40 +671,40 @@
             </div>
         </div>
 
-        <div class="pdf-section">
-            <h3 class="pdf-section-title">DIAGNÓSTICO TÉCNICO</h3>
-            <div class="pdf-tech-grid">
-                <div class="pdf-box">
+        <div style="margin-bottom: 30px; page-break-inside: avoid;">
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">DIAGNÓSTICO TÉCNICO</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 12px;">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Patrón de Rizo</p>
                     <p id="pdf-patron">---</p>
                 </div>
-                <div class="pdf-box">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Longitud</p>
                     <p id="pdf-longitud">---</p>
                 </div>
-                <div class="pdf-box">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Textura</p>
                     <p id="pdf-textura">---</p>
                 </div>
             </div>
-            <div class="pdf-tech-grid" style="margin-top: 15px;">
-                <div class="pdf-box">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 12px; margin-top: 15px;">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Crecimiento</p>
                     <p id="pdf-crecimiento">---</p>
                 </div>
-                <div class="pdf-box">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Medios</p>
                     <p id="pdf-medios">---</p>
                 </div>
-                <div class="pdf-box">
+                <div style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
                     <p style="font-weight: 700; margin-bottom: 5px;">Puntas</p>
                     <p id="pdf-puntas">---</p>
                 </div>
             </div>
         </div>
 
-        <div class="pdf-section">
-            <h3 class="pdf-section-title">PROCEDIMIENTO REALIZADO</h3>
+        <div style="margin-bottom: 30px; page-break-inside: avoid;">
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">PROCEDIMIENTO REALIZADO</h3>
             <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; font-size: 13px;">
                 <p style="margin-bottom: 10px;"><strong>Servicio:</strong> <span id="pdf-procedimiento">---</span></p>
                 <p style="margin-bottom: 10px;"><strong>Técnica Utilizada:</strong> <span id="pdf-tecnica">---</span></p>
@@ -702,36 +712,36 @@
             </div>
         </div>
 
-        <div class="pdf-section">
-            <h3 class="pdf-section-title">EVIDENCIA FOTOGRÁFICA</h3>
-            <div class="pdf-photo-grid">
+        <div style="margin-bottom: 30px; page-break-inside: avoid;">
+            <h3 style="border-left: 4px solid #D4AF37; padding-left: 10px; font-size: 16px; margin-bottom: 15px;">EVIDENCIA FOTOGRÁFICA</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div style="text-align: center;">
                     <p style="font-size: 12px; font-weight: 700; margin-bottom: 10px;">REGISTRO ANTES</p>
-                    <div id="pdf-foto-antes" class="pdf-photo-box"></div>
+                    <div id="pdf-foto-antes" style="width: 100%; height: 350px; background: #eee; border-radius: 15px; overflow: hidden; border: 2px solid #D4AF37;"></div>
                 </div>
                 <div style="text-align: center;">
                     <p style="font-size: 12px; font-weight: 700; margin-bottom: 10px;">REGISTRO DESPUÉS</p>
-                    <div id="pdf-foto-despues" class="pdf-photo-box"></div>
+                    <div id="pdf-foto-despues" style="width: 100%; height: 350px; background: #eee; border-radius: 15px; overflow: hidden; border: 2px solid #D4AF37;"></div>
                 </div>
             </div>
         </div>
 
-        <div class="pdf-footer-signatures">
-            <div class="pdf-signature-line">
+        <div style="margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; page-break-inside: avoid;">
+            <div style="text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
                 <div id="pdf-firma-cliente" style="height: 80px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;"></div>
                 <p style="font-size: 12px; font-weight: 700;">FIRMA CLIENTE</p>
             </div>
-            <div class="pdf-signature-line">
+            <div style="text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px;">
                 <div id="pdf-firma-tecnico" style="height: 80px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center;"></div>
                 <p style="font-size: 12px; font-weight: 700;">FIRMA TÉCNICO</p>
             </div>
         </div>
         
-        <div class="pdf-legal-footer">
+        <div style="margin-top: 30px; font-size: 9px; text-align: center; opacity: 0.5; border-top: 1px dashed #eee; padding-top: 20px; page-break-inside: avoid;">
             Este documento certifica el diagnóstico y procedimiento realizado por Julie Alisados. Información confidencial y para uso técnico profesional.
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=8.0"></script>
+    <script type="module" src="js/app.js?v=8.1"></script>
 </body>
 </html>
