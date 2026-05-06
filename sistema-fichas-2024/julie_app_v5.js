@@ -179,15 +179,14 @@ saveBtn.addEventListener('click', async () => {
         }
     }
     
-    // Validación simplificada para pruebas
-    // if(!validateStep(5)) return;
+    // Validación completa Paso 5
+    if(!validateStep(5)) return;
     if(padClient && padClient.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DE LA CLIENTE.');
     if(padTech && padTech.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DEL TÉCNICO.');
     
     const fileA = document.querySelector('[name="foto_antes"]').files[0];
     const fileD = document.querySelector('[name="foto_despues"]').files[0];
-    // Fotos opcionales durante pruebas
-    // if(!fileA || !fileD) return alert('⚠️ Es obligatorio subir las fotos del ANTES y DESPUÉS.');
+    if(!fileA || !fileD) return alert('⚠️ Es obligatorio subir las fotos del ANTES y DESPUÉS.');
 
     // 2. Preparación de Interfaz
     saveBtn.innerText = '⌛ PROCESANDO...';
@@ -273,63 +272,9 @@ window.addEventListener('load', () => {
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     setNextID();
     populateStylistsSelect();
-    
-    // --- FUNCIÓN DE PRE-LLENADO PARA PRUEBAS (BORRAR ANTES DE LANZAR) ---
-    setTimeout(preFillForm, 1000);
 });
 
-function preFillForm() {
-    console.log("🛠️ Pre-llenando formulario para pruebas...");
-    const f = document.getElementById('fichaForm');
-    if(!f) return;
 
-    // Paso 1
-    setSede('Moniquira');
-    f.querySelector('[name="tipo_documento"]').value = 'CC';
-    f.querySelector('[name="numero_documento"]').value = '123456789';
-    f.querySelector('[name="edad"]').value = '28';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA DE PRUEBA';
-    f.querySelector('[name="telefono"]').value = '3101234567';
-
-    // Paso 2
-    setHairType('2B', '2B: Ondas más definidas');
-    setChip('longitud', 'Medio');
-    setChip('crecimiento', 'Natural');
-    setChip('medios', 'Alisado');
-    setChip('puntas', 'Horquilla');
-
-    // Paso 3
-    f.querySelector('[name="procesos_quimicos"]').value = 'Ninguno recientemente';
-    f.querySelector('[name="terapias_capilares"]').value = 'Hidratación simple';
-    setChip('textura', 'Medio');
-    setChip('elasticidad', 'Media');
-    setChip('resistencia', 'Media');
-    setChip('porosidad', 'Media');
-    setChip('densidad', 'Regular');
-
-    // Paso 4
-    setChip('piel', 'Equilibrado');
-    setChip('lavado', 'Día por medio');
-    setChip('dermatitis', 'No presenta');
-    setChip('caida', 'Normal');
-    setChip('descamacion', 'No presenta');
-
-    // Paso 5
-    setChip('embarazo', 'No');
-    setChip('alergias', 'No');
-    setChip('procedimiento', 'Alisado Saludable');
-    setChip('porcentaje', '100%');
-    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica estándar Julie Alisados';
-    
-    // Forzar selección de estilista si está vacío
-    if(responsableInput && responsableInput.options.length <= 1) {
-        const opt = document.createElement('option');
-        opt.value = 'Julie Valencia (Prueba)';
-        opt.textContent = 'Julie Valencia (Prueba)';
-        opt.selected = true;
-        responsableInput.appendChild(opt);
-    }
-}
 
 async function populateStylistsSelect() {
     if(!responsableInput) return;
