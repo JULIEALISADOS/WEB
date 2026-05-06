@@ -52,17 +52,20 @@ export async function generatePDF(currentStep) {
         if(canvasC) destC.innerHTML = `<img src="${canvasC.toDataURL()}" style="max-height:80px;">`;
         if(canvasT) destT.innerHTML = `<img src="${canvasT.toDataURL()}" style="max-height:80px;">`;
 
-        // 5. Configuración de Exportación
+        // 5. Configuración de Exportación (Mejorada para evitar cortes)
         const opt = {
-            margin: [5, 5],
-            filename: 'HistoriaCapilar_' + (data.consecutivo || 'DOC') + '.pdf',
+            margin: [10, 10, 10, 10], // Márgenes más amplios
+            filename: 'HistoriaCapilar_' + (data.numero_documento || 'DOC') + '.pdf',
             image: { type: 'jpeg', quality: 1.0 },
             html2canvas: { 
-                scale: 3, // Mayor nitidez
+                scale: 2, // Scale 2 es más estable para evitar cortes que 3
                 useCORS: true,
-                letterRendering: true
+                letterRendering: true,
+                logging: false,
+                windowWidth: 800
             },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // CRITICO: evita cortes en medio de fotos
         };
         
         // 6. Generar PDF desde el template (temporalmente visible para html2pdf)

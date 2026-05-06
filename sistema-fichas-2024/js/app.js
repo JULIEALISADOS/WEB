@@ -61,7 +61,16 @@ function updateStep(direction) {
     document.querySelectorAll('.btn-step').forEach((b, i) => b.classList.toggle('active', i === currentStep - 1));
     
     if(nextBtn) nextBtn.classList.toggle('hidden', currentStep === totalSteps);
-    if(saveBtn) saveBtn.classList.toggle('hidden', currentStep !== totalSteps);
+    
+    // Si la ficha está bloqueada (viendo historial), NUNCA mostrar botón de guardar
+    if(saveBtn) {
+        if (isLocked) {
+            saveBtn.classList.add('hidden');
+        } else {
+            saveBtn.classList.toggle('hidden', currentStep !== totalSteps);
+        }
+    }
+    
     if(prevBtn) prevBtn.classList.toggle('hidden', currentStep === 1);
 
     const percent = (currentStep / totalSteps) * 100;
@@ -138,6 +147,7 @@ async function renderHistory(filter = '') {
                 </div>
                 <div class="card-actions">
                     <button onclick="viewFicha('${item.consecutivo}')" class="btn-view">Ver</button>
+                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list"><i data-lucide="download"></i> PDF</button>
                     <button onclick="deleteFicha('${item.consecutivo}')" class="btn-delete-record">Borrar</button>
                 </div>
             `;
@@ -210,6 +220,10 @@ window.viewFicha = async (consecutivo) => {
         if(data.sede) setSede(data.sede);
         if(data.tipo_cabello) setHairType('', data.tipo_cabello);
         
+        // Forzar check de autorización (si existe en historial es porque se autorizó)
+        const authCheck = document.getElementById('authCheckbox');
+        if(authCheck) authCheck.checked = true;
+        
         // Fotos
         if(data.foto_antes_url) document.getElementById('previewAntes').innerHTML = `<img src="${data.foto_antes_url}" style="width:100%; border-radius:12px;">`;
         if(data.foto_despues_url) document.getElementById('previewDespues').innerHTML = `<img src="${data.foto_despues_url}" style="width:100%; border-radius:12px;">`;
@@ -221,6 +235,18 @@ window.viewFicha = async (consecutivo) => {
         updateStep('init');
         
     } catch(e) { alert('Error al cargar ficha: ' + e.message); }
+};
+
+window.directPDF = async (consecutivo) => {
+    try {
+        await viewFicha(consecutivo);
+        // Pequeña espera para asegurar que las imágenes y firmas se rendericen en el DOM antes de capturar el PDF
+        setTimeout(() => {
+            generatePDF();
+        }, 800);
+    } catch(e) {
+        console.error('Error direct PDF:', e);
+    }
 };
 
 window.deleteFicha = async (consecutivo) => {
