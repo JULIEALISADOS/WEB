@@ -48,6 +48,19 @@ function login() {
 if(document.getElementById('loginForm')) {
     document.getElementById('loginForm').addEventListener('submit', (e) => { e.preventDefault(); login(); });
 }
+window.togglePass = function() {
+    const passInput = document.getElementById('loginPass');
+    const eyeIcon = document.getElementById('eyeIcon');
+    if (passInput.type === 'password') {
+        passInput.type = 'text';
+        if(eyeIcon) eyeIcon.setAttribute('data-lucide', 'eye-off');
+    } else {
+        passInput.type = 'password';
+        if(eyeIcon) eyeIcon.setAttribute('data-lucide', 'eye');
+    }
+    if(window.lucide) window.lucide.createIcons();
+};
+
 if (localStorage.getItem('julie_session') === 'true' && loginSection) {
     loginSection.classList.add('hidden');
     appMain.classList.remove('hidden');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=1.4">
+    <link rel="stylesheet" href="style.css?v=1.5">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -57,14 +57,22 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V1.4</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V1.5</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
-                <input type="text" id="loginEmail" placeholder="Usuario" required>
-                <input type="password" id="loginPass" placeholder="Contraseña" required>
-                <button type="submit" class="btn-primary">Entrar</button>
+                <div style="position:relative;">
+                    <input type="text" id="loginEmail" placeholder="Usuario" required>
+                </div>
+                <div style="position:relative; margin-top:10px;">
+                    <input type="password" id="loginPass" placeholder="Contraseña" required style="padding-right:45px;">
+                    <button type="button" onclick="togglePass()" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--gold-primary); cursor:pointer; padding:5px;">
+                        <i data-lucide="eye" id="eyeIcon"></i>
+                    </button>
+                </div>
+                <button type="submit" class="btn-primary" style="margin-top:20px;">Entrar</button>
             </form>
             <p id="loginError" class="error-text hidden">Credenciales incorrectas</p>
+            <button onclick="forceUpdate()" style="background:none; border:none; color:var(--gold-primary); font-size:0.75rem; margin-top:15px; cursor:pointer; text-decoration:underline;">¿No puedes entrar? Pulsa aquí para limpiar el sistema</button>
         </div>
     </div>
 
@@ -81,7 +89,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V1.4</span>
+                    <span class="version-badge">V1.5</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()">
@@ -630,6 +638,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=1.4"></script>
+    <script type="module" src="js/app.js?v=1.5"></script>
 </body>
 </html>
