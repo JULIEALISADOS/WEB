@@ -61,6 +61,15 @@ window.togglePass = function() {
     if(window.lucide) window.lucide.createIcons();
 };
 
+function logout() {
+    if(confirm('¿Cerrar sesión de forma segura?')) {
+        localStorage.removeItem('julie_session');
+        localStorage.removeItem('julie_user_name');
+        window.location.reload();
+    }
+}
+window.logout = logout;
+
 if (localStorage.getItem('julie_session') === 'true' && loginSection) {
     loginSection.classList.add('hidden');
     appMain.classList.remove('hidden');

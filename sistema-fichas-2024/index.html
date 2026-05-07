@@ -57,7 +57,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V1.5</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V1.6</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -92,11 +92,14 @@
                     <span class="version-badge">V1.5</span>
                 </div>
                 <div class="header-actions">
-                    <button type="button" class="btn-refresh" onclick="forceUpdate()">
+                    <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
                         <i data-lucide="rotate-cw"></i>
                     </button>
-                    <button type="button" id="pdfBtn" class="btn-pdf hidden" onclick="generatePDF()">
+                    <button type="button" id="pdfBtn" class="btn-pdf hidden" onclick="generatePDF()" title="Descargar PDF">
                         <i data-lucide="download"></i>
+                    </button>
+                    <button type="button" class="btn-logout" onclick="logout()" title="Cerrar Sesión">
+                        <i data-lucide="log-out"></i>
                     </button>
                 </div>
             </div>
