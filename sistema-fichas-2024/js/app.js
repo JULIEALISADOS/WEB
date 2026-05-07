@@ -24,10 +24,10 @@ let isLocked = false;
 
 // LOGIN
 function login() {
-    const email = document.getElementById('loginEmail').value;
-    const pass = document.getElementById('loginPass').value;
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value.trim();
     const isCorrectPass = pass === 'Lisolaloca01:' || pass === 'Lisolaloca01';
-    if (email === '80200013' && isCorrectPass) {
+    if ((email === '80200013' || email === 'julie') && isCorrectPass) {
         localStorage.setItem('julie_session', 'true');
         localStorage.setItem('julie_user_name', "Julia Alisados");
         loginSection.classList.add('hidden');
