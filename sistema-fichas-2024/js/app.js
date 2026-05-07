@@ -24,17 +24,25 @@ let isLocked = false;
 
 // LOGIN
 function login() {
-    const email = document.getElementById('loginEmail').value.trim();
-    const pass = document.getElementById('loginPass').value.trim();
-    const isCorrectPass = pass === 'Lisolaloca01:' || pass === 'Lisolaloca01';
-    if ((email === '80200013' || email === 'julie') && isCorrectPass) {
+    const userEl = document.getElementById('loginEmail');
+    const passEl = document.getElementById('loginPass');
+    if(!userEl || !passEl) return;
+
+    const user = userEl.value.trim();
+    const pass = passEl.value.trim();
+    
+    const isCorrectPass = (pass === 'Lisolaloca01' || pass === 'Lisolaloca01:');
+    const isCorrectUser = (user === '80200013' || user === 'julie');
+
+    if (isCorrectUser && isCorrectPass) {
         localStorage.setItem('julie_session', 'true');
         localStorage.setItem('julie_user_name', "Julia Alisados");
-        loginSection.classList.add('hidden');
-        appMain.classList.remove('hidden');
+        if(loginSection) loginSection.classList.add('hidden');
+        if(appMain) appMain.classList.remove('hidden');
         updateStep('init');
     } else {
-        document.getElementById('loginError').classList.remove('hidden');
+        const errEl = document.getElementById('loginError');
+        if(errEl) errEl.classList.remove('hidden');
     }
 }
 if(document.getElementById('loginForm')) {

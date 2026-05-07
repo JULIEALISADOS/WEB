@@ -231,27 +231,8 @@ export async function generatePDF() {
         doc.save(`Ficha_${getVal('nombre_completo').replace(/\s+/g, '_')}_${getVal('numero_documento')}.pdf`);
 
     } catch (err) {
-        console.error('Error PDF V1.2:', err);
-        alert('❌ Error al generar PDF completo. Intenta de nuevo.');
-    } finally {
-        if(pdfBtn) {
-            pdfBtn.disabled = false;
-            pdfBtn.innerHTML = '<i data-lucide="download"></i>';
-            if(window.lucide) window.lucide.createIcons();
-        }
-    }
-}
-
-        // Footer Legal
-        doc.setFontSize(7);
-        doc.setTextColor(150);
-        doc.text('Este documento certifica el diagnóstico y procedimiento realizado por Julie Alisados.', pageWidth / 2, pageHeight - 10, { align: 'center' });
-
-        doc.save('HistoriaCapilar_' + (getVal('numero_documento') || 'DOC') + '.pdf');
-
-    } catch (err) {
-        console.error('Error PDF Pure jsPDF:', err);
-        alert('❌ Error al generar PDF. Asegúrate de haber llenado todo.');
+        console.error('Error PDF:', err);
+        alert('❌ Error al generar PDF. Intenta de nuevo.');
     } finally {
         if(pdfBtn) {
             pdfBtn.disabled = false;
