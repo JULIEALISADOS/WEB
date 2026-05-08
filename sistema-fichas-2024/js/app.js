@@ -294,32 +294,36 @@ if (docInput) {
 
             if (lastRecord && area && text) {
                 area.classList.remove('hidden');
-                text.innerHTML = `🌟 <strong>CLIENTA FRECUENTE ENCONTRADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}<br>Servicio anterior: ${lastRecord.procedimiento || 'N/A'}`;
+                text.innerHTML = `🌟 <strong>CLIENTA FRECUENTE ENCONTRADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}<br>
+                <button type="button" id="btnSeeAllHistory" class="btn-pdf-list" style="font-size:0.75rem; padding:5px 10px; margin-top:5px; border-radius:6px;">
+                    <i data-lucide="history"></i> Ver todos sus folios
+                </button>`;
                 
-                // Listener para el botón de carga
+                // Botón para cargar datos personales únicamente
                 btnLoad.onclick = () => {
-                    if (confirm('¿Deseas autocompletar la ficha con los datos de la última visita?')) {
-                        // Llenar datos básicos
+                    if (confirm('¿Deseas autocompletar solo los DATOS PERSONALES de la clienta?')) {
                         form.querySelector('[name="nombre_completo"]').value = lastRecord.nombre_completo || '';
                         form.querySelector('[name="telefono"]').value = lastRecord.telefono || '';
+                        form.querySelector('[name="email"]').value = lastRecord.email || '';
                         document.getElementById('edadInput').value = lastRecord.edad || '';
                         if (lastRecord.sede) setSede(lastRecord.sede);
                         
-                        // Llenar diagnóstico anterior (opcional pero útil)
-                        if (lastRecord.tipo_cabello) {
-                            const code = lastRecord.tipo_cabello.split(':')[0]?.trim() || '';
-                            setHairType(code, lastRecord.tipo_cabello);
-                        }
-                        
-                        // Resaltar chips de diagnóstico
-                        ['longitud', 'textura', 'elasticidad', 'resistencia', 'porosidad', 'densidad'].forEach(key => {
-                            if (lastRecord[key]) setChip(key, lastRecord[key]);
-                        });
-
-                        area.classList.add('hidden'); // Ocultar después de cargar
-                        alert('✅ Datos básicos y diagnóstico previo cargados con éxito.');
+                        area.classList.add('hidden');
+                        alert('✅ Datos personales cargados.');
                     }
                 };
+
+                // Botón para ver todo el historial filtrado
+                const btnSeeAll = document.getElementById('btnSeeAllHistory');
+                if (btnSeeAll) {
+                    btnSeeAll.onclick = () => {
+                        switchTab('history');
+                        if (searchInput) {
+                            searchInput.value = val;
+                            renderHistory(val);
+                        }
+                    };
+                }
                 window.lucide?.createIcons();
             } else {
                 area?.classList.add('hidden');

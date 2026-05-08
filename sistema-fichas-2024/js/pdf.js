@@ -102,13 +102,14 @@ export async function generatePDF() {
 
         // --- CLIENTE BOX ---
         doc.setFillColor(...colors.lightGray);
-        doc.roundedRect(15, y, pageWidth - 30, 22, 2, 2, 'F');
+        doc.roundedRect(15, y, pageWidth - 30, 24, 2, 2, 'F');
         doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
         doc.text('CLIENTE', 20, y + 6);
         doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
         doc.text(getVal('nombre_completo'), 20, y + 13);
         doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
         doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')}  |  SEDE: ${getVal('sede')}`, 20, y + 18);
+        doc.text(`EMAIL: ${getVal('email')}`, 20, y + 22);
 
         y += 28;
 
