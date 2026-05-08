@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=2.5">
+    <link rel="stylesheet" href="style.css?v=2.6">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -32,7 +32,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v2.5';
+                const CACHE_NAME = 'julie-ficha-v2.6';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -47,7 +47,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.5</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.6</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -78,7 +78,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V2.5</span>
+                    <span class="version-badge">V2.6</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
@@ -266,12 +266,16 @@
         </footer>
 
         <section id="historySection" class="history-wrapper hidden">
-            <div class="history-header"><h2 class="section-title">Historial</h2><input type="text" id="searchInput" placeholder="Buscar..."></div>
+            <div class="history-header"><h2 class="section-title">Historial de Fichas</h2><input type="text" id="searchInput" placeholder="Buscar por nombre o cédula..."></div>
             <div id="historyList" class="history-list"></div>
         </section>
 
         <section id="stylistSection" class="stylist-wrapper hidden">
-            <div class="section-header"><h2>Estilistas</h2></div>
+            <div class="section-header"><h2>Gestión de Estilistas</h2></div>
+            <div class="add-stylist-box">
+                <input type="text" id="stylistInput" placeholder="Nombre del estilista">
+                <button onclick="addStylist()" class="btn-primary">Agregar Estilista</button>
+            </div>
             <div id="stylistList" class="stylist-list"></div>
         </section>
 
@@ -301,6 +305,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=2.5"></script>
+    <script type="module" src="js/app.js?v=2.6"></script>
 </body>
 </html>
