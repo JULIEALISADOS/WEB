@@ -288,13 +288,41 @@ if (docInput) {
         if (val.length < 5) return;
         try {
             const lastRecord = await getLastFichaByDoc(val);
-            if (lastRecord) {
-                const area = document.getElementById('clinicalBackgroundArea');
-                const text = document.getElementById('backgroundText');
-                if (area && text) {
-                    area.classList.remove('hidden');
-                    text.innerHTML = `<strong>Última visita:</strong> ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}<br><strong>Previo:</strong> ${lastRecord.procedimiento || 'N/A'}`;
-                }
+            const area = document.getElementById('clinicalBackgroundArea');
+            const text = document.getElementById('backgroundText');
+            const btnLoad = document.getElementById('btnLoadPrevious');
+
+            if (lastRecord && area && text) {
+                area.classList.remove('hidden');
+                text.innerHTML = `🌟 <strong>CLIENTA FRECUENTE ENCONTRADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}<br>Servicio anterior: ${lastRecord.procedimiento || 'N/A'}`;
+                
+                // Listener para el botón de carga
+                btnLoad.onclick = () => {
+                    if (confirm('¿Deseas autocompletar la ficha con los datos de la última visita?')) {
+                        // Llenar datos básicos
+                        form.querySelector('[name="nombre_completo"]').value = lastRecord.nombre_completo || '';
+                        form.querySelector('[name="telefono"]').value = lastRecord.telefono || '';
+                        document.getElementById('edadInput').value = lastRecord.edad || '';
+                        if (lastRecord.sede) setSede(lastRecord.sede);
+                        
+                        // Llenar diagnóstico anterior (opcional pero útil)
+                        if (lastRecord.tipo_cabello) {
+                            const code = lastRecord.tipo_cabello.split(':')[0]?.trim() || '';
+                            setHairType(code, lastRecord.tipo_cabello);
+                        }
+                        
+                        // Resaltar chips de diagnóstico
+                        ['longitud', 'textura', 'elasticidad', 'resistencia', 'porosidad', 'densidad'].forEach(key => {
+                            if (lastRecord[key]) setChip(key, lastRecord[key]);
+                        });
+
+                        area.classList.add('hidden'); // Ocultar después de cargar
+                        alert('✅ Datos básicos y diagnóstico previo cargados con éxito.');
+                    }
+                };
+                window.lucide?.createIcons();
+            } else {
+                area?.classList.add('hidden');
             }
         } catch (e) { console.error(e); }
     });

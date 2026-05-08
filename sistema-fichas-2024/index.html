@@ -156,6 +156,12 @@
                             <label class="required">NUMERO DE DOCUMENTO</label>
                             <input type="number" name="numero_documento" required>
                         </div>
+                        <div id="clinicalBackgroundArea" class="form-group full-width hidden clinical-bg-card">
+                            <p id="backgroundText" style="font-size:0.85rem; margin-bottom:10px;"></p>
+                            <button type="button" id="btnLoadPrevious" class="btn-secondary" style="font-size:0.8rem; padding:8px;">
+                                <i data-lucide="copy"></i> Cargar datos de visita anterior
+                            </button>
+                        </div>
                         <div class="form-group full-width">
                             <label class="required">EDAD</label>
                             <input type="number" name="edad" id="edadInput" required min="1" max="110">
