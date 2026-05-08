@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.1">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -32,7 +32,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v2.0';
+                const CACHE_NAME = 'julie-ficha-v2.1';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -47,7 +47,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.0</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.1</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -78,7 +78,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V2.0</span>
+                    <span class="version-badge">V2.1</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
@@ -255,13 +255,23 @@
     </div>
 
     <div id="successModal" class="modal hidden">
-        <div class="modal-content">
-            <h3>Éxito</h3>
-            <button class="btn-pdf" onclick="generatePDF()">PDF</button>
-            <button onclick="resetForm()">Nuevo</button>
+        <div class="modal-content success-card">
+            <div class="success-icon-wrapper">
+                <i data-lucide="check-circle" class="success-icon"></i>
+            </div>
+            <h3>¡Ficha Guardada!</h3>
+            <p>La información se ha registrado correctamente en la nube.</p>
+            <div class="modal-actions">
+                <button class="btn-pdf-modal" onclick="generatePDF()">
+                    <i data-lucide="download"></i> Descargar PDF
+                </button>
+                <button class="btn-new-modal" onclick="resetForm()">
+                    <i data-lucide="plus"></i> Nueva Ficha
+                </button>
+            </div>
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=2.0"></script>
+    <script type="module" src="js/app.js?v=2.1"></script>
 </body>
 </html>
