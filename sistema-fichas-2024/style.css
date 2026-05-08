@@ -246,3 +246,10 @@ input:focus, select:focus, textarea:focus { border-color:var(--gold-primary); ou
 .img-preview-multi { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
 .preview-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
 
+/* ============ FOLIO & BADGES ============ */
+.folio-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #fdfaf0; padding: 10px 15px; border-radius: 10px; border: 1px solid var(--border-gold); }
+.folio-info-badge { font-weight: 700; color: var(--gold-dark); font-size: 1.1rem; }
+.visit-badge { background: #e3f2fd; color: #1976d2; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+.visit-badge.recurring { background: #fff3e0; color: #f57c00; border: 1px solid #ffe0b2; }
+
+

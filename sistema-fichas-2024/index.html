@@ -152,15 +152,25 @@
                                 <option value="PP">Pasaporte</option>
                             </select>
                         </div>
+                        <div class="folio-header full-width">
+                            <div class="folio-info-badge">FOLIO: <span id="currentFolioNum">#---</span></div>
+                            <div id="visitTypeBadge" class="visit-badge">NUEVA CLIENTE</div>
+                        </div>
                         <div class="form-group full-width">
                             <label class="required">NUMERO DE DOCUMENTO</label>
-                            <input type="number" name="numero_documento" required>
+                            <input type="number" name="numero_documento" id="docNumberInput" required>
                         </div>
                         <div id="clinicalBackgroundArea" class="form-group full-width hidden clinical-bg-card">
+                            <h4 style="color: var(--gold-dark); margin-bottom: 5px;"><i data-lucide="user-check"></i> CLIENTE RECURRENTE DETECTADA</h4>
                             <p id="backgroundText" style="font-size:0.85rem; margin-bottom:10px;"></p>
-                            <button type="button" id="btnLoadPrevious" class="btn-secondary" style="font-size:0.8rem; padding:8px;">
-                                <i data-lucide="copy"></i> Cargar datos de visita anterior
-                            </button>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button type="button" id="btnLoadPrevious" class="btn-secondary" style="font-size:0.8rem; padding:8px;">
+                                    <i data-lucide="copy"></i> Prellenar Datos Personales
+                                </button>
+                                <button type="button" onclick="switchTab('history')" class="btn-view" style="font-size:0.8rem; padding:8px; background: white;">
+                                    <i data-lucide="list"></i> Ver todos sus folios
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group full-width">
                             <label class="required">EDAD (AÑOS)</label>

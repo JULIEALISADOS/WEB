@@ -28,6 +28,7 @@ let isLocked = false;
 window.isLocked = false;
 window.lastGeneratedSignatures = { client: null, tech: null, tutor: null };
 window.lastViewedFicha = null;
+window.nextFolioID = null;
 
 // ======================== LOGIN ========================
 function login() {
@@ -331,11 +332,15 @@ window.jumpToStep = function (step) {
 };
 
 // ======================== DOCUMENT LOOKUP ========================
-const docInput = form.querySelector('[name="numero_documento"]');
+const docInput = document.getElementById('docNumberInput');
 if (docInput) {
     docInput.addEventListener('blur', async () => {
         const val = docInput.value.trim();
-        if (val.length < 5) return;
+        const badge = document.getElementById('visitTypeBadge');
+        if (val.length < 5) {
+            if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
+            return;
+        }
         try {
             const lastRecord = await getLastFichaByDoc(val);
             const area = document.getElementById('clinicalBackgroundArea');
@@ -343,40 +348,23 @@ if (docInput) {
             const btnLoad = document.getElementById('btnLoadPrevious');
 
             if (lastRecord && area && text) {
+                if (badge) { badge.innerText = 'FOLIO ADICIONAL'; badge.className = 'visit-badge recurring'; }
                 area.classList.remove('hidden');
-                text.innerHTML = `🌟 <strong>CLIENTA FRECUENTE ENCONTRADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}<br>
-                <button type="button" id="btnSeeAllHistory" class="btn-pdf-list" style="font-size:0.75rem; padding:5px 10px; margin-top:5px; border-radius:6px;">
-                    <i data-lucide="history"></i> Ver todos sus folios
-                </button>`;
+                text.innerHTML = `🌟 <strong>CLIENTA RECURRENTE DETECTADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}`;
                 
-                // Botón para cargar datos personales únicamente
-                btnLoad.onclick = () => {
-                    if (confirm('¿Deseas autocompletar solo los DATOS PERSONALES de la clienta?')) {
+                if (btnLoad) {
+                    btnLoad.onclick = () => {
                         form.querySelector('[name="nombre_completo"]').value = lastRecord.nombre_completo || '';
                         form.querySelector('[name="telefono"]').value = lastRecord.telefono || '';
                         form.querySelector('[name="email"]').value = lastRecord.email || '';
-                        document.getElementById('edadInput').value = lastRecord.edad || '';
+                        form.querySelector('[name="edad"]').value = lastRecord.edad || '';
                         if (lastRecord.sede) setSede(lastRecord.sede);
-                        
-                        area.classList.add('hidden');
-                        alert('✅ Datos personales cargados.');
-                    }
-                };
-
-                // Botón para ver todo el historial filtrado
-                const btnSeeAll = document.getElementById('btnSeeAllHistory');
-                if (btnSeeAll) {
-                    btnSeeAll.onclick = () => {
-                        switchTab('history');
-                        if (searchInput) {
-                            searchInput.value = val;
-                            renderHistory(val);
-                        }
+                        alert('✅ Datos personales cargados. ¡Listo para el nuevo diagnóstico!');
                     };
                 }
-                window.lucide?.createIcons();
             } else {
-                area?.classList.add('hidden');
+                if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
+                if (area) area.classList.add('hidden');
             }
         } catch (e) { console.error(e); }
     });
@@ -385,20 +373,21 @@ if (docInput) {
 // ======================== INITIAL DATA ========================
 async function loadInitialData() {
     try {
-        const nextId = await fetchNextID();
-        if (document.getElementById('fichaID')) document.getElementById('fichaID').value = nextId.toString().padStart(4, '0');
-    } catch (e) { console.error(e); }
-    if (!responsableInput) return;
-    try {
+        const nextID = await fetchNextID();
+        window.nextFolioID = nextID;
+        document.getElementById('fichaID').value = nextID;
+        if (document.getElementById('currentFolioNum')) {
+            document.getElementById('currentFolioNum').innerText = '#' + nextID;
+        }
+
         const stylists = await fetchStylists();
-        responsableInput.innerHTML = '<option value="">Seleccione...</option>';
-        stylists.forEach(s => {
-            const opt = document.createElement('option');
-            opt.value = s.nombre;
-            opt.textContent = s.nombre;
-            responsableInput.appendChild(opt);
-        });
-    } catch (e) { console.error(e); }
+        if (responsableInput) {
+            responsableInput.innerHTML = '<option value="">Seleccione Estilista...</option>';
+            stylists.forEach(s => {
+                responsableInput.innerHTML += `<option value="${s.nombre}">${s.nombre}</option>`;
+            });
+        }
+    } catch (e) { console.error('Error loadInitialData:', e); }
 }
 
 // ======================== PRE-FILL TEST DATA ========================
