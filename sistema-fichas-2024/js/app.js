@@ -429,6 +429,15 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         return;
     }
 
+    // --- VALIDACIÓN LEGAL DATOS SENSIBLES ---
+    const embarazo = document.getElementById('embarazoInput')?.value;
+    const alergias = document.getElementById('alergiasInput')?.value;
+    
+    if (embarazo === 'No aporta' || alergias === 'No aporta') {
+        const legalWarning = `⚖️ ADVERTENCIA LEGAL:\n\nDe acuerdo con nuestra política de privacidad, el aporte de datos sensibles es facultativo. Sin embargo, debido a que esta información no ha sido suministrada, el procedimiento puede ser cancelado por seguridad a discreción de JulieAlisados.\n\nAsimismo, el suministro de información incorrecta o incompleta será causal de pérdida de garantía o resultados no óptimos.\n\n¿Deseas continuar bajo estas condiciones?`;
+        if (!confirm(legalWarning)) return;
+    }
+
     saveBtn.innerText = '⌛ SUBIENDO EVIDENCIAS...';
     saveBtn.disabled = true;
 
