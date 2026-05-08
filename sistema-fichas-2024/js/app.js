@@ -17,6 +17,9 @@ const historyList = document.getElementById('historyList');
 const searchInput = document.getElementById('searchInput');
 const stylistList = document.getElementById('stylistList');
 const stylistInput = document.getElementById('stylistInput');
+const stylistPhoneInput = document.getElementById('stylistPhoneInput');
+const stylistEmailInput = document.getElementById('stylistEmailInput');
+const stylistSearchInput = document.getElementById('stylistSearchInput');
 const responsableInput = document.getElementById('responsableInput');
 
 let currentStep = 1;
@@ -179,6 +182,7 @@ window.switchTab = function (tab) {
 };
 
 if (searchInput) searchInput.addEventListener('input', (e) => renderHistory(e.target.value.trim()));
+if (stylistSearchInput) stylistSearchInput.addEventListener('input', (e) => renderStylists(e.target.value.trim()));
 
 // ======================== HISTORY ========================
 async function renderHistory(filter = '') {
@@ -187,17 +191,30 @@ async function renderHistory(filter = '') {
     try {
         const history = await fetchHistory();
         if (!history || history.length === 0) { historyList.innerHTML = '<p class="empty-msg">No hay fichas registradas.</p>'; return; }
-        const filtered = history.filter(item =>
-            item.nombre_completo?.toLowerCase().includes(filter.toLowerCase()) ||
-            String(item.numero_documento).includes(filter) ||
-            String(item.consecutivo).includes(filter)
-        );
+        
+        const filterNorm = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const filtered = history.filter(item => {
+            const nom = (item.nombre_completo || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const doc = String(item.numero_documento || '');
+            const fol = String(item.consecutivo || '');
+            return nom.includes(filterNorm) || doc.includes(filterNorm) || fol.includes(filterNorm);
+        });
+
         historyList.innerHTML = '';
         filtered.forEach(item => {
             const card = document.createElement('div');
             card.className = 'history-card';
             const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-CO') : '';
-            card.innerHTML = `<div class="card-info"><h4>${item.nombre_completo}</h4><p>Ficha: ${item.consecutivo} · ${fecha}</p></div><div class="card-actions"><button onclick="viewFicha('${item.consecutivo}')" class="btn-view">Ver</button><button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list">PDF</button></div>`;
+            card.innerHTML = `
+                <div class="card-info">
+                    <h4>${item.nombre_completo}</h4>
+                    <p>Folio: <strong>#${item.consecutivo}</strong> · Doc: ${item.numero_documento}</p>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary);">${fecha}</p>
+                </div>
+                <div class="card-actions">
+                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view">Ver</button>
+                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list">PDF</button>
+                </div>`;
             historyList.appendChild(card);
         });
         window.lucide?.createIcons();
@@ -205,17 +222,34 @@ async function renderHistory(filter = '') {
 }
 
 // ======================== STYLISTS ========================
-async function renderStylists() {
+async function renderStylists(filter = '') {
     if (!stylistList) return;
     stylistList.innerHTML = '<div class="loading-spinner">Cargando...</div>';
     try {
         const stylists = await fetchStylists();
         stylistList.innerHTML = '';
-        if (!stylists || stylists.length === 0) { stylistList.innerHTML = '<p class="empty-msg">No hay estilistas.</p>'; return; }
-        stylists.forEach(s => {
+        if (!stylists || stylists.length === 0) { stylistList.innerHTML = '<p class="empty-msg">No hay estilistas registrados.</p>'; return; }
+        
+        const filterNorm = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const filtered = stylists.filter(s => {
+            const nom = (s.nombre || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const tel = String(s.telefono || '');
+            const mail = (s.email || '').toLowerCase();
+            return nom.includes(filterNorm) || tel.includes(filterNorm) || mail.includes(filterNorm);
+        });
+
+        filtered.forEach(s => {
             const item = document.createElement('div');
             item.className = 'stylist-item';
-            item.innerHTML = `<span>${s.nombre}</span><button onclick="deleteStylist('${s.id}')" class="btn-delete-mini"><i data-lucide="trash-2"></i></button>`;
+            item.style = 'display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px; border-radius: 12px; margin-bottom: 10px; border-left: 4px solid var(--gold-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+            item.innerHTML = `
+                <div style="flex: 1;">
+                    <strong style="display: block; color: var(--gold-dark);">${s.nombre}</strong>
+                    <small style="display: block; color: var(--text-secondary);">${s.telefono || 'Sin tel'} · ${s.email || 'Sin correo'}</small>
+                </div>
+                <button onclick="deleteStylist('${s.id}')" class="btn-delete-mini" style="background: #fff0f0; color: #ff4d4d; border: 1px solid #ffcccc; padding: 8px; border-radius: 8px; cursor: pointer;">
+                    <i data-lucide="trash-2"></i>
+                </button>`;
             stylistList.appendChild(item);
         });
         window.lucide?.createIcons();
@@ -223,7 +257,23 @@ async function renderStylists() {
 }
 
 window.deleteStylist = async (id) => { if (confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); } };
-window.addStylist = async () => { const name = stylistInput.value.trim(); if (!name) return; await addStylistDb(name); stylistInput.value = ''; renderStylists(); loadInitialData(); };
+window.addStylist = async () => { 
+    const name = stylistInput.value.trim(); 
+    const phone = stylistPhoneInput.value.trim();
+    const email = stylistEmailInput.value.trim();
+    if (!name) return alert('El nombre es obligatorio.'); 
+    
+    try {
+        await addStylistDb({ nombre: name, telefono: phone, email: email });
+        stylistInput.value = '';
+        stylistPhoneInput.value = '';
+        stylistEmailInput.value = '';
+        renderStylists(); 
+        loadInitialData(); 
+    } catch (err) {
+        alert('Error al agregar estilista. Verifica los datos.');
+    }
+};
 
 // ======================== VIEW FICHA ========================
 window.viewFicha = async (consecutivo) => {

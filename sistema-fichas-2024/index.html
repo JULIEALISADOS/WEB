@@ -303,15 +303,25 @@
         </footer>
 
         <section id="historySection" class="history-wrapper hidden">
-            <div class="history-header"><h2 class="section-title">Historial de Fichas</h2><input type="text" id="searchInput" placeholder="Buscar por nombre o cédula..."></div>
+            <div class="history-header">
+                <h2 class="section-title">Historial de Fichas</h2>
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por nombre, cédula o folio...">
+            </div>
             <div id="historyList" class="history-list"></div>
         </section>
 
         <section id="stylistSection" class="stylist-wrapper hidden">
-            <div class="section-header"><h2>Gestión de Estilistas</h2></div>
-            <div class="add-stylist-box">
-                <input type="text" id="stylistInput" placeholder="Nombre del estilista">
-                <button onclick="addStylist()" class="btn-primary">Agregar Estilista</button>
+            <div class="section-header"><h2>Gestión de Equipo</h2></div>
+            <div class="add-stylist-box" style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="text" id="stylistInput" placeholder="Nombre completo">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <input type="tel" id="stylistPhoneInput" placeholder="Teléfono">
+                    <input type="email" id="stylistEmailInput" placeholder="Correo">
+                </div>
+                <button onclick="addStylist()" class="btn-primary" style="width: 100%;">Agregar al Equipo</button>
+            </div>
+            <div class="history-header" style="margin-top: 20px;">
+                <input type="text" id="stylistSearchInput" placeholder="🔍 Filtrar estilistas...">
             </div>
             <div id="stylistList" class="stylist-list"></div>
         </section>

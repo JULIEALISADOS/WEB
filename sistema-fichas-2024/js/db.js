@@ -35,7 +35,7 @@ export const fetchNextID = async () => {
 };
 
 export const fetchStylists = async () => {
-    const { data, error } = await sb.from('estilistas').select('id, nombre').order('nombre');
+    const { data, error } = await sb.from('estilistas').select('id, nombre, telefono, email').order('nombre');
     if (error) throw error;
     return data;
 };
@@ -68,7 +68,7 @@ export const deleteStylistDb = async (id) => {
     if (error) throw error;
 };
 
-export const addStylistDb = async (nombre) => {
-    const { error } = await sb.from('estilistas').insert([{ nombre }]);
+export const addStylistDb = async (stylistData) => {
+    const { error } = await sb.from('estilistas').insert([stylistData]);
     if (error) throw error;
 };
