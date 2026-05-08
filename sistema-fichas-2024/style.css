@@ -1063,21 +1063,65 @@ input:disabled {
     z-index: 1000;
 }
 
-.modal-content {
+/* Success Card Modal */
+.success-card {
     background: white;
-    padding: 40px 20px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 300px;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    max-width: 380px;
     width: 90%;
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    border: 1px solid var(--border-gold);
 }
-
-.success-icon {
-    width: 60px;
-    height: 60px;
+.success-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(16, 185, 129, 0.1);
     color: var(--success);
-    margin-bottom: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+.success-icon {
+    width: 40px;
+    height: 40px;
+}
+.btn-pdf-modal {
+    background: var(--gold-gradient);
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+.btn-new-modal {
+    background: none;
+    color: var(--text-secondary);
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.btn-new-modal:hover {
+    background: #f9f9f9;
 }
 
 @keyframes popIn {
