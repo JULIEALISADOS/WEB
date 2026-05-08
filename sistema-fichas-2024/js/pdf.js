@@ -108,7 +108,7 @@ export async function generatePDF() {
         doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
         doc.text(getVal('nombre_completo'), 20, y + 13);
         doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
-        doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')}  |  SEDE: ${getVal('sede')}`, 20, y + 18);
+        doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')} AÑOS  |  SEDE: ${getVal('sede')}`, 20, y + 18);
         doc.text(`EMAIL: ${getVal('email')}`, 20, y + 22);
 
         y += 28;

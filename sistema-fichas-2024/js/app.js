@@ -422,43 +422,60 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         return;
     }
 
-    window.lastGeneratedSignatures = {
-        client: padClient.toDataURL(),
-        tech: padTech.toDataURL()
-    };
-
     const fileA = document.getElementById('fotoAntesInput')?.files[0];
     const fileD = document.getElementById('fotoDespuesInput')?.files[0];
     if (!fileA || !fileD) {
-        alert('⚠️ FALTAN FOTOS: Debes seleccionar la foto del ANTES y la del DESPUÉS para poder guardar.');
+        alert('⚠️ FALTAN FOTOS: Debes seleccionar la foto del ANTES y la del DESPUÉS.');
         return;
     }
 
-    saveBtn.innerText = '⌛ PROCESANDO...';
+    saveBtn.innerText = '⌛ SUBIENDO EVIDENCIAS...';
     saveBtn.disabled = true;
 
     try {
         const formData = new FormData(form);
         const cleanData = Object.fromEntries(formData.entries());
-        delete cleanData.foto_antes;
-        delete cleanData.foto_despues;
+        
+        // --- PROCESAR EVIDENCIAS ---
+        const uploadTasks = [];
+        const cons = cleanData.consecutivo;
 
+        // Obligatorias
+        uploadTasks.push(uploadImg(fileA, 'antes', cons).then(url => cleanData.foto_antes_url = url));
+        uploadTasks.push(uploadImg(fileD, 'despues', cons).then(url => cleanData.foto_despues_url = url));
+
+        // Opcionales Diagnóstico
+        const fDiag = document.getElementById('fotoObsDiagInput')?.files[0];
+        if (fDiag) uploadTasks.push(uploadImg(fDiag, 'obs_diag', cons).then(url => cleanData.foto_obs_diag_url = url));
+
+        const fCarac = document.getElementById('fotoObsCaracInput')?.files[0];
+        if (fCarac) uploadTasks.push(uploadImg(fCarac, 'obs_carac', cons).then(url => cleanData.foto_obs_carac_url = url));
+
+        const fCuero = document.getElementById('fotoObsCueroInput')?.files[0];
+        if (fCuero) uploadTasks.push(uploadImg(fCuero, 'obs_cuero', cons).then(url => cleanData.foto_obs_cuero_url = url));
+
+        // Extra Fotos (Multiple)
+        const fExtra = document.getElementById('fotoExtraInput')?.files;
+        if (fExtra && fExtra.length > 0) {
+            const extraPromises = Array.from(fExtra).map((file, i) => uploadImg(file, `extra_${i}`, cons));
+            uploadTasks.push(Promise.all(extraPromises).then(urls => cleanData.fotos_extra_urls = JSON.stringify(urls)));
+        }
+
+        // Video
+        const fVid = document.getElementById('videoInput')?.files[0];
+        if (fVid) uploadTasks.push(uploadImg(fVid, 'video_evidencia', cons).then(url => cleanData.video_url = url));
+
+        await Promise.all(uploadTasks);
+
+        // Firmas
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
-
-        const [urlA, urlD] = await Promise.all([
-            uploadImg(fileA, 'antes', cleanData.consecutivo),
-            uploadImg(fileD, 'despues', cleanData.consecutivo)
-        ]);
-
-        cleanData.foto_antes_url = urlA;
-        cleanData.foto_despues_url = urlD;
 
         await insertFicha(cleanData);
         document.getElementById('successModal').classList.remove('hidden');
         window.lucide?.createIcons();
     } catch (e) {
-        alert('❌ ERROR: ' + e.message);
+        alert('❌ ERROR AL GUARDAR: ' + e.message);
         console.error('Save error:', e);
     } finally {
         saveBtn.innerText = 'Guardar';

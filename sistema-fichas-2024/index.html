@@ -163,7 +163,7 @@
                             </button>
                         </div>
                         <div class="form-group full-width">
-                            <label class="required">EDAD</label>
+                            <label class="required">EDAD (AÑOS)</label>
                             <input type="number" name="edad" id="edadInput" required min="1" max="110">
                         </div>
                         <div class="form-group full-width hidden" id="tutorGroup">
@@ -179,8 +179,8 @@
                             <input type="tel" name="telefono" required>
                         </div>
                         <div class="form-group full-width">
-                            <label>CORREO ELECTRÓNICO</label>
-                            <input type="email" name="email" placeholder="ejemplo@correo.com">
+                            <label class="required">CORREO ELECTRÓNICO</label>
+                            <input type="email" name="email" placeholder="ejemplo@correo.com" required>
                         </div>
                         <div class="form-group full-width">
                             <label class="required">FECHA DILIGENCIAMIENTO</label>
@@ -214,7 +214,8 @@
                             <div class="form-group"><label class="required">MEDIOS</label><input type="hidden" name="estado_medios" id="mediosInput" required><div class="chip-group-mini"><button type="button" class="chip-sm" onclick="setChip('medios', 'Natural')">Natural</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Tinturado')">Tinturado</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Decolorado')">Decolorado</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Horquilla')">Horquilla</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Alisado')">Alisado</button></div></div>
                             <div class="form-group"><label class="required">PUNTAS</label><input type="hidden" name="estado_puntas" id="puntasInput" required><div class="chip-group-mini"><button type="button" class="chip-sm" onclick="setChip('puntas', 'Natural')">Natural</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Tinturado')">Tinturado</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Decolorado')">Decolorado</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Horquilla')">Horquilla</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Alisado')">Alisado</button></div></div>
                         </div>
-                        <div class="form-group full-width"><label>OBSERVACIONES DIAGNÓSTICO</label><textarea name="observaciones_diagnostico" rows="2"></textarea></div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES DIAGNÓSTICO</label><textarea name="observaciones_diagnostico" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA DIAGNÓSTICO (OPCIONAL)</label><input type="file" id="fotoObsDiagInput" accept="image/*" onchange="previewImage(this, 'previewObsDiag')"><div id="previewObsDiag" class="img-preview-sm"></div></div>
                     </div>
                 </section>
 
@@ -228,7 +229,8 @@
                         <div class="form-group full-width"><label class="required">RESISTENCIA</label><input type="hidden" name="resistencia" id="resistenciaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('resistencia', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('resistencia', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('resistencia', 'Baja')">Baja</button></div></div>
                         <div class="form-group full-width"><label class="required">POROSIDAD</label><input type="hidden" name="porosidad" id="porosidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('porosidad', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('porosidad', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('porosidad', 'Baja')">Baja</button></div></div>
                         <div class="form-group full-width"><label class="required">DENSIDAD</label><input type="hidden" name="densidad" id="densidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('densidad', 'Poco')">Poco</button><button type="button" class="chip" onclick="setChip('densidad', 'Regular')">Regular</button><button type="button" class="chip" onclick="setChip('densidad', 'Abundante')">Abundante</button></div></div>
-                        <div class="form-group full-width"><label>OBSERVACIONES ADICIONALES</label><textarea name="observaciones_caracteristicas" rows="2"></textarea></div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES ADICIONALES</label><textarea name="observaciones_caracteristicas" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA CARACTERÍSTICAS (OPCIONAL)</label><input type="file" id="fotoObsCaracInput" accept="image/*" onchange="previewImage(this, 'previewObsCarac')"><div id="previewObsCarac" class="img-preview-sm"></div></div>
                     </div>
                 </section>
 
@@ -240,7 +242,8 @@
                         <div class="form-group full-width"><label class="required">DERMATITIS</label><input type="hidden" name="dermatitis" id="dermatitisInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('dermatitis', 'No')">No</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Severa')">Severa</button></div></div>
                         <div class="form-group full-width"><label class="required">CAÍDA</label><input type="hidden" name="caida" id="caidaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('caida', 'Normal')">Normal</button><button type="button" class="chip" onclick="setChip('caida', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('caida', 'Severa')">Severa</button></div></div>
                         <div class="form-group full-width"><label class="required">DESCAMACIÓN</label><input type="hidden" name="descamacion" id="descamacionInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('descamacion', 'No')">No</button><button type="button" class="chip" onclick="setChip('descamacion', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('descamacion', 'Severa')">Severa</button></div></div>
-                        <div class="form-group full-width"><label>OBSERVACIONES CUERO</label><textarea name="observaciones_cuero" rows="2"></textarea></div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES CUERO</label><textarea name="observaciones_cuero" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA CUERO (OPCIONAL)</label><input type="file" id="fotoObsCueroInput" accept="image/*" onchange="previewImage(this, 'previewObsCuero')"><div id="previewObsCuero" class="img-preview-sm"></div></div>
                     </div>
                 </section>
 
@@ -253,10 +256,12 @@
                         <div class="form-group full-width"><label class="required">PORCENTAJE DE LISO GARANTIZADO</label><input type="hidden" name="porcentaje_liso" id="porcentajeInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('porcentaje', '100%')">100%</button><button type="button" class="chip" onclick="setChip('porcentaje', '80%')">80%</button></div></div>
                         <div class="form-group full-width"><label class="required">TÉCNICA/PRODUCTOS</label><textarea name="tecnica_utilizada" rows="2" required></textarea></div>
                         <div class="photo-grid full-width">
-                            <div class="form-group"><label>ANTES</label><input type="file" id="fotoAntesInput" accept="image/*" onchange="previewImage(this, 'previewAntes')"><div id="previewAntes" class="img-preview"></div></div>
-                            <div class="form-group"><label>DESPUÉS</label><input type="file" id="fotoDespuesInput" accept="image/*" onchange="previewImage(this, 'previewDespues')"><div id="previewDespues" class="img-preview"></div></div>
+                            <div class="form-group"><label class="required">ANTES</label><input type="file" id="fotoAntesInput" accept="image/*" onchange="previewImage(this, 'previewAntes')" required><div id="previewAntes" class="img-preview"></div></div>
+                            <div class="form-group"><label class="required">DESPUÉS</label><input type="file" id="fotoDespuesInput" accept="image/*" onchange="previewImage(this, 'previewDespues')" required><div id="previewDespues" class="img-preview"></div></div>
+                            <div class="form-group"><label>MÁS FOTOS (OPCIONAL)</label><input type="file" id="fotoExtraInput" accept="image/*" multiple onchange="previewMultiple(this, 'previewExtra')"><div id="previewExtra" class="img-preview-multi"></div></div>
+                            <div class="form-group"><label>VIDEO (OPCIONAL)</label><input type="file" id="videoInput" accept="video/*" onchange="previewVideo(this, 'previewVideo')"><div id="previewVideo" class="img-preview"></div></div>
                         </div>
-                        <div class="form-group full-width"><label>ESTILISTA</label><select name="estilista_responsable" id="responsableInput"></select></div>
+                        <div class="form-group full-width"><label class="required">ESTILISTA</label><select name="estilista_responsable" id="responsableInput" required></select></div>
                         <div class="signature-section full-width">
                             <div class="form-group"><label class="required">FIRMA CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
                             <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
@@ -266,7 +271,10 @@
                             <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
                         </div>
                         <div class="authorization-check full-width prominent-check">
-                            <label class="checkbox-container"><input type="checkbox" id="authCheckbox" required><span class="checkmark"></span><strong>AUTORIZACIÓN LEGAL</strong></label>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4;">
+                                Autorizo el tratamiento de mis datos personales y el registro fotográfico conforme a la Ley 1581/2012. Certifico que la información suministrada es verídica.
+                            </p>
+                            <label class="checkbox-container"><input type="checkbox" id="authCheckbox" required><span class="checkmark"></span><strong>ACEPTO LA AUTORIZACIÓN</strong></label>
                         </div>
                     </div>
                 </section>

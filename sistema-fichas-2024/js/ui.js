@@ -133,3 +133,39 @@ export function initRealtimeValidation(steps) {
         });
     });
 }
+export function previewMultiple(input, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    if (input.files) {
+        Array.from(input.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'preview-thumb';
+                container.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+}
+
+export function previewVideo(input, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    if (input.files && input.files[0]) {
+        const video = document.createElement('video');
+        video.src = URL.createObjectURL(input.files[0]);
+        video.controls = true;
+        video.style.width = '100%';
+        video.style.marginTop = '10px';
+        video.style.borderRadius = '8px';
+        container.appendChild(video);
+    }
+}
+
+window.previewImage = previewImage;
+window.previewMultiple = previewMultiple;
+window.previewVideo = previewVideo;
