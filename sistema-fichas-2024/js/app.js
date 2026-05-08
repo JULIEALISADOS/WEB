@@ -155,20 +155,20 @@ window.switchTab = function (tab) {
         document.querySelector('.progress-container')?.classList.remove('hidden');
         document.querySelector('.btn-back')?.classList.remove('hidden');
         document.querySelectorAll('.nav-item')[1]?.classList.add('active');
-        if (isLocked) {
-            form.reset();
-            lockForm(false, form);
-            isLocked = false;
-            window.isLocked = false;
-            destroyPads();
-            document.getElementById('previewAntes').innerHTML = '';
-            document.getElementById('previewDespues').innerHTML = '';
-            document.getElementById('clinicalBackgroundArea').classList.add('hidden');
-            // Limpiar clases de chips
-            document.querySelectorAll('.chip.active, .chip-sm.active, .btn-hair.active, .btn-option.active').forEach(c => c.classList.remove('active'));
-            loadInitialData();
-            preFillTestData();
-        }
+        
+        form.reset();
+        lockForm(false, form);
+        isLocked = false;
+        window.isLocked = false;
+        destroyPads();
+        document.getElementById('previewAntes').innerHTML = '';
+        document.getElementById('previewDespues').innerHTML = '';
+        document.getElementById('clinicalBackgroundArea').classList.add('hidden');
+        document.querySelectorAll('.chip.active, .chip-sm.active, .btn-hair.active, .btn-option.active').forEach(c => c.classList.remove('active'));
+        
+        currentStep = 1;
+        updateStep('init');
+        loadInitialData();
     } else if (tab === 'history') {
         historySection?.classList.remove('hidden');
         document.querySelectorAll('.nav-item')[2]?.classList.add('active');
@@ -224,12 +224,16 @@ async function renderHistory(filter = '') {
 
 // ======================== STYLISTS ========================
 async function renderStylists(filter = '') {
-    if (!stylistList) return;
-    stylistList.innerHTML = '<div class="loading-spinner">Cargando...</div>';
+    const listEl = document.getElementById('stylistList');
+    if (!listEl) return;
+    listEl.innerHTML = '<div class="loading-spinner">Cargando...</div>';
     try {
         const stylists = await fetchStylists();
-        stylistList.innerHTML = '';
-        if (!stylists || stylists.length === 0) { stylistList.innerHTML = '<p class="empty-msg">No hay estilistas registrados.</p>'; return; }
+        listEl.innerHTML = '';
+        if (!stylists || stylists.length === 0) { 
+            listEl.innerHTML = '<p class="empty-msg">No hay estilistas registrados aún.</p>'; 
+            return; 
+        }
         
         const filterNorm = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         const filtered = stylists.filter(s => {
@@ -251,10 +255,10 @@ async function renderStylists(filter = '') {
                 <button onclick="deleteStylist('${s.id}')" class="btn-delete-mini" style="background: #fff0f0; color: #ff4d4d; border: 1px solid #ffcccc; padding: 8px; border-radius: 8px; cursor: pointer;">
                     <i data-lucide="trash-2"></i>
                 </button>`;
-            stylistList.appendChild(item);
+            listEl.appendChild(item);
         });
         window.lucide?.createIcons();
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error('Error renderStylists:', e); listEl.innerHTML = '<p class="empty-msg">Error al cargar equipo.</p>'; }
 }
 
 window.deleteStylist = async (id) => { if (confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); } };
@@ -375,17 +379,25 @@ async function loadInitialData() {
     try {
         const nextID = await fetchNextID();
         window.nextFolioID = nextID;
-        document.getElementById('fichaID').value = nextID;
+        if (document.getElementById('fichaID')) document.getElementById('fichaID').value = nextID;
         if (document.getElementById('currentFolioNum')) {
             document.getElementById('currentFolioNum').innerText = '#' + nextID;
         }
 
         const stylists = await fetchStylists();
-        if (responsableInput) {
-            responsableInput.innerHTML = '<option value="">Seleccione Estilista...</option>';
-            stylists.forEach(s => {
-                responsableInput.innerHTML += `<option value="${s.nombre}">${s.nombre}</option>`;
-            });
+        const drop = document.getElementById('responsableInput');
+        if (drop) {
+            drop.innerHTML = '<option value="">Seleccione Estilista...</option>';
+            if (stylists && stylists.length > 0) {
+                stylists.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.nombre;
+                    opt.textContent = s.nombre;
+                    drop.appendChild(opt);
+                });
+            } else {
+                drop.innerHTML = '<option value="">⚠️ No hay estilistas creados</option>';
+            }
         }
     } catch (e) { console.error('Error loadInitialData:', e); }
 }
