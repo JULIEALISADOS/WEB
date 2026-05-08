@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=2.4">
+    <link rel="stylesheet" href="style.css?v=2.5">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -32,7 +32,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v2.4';
+                const CACHE_NAME = 'julie-ficha-v2.5';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -47,7 +47,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.4</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.5</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -70,7 +70,7 @@
         <header class="app-header">
             <div class="logo-container">
                 <div class="brand-wrapper">
-                    <button type="button" class="btn-back" onclick="goBack()">
+                    <button type="button" class="btn-back hidden" onclick="goBack()">
                         <i data-lucide="arrow-left"></i>
                     </button>
                     <img src="logo.png" alt="Julie Alisados Logo" class="app-logo">
@@ -78,7 +78,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V2.4</span>
+                    <span class="version-badge">V2.5</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
@@ -92,7 +92,7 @@
                     </button>
                 </div>
             </div>
-            <div class="progress-container">
+            <div class="progress-container hidden">
                 <div class="progress-bar" id="progressBar"></div>
                 <div class="steps-info">PASO <span id="currentStepNum">1</span> DE 5</div>
                 <div class="quick-nav">
@@ -184,7 +184,7 @@
                 </section>
 
                 <section class="step" id="step2">
-                    <h2 class="section-title">DIAGNÓSTICO CAPILAR</h2>
+                    <h2 class="section-title">DIAGNÓSTICO TÉCNICO</h2>
                     <div class="form-grid">
                         <div class="form-group full-width">
                             <h3 class="subsection-title">2.1 PATRÓN DE RIZO</h3>
@@ -259,7 +259,7 @@
             </form>
         </main>
 
-        <footer class="form-footer">
+        <footer class="form-footer hidden">
             <button type="button" class="btn-secondary hidden" id="prevBtn">Anterior</button>
             <button type="button" class="btn-primary" id="nextBtn">Siguiente</button>
             <button type="button" class="btn-success hidden" id="saveBtn">Guardar</button>
@@ -276,7 +276,8 @@
         </section>
 
         <nav class="bottom-nav">
-            <button class="nav-item active" onclick="switchTab('new')"><i data-lucide="plus-circle"></i><span>Nuevo</span></button>
+            <button class="nav-item" onclick="switchTab('home')"><i data-lucide="home"></i><span>Inicio</span></button>
+            <button class="nav-item" onclick="switchTab('new')"><i data-lucide="plus-circle"></i><span>Nuevo</span></button>
             <button class="nav-item" onclick="switchTab('history')"><i data-lucide="list"></i><span>Historial</span></button>
             <button class="nav-item" onclick="switchTab('stylists')"><i data-lucide="users"></i><span>Estilistas</span></button>
         </nav>
@@ -300,6 +301,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=2.1"></script>
+    <script type="module" src="js/app.js?v=2.5"></script>
 </body>
 </html>
