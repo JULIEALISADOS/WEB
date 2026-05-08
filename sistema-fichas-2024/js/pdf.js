@@ -139,7 +139,9 @@ export async function generatePDF() {
         drawBox('Caída', getVal('caida'), 15, y, colW);
         drawBox('Descamación', getVal('descamacion'), 15 + colW + 5, y, colW);
         drawBox('Obs. Cuero', getVal('observaciones_cuero'), 15 + (colW + 5) * 2, y, colW);
-        y += 20;
+        y += 15;
+        drawBox('Obs. Características', getVal('observaciones_caracteristicas'), 15, y, pageWidth - 30, 15);
+        y += 22;
 
         // --- 4. PROCEDIMIENTO Y SALUD ---
         doc.setFontSize(10);

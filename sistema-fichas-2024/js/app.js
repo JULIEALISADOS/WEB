@@ -427,22 +427,52 @@ if(saveBtn) saveBtn.addEventListener('click', async () => {
 function preFillTestData() {
     const f = document.getElementById('fichaForm');
     if(!f) return;
+    
+    // Sede y Datos Básicos
     setSede('Moniquira');
     f.querySelector('[name="tipo_documento"]').value = 'CC';
     f.querySelector('[name="numero_documento"]').value = '80200013';
-    f.querySelector('[name="edad"]').value = '35';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA DE PRUEBA JULIE';
-    f.querySelector('[name="telefono"]').value = '3101234567';
-    setHairType('2B', '2B: Ondas mas definidas');
-    setChip('longitud', 'Largo'); setChip('crecimiento', 'Natural');
-    setChip('medios', 'Alisado'); setChip('puntas', 'Alisado');
-    f.querySelector('[name="procesos_quimicos"]').value = 'Ninguno';
-    f.querySelector('[name="terapias_capilares"]').value = 'Ninguna';
-    setChip('textura', 'Medio'); setChip('elasticidad', 'Media');
-    setChip('resistencia', 'Media'); setChip('porosidad', 'Media'); setChip('densidad', 'Regular');
-    setChip('piel', 'Equilibrado'); setChip('lavado', 'Dia por medio');
-    setChip('dermatitis', 'No presenta'); setChip('caida', 'Normal'); setChip('descamacion', 'No presenta');
-    setChip('embarazo', 'No'); setChip('alergias', 'No');
-    setChip('procedimiento', 'Alisado Saludable'); setChip('porcentaje', '100%');
-    f.querySelector('[name="tecnica_utilizada"]').value = 'Tecnica Julie';
+    f.querySelector('[name="edad"]').value = '28';
+    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V1.7';
+    f.querySelector('[name="telefono"]').value = '3114445566';
+    
+    // Paso 2: Diagnóstico
+    setHairType('2C', '2C: Ondas en S');
+    setChip('longitud', 'Largo');
+    setChip('crecimiento', 'Natural');
+    setChip('medios', 'Alisado');
+    setChip('puntas', 'Alisado');
+    f.querySelector('[name="observaciones_diagnostico"]').value = 'Raíz natural con medios y puntas procesados de alisado anterior.';
+
+    // Paso 3: Características
+    f.querySelector('[name="procesos_quimicos"]').value = 'Alisado hace 6 meses, tinte negro hace 2 meses.';
+    f.querySelector('[name="terapias_capilares"]').value = 'Mascarilla de hidratación en casa semanal.';
+    setChip('textura', 'Medio');
+    setChip('elasticidad', 'Media');
+    setChip('resistencia', 'Media');
+    setChip('porosidad', 'Media');
+    setChip('densidad', 'Regular');
+    f.querySelector('[name="observaciones_caracteristicas"]').value = 'Cabello con buena respuesta a la prueba de elasticidad.';
+
+    // Paso 4: Cuero Cabelludo
+    setChip('piel', 'Equilibrado');
+    setChip('lavado', 'Día por medio');
+    setChip('dermatitis', 'No presenta');
+    setChip('caida', 'Normal');
+    setChip('descamacion', 'No presenta');
+    f.querySelector('[name="observaciones_cuero"]').value = 'Cuero cabelludo sano sin irritaciones.';
+
+    // Paso 5: Procedimiento y Salud
+    setChip('embarazo', 'No');
+    setChip('alergias', 'No');
+    setChip('procedimiento', 'Alisado Saludable');
+    setChip('porcentaje', '100%');
+    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie estándar con planchado a 450F.';
+    
+    const resp = document.getElementById('responsableInput');
+    if(resp && resp.options.length > 1) resp.selectedIndex = 1;
+
+    // Autorización
+    const auth = document.getElementById('authCheckbox');
+    if(auth) auth.checked = true;
 }
