@@ -28,7 +28,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v1.8';
+    const CACHE_NAME = 'julie-ficha-v1.9';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
@@ -86,14 +86,12 @@ function updateStep(direction) {
     } else if (direction === 'init') {
         currentStep = 1;
     }
-    // Si direction es 'jump', currentStep ya fue asignado en jumpToStep()
 
     steps.forEach((s, i) => s.classList.toggle('active', i === currentStep - 1));
     document.querySelectorAll('.btn-step').forEach((b, i) => b.classList.toggle('active', i === currentStep - 1));
     
     if(nextBtn) nextBtn.classList.toggle('hidden', currentStep === totalSteps);
     
-    // Si la ficha está bloqueada (viendo historial), NUNCA mostrar botón de guardar
     if(saveBtn) {
         if (isLocked) {
             saveBtn.classList.add('hidden');
@@ -116,7 +114,6 @@ function updateStep(direction) {
     if (currentStep === 5) {
         setTimeout(() => {
             initSignatures();
-            // Si estamos en modo lectura, cargar las firmas guardadas
             if(isLocked && window.lastViewedFicha) {
                 loadSignaturesFromData(window.lastViewedFicha);
             }
@@ -143,10 +140,8 @@ window.switchTab = function(tab) {
              form.reset();
              lockForm(false, form);
              isLocked = false;
-             // RE-HABILITAR FIRMAS
              if(typeof toggleSignatures === 'function') toggleSignatures(false);
              else if(window.toggleSignatures) window.toggleSignatures(false);
-             
              document.getElementById('previewAntes').innerHTML = '';
              document.getElementById('previewDespues').innerHTML = '';
              loadInitialData(); 
@@ -241,55 +236,36 @@ window.viewFicha = async (consecutivo) => {
     try {
         const data = await getFichaByConsecutivo(consecutivo);
         if(!data) return alert('No se encontró la ficha');
-        
-        // Bloquear y llenar
         switchTab('new');
         isLocked = true;
         lockForm(true, form);
-        
-        // Llenar campos
         for(let key in data) {
             const input = form.querySelector(`[name="${key}"]`);
             if(input) {
                 if(input.type === 'checkbox') input.checked = data[key];
                 else input.value = data[key];
             }
-            // Chips y botones
             if(['longitud', 'crecimiento', 'medios', 'puntas', 'textura', 'elasticidad', 'resistencia', 'porosidad', 'densidad', 'piel', 'lavado', 'dermatitis', 'caida', 'descamacion', 'embarazo', 'alergias', 'procedimiento', 'porcentaje'].includes(key)) {
                 setChip(key, data[key]);
             }
         }
-        
         if(data.sede) setSede(data.sede);
         if(data.tipo_cabello) setHairType('', data.tipo_cabello);
-        
-        // Forzar check de autorización (si existe en historial es porque se autorizó)
         const authCheck = document.getElementById('authCheckbox');
         if(authCheck) authCheck.checked = true;
-        
-        // Fotos
         if(data.foto_antes_url) document.getElementById('previewAntes').innerHTML = `<img src="${data.foto_antes_url}" style="width:100%; border-radius:12px;">`;
         if(data.foto_despues_url) document.getElementById('previewDespues').innerHTML = `<img src="${data.foto_despues_url}" style="width:100%; border-radius:12px;">`;
-        
         currentStep = 1;
         updateStep('init');
-        
-        // Guardar datos de firma temporalmente para cargarlos cuando se llegue al paso 5
         window.lastViewedFicha = data;
-        
     } catch(e) { alert('Error al cargar ficha: ' + e.message); }
 };
 
 window.directPDF = async (consecutivo) => {
     try {
         await viewFicha(consecutivo);
-        // Aumentamos el tiempo de espera para asegurar carga de imágenes pesadas y renderizado de firmas
-        setTimeout(() => {
-            generatePDF();
-        }, 1200);
-    } catch(e) {
-        console.error('Error direct PDF:', e);
-    }
+        setTimeout(() => { generatePDF(); }, 1200);
+    } catch(e) { console.error('Error direct PDF:', e); }
 };
 
 window.deleteFicha = async (consecutivo) => {
@@ -300,7 +276,6 @@ window.deleteFicha = async (consecutivo) => {
 };
 
 window.jumpToStep = function(step) {
-    // Si estamos en historial o estilistas, volvemos a Nueva Ficha
     if(tabActive !== 'new') switchTab('new');
     currentStep = step;
     updateStep('jump');
@@ -363,57 +338,37 @@ window.goBack = function() {
 document.getElementById('edadInput').addEventListener('input', monitorMinorSettings);
 document.getElementById('docType').addEventListener('change', monitorMinorSettings);
 
-// RACE CONDITION FIXED: GUARDADO SEGURO
 if(saveBtn) saveBtn.addEventListener('click', async () => {
-    console.log('🔵 BOTÓN GUARDAR PRESIONADO');
     if(responsableInput && (!responsableInput.value || responsableInput.value === '')) {
         if(responsableInput.options.length > 1) responsableInput.selectedIndex = 1;
     }
-    
     if(!validateStep(5, steps)) return;
     const { padClient, padTech, padTutor } = getSignaturePads();
     if(padClient && padClient.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DE LA CLIENTE.');
     if(padTech && padTech.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DEL TÉCNICO.');
-    
     const fileA = document.getElementById('fotoAntesInput').files[0];
     const fileD = document.getElementById('fotoDespuesInput').files[0];
-    
-    if(!fileA || !fileD) {
-        alert('⚠️ FALTAN FOTOS: Debes seleccionar la foto del ANTES y la del DESPUÉS para poder guardar.');
-        return;
-    }
-
+    if(!fileA || !fileD) return alert('⚠️ FALTAN FOTOS.');
     saveBtn.innerText = '⌛ PROCESANDO...';
     saveBtn.classList.add('loading');
     saveBtn.disabled = true;
-
     try {
         const formData = new FormData(form);
         const rawData = Object.fromEntries(formData.entries());
         const cleanData = {};
         for (let key in rawData) cleanData[key] = rawData[key] ? rawData[key].toString().trim() : '';
         delete cleanData.foto_antes; delete cleanData.foto_despues;
-
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
         if(padTutor && !padTutor.isEmpty()) cleanData.firma_tutor_legal = padTutor.toDataURL();
-
-        console.log('Subiendo imágenes en paralelo (FIXED RACE CONDITION)...');
         const [urlAntes, urlDespues] = await Promise.all([
             uploadImg(fileA, 'antes', cleanData.consecutivo),
             uploadImg(fileD, 'despues', cleanData.consecutivo)
         ]);
-
         cleanData.foto_antes_url = urlAntes;
         cleanData.foto_despues_url = urlDespues;
-
-        console.log('Insertando en PostgreSQL...', cleanData);
         await insertFicha(cleanData);
-        console.log('✅ Inserción Exitosa');
-
         document.getElementById('successModal').classList.remove('hidden');
-        if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
-
     } catch (e) {
         console.error('FALLO TOTAL EN GUARDADO:', e);
         alert('❌ ERROR AL GUARDAR:\n' + e.message);
@@ -424,56 +379,31 @@ if(saveBtn) saveBtn.addEventListener('click', async () => {
     }
 });
 
-// PREFILL
 function preFillTestData() {
     const f = document.getElementById('fichaForm');
     if(!f) return;
-    
-    // Sede y Datos Básicos
     setSede('Moniquira');
     f.querySelector('[name="tipo_documento"]').value = 'CC';
     f.querySelector('[name="numero_documento"]').value = '80200013';
     f.querySelector('[name="edad"]').value = '28';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V1.7';
+    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V1.9';
     f.querySelector('[name="telefono"]').value = '3114445566';
-    
-    // Paso 2: Diagnóstico
     setHairType('2C', '2C: Ondas en S');
     setChip('longitud', 'Largo');
     setChip('crecimiento', 'Natural');
     setChip('medios', 'Alisado');
     setChip('puntas', 'Alisado');
     f.querySelector('[name="observaciones_diagnostico"]').value = 'Raíz natural con medios y puntas procesados de alisado anterior.';
-
-    // Paso 3: Características
     f.querySelector('[name="procesos_quimicos"]').value = 'Alisado hace 6 meses, tinte negro hace 2 meses.';
     f.querySelector('[name="terapias_capilares"]').value = 'Mascarilla de hidratación en casa semanal.';
-    setChip('textura', 'Medio');
-    setChip('elasticidad', 'Media');
-    setChip('resistencia', 'Media');
-    setChip('porosidad', 'Media');
-    setChip('densidad', 'Regular');
+    setChip('textura', 'Medio'); setChip('elasticidad', 'Media'); setChip('resistencia', 'Media'); setChip('porosidad', 'Media'); setChip('densidad', 'Regular');
     f.querySelector('[name="observaciones_caracteristicas"]').value = 'Cabello con buena respuesta a la prueba de elasticidad.';
-
-    // Paso 4: Cuero Cabelludo
-    setChip('piel', 'Equilibrado');
-    setChip('lavado', 'Día por medio');
-    setChip('dermatitis', 'No presenta');
-    setChip('caida', 'Normal');
-    setChip('descamacion', 'No presenta');
+    setChip('piel', 'Equilibrado'); setChip('lavado', 'Día por medio'); setChip('dermatitis', 'No presenta'); setChip('caida', 'Normal'); setChip('descamacion', 'No presenta');
     f.querySelector('[name="observaciones_cuero"]').value = 'Cuero cabelludo sano sin irritaciones.';
-
-    // Paso 5: Procedimiento y Salud
-    setChip('embarazo', 'No');
-    setChip('alergias', 'No');
-    setChip('procedimiento', 'Alisado Saludable');
-    setChip('porcentaje', '100%');
+    setChip('embarazo', 'No'); setChip('alergias', 'No'); setChip('procedimiento', 'Alisado Saludable'); setChip('porcentaje', '100%');
     f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie estándar con planchado a 450F.';
-    
     const resp = document.getElementById('responsableInput');
     if(resp && resp.options.length > 1) resp.selectedIndex = 1;
-
-    // Autorización
     const auth = document.getElementById('authCheckbox');
     if(auth) auth.checked = true;
 }

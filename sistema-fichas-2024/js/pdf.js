@@ -20,13 +20,24 @@ export async function generatePDF() {
         const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
-        let y = 15;
+        let y = 0;
 
-        // Helpers
+        // --- DESIGN TOKENS ---
+        const colors = {
+            gold: [212, 175, 55],
+            dark: [30, 30, 30],
+            gray: [100, 100, 100],
+            lightGray: [245, 245, 245],
+            accent: [212, 175, 55]
+        };
+
+        // --- HELPERS ---
         const checkSpace = (h) => {
-            if (y + h > 280) {
+            if (y + h > 275) {
                 doc.addPage();
                 y = 20;
+                doc.setFillColor(...colors.gold);
+                doc.rect(0, 0, pageWidth, 4, 'F');
                 return true;
             }
             return false;
@@ -34,151 +45,141 @@ export async function generatePDF() {
 
         const drawSectionHeader = (title) => {
             checkSpace(15);
+            y += 5;
+            doc.setFillColor(...colors.gold);
+            doc.rect(15, y - 4, 2, 6, 'F');
             doc.setFontSize(10);
-            doc.setTextColor(212, 175, 55);
-            doc.text(title, 15, y);
-            doc.setDrawColor(212, 175, 55);
-            doc.line(15, y + 2, pageWidth - 15, y + 2);
-            y += 10;
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...colors.dark);
+            doc.text(title.toUpperCase(), 20, y + 1);
+            doc.setDrawColor(...colors.lightGray);
+            doc.line(15, y + 4, pageWidth - 15, y + 4);
+            y += 12;
         };
 
-        const drawBox = (label, value, x, yPos, w, h = 12) => {
-            doc.setDrawColor(230);
-            doc.roundedRect(x, yPos, w, h, 2, 2, 'D');
+        const drawField = (label, value, x, w) => {
             doc.setFontSize(7);
-            doc.setTextColor(120);
-            doc.text(label, x + 3, yPos + 4);
-            doc.setFontSize(8);
-            doc.setTextColor(0);
-            const splitVal = doc.splitTextToSize(value, w - 6);
-            doc.text(splitVal, x + 3, yPos + 9);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...colors.gold);
+            doc.text(label.toUpperCase(), x, y);
+            
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(...colors.dark);
+            const splitVal = doc.splitTextToSize(value, w);
+            doc.text(splitVal, x, y + 4.5);
+            return (splitVal.length * 4) + 6;
         };
 
-        // Logo
         const loadImg = (url) => new Promise((resolve) => {
             const img = new Image();
             img.onload = () => resolve(img);
             img.onerror = () => resolve(null);
             img.src = url;
         });
+
+        // --- START DRAWING ---
+        doc.setFillColor(...colors.gold);
+        doc.rect(0, 0, pageWidth, 4, 'F');
+        y = 15;
+
         const logoImg = await loadImg('logo.png');
-
-        // Header
-        doc.setFillColor(212, 175, 55); 
-        doc.rect(0, 0, pageWidth, 5, 'F');
-        y += 10;
-        if (logoImg) doc.addImage(logoImg, 'PNG', 15, y - 5, 40, 15);
-        doc.setFontSize(10);
-        doc.setTextColor(100);
-        doc.text('HISTORIA CLÍNICA CAPILAR', pageWidth - 15, y, { align: 'right' });
-        y += 6;
-        doc.text('FICHA N°: ' + getVal('consecutivo'), pageWidth - 15, y, { align: 'right' });
-        y += 10;
-
-        // 1. Datos Generales
-        doc.setFillColor(252, 250, 245);
-        doc.roundedRect(15, y, pageWidth - 30, 32, 3, 3, 'F');
-        doc.setFontSize(8); doc.setTextColor(212, 175, 55);
-        doc.text('DATOS DE LA CLIENTE', 20, y + 7);
-        doc.setFontSize(11); doc.setTextColor(0);
-        doc.text(getVal('nombre_completo'), 20, y + 14);
-        doc.setFontSize(9); doc.setTextColor(80);
-        doc.text(`Sede: ${getVal('sede')} | Doc: ${getVal('numero_documento')}`, 20, y + 21);
-        doc.text(`Tel: ${getVal('telefono')} | Edad: ${getVal('edad')}`, 20, y + 27);
-        if(getVal('tutor_legal') !== '---') doc.text(`Tutor: ${getVal('tutor_legal')}`, pageWidth - 20, y + 27, { align: 'right' });
-        y += 40;
-
-        // 2. Diagnóstico Técnico
-        drawSectionHeader('1. DIAGNÓSTICO TÉCNICO');
-        const colW = (pageWidth - 40) / 3;
-        drawBox('Patrón de Rizo', getVal('tipo_cabello'), 15, y, colW);
-        drawBox('Longitud', getVal('longitud'), 15 + colW + 5, y, colW);
-        drawBox('Textura', getVal('textura'), 15 + (colW + 5) * 2, y, colW);
-        y += 15;
-        drawBox('Crecimiento', getVal('estado_crecimiento'), 15, y, colW);
-        drawBox('Medios', getVal('estado_medios'), 15 + colW + 5, y, colW);
-        drawBox('Puntas', getVal('estado_puntas'), 15 + (colW + 5) * 2, y, colW);
-        y += 15;
-        drawBox('Densidad', getVal('densidad'), 15, y, colW);
-        drawBox('Porosidad', getVal('porosidad'), 15 + colW + 5, y, colW);
-        drawBox('Resistencia', getVal('resistencia'), 15 + (colW + 5) * 2, y, colW);
-        y += 15;
-        drawBox('Elasticidad', getVal('elasticidad'), 15, y, pageWidth - 30);
-        y += 15;
-        drawBox('Obs. Diagnóstico', getVal('observaciones_diagnostico'), 15, y, pageWidth - 30, 15);
+        if (logoImg) doc.addImage(logoImg, 'PNG', 15, y, 35, 12);
+        
+        doc.setFontSize(14);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...colors.dark);
+        doc.text('HISTORIA CLÍNICA CAPILAR', pageWidth - 15, y + 5, { align: 'right' });
+        
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(...colors.gray);
+        doc.text('DIAGNÓSTICO PROFESIONAL PERSONALIZADO', pageWidth - 15, y + 10, { align: 'right' });
+        
         y += 22;
 
-        // 3. Historial y Características
-        drawSectionHeader('2. HISTORIAL Y CARACTERÍSTICAS');
-        drawBox('Procesos Químicos (6 meses)', getVal('procesos_quimicos'), 15, y, (pageWidth - 35) / 2, 18);
-        drawBox('Terapias Capilares', getVal('terapias_capilares'), pageWidth / 2 + 2.5, y, (pageWidth - 35) / 2, 18);
-        y += 23;
-        drawBox('Obs. Características', getVal('observaciones_caracteristicas'), 15, y, pageWidth - 30, 15);
-        y += 22;
+        // --- CUSTOMER CARD ---
+        doc.setFillColor(...colors.lightGray);
+        doc.roundedRect(15, y, pageWidth - 30, 25, 2, 2, 'F');
+        doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
+        doc.text('CLIENTE', 20, y + 7);
+        doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
+        doc.text(getVal('nombre_completo'), 20, y + 15);
+        doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
+        doc.text(`CÉDULA: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  SEDE: ${getVal('sede')}`, 20, y + 21);
+        doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
+        doc.text('FICHA N° ' + getVal('consecutivo'), pageWidth - 25, y + 15, { align: 'right' });
+        y += 35;
 
-        // 4. Cuero Cabelludo
-        drawSectionHeader('3. CUERO CABELLUDO');
-        drawBox('Piel Cabelluda', getVal('piel_cabelluda'), 15, y, colW);
-        drawBox('Frecuencia Lavado', getVal('frecuencia_lavado'), 15 + colW + 5, y, colW);
-        drawBox('Dermatitis', getVal('dermatitis'), 15 + (colW + 5) * 2, y, colW);
+        // --- 1. DIAGNÓSTICO ---
+        drawSectionHeader('1. Diagnóstico Técnico de Fibra');
+        const col1 = 15, col2 = pageWidth / 3 + 10, col3 = (pageWidth / 3) * 2 + 5;
+        drawField('Patrón de Rizo', getVal('tipo_cabello'), col1, 50);
+        drawField('Longitud', getVal('longitud'), col2, 50);
+        drawField('Textura', getVal('textura'), col3, 50);
+        y += 12;
+        drawField('Elasticidad', getVal('elasticidad'), col1, 50);
+        drawField('Porosidad', getVal('porosidad'), col2, 50);
+        drawField('Resistencia', getVal('resistencia'), col3, 50);
+        y += 12;
+        drawField('Densidad', getVal('densidad'), col1, 50);
+        drawField('Crecimiento', getVal('estado_crecimiento'), col2, 50);
+        drawField('Medios / Puntas', `${getVal('estado_medios')} / ${getVal('estado_puntas')}`, col3, 50);
         y += 15;
-        drawBox('Caída', getVal('caida'), 15, y, colW);
-        drawBox('Descamación', getVal('descamacion'), 15 + colW + 5, y, colW);
-        drawBox('Obs. Cuero', getVal('observaciones_cuero'), 15 + (colW + 5) * 2, y, colW);
+        y += drawField('Observaciones de Diagnóstico', getVal('observaciones_diagnostico'), 15, pageWidth - 30) + 5;
+
+        // --- 2. HISTORIAL ---
+        drawSectionHeader('2. Historial Químico y Cuero Cabelludo');
+        const chemH = drawField('Procesos Químicos (6 meses)', getVal('procesos_quimicos'), 15, (pageWidth - 40) / 2);
+        const therH = drawField('Terapias Capilares', getVal('terapias_capilares'), pageWidth / 2 + 5, (pageWidth - 40) / 2);
+        y += Math.max(chemH, therH) + 5;
+        drawField('Piel Cabelluda', getVal('piel_cabelluda'), col1, 50);
+        drawField('Lavado', getVal('frecuencia_lavado'), col2, 50);
+        drawField('Dermatitis', getVal('dermatitis'), col3, 50);
+        y += 12;
+        drawField('Caída', getVal('caida'), col1, 50);
+        drawField('Descamación', getVal('descamacion'), col2, 50);
+        drawField('Obs. Cuero', getVal('observaciones_cuero'), col3, 50);
+        y += 15;
+        y += drawField('Obs. Características', getVal('observaciones_caracteristicas'), 15, pageWidth - 30) + 5;
+
+        // --- 3. PROCEDIMIENTO ---
+        drawSectionHeader('3. Procedimiento Realizado');
+        checkSpace(40);
+        doc.setFillColor(252, 250, 240);
+        doc.roundedRect(15, y - 4, pageWidth - 30, 30, 1, 1, 'F');
+        drawField('Servicio Realizado', getVal('procedimiento'), 20, 80);
+        drawField('Porcentaje Liso', getVal('porcentaje_liso'), pageWidth / 2 + 10, 80);
+        y += 12;
+        drawField('Técnica / Productos', getVal('tecnica_utilizada'), 20, pageWidth - 40);
         y += 22;
 
-        // 5. Procedimiento y Salud
-        drawSectionHeader('4. PROCEDIMIENTO Y SALUD');
-        checkSpace(50);
-        doc.setFillColor(249);
-        doc.roundedRect(15, y, pageWidth - 30, 45, 2, 2, 'F');
-        doc.setFontSize(8); doc.setTextColor(50);
-        doc.text(`Servicio: ${getVal('procedimiento')}`, 20, y + 6);
-        doc.text(`Técnica: ${getVal('tecnica_utilizada')}`, 20, y + 12);
-        doc.text(`Porcentaje Liso: ${getVal('porcentaje_liso')}`, 20, y + 18);
-        
-        let embStr = getVal('embarazo');
-        if(embStr === 'Si' && getVal('embarazo_13_semanas') !== '---') embStr += ` (${getVal('embarazo_13_semanas')})`;
-        doc.text(`Embarazo: ${embStr}`, 20, y + 24);
-        
-        let alStr = getVal('alergias');
-        if(alStr === 'Si' && getVal('alergias_descripcion') !== '---') alStr += ` - ${getVal('alergias_descripcion')}`;
-        doc.text(`Alergias: ${alStr}`, 20, y + 30);
-        
-        doc.setFontSize(9); doc.setTextColor(0);
-        doc.text(`Técnico Responsable: ${getVal('estilista_responsable')}`, 20, y + 40);
-        y += 55;
-
-        // 6. Evidencia
-        drawSectionHeader('5. EVIDENCIA FOTOGRÁFICA');
-        checkSpace(90);
+        // --- 4. EVIDENCIA ---
+        drawSectionHeader('4. Evidencia Fotográfica');
+        checkSpace(95);
         const imgA = document.getElementById('previewAntes').querySelector('img');
         const imgD = document.getElementById('previewDespues').querySelector('img');
-        const addPhoto = async (imgEl, x, yPos, label) => {
-            doc.setFontSize(8); doc.setTextColor(100);
-            doc.text(label, x + 42.5, yPos - 3, { align: 'center' });
-            if(!imgEl) {
-                doc.setDrawColor(240); doc.rect(x, yPos, 85, 80, 'D');
-                doc.text('Sin Registro', x + 42.5, yPos + 40, { align: 'center' });
+        const drawPhoto = async (imgEl, label, x, yPos) => {
+            doc.setDrawColor(...colors.lightGray);
+            doc.roundedRect(x, yPos, 85, 85, 1, 1, 'D');
+            doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
+            doc.text(label, x + 42.5, yPos + 90, { align: 'center' });
+            if(imgEl) {
+                try { doc.addImage(imgEl.src, 'JPEG', x + 2.5, yPos + 2.5, 80, 80); } catch(e) {}
             } else {
-                try {
-                    doc.setDrawColor(212, 175, 55); doc.rect(x - 0.5, yPos - 0.5, 86, 81, 'D');
-                    doc.addImage(imgEl.src, 'JPEG', x, yPos, 85, 80);
-                } catch(e) { console.warn(e); }
+                doc.setFontSize(8); doc.text('SIN REGISTRO', x + 42.5, yPos + 45, { align: 'center' });
             }
         };
-        await addPhoto(imgA, 15, y, 'REGISTRO ANTES');
-        await addPhoto(imgD, pageWidth - 100, y, 'REGISTRO DESPUÉS');
-        y += 95;
+        await drawPhoto(imgA, 'ESTADO ANTES', 15, y);
+        await drawPhoto(imgD, 'ESTADO DESPUÉS', pageWidth - 100, y);
+        y += 105;
 
-        // 7. Firmas
-        drawSectionHeader('6. FIRMAS Y CONSENTIMIENTO');
-        checkSpace(40);
+        // --- 5. FIRMAS ---
+        drawSectionHeader('5. Conformidad y Autorización');
+        checkSpace(50);
         let sigC = '', sigT = '', sigTutor = '';
         if(window.isLocked && window.lastViewedFicha) {
-            sigC = window.lastViewedFicha.firma_cliente;
-            sigT = window.lastViewedFicha.firma_tecnico;
-            sigTutor = window.lastViewedFicha.firma_tutor_legal;
+            sigC = window.lastViewedFicha.firma_cliente; sigT = window.lastViewedFicha.firma_tecnico; sigTutor = window.lastViewedFicha.firma_tutor_legal;
         } else {
             const { padClient, padTech, padTutor } = getSignaturePads();
             if(padClient && !padClient.isEmpty()) sigC = padClient.toDataURL();
@@ -187,26 +188,39 @@ export async function generatePDF() {
         }
 
         const drawSig = (src, label, x, yPos) => {
-            doc.setDrawColor(0); doc.line(x, yPos, x + 50, yPos);
-            doc.setFontSize(7); doc.setTextColor(0);
+            doc.setDrawColor(...colors.gray); doc.line(x, yPos, x + 50, yPos);
+            doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
             doc.text(label, x + 25, yPos + 4, { align: 'center' });
-            if(src) try { doc.addImage(src, 'PNG', x + 5, yPos - 15, 40, 15); } catch(e) {}
+            if(src) try { doc.addImage(src, 'PNG', x + 5, yPos - 18, 40, 18); } catch(e) {}
         };
+        const sigY = y + 25;
+        drawSig(sigC, 'FIRMA CLIENTE', 15, sigY);
+        if(sigTutor) drawSig(sigTutor, 'FIRMA TUTOR LEGAL', pageWidth/2 - 25, sigY);
+        drawSig(sigT, `TÉCNICO: ${getVal('estilista_responsable')}`, pageWidth - 65, sigY);
+        
+        y = sigY + 12;
+        doc.setFontSize(6); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
+        const auth = "Autorizo el tratamiento de mis datos personales y el registro fotográfico. Certifico que la información suministrada es verídica y corresponde a mi estado de salud actual.";
+        doc.text(doc.splitTextToSize(auth, pageWidth - 30), 15, y);
 
-        drawSig(sigC, 'FIRMA CLIENTE', 15, y + 20);
-        if(sigTutor) drawSig(sigTutor, 'FIRMA TUTOR', pageWidth/2 - 25, y + 20);
-        drawSig(sigT, 'FIRMA TÉCNICO', pageWidth - 65, y + 20);
-        y += 35;
-
-        doc.setFontSize(6); doc.setTextColor(150);
-        const authText = "Autorizo el tratamiento de mis datos personales y el registro fotográfico. Certifico que la información suministrada es verídica y corresponde a mi estado de salud actual.";
-        doc.text(doc.splitTextToSize(authText, pageWidth - 40), 15, y);
+        // --- LEGAL FOOTER ---
+        y = pageHeight - 15;
+        doc.setDrawColor(...colors.lightGray);
+        doc.line(15, y, pageWidth - 15, y);
+        y += 5;
+        doc.setFontSize(6);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...colors.gray);
+        doc.text('© 2024 JULIE ALISADOS. TODOS LOS DERECHOS RESERVADOS.', 15, y);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Documento de carácter clínico y confidencial. Prohibida su reproducción total o parcial sin autorización.', 15, y + 3);
+        doc.text('Generado por JulieFicha PWA - Tecnología de Alisado Saludable', pageWidth - 15, y, { align: 'right' });
 
         doc.save(`Ficha_${getVal('nombre_completo').replace(/\s+/g, '_')}_${getVal('numero_documento')}.pdf`);
 
     } catch (err) {
         console.error('Error PDF:', err);
-        alert('❌ Error al generar PDF. Intenta de nuevo.');
+        alert('❌ Error al generar PDF.');
     } finally {
         if(pdfBtn) {
             pdfBtn.disabled = false;
