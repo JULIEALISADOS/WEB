@@ -9,18 +9,37 @@ export function setHairType(c, f) {
     document.querySelectorAll('.btn-hair').forEach(b => b.classList.toggle('active', b.innerText === c));
 }
 
-export function setChip(p, v) {
-    document.getElementById(p + 'Input').value = v;
-    const container = document.getElementById(p + 'Input').closest('.form-group') || document.getElementById(p + 'Input').closest('.form-grid > div');
+export function setChip(p, v, multi = false) {
+    const input = document.getElementById(p + 'Input');
+    if (!input) return;
+
+    if (multi) {
+        let currentValues = input.value ? input.value.split(',').map(x => x.trim()).filter(x => x) : [];
+        if (currentValues.includes(v)) {
+            currentValues = currentValues.filter(x => x !== v);
+        } else {
+            currentValues.push(v);
+        }
+        input.value = currentValues.join(', ');
+    } else {
+        input.value = v;
+    }
+
+    const container = input.closest('.form-group') || input.closest('.form-grid > div');
     if (container) {
         container.querySelectorAll('.chip, .chip-sm').forEach(c => {
-            const text = c.querySelector('strong') ? c.querySelector('strong').innerText : c.innerText;
-            if (text) c.classList.toggle('active', text.trim().toLowerCase() === v.trim().toLowerCase());
+            const text = (c.innerText || '').trim();
+            if (multi) {
+                const vals = input.value.split(',').map(x => x.trim());
+                c.classList.toggle('active', vals.includes(text));
+            } else {
+                c.classList.toggle('active', text.toLowerCase() === v.toLowerCase());
+            }
         });
     }
-    // Limpiar error visual si había
-    const group = document.getElementById(p + 'Input').closest('.form-group');
-    if (group) group.classList.remove('error');
+    
+    const group = input.closest('.form-group');
+    if (group && input.value) group.classList.remove('error');
 }
 
 export function previewImage(input, previewId) {

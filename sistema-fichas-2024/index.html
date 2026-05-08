@@ -262,16 +262,28 @@
                     <div class="form-grid">
                         <div class="form-group full-width"><label>EMBARAZO (OPCIONAL)</label><input type="hidden" name="embarazo" id="embarazoInput" value="No aporta"><div class="chip-group"><button type="button" class="chip" onclick="setChip('embarazo', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('embarazo', 'No')">No</button><button type="button" class="chip" onclick="setChip('embarazo', 'No aporta')">No aporta</button></div></div>
                         <div class="form-group full-width"><label>ALERGIAS (OPCIONAL)</label><input type="hidden" name="alergias" id="alergiasInput" value="No aporta"><div class="chip-group"><button type="button" class="chip" onclick="setChip('alergias', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('alergias', 'No')">No</button><button type="button" class="chip" onclick="setChip('alergias', 'No aporta')">No aporta</button></div></div>
-                        <div class="form-group full-width"><label class="required">PROCEDIMIENTO</label><input type="hidden" name="procedimiento" id="procedimientoInput" required><div class="chip-group-mini">
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Saludable')">Alisado Saludable</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Retoque Raíz')">Retoque Raíz</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Botox Capilar')">Botox Capilar</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Aminoácidos')">Aminoácidos</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidratación Profunda')">Hidratación Profunda</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Repolarización')">Repolarización</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado de Niñas')">Alisado de Niñas</button>
-                            <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Corte de Puntas')">Corte de Puntas</button>
-                        </div></div>
+                        <div class="form-group full-width">
+                            <label class="required">PROCEDIMIENTO (SELECCIÓN MÚLTIPLE)</label>
+                            <input type="hidden" name="procedimiento" id="procedimientoInput" required>
+                            <div class="chip-group-mini">
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Saludable', true)">Alisado Saludable</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Light', true)">Alisado Light</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Retoque de Raíz', true)">Retoque de Raíz</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado en Diadema', true)">Alisado en Diadema</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'R.C.P. Restauración', true)">R.C.P. Restauración</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Emulsión Zero', true)">Emulsión Zero</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Biocomplex', true)">Biocomplex</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Choco Fix', true)">Choco Fix</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidra-Complex', true)">Hidra-Complex</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidra-Hair', true)">Hidra-Hair</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Ozonoterapia', true)">Ozonoterapia</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Relleno Molecular', true)">Relleno Molecular</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidratación S.O.S', true)">Hidratación S.O.S</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Corte de Puntas', true)">Corte de Puntas</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Repolarización', true)">Repolarización</button>
+                            </div>
+                            <small style="color: var(--text-secondary); margin-top: 5px; display: block;">* Puedes elegir uno o varios servicios para este folio.</small>
+                        </div>
                         <div class="form-group full-width"><label class="required">PORCENTAJE DE LISO GARANTIZADO</label><input type="hidden" name="porcentaje_liso" id="porcentajeInput" required><div class="chip-group">
                             <button type="button" class="chip" onclick="setChip('porcentaje', '100%')">100%</button>
                             <button type="button" class="chip" onclick="setChip('porcentaje', '90%')">90%</button>
