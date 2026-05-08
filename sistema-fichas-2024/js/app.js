@@ -28,7 +28,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v2.0';
+    const CACHE_NAME = 'julie-ficha-v2.1';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
@@ -91,32 +91,23 @@ function updateStep(direction) {
     document.querySelectorAll('.btn-step').forEach((b, i) => b.classList.toggle('active', i === currentStep - 1));
     
     if(nextBtn) nextBtn.classList.toggle('hidden', currentStep === totalSteps);
-    
     if(saveBtn) {
-        if (isLocked) {
-            saveBtn.classList.add('hidden');
-        } else {
-            saveBtn.classList.toggle('hidden', currentStep !== totalSteps);
-        }
+        if (isLocked) saveBtn.classList.add('hidden');
+        else saveBtn.classList.toggle('hidden', currentStep !== totalSteps);
     }
-    
     if(prevBtn) prevBtn.classList.toggle('hidden', currentStep === 1);
 
-    const percent = (currentStep / totalSteps) * 100;
     const progressEl = document.getElementById('progressBar');
-    if(progressEl) progressEl.style.setProperty('--progress', percent + '%');
+    if(progressEl) progressEl.style.setProperty('--progress', (currentStep / totalSteps * 100) + '%');
     
     const numEl = document.getElementById('currentStepNum');
     if(numEl) numEl.innerText = currentStep;
     
     window.scrollTo(0,0);
-
     if (currentStep === 5) {
         setTimeout(() => {
             initSignatures();
-            if(isLocked && window.lastViewedFicha) {
-                loadSignaturesFromData(window.lastViewedFicha);
-            }
+            if(isLocked && window.lastViewedFicha) loadSignaturesFromData(window.lastViewedFicha);
         }, 400);
     }
 }
@@ -124,7 +115,6 @@ function updateStep(direction) {
 if(nextBtn) nextBtn.addEventListener('click', () => updateStep('next'));
 if(prevBtn) prevBtn.addEventListener('click', () => updateStep('prev'));
 
-// TABS
 window.switchTab = function(tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     document.querySelector('.form-wrapper').classList.add('hidden');
@@ -137,11 +127,7 @@ window.switchTab = function(tab) {
         document.querySelector('.form-footer').classList.remove('hidden');
         document.querySelectorAll('.nav-item')[0].classList.add('active');
         if(isLocked) {
-             form.reset();
-             lockForm(false, form);
-             isLocked = false;
-             if(typeof toggleSignatures === 'function') toggleSignatures(false);
-             else if(window.toggleSignatures) window.toggleSignatures(false);
+             form.reset(); lockForm(false, form); isLocked = false;
              document.getElementById('previewAntes').innerHTML = '';
              document.getElementById('previewDespues').innerHTML = '';
              loadInitialData(); 
@@ -163,16 +149,13 @@ async function renderHistory(filter = '') {
     try {
         const history = await fetchHistory();
         if(!history || history.length === 0) {
-            historyList.innerHTML = '<p class="empty-msg">No hay fichas registradas aún.</p>';
+            historyList.innerHTML = '<p class="empty-msg">No hay fichas registradas.</p>';
             return;
         }
-        
         const filtered = history.filter(item => 
             item.nombre_completo.toLowerCase().includes(filter.toLowerCase()) ||
-            item.numero_documento.includes(filter) ||
-            item.consecutivo.includes(filter)
+            item.numero_documento.includes(filter) || item.consecutivo.includes(filter)
         );
-
         historyList.innerHTML = '';
         filtered.forEach(item => {
             const card = document.createElement('div');
@@ -191,9 +174,8 @@ async function renderHistory(filter = '') {
             `;
             historyList.appendChild(card);
         });
-    } catch(e) {
-        historyList.innerHTML = '<p class="error-msg">Error al cargar historial: ' + e.message + '</p>';
-    }
+        if(window.lucide) window.lucide.createIcons();
+    } catch(e) { historyList.innerHTML = '<p class="error-msg">Error: ' + e.message + '</p>'; }
 }
 
 async function renderStylists() {
@@ -205,31 +187,21 @@ async function renderStylists() {
         stylists.forEach(s => {
             const item = document.createElement('div');
             item.className = 'stylist-item';
-            item.innerHTML = `
-                <span>${s.nombre}</span>
-                <button onclick="deleteStylist('${s.id}')" class="btn-delete-mini"><i data-lucide="trash-2"></i></button>
-            `;
+            item.innerHTML = `<span>${s.nombre}</span><button onclick="deleteStylist('${s.id}')" class="btn-delete-mini"><i data-lucide="trash-2"></i></button>`;
             stylistList.appendChild(item);
         });
-        if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
+        if(window.lucide) window.lucide.createIcons();
     } catch(e) { console.error(e); }
 }
 
 window.deleteStylist = async (id) => {
-    if(confirm('¿Eliminar estilista?')) {
-        await deleteStylistDb(id);
-        renderStylists();
-        loadInitialData();
-    }
+    if(confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); }
 };
 
 window.addStylist = async () => {
     const name = stylistInput.value.trim();
     if(!name) return;
-    await addStylistDb(name);
-    stylistInput.value = '';
-    renderStylists();
-    loadInitialData();
+    await addStylistDb(name); stylistInput.value = ''; renderStylists(); loadInitialData();
 };
 
 window.viewFicha = async (consecutivo) => {
@@ -237,8 +209,7 @@ window.viewFicha = async (consecutivo) => {
         const data = await getFichaByConsecutivo(consecutivo);
         if(!data) return alert('No se encontró la ficha');
         switchTab('new');
-        isLocked = true;
-        lockForm(true, form);
+        isLocked = true; lockForm(true, form);
         for(let key in data) {
             const input = form.querySelector(`[name="${key}"]`);
             if(input) {
@@ -251,132 +222,83 @@ window.viewFicha = async (consecutivo) => {
         }
         if(data.sede) setSede(data.sede);
         if(data.tipo_cabello) setHairType('', data.tipo_cabello);
-        const authCheck = document.getElementById('authCheckbox');
-        if(authCheck) authCheck.checked = true;
         if(data.foto_antes_url) document.getElementById('previewAntes').innerHTML = `<img src="${data.foto_antes_url}" style="width:100%; border-radius:12px;">`;
         if(data.foto_despues_url) document.getElementById('previewDespues').innerHTML = `<img src="${data.foto_despues_url}" style="width:100%; border-radius:12px;">`;
-        currentStep = 1;
         updateStep('init');
         window.lastViewedFicha = data;
-    } catch(e) { alert('Error al cargar ficha: ' + e.message); }
+    } catch(e) { alert('Error: ' + e.message); }
 };
 
 window.directPDF = async (consecutivo) => {
-    try {
-        await viewFicha(consecutivo);
-        setTimeout(() => { generatePDF(); }, 1200);
-    } catch(e) { console.error('Error direct PDF:', e); }
+    try { await viewFicha(consecutivo); setTimeout(() => { generatePDF(); }, 1200); } catch(e) { console.error(e); }
 };
 
 window.deleteFicha = async (consecutivo) => {
-    if(confirm('¿Eliminar esta ficha permanentemente?')) {
-        await deleteFichaDb(consecutivo);
-        renderHistory();
-    }
+    if(confirm('¿Eliminar esta ficha?')) { await deleteFichaDb(consecutivo); renderHistory(); }
 };
 
-window.jumpToStep = function(step) {
-    if(tabActive !== 'new') switchTab('new');
-    currentStep = step;
-    updateStep('jump');
-};
-let tabActive = 'new';
-const originalSwitchTab = window.switchTab;
-window.switchTab = (tab) => { tabActive = tab; originalSwitchTab(tab); };
+window.jumpToStep = function(step) { switchTab('new'); currentStep = step; updateStep('jump'); };
 
-
-// LOADERS
 async function loadInitialData() {
     try {
         const nextId = await fetchNextID();
-        if(document.getElementById('fichaID')) {
-            document.getElementById('fichaID').value = nextId.toString().padStart(4, '0');
-        }
-    } catch(e) { console.error('Error ID:', e); }
+        if(document.getElementById('fichaID')) document.getElementById('fichaID').value = nextId.toString().padStart(4, '0');
+    } catch(e) { console.error(e); }
 
     if(!responsableInput) return;
     try {
         const stylists = await fetchStylists();
         responsableInput.innerHTML = '<option value="">Seleccione estilista...</option>';
-        if (stylists && stylists.length > 0) {
-            stylists.forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s.nombre; opt.textContent = s.nombre;
-                responsableInput.appendChild(opt);
-            });
-        }
-    } catch(e) { console.error('Error Stylists:', e); }
+        stylists.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.nombre; opt.textContent = s.nombre;
+            responsableInput.appendChild(opt);
+        });
+    } catch(e) { console.error(e); }
 }
 
 window.addEventListener('load', () => {
-    if(typeof window.lucide !== 'undefined') window.lucide.createIcons();
+    if(window.lucide) window.lucide.createIcons();
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     loadInitialData();
-    setTimeout(preFillTestData, 800);
+    setTimeout(preFillTestData, 1000);
 });
 
-// EVENT LISTENERS Y WINDOW BINDS
 window.setSede = setSede;
 window.setHairType = setHairType;
 window.setChip = setChip;
 window.previewImage = previewImage;
-window.handleDocTypeChange = monitorMinorSettings;
 window.clearSignature = (type) => clearSignature(type, isLocked);
-window.generatePDF = () => generatePDF(currentStep);
-window.closeModal = () => window.location.reload();
+window.generatePDF = generatePDF;
 window.resetForm = () => window.location.reload();
 window.goBack = function() {
-    if(!historySection.classList.contains('hidden') || !stylistSection.classList.contains('hidden')) {
-        window.switchTab('new');
-    } else if (currentStep > 1) {
-        updateStep('prev');
-    } else {
-        if(confirm('¿Salir de la aplicación?')) window.location.reload();
-    }
+    if(!historySection.classList.contains('hidden') || !stylistSection.classList.contains('hidden')) window.switchTab('new');
+    else if (currentStep > 1) updateStep('prev');
+    else if(confirm('¿Salir?')) window.location.reload();
 };
 
-document.getElementById('edadInput').addEventListener('input', monitorMinorSettings);
-document.getElementById('docType').addEventListener('change', monitorMinorSettings);
-
 if(saveBtn) saveBtn.addEventListener('click', async () => {
-    if(responsableInput && (!responsableInput.value || responsableInput.value === '')) {
-        if(responsableInput.options.length > 1) responsableInput.selectedIndex = 1;
-    }
     if(!validateStep(5, steps)) return;
-    const { padClient, padTech, padTutor } = getSignaturePads();
-    if(padClient && padClient.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DE LA CLIENTE.');
-    if(padTech && padTech.isEmpty()) return alert('⚠️ Por favor, firma en el recuadro de FIRMA DEL TÉCNICO.');
+    const { padClient, padTech } = getSignaturePads();
+    if(padClient.isEmpty() || padTech.isEmpty()) return alert('⚠️ Firmas obligatorias.');
     const fileA = document.getElementById('fotoAntesInput').files[0];
     const fileD = document.getElementById('fotoDespuesInput').files[0];
-    if(!fileA || !fileD) return alert('⚠️ FALTAN FOTOS.');
-    saveBtn.innerText = '⌛ PROCESANDO...';
-    saveBtn.classList.add('loading');
-    saveBtn.disabled = true;
+    if(!fileA || !fileD) return alert('⚠️ Fotos obligatorias.');
+    
+    saveBtn.innerText = '⌛ PROCESANDO...'; saveBtn.disabled = true;
     try {
         const formData = new FormData(form);
-        const rawData = Object.fromEntries(formData.entries());
-        const cleanData = {};
-        for (let key in rawData) cleanData[key] = rawData[key] ? rawData[key].toString().trim() : '';
+        const cleanData = Object.fromEntries(formData.entries());
         delete cleanData.foto_antes; delete cleanData.foto_despues;
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
-        if(padTutor && !padTutor.isEmpty()) cleanData.firma_tutor_legal = padTutor.toDataURL();
-        const [urlAntes, urlDespues] = await Promise.all([
-            uploadImg(fileA, 'antes', cleanData.consecutivo),
-            uploadImg(fileD, 'despues', cleanData.consecutivo)
-        ]);
-        cleanData.foto_antes_url = urlAntes;
-        cleanData.foto_despues_url = urlDespues;
+        const [urlA, urlD] = await Promise.all([uploadImg(fileA, 'antes', cleanData.consecutivo), uploadImg(fileD, 'despues', cleanData.consecutivo)]);
+        cleanData.foto_antes_url = urlA; cleanData.foto_despues_url = urlD;
         await insertFicha(cleanData);
         document.getElementById('successModal').classList.remove('hidden');
-    } catch (e) {
-        console.error('FALLO TOTAL EN GUARDADO:', e);
-        alert('❌ ERROR AL GUARDAR:\n' + e.message);
-    } finally {
-        saveBtn.innerText = 'Finalizar y Guardar';
-        saveBtn.classList.remove('loading');
-        saveBtn.disabled = false;
-    }
+        if(window.lucide) window.lucide.createIcons();
+    } catch (e) { alert('❌ ERROR: ' + e.message); }
+    finally { saveBtn.innerText = 'Guardar'; saveBtn.disabled = false; }
 });
 
 function preFillTestData() {
@@ -386,24 +308,23 @@ function preFillTestData() {
     f.querySelector('[name="tipo_documento"]').value = 'CC';
     f.querySelector('[name="numero_documento"]').value = '80200013';
     f.querySelector('[name="edad"]').value = '28';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V2.0';
+    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V2.1';
     f.querySelector('[name="telefono"]').value = '3114445566';
     setHairType('2C', '2C: Ondas en S');
     setChip('longitud', 'Largo');
     setChip('crecimiento', 'Natural');
     setChip('medios', 'Alisado');
     setChip('puntas', 'Alisado');
-    f.querySelector('[name="observaciones_diagnostico"]').value = 'Raíz natural con medios y puntas procesados de alisado anterior.';
-    f.querySelector('[name="procesos_quimicos"]').value = 'Alisado hace 6 meses, tinte negro hace 2 meses.';
-    f.querySelector('[name="terapias_capilares"]').value = 'Mascarilla de hidratación en casa semanal.';
+    f.querySelector('[name="observaciones_diagnostico"]').value = 'Raíz natural con medios y puntas procesados.';
+    f.querySelector('[name="procesos_quimicos"]').value = 'Alisado hace 6 meses.';
+    f.querySelector('[name="terapias_capilares"]').value = 'Mascarilla hidratante.';
     setChip('textura', 'Medio'); setChip('elasticidad', 'Media'); setChip('resistencia', 'Media'); setChip('porosidad', 'Media'); setChip('densidad', 'Regular');
-    f.querySelector('[name="observaciones_caracteristicas"]').value = 'Cabello con buena respuesta a la prueba de elasticidad.';
-    setChip('piel', 'Equilibrado'); setChip('lavado', 'Día por medio'); setChip('dermatitis', 'No presenta'); setChip('caida', 'Normal'); setChip('descamacion', 'No presenta');
-    f.querySelector('[name="observaciones_cuero"]').value = 'Cuero cabelludo sano sin irritaciones.';
+    f.querySelector('[name="observaciones_caracteristicas"]').value = 'Buen estado general.';
+    setChip('piel', 'Equilibrado'); setChip('lavado', 'Día por medio'); setChip('dermatitis', 'No'); setChip('caida', 'Normal'); setChip('descamacion', 'No');
+    f.querySelector('[name="observaciones_cuero"]').value = 'Sano.';
     setChip('embarazo', 'No'); setChip('alergias', 'No'); setChip('procedimiento', 'Alisado Saludable'); setChip('porcentaje', '100%');
-    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie estándar con planchado a 450F.';
-    const resp = document.getElementById('responsableInput');
-    if(resp && resp.options.length > 1) resp.selectedIndex = 1;
+    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie estándar.';
+    if(responsableInput && responsableInput.options.length > 1) responsableInput.selectedIndex = 1;
     const auth = document.getElementById('authCheckbox');
     if(auth) auth.checked = true;
 }
