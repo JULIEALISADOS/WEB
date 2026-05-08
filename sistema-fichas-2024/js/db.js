@@ -58,6 +58,12 @@ export const getFichaByConsecutivo = async (consecutivo) => {
     return data;
 };
 
+export const getLastFichaByDoc = async (docNumber) => {
+    const { data, error } = await sb.from('fichas').select('*').eq('numero_documento', docNumber).order('created_at', { ascending: false }).limit(1);
+    if (error) throw error;
+    return data && data.length > 0 ? data[0] : null;
+};
+
 export const deleteFichaDb = async (consecutivo) => {
     const { error } = await sb.from('fichas').delete().eq('consecutivo', consecutivo);
     if (error) throw error;

@@ -1,4 +1,4 @@
-import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg } from './db.js';
+import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg, getLastFichaByDoc } from './db.js';
 import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData, toggleSignatures } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm } from './ui.js';
@@ -28,7 +28,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v2.1';
+    const CACHE_NAME = 'julie-ficha-v2.2';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
@@ -130,6 +130,7 @@ window.switchTab = function(tab) {
              form.reset(); lockForm(false, form); isLocked = false;
              document.getElementById('previewAntes').innerHTML = '';
              document.getElementById('previewDespues').innerHTML = '';
+             document.getElementById('clinicalBackgroundArea').classList.add('hidden');
              loadInitialData(); 
         }
     } else if (tab === 'history') {
@@ -142,6 +143,13 @@ window.switchTab = function(tab) {
         renderStylists();
     }
 };
+
+// SEARCH LOGIC
+if(searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        renderHistory(e.target.value.trim());
+    });
+}
 
 async function renderHistory(filter = '') {
     if(!historyList) return;
@@ -239,6 +247,31 @@ window.deleteFicha = async (consecutivo) => {
 
 window.jumpToStep = function(step) { switchTab('new'); currentStep = step; updateStep('jump'); };
 
+// CLINICAL BACKGROUND AUTO-CHECK
+const docInput = form.querySelector('[name="numero_documento"]');
+if(docInput) {
+    docInput.addEventListener('blur', async () => {
+        const val = docInput.value.trim();
+        if(val.length < 5) return;
+        try {
+            const lastRecord = await getLastFichaByDoc(val);
+            if(lastRecord) {
+                const lastDate = new Date(lastRecord.created_at);
+                const diffMonths = (new Date() - lastDate) / (1000 * 60 * 60 * 24 * 30);
+                const area = document.getElementById('clinicalBackgroundArea');
+                const text = document.getElementById('backgroundText');
+                if(area && text) {
+                    area.classList.remove('hidden');
+                    text.innerHTML = `<strong>Última visita:</strong> ${lastDate.toLocaleDateString()}<br><strong>Procedimiento previo:</strong> ${lastRecord.procedimiento || '---'}<br><strong>Técnica:</strong> ${lastRecord.tecnica_utilizada || '---'}`;
+                    if(diffMonths < 6) {
+                        form.querySelector('[name="observaciones_diagnostico"]').value = `Antecedentes ( < 6 meses): Realizó ${lastRecord.procedimiento} con técnica ${lastRecord.tecnica_utilizada}. `;
+                    }
+                }
+            }
+        } catch(e) { console.error('Error background check:', e); }
+    });
+}
+
 async function loadInitialData() {
     try {
         const nextId = await fetchNextID();
@@ -261,7 +294,6 @@ window.addEventListener('load', () => {
     if(window.lucide) window.lucide.createIcons();
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     loadInitialData();
-    setTimeout(preFillTestData, 1000);
 });
 
 window.setSede = setSede;
@@ -300,31 +332,3 @@ if(saveBtn) saveBtn.addEventListener('click', async () => {
     } catch (e) { alert('❌ ERROR: ' + e.message); }
     finally { saveBtn.innerText = 'Guardar'; saveBtn.disabled = false; }
 });
-
-function preFillTestData() {
-    const f = document.getElementById('fichaForm');
-    if(!f) return;
-    setSede('Moniquira');
-    f.querySelector('[name="tipo_documento"]').value = 'CC';
-    f.querySelector('[name="numero_documento"]').value = '80200013';
-    f.querySelector('[name="edad"]').value = '28';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V2.1';
-    f.querySelector('[name="telefono"]').value = '3114445566';
-    setHairType('2C', '2C: Ondas en S');
-    setChip('longitud', 'Largo');
-    setChip('crecimiento', 'Natural');
-    setChip('medios', 'Alisado');
-    setChip('puntas', 'Alisado');
-    f.querySelector('[name="observaciones_diagnostico"]').value = 'Raíz natural con medios y puntas procesados.';
-    f.querySelector('[name="procesos_quimicos"]').value = 'Alisado hace 6 meses.';
-    f.querySelector('[name="terapias_capilares"]').value = 'Mascarilla hidratante.';
-    setChip('textura', 'Medio'); setChip('elasticidad', 'Media'); setChip('resistencia', 'Media'); setChip('porosidad', 'Media'); setChip('densidad', 'Regular');
-    f.querySelector('[name="observaciones_caracteristicas"]').value = 'Buen estado general.';
-    setChip('piel', 'Equilibrado'); setChip('lavado', 'Día por medio'); setChip('dermatitis', 'No'); setChip('caida', 'Normal'); setChip('descamacion', 'No');
-    f.querySelector('[name="observaciones_cuero"]').value = 'Sano.';
-    setChip('embarazo', 'No'); setChip('alergias', 'No'); setChip('procedimiento', 'Alisado Saludable'); setChip('porcentaje', '100%');
-    f.querySelector('[name="tecnica_utilizada"]').value = 'Técnica Julie estándar.';
-    if(responsableInput && responsableInput.options.length > 1) responsableInput.selectedIndex = 1;
-    const auth = document.getElementById('authCheckbox');
-    if(auth) auth.checked = true;
-}

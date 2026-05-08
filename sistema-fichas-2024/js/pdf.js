@@ -84,12 +84,12 @@ export async function generatePDF() {
         y = 15;
 
         const logoImg = await loadImg('logo.png');
-        if (logoImg) doc.addImage(logoImg, 'PNG', 15, y, 35, 12);
+        if (logoImg) doc.addImage(logoImg, 'PNG', 15, y - 5, 45, 18);
         
-        doc.setFontSize(14);
+        doc.setFontSize(15);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(...colors.dark);
-        doc.text('HISTORIA CLÍNICA CAPILAR', pageWidth - 15, y + 5, { align: 'right' });
+        doc.text('FICHA TÉCNICA CAPILAR', pageWidth - 15, y + 5, { align: 'right' });
         
         doc.setFontSize(8);
         doc.setFont('helvetica', 'normal');
