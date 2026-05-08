@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Julie Alisados | Ficha Técnica Premium</title>
-    <link rel="stylesheet" href="style.css?v=2.6">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
@@ -32,7 +32,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v2.6';
+                const CACHE_NAME = 'julie-ficha-v3.0';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -47,7 +47,7 @@
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V2.6</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V3.0</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -78,7 +78,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V2.6</span>
+                    <span class="version-badge">V3.0</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
@@ -139,8 +139,8 @@
                             <label class="required">SEDE</label>
                             <input type="hidden" name="sede" id="sedeInput" required>
                             <div class="chip-group">
-                                <button type="button" class="chip" onclick="setSede('Tunja')">Tunja</button>
-                                <button type="button" class="chip" onclick="setSede('Moniquira')">Moniquira</button>
+                                <button type="button" class="btn-option" onclick="setSede('Tunja')">TUNJA</button>
+                                <button type="button" class="btn-option" onclick="setSede('Moniquira')">MONIQUIRA</button>
                             </div>
                         </div>
                         <div class="form-group full-width">
@@ -248,8 +248,12 @@
                         </div>
                         <div class="form-group full-width"><label>ESTILISTA</label><select name="estilista_responsable" id="responsableInput"></select></div>
                         <div class="signature-section full-width">
-                            <div class="form-group"><label class="required">CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" onclick="clearSignature('cliente')">Borrar</button></div></div>
-                            <div class="form-group"><label class="required">TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" onclick="clearSignature('tecnico')">Borrar</button></div></div>
+                            <div class="form-group"><label class="required">FIRMA CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
+                            <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
+                        </div>
+                        <div class="form-group full-width hidden" id="tutorSignatureBox">
+                            <label class="required">FIRMA TUTOR LEGAL</label>
+                            <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
                         </div>
                         <div class="authorization-check full-width prominent-check">
                             <label class="checkbox-container"><input type="checkbox" id="authCheckbox" required><span class="checkmark"></span><strong>AUTORIZACIÓN LEGAL</strong></label>
@@ -305,6 +309,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=2.6"></script>
+    <script type="module" src="js/app.js?v=3.0"></script>
 </body>
 </html>

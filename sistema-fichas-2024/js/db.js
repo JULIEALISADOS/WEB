@@ -1,14 +1,14 @@
 import { SB_URL, SB_KEY } from './config.js';
 
 let sb;
-try { 
+try {
     if (typeof window.supabase !== 'undefined') {
-        sb = window.supabase.createClient(SB_URL, SB_KEY); 
+        sb = window.supabase.createClient(SB_URL, SB_KEY);
     } else {
         console.error('Supabase Library not loaded');
     }
-} catch (e) { 
-    console.error('❌ Error Inicializando Supabase:', e.message); 
+} catch (e) {
+    console.error('❌ Error Inicializando Supabase:', e.message);
 }
 
 export const getDb = () => sb;
@@ -29,19 +29,13 @@ export const insertFicha = async (cleanData) => {
 };
 
 export const fetchNextID = async () => {
-    const { data, error } = await sb.from('fichas').select('consecutivo').order('created_at', {ascending:false}).limit(1);
+    const { data, error } = await sb.from('fichas').select('consecutivo').order('created_at', { ascending: false }).limit(1);
     if (error) throw error;
     return (data && data.length > 0) ? parseInt(data[0].consecutivo) + 1 : 1;
 };
 
 export const fetchStylists = async () => {
-    const { data, error } = await sb.from('estilistas').select('nombre').order('nombre');
-    if (error) throw error;
-    return data;
-};
-
-export const fetchStylistsFull = async () => {
-    const { data, error } = await sb.from('estilistas').select('*').order('nombre');
+    const { data, error } = await sb.from('estilistas').select('id, nombre').order('nombre');
     if (error) throw error;
     return data;
 };
