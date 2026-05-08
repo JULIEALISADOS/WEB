@@ -28,7 +28,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v1.9';
+    const CACHE_NAME = 'julie-ficha-v2.0';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
@@ -386,7 +386,7 @@ function preFillTestData() {
     f.querySelector('[name="tipo_documento"]').value = 'CC';
     f.querySelector('[name="numero_documento"]').value = '80200013';
     f.querySelector('[name="edad"]').value = '28';
-    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V1.9';
+    f.querySelector('[name="nombre_completo"]').value = 'CLIENTA PRUEBA V2.0';
     f.querySelector('[name="telefono"]').value = '3114445566';
     setHairType('2C', '2C: Ondas en S');
     setChip('longitud', 'Largo');

@@ -1092,12 +1092,25 @@ input:disabled {
 }
 
 /* Mobile Adjustments */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .form-grid {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
-    .form-group {
-        flex: 1 1 100%;
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+    .app-container {
+        max-width: 100%;
+        border: none;
+    }
+    .quick-nav {
+        gap: 4px;
+        padding: 5px;
+    }
+    .btn-step {
+        height: 40px;
+        font-size: 0.9rem;
     }
 }
 .btn-pdf-list {
