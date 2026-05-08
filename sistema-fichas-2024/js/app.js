@@ -29,7 +29,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v2.3';
+    const CACHE_NAME = 'julie-ficha-v2.5';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
