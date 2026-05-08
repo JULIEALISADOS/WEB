@@ -248,7 +248,14 @@
                     <h2 class="section-title">CUERO CABELLUDO</h2>
                     <div class="form-grid">
                         <div class="form-group full-width"><label class="required">PIEL CABELLUDA</label><input type="hidden" name="piel_cabelluda" id="pielInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('piel', 'Seco')">Seco</button><button type="button" class="chip" onclick="setChip('piel', 'Equilibrado')">Equilibrado</button><button type="button" class="chip" onclick="setChip('piel', 'Graso')">Graso</button></div></div>
-                        <div class="form-group full-width"><label class="required">FRECUENCIA LAVADO</label><input type="hidden" name="frecuencia_lavado" id="lavadoInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('lavado', 'Todos los días')">Día</button><button type="button" class="chip" onclick="setChip('lavado', 'Día por medio')">Intermitente</button><button type="button" class="chip" onclick="setChip('lavado', '2 veces/semana')">2x</button></div></div>
+                        <div class="form-group full-width"><label class="required">FRECUENCIA LAVADO</label><input type="hidden" name="frecuencia_lavado" id="lavadoInput" required><div class="chip-group">
+                            <button type="button" class="chip" onclick="setChip('lavado', 'A diario')">A diario</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Día de por medio')">Día de por medio</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 2-3 días')">Cada 2-3 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 4-5 días')">Cada 4-5 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 6-7 días')">Cada 6-7 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Más de 7 días')">Más de 7 días</button>
+                        </div></div>
                         <div class="form-group full-width"><label class="required">DERMATITIS</label><input type="hidden" name="dermatitis" id="dermatitisInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('dermatitis', 'No')">No</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Severa')">Severa</button></div></div>
                         <div class="form-group full-width"><label class="required">CAÍDA</label><input type="hidden" name="caida" id="caidaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('caida', 'Normal')">Normal</button><button type="button" class="chip" onclick="setChip('caida', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('caida', 'Severa')">Severa</button></div></div>
                         <div class="form-group full-width"><label class="required">DESCAMACIÓN</label><input type="hidden" name="descamacion" id="descamacionInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('descamacion', 'No')">No</button><button type="button" class="chip" onclick="setChip('descamacion', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('descamacion', 'Severa')">Severa</button></div></div>
@@ -269,9 +276,11 @@
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Saludable', true)">Alisado Saludable</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Light', true)">Alisado Light</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Retoque de Raíz', true)">Retoque de Raíz</button>
-                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado en Diadema', true)">Alisado en Diadema</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Balaca', true)">Balaca</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'R.C.P. Restauración', true)">R.C.P. Restauración</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Emulsión Zero', true)">Emulsión Zero</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Reposición Aminoácidos', true)">Reposición Aminoácidos</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'RE-CODE', true)">RE-CODE</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Biocomplex', true)">Biocomplex</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Choco Fix', true)">Choco Fix</button>
                                 <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidra-Complex', true)">Hidra-Complex</button>
