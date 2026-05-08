@@ -30,16 +30,37 @@ window.lastViewedFicha = null;
 function login() {
     const userEl = document.getElementById('loginEmail');
     const passEl = document.getElementById('loginPass');
-    if (!userEl || !passEl) return;
+    const errorEl = document.getElementById('loginError');
+    if (!userEl || !passEl || !errorEl) return;
+
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
-    if ((user === '80200013' || user === 'julie') && (pass === 'Lisolaloca01' || pass === 'Lisolaloca01:')) {
+
+    errorEl.classList.add('hidden');
+
+    if (!user || !pass) {
+        errorEl.innerText = "⚠️ Por favor, completa todos los campos.";
+        errorEl.classList.remove('hidden');
+        return;
+    }
+
+    const validUsers = ['80200013', 'julie'];
+    const validPasses = ['Lisolaloca01', 'Lisolaloca01:'];
+
+    const isUserValid = validUsers.includes(user);
+    const isPassValid = validPasses.includes(pass);
+
+    if (isUserValid && isPassValid) {
         localStorage.setItem('julie_session', 'true');
         if (loginSection) loginSection.classList.add('hidden');
         if (appMain) appMain.classList.remove('hidden');
         switchTab('home');
+    } else if (!isUserValid) {
+        errorEl.innerText = "❌ Usuario incorrecto";
+        errorEl.classList.remove('hidden');
     } else {
-        document.getElementById('loginError')?.classList.remove('hidden');
+        errorEl.innerText = "❌ Contraseña incorrecta";
+        errorEl.classList.remove('hidden');
     }
 }
 
