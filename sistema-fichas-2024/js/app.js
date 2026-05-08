@@ -10,6 +10,7 @@ const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 const loginSection = document.getElementById('loginSection');
 const appMain = document.getElementById('appMain');
+const homeSection = document.getElementById('homeSection');
 const historySection = document.getElementById('historySection');
 const stylistSection = document.getElementById('stylistSection');
 const historyList = document.getElementById('historyList');
@@ -28,7 +29,7 @@ function login() {
     const passEl = document.getElementById('loginPass');
     if(!userEl || !passEl) return;
 
-    const CACHE_NAME = 'julie-ficha-v2.2';
+    const CACHE_NAME = 'julie-ficha-v2.3';
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
     
@@ -40,7 +41,7 @@ function login() {
         localStorage.setItem('julie_user_name', "Julia Alisados");
         if(loginSection) loginSection.classList.add('hidden');
         if(appMain) appMain.classList.remove('hidden');
-        updateStep('init');
+        switchTab('home');
     } else {
         const errEl = document.getElementById('loginError');
         if(errEl) errEl.classList.remove('hidden');
@@ -119,12 +120,19 @@ window.switchTab = function(tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     document.querySelector('.form-wrapper').classList.add('hidden');
     document.querySelector('.form-footer').classList.add('hidden');
+    if(homeSection) homeSection.classList.add('hidden');
     if(historySection) historySection.classList.add('hidden');
     if(stylistSection) stylistSection.classList.add('hidden');
+    document.querySelector('.progress-container').classList.add('hidden');
+    document.querySelector('.btn-back').classList.add('hidden');
 
-    if (tab === 'new') {
+    if (tab === 'home') {
+        if(homeSection) homeSection.classList.remove('hidden');
+    } else if (tab === 'new') {
         document.querySelector('.form-wrapper').classList.remove('hidden');
         document.querySelector('.form-footer').classList.remove('hidden');
+        document.querySelector('.progress-container').classList.remove('hidden');
+        document.querySelector('.btn-back').classList.remove('hidden');
         document.querySelectorAll('.nav-item')[0].classList.add('active');
         if(isLocked) {
              form.reset(); lockForm(false, form); isLocked = false;
@@ -136,10 +144,12 @@ window.switchTab = function(tab) {
     } else if (tab === 'history') {
         if(historySection) historySection.classList.remove('hidden');
         document.querySelectorAll('.nav-item')[1].classList.add('active');
+        document.querySelector('.btn-back').classList.remove('hidden');
         renderHistory();
     } else if (tab === 'stylists') {
         if(stylistSection) stylistSection.classList.remove('hidden');
         document.querySelectorAll('.nav-item')[2].classList.add('active');
+        document.querySelector('.btn-back').classList.remove('hidden');
         renderStylists();
     }
 };
@@ -304,9 +314,11 @@ window.clearSignature = (type) => clearSignature(type, isLocked);
 window.generatePDF = generatePDF;
 window.resetForm = () => window.location.reload();
 window.goBack = function() {
-    if(!historySection.classList.contains('hidden') || !stylistSection.classList.contains('hidden')) window.switchTab('new');
-    else if (currentStep > 1) updateStep('prev');
-    else if(confirm('¿Salir?')) window.location.reload();
+    if(homeSection && !homeSection.classList.contains('hidden')) {
+        if(confirm('¿Salir?')) window.location.reload();
+    } else {
+        switchTab('home');
+    }
 };
 
 if(saveBtn) saveBtn.addEventListener('click', async () => {
