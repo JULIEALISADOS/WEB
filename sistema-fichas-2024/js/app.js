@@ -258,7 +258,15 @@ async function renderStylists(filter = '') {
             listEl.appendChild(item);
         });
         window.lucide?.createIcons();
-    } catch (e) { console.error('Error renderStylists:', e); listEl.innerHTML = '<p class="empty-msg">Error al cargar equipo.</p>'; }
+    } catch (e) { 
+        console.error('Error renderStylists:', e); 
+        listEl.innerHTML = `
+            <div class="error-card" style="padding:20px; text-align:center; color:var(--error);">
+                <p><strong>Error al cargar equipo</strong></p>
+                <small>${e.message || 'Error de conexión o base de datos'}</small>
+                <p style="font-size:0.75rem; margin-top:10px;">Asegúrate de haber actualizado la tabla en Supabase.</p>
+            </div>`; 
+    }
 }
 
 window.deleteStylist = async (id) => { if (confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); } };
