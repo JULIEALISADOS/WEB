@@ -402,50 +402,7 @@ async function loadInitialData() {
     } catch (e) { console.error('Error loadInitialData:', e); }
 }
 
-// ======================== PRE-FILL TEST DATA ========================
-function preFillTestData() {
-    // Solo en pruebas
-    setSede('Tunja');
-    document.getElementById('docType').value = 'CC';
-    form.querySelector('[name="numero_documento"]').value = '1098765432';
-    document.getElementById('edadInput').value = '28';
-    form.querySelector('[name="nombre_completo"]').value = 'María Alejandra Rodríguez Pérez';
-    form.querySelector('[name="telefono"]').value = '3101234567';
 
-    // Paso 2
-    setHairType('2B', '2B: Ondas definidas');
-    setChip('longitud', 'Largo');
-    setChip('crecimiento', 'Natural');
-    setChip('medios', 'Tinturado');
-    setChip('puntas', 'Horquilla');
-
-    // Paso 3
-    form.querySelector('[name="procesos_quimicos"]').value = 'Tintura hace 3 meses, decoloración parcial hace 6 meses';
-    form.querySelector('[name="terapias_capilares"]').value = 'Queratina brasileña hace 4 meses, hidratación profunda mensual';
-    setChip('textura', 'Medio');
-    setChip('elasticidad', 'Media');
-    setChip('resistencia', 'Media');
-    setChip('porosidad', 'Alta');
-    setChip('densidad', 'Abundante');
-
-    // Paso 4
-    setChip('piel', 'Equilibrado');
-    setChip('lavado', 'Día por medio');
-    setChip('dermatitis', 'No');
-    setChip('caida', 'Normal');
-    setChip('descamacion', 'No');
-
-    // Paso 5
-    setChip('embarazo', 'No');
-    setChip('alergias', 'No');
-    setChip('procedimiento', 'Alisado Saludable');
-    setChip('porcentaje', '100%');
-    form.querySelector('[name="tecnica_utilizada"]').value = 'Alisado con keratina orgánica Bioplex Professional, plancha 230°C';
-
-    // Marcar autorización
-    const authCb = document.getElementById('authCheckbox');
-    if (authCb) authCb.checked = true;
-}
 
 // ======================== GLOBAL BINDINGS ========================
 window.setSede = setSede;
@@ -548,7 +505,6 @@ window.addEventListener('load', () => {
     window.lucide?.createIcons();
     document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     loadInitialData();
-    preFillTestData();
     initRealtimeValidation(steps);
 
     // Monitor menor de edad
