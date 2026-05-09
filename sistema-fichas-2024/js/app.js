@@ -48,23 +48,64 @@ function login() {
         return;
     }
 
-    const validUsers = ['80200013', 'julie'];
+    const validAdmins = ['80200013', 'julie'];
     const validPasses = ['Lisolaloca01', 'Lisolaloca01:'];
 
-    const isUserValid = validUsers.includes(user);
-    const isPassValid = validPasses.includes(pass);
+    const isAdmin = validAdmins.includes(user) && validPasses.includes(pass);
 
-    if (isUserValid && isPassValid) {
+    if (isAdmin) {
+        localStorage.setItem('julie_role', 'admin');
         localStorage.setItem('julie_session', 'true');
-        if (loginSection) loginSection.classList.add('hidden');
-        if (appMain) appMain.classList.remove('hidden');
-        switchTab('home');
-    } else if (!isUserValid) {
-        errorEl.innerText = "❌ Usuario incorrecto";
-        errorEl.classList.remove('hidden');
+        loginSuccess('admin');
     } else {
-        errorEl.innerText = "❌ Contraseña incorrecta";
+        // Intentar login como estilista
+        checkStylistLogin(user, pass);
+    }
+}
+
+async function checkStylistLogin(user, pass) {
+    const errorEl = document.getElementById('loginError');
+    try {
+        const stylists = await fetchStylists();
+        const found = stylists.find(s => (s.nombre === user || s.email === user) && s.password === pass);
+        if (found) {
+            localStorage.setItem('julie_role', 'stylist');
+            localStorage.setItem('julie_session', 'true');
+            localStorage.setItem('julie_user_name', found.nombre);
+            loginSuccess('stylist');
+        } else {
+            errorEl.innerText = "❌ Credenciales incorrectas";
+            errorEl.classList.remove('hidden');
+        }
+    } catch (e) {
+        errorEl.innerText = "❌ Error de conexión";
         errorEl.classList.remove('hidden');
+    }
+}
+
+function loginSuccess(role) {
+    if (loginSection) loginSection.classList.add('hidden');
+    if (appMain) appMain.classList.remove('hidden');
+    applyRoleUI(role);
+    switchTab('home');
+}
+
+function applyRoleUI(role) {
+    const navHistory = document.querySelector('.nav-item:nth-child(3)');
+    const navTeam = document.querySelector('.nav-item:nth-child(4)');
+    const btnPdf = document.querySelector('.btn-pdf');
+
+    if (role === 'stylist') {
+        if (navHistory) navHistory.style.display = 'none';
+        if (navTeam) navTeam.style.display = 'none';
+        if (btnPdf) btnPdf.style.display = 'none';
+        // En el modal de éxito, ocultar botón PDF
+        document.querySelector('.btn-pdf-modal')?.classList.add('hidden');
+    } else {
+        if (navHistory) navHistory.style.display = 'flex';
+        if (navTeam) navTeam.style.display = 'flex';
+        if (btnPdf) btnPdf.style.display = 'flex';
+        document.querySelector('.btn-pdf-modal')?.classList.remove('hidden');
     }
 }
 
@@ -96,6 +137,7 @@ window.logout = logout;
 if (localStorage.getItem('julie_session') === 'true' && loginSection) {
     loginSection.classList.add('hidden');
     appMain.classList.remove('hidden');
+    applyRoleUI(localStorage.getItem('julie_role'));
 }
 
 // ======================== NAVIGATION ========================
@@ -354,33 +396,73 @@ if (docInput) {
             return;
         }
         try {
-            const lastRecord = await getLastFichaByDoc(val);
+            const lastFicha = await getLastFichaByDoc(val);
             const area = document.getElementById('clinicalBackgroundArea');
-            const text = document.getElementById('backgroundText');
-            const btnLoad = document.getElementById('btnLoadPrevious');
+            const badge = document.getElementById('visitTypeBadge');
+            const bgText = document.getElementById('backgroundText');
 
-            if (lastRecord && area && text) {
+            if (lastFicha) {
                 if (badge) { badge.innerText = 'FOLIO ADICIONAL'; badge.className = 'visit-badge recurring'; }
-                area.classList.remove('hidden');
-                text.innerHTML = `🌟 <strong>CLIENTA RECURRENTE DETECTADA</strong><br>Última visita: ${new Date(lastRecord.created_at).toLocaleDateString('es-CO')}`;
+                if (area && bgText) {
+                    area.classList.remove('hidden');
+                    bgText.innerHTML = `
+                        📌 <strong>ÚLTIMA VISITA:</strong> ${new Date(lastFicha.created_at).toLocaleDateString()}<br>
+                        💇‍♀️ <strong>PROCEDIMIENTO:</strong> ${lastFicha.procedimiento}<br>
+                        ✨ <strong>LISO:</strong> ${lastFicha.porcentaje_liso || '100%'}<br>
+                        <button type="button" onclick="viewQuickHistory('${val}')" style="margin-top:10px; background:var(--gold-dark); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%;">
+                            📂 VER HISTORIAL CLÍNICO
+                        </button>
+                    `;
+                }
                 
-                if (btnLoad) {
-                    btnLoad.onclick = () => {
-                        form.querySelector('[name="nombre_completo"]').value = lastRecord.nombre_completo || '';
-                        form.querySelector('[name="telefono"]').value = lastRecord.telefono || '';
-                        form.querySelector('[name="email"]').value = lastRecord.email || '';
-                        form.querySelector('[name="edad"]').value = lastRecord.edad || '';
-                        if (lastRecord.sede) setSede(lastRecord.sede);
-                        alert('✅ Datos personales cargados. ¡Listo para el nuevo diagnóstico!');
-                    };
+                // Pre-llenar solo datos personales
+                form.querySelector('[name="nombre_completo"]').value = lastFicha.nombre_completo || '';
+                form.querySelector('[name="telefono"]').value = lastFicha.telefono || '';
+                form.querySelector('[name="email"]').value = lastFicha.email || '';
+                const edadInp = document.getElementById('edadInput');
+                if (edadInp) {
+                    edadInp.value = lastFicha.edad || '';
+                    monitorMinorSettings();
                 }
             } else {
                 if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
                 if (area) area.classList.add('hidden');
             }
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error('Recurrence check error:', e); }
     });
 }
+
+window.viewQuickHistory = async (doc) => {
+    try {
+        const history = await fetchHistory();
+        const clientFolios = history.filter(f => f.numero_documento === doc);
+        let html = '<div style="max-height:400px; overflow-y:auto; padding:10px;">';
+        clientFolios.forEach(f => {
+            html += `
+                <div style="border-bottom:1px solid #eee; padding:10px 0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong style="color:var(--gold-dark);">Folio #${f.consecutivo}</strong>
+                        <small>${new Date(f.created_at).toLocaleDateString()}</small>
+                    </div>
+                    <p style="font-size:0.8rem; margin:5px 0;"><strong>Servicio:</strong> ${f.procedimiento}</p>
+                    <p style="font-size:0.75rem; color:#666;"><strong>Obs. Técnica:</strong> ${f.tecnica_utilizada || 'N/A'}</p>
+                </div>
+            `;
+        });
+        html += '</div>';
+        
+        const modal = document.createElement('div');
+        modal.style = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px;';
+        modal.innerHTML = `
+            <div style="background:white; border-radius:20px; width:100%; max-width:400px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+                <h3 style="color:var(--gold-dark); margin-bottom:15px; border-bottom:2px solid var(--gold-light); padding-bottom:8px; font-family:var(--font-serif);">Historial de Folios</h3>
+                ${html}
+                <button onclick="this.parentElement.parentElement.remove()" style="width:100%; margin-top:15px; padding:12px; background:var(--gold-gradient); color:white; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">Cerrar Historial</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } catch (e) { alert('Error al cargar historial'); }
+};
 
 // ======================== INITIAL DATA ========================
 async function loadInitialData() {
