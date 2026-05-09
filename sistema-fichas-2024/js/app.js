@@ -1,4 +1,4 @@
-import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg, getLastFichaByDoc } from './db.js';
+import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg, getLastFichaByDoc, updateStylistPassword } from './db.js';
 import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData, toggleSignatures, destroyPads } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm, initRealtimeValidation } from './ui.js';
@@ -39,7 +39,6 @@ function login() {
 
     const user = userEl.value.trim();
     const pass = passEl.value.trim();
-
     errorEl.classList.add('hidden');
 
     if (!user || !pass) {
@@ -47,18 +46,17 @@ function login() {
         errorEl.classList.remove('hidden');
         return;
     }
-
+    
+    // Admin login
     const validAdmins = ['80200013', 'julie'];
     const validPasses = ['Lisolaloca01', 'Lisolaloca01:'];
 
     const isAdmin = validAdmins.includes(user) && validPasses.includes(pass);
-
     if (isAdmin) {
         localStorage.setItem('julie_role', 'admin');
         localStorage.setItem('julie_session', 'true');
         loginSuccess('admin');
     } else {
-        // Intentar login como estilista
         checkStylistLogin(user, pass);
     }
 }
@@ -94,20 +92,38 @@ function applyRoleUI(role) {
     const navHistory = document.querySelector('.nav-item:nth-child(3)');
     const navTeam = document.querySelector('.nav-item:nth-child(4)');
     const btnPdf = document.querySelector('.btn-pdf');
+    const changePassBtn = document.getElementById('changePassBtn');
 
     if (role === 'stylist') {
         if (navHistory) navHistory.style.display = 'none';
         if (navTeam) navTeam.style.display = 'none';
         if (btnPdf) btnPdf.style.display = 'none';
+        if (changePassBtn) changePassBtn.style.display = 'flex';
         // En el modal de éxito, ocultar botón PDF
         document.querySelector('.btn-pdf-modal')?.classList.add('hidden');
     } else {
         if (navHistory) navHistory.style.display = 'flex';
         if (navTeam) navTeam.style.display = 'flex';
         if (btnPdf) btnPdf.style.display = 'flex';
+        if (changePassBtn) changePassBtn.style.display = 'none';
         document.querySelector('.btn-pdf-modal')?.classList.remove('hidden');
     }
 }
+
+window.openChangePassModal = () => document.getElementById('changePassModal').classList.remove('hidden');
+window.closeChangePassModal = () => document.getElementById('changePassModal').classList.add('hidden');
+
+window.processChangePassword = async () => {
+    const newPass = document.getElementById('newPassInput').value.trim();
+    const name = localStorage.getItem('julie_user_name');
+    if (!newPass || newPass.length < 5) { alert('La clave debe tener al menos 5 caracteres.'); return; }
+    
+    try {
+        await updateStylistPassword(name, newPass);
+        alert('✅ Contraseña actualizada. Úsala en tu próximo ingreso.');
+        closeChangePassModal();
+    } catch (e) { alert('Error al actualizar clave.'); }
+};
 
 if (document.getElementById('loginForm')) {
     document.getElementById('loginForm').addEventListener('submit', (e) => { e.preventDefault(); login(); });
@@ -314,20 +330,21 @@ async function renderStylists(filter = '') {
 window.deleteStylist = async (id) => { if (confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); } };
 window.addStylist = async () => { 
     const name = stylistInput.value.trim(); 
-    const phone = stylistPhoneInput.value.trim();
-    const email = stylistEmailInput.value.trim();
-    if (!name) return alert('El nombre es obligatorio.'); 
-    
+    const phone = document.getElementById('stylistPhoneInput').value.trim();
+    const email = document.getElementById('stylistEmailInput').value.trim();
+    const pass = document.getElementById('stylistPassInput').value.trim();
+
+    if (!name || !pass) { alert('Nombre y Contraseña son obligatorios'); return; }
     try {
-        await addStylistDb({ nombre: name, telefono: phone, email: email });
-        stylistInput.value = '';
-        stylistPhoneInput.value = '';
-        stylistEmailInput.value = '';
-        renderStylists(); 
-        loadInitialData(); 
-    } catch (err) {
-        alert('Error al agregar estilista. Verifica los datos.');
-    }
+        await addStylistDb({ nombre: name, telefono: phone, email: email, password: pass });
+        document.getElementById('stylistInput').value = '';
+        document.getElementById('stylistPhoneInput').value = '';
+        document.getElementById('stylistEmailInput').value = '';
+        document.getElementById('stylistPassInput').value = '';
+        renderStylists();
+        loadInitialData();
+        alert('Estilista agregada con éxito');
+    } catch (e) { alert('Error al agregar'); }
 };
 
 // ======================== VIEW FICHA ========================
@@ -532,7 +549,7 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
     const alergias = document.getElementById('alergiasInput')?.value;
     
     if (embarazo === 'No aporta' || alergias === 'No aporta') {
-        const legalWarning = `⚖️ ADVERTENCIA LEGAL:\n\nDe acuerdo con nuestra política de privacidad, el aporte de datos sensibles es facultativo. Sin embargo, debido a que esta información no ha sido suministrada, el procedimiento puede ser cancelado por seguridad a discreción de JulieAlisados.\n\nAsimismo, el suministro de información incorrecta o incompleta será causal de pérdida de garantía o resultados no óptimos.\n\n¿Deseas continuar bajo estas condiciones?`;
+        const legalWarning = `📝 NOTA IMPORTANTE DE SEGURIDAD:\n\nEn Julie Alisados, tu salud y seguridad son nuestra prioridad. De acuerdo con nuestra política de privacidad, el suministro de datos sobre salud (embarazo o alergias) es totalmente opcional.\n\nSin embargo, para garantizar un procedimiento 100% seguro y resultados óptimos, te informamos que la falta de esta información o el aporte de datos incompletos podría limitar la aplicación de garantías o la aplicabilidad del servicio por tu bienestar.\n\n¿Deseas continuar con el proceso bajo estas condiciones de seguridad?`;
         if (!confirm(legalWarning)) return;
     }
 

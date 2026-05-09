@@ -14,8 +14,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
-    
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css?v=beta">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -56,10 +56,11 @@
     </script>
 </head>
 <body>
+    <div class="watermark">Julie Alisados - Propiedad Privada</div>
     <div id="loginSection" class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="Logo" class="login-logo">
-            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">V3.0</small></h2>
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">BETA</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
                 <div style="position:relative;">
@@ -90,9 +91,12 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">V3.0</span>
+                    <span class="version-badge">BETA</span>
                 </div>
                 <div class="header-actions">
+                    <button type="button" id="changePassBtn" class="btn-refresh" onclick="openChangePassModal()" title="Cambiar mi Contraseña" style="background:var(--gold-light); color:var(--gold-dark); border:1px solid var(--gold-primary);">
+                        <i data-lucide="lock"></i>
+                    </button>
                     <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
                         <i data-lucide="rotate-cw"></i>
                     </button>
@@ -358,8 +362,9 @@
             <div class="add-stylist-box" style="display: flex; flex-direction: column; gap: 10px;">
                 <input type="text" id="stylistInput" placeholder="Nombre completo">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <input type="tel" id="stylistPhoneInput" placeholder="Teléfono">
-                    <input type="email" id="stylistEmailInput" placeholder="Correo">
+                    <div class="form-group"><label>TELÉFONO</label><input type="tel" id="stylistPhoneInput" placeholder="Opcional"></div>
+                    <div class="form-group"><label>CORREO</label><input type="email" id="stylistEmailInput" placeholder="Opcional"></div>
+                    <div class="form-group"><label>CONTRASEÑA DE ACCESO</label><input type="password" id="stylistPassInput" placeholder="Ej: Julie123"></div>
                 </div>
                 <button onclick="addStylist()" class="btn-primary" style="width: 100%;">Agregar al Equipo</button>
             </div>
@@ -395,7 +400,22 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=3.0"></script>
+    <div id="changePassModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Personalizar Contraseña</h3>
+            <p style="font-size:0.8rem; margin-bottom:15px;">Por seguridad legal, elige una clave que solo tú conozcas.</p>
+            <div class="form-group">
+                <label>NUEVA CONTRASEÑA</label>
+                <input type="password" id="newPassInput" placeholder="Mínimo 6 caracteres">
+            </div>
+            <div class="modal-actions" style="margin-top:20px;">
+                <button class="btn-secondary" onclick="closeChangePassModal()">Cancelar</button>
+                <button class="btn-primary" onclick="processChangePassword()">Guardar Nueva Clave</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js?v=beta"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {

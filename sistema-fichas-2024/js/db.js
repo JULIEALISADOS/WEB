@@ -80,3 +80,8 @@ export const addStylistDb = async (stylistData) => {
     const { error } = await sb.from('estilistas').insert([stylistData]);
     if (error) throw error;
 };
+
+export const updateStylistPassword = async (name, newPass) => {
+    const { error } = await sb.from('estilistas').update({ password: newPass }).eq('nombre', name);
+    if (error) throw error;
+};
