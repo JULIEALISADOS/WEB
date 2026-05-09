@@ -177,6 +177,25 @@ export async function generatePDF() {
 
         y += drawField('Técnica/Productos', getVal('tecnica_utilizada'), col1, pageWidth - 40);
 
+        // --- ADVERTENCIA LEGAL (SI APLICA) ---
+        const emb = getVal('embarazo');
+        const ale = getVal('alergias');
+        if (emb === 'No aporta' || ale === 'No aporta') {
+            checkSpace(20);
+            y += 5;
+            doc.setFillColor(255, 248, 240); // Fondo naranja muy suave
+            doc.setDrawColor(...colors.gold);
+            doc.roundedRect(15, y, pageWidth - 30, 18, 2, 2, 'FD');
+            
+            doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
+            doc.text('NOTA DE SEGURIDAD Y PRIVACIDAD:', 20, y + 6);
+            
+            doc.setFontSize(6.5); doc.setFont('helvetica', 'italic'); doc.setTextColor(...colors.gray);
+            const legalText = "En Julie Alisados, el bienestar es nuestra prioridad. El suministro de datos sobre salud es opcional; sin embargo, para garantizar un resultado óptimo y seguro, la falta de esta información podría limitar la aplicación de garantías o la realización del servicio por seguridad. La cliente acepta continuar bajo estas condiciones.";
+            doc.text(doc.splitTextToSize(legalText, pageWidth - 40), 20, y + 10);
+            y += 22;
+        }
+
         // --- SECCIÓN 5: EVIDENCIA FOTOGRÁFICA ---
         drawSectionHeader('5. Evidencia Fotográfica');
         const imgW = 80, imgH = 70;
