@@ -1,8 +1,8 @@
-const CACHE_NAME = 'julie-app-v6.5';
+const CACHE_NAME = 'julie-app-v7.0';
 const ASSETS = [
   'index.html',
-  'style.css?v=6.5',
-  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/app.js?v=6.5',
+  'style.css?v=7.0',
+  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/app.js?v=7.0',
   'manifest.json',
   'logo.png',
   'guia_cabello_tecnico_completa_julie_es_1774539016850.png',
