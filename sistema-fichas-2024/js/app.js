@@ -376,8 +376,12 @@ async function renderHistory(filter = '') {
                     </div>
                 </div>
                 <div style="display:flex; gap:8px;">
-                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view" style="background:#f8f9fa; border:1px solid #ddd; padding:8px 12px; border-radius:10px; cursor:pointer;"><i data-lucide="eye" style="width:16px; height:16px;"></i></button>
-                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list" style="background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:10px; cursor:pointer;"><i data-lucide="file-text" style="width:16px; height:16px;"></i></button>
+                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view" style="background:#f8f9fa; border:1px solid #ddd; padding:8px 12px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list" style="background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                    </button>
                 </div>`;
             listEl.appendChild(card);
         });
