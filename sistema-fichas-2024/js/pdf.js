@@ -108,8 +108,8 @@ export async function generatePDF() {
         doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
         doc.text(getVal('nombre_completo'), 20, y + 13);
         doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
-        doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')} AÑOS  |  SEDE: ${getVal('sede')}`, 20, y + 18);
-        doc.text(`EMAIL: ${getVal('email')}`, 20, y + 22);
+        doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')} AÑOS`, 20, y + 18);
+        doc.text(`EMAIL: ${getVal('email')}  |  SEDE: ${getVal('sede')}  |  ESTILISTA: ${getVal('estilista_responsable')}`, 20, y + 22);
 
         y += 28;
 
@@ -247,7 +247,7 @@ export async function generatePDF() {
         if (!sigT && window.lastGeneratedSignatures?.tech) sigT = window.lastGeneratedSignatures.tech;
 
         checkSpace(35);
-        const drawSig = (src, label, x, yPos) => {
+        const drawSig = (src, label, printedName, x, yPos) => {
             // Línea base
             doc.setDrawColor(...colors.gray);
             doc.setLineWidth(0.3);
@@ -255,6 +255,13 @@ export async function generatePDF() {
             // Label
             doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
             doc.text(label, x + 27.5, yPos + 4, { align: 'center' });
+            
+            // Nombre Impreso
+            if (printedName && printedName !== '---') {
+                doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+                doc.text(printedName.toUpperCase(), x + 27.5, yPos + 8, { align: 'center' });
+            }
+
             // Imagen firma
             if (src && src.startsWith('data:image')) {
                 try { doc.addImage(src, 'PNG', x + 5, yPos - 20, 45, 20); } catch (e) {
@@ -263,8 +270,8 @@ export async function generatePDF() {
             }
         };
 
-        drawSig(sigC, 'FIRMA CLIENTE', 15, y + 25);
-        drawSig(sigT, `TÉCNICO: ${getVal('estilista_responsable')}`, pageWidth - 70, y + 25);
+        drawSig(sigC, 'FIRMA CLIENTE', getVal('nombre_completo'), 15, y + 25);
+        drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth - 70, y + 25);
 
         y += 38;
 
