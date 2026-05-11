@@ -375,6 +375,7 @@
         function renderMarketingInsights() {
             const sources = { tiktok: 0, meta: 0, google: 0, direct: 0 };
             const campaigns = {};
+            const locations = {};
 
             clientsData.forEach(f => {
                 const src = (f.utm_source || '').toLowerCase();
@@ -385,25 +386,29 @@
 
                 const camp = f.utm_campaign || 'Orgánico / Directo';
                 campaigns[camp] = (campaigns[camp] || 0) + 1;
+
+                const loc = f.ubicacion_gps || 'No detectada';
+                locations[loc] = (locations[loc] || 0) + 1;
             });
 
             document.getElementById('statTikTok').innerText = sources.tiktok;
             document.getElementById('statMeta').innerText = sources.meta;
             document.getElementById('statGoogle').innerText = sources.google;
 
-            let campHtml = '<table><thead><tr><th>CAMPAÑA</th><th>CONVERSIONES</th><th>% DEL TOTAL</th></tr></thead><tbody>';
-            const total = clientsData.length;
-            
-            Object.entries(campaigns)
-                .sort((a,b) => b[1] - a[1])
-                .forEach(([name, count]) => {
-                    const pct = ((count / total) * 100).toFixed(1);
-                    campHtml += `<tr><td><strong>${name}</strong></td><td>${count}</td><td>${pct}%</td></tr>`;
-                });
+            let campHtml = '<h3>Rendimiento por Campaña</h3><table><thead><tr><th>CAMPAÑA</th><th>CONVERSIONES</th></tr></thead><tbody>';
+            Object.entries(campaigns).sort((a,b) => b[1] - a[1]).slice(0, 5).forEach(([name, count]) => {
+                campHtml += `<tr><td><strong>${name}</strong></td><td>${count}</td></tr>`;
+            });
             campHtml += '</tbody></table>';
+
+            let locHtml = '<h3 style="margin-top:20px;">Top Ciudades / Ubicaciones</h3><table><thead><tr><th>CIUDAD</th><th>CLIENTES</th></tr></thead><tbody>';
+            Object.entries(locations).sort((a,b) => b[1] - a[1]).slice(0, 5).forEach(([name, count]) => {
+                locHtml += `<tr><td>${name}</td><td>${count}</td></tr>`;
+            });
+            locHtml += '</tbody></table>';
             
             const reportArea = document.getElementById('marketingReportArea');
-            if (reportArea) reportArea.innerHTML = campHtml;
+            if (reportArea) reportArea.innerHTML = campHtml + locHtml;
         }
 
         function renderClientsTable(data) {

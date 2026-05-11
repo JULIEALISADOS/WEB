@@ -9,8 +9,20 @@ export async function initJuliePixel() {
     const utm_medium = urlParams.get('utm_medium') || 'Ninguno';
     const utm_campaign = urlParams.get('utm_campaign') || 'Organico';
     
+    // Capturar ubicación aproximada por IP (GeoIP)
+    let ubicacion = 'Desconocida';
+    try {
+        const geoResp = await fetch('https://ipapi.co/json/');
+        const geoData = await geoResp.json();
+        if (geoData.city) {
+            ubicacion = `${geoData.city}, ${geoData.region}, ${geoData.country_name}`;
+        }
+    } catch (e) {
+        console.warn('GeoIP falló, usando ubicación desconocida');
+    }
+
     // Guardar en sessionStorage para asociar con la ficha técnica al final
-    const marketingData = { utm_source, utm_medium, utm_campaign, timestamp: new Date().toISOString() };
+    const marketingData = { utm_source, utm_medium, utm_campaign, ubicacion, timestamp: new Date().toISOString() };
     sessionStorage.setItem('julie_marketing_data', JSON.stringify(marketingData));
 
     console.log('🚀 JuliePixel Activo: Capturando origen...', utm_source);
@@ -23,6 +35,7 @@ export async function initJuliePixel() {
                 origen: utm_source,
                 medio: utm_medium,
                 campana: utm_campaign,
+                ubicacion: ubicacion,
                 pagina: window.location.pathname,
                 agente_usuario: navigator.userAgent
             }]);

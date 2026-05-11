@@ -795,6 +795,7 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.utm_source = marketing.utm_source;
         cleanData.utm_medium = marketing.utm_medium;
         cleanData.utm_campaign = marketing.utm_campaign;
+        cleanData.ubicacion_gps = marketing.ubicacion; // Ubicación capturada por IP
         // El genero ya viene en cleanData por el input hidden
         // --- PROCESAR EVIDENCIAS ---
         const uploadTasks = [];
