@@ -42,35 +42,44 @@ body {
     background: white;
     min-height: 100vh;
     width: 100%;
+    max-width: 100%;
     margin: 0;
     position: relative;
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
+    transition: max-width 0.3s ease, margin 0.3s ease;
 }
 
 @media (min-width: 768px) {
     .app-container {
-        max-width: 600px;
-        margin: 16px auto;
-        min-height: calc(100vh - 32px);
+        max-width: 720px;
+        margin: 20px auto;
+        min-height: calc(100vh - 40px);
         border-radius: 20px;
         border: 1px solid var(--border-soft);
         overflow: hidden;
     }
-    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-    .home-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .home-card.primary { grid-column:span 2; }
-    .bottom-nav { max-width:900px; border-radius:0 0 20px 20px; }
-    .hair-states-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
-    .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-    .signature-section { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap:24px; }
+    .home-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+    .home-card.primary { grid-column: span 2; }
+    .bottom-nav { max-width: 720px; border-radius: 0 0 20px 20px; bottom: 20px; width: calc(720px - 2px); }
+    .hair-states-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+    .photo-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
 }
 
-@media (min-width: 1100px) {
-    .app-container { max-width: 900px; }
-    .bottom-nav { max-width: 900px; }
+@media (min-width: 1024px) {
+    .app-container { max-width: 960px; }
+    .bottom-nav { max-width: 960px; width: calc(960px - 2px); }
+    .form-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .form-grid > .full-width { grid-column: span 3; }
+    .hair-states-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+@media (min-width: 1440px) {
+    .app-container { max-width: 1100px; }
+    .bottom-nav { max-width: 1100px; width: calc(1100px - 2px); }
 }
 
 /* ============ HEADER ============ */
