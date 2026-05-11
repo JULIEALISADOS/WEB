@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        // SEGURIDAD EXTRA: Bloqueo de acceso directo
-        if (sessionStorage.getItem('julie_admin_auth') !== 'true') {
+        // SEGURIDAD: Verificar sesión de administrador
+        const isAdmin = sessionStorage.getItem('julie_admin_auth') === 'true' || 
+                        localStorage.getItem('julie_role') === 'admin';
+                        
+        if (!isAdmin) {
             window.location.href = 'index.html';
         }
     </script>
@@ -377,24 +380,29 @@
                 l.style.background = 'transparent';
                 l.style.color = '#aaa';
             });
-            const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(l => l.onclick.toString().includes(id));
-            if (activeLink) {
-                activeLink.classList.add('active');
-                activeLink.style.background = 'var(--gold-gradient)';
-                activeLink.style.color = 'white';
-            }
-            lucide.createIcons();
+            
+            // Buscar el link activo comparando el id en el onclick
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                if (l.getAttribute('onclick').includes(id)) {
+                    l.classList.add('active');
+                    l.style.background = 'var(--gold-gradient)';
+                    l.style.color = 'white';
+                }
+            });
+
+            if (window.lucide) window.lucide.createIcons();
         };
 
         window.filterClients = () => {
             const query = document.getElementById('adminSearchInput').value.toLowerCase();
             const filtered = clientsData.filter(c => 
-                c.nombre_completo?.toLowerCase().includes(query) || 
-                c.numero_documento?.toString().includes(query) ||
-                c.telefono?.toString().includes(query)
+                (c.nombre_completo || '').toLowerCase().includes(query) || 
+                (c.numero_documento || '').toString().includes(query) ||
+                (c.telefono || '').toString().includes(query)
             );
             renderClientsTable(filtered);
-            lucide.createIcons();
+            if (window.lucide) window.lucide.createIcons();
         };
 
         window.adminLogout = () => {
@@ -402,7 +410,21 @@
             location.href = 'index.html';
         };
 
-        window.addEventListener('load', () => {
+        window.exportCRM = () => {
+            if (!clientsData || clientsData.length === 0) return alert('No hay datos para exportar');
+            let csv = 'Nombre,Telefono,Email,Documento,Ultima Visita\n';
+            clientsData.forEach(c => {
+                csv += `"${c.nombre_completo}","${c.telefono}","${c.email}","${c.numero_documento}","${new Date(c.created_at).toLocaleDateString()}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `clientes_julie_${new Date().toISOString().split('T')[0]}.csv`);
+            a.click();
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
             loadAdminData();
         });
     </script>
