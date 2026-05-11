@@ -484,6 +484,9 @@ window.viewQuickHistory = async (doc) => {
 // ======================== INITIAL DATA ========================
 async function loadInitialData() {
     try {
+        if (document.getElementById('currentDateTime')) {
+            document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
+        }
         const nextID = await fetchNextID();
         window.nextFolioID = nextID;
         if (document.getElementById('fichaID')) document.getElementById('fichaID').value = nextID;
@@ -610,7 +613,6 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
 // ======================== INIT ========================
 window.addEventListener('load', () => {
     window.lucide?.createIcons();
-    document.getElementById('currentDateTime').value = new Date().toLocaleString('es-CO');
     loadInitialData();
     initRealtimeValidation(steps);
 
