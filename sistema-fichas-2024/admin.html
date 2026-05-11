@@ -169,18 +169,15 @@
             <h2 style="font-family:'Playfair Display'; font-size:1.2rem; margin:0;">JulieApp <br><span style="font-size:0.7rem; opacity:0.6;">ADMIN v5.0</span></h2>
         </div>
         
-        <nav style="display:flex; flex-direction:column; gap:15px;">
-            <a href="#" style="color:white; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px; background:var(--gold-gradient);">
+        <nav style="display:flex; flex-direction:column; gap:15px;" id="adminNav">
+            <a href="javascript:void(0)" onclick="showSection('dashboard')" class="nav-link active" style="color:white; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
                 <i data-lucide="layout-dashboard"></i> <span>Dashboard</span>
             </a>
-            <a href="#" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+            <a href="javascript:void(0)" onclick="showSection('clients')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
                 <i data-lucide="users"></i> <span>Clientes</span>
             </a>
-            <a href="#" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+            <a href="javascript:void(0)" onclick="showSection('analytics')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
                 <i data-lucide="trending-up"></i> <span>Analíticas</span>
-            </a>
-            <a href="#" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
-                <i data-lucide="settings"></i> <span>Ajustes</span>
             </a>
         </nav>
 
@@ -204,79 +201,80 @@
             </div>
         </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Clientes</h3>
-                <div class="value" id="statTotalClients">0</div>
-                <div class="trend"><i data-lucide="arrow-up"></i> +12% este mes</div>
+        <div id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Clientes</h3>
+                    <div class="value" id="statTotalClients">0</div>
+                    <div class="trend"><i data-lucide="arrow-up"></i> +12% este mes</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Venta Estimada</h3>
+                    <div class="value" id="statRevenue">$0</div>
+                    <div class="trend"><i data-lucide="arrow-up"></i> Basado en folios</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Visitas JuliePixel</h3>
+                    <div class="value" id="statVisits">0</div>
+                    <div class="trend" style="color:#f39c12;">Rastreadas hoy</div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Venta Estimada</h3>
-                <div class="value" id="statRevenue">$0</div>
-                <div class="trend"><i data-lucide="arrow-up"></i> Basado en folios</div>
-            </div>
-            <div class="stat-card">
-                <h3>Visitas JuliePixel</h3>
-                <div class="value" id="statVisits">0</div>
-                <div class="trend" style="color:#f39c12;">Rastreadas hoy</div>
+
+            <div class="chart-section">
+                <div class="table-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0;">Clientes Recientes</h3>
+                    </div>
+                    <table id="recentClientsTable">
+                        <thead>
+                            <tr>
+                                <th>CLIENTE</th>
+                                <th>CABELLO</th>
+                                <th>EDAD</th>
+                                <th>ORIGEN</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="table-card">
+                    <h3>Origen de Tráfico</h3>
+                    <div id="originChart" style="margin-top:20px;">
+                        <!-- Gráficos dinámicos -->
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="chart-section">
+        <div id="section-clients" class="hidden">
             <div class="table-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h3 style="margin:0;">Clientes Recientes</h3>
-                    <input type="text" placeholder="🔍 Buscar por nombre o cédula..." style="padding:8px 15px; border-radius:10px; border:1px solid #eee; width:250px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="font-family:'Playfair Display';">Base de Datos de Clientes</h2>
+                    <input type="text" id="adminSearchInput" oninput="filterClients()" placeholder="🔍 Buscar por nombre, cédula o teléfono..." style="padding:12px 20px; border-radius:15px; border:1px solid #ddd; width:350px; font-size:0.9rem;">
                 </div>
-                <table id="recentClientsTable">
+                <table id="allClientsTable">
                     <thead>
                         <tr>
                             <th>CLIENTE</th>
+                            <th>DOCUMENTO</th>
+                            <th>GÉNERO</th>
                             <th>CABELLO</th>
-                            <th>EDAD</th>
-                            <th>ORIGEN</th>
-                            <th>ESTADO</th>
+                            <th>ÚLTIMA VISITA</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Carga dinámica -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="table-card">
-                <h3>Origen de Tráfico</h3>
-                <div id="originChart" style="margin-top:20px;">
-                    <!-- Simulación de gráfico con barras -->
-                    <div style="margin-bottom:15px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                            <span>Instagram (Meta)</span>
-                            <span>45%</span>
-                        </div>
-                        <div style="height:8px; background:#eee; border-radius:10px; overflow:hidden;">
-                            <div style="width:45%; height:100%; background:#1877f2;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom:15px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                            <span>TikTok Ads</span>
-                            <span>30%</span>
-                        </div>
-                        <div style="height:8px; background:#eee; border-radius:10px; overflow:hidden;">
-                            <div style="width:30%; height:100%; background:#fe2c55;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom:15px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
-                            <span>Google Search</span>
-                            <span>15%</span>
-                        </div>
-                        <div style="height:8px; background:#eee; border-radius:10px; overflow:hidden;">
-                            <div style="width:15%; height:100%; background:#f39c12;"></div>
-                        </div>
-                    </div>
-                </div>
+        <div id="section-analytics" class="hidden">
+            <div class="table-card" style="text-align:center; padding:100px;">
+                <i data-lucide="bar-chart-3" style="width:64px; height:64px; color:#ddd; margin-bottom:20px;"></i>
+                <h3>Analíticas Avanzadas</h3>
+                <p>Próximamente verás aquí las tendencias de ventas por mes.</p>
             </div>
         </div>
     </main>
@@ -284,52 +282,104 @@
     <script type="module">
         import { fetchHistory } from './js/db.js';
 
+        let clientsData = [];
+
         async function loadAdminData() {
             try {
-                const history = await fetchHistory();
-                document.getElementById('statTotalClients').innerText = history.length;
-                
-                // Calcular venta estimada (ej: 250.000 por alisado promedio)
-                const revenue = history.length * 250000;
-                document.getElementById('statRevenue').innerText = '$' + revenue.toLocaleString();
-
-                const tbody = document.querySelector('#recentClientsTable tbody');
-                tbody.innerHTML = '';
-
-                history.slice(0, 10).forEach(f => {
-                    const tr = document.createElement('tr');
-                    const badgeClass = f.utm_source?.toLowerCase().includes('google') ? 'badge-google' : 
-                                       (f.utm_source?.toLowerCase().includes('meta') || f.utm_source?.toLowerCase().includes('instagram') ? 'badge-meta' : 'badge-tiktok');
-
-                    tr.innerHTML = `
-                        <td>
-                            <div class="client-info">
-                                <div class="client-avatar">${f.nombre_completo?.charAt(0)}</div>
-                                <div>
-                                    <div style="font-weight:600;">${f.nombre_completo}</div>
-                                    <div style="font-size:0.75rem; color:#888;">${f.telefono}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="font-size:0.85rem;">${f.tipo_cabello || 'No definido'}</td>
-                        <td style="font-size:0.85rem;">${f.edad || 'N/A'} años</td>
-                        <td><span class="badge ${badgeClass}">${f.utm_source || 'Directo'}</span></td>
-                        <td><span class="badge" style="background:#e6fffa; color:#2c7a7b;">Finalizado</span></td>
-                        <td>
-                            <button class="btn-action" onclick="window.open('https://wa.me/57${f.telefono}')">
-                                <i data-lucide="message-circle" style="width:14px;"></i> WhatsApp
-                            </button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-
+                clientsData = await fetchHistory();
+                renderDashboard();
+                renderClientsTable(clientsData);
                 lucide.createIcons();
             } catch (e) { console.error('Admin Load Error:', e); }
         }
 
-        window.exportCRM = () => {
-            alert('🚀 Generando archivo CSV para Meta Ads... \n\nEsta función descargará los emails y teléfonos para que tus anuncios busquen clientes similares a tus mejores clientes.');
+        function renderDashboard() {
+            document.getElementById('statTotalClients').innerText = clientsData.length;
+            const revenue = clientsData.length * 250000;
+            document.getElementById('statRevenue').innerText = '$' + revenue.toLocaleString();
+
+            const recentTbody = document.querySelector('#recentClientsTable tbody');
+            recentTbody.innerHTML = '';
+            clientsData.slice(0, 5).forEach(f => {
+                const tr = document.createElement('tr');
+                const badgeClass = getBadgeClass(f.utm_source);
+                tr.innerHTML = `
+                    <td>
+                        <div class="client-info">
+                            <div class="client-avatar">${f.nombre_completo?.charAt(0)}</div>
+                            <div style="font-weight:600;">${f.nombre_completo}</div>
+                        </div>
+                    </td>
+                    <td>${f.tipo_cabello || 'N/A'}</td>
+                    <td>${f.edad || 'N/A'}</td>
+                    <td><span class="badge ${badgeClass}">${f.utm_source || 'Directo'}</span></td>
+                    <td>
+                        <button class="btn-action" onclick="window.open('https://wa.me/57${f.telefono}')">
+                            <i data-lucide="message-circle" style="width:14px;"></i>
+                        </button>
+                    </td>
+                `;
+                recentTbody.appendChild(tr);
+            });
+        }
+
+        function renderClientsTable(data) {
+            const tbody = document.querySelector('#allClientsTable tbody');
+            tbody.innerHTML = '';
+            data.forEach(f => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${f.nombre_completo}</strong><br><small>${f.telefono}</small></td>
+                    <td>${f.numero_documento}</td>
+                    <td>${f.genero || 'N/A'}</td>
+                    <td>${f.tipo_cabello || 'N/A'}</td>
+                    <td>${new Date(f.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn-action" onclick="window.open('https://wa.me/57${f.telefono}')">
+                            <i data-lucide="message-circle" style="width:14px;"></i> WhatsApp
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function getBadgeClass(src) {
+            const s = src?.toLowerCase() || '';
+            if (s.includes('google')) return 'badge-google';
+            if (s.includes('meta') || s.includes('instagram')) return 'badge-meta';
+            if (s.includes('tiktok')) return 'badge-tiktok';
+            return 'badge-direct';
+        }
+
+        window.showSection = (id) => {
+            document.querySelectorAll('[id^="section-"]').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`section-${id}`).classList.remove('hidden');
+            
+            // Actualizar menu
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+                l.style.background = 'transparent';
+                l.style.color = '#aaa';
+            });
+            const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(l => l.onclick.toString().includes(id));
+            if (activeLink) {
+                activeLink.classList.add('active');
+                activeLink.style.background = 'var(--gold-gradient)';
+                activeLink.style.color = 'white';
+            }
+            lucide.createIcons();
+        };
+
+        window.filterClients = () => {
+            const query = document.getElementById('adminSearchInput').value.toLowerCase();
+            const filtered = clientsData.filter(c => 
+                c.nombre_completo?.toLowerCase().includes(query) || 
+                c.numero_documento?.toString().includes(query) ||
+                c.telefono?.toString().includes(query)
+            );
+            renderClientsTable(filtered);
+            lucide.createIcons();
         };
 
         window.adminLogout = () => {
@@ -339,7 +389,6 @@
 
         window.addEventListener('load', () => {
             loadAdminData();
-            lucide.createIcons();
         });
     </script>
 </body>
