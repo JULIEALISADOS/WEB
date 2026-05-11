@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=3.4">
+    <link rel="stylesheet" href="style.css?v=3.6">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -52,7 +52,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v3.4';
+                const CACHE_NAME = 'julie-ficha-v3.6';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -231,6 +231,19 @@
                             <input type="email" name="email" placeholder="ejemplo@correo.com" required>
                         </div>
                         <div class="form-group full-width">
+                            <label class="required">¿CÓMO NOS CONOCISTE?</label>
+                            <select name="como_nos_conociste" required>
+                                <option value="">Selecciona una opción...</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Google">Google (Buscador/Anuncio)</option>
+                                <option value="Recomendación">Recomendación / Amiga</option>
+                                <option value="Paso por el local">Pasé por el local</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
                             <label class="required">FECHA DILIGENCIAMIENTO</label>
                             <input type="text" name="fecha_diligenciamiento" id="currentDateTime" readonly>
                         </div>
@@ -305,8 +318,8 @@
                 <section class="step" id="step5">
                     <h2 class="section-title">PROCEDIMIENTO</h2>
                     <div class="form-grid">
-                        <div class="form-group full-width"><label>EMBARAZO (OPCIONAL)</label><input type="hidden" name="embarazo" id="embarazoInput" value="No aporta"><div class="chip-group"><button type="button" class="chip" onclick="setChip('embarazo', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('embarazo', 'No')">No</button><button type="button" class="chip" onclick="setChip('embarazo', 'No aporta')">Opcional</button></div></div>
-                        <div class="form-group full-width"><label>ALERGIAS (OPCIONAL)</label><input type="hidden" name="alergias" id="alergiasInput" value="No aporta"><div class="chip-group"><button type="button" class="chip" onclick="setChip('alergias', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('alergias', 'No')">No</button><button type="button" class="chip" onclick="setChip('alergias', 'No aporta')">Opcional</button></div></div>
+                        <div class="form-group full-width"><label class="required">EMBARAZO</label><input type="hidden" name="embarazo" id="embarazoInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('embarazo', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('embarazo', 'No')">No</button></div></div>
+                        <div class="form-group full-width"><label class="required">ALERGIAS</label><input type="hidden" name="alergias" id="alergiasInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('alergias', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('alergias', 'No')">No</button></div></div>
                         <div class="form-group full-width">
                             <label class="required">PROCEDIMIENTO (SELECCIÓN MÚLTIPLE)</label>
                             <input type="hidden" name="procedimiento" id="procedimientoInput" required>
@@ -437,7 +450,7 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=3.4"></script>
+    <script type="module" src="js/app.js?v=3.6"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {

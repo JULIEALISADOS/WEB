@@ -102,16 +102,17 @@ export async function generatePDF() {
 
         // --- CLIENTE BOX ---
         doc.setFillColor(...colors.lightGray);
-        doc.roundedRect(15, y, pageWidth - 30, 24, 2, 2, 'F');
+        doc.roundedRect(15, y, pageWidth - 30, 28, 2, 2, 'F');
         doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
         doc.text('CLIENTE', 20, y + 6);
         doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.dark);
         doc.text(getVal('nombre_completo'), 20, y + 13);
         doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.gray);
         doc.text(`${getVal('tipo_documento')}: ${getVal('numero_documento')}  |  TEL: ${getVal('telefono')}  |  EDAD: ${getVal('edad')} AÑOS`, 20, y + 18);
-        doc.text(`EMAIL: ${getVal('email')}  |  SEDE: ${getVal('sede')}  |  ESTILISTA: ${getVal('estilista_responsable')}`, 20, y + 22);
+        doc.text(`EMAIL: ${getVal('email')}  |  SEDE: ${getVal('sede')}`, 20, y + 22);
+        doc.text(`ORIGEN: ${getVal('como_nos_conociste')}  |  ESTILISTA: ${getVal('estilista_responsable')}`, 20, y + 26);
 
-        y += 28;
+        y += 32;
 
         // --- SECCIÓN 1: DIAGNÓSTICO ---
         drawSectionHeader('1. Diagnóstico Técnico de Fibra');
@@ -270,7 +271,7 @@ export async function generatePDF() {
             }
         };
 
-        drawSig(sigC, 'FIRMA CLIENTE', getVal('nombre_completo'), 15, y + 25);
+        drawSig(sigC, 'FIRMA CLIENTE', `${getVal('nombre_completo')} - CC: ${getVal('numero_documento')}`, 15, y + 25);
         drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth - 70, y + 25);
 
         y += 38;
