@@ -234,8 +234,8 @@ export async function generatePDF() {
         doc.setDrawColor(220, 220, 220);
         doc.roundedRect(15, y, pageWidth - 30, 45, 2, 2, 'FD');
         
-        doc.setFontSize(6.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
-        const consentText = "DECLARACIÓN Y ACEPTACIÓN: Declaro que he sido debidamente informado(a) sobre el procedimiento de alisado capilar, sus riesgos, expectativas y cuidados posteriores. Reconozco que los resultados pueden variar según mi historial químico y cuidados. Acepto la POLÍTICA DE GARANTÍA DE 20 DÍAS y renuncio expresamente a reclamaciones futuras derivadas del incumplimiento de las recomendaciones dadas por Julie Alisados. Así mismo, autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012.";
+        doc.setFontSize(6); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+        const consentText = "DECLARACIÓN Y ACEPTACIÓN INTEGRAL: El alisado capilar consiste en la aplicación de productos químicos diseñados para modificar la estructura del cabello. El resultado depende de factores individuales como el tipo de cabello e historial previo. El cliente reconoce y acepta que los resultados pueden variar y que Julie Alisados no será responsable por resultados insatisfactorios si no se siguen las recomendaciones. Declaro que he recibido toda la información sobre riesgos y cuidados, y renuncio expresamente a cualquier reclamación futura. Acepto la POLÍTICA DE GARANTÍA DE 20 DÍAS: La garantía cubre ondas prematuras dentro de los 20 días calendarios posteriores al procedimiento. Si la garantía no procede, el cliente pagará $20.000 por costos de valoración. Autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012. He leído y comprendido toda la información y acepto voluntariamente el procedimiento.";
         doc.text(doc.splitTextToSize(consentText, pageWidth - 40), 20, y + 6);
         
         // Autorización de fotos
