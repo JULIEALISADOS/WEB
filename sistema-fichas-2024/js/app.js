@@ -54,6 +54,13 @@ function login() {
 
     const isAdmin = validAdmins.includes(user) && validPasses.includes(pass);
     if (isAdmin) {
+        if (document.getElementById('rememberMe')?.checked) {
+            localStorage.setItem('julie_remember_user', user);
+            localStorage.setItem('julie_remember_pass', pass);
+        } else {
+            localStorage.removeItem('julie_remember_user');
+            localStorage.removeItem('julie_remember_pass');
+        }
         localStorage.setItem('julie_role', 'admin');
         localStorage.setItem('julie_session', 'true');
         loginSuccess('admin');
@@ -62,12 +69,32 @@ function login() {
     }
 }
 
+window.togglePass = () => {
+    const p = document.getElementById('loginPass');
+    const i = document.getElementById('passIcon');
+    if (p.type === 'password') {
+        p.type = 'text';
+        i.setAttribute('data-lucide', 'eye-off');
+    } else {
+        p.type = 'password';
+        i.setAttribute('data-lucide', 'eye');
+    }
+    if (window.lucide) window.lucide.createIcons();
+};
+
 async function checkStylistLogin(user, pass) {
     const errorEl = document.getElementById('loginError');
     try {
         const stylists = await fetchStylists();
         const found = stylists.find(s => (s.nombre === user || s.email === user) && s.password === pass);
         if (found) {
+            if (document.getElementById('rememberMe')?.checked) {
+                localStorage.setItem('julie_remember_user', user);
+                localStorage.setItem('julie_remember_pass', pass);
+            } else {
+                localStorage.removeItem('julie_remember_user');
+                localStorage.removeItem('julie_remember_pass');
+            }
             localStorage.setItem('julie_role', 'stylist');
             localStorage.setItem('julie_session', 'true');
             localStorage.setItem('julie_user_name', found.nombre);
@@ -151,7 +178,19 @@ function logout() {
 }
 window.logout = logout;
 
-if (localStorage.getItem('julie_session') === 'true' && loginSection) {
+    // Auto-relleno de credenciales guardadas
+    const savedUser = localStorage.getItem('julie_remember_user');
+    const savedPass = localStorage.getItem('julie_remember_pass');
+    if (savedUser && savedPass) {
+        const u = document.getElementById('loginEmail');
+        const p = document.getElementById('loginPass');
+        const r = document.getElementById('rememberMe');
+        if (u) u.value = savedUser;
+        if (p) p.value = savedPass;
+        if (r) r.checked = true;
+    }
+
+    if (localStorage.getItem('julie_session') === 'true' && loginSection) {
     loginSection.classList.add('hidden');
     appMain.classList.remove('hidden');
     applyRoleUI(localStorage.getItem('julie_role'));

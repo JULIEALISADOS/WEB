@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=6.4">
+    <link rel="stylesheet" href="style.css?v=6.5">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -48,9 +48,8 @@
             });
         }
 
-        async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v6.4';
+                const CACHE_NAME = 'julie-ficha-v6.5';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -112,16 +111,20 @@
             <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">BETA</small></h2>
             <p>Ingresa tus credenciales para continuar</p>
             <form id="loginForm">
-                <div style="position:relative;">
-                    <input type="text" id="loginEmail" placeholder="Usuario" required>
+                <div class="form-group" style="text-align:left;">
+                    <label>Usuario / Email</label>
+                    <input type="text" id="loginEmail" placeholder="Ingresa tu usuario" autocomplete="username">
                 </div>
-                <div style="position:relative; margin-top:10px;">
-                    <input type="password" id="loginPass" placeholder="Contraseña" required style="padding-right:45px;">
-                    <button type="button" onclick="togglePass()" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--gold-primary); cursor:pointer; padding:5px;">
-                        <i data-lucide="eye" id="eyeIcon"></i>
-                    </button>
+                <div class="form-group" style="text-align:left; position:relative;">
+                    <label>Contraseña</label>
+                    <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+                    <button type="button" onclick="togglePass()" style="position:absolute; right:10px; top:35px; background:none; border:none; color:#999; cursor:pointer;"><i id="passIcon" data-lucide="eye"></i></button>
                 </div>
-                <button type="submit" class="btn-primary" style="margin-top:20px;">Entrar</button>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:0.85rem; color:var(--text-secondary);">
+                    <input type="checkbox" id="rememberMe" style="width:16px; height:16px; accent-color:var(--gold-primary);">
+                    <label for="rememberMe" style="cursor:pointer; margin:0; text-transform:none; font-weight:400;">Recordar mis credenciales</label>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">ENTRAR</button>
             </form>
             <p id="loginError" class="error-text hidden">Credenciales incorrectas</p>
             <button onclick="forceUpdate()" style="background:none; border:none; color:var(--gold-primary); font-size:0.75rem; margin-top:15px; cursor:pointer; text-decoration:underline;">¿No puedes entrar? Pulsa aquí para limpiar el sistema</button>
@@ -662,7 +665,7 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=6.4"></script>
+    <script type="module" src="js/app.js?v=6.5"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
