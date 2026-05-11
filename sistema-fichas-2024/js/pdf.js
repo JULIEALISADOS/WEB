@@ -9,6 +9,9 @@ export async function generatePDF() {
 
     try {
         const f = document.getElementById('fichaForm');
+        const age = parseInt(f.querySelector('[name="edad"]')?.value) || 0;
+        const isMinor = age < 18;
+
         const getVal = (name) => {
             const el = f.querySelector(`[name="${name}"]`);
             if (!el) return '---';

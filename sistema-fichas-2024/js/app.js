@@ -182,6 +182,16 @@ function updateStep(direction) {
     window.scrollTo(0, 0);
 
     if (currentStep === 6) {
+        // Marketing: AddPaymentInfo en TikTok al llegar a firmas
+        if (typeof ttq === 'object') {
+            ttq.track('AddPaymentInfo', {
+                contents: [{
+                    content_id: 'diagnostico_final',
+                    content_name: 'Consentimiento y Firmas',
+                    content_type: 'product'
+                }]
+            });
+        }
         setTimeout(() => {
             initSignatures();
             if (isLocked && window.lastViewedFicha) {
@@ -209,7 +219,7 @@ window.switchTab = function (tab) {
     if (tab === 'home') {
         homeSection?.classList.remove('hidden');
     } else if (tab === 'new') {
-        // Marketing: ViewContent en TikTok al iniciar nueva ficha
+        // Marketing: ViewContent y AddToCart en TikTok al iniciar nueva ficha
         if (typeof ttq === 'object') {
             ttq.track('ViewContent', {
                 contents: [{
@@ -217,6 +227,15 @@ window.switchTab = function (tab) {
                     content_name: 'Nueva Ficha Técnica',
                     content_type: 'product'
                 }]
+            });
+            ttq.track('AddToCart', {
+                contents: [{
+                    content_id: 'nuevo_folio',
+                    content_name: 'Nueva Ficha Técnica',
+                    content_type: 'product'
+                }],
+                value: 0,
+                currency: 'COP'
             });
         }
 
@@ -752,7 +771,7 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.firma_tecnico = padTech.toDataURL();
         if (isMinor && padTutor) {
             cleanData.firma_tutor_legal = padTutor.toDataURL();
-            cleanData.nombre_tutor = document.getElementById('tutorInput')?.value || '---';
+            cleanData.nombre_tutor = document.getElementById('tutorNameInput')?.value || '---';
         }
 
         // --- ENCRIPTACIÓN DE PRIVACIDAD (HASHING SHA-256) ---

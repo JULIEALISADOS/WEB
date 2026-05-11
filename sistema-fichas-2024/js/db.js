@@ -36,12 +36,12 @@ export const fetchNextID = async () => {
 
 export const fetchStylists = async () => {
     // Intentar traer perfil completo (con nuevas columnas)
-    let { data, error } = await sb.from('estilistas').select('id, nombre, telefono, email').order('nombre');
+    let { data, error } = await sb.from('estilistas').select('id, nombre, telefono, email, password').order('nombre');
     
     // Si falla, es probable que falten las columnas en Supabase
     if (error) {
-        console.warn('Columnas telefono/email no encontradas, reintentando basico...');
-        let { data: basicData, error: basicError } = await sb.from('estilistas').select('id, nombre').order('nombre');
+        console.warn('Columnas telefono/email/password no encontradas, reintentando basico...');
+        let { data: basicData, error: basicError } = await sb.from('estilistas').select('id, nombre, password').order('nombre');
         if (basicError) throw basicError;
         return basicData;
     }
