@@ -209,6 +209,9 @@ window.switchTab = function (tab) {
     if (tab === 'home') {
         homeSection?.classList.remove('hidden');
     } else if (tab === 'new') {
+        // Marketing: ViewContent en TikTok al iniciar nueva ficha
+        if (typeof ttq === 'object') ttq.track('ViewContent');
+
         document.querySelector('.form-wrapper')?.classList.remove('hidden');
         document.querySelector('.form-footer')?.classList.remove('hidden');
         document.querySelector('.progress-container')?.classList.remove('hidden');
@@ -238,6 +241,19 @@ window.switchTab = function (tab) {
         document.querySelectorAll('.nav-item')[3]?.classList.add('active');
         document.querySelector('.btn-back')?.classList.remove('hidden');
         renderStylists();
+    }
+};
+
+window.jumpToStep = (step) => {
+    if (step > currentStep) {
+        if (!validateStep(currentStep, steps)) return;
+    }
+    currentStep = step;
+    updateStep('jump');
+
+    // Marketing: InitiateCheckout en TikTok al avanzar al paso 2
+    if (step === 2 && typeof ttq === 'object') {
+        ttq.track('InitiateCheckout');
     }
 };
 
