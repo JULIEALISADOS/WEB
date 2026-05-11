@@ -366,14 +366,12 @@
                 </div>
                 <p class="certification-text">Nada nos hace más felices que verlas sonreír. Estas son algunas de las historias reales de nuestras clientas.</p>
 
-                <!-- Widget de Google OCULTO para evitar opiniones negativas externas -->
-                <!-- 
+                <!-- Widget de Google Oficial -->
                 <div class="google-reviews-widget-container"
                     style="margin: 0 auto 50px; max-width: 1200px; padding: 0 20px;">
                     <script src="https://elfsightcdn.com/platform.js" async></script>
                     <div class="elfsight-app-be277a4f-073e-4adc-803f-ef7aedef92ad" data-elfsight-app-lazy></div>
                 </div>
-                -->
 
                 <div class="testimonials-infinite-container">
                     <div class="testimonials-infinite-track">
@@ -1127,7 +1125,7 @@
             try {
                 // Traer 15 recomendaciones recientes que sean significativas
                 const { data, error } = await sb.from('fichas')
-                    .select('nombre_cliente, recomendaciones')
+                    .select('nombre_completo, recomendaciones')
                     .not('recomendaciones', 'is', null)
                     .neq('recomendaciones', '')
                     .order('created_at', { ascending: false })
@@ -1141,7 +1139,7 @@
                 const shuffled = validReviews.sort(() => 0.5 - Math.random()).slice(0, 8);
 
                 shuffled.forEach(rev => {
-                    const firstLetter = (rev.nombre_cliente || 'C').charAt(0).toUpperCase();
+                    const firstLetter = (rev.nombre_completo || 'C').charAt(0).toUpperCase();
                     const card = document.createElement('div');
                     card.className = 'testimonial-card';
                     card.innerHTML = `
@@ -1149,7 +1147,7 @@
                         <p class="quote">"${rev.recomendaciones}"</p>
                         <div class="google-user">
                             <div class="user-avatar">${firstLetter}</div>
-                            <strong>${rev.nombre_cliente}</strong>
+                            <strong>${rev.nombre_completo}</strong>
                             <span class="source">Cliente JulieApp</span>
                         </div>
                     `;
