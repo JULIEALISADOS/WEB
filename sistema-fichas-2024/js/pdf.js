@@ -204,7 +204,6 @@ export async function generatePDF() {
         const fotoA = await loadImg(f.querySelector('#previewAntes img')?.src);
         const fotoD = await loadImg(f.querySelector('#previewDespues img')?.src);
 
-        // Labels
         doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
         doc.text('ANTES', 15 + imgW / 2, y, { align: 'center' });
         doc.text('DESPUÉS', pageWidth - 15 - imgW / 2, y, { align: 'center' });
@@ -222,67 +221,70 @@ export async function generatePDF() {
         }
         y += imgH + 10;
 
-        // --- SECCIÓN 6: FIRMAS ---
-        drawSectionHeader('6. Formalización y Autorización');
+        // --- SECCIÓN 6: CONSENTIMIENTO INFORMADO ---
+        drawSectionHeader('6. Consentimiento Informado y Legal');
+        
+        // Historial Adicional
+        h1 = drawField('Químicos Previos', getVal('consent_quimicos'), col1, 80);
+        h2 = drawField('Tratamiento Médico', getVal('consent_meds'), col2, 80);
+        y += Math.max(h1, h2);
+        
+        checkSpace(60);
+        doc.setFillColor(252, 252, 252);
+        doc.setDrawColor(220, 220, 220);
+        doc.roundedRect(15, y, pageWidth - 30, 45, 2, 2, 'FD');
+        
+        doc.setFontSize(6.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+        const consentText = "DECLARACIÓN Y ACEPTACIÓN: Declaro que he sido debidamente informado(a) sobre el procedimiento de alisado capilar, sus riesgos, expectativas y cuidados posteriores. Reconozco que los resultados pueden variar según mi historial químico y cuidados. Acepto la POLÍTICA DE GARANTÍA DE 20 DÍAS y renuncio expresamente a reclamaciones futuras derivadas del incumplimiento de las recomendaciones dadas por Julie Alisados. Así mismo, autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012.";
+        doc.text(doc.splitTextToSize(consentText, pageWidth - 40), 20, y + 6);
+        
+        // Autorización de fotos
+        const autPub = f.querySelector('[name="autoriza_publicidad"]')?.checked ? "SÍ AUTORIZA" : "NO AUTORIZA";
+        doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
+        doc.text(`AUTORIZACIÓN USO PUBLICITARIO DE IMAGEN: ${autPub}`, 20, y + 40);
+        
+        y += 55;
 
-        // Obtener firmas — lógica robusta con múltiples fallbacks
-        let sigC = '', sigT = '';
+        // --- SECCIÓN 7: FIRMAS ---
+        // Obtener firmas
+        let sigC = '', sigT = '', sigM = '';
+        const { padClient, padTech, padTutor } = getSignaturePads();
 
-        // Prioridad 1: datos guardados en Supabase (modo lectura)
         if (window.isLocked && window.lastViewedFicha) {
             sigC = window.lastViewedFicha.firma_cliente || '';
             sigT = window.lastViewedFicha.firma_tecnico || '';
+            sigM = window.lastViewedFicha.firma_tutor_legal || '';
+        } else {
+            if (padClient && !padClient.isEmpty()) sigC = padClient.toDataURL();
+            if (padTech && !padTech.isEmpty()) sigT = padTech.toDataURL();
+            if (padTutor && !padTutor.isEmpty()) sigM = padTutor.toDataURL();
         }
 
-        // Prioridad 2: pads activos en pantalla
-        if (!sigC || !sigT) {
-            try {
-                const { padClient, padTech } = getSignaturePads();
-                if (!sigC && padClient && !padClient.isEmpty()) sigC = padClient.toDataURL();
-                if (!sigT && padTech && !padTech.isEmpty()) sigT = padTech.toDataURL();
-            } catch (e) { /* pads no disponibles */ }
-        }
-
-        // Prioridad 3: último guardado en memoria
-        if (!sigC && window.lastGeneratedSignatures?.client) sigC = window.lastGeneratedSignatures.client;
-        if (!sigT && window.lastGeneratedSignatures?.tech) sigT = window.lastGeneratedSignatures.tech;
-
-        checkSpace(35);
+        checkSpace(40);
         const drawSig = (src, label, printedName, x, yPos) => {
-            // Línea base
-            doc.setDrawColor(...colors.gray);
-            doc.setLineWidth(0.3);
-            doc.line(x, yPos, x + 55, yPos);
-            // Label
-            doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
-            doc.text(label, x + 27.5, yPos + 4, { align: 'center' });
-            
-            // Nombre Impreso
+            doc.setDrawColor(...colors.gray); doc.setLineWidth(0.3);
+            doc.line(x, yPos, x + 50, yPos);
+            doc.setFontSize(6); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
+            doc.text(label, x + 25, yPos + 3, { align: 'center' });
             if (printedName && printedName !== '---') {
-                doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
-                doc.text(printedName.toUpperCase(), x + 27.5, yPos + 8, { align: 'center' });
+                doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+                doc.text(printedName.toUpperCase(), x + 25, yPos + 6, { align: 'center' });
             }
-
-            // Imagen firma
             if (src && src.startsWith('data:image')) {
-                try { doc.addImage(src, 'PNG', x + 5, yPos - 20, 45, 20); } catch (e) {
-                    console.warn('Error añadiendo firma al PDF:', e);
-                }
+                try { doc.addImage(src, 'PNG', x + 5, yPos - 18, 40, 18); } catch (e) {}
             }
         };
 
-        drawSig(sigC, 'FIRMA CLIENTE', `${getVal('nombre_completo')} - CC: ${getVal('numero_documento')}`, 15, y + 25);
-        drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth - 70, y + 25);
-
-        y += 38;
-
-        // Autorización
-        doc.setFontSize(6); doc.setTextColor(...colors.gray);
-        const auth = "Autorizo el tratamiento de mis datos personales y el registro fotográfico conforme a la Ley 1581/2012. Certifico que la información suministrada es verídica.";
-        doc.text(doc.splitTextToSize(auth, pageWidth - 30), 15, y);
+        const isMinor = parseInt(getVal('edad')) < 18;
+        
+        drawSig(sigC, 'FIRMA CLIENTE', getVal('nombre_completo'), 15, y + 20);
+        drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth / 2 - 25, y + 20);
+        
+        if (isMinor) {
+            drawSig(sigM, 'FIRMA TUTOR LEGAL', 'Responsable Menor', pageWidth - 65, y + 20);
+        }
 
         // Footer
-        y += 10;
         doc.setFillColor(...colors.gold);
         doc.rect(0, doc.internal.pageSize.getHeight() - 3, pageWidth, 3, 'F');
 
