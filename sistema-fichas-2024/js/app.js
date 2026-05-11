@@ -63,6 +63,7 @@ function login() {
         }
         localStorage.setItem('julie_role', 'admin');
         localStorage.setItem('julie_session', 'true');
+        sessionStorage.setItem('julie_admin_auth', 'true'); // Sincronización para admin.html
         loginSuccess('admin');
     } else {
         checkStylistLogin(user, pass);
@@ -125,9 +126,10 @@ function applyRoleUI(role) {
     if (role === 'stylist') {
         if (navHistory) navHistory.style.display = 'none';
         if (navTeam) navTeam.style.display = 'none';
-        if (btnPdf) btnPdf.style.display = 'flex'; // Mostrar PDF para estilistas
+        if (btnPdf) btnPdf.style.display = 'none'; // Revertido: Solo admin ve PDF
         if (changePassBtn) changePassBtn.style.display = 'flex';
-        document.querySelector('.btn-pdf-modal')?.classList.remove('hidden'); 
+        // En el modal de éxito, ocultar botón PDF
+        document.querySelector('.btn-pdf-modal')?.classList.add('hidden');
     } else {
         if (navHistory) navHistory.style.display = 'flex';
         if (navTeam) navTeam.style.display = 'flex';

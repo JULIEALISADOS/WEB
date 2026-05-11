@@ -150,18 +150,23 @@
                 <div class="header-actions">
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
                         <i data-lucide="history"></i>
+                        <span>HISTORIAL</span>
                     </button>
                     <button type="button" id="changePassBtn" class="btn-refresh" onclick="openChangePassModal()" title="Cambiar mi Contraseña" style="background:var(--gold-light); color:var(--gold-dark); border:1px solid var(--gold-primary);">
                         <i data-lucide="lock"></i>
+                        <span>CLAVE</span>
                     </button>
-                    <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
-                        <i data-lucide="rotate-cw"></i>
+                    <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema" style="width: auto; padding: 0 12px; gap: 6px;">
+                        <i data-lucide="rotate-cw" style="width: 16px;"></i>
+                        <span style="font-size: 0.7rem; font-weight: 700;">ACTUALIZAR</span>
                     </button>
-                    <button type="button" id="pdfBtn" class="btn-pdf hidden" onclick="generatePDF()" title="Descargar PDF">
-                        <i data-lucide="download"></i>
+                    <button type="button" id="pdfBtn" class="btn-pdf hidden" onclick="generatePDF()" title="Descargar PDF" style="width: auto; padding: 0 12px; gap: 6px;">
+                        <i data-lucide="download" style="width: 16px;"></i>
+                        <span style="font-size: 0.7rem; font-weight: 700;">PDF</span>
                     </button>
-                    <button type="button" class="btn-logout" onclick="logout()" title="Cerrar Sesión">
-                        <i data-lucide="log-out"></i>
+                    <button type="button" class="btn-logout" onclick="logout()" title="Cerrar Sesión" style="width: auto; padding: 0 12px; gap: 6px;">
+                        <i data-lucide="log-out" style="width: 16px;"></i>
+                        <span style="font-size: 0.7rem; font-weight: 700;">SALIR</span>
                     </button>
                 </div>
             </div>

@@ -285,12 +285,27 @@
         let clientsData = [];
 
         async function loadAdminData() {
+            const tbody = document.querySelector('#allClientsTable tbody');
+            const recentTbody = document.querySelector('#recentClientsTable tbody');
+            
+            if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Cargando folios...</td></tr>';
+            
             try {
                 clientsData = await fetchHistory();
+                console.log('Datos administrativos cargados:', clientsData.length);
+                
+                if (!clientsData || clientsData.length === 0) {
+                    if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay folios registrados aún.</td></tr>';
+                    return;
+                }
+                
                 renderDashboard();
                 renderClientsTable(clientsData);
-                lucide.createIcons();
-            } catch (e) { console.error('Admin Load Error:', e); }
+                if (window.lucide) window.lucide.createIcons();
+            } catch (e) { 
+                console.error('Admin Load Error:', e); 
+                if (tbody) tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:red;">⚠️ Error al conectar con la base de datos. <br> <small>${e.message}</small></td></tr>`;
+            }
         }
 
         function renderDashboard() {
