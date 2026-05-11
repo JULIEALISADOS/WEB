@@ -712,28 +712,53 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
 
+        // --- ENCRIPTACIÓN DE PRIVACIDAD (HASHING SHA-256) ---
+        const hashData = async (str) => {
+            if (!str) return null;
+            const msgBuffer = new TextEncoder().encode(str.trim().toLowerCase());
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        };
+
+        const hashedEmail = await hashData(cleanData.email);
+        const hashedPhone = await hashData(cleanData.telefono);
+
         await insertFicha(cleanData);
 
-        // Reportar conversión a Google
+        // Reportar conversión a Google (Enhanced Conversions)
         if (typeof gtag === 'function') {
             gtag('event', 'purchase', {
                 'transaction_id': cleanData.consecutivo,
-                'value': 0, // Podrías poner un valor estimado si quisieras
+                'value': 0,
                 'currency': 'COP',
+                'user_data': {
+                    'sha256_email_address': hashedEmail,
+                    'sha256_phone_number': hashedPhone
+                },
                 'items': [{ 'item_id': cleanData.procedimiento, 'item_name': 'Servicio de Alisado' }]
             });
         }
-        // Reportar conversión a Meta
+        
+        // Reportar conversión a Meta (Advanced Matching)
         if (typeof fbq === 'function') {
             fbq('track', 'Purchase', {
                 value: 0,
                 currency: 'COP',
                 content_name: cleanData.procedimiento,
                 content_ids: [cleanData.consecutivo]
+            }, {
+                em: hashedEmail,
+                ph: hashedPhone
             });
         }
-        // Reportar conversión a TikTok
+        
+        // Reportar conversión a TikTok (Identify + Track)
         if (typeof ttq === 'object') {
+            ttq.identify({
+                email: hashedEmail,
+                phone_number: hashedPhone
+            });
             ttq.track('CompletePayment', {
                 content_name: cleanData.procedimiento,
                 quantity: 1,
