@@ -164,7 +164,7 @@ export async function generatePDF() {
             y += drawField('Observaciones Cuero', obsCuero, col1, pageWidth - 40);
         }
 
-        // --- SECCIÓN 4: PROCEDIMIENTO ---
+        // --- SECCIÓN 4: PROCEDIMIENTO Y GARANTÍA ---
         drawSectionHeader('4. Procedimiento y Garantía');
 
         h1 = drawField('Embarazo', getVal('embarazo'), col1, 40);
@@ -177,6 +177,31 @@ export async function generatePDF() {
         y += Math.max(h1, h2);
 
         y += drawField('Técnica/Productos', getVal('tecnica_utilizada'), col1, pageWidth - 40);
+
+        // --- NUEVA SECCIÓN: RECOMENDACIÓN DE PRODUCTOS (BOOST VENTAS) ---
+        checkSpace(35);
+        y += 5;
+        doc.setFillColor(212, 175, 55, 0.05);
+        doc.setDrawColor(...colors.gold);
+        doc.roundedRect(15, y, pageWidth - 30, 25, 2, 2, 'FD');
+        
+        doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
+        doc.text('RECOMENDACIÓN PROFESIONAL DE PRODUCTOS JULIE ALISADOS', 20, y + 6);
+        
+        doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+        let reco = "Según tu diagnóstico, recomendamos: ";
+        const porosidad = getVal('porosidad');
+        const elasticidad = getVal('elasticidad');
+        
+        if (porosidad === 'Alta') reco += "KIT DE REPARACIÓN PROFUNDA (Aminoácidos + Mascarilla Sellante). ";
+        if (elasticidad === 'Baja') reco += "TRATAMIENTO DE PROTEÍNA Y SELLANTE DE CUTÍCULA. ";
+        if (getVal('piel_cabelluda') === 'Seca') reco += "ÓLEO HIDRATANTE JULIE. ";
+        if (reco === "Según tu diagnóstico, recomendamos: ") reco += "KIT DE MANTENIMIENTO POS-ALISADO (Shampoo sin sal + Acondicionador nutritivo).";
+        
+        doc.text(doc.splitTextToSize(reco, pageWidth - 40), 20, y + 12);
+        doc.setFontSize(6); doc.setFont('helvetica', 'italic');
+        doc.text('Adquiere estos productos en nuestras sedes o con envío nacional vía WhatsApp: 3043588180', 20, y + 21);
+        y += 30;
 
         // --- ADVERTENCIA LEGAL (SI APLICA) ---
         const emb = getVal('embarazo');

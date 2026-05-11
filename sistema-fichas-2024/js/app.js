@@ -276,11 +276,16 @@ if (stylistSearchInput) stylistSearchInput.addEventListener('input', (e) => rend
 
 // ======================== HISTORY ========================
 async function renderHistory(filter = '') {
-    if (!historyList) return;
-    historyList.innerHTML = '<div class="loading-spinner">Cargando...</div>';
+    const listEl = document.getElementById('historyList');
+    if (!listEl) return;
+    listEl.innerHTML = '<div class="loading-spinner">Cargando folios...</div>';
     try {
         const history = await fetchHistory();
-        if (!history || history.length === 0) { historyList.innerHTML = '<p class="empty-msg">No hay fichas registradas.</p>'; return; }
+        if (!history || history.length === 0) { 
+            listEl.innerHTML = '<div class="empty-msg" style="text-align:center; padding:40px; color:#888;"><i data-lucide="database-backup" style="width:40px; height:40px; margin-bottom:10px;"></i><p>No hay fichas registradas en la base de datos.</p></div>'; 
+            if (window.lucide) window.lucide.createIcons();
+            return; 
+        }
         
         const filterNorm = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         const filtered = history.filter(item => {
@@ -290,25 +295,38 @@ async function renderHistory(filter = '') {
             return nom.includes(filterNorm) || doc.includes(filterNorm) || fol.includes(filterNorm);
         });
 
-        historyList.innerHTML = '';
+        listEl.innerHTML = '';
+        if (filtered.length === 0) {
+            listEl.innerHTML = '<p class="empty-msg" style="text-align:center; padding:20px;">No se encontraron resultados para su búsqueda.</p>';
+            return;
+        }
+
         filtered.forEach(item => {
             const card = document.createElement('div');
             card.className = 'history-card';
-            const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-CO') : '';
+            card.style = 'background: white; padding: 16px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--gold-primary); margin-bottom: 10px;';
+            const fecha = item.created_at ? new Date(item.created_at).toLocaleDateString('es-CO') : 'Sin fecha';
+            
             card.innerHTML = `
-                <div class="card-info">
-                    <h4>${item.nombre_completo}</h4>
-                    <p>Folio: <strong>#${item.consecutivo}</strong> · Doc: ${item.numero_documento}</p>
-                    <p style="font-size: 0.75rem; color: var(--text-secondary);">${fecha}</p>
+                <div style="flex: 1;">
+                    <h4 style="margin:0; color: var(--gold-dark); font-size: 1rem;">${item.nombre_completo}</h4>
+                    <p style="margin:3px 0; font-size:0.8rem; color:#666;">Folio: <strong>#${item.consecutivo}</strong> | Doc: ${item.numero_documento}</p>
+                    <div style="display:flex; gap:10px; margin-top:5px;">
+                        <span style="font-size:0.7rem; background:#f0f0f0; padding:2px 8px; border-radius:10px;">${fecha}</span>
+                        <span style="font-size:0.7rem; background:rgba(212,175,55,0.1); color:var(--gold-dark); padding:2px 8px; border-radius:10px;">${item.sede || 'Sede Julie'}</span>
+                    </div>
                 </div>
-                <div class="card-actions">
-                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view">Ver</button>
-                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list">PDF</button>
+                <div style="display:flex; gap:8px;">
+                    <button onclick="viewFicha('${item.consecutivo}')" class="btn-view" style="background:#f8f9fa; border:1px solid #ddd; padding:8px 12px; border-radius:10px; cursor:pointer;"><i data-lucide="eye" style="width:16px; height:16px;"></i></button>
+                    <button onclick="directPDF('${item.consecutivo}')" class="btn-pdf-list" style="background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:10px; cursor:pointer;"><i data-lucide="file-text" style="width:16px; height:16px;"></i></button>
                 </div>`;
-            historyList.appendChild(card);
+            listEl.appendChild(card);
         });
         window.lucide?.createIcons();
-    } catch (e) { console.error(e); historyList.innerHTML = '<p class="empty-msg">Error al cargar historial.</p>'; }
+    } catch (e) { 
+        console.error('Error renderHistory:', e); 
+        listEl.innerHTML = '<div class="error-card" style="padding:20px; color:red; text-align:center;">Error al conectar con Supabase. Verifica tu internet.</div>'; 
+    }
 }
 
 // ======================== STYLISTS ========================
