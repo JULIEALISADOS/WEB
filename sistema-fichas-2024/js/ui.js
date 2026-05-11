@@ -79,10 +79,10 @@ export function validateStep(idx, steps) {
     });
 
     if (!valid) {
-        if (idx === 5) {
+        if (idx === 6) {
             const authCheck = steps[idx - 1].querySelector('#authCheckbox');
             if (authCheck && !authCheck.checked) {
-                alert('⚠️ Debes aceptar la AUTORIZACIÓN LEGAL para continuar.');
+                alert('⚠️ Debes aceptar el CONSENTIMIENTO INFORMADO para finalizar.');
                 authCheck.closest('.prominent-check')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return false;
             }

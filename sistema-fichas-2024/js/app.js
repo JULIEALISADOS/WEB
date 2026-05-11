@@ -24,7 +24,7 @@ const stylistSearchInput = document.getElementById('stylistSearchInput');
 const responsableInput = document.getElementById('responsableInput');
 
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 6;
 let isLocked = false;
 window.isLocked = false;
 window.lastGeneratedSignatures = { client: null, tech: null, tutor: null };
@@ -181,7 +181,7 @@ function updateStep(direction) {
     document.getElementById('currentStepNum').innerText = currentStep;
     window.scrollTo(0, 0);
 
-    if (currentStep === 5) {
+    if (currentStep === 6) {
         setTimeout(() => {
             initSignatures();
             if (isLocked && window.lastViewedFicha) {
@@ -640,11 +640,18 @@ window.goBack = function () {
 
 // ======================== SAVE HANDLER ========================
 if (saveBtn) saveBtn.addEventListener('click', async () => {
-    if (!validateStep(5, steps)) return;
+    if (!validateStep(6, steps)) return;
 
-    const { padClient, padTech } = getSignaturePads();
+    const { padClient, padTech, padTutor } = getSignaturePads();
     if (!padClient || padClient.isEmpty() || !padTech || padTech.isEmpty()) {
         alert('⚠️ Firmas obligatorias. Debes firmar como CLIENTE y como TÉCNICO.');
+        return;
+    }
+
+    // Validación firma tutor para menores
+    const isMinor = parseInt(document.getElementById('edadInput')?.value) < 18;
+    if (isMinor && (!padTutor || padTutor.isEmpty())) {
+        alert('⚠️ Firma del TUTOR obligatoria para menores de edad.');
         return;
     }
 
@@ -711,6 +718,7 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         // Firmas
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
+        if (isMinor && padTutor) cleanData.firma_tutor_legal = padTutor.toDataURL();
 
         // --- ENCRIPTACIÓN DE PRIVACIDAD (HASHING SHA-256) ---
         const hashData = async (str) => {

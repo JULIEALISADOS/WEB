@@ -164,13 +164,14 @@
             </div>
             <div class="progress-container hidden">
                 <div class="progress-bar" id="progressBar"></div>
-                <div class="steps-info">PASO <span id="currentStepNum">1</span> DE 5</div>
+                <div class="steps-info">PASO <span id="currentStepNum">1</span> DE 6</div>
                 <div class="quick-nav">
                     <button type="button" onclick="jumpToStep(1)" class="btn-step active">1</button>
                     <button type="button" onclick="jumpToStep(2)" class="btn-step">2</button>
                     <button type="button" onclick="jumpToStep(3)" class="btn-step">3</button>
                     <button type="button" onclick="jumpToStep(4)" class="btn-step">4</button>
                     <button type="button" onclick="jumpToStep(5)" class="btn-step">5</button>
+                    <button type="button" onclick="jumpToStep(6)" class="btn-step">6</button>
                 </div>
             </div>
         </header>
@@ -399,21 +400,66 @@
                             <div class="form-group"><label>MÁS FOTOS (OPCIONAL)</label><input type="file" id="fotoExtraInput" accept="image/*" multiple onchange="previewMultiple(this, 'previewExtra')"><div id="previewExtra" class="img-preview-multi"></div></div>
                             <div class="form-group"><label>VIDEO (OPCIONAL)</label><input type="file" id="videoInput" accept="video/*" onchange="previewVideo(this, 'previewVideo')"><div id="previewVideo" class="img-preview"></div></div>
                         </div>
-                        <div class="form-group full-width"><label class="required">ESTILISTA</label><select name="estilista_responsable" id="responsableInput" required></select></div>
-                        <div class="signature-section full-width">
-                            <div class="form-group"><label class="required">FIRMA CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
-                            <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
+                        <div class="form-group full-width"><label class="required">ESTILISTA RESPONSABLE</label><select name="estilista_responsable" id="responsableInput" required></select></div>
+                    </div>
+                </section>
+
+                <section class="step" id="step6">
+                    <h2 class="section-title">CONSENTIMIENTO INFORMADO</h2>
+                    
+                    <!-- Historial Adicional para Consentimiento -->
+                    <div class="clinical-bg-card" style="margin-bottom:20px;">
+                        <p class="cat-label">INFORMACIÓN REQUERIDA PARA EL CONSENTIMIENTO</p>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label class="required">¿HA RECIBIDO TRATAMIENTOS QUÍMICOS PREVIOS?</label>
+                            <input type="hidden" name="consent_quimicos" id="consentQuimicosInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('consentQuimicos', 'Si')">Si</button>
+                                <button type="button" class="chip" onclick="setChip('consentQuimicos', 'No')">No</button>
+                            </div>
                         </div>
-                        <div class="form-group full-width hidden" id="tutorSignatureBox">
-                            <label class="required">FIRMA TUTOR LEGAL</label>
-                            <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
+                        <div class="form-group">
+                            <label class="required">¿ESTÁ BAJO TRATAMIENTO MÉDICO / MEDICAMENTOS?</label>
+                            <input type="hidden" name="consent_meds" id="consentMedsInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('consentMeds', 'Si')">Si</button>
+                                <button type="button" class="chip" onclick="setChip('consentMeds', 'No')">No</button>
+                            </div>
                         </div>
-                        <div class="authorization-check full-width prominent-check">
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4;">
-                                Autorizo el tratamiento de mis datos personales y el registro fotográfico conforme a la Ley 1581/2012. Certifico que la información suministrada es verídica.
-                            </p>
-                            <label class="checkbox-container"><input type="checkbox" id="authCheckbox" required><span class="checkmark"></span><strong>ACEPTO LA AUTORIZACIÓN</strong></label>
-                        </div>
+                    </div>
+
+                    <!-- Cuadro de Texto Legal -->
+                    <div style="height: 250px; overflow-y: auto; background: #fdfaf0; padding: 20px; border: 1px solid var(--border-gold); border-radius: 14px; font-size: 0.85rem; line-height: 1.5; color: #444; margin-bottom: 20px; text-align: justify;">
+                        <center><h3 style="color: var(--gold-dark); margin-bottom: 15px;">CONSENTIMIENTO INFORMADO - JULIE ALISADOS</h3></center>
+                        <p><strong>1. INFORMACIÓN SOBRE EL PROCEDIMIENTO:</strong> El alisado capilar consiste en la aplicación de productos químicos diseñados para modificar la estructura del cabello. El resultado depende de factores individuales como el tipo de cabello e historial previo.</p>
+                        <p><strong>2. EXPECTATIVAS Y EXONERACIÓN:</strong> Los resultados pueden variar. Julie Alisados no será responsable por resultados insatisfactorios si el cliente no sigue las recomendaciones de pos-cuidado.</p>
+                        <p><strong>3. RENUNCIA A RECLAMACIONES:</strong> Declaro que he recibido toda la información sobre riesgos y cuidados. Renuncio expresamente a cualquier reclamación futura por efectos adversos derivados del incumplimiento de las recomendaciones.</p>
+                        <p><strong>4. GARANTÍA:</strong> Cubre ondas prematuras dentro de los 20 días calendarios. Si la garantía no procede, el cliente pagará $20.000 por costos de valoración y lavado.</p>
+                        <p><strong>5. FOTOGRAFÍAS:</strong> Autorizo el registro fotográfico para seguimiento interno y opcionalmente para fines publicitarios.</p>
+                    </div>
+
+                    <div class="authorization-check full-width prominent-check">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="authCheckbox" required>
+                            <span class="checkmark"></span>
+                            <strong>HE LEÍDO Y ACEPTO EL CONSENTIMIENTO INFORMADO</strong>
+                        </label>
+                        <label class="checkbox-container" style="margin-top:10px;">
+                            <input type="checkbox" id="photoPublicCheckbox" name="autoriza_publicidad">
+                            <span class="checkmark"></span>
+                            <span>Autorizo el uso de fotos para fines publicitarios (Redes Sociales).</span>
+                        </label>
+                    </div>
+
+                    <div class="signature-section full-width" style="margin-top: 20px;">
+                        <div class="form-group"><label class="required">FIRMA CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
+                        <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
+                    </div>
+
+                    <div class="form-group full-width hidden" id="tutorSignatureBox">
+                        <label class="required">FIRMA TUTOR LEGAL (Menores de edad)</label>
+                        <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
+                    </div>
                     </div>
                 </section>
             </form>
