@@ -627,6 +627,12 @@ window.addEventListener('load', () => {
     loadInitialData();
     initRealtimeValidation(steps);
 
+    // Ocultar pantalla de carga (Splash Screen)
+    setTimeout(() => {
+        const splash = document.getElementById('splashScreen');
+        if (splash) splash.classList.add('splash-hidden');
+    }, 2500);
+
     // Monitor menor de edad
     const edadInput = document.getElementById('edadInput');
     const docType = document.getElementById('docType');

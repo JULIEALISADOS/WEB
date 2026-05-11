@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=3.3">
+    <link rel="stylesheet" href="style.css?v=3.4">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -52,7 +52,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v3.3';
+                const CACHE_NAME = 'julie-ficha-v3.4';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -64,6 +64,20 @@
     </script>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <img src="logo.png" alt="Julie Alisados Logo" class="splash-logo">
+            <div class="splash-text">
+                <span class="welcome-text">Bienvenida a</span>
+                <h1 class="app-name">JulieFicha <small>BETA</small></h1>
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="watermark">Julie Alisados - Propiedad Privada</div>
     <div id="loginSection" class="login-container">
         <div class="login-box">
@@ -423,7 +437,7 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=3.3"></script>
+    <script type="module" src="js/app.js?v=3.4"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
