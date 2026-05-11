@@ -453,33 +453,81 @@ window.viewQuickHistory = async (doc) => {
     try {
         const history = await fetchHistory();
         const clientFolios = history.filter(f => f.numero_documento === doc);
-        let html = '<div style="max-height:400px; overflow-y:auto; padding:10px;">';
+        let html = '<div style="max-height:400px; overflow-y:auto; padding:5px;">';
+        
+        if (clientFolios.length === 0) {
+            html += '<p style="text-align:center; padding:20px; color:#666;">No hay folios previos.</p>';
+        }
+
         clientFolios.forEach(f => {
             html += `
-                <div style="border-bottom:1px solid #eee; padding:10px 0;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="border: 1px solid #eee; border-radius: 12px; padding:12px; margin-bottom: 10px; background: #fafafa;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px;">
                         <strong style="color:var(--gold-dark);">Folio #${f.consecutivo}</strong>
-                        <small>${new Date(f.created_at).toLocaleDateString()}</small>
+                        <small style="font-weight: bold; color: #888;">${new Date(f.created_at).toLocaleDateString()}</small>
                     </div>
-                    <p style="font-size:0.8rem; margin:5px 0;"><strong>Servicio:</strong> ${f.procedimiento}</p>
-                    <p style="font-size:0.75rem; color:#666;"><strong>Obs. Técnica:</strong> ${f.tecnica_utilizada || 'N/A'}</p>
+                    <p style="font-size:0.85rem; margin:5px 0;"><strong>Servicio:</strong> ${f.procedimiento}</p>
+                    <button type="button" onclick="openFichaDetail('${f.consecutivo}')" style="margin-top:8px; background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%; font-weight: bold;">
+                        📄 VER DETALLE COMPLETO
+                    </button>
                 </div>
             `;
         });
         html += '</div>';
         
-        const modal = document.createElement('div');
-        modal.style = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px;';
-        modal.innerHTML = `
-            <div style="background:white; border-radius:20px; width:100%; max-width:400px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
-                <h3 style="color:var(--gold-dark); margin-bottom:15px; border-bottom:2px solid var(--gold-light); padding-bottom:8px; font-family:var(--font-serif);">Historial de Folios</h3>
-                ${html}
-                <button onclick="this.parentElement.parentElement.remove()" style="width:100%; margin-top:15px; padding:12px; background:var(--gold-gradient); color:white; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">Cerrar Historial</button>
+        const modal = document.getElementById('quickHistoryModal');
+        document.getElementById('quickHistoryBody').innerHTML = html;
+        modal.classList.remove('hidden');
+        if (window.lucide) window.lucide.createIcons();
+    } catch (e) { console.error(e); alert('Error al cargar historial.'); }
+};
+
+window.openFichaDetail = async (consecutivo) => {
+    try {
+        const data = await getFichaByConsecutivo(consecutivo);
+        if (!data) return alert('No se encontró la ficha.');
+
+        const body = document.getElementById('fichaDetailBody');
+        document.getElementById('detailFichaTitle').innerText = `Detalle Folio #${data.consecutivo}`;
+        
+        let html = `
+            <div style="display: grid; gap: 15px;">
+                <div style="background: #fdfaf0; padding: 12px; border-radius: 12px; border: 1px solid var(--border-gold);">
+                    <h4 style="color: var(--gold-dark); margin-bottom: 5px; border-bottom: 1px solid var(--gold-light);">DATOS GENERALES</h4>
+                    <p><strong>Fecha:</strong> ${data.fecha_diligenciamiento}</p>
+                    <p><strong>Estilista:</strong> ${data.estilista_responsable}</p>
+                    <p><strong>Sede:</strong> ${data.sede}</p>
+                    <p><strong>Origen:</strong> ${data.como_nos_conociste || 'N/A'}</p>
+                </div>
+                
+                <div style="padding: 10px;">
+                    <h4 style="color: var(--gold-dark); margin-bottom: 5px;">DIAGNÓSTICO Y TÉCNICA</h4>
+                    <p><strong>Patrón:</strong> ${data.tipo_cabello}</p>
+                    <p><strong>Procedimiento:</strong> ${data.procedimiento}</p>
+                    <p><strong>Técnica:</strong> ${data.tecnica_utilizada}</p>
+                    <p><strong>Garantía:</strong> ${data.porcentaje_liso}</p>
+                </div>
+
+                <div style="padding: 10px; background: #fafafa; border-radius: 10px;">
+                    <h4 style="color: var(--gold-dark); margin-bottom: 5px;">OBSERVACIONES</h4>
+                    <p><strong>Técnica:</strong> ${data.observaciones_diagnostico}</p>
+                    <p><strong>Capilar:</strong> ${data.observaciones_caracteristicas}</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    ${data.foto_antes_url ? `<div><p style="font-size:0.7rem; font-weight:bold; color:var(--gold-dark);">ANTES</p><img src="${data.foto_antes_url}" style="width:100%; border-radius:8px;"></div>` : ''}
+                    ${data.foto_despues_url ? `<div><p style="font-size:0.7rem; font-weight:bold; color:var(--gold-dark);">DESPUÉS</p><img src="${data.foto_despues_url}" style="width:100%; border-radius:8px;"></div>` : ''}
+                </div>
             </div>
         `;
-        document.body.appendChild(modal);
-    } catch (e) { alert('Error al cargar historial'); }
+
+        body.innerHTML = html;
+        document.getElementById('btnPdfDetail').onclick = () => window.directPDF(consecutivo);
+        document.getElementById('fichaDetailModal').classList.remove('hidden');
+        if (window.lucide) window.lucide.createIcons();
+    } catch (e) { console.error(e); alert('Error al cargar detalle.'); }
 };
+
 
 // ======================== INITIAL DATA ========================
 async function loadInitialData() {
