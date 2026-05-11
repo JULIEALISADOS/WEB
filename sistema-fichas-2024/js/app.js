@@ -674,6 +674,15 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
                 'items': [{ 'item_id': cleanData.procedimiento, 'item_name': 'Servicio de Alisado' }]
             });
         }
+        // Reportar conversión a Meta
+        if (typeof fbq === 'function') {
+            fbq('track', 'Purchase', {
+                value: 0,
+                currency: 'COP',
+                content_name: cleanData.procedimiento,
+                content_ids: [cleanData.consecutivo]
+            });
+        }
 
         document.getElementById('successModal').classList.remove('hidden');
         window.lucide?.createIcons();
