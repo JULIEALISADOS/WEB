@@ -125,10 +125,9 @@ function applyRoleUI(role) {
     if (role === 'stylist') {
         if (navHistory) navHistory.style.display = 'none';
         if (navTeam) navTeam.style.display = 'none';
-        if (btnPdf) btnPdf.style.display = 'none';
+        if (btnPdf) btnPdf.style.display = 'flex'; // Mostrar PDF para estilistas
         if (changePassBtn) changePassBtn.style.display = 'flex';
-        // En el modal de éxito, ocultar botón PDF
-        document.querySelector('.btn-pdf-modal')?.classList.add('hidden');
+        document.querySelector('.btn-pdf-modal')?.classList.remove('hidden'); 
     } else {
         if (navHistory) navHistory.style.display = 'flex';
         if (navTeam) navTeam.style.display = 'flex';

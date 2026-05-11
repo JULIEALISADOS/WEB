@@ -45,11 +45,13 @@
                         if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             if(confirm('Nueva versión disponible. ¿Actualizar ahora?')) window.location.reload();
                         }
+                    };
+                };
             });
         }
 
+        async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-ficha-v6.5';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
