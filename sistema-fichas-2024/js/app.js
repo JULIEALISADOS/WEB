@@ -681,6 +681,21 @@ window.verifyAdminAccess = () => {
     }
 };
 
+window.openScheduling = () => {
+    // Marketing: Schedule en TikTok
+    if (typeof ttq === 'object') {
+        ttq.track('Schedule', {
+            contents: [{
+                content_id: 'agendar_cita',
+                content_name: 'Agendar Cita WhatsApp',
+                content_type: 'product'
+            }]
+        });
+    }
+    // Abrir WhatsApp oficial para agendar
+    window.open('https://wa.me/573043588180?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20servicio%20en%20Julie%20Alisados', '_blank');
+};
+
 window.goBack = function () {
     if (homeSection && !homeSection.classList.contains('hidden')) {
         if (confirm('¿Salir?')) window.location.reload();
