@@ -472,15 +472,28 @@
                         </label>
                     </div>
 
-                    <div class="signature-section full-width" style="margin-top: 20px;">
-                        <div class="form-group"><label class="required">FIRMA CLIENTE (MENOR/ADULTO)</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
-                        <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
-                    </div>
+                    <!-- BLOQUE DE FIRMAS INDEPENDIENTES -->
+                    <div class="signatures-wrapper" style="margin-top: 30px; display: flex; flex-direction: column; gap: 25px;">
+                        
+                        <!-- 1. FIRMA CLIENTE / MENOR -->
+                        <div class="form-group full-width" style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                            <label class="required" style="color: var(--dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA DE LA CLIENTE (MENOR O ADULTO)</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--border-gold);"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div>
+                        </div>
 
-                    <div class="form-group full-width hidden" id="tutorSignatureBox" style="margin-top: 20px; border: 2px dashed var(--gold-primary); padding: 15px; border-radius: 12px; background: #fffcf5;">
-                        <label class="required" style="color: var(--gold-dark); font-weight: bold;">FIRMA OBLIGATORIA: TUTOR LEGAL / ACUDIENTE</label>
-                        <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
-                        <input type="text" id="tutorInput" placeholder="Nombre completo del tutor" style="margin-top:10px;">
+                        <!-- 2. FIRMA TUTOR LEGAL (SOLO MENORES) -->
+                        <div class="form-group full-width hidden" id="tutorSignatureBox" style="border: 2px dashed var(--gold-primary); padding: 20px; border-radius: 14px; background: #fffcf5;">
+                            <label class="required" style="color: var(--gold-dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA OBLIGATORIA: TUTOR LEGAL / ACUDIENTE</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--gold-dark);"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
+                            <input type="text" id="tutorInput" placeholder="Nombre completo del padre, madre o tutor" style="margin-top:15px; width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                        </div>
+
+                        <!-- 3. FIRMA TÉCNICO -->
+                        <div class="form-group full-width">
+                            <label class="required" style="color: var(--dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA DEL TÉCNICO PROFESIONAL</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--border-gold);"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div>
+                        </div>
+
                     </div>
 
                     <!-- Enlaces Legales Adicionales -->

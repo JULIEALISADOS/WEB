@@ -260,7 +260,6 @@ export async function generatePDF() {
             if (padTutor && !padTutor.isEmpty()) sigM = padTutor.toDataURL();
         }
 
-        checkSpace(40);
         const drawSig = (src, label, printedName, x, yPos) => {
             doc.setDrawColor(...colors.gray); doc.setLineWidth(0.3);
             doc.line(x, yPos, x + 50, yPos);
@@ -275,14 +274,22 @@ export async function generatePDF() {
             }
         };
 
-        const isMinor = parseInt(getVal('edad')) < 18;
+        checkSpace(60);
         
-        drawSig(sigC, 'FIRMA CLIENTE', getVal('nombre_completo'), 15, y + 20);
-        drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth / 2 - 25, y + 20);
-        
+        // Firma Cliente
+        drawSig(sigC, 'FIRMA CLIENTE (MENOR/ADULTO)', getVal('nombre_completo'), 15, y + 20);
+        y += 30;
+
+        // Firma Tutor (Si aplica)
         if (isMinor) {
-            drawSig(sigM, 'FIRMA TUTOR LEGAL', getVal('nombre_tutor') || 'Responsable Menor', pageWidth - 65, y + 20);
+            checkSpace(30);
+            drawSig(sigM, 'FIRMA TUTOR LEGAL / RESPONSABLE', getVal('nombre_tutor') || 'Responsable Menor', 15, y + 20);
+            y += 30;
         }
+
+        // Firma Técnico
+        checkSpace(30);
+        drawSig(sigT, 'FIRMA TÉCNICO PROFESIONAL', getVal('estilista_responsable'), 15, y + 20);
 
         // Footer
         doc.setFillColor(...colors.gold);
