@@ -441,9 +441,17 @@ if (docInput) {
                     edadInp.value = lastFicha.edad || '';
                     monitorMinorSettings();
                 }
+
+                // Mostrar botón de historial en el header
+                const hBtn = document.getElementById('headerHistoryBtn');
+                if (hBtn) hBtn.classList.remove('hidden');
             } else {
                 if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
                 if (area) area.classList.add('hidden');
+                
+                // Si es nueva, ocultamos el botón del header por ahora (o lo dejamos si queremos que busquen de todos modos)
+                const hBtn = document.getElementById('headerHistoryBtn');
+                if (hBtn) hBtn.classList.add('hidden');
             }
         } catch (e) { console.error('Recurrence check error:', e); }
     });
@@ -528,6 +536,15 @@ window.openFichaDetail = async (consecutivo) => {
     } catch (e) { console.error(e); alert('Error al cargar detalle.'); }
 };
 
+
+window.triggerQuickHistory = () => {
+    const doc = document.getElementById('docNumberInput')?.value.trim();
+    if (doc && doc.length >= 5) {
+        window.viewQuickHistory(doc);
+    } else {
+        alert('⚠️ Por favor ingresa el documento de la cliente primero en el Paso 1.');
+    }
+};
 
 // ======================== INITIAL DATA ========================
 async function loadInitialData() {
