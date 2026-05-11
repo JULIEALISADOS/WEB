@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="style.css?v=5.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --admin-bg: #f8f9fa;
@@ -494,9 +495,8 @@
             a.click();
         };
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadAdminData();
-        });
+        // Inicializar inmediatamente (los scripts type="module" ya están deferred por defecto)
+        loadAdminData();
     </script>
 </body>
 </html>

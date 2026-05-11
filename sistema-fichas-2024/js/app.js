@@ -719,7 +719,7 @@ window.verifyAdminAccess = () => {
     // CLAVE MAESTRA TEMPORAL: JulieAdmin2024
     if (pass === 'JulieAdmin2024') {
         sessionStorage.setItem('julie_admin_auth', 'true');
-        location.href = 'admin.html';
+        location.href = 'admin.html?v=' + new Date().getTime();
     } else {
         alert('❌ Clave de Seguridad Incorrecta. Acceso denegado.');
         document.getElementById('adminPassInput').value = '';
