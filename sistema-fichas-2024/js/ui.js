@@ -81,9 +81,10 @@ export function validateStep(idx, steps) {
     if (!valid) {
         if (idx === 6) {
             const authCheck = steps[idx - 1].querySelector('#authCheckbox');
-            if (authCheck && !authCheck.checked) {
-                alert('⚠️ Debes aceptar el CONSENTIMIENTO INFORMADO para finalizar.');
-                authCheck.closest('.prominent-check')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const planCheck = steps[idx - 1].querySelector('#planTrabajoCheckbox');
+            if ((authCheck && !authCheck.checked) || (planCheck && !planCheck.checked)) {
+                alert('⚠️ Debes aceptar el CONSENTIMIENTO y el PLAN DE TRABAJO para finalizar.');
+                (authCheck && !authCheck.checked ? authCheck : planCheck).closest('.prominent-check')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return false;
             }
         }
