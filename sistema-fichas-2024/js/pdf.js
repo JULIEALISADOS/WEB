@@ -281,7 +281,7 @@ export async function generatePDF() {
         drawSig(sigT, 'FIRMA TÉCNICO', getVal('estilista_responsable'), pageWidth / 2 - 25, y + 20);
         
         if (isMinor) {
-            drawSig(sigM, 'FIRMA TUTOR LEGAL', 'Responsable Menor', pageWidth - 65, y + 20);
+            drawSig(sigM, 'FIRMA TUTOR LEGAL', getVal('nombre_tutor') || 'Responsable Menor', pageWidth - 65, y + 20);
         }
 
         // Footer

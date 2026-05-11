@@ -452,6 +452,9 @@
                     </div>
 
                     <div class="authorization-check full-width prominent-check">
+                        <p style="font-size: 0.8rem; color: var(--gold-dark); margin-bottom: 15px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--gold-dark);">
+                            <i data-lucide="info" style="width:14px; vertical-align:middle;"></i> <strong>NOTA PARA MENORES:</strong> Si la cliente es menor de edad, las siguientes autorizaciones deben ser aceptadas y firmadas por su padre, madre o tutor legal.
+                        </p>
                         <label class="checkbox-container">
                             <input type="checkbox" id="authCheckbox" required>
                             <span class="checkmark"></span>
@@ -460,23 +463,24 @@
                         <label class="checkbox-container" style="margin-top:10px;">
                             <input type="checkbox" id="planTrabajoCheckbox" required>
                             <span class="checkmark"></span>
-                            <span>Antes de cada procedimiento químico, nuestras profesionales te informarán sobre los resultados esperados, las limitaciones según el estado actual de tu cabello y los cuidados posteriores necesarios. Al proceder con el servicio, aceptas que fuiste debidamente informada y que estás de acuerdo con el plan de trabajo propuesto.</span>
+                            <span>Acepto el Plan de Trabajo propuesto por el profesional.</span>
                         </label>
                         <label class="checkbox-container" style="margin-top:10px;">
                             <input type="checkbox" id="photoPublicCheckbox" name="autoriza_publicidad">
                             <span class="checkmark"></span>
-                            <span>Autorizo el uso de fotos para fines publicitarios (Redes Sociales).</span>
+                            <span>Autorizo el uso de fotos para fines publicitarios.</span>
                         </label>
                     </div>
 
                     <div class="signature-section full-width" style="margin-top: 20px;">
-                        <div class="form-group"><label class="required">FIRMA CLIENTE</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
+                        <div class="form-group"><label class="required">FIRMA CLIENTE (MENOR/ADULTO)</label><div class="signature-container"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div></div>
                         <div class="form-group"><label class="required">FIRMA TÉCNICO</label><div class="signature-container"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div></div>
                     </div>
 
-                    <div class="form-group full-width hidden" id="tutorSignatureBox">
-                        <label class="required">FIRMA TUTOR LEGAL (Menores de edad)</label>
+                    <div class="form-group full-width hidden" id="tutorSignatureBox" style="margin-top: 20px; border: 2px dashed var(--gold-primary); padding: 15px; border-radius: 12px; background: #fffcf5;">
+                        <label class="required" style="color: var(--gold-dark); font-weight: bold;">FIRMA OBLIGATORIA: TUTOR LEGAL / ACUDIENTE</label>
                         <div class="signature-container"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
+                        <input type="text" id="tutorInput" placeholder="Nombre completo del tutor" style="margin-top:10px;">
                     </div>
 
                     <!-- Enlaces Legales Adicionales -->

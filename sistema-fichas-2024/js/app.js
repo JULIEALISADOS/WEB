@@ -732,7 +732,10 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         // Firmas
         cleanData.firma_cliente = padClient.toDataURL();
         cleanData.firma_tecnico = padTech.toDataURL();
-        if (isMinor && padTutor) cleanData.firma_tutor_legal = padTutor.toDataURL();
+        if (isMinor && padTutor) {
+            cleanData.firma_tutor_legal = padTutor.toDataURL();
+            cleanData.nombre_tutor = document.getElementById('tutorInput')?.value || '---';
+        }
 
         // --- ENCRIPTACIÓN DE PRIVACIDAD (HASHING SHA-256) ---
         const hashData = async (str) => {
