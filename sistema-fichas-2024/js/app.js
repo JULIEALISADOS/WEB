@@ -815,6 +815,28 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
             });
         }
 
+        // --- LÓGICA DE ENVÍO A WHATSAPP ---
+        const btnWA = document.getElementById('btnSendWhatsApp');
+        if (btnWA) {
+            btnWA.onclick = () => {
+                const nombre = cleanData.nombre_completo.split(' ')[0];
+                const folio = cleanData.consecutivo;
+                const tel = cleanData.telefono.startsWith('57') ? cleanData.telefono : '57' + cleanData.telefono;
+                
+                let reco = "";
+                if (cleanData.porosidad === 'Alta') reco += "• Mascarilla Oro Líquido o R.C.P Profesional\n";
+                if (cleanData.elasticidad === 'Baja') reco += "• Reposición de Aminoácidos y Ampolla S.O.S\n";
+                if (cleanData.piel_cabelluda === 'Seca' || cleanData.piel_cabelluda === 'Grasa') reco += "• Shampoo Extractos Naturales (12 Extractos)\n";
+                
+                if (!reco) reco = "• Línea de Argán (Shampoo + Acondicionador)\n• Termoprotector con Perfume Capilar\n";
+                reco += "• Aceite Reparador de Argán (para sellar puntas)";
+
+                const message = `Hola *${nombre}*, ¡gracias por elegir Julie Alisados! ✨%0A%0ASegún tu diagnóstico capilar de hoy (Folio *#${folio}*), te recomendamos los siguientes productos originales para mantener tu liso impecable y sano:%0A%0A${reco.replace(/\n/g, '%0A')}%0A%0APuedes pedirlos con *envío nacional* aquí: https://wa.me/573043588180%0A%0A¡Fue un gusto atenderte! 💖`;
+                
+                window.open(`https://wa.me/${tel}?text=${message}`, '_blank');
+            };
+        }
+
         document.getElementById('successModal').classList.remove('hidden');
         window.lucide?.createIcons();
     } catch (e) {

@@ -178,7 +178,7 @@ export async function generatePDF() {
 
         y += drawField('Técnica/Productos', getVal('tecnica_utilizada'), col1, pageWidth - 40);
 
-        // --- NUEVA SECCIÓN: RECOMENDACIÓN DE PRODUCTOS (BOOST VENTAS) ---
+        // --- NUEVA SECCIÓN: RECOMENDACIÓN DE PRODUCTOS JULIE ALISADOS (BOOST VENTAS) ---
         checkSpace(35);
         y += 5;
         doc.setFillColor(212, 175, 55, 0.05);
@@ -186,21 +186,28 @@ export async function generatePDF() {
         doc.roundedRect(15, y, pageWidth - 30, 25, 2, 2, 'FD');
         
         doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
-        doc.text('RECOMENDACIÓN PROFESIONAL DE PRODUCTOS JULIE ALISADOS', 20, y + 6);
+        doc.text('RECOMENDACIÓN PROFESIONAL JULIE ALISADOS', 20, y + 6);
         
         doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
-        let reco = "Según tu diagnóstico, recomendamos: ";
+        let reco = "Para mantener tu resultado impecable, recomendamos: ";
         const porosidad = getVal('porosidad');
         const elasticidad = getVal('elasticidad');
+        const piel = getVal('piel_cabelluda');
         
-        if (porosidad === 'Alta') reco += "KIT DE REPARACIÓN PROFUNDA (Aminoácidos + Mascarilla Sellante). ";
-        if (elasticidad === 'Baja') reco += "TRATAMIENTO DE PROTEÍNA Y SELLANTE DE CUTÍCULA. ";
-        if (getVal('piel_cabelluda') === 'Seca') reco += "ÓLEO HIDRATANTE JULIE. ";
-        if (reco === "Según tu diagnóstico, recomendamos: ") reco += "KIT DE MANTENIMIENTO POS-ALISADO (Shampoo sin sal + Acondicionador nutritivo).";
+        if (porosidad === 'Alta') reco += "MASCARILLA ORO LÍQUIDO (Jojoba + Keratina) o R.C.P Profesional. ";
+        if (elasticidad === 'Baja') reco += "REPOSICIÓN DE AMINOÁCIDOS y AMPOLLA S.O.S. ";
+        if (piel === 'Seca' || piel === 'Grasa') reco += "SHAMPOO EXTRACTOS NATURALES (12 Extractos). ";
+        
+        // Recomendación por defecto si no hay alertas graves
+        if (reco === "Para mantener tu resultado impecable, recomendamos: ") {
+            reco += "LÍNEA DE ARGÁN (Shampoo + Acondicionador) y TERMOPROTECTOR CON PERFUME CAPILAR.";
+        } else {
+            reco += "Complementa con ACEITE REPARADOR DE ARGÁN para sellar puntas.";
+        }
         
         doc.text(doc.splitTextToSize(reco, pageWidth - 40), 20, y + 12);
         doc.setFontSize(6); doc.setFont('helvetica', 'italic');
-        doc.text('Adquiere estos productos en nuestras sedes o con envío nacional vía WhatsApp: 3043588180', 20, y + 21);
+        doc.text('🛒 Pide tus productos originales Julie Alisados al WhatsApp: 3043588180 (Envío Nacional)', 20, y + 21);
         y += 30;
 
         // --- ADVERTENCIA LEGAL (SI APLICA) ---

@@ -542,6 +542,10 @@
                 <div class="form-group" style="margin-top:10px;"><label>CONTRASEÑA DE ACCESO</label><input type="password" id="stylistPassInput" placeholder="Contraseña para la app"></div>
                 <button onclick="addStylist()" class="btn-primary" style="width: 100%; margin-top: 15px; background: var(--gold-gradient); height: 45px;">Agregar Estilista</button>
             </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="stylistSearchInput" placeholder="🔍 Filtrar equipo por nombre..." style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #eee;">
+            </div>
             
             <div id="stylistList" class="stylist-list">
                 <!-- Los estilistas se cargan aquí -->
@@ -557,19 +561,25 @@
     </div>
 
     <div id="successModal" class="modal hidden">
-        <div class="modal-content success-card">
-            <div class="success-icon-wrapper">
-                <i data-lucide="check-circle" class="success-icon"></i>
+        <div class="modal-content" style="text-align: center; padding: 30px; max-width: 450px;">
+            <div style="background: #e8f5e9; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i data-lucide="check-circle-2" style="width: 45px; height: 45px; color: #2ecc71;"></i>
             </div>
-            <h3>¡Ficha Guardada!</h3>
-            <p>La información se ha registrado correctamente en la nube.</p>
-            <div class="modal-actions">
-                <button class="btn-pdf-modal" onclick="generatePDF()">
-                    <i data-lucide="download"></i> Descargar PDF
+            <h2 style="color: var(--gold-dark); margin-bottom: 10px; font-family: 'Playfair Display';">¡FOLIO EXITOSO!</h2>
+            <p style="color: #666; margin-bottom: 25px; font-size: 0.9rem;">El diagnóstico y el consentimiento han sido registrados correctamente en JulieApp.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button id="btnSendWhatsApp" class="btn-primary" style="background: #25D366; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; height: 55px; font-size: 1rem; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; width: 100%;">
+                    <i data-lucide="message-circle"></i> ENVIAR AL WHATSAPP CLIENTE
                 </button>
-                <button class="btn-new-modal" onclick="resetForm()">
-                    <i data-lucide="plus"></i> Nueva Ficha
-                </button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button onclick="window.generatePDF()" class="btn-secondary" style="height: 45px; font-size: 0.8rem; border-radius: 10px;">
+                        <i data-lucide="download" style="width:14px;"></i> PDF
+                    </button>
+                    <button onclick="location.reload()" class="btn-outline" style="height: 45px; font-size: 0.8rem; border-radius: 10px;">
+                        <i data-lucide="plus" style="width:14px;"></i> NUEVA
+                    </button>
+                </div>
             </div>
         </div>
     </div>
