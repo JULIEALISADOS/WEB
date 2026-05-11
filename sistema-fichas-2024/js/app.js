@@ -796,6 +796,13 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.utm_medium = marketing.utm_medium;
         cleanData.utm_campaign = marketing.utm_campaign;
         cleanData.ubicacion_gps = marketing.ubicacion; // Ubicación capturada por IP
+        
+        // Testimonio
+        const recomendacionesEl = document.getElementById('recomendacionesInput');
+        if (recomendacionesEl) {
+            cleanData.recomendaciones = recomendacionesEl.value.trim();
+        }
+
         // El genero ya viene en cleanData por el input hidden
         // --- PROCESAR EVIDENCIAS ---
         const uploadTasks = [];

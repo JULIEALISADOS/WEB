@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=7.2">
+    <link rel="stylesheet" href="style.css?v=7.3">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -52,7 +52,7 @@
 
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-app-v7.2';
+                const CACHE_NAME = 'julie-app-v7.3';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
@@ -146,7 +146,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">v7.2</span>
+                    <span class="version-badge">v7.3</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
@@ -495,6 +495,11 @@
                         </label>
                     </div>
 
+                    <div class="form-group full-width" style="margin-top:20px;">
+                        <label>OPINIÓN / TESTIMONIO DE LA CLIENTE (Opcional - Se mostrará en la web)</label>
+                        <textarea name="recomendaciones" id="recomendacionesInput" rows="3" placeholder="Ej: Me encantó cómo quedó mi cabello, 100% recomendado..."></textarea>
+                    </div>
+
                     <!-- BLOQUE DE FIRMAS INDEPENDIENTES -->
                     <style>.signature-section { display:flex; flex-direction:column; gap:16px; padding: 0 25px; }</style>
                     <div class="signature-section" style="margin-top: 30px;">
@@ -674,11 +679,11 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=7.2"></script>
+    <script type="module" src="js/app.js?v=7.3"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=7.2')
+                navigator.serviceWorker.register('sw.js?v=7.3')
                     .then(reg => console.log('✅ Service Worker registrado'))
                     .catch(err => console.warn('❌ Error registrando SW', err));
             });
