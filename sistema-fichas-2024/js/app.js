@@ -599,6 +599,17 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         cleanData.firma_tecnico = padTech.toDataURL();
 
         await insertFicha(cleanData);
+
+        // Reportar conversión a Google
+        if (typeof gtag === 'function') {
+            gtag('event', 'purchase', {
+                'transaction_id': cleanData.consecutivo,
+                'value': 0, // Podrías poner un valor estimado si quisieras
+                'currency': 'COP',
+                'items': [{ 'item_id': cleanData.procedimiento, 'item_name': 'Servicio de Alisado' }]
+            });
+        }
+
         document.getElementById('successModal').classList.remove('hidden');
         window.lucide?.createIcons();
     } catch (e) {
