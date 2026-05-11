@@ -2,6 +2,7 @@ import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, delete
 import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData, toggleSignatures, destroyPads } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm, initRealtimeValidation } from './ui.js';
+import { initJuliePixel, getMarketingContext } from './pixel-propio.js';
 
 const form = document.getElementById('fichaForm');
 const steps = Array.from(document.querySelectorAll('.step'));
@@ -587,6 +588,32 @@ window.previewImage = previewImage;
 window.clearSignature = (type) => clearSignature(type, isLocked);
 window.generatePDF = generatePDF;
 window.resetForm = () => window.location.reload();
+window.handleAdminClick = () => {
+    if (!window.adminClicks) window.adminClicks = 0;
+    window.adminClicks++;
+    clearTimeout(window.adminTimer);
+    window.adminTimer = setTimeout(() => { window.adminClicks = 0; }, 3000);
+
+    if (window.adminClicks >= 5) {
+        window.adminClicks = 0;
+        document.getElementById('adminLoginModal').classList.remove('hidden');
+        document.getElementById('adminPassInput').focus();
+    }
+};
+
+window.verifyAdminAccess = () => {
+    const pass = document.getElementById('adminPassInput').value;
+    // CLAVE MAESTRA TEMPORAL: JulieAdmin2024
+    if (pass === 'JulieAdmin2024') {
+        sessionStorage.setItem('julie_admin_auth', 'true');
+        location.href = 'admin.html';
+    } else {
+        alert('❌ Clave de Seguridad Incorrecta. Acceso denegado.');
+        document.getElementById('adminPassInput').value = '';
+        document.getElementById('adminLoginModal').classList.add('hidden');
+    }
+};
+
 window.goBack = function () {
     if (homeSection && !homeSection.classList.contains('hidden')) {
         if (confirm('¿Salir?')) window.location.reload();
@@ -628,6 +655,12 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         const formData = new FormData(form);
         const cleanData = Object.fromEntries(formData.entries());
         
+        // --- INTEGRACIÓN CRM & MARKETING ---
+        const marketing = getMarketingContext();
+        cleanData.utm_source = marketing.utm_source;
+        cleanData.utm_medium = marketing.utm_medium;
+        cleanData.utm_campaign = marketing.utm_campaign;
+        // El genero ya viene en cleanData por el input hidden
         // --- PROCESAR EVIDENCIAS ---
         const uploadTasks = [];
         const cons = cleanData.consecutivo;
@@ -710,6 +743,7 @@ window.addEventListener('load', () => {
     window.lucide?.createIcons();
     loadInitialData();
     initRealtimeValidation(steps);
+    initJuliePixel(); // Activar rastreo de ventas
 
     // Ocultar pantalla de carga (Splash Screen)
     setTimeout(() => {

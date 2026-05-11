@@ -1,8 +1,8 @@
-const CACHE_NAME = 'julie-ficha-v4.0';
+const CACHE_NAME = 'julie-ficha-v5.1';
 const ASSETS = [
   'index.html',
-  'style.css?v=4.0',
-  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/app.js?v=4.0',
+  'style.css?v=5.1',
+  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/app.js?v=5.1',
   'manifest.json',
   'logo.png',
   'guia_cabello_tecnico_completa_julie_es_1774539016850.png',
