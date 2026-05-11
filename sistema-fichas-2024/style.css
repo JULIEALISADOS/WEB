@@ -174,7 +174,7 @@ input:focus, select:focus, textarea:focus { border-color:var(--gold-primary); ou
 .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .img-preview { margin-top:8px; background:#fafafa; border-radius:var(--radius); border:2px dashed #ddd; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden; min-height:120px; }
 .img-preview img { width:100%; height:100%; object-fit:cover; }
-.signature-section { display:flex; flex-direction:column; gap:16px; }
+.signature-section { display:flex; flex-direction:column; gap:16px; padding: 0 25px; }
 .signature-container { background:#fefefe; border:2px solid #e0e0e0; border-radius:var(--radius); position:relative; margin-top:6px; }
 .signature-pad { width:100%; height:140px; display:block; touch-action:none; }
 .signature-container button { position:absolute; bottom:6px; right:6px; font-size:0.7rem; padding:4px 10px; background:#f3f4f6; border:none; border-radius:6px; cursor:pointer; color:#777; }
