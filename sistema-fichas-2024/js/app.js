@@ -210,7 +210,15 @@ window.switchTab = function (tab) {
         homeSection?.classList.remove('hidden');
     } else if (tab === 'new') {
         // Marketing: ViewContent en TikTok al iniciar nueva ficha
-        if (typeof ttq === 'object') ttq.track('ViewContent');
+        if (typeof ttq === 'object') {
+            ttq.track('ViewContent', {
+                contents: [{
+                    content_id: 'nuevo_folio',
+                    content_name: 'Nueva Ficha Técnica',
+                    content_type: 'product'
+                }]
+            });
+        }
 
         document.querySelector('.form-wrapper')?.classList.remove('hidden');
         document.querySelector('.form-footer')?.classList.remove('hidden');
@@ -253,7 +261,13 @@ window.jumpToStep = (step) => {
 
     // Marketing: InitiateCheckout en TikTok al avanzar al paso 2
     if (step === 2 && typeof ttq === 'object') {
-        ttq.track('InitiateCheckout');
+        ttq.track('InitiateCheckout', {
+            contents: [{
+                content_id: 'diagnostico_paso2',
+                content_name: 'Inicio de Diagnóstico',
+                content_type: 'product'
+            }]
+        });
     }
 };
 
@@ -761,16 +775,20 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
             });
         }
         
-        // Reportar conversión a TikTok (Identify + Track)
+        // Reportar conversión a TikTok (Identify + Track con ID de Contenido)
         if (typeof ttq === 'object') {
             ttq.identify({
                 email: hashedEmail,
                 phone_number: hashedPhone
             });
             ttq.track('CompletePayment', {
-                content_name: cleanData.procedimiento,
-                quantity: 1,
-                price: 0,
+                contents: [{
+                    content_id: cleanData.consecutivo,
+                    content_name: cleanData.procedimiento,
+                    content_type: 'product',
+                    quantity: 1,
+                    price: 0
+                }],
                 value: 0,
                 currency: 'COP'
             });
