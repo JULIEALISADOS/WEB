@@ -122,6 +122,7 @@
         return false;
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -1113,6 +1114,68 @@
                 modalClose.click();
             }
         });
+
+        // ======================== DYNAMIC REVIEWS (RESTORATION) ========================
+        const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
+        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
+        const sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+        async function loadDynamicReviews() {
+            const track = document.querySelector('.testimonials-infinite-track');
+            if (!track) return;
+
+            try {
+                // Traer 15 recomendaciones recientes que sean significativas
+                const { data, error } = await sb.from('fichas')
+                    .select('nombre_cliente, recomendaciones')
+                    .not('recomendaciones', 'is', null)
+                    .neq('recomendaciones', '')
+                    .order('created_at', { ascending: false })
+                    .limit(15);
+
+                if (error) throw error;
+
+                const validReviews = (data || []).filter(r => r.recomendaciones.length > 20);
+                
+                // Mezclar un poco para variedad
+                const shuffled = validReviews.sort(() => 0.5 - Math.random()).slice(0, 8);
+
+                shuffled.forEach(rev => {
+                    const firstLetter = (rev.nombre_cliente || 'C').charAt(0).toUpperCase();
+                    const card = document.createElement('div');
+                    card.className = 'testimonial-card';
+                    card.innerHTML = `
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote">"${rev.recomendaciones}"</p>
+                        <div class="google-user">
+                            <div class="user-avatar">${firstLetter}</div>
+                            <strong>${rev.nombre_cliente}</strong>
+                            <span class="source">Cliente JulieApp</span>
+                        </div>
+                    `;
+                    track.appendChild(card);
+                });
+
+                // DUPLICAR TODO EL TRACK PARA EL LOOP INFINITO (Crucial para el CSS -50%)
+                const allCards = Array.from(track.children);
+                allCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    track.appendChild(clone);
+                });
+
+                updateDimensions(); // Recalcular anchos para el slider
+            } catch (err) {
+                console.error('Error cargando opiniones dinámicas:', err);
+                // Si falla, al menos duplicamos las fijas para que el loop no se rompa
+                const allCards = Array.from(track.children);
+                allCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    track.appendChild(clone);
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadDynamicReviews);
     </script>
 </body>
 
