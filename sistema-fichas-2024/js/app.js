@@ -683,6 +683,16 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
                 content_ids: [cleanData.consecutivo]
             });
         }
+        // Reportar conversión a TikTok
+        if (typeof ttq === 'object') {
+            ttq.track('CompletePayment', {
+                content_name: cleanData.procedimiento,
+                quantity: 1,
+                price: 0,
+                value: 0,
+                currency: 'COP'
+            });
+        }
 
         document.getElementById('successModal').classList.remove('hidden');
         window.lucide?.createIcons();
