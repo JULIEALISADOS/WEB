@@ -182,6 +182,9 @@
             <a href="javascript:void(0)" onclick="showSection('analytics')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
                 <i data-lucide="trending-up"></i> <span>Analíticas</span>
             </a>
+            <a href="javascript:void(0)" onclick="showSection('marketing')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+                <i data-lucide="megaphone"></i> <span>Marketing Ads</span>
+            </a>
         </nav>
 
         <div style="margin-top:auto;">
@@ -273,11 +276,38 @@
             </div>
         </div>
 
-        <div id="section-analytics" class="hidden">
-            <div class="table-card" style="text-align:center; padding:100px;">
-                <i data-lucide="bar-chart-3" style="width:64px; height:64px; color:#ddd; margin-bottom:20px;"></i>
-                <h3>Analíticas Avanzadas</h3>
-                <p>Próximamente verás aquí las tendencias de ventas por mes.</p>
+        <div id="section-marketing" class="hidden">
+            <div class="stats-grid">
+                <div class="stat-card" style="border-left-color: #fe2c55;">
+                    <h3>TikTok Ads</h3>
+                    <div class="value" id="statTikTok">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+                <div class="stat-card" style="border-left-color: #1877f2;">
+                    <h3>Meta (FB/IG)</h3>
+                    <div class="value" id="statMeta">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+                <div class="stat-card" style="border-left-color: #4285f4;">
+                    <h3>Google Ads</h3>
+                    <div class="value" id="statGoogle">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="font-family:'Playfair Display';">Rendimiento de Campañas</h2>
+                    <button onclick="exportCRM()" class="btn-action" style="background:var(--gold-gradient); color:white;">
+                        <i data-lucide="download"></i> Exportar para Públicos Personalizados
+                    </button>
+                </div>
+                <p style="margin-bottom:20px; color:#666; font-size:0.9rem;">
+                    Este informe toma los datos capturados por el <strong>JuliePixel</strong> y los UTMs de tus anuncios. Úsalos para decidir dónde invertir más presupuesto.
+                </p>
+                <div id="marketingReportArea">
+                    <!-- Resumen de campañas -->
+                </div>
             </div>
         </div>
     </main>
@@ -304,6 +334,7 @@
                 
                 renderDashboard();
                 renderClientsTable(clientsData);
+                renderMarketingInsights();
                 if (window.lucide) window.lucide.createIcons();
             } catch (e) { 
                 console.error('Admin Load Error:', e); 
@@ -339,6 +370,40 @@
                 `;
                 recentTbody.appendChild(tr);
             });
+        }
+
+        function renderMarketingInsights() {
+            const sources = { tiktok: 0, meta: 0, google: 0, direct: 0 };
+            const campaigns = {};
+
+            clientsData.forEach(f => {
+                const src = (f.utm_source || '').toLowerCase();
+                if (src.includes('tiktok')) sources.tiktok++;
+                else if (src.includes('meta') || src.includes('facebook') || src.includes('instagram')) sources.meta++;
+                else if (src.includes('google')) sources.google++;
+                else sources.direct++;
+
+                const camp = f.utm_campaign || 'Orgánico / Directo';
+                campaigns[camp] = (campaigns[camp] || 0) + 1;
+            });
+
+            document.getElementById('statTikTok').innerText = sources.tiktok;
+            document.getElementById('statMeta').innerText = sources.meta;
+            document.getElementById('statGoogle').innerText = sources.google;
+
+            let campHtml = '<table><thead><tr><th>CAMPAÑA</th><th>CONVERSIONES</th><th>% DEL TOTAL</th></tr></thead><tbody>';
+            const total = clientsData.length;
+            
+            Object.entries(campaigns)
+                .sort((a,b) => b[1] - a[1])
+                .forEach(([name, count]) => {
+                    const pct = ((count / total) * 100).toFixed(1);
+                    campHtml += `<tr><td><strong>${name}</strong></td><td>${count}</td><td>${pct}%</td></tr>`;
+                });
+            campHtml += '</tbody></table>';
+            
+            const reportArea = document.getElementById('marketingReportArea');
+            if (reportArea) reportArea.innerHTML = campHtml;
         }
 
         function renderClientsTable(data) {
