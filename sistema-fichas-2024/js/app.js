@@ -488,6 +488,7 @@ if (docInput) {
 
             if (lastFicha) {
                 if (badge) { badge.innerText = 'FOLIO ADICIONAL'; badge.className = 'visit-badge recurring'; }
+                setChip('tipo_cliente', 'Recurrente');
                 if (area && bgText) {
                     area.classList.remove('hidden');
                     bgText.innerHTML = `
@@ -515,6 +516,7 @@ if (docInput) {
                 if (hBtn) hBtn.classList.remove('hidden');
             } else {
                 if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
+                setChip('tipo_cliente', 'Nueva');
                 if (area) area.classList.add('hidden');
                 
                 // Si es nueva, ocultamos el botón del header por ahora (o lo dejamos si queremos que busquen de todos modos)
