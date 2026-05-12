@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=8.3">
+    <link rel="stylesheet" href="style.css?v=8.4">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#D4AF37">
     <link rel="apple-touch-icon" href="logo.png">
     <script>
-        const APP_VERSION = '8.3';
+        const APP_VERSION = '8.4';
         async function checkVersionAndForceUpdate() {
             const savedVersion = localStorage.getItem('julie_app_version');
             if (savedVersion !== APP_VERSION) {
@@ -144,7 +144,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">v8.3</span>
+                    <span class="version-badge">v8.4</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
@@ -199,7 +199,8 @@
                     <h3>HISTORIAL</h3>
                     <p>Ver y descargar reportes previos</p>
                 </div>
-                <div class="home-card" onclick="openScheduling()">
+                <!-- Oculto por solicitud del usuario, para uso futuro -->
+                <div class="home-card" onclick="openScheduling()" style="display: none;">
                     <div class="card-icon" style="background: #e8f5e9; color: #2ecc71;"><i data-lucide="calendar"></i></div>
                     <div class="card-text">
                         <h3>AGENDAR CITA</h3>
@@ -672,11 +673,11 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=8.3"></script>
+    <script type="module" src="js/app.js?v=8.4"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=8.3')
+                navigator.serviceWorker.register('sw.js?v=8.4')
                     .then(reg => {
                         console.log('✅ Service Worker registrado');
                         // Forzar actualización si hay un nuevo SW esperando
