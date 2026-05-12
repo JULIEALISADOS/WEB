@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=7.7">
+    <link rel="stylesheet" href="style.css?v=7.8">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -36,16 +36,28 @@
     <meta name="theme-color" content="#D4AF37">
     <link rel="apple-touch-icon" href="logo.png">
     <script>
+        const APP_VERSION = '7.8';
+        async function checkVersionAndForceUpdate() {
+            const savedVersion = localStorage.getItem('julie_app_version');
+            if (savedVersion !== APP_VERSION) {
+                console.log('🔄 Nueva versión detectada:', APP_VERSION);
+                try {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    localStorage.setItem('julie_app_version', APP_VERSION);
+                    // Forzar recarga omitiendo cache del navegador
+                    window.location.href = window.location.href.split('?')[0] + '?v=' + Date.now();
+                } catch (e) { console.error('Error in force update:', e); }
+            }
+        }
+        checkVersionAndForceUpdate();
+
         async function forceUpdate() {
             try {
-                const CACHE_NAME = 'julie-app-v7.7';
                 const cacheNames = await caches.keys();
                 await Promise.all(cacheNames.map(name => caches.delete(name)));
                 window.location.reload(true);
-            } catch (err) {
-                console.error("Error en forceUpdate:", err);
-                window.location.reload(true);
-            }
+            } catch (e) { alert('Error al limpiar cache'); }
         }
     </script>
     <!-- Meta Pixel Code -->
@@ -132,7 +144,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">v7.7</span>
+                    <span class="version-badge">v7.8</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
@@ -660,12 +672,24 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=7.7"></script>
+    <script type="module" src="js/app.js?v=7.8"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=7.7')
-                    .then(reg => console.log('✅ Service Worker registrado'))
+                navigator.serviceWorker.register('sw.js?v=7.8')
+                    .then(reg => {
+                        console.log('✅ Service Worker registrado');
+                        // Forzar actualización si hay un nuevo SW esperando
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('✨ Nueva versión lista. Recargando...');
+                                    location.reload();
+                                }
+                            });
+                        });
+                    })
                     .catch(err => console.warn('❌ Error registrando SW', err));
             });
         }
