@@ -48,7 +48,7 @@ body {
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
-    padding-bottom: 80px;
+    padding-bottom: 110px;
     transition: max-width 0.3s ease, margin 0.3s ease;
 }
 
@@ -185,7 +185,7 @@ input:focus, select:focus, textarea:focus { border-color:var(--gold-primary); ou
 .checkbox-container input[type="checkbox"] { width:22px; height:22px; accent-color:var(--gold-primary); cursor:pointer; flex-shrink:0; }
 
 /* ============ FOOTER & NAV ============ */
-.form-footer { padding:16px 20px; background:var(--surface-glass); backdrop-filter:blur(10px); border-top:1px solid #eee; display:flex; gap:10px; position:sticky; bottom:60px; z-index:100; }
+.form-footer { padding:16px 20px; background:var(--surface-glass); backdrop-filter:blur(10px); border-top:1px solid #eee; display:flex; gap:10px; position:sticky; bottom:65px; z-index:100; }
 .btn-primary { flex:1; padding:13px; background:var(--gold-gradient); color:white; border:none; border-radius:var(--radius); font-weight:700; font-size:0.95rem; cursor:pointer; transition:transform 0.15s, box-shadow 0.15s; font-family:inherit; }
 .btn-primary:active { transform:scale(0.97); }
 .btn-secondary { flex:1; padding:13px; background:#f3f4f6; color:var(--text-secondary); border:none; border-radius:var(--radius); font-weight:700; font-size:0.95rem; cursor:pointer; font-family:inherit; }
