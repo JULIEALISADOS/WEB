@@ -257,6 +257,11 @@ export async function generatePDF() {
         y += imgH + 10;
 
         // --- SECCIÓN 6: CONSENTIMIENTO INFORMADO ---
+        doc.addPage(); // Forzar página nueva para que sea un "documento aparte"
+        y = 15;
+        doc.setFillColor(...colors.gold);
+        doc.rect(0, 0, pageWidth, 3, 'F');
+        
         drawSectionHeader('6. Consentimiento Informado y Legal');
         
         // Historial Adicional
@@ -264,23 +269,23 @@ export async function generatePDF() {
         h2 = drawField('Tratamiento Médico', getVal('consent_meds'), col2, 80);
         y += Math.max(h1, h2);
         
-        checkSpace(60);
+        y += 5;
         doc.setFillColor(252, 252, 252);
         doc.setDrawColor(220, 220, 220);
-        doc.roundedRect(15, y, pageWidth - 30, 45, 2, 2, 'FD');
+        doc.roundedRect(15, y, pageWidth - 30, 60, 2, 2, 'FD');
         
-        doc.setFontSize(6); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+        doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
         const consentText = "DECLARACIÓN Y ACEPTACIÓN INTEGRAL: El alisado capilar consiste en la aplicación de productos químicos diseñados para modificar la estructura del cabello. El resultado depende de factores individuales como el tipo de cabello e historial previo. Acepto que fui debidamente informada sobre los resultados esperados y el plan de trabajo propuesto. El cliente reconoce y acepta que los resultados pueden variar y que Julie Alisados no será responsable por resultados insatisfactorios si no se siguen las recomendaciones. Declaro que he recibido toda la información sobre riesgos y cuidados, y renuncio expresamente a cualquier reclamación futura. Acepto la POLÍTICA DE GARANTÍA DE 20 DÍAS: La garantía cubre ondas prematuras dentro de los 20 días calendarios posteriores al procedimiento. Si la garantía no procede, el cliente pagará $20.000 por costos de valoración. Autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012. He leído y comprendido toda la información y acepto voluntariamente el procedimiento.";
-        doc.text(doc.splitTextToSize(consentText, pageWidth - 40), 20, y + 6);
+        doc.text(doc.splitTextToSize(consentText, pageWidth - 40), 20, y + 8);
         
         // Autorización de fotos
         const autPub = f.querySelector('[name="autoriza_publicidad"]')?.checked ? "SÍ AUTORIZA" : "NO AUTORIZA";
-        doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
-        doc.text(`AUTORIZACIÓN USO PUBLICITARIO DE IMAGEN: ${autPub}`, 20, y + 40);
+        doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gold);
+        doc.text(`AUTORIZACIÓN USO PUBLICITARIO DE IMAGEN: ${autPub}`, 20, y + 52);
         
-        y += 55;
+        y += 85;
 
-        // --- SECCIÓN 7: FIRMAS ---
+        // --- SECCIÓN 7: FIRMAS DE ACEPTACIÓN ---
         // Obtener firmas
         let sigC = '', sigT = '', sigM = '';
         const { padClient, padTech, padTutor } = getSignaturePads();
@@ -297,34 +302,26 @@ export async function generatePDF() {
 
         const drawSig = (src, label, printedName, x, yPos) => {
             doc.setDrawColor(...colors.gray); doc.setLineWidth(0.3);
-            doc.line(x, yPos, x + 50, yPos);
-            doc.setFontSize(6); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
-            doc.text(label, x + 25, yPos + 3, { align: 'center' });
+            doc.line(x, yPos, x + 60, yPos);
+            doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...colors.gray);
+            doc.text(label, x + 30, yPos + 4, { align: 'center' });
             if (printedName && printedName !== '---') {
-                doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
-                doc.text(printedName.toUpperCase(), x + 25, yPos + 6, { align: 'center' });
+                doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...colors.dark);
+                doc.text(printedName.toUpperCase(), x + 30, yPos + 8, { align: 'center' });
             }
             if (src && src.startsWith('data:image')) {
-                try { doc.addImage(src, 'PNG', x + 5, yPos - 18, 40, 18); } catch (e) {}
+                try { doc.addImage(src, 'PNG', x + 10, yPos - 22, 40, 22); } catch (e) {}
             }
         };
 
-        checkSpace(60);
+        // Firma Cliente y Técnico en una sola fila para ahorrar espacio o mejor disposición
+        drawSig(sigC, 'FIRMA DE CONFORMIDAD CLIENTE', getVal('nombre_completo'), 15, y + 25);
+        drawSig(sigT, 'FIRMA TÉCNICO RESPONSABLE', getVal('estilista_responsable'), pageWidth - 75, y + 25);
         
-        // Firma Cliente
-        drawSig(sigC, 'FIRMA CLIENTE (MENOR/ADULTO)', getVal('nombre_completo'), 15, y + 20);
-        y += 30;
-
-        // Firma Tutor (Si aplica)
         if (isMinor) {
-            checkSpace(30);
-            drawSig(sigM, 'FIRMA TUTOR LEGAL / RESPONSABLE', getVal('nombre_tutor') || 'Responsable Menor', 15, y + 20);
-            y += 30;
+            y += 40;
+            drawSig(sigM, 'FIRMA TUTOR LEGAL / RESPONSABLE', getVal('nombre_tutor') || 'Responsable Menor', 15, y + 25);
         }
-
-        // Firma Técnico
-        checkSpace(30);
-        drawSig(sigT, 'FIRMA TÉCNICO PROFESIONAL', getVal('estilista_responsable'), 15, y + 20);
 
         // Footer
         doc.setFillColor(...colors.gold);

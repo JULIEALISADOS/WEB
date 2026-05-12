@@ -903,6 +903,7 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         delete dbPayload.utm_medium;
         delete dbPayload.utm_campaign;
         delete dbPayload.ubicacion_gps;
+        delete dbPayload.como_nos_conociste; // Evitar error si la columna no existe en Supabase
 
         try {
             await insertFicha(dbPayload);
