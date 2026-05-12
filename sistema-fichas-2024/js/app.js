@@ -546,37 +546,15 @@ if (docInput) {
                 setChip('tipo_cliente', 'Recurrente');
                 if (area && bgText) {
                     area.classList.remove('hidden');
-                    window.renderFullHistoryInline = (fichaData) => {
-                        window.currentLastFicha = fichaData;
-                        bgText.innerHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <h4 style="color: var(--gold-dark); margin:0;">📋 DETALLE COMPLETO (Folio #${fichaData.consecutivo})</h4>
-                                <button type="button" onclick="viewQuickHistory('${val}')" style="background:var(--gold-dark); color:white; border:none; padding:6px 12px; border-radius:8px; font-size:0.7rem; cursor:pointer;">
-                                    📂 VER OTROS FOLIOS
-                                </button>
-                            </div>
-                            <div style="display: grid; gap: 10px; font-size: 0.85rem; background: #fafafa; padding: 12px; border-radius: 12px; border: 1px solid #eee;">
-                                <div>
-                                    <strong style="color: var(--gold-dark);">DATOS GENERALES</strong><br>
-                                    Fecha: ${new Date(fichaData.created_at).toLocaleDateString()}<br>
-                                    Estilista: ${fichaData.estilista_responsable}<br>
-                                    Sede: ${fichaData.sede}
-                                </div>
-                                <div style="border-top: 1px solid #ddd; padding-top: 8px;">
-                                    <strong style="color: var(--gold-dark);">DIAGNÓSTICO Y TÉCNICA</strong><br>
-                                    Patrón: ${fichaData.tipo_cabello}<br>
-                                    Procedimiento: ${fichaData.procedimiento}<br>
-                                    Garantía: ${fichaData.porcentaje_liso || '100%'}
-                                </div>
-                                <div style="border-top: 1px solid #ddd; padding-top: 8px;">
-                                    <strong style="color: var(--gold-dark);">OBSERVACIONES</strong><br>
-                                    Técnica: ${fichaData.observaciones_diagnostico || 'N/A'}<br>
-                                    Capilar: ${fichaData.observaciones_caracteristicas || 'N/A'}
-                                </div>
-                            </div>
-                        `;
-                    };
-                    window.renderFullHistoryInline(lastFicha);
+                    bgText.innerHTML = `
+                        📌 <strong>ÚLTIMA VISITA:</strong> ${new Date(lastFicha.created_at).toLocaleDateString()}<br>
+                        💇‍♀️ <strong>PROCEDIMIENTO:</strong> ${lastFicha.procedimiento}<br>
+                        ✨ <strong>LISO:</strong> ${lastFicha.porcentaje_liso || '100%'}<br>
+                        📝 <strong>TÉCNICA:</strong> ${lastFicha.tecnica_utilizada || 'N/A'}<br>
+                        <button type="button" onclick="viewQuickHistory('${val}')" style="margin-top:10px; background:var(--gold-dark); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%;">
+                            📂 VER HISTORIAL CLÍNICO Y DETALLES
+                        </button>
+                    `;
                 }
                 
                 // Mostrar botón de historial en el header
@@ -658,11 +636,9 @@ window.viewQuickHistory = async (doc) => {
                         <strong style="color:var(--gold-dark);">Folio #${f.consecutivo}</strong>
                         <small style="font-weight: bold; color: #888;">${new Date(f.created_at).toLocaleDateString()}</small>
                     </div>
-                    <button type="button" onclick="window.renderFullHistoryInline(${JSON.stringify(f).replace(/"/g, '&quot;')}); document.getElementById('quickHistoryModal').classList.add('hidden');" style="margin-top:8px; background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%; font-weight: bold;">
-                        ✅ MOSTRAR ESTE FOLIO EN LA PANTALLA PRINCIPAL
-                    </button>
-                    <button type="button" onclick="openFichaDetail('${f.consecutivo}')" style="margin-top:8px; background:none; color:var(--text-secondary); border:1px solid #ccc; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%;">
-                        📄 VER PDF Y FOTOS
+                    <p style="font-size:0.85rem; margin:5px 0;"><strong>Servicio:</strong> ${f.procedimiento}</p>
+                    <button type="button" onclick="openFichaDetail('${f.consecutivo}')" style="margin-top:8px; background:var(--gold-gradient); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:0.75rem; cursor:pointer; width:100%; font-weight: bold;">
+                        📄 VER DETALLE COMPLETO
                     </button>
                 </div>
             `;
@@ -920,15 +896,16 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         const hashedEmail = await hashData(cleanData.email);
         const hashedPhone = await hashData(cleanData.telefono);
 
-        // Remover columnas que puedan no estar creadas en Supabase para evitar errores fatales
-        delete cleanData.autoriza_publicidad;
-        delete cleanData.utm_source;
-        delete cleanData.utm_medium;
-        delete cleanData.utm_campaign;
-        delete cleanData.ubicacion_gps;
+        const dbPayload = { ...cleanData };
+        // Remover columnas que puedan no estar creadas en Supabase para evitar errores fatales en la BD
+        delete dbPayload.autoriza_publicidad;
+        delete dbPayload.utm_source;
+        delete dbPayload.utm_medium;
+        delete dbPayload.utm_campaign;
+        delete dbPayload.ubicacion_gps;
 
         try {
-            await insertFicha(cleanData);
+            await insertFicha(dbPayload);
         } catch (dbError) {
             alert('❌ Error al guardar en base de datos: ' + dbError.message + '\nPor favor contacta a soporte.');
             throw dbError;
