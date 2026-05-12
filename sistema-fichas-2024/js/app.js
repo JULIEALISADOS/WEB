@@ -30,6 +30,15 @@ window.isLocked = false;
 window.lastGeneratedSignatures = { client: null, tech: null, tutor: null };
 window.lastViewedFicha = null;
 window.nextFolioID = null;
+window.currentLastFicha = null; // Guardar última ficha detectada
+
+function debounce(func, timeout = 500) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
 
 // ======================== LOGIN ========================
 function login() {
@@ -517,15 +526,17 @@ window.jumpToStep = function (step) {
 // ======================== DOCUMENT LOOKUP ========================
 const docInput = document.getElementById('docNumberInput');
 if (docInput) {
-    docInput.addEventListener('blur', async () => {
+    const performCheck = async () => {
         const val = docInput.value.trim();
-        const badge = document.getElementById('visitTypeBadge');
         if (val.length < 5) {
+            const badge = document.getElementById('visitTypeBadge');
             if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
+            window.currentLastFicha = null;
             return;
         }
         try {
             const lastFicha = await getLastFichaByDoc(val);
+            window.currentLastFicha = lastFicha; // Guardar para el botón de importar
             const area = document.getElementById('clinicalBackgroundArea');
             const badge = document.getElementById('visitTypeBadge');
             const bgText = document.getElementById('backgroundText');
@@ -545,16 +556,6 @@ if (docInput) {
                     `;
                 }
                 
-                // Pre-llenar solo datos personales
-                form.querySelector('[name="nombre_completo"]').value = lastFicha.nombre_completo || '';
-                form.querySelector('[name="telefono"]').value = lastFicha.telefono || '';
-                form.querySelector('[name="email"]').value = lastFicha.email || '';
-                const edadInp = document.getElementById('edadInput');
-                if (edadInp) {
-                    edadInp.value = lastFicha.edad || '';
-                    monitorMinorSettings();
-                }
-
                 // Mostrar botón de historial en el header
                 const hBtn = document.getElementById('headerHistoryBtn');
                 if (hBtn) hBtn.classList.remove('hidden');
@@ -562,12 +563,58 @@ if (docInput) {
                 if (badge) { badge.innerText = 'NUEVA CLIENTE'; badge.className = 'visit-badge'; }
                 setChip('tipo_cliente', 'Nueva');
                 if (area) area.classList.add('hidden');
-                
-                // Si es nueva, ocultamos el botón del header por ahora (o lo dejamos si queremos que busquen de todos modos)
                 const hBtn = document.getElementById('headerHistoryBtn');
                 if (hBtn) hBtn.classList.add('hidden');
             }
         } catch (e) { console.error('Recurrence check error:', e); }
+    };
+
+    docInput.addEventListener('input', debounce(performCheck, 600));
+}
+
+// Lógica de Importación de Datos Previos
+const btnLoadPrev = document.getElementById('btnLoadPrevious');
+if (btnLoadPrev) {
+    btnLoadPrev.addEventListener('click', () => {
+        const data = window.currentLastFicha;
+        if (!data) { alert('No hay datos previos detectados para esta cliente.'); return; }
+
+        // 1. Datos Básicos
+        const fields = {
+            'nombre_completo': data.nombre_completo,
+            'telefono': data.telefono,
+            'email': data.email,
+            'edad': data.edad
+        };
+
+        for (let key in fields) {
+            const el = form.querySelector(`[name="${key}"]`);
+            if (el) el.value = fields[key] || '';
+        }
+        
+        if (data.genero) setChip('genero', data.genero);
+        monitorMinorSettings();
+
+        // 2. Antecedentes Significativos (Procesos y Terapias)
+        const note = `\n\n[DATO IMPORTADO DE FOLIO #${data.consecutivo} del ${new Date(data.created_at).toLocaleDateString()}]`;
+        
+        const procInput = form.querySelector('[name="procesos_quimicos"]');
+        if (procInput && data.procesos_quimicos) {
+            procInput.value = data.procesos_quimicos + note;
+        }
+
+        const terInput = form.querySelector('[name="terapias_capilares"]');
+        if (terInput && data.terapias_capilares) {
+            terInput.value = data.terapias_capilares + note;
+        }
+
+        // 3. Notas del último procedimiento en Diagnóstico
+        const diagObs = form.querySelector('[name="observaciones_diagnostico"]');
+        if (diagObs) {
+            diagObs.value = `ÚLTIMO SERVICIO: ${data.procedimiento} (${data.porcentaje_liso || '100%'} liso) realizado el ${new Date(data.created_at).toLocaleDateString()}.` + note;
+        }
+
+        alert('✅ Datos básicos y antecedentes importados con éxito. Por favor realiza el nuevo diagnóstico capilar.');
     });
 }
 
