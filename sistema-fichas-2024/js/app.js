@@ -920,7 +920,19 @@ if (saveBtn) saveBtn.addEventListener('click', async () => {
         const hashedEmail = await hashData(cleanData.email);
         const hashedPhone = await hashData(cleanData.telefono);
 
-        await insertFicha(cleanData);
+        // Remover columnas que puedan no estar creadas en Supabase para evitar errores fatales
+        delete cleanData.autoriza_publicidad;
+        delete cleanData.utm_source;
+        delete cleanData.utm_medium;
+        delete cleanData.utm_campaign;
+        delete cleanData.ubicacion_gps;
+
+        try {
+            await insertFicha(cleanData);
+        } catch (dbError) {
+            alert('❌ Error al guardar en base de datos: ' + dbError.message + '\nPor favor contacta a soporte.');
+            throw dbError;
+        }
 
         // Reportar conversión a Google (Enhanced Conversions)
         if (typeof gtag === 'function') {

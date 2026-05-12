@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-title" content="Julie Ficha">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css?v=8.1">
+    <link rel="stylesheet" href="style.css?v=8.2">
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#D4AF37">
     <link rel="apple-touch-icon" href="logo.png">
     <script>
-        const APP_VERSION = '8.1';
+        const APP_VERSION = '8.2';
         async function checkVersionAndForceUpdate() {
             const savedVersion = localStorage.getItem('julie_app_version');
             if (savedVersion !== APP_VERSION) {
@@ -144,7 +144,7 @@
                         <h1>FICHA TÉCNICA JULIE</h1>
                         <p>Diagnóstico Profesional Capilar</p>
                     </div>
-                    <span class="version-badge">v8.1</span>
+                    <span class="version-badge">v8.2</span>
                 </div>
                 <div class="header-actions">
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
@@ -349,7 +349,7 @@
                         <div class="form-group full-width"><label class="required">PROCESOS QUÍMICOS</label><textarea name="procesos_quimicos" rows="3" required></textarea></div>
                         <div class="form-group full-width"><label class="required">TERAPIAS CAPILARES</label><textarea name="terapias_capilares" rows="3" required></textarea></div>
                         <div class="form-group full-width"><label class="required">TEXTURA</label><input type="hidden" name="textura" id="texturaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('textura', 'Delgado')">Delgado</button><button type="button" class="chip" onclick="setChip('textura', 'Medio')">Medio</button><button type="button" class="chip" onclick="setChip('textura', 'Grueso')">Grueso</button></div></div>
-                        <div class="form-group full-width"><label class="required">ELASTICIDAD</label><input type="hidden" name="elasticidad" id="elasticidadInput" required><div class="chip-group vertical"><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Baja')"><strong>Baja</strong></button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Media')"><strong>Media</strong></button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Alta')"><strong>Alta</strong></button></div></div>
+                        <div class="form-group full-width"><label class="required">ELASTICIDAD</label><input type="hidden" name="elasticidad" id="elasticidadInput" required><div class="chip-group vertical"><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Baja')"><strong>Baja</strong> (Se rompe fácilmente al estirar)</button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Media')"><strong>Media</strong> (Se estira y vuelve a su estado natural)</button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Alta')"><strong>Alta</strong> (Se estira mucho sin romperse)</button></div></div>
                         <div class="form-group full-width"><label class="required">RESISTENCIA</label><input type="hidden" name="resistencia" id="resistenciaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('resistencia', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('resistencia', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('resistencia', 'Baja')">Baja</button></div></div>
                         <div class="form-group full-width"><label class="required">POROSIDAD</label><input type="hidden" name="porosidad" id="porosidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('porosidad', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('porosidad', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('porosidad', 'Baja')">Baja</button></div></div>
                         <div class="form-group full-width"><label class="required">DENSIDAD</label><input type="hidden" name="densidad" id="densidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('densidad', 'Poco')">Poco</button><button type="button" class="chip" onclick="setChip('densidad', 'Regular')">Regular</button><button type="button" class="chip" onclick="setChip('densidad', 'Abundante')">Abundante</button></div></div>
@@ -672,11 +672,11 @@
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=8.1"></script>
+    <script type="module" src="js/app.js?v=8.2"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=8.1')
+                navigator.serviceWorker.register('sw.js?v=8.2')
                     .then(reg => {
                         console.log('✅ Service Worker registrado');
                         // Forzar actualización si hay un nuevo SW esperando
