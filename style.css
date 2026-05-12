@@ -2628,4 +2628,36 @@ footer .section-title::after {
         font-size: 0.85rem;
     }
 }
+
+/* Floating WhatsApp Number Badge */
+.whatsapp-number-floating {
+    display: block;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #128c7e;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1.5px solid #25D366;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    z-index: 100;
+    animation: float-badge 3s ease-in-out infinite;
+    pointer-events: none;
+    text-align: center;
+}
+
+@keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@media (max-width: 600px) {
+    .whatsapp-number-floating {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+    }
+}
 
