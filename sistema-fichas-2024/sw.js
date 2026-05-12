@@ -29,6 +29,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Para páginas HTML, JS y CSS, intentar red primero
+  if (event.request.mode === 'navigate' || event.request.destination === 'style' || event.request.destination === 'script') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+  // Para el resto (imágenes, etc), Cache First
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
   );
