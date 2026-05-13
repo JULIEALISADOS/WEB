@@ -120,12 +120,24 @@
 
         // Meta Pixel Event
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Contact');
+          fbq('track', 'Contact', {
+            content_name: 'WhatsApp Click',
+            content_category: 'Lead'
+          });
         }
 
-        // TikTok Pixel Event
+        // TikTok Pixel Event (Optimized)
         if (typeof ttq !== 'undefined') {
-          ttq.track('Contact');
+          ttq.track('Contact', {
+            contents: [{
+              content_id: 'whatsapp_button',
+              content_name: 'Agendamiento WhatsApp'
+            }],
+            value: 0,
+            currency: 'COP'
+          });
+          // Evento adicional para campañas de captación
+          ttq.track('SubmitForm');
         }
 
         return false;
