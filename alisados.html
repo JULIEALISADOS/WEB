@@ -47,26 +47,15 @@
       function gtag_report_conversion(url) {
         var callback = function () {
           if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        // Google Ads
-        gtag('event', 'conversion', {
-            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
-            'event_callback': callback
-        });
-        // GA4
-        gtag('event', 'generate_lead', {
-          'event_category': 'engagement',
-          'event_label': 'WhatsApp Click'
-        });
-        // Meta Pixel
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'Contact');
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generate_lead', { 'event_category': 'engagement', 'event_label': 'WhatsApp Alisados' });
         }
-        // TikTok Pixel
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Contact', { content_name: 'Alisados WhatsApp' });
+        }
         if (typeof ttq !== 'undefined') {
-          ttq.track('Contact');
+          ttq.track('Contact', { content_name: 'Alisados WhatsApp' });
+          ttq.track('SubmitForm');
         }
         return false;
       }
