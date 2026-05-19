@@ -628,12 +628,10 @@
 
             <!-- TABS DE CATEGORÍAS -->
             <div class="faq-tabs">
-                <button class="faq-tab active" data-target="todas">Todas</button>
-                <button class="faq-tab" data-target="alisado">Alisados y Tiempos</button>
+                <button class="faq-tab active" data-target="alisado">Alisados y Tiempos</button>
                 <button class="faq-tab" data-target="terapias">Terapias</button>
                 <button class="faq-tab" data-target="cuidados">Cuidados y Productos</button>
                 <button class="faq-tab" data-target="quimicos">Procesos Químicos</button>
-                <button class="faq-tab" data-target="estilistas">Para Estilistas</button>
             </div>
 
             <div class="faq-container">
@@ -843,18 +841,7 @@ NO APTO PARA MENORES DE EDAD, MUJERES EN ESTADO DE EMBARAZO, NI LACTANTES.</p>
                     </div>
                 </div>
 
-                <!-- PREGUNTA -->
-                <div class="faq-item" data-category="estilistas">
-                    <button class="faq-question">
-                        <span>¿Cada cuánto se debe realizar la Reposición de Aminoácidos a una clienta?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Aunque en Julie Alisados recomendamos de manera general hacerlo cada <strong>2 a 3 meses</strong>, la decisión final depende siempre de tu diagnóstico profesional:<br><br>
-                        • Si el cabello tiene buena hidratación, está cuidado y en condiciones óptimas, se puede repetir sin problema en ese tiempo.<br>
-                        • Si observas daño estructural, resequedad o debilidad, lo mejor es espaciar más el tiempo o reforzar primero con terapias de hidratación y nutrición (RCP o Emulsión Zero).</p>
-                    </div>
-                </div>
+
 
             </div>
         </div>
@@ -1303,6 +1290,25 @@ NO APTO PARA MENORES DE EDAD, MUJERES EN ESTADO DE EMBARAZO, NI LACTANTES.</p>
         document.addEventListener('DOMContentLoaded', () => {
             const faqTabs = document.querySelectorAll('.faq-tab');
             const faqItems = document.querySelectorAll('.faq-item');
+
+            const filterCategory = (category) => {
+                faqItems.forEach(item => {
+                    item.classList.remove('active'); // Cierra acordeón al cambiar tab
+                    if (category === 'todas' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                        item.style.opacity = '1';
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.display = 'none';
+                    }
+                });
+            };
+
+            // Inicializar la vista mostrando solo la categoría activa por defecto (Alisados y Tiempos)
+            const activeTab = document.querySelector('.faq-tab.active');
+            if (activeTab) {
+                filterCategory(activeTab.getAttribute('data-target'));
+            }
 
             faqTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
