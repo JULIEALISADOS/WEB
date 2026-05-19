@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -1299,22 +1299,11 @@ NO APTO PARA MENORES DE EDAD, MUJERES EN ESTADO DE EMBARAZO, NI LACTANTES.</p>
         lucide.createIcons();
     </script>
     <script>
+        // Tabs Logic for FAQ
         document.addEventListener('DOMContentLoaded', () => {
-            // Accordion Logic
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const button = item.querySelector('.faq-question');
-                button.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    faqItems.forEach(i => i.classList.remove('active')); // Cierra los demÃ¡s
-                    if (!isActive) {
-                        item.classList.add('active'); // Abre el actual
-                    }
-                });
-            });
-
-            // Tabs Logic
             const faqTabs = document.querySelectorAll('.faq-tab');
+            const faqItems = document.querySelectorAll('.faq-item');
+
             faqTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     faqTabs.forEach(t => t.classList.remove('active'));
@@ -1322,9 +1311,7 @@ NO APTO PARA MENORES DE EDAD, MUJERES EN ESTADO DE EMBARAZO, NI LACTANTES.</p>
                     const target = tab.getAttribute('data-target');
 
                     faqItems.forEach(item => {
-                        // Close active accordion when changing tabs
-                        item.classList.remove('active');
-                        
+                        item.classList.remove('active'); // Cierra acordeón al cambiar tab
                         if (target === 'todas' || item.getAttribute('data-category') === target) {
                             item.style.display = 'block';
                             setTimeout(() => { item.style.opacity = '1'; }, 10);
