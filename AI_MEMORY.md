@@ -1,5 +1,5 @@
 # 🧠 AI_MEMORY - Respaldo de Conocimiento del Sistema
-**Fecha de última copia de seguridad:** 19 de Mayo de 2026
+**Fecha de última copia de seguridad:** 19 de Mayo de 2026 (Actualización de FAQ y Notificaciones)
 **Propietario:** Julie Alisados By Julie Valencia
 **Acceso:** ESTRICTAMENTE PRIVADO Y CONFIDENCIAL.
 
@@ -8,10 +8,11 @@
 ## 1. ESTADO DE LOS PROYECTOS (DIAGNÓSTICO DIGITAL)
 
 ### 🌐 Página Web Principal (`juliealisados.com`)
-- **Estado:** Producción / Activa.
-- **Detalles:** Código HTML/CSS optimizado. Contiene los píxeles de Meta, TikTok y GA4 funcionando perfectamente (con evento en el botón de WhatsApp).
+- **Estado:** Producción / Activa y Optimizada.
+- **Detalles:** Código HTML/CSS optimizado. Contiene los píxeles de Meta, TikTok y GA4 funcionando perfectamente.
+- **FAQ Optimizada:** Se removieron las categorías "Todas" y "Para Estilistas" (y su pregunta técnica respectiva) para un enfoque puro al cliente. Se implementó una lógica de inicialización en JS para que al cargar la página se muestre únicamente "Alisados y Tiempos" en lugar de un "larguero" desordenado.
 - **Legales:** Todas las políticas (Privacidad, Garantías, Cookies) están enlazadas en el pie de página y cumplen con la normatividad colombiana (SIC).
-- **Carpeta Local:** Raíz del repositorio.
+- **Carpeta Local:** Raíz del repositorio (Con respaldo en `backups-web-v1.0`).
 
 ### 📋 App Ficha Técnica (`sistema-fichas-2024`)
 - **Estado:** BETA Avanzada / Producción Inicial.
@@ -26,9 +27,9 @@
 - **Detalles:** Panel de administración privado. Cuenta con integración a Google Calendar mediante `apis.google.com`. Diseñado para rastrear ingresos diarios/mensuales y la porción correspondiente a cada estilista.
 
 ### 🤖 Chatbot LIA (ManyChat / WhatsApp)
-- **Estado:** Pruebas Finales.
+- **Estado:** Producción / Configuración de Notificaciones Optimizada.
 - **Últimos Ajustes:** El límite de botones interactivos de WhatsApp (máximo 3) fue respetado. Se resolvió el uso de la función "Lista" (hasta 10 opciones).
-- **Pendiente de Despliegue:** Se ajustó la lógica para que el botón de "Menú Principal" haga un ciclo hacia atrás y conecte con el flujo inicial, evitando callejones sin salida.
+- **Control de Notificaciones:** Se configuró ManyChat (Settings > Live Chat) para que las conversaciones solo se abran de manera explícita por acciones del bot o manualmente. Esto detuvo el spam de notificaciones automáticas y asegura que solo se alerte al celular de administración en el momento exacto en que la clienta complete la cotización o pida ayuda humana.
 
 ---
 
@@ -39,4 +40,4 @@
 3. **Instrucción de Restauración:** Si la IA (Antigravity/Claude/Gemini) pierde contexto en futuras sesiones, debe leer INMEDIATAMENTE este archivo y `GEMINI.md` para recuperar toda la información técnica, arquitectónica y legal del negocio antes de proponer cualquier cambio.
 
 ---
-*Copia de seguridad completada con éxito. Memoria resguardada.*
+*Copia de seguridad completada con éxito. Memoria y estado resguardados en Git y backups locales.*
