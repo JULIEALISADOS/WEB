@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         // SEGURIDAD: Verificar sesión de administrador
+        if (localStorage.getItem('julie_remember_pass')) {
+            sessionStorage.setItem('julie_pass_token', localStorage.getItem('julie_remember_pass'));
+        }
+        
         const isAdmin = sessionStorage.getItem('julie_admin_auth') === 'true' || 
                         localStorage.getItem('julie_role') === 'admin';
                         
@@ -325,7 +329,8 @@
             if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Cargando folios...</td></tr>';
             
             try {
-                clientsData = await fetchHistory();
+                const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+                clientsData = await fetchHistory(passcode);
                 console.log('Datos administrativos cargados:', clientsData.length);
                 
                 if (!clientsData || clientsData.length === 0) {

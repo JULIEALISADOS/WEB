@@ -29,59 +29,84 @@ export const insertFicha = async (cleanData) => {
 };
 
 export const fetchNextID = async () => {
-    const { data, error } = await sb.from('fichas').select('consecutivo').order('created_at', { ascending: false }).limit(1);
+    const { data, error } = await sb.rpc('get_next_folio_id');
     if (error) throw error;
-    return (data && data.length > 0) ? parseInt(data[0].consecutivo) + 1 : 1;
+    return data;
 };
 
 export const fetchStylists = async () => {
-    // Intentar traer perfil completo (con nuevas columnas)
-    let { data, error } = await sb.from('estilistas').select('id, nombre, telefono, email, password').order('nombre');
-    
-    // Si falla, es probable que falten las columnas en Supabase
-    if (error) {
-        console.warn('Columnas telefono/email/password no encontradas, reintentando basico...');
-        let { data: basicData, error: basicError } = await sb.from('estilistas').select('id, nombre, password').order('nombre');
-        if (basicError) throw basicError;
-        return basicData;
-    }
-    return data;
-};
-
-export const fetchHistory = async () => {
-    const { data, error } = await sb.from('fichas').select('*').order('created_at', { ascending: false });
+    // Retornar solo nombres públicamente
+    const { data, error } = await sb.rpc('get_stylist_names');
     if (error) throw error;
     return data;
 };
 
-export const getFichaByConsecutivo = async (consecutivo) => {
-    const { data, error } = await sb.from('fichas').select('*').eq('consecutivo', consecutivo).single();
+export const fetchStylistsSecure = async (adminPasscode) => {
+    const { data, error } = await sb.rpc('get_stylists_secure', { passcode: adminPasscode });
     if (error) throw error;
     return data;
 };
 
-export const getLastFichaByDoc = async (docNumber) => {
-    const { data, error } = await sb.from('fichas').select('*').eq('numero_documento', docNumber).order('created_at', { ascending: false }).limit(1);
+export const loginUserSecure = async (userId, passcode) => {
+    const { data, error } = await sb.rpc('login_user_rpc', { user_id: userId, passcode: passcode });
     if (error) throw error;
     return data && data.length > 0 ? data[0] : null;
 };
 
-export const deleteFichaDb = async (consecutivo) => {
-    const { error } = await sb.from('fichas').delete().eq('consecutivo', consecutivo);
+export const verifyAdminPasswordSecure = async (passcode) => {
+    const { data, error } = await sb.rpc('verify_admin_password_rpc', { passcode: passcode });
     if (error) throw error;
+    return data;
 };
 
-export const deleteStylistDb = async (id) => {
-    const { error } = await sb.from('estilistas').delete().eq('id', id);
+export const fetchHistory = async (passcode) => {
+    const { data, error } = await sb.rpc('fetch_history_secure', { passcode: passcode });
     if (error) throw error;
+    return data;
 };
 
-export const addStylistDb = async (stylistData) => {
-    const { error } = await sb.from('estilistas').insert([stylistData]);
+export const getFichaByConsecutivo = async (consecutivo, passcode) => {
+    const { data, error } = await sb.rpc('get_ficha_by_consecutivo_secure', { consec_num: consecutivo, passcode: passcode });
     if (error) throw error;
+    return data && data.length > 0 ? data[0] : null;
 };
 
-export const updateStylistPassword = async (name, newPass) => {
-    const { error } = await sb.from('estilistas').update({ password: newPass }).eq('nombre', name);
+export const getLastFichaByDoc = async (docNumber, passcode) => {
+    const { data, error } = await sb.rpc('get_last_ficha_by_doc_secure', { doc_num: docNumber, passcode: passcode });
     if (error) throw error;
+    return data && data.length > 0 ? data[0] : null;
+};
+
+export const deleteFichaDb = async (consecutivo, adminPasscode) => {
+    const { data, error } = await sb.rpc('delete_ficha_secure', { consec_num: consecutivo, admin_passcode: adminPasscode });
+    if (error) throw error;
+    return data;
+};
+
+export const deleteStylistDb = async (id, adminPasscode) => {
+    const { data, error } = await sb.rpc('delete_stylist_secure', { stylist_id: id, admin_passcode: adminPasscode });
+    if (error) throw error;
+    return data;
+};
+
+export const addStylistDb = async (stylistData, adminPasscode) => {
+    const { data, error } = await sb.rpc('add_stylist_secure', {
+        stylist_nombre: stylistData.nombre,
+        stylist_telefono: stylistData.telefono,
+        stylist_email: stylistData.email,
+        stylist_password: stylistData.password,
+        admin_passcode: adminPasscode
+    });
+    if (error) throw error;
+    return data;
+};
+
+export const updateStylistPassword = async (name, oldPass, newPass) => {
+    const { data, error } = await sb.rpc('update_stylist_password_secure', {
+        stylist_name: name,
+        old_pass: oldPass,
+        new_pass: newPass
+    });
+    if (error) throw error;
+    return data;
 };

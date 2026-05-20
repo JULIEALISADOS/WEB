@@ -1,4 +1,4 @@
-import { fetchNextID, fetchStylists, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg, getLastFichaByDoc, updateStylistPassword } from './db.js';
+import { fetchNextID, fetchStylists, fetchStylistsSecure, loginUserSecure, verifyAdminPasswordSecure, fetchHistory, getFichaByConsecutivo, deleteFichaDb, deleteStylistDb, addStylistDb, insertFicha, uploadImg, getLastFichaByDoc, updateStylistPassword } from './db.js';
 import { initSignatures, clearSignature, getSignaturePads, loadSignaturesFromData, toggleSignatures, destroyPads } from './signature.js';
 import { generatePDF } from './pdf.js';
 import { setSede, setHairType, setChip, previewImage, validateStep, monitorMinorSettings, lockForm, initRealtimeValidation } from './ui.js';
@@ -41,10 +41,11 @@ function debounce(func, timeout = 500) {
 }
 
 // ======================== LOGIN ========================
-function login() {
+async function login() {
     const userEl = document.getElementById('loginEmail');
     const passEl = document.getElementById('loginPass');
     const errorEl = document.getElementById('loginError');
+    const loginBtn = document.querySelector('#loginForm button[type="submit"]');
     if (!userEl || !passEl || !errorEl) return;
 
     const user = userEl.value.trim();
@@ -56,48 +57,12 @@ function login() {
         errorEl.classList.remove('hidden');
         return;
     }
-    
-    // Admin login
-    const validAdmins = ['80200013', 'julie'];
-    const validPasses = ['Lisolaloca01', 'Lisolaloca01:'];
 
-    const isAdmin = validAdmins.includes(user) && validPasses.includes(pass);
-    if (isAdmin) {
-        if (document.getElementById('rememberMe')?.checked) {
-            localStorage.setItem('julie_remember_user', user);
-            localStorage.setItem('julie_remember_pass', pass);
-        } else {
-            localStorage.removeItem('julie_remember_user');
-            localStorage.removeItem('julie_remember_pass');
-        }
-        localStorage.setItem('julie_role', 'admin');
-        localStorage.setItem('julie_session', 'true');
-        sessionStorage.setItem('julie_admin_auth', 'true'); // Sincronización para admin.html
-        loginSuccess('admin');
-    } else {
-        checkStylistLogin(user, pass);
-    }
-}
+    if (loginBtn) { loginBtn.disabled = true; loginBtn.innerText = 'Verificando...'; }
 
-window.togglePass = () => {
-    const p = document.getElementById('loginPass');
-    const i = document.getElementById('passIcon');
-    if (p.type === 'password') {
-        p.type = 'text';
-        i.setAttribute('data-lucide', 'eye-off');
-    } else {
-        p.type = 'password';
-        i.setAttribute('data-lucide', 'eye');
-    }
-    if (window.lucide) window.lucide.createIcons();
-};
-
-async function checkStylistLogin(user, pass) {
-    const errorEl = document.getElementById('loginError');
     try {
-        const stylists = await fetchStylists();
-        const found = stylists.find(s => (s.nombre === user || s.email === user) && s.password === pass);
-        if (found) {
+        const authResult = await loginUserSecure(user, pass);
+        if (authResult && authResult.success) {
             if (document.getElementById('rememberMe')?.checked) {
                 localStorage.setItem('julie_remember_user', user);
                 localStorage.setItem('julie_remember_pass', pass);
@@ -105,19 +70,44 @@ async function checkStylistLogin(user, pass) {
                 localStorage.removeItem('julie_remember_user');
                 localStorage.removeItem('julie_remember_pass');
             }
-            localStorage.setItem('julie_role', 'stylist');
+            sessionStorage.setItem('julie_pass_token', pass);
+            localStorage.setItem('julie_role', authResult.role);
             localStorage.setItem('julie_session', 'true');
-            localStorage.setItem('julie_user_name', found.nombre);
-            loginSuccess('stylist');
+            localStorage.setItem('julie_user_name', authResult.nombre);
+            
+            if (authResult.role === 'admin') {
+                sessionStorage.setItem('julie_admin_auth', 'true');
+            } else {
+                sessionStorage.removeItem('julie_admin_auth');
+            }
+            loginSuccess(authResult.role);
         } else {
-            errorEl.innerText = "❌ Credenciales incorrectas";
+            errorEl.innerText = "❌ Credenciales incorrectas.";
             errorEl.classList.remove('hidden');
         }
     } catch (e) {
-        errorEl.innerText = "❌ Error de conexión";
+        console.error('Login Error:', e);
+        errorEl.innerText = "❌ Error de conexión con la base de datos.";
         errorEl.classList.remove('hidden');
+    } finally {
+        if (loginBtn) { loginBtn.disabled = false; loginBtn.innerText = 'Ingresar'; }
     }
 }
+
+window.togglePass = () => {
+    const p = document.getElementById('loginPass');
+    const i = document.getElementById('passIcon');
+    if (p && i) {
+        if (p.type === 'password') {
+            p.type = 'text';
+            i.setAttribute('data-lucide', 'eye-off');
+        } else {
+            p.type = 'password';
+            i.setAttribute('data-lucide', 'eye');
+        }
+    }
+    if (window.lucide) window.lucide.createIcons();
+};
 
 function loginSuccess(role) {
     if (loginSection) loginSection.classList.add('hidden');
@@ -156,11 +146,18 @@ window.processChangePassword = async () => {
     const name = localStorage.getItem('julie_user_name');
     if (!newPass || newPass.length < 5) { alert('La clave debe tener al menos 5 caracteres.'); return; }
     
+    const oldPass = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || '';
+    if (!oldPass) { alert('⚠️ Error de sesión. Por favor inicia sesión nuevamente.'); return; }
+
     try {
-        await updateStylistPassword(name, newPass);
+        await updateStylistPassword(name, oldPass, newPass);
+        sessionStorage.setItem('julie_pass_token', newPass);
+        if (localStorage.getItem('julie_remember_pass')) {
+            localStorage.setItem('julie_remember_pass', newPass);
+        }
         alert('✅ Contraseña actualizada. Úsala en tu próximo ingreso.');
         closeChangePassModal();
-    } catch (e) { alert('Error al actualizar clave.'); }
+    } catch (e) { alert('Error al actualizar clave. Verifica tu contraseña actual.'); }
 };
 
 if (document.getElementById('loginForm')) {
@@ -200,11 +197,17 @@ window.logout = logout;
         if (r) r.checked = true;
     }
 
-    if (localStorage.getItem('julie_session') === 'true' && loginSection) {
-    loginSection.classList.add('hidden');
-    appMain.classList.remove('hidden');
-    applyRoleUI(localStorage.getItem('julie_role'));
-}
+    if (localStorage.getItem('julie_session') === 'true') {
+        const savedPass = localStorage.getItem('julie_remember_pass');
+        if (savedPass) {
+            sessionStorage.setItem('julie_pass_token', savedPass);
+        }
+        if (loginSection) {
+            loginSection.classList.add('hidden');
+            appMain.classList.remove('hidden');
+            applyRoleUI(localStorage.getItem('julie_role'));
+        }
+    }
 
 // ======================== NAVIGATION ========================
 function updateStep(direction) {
@@ -348,7 +351,8 @@ async function renderHistory(filter = '') {
     if (!listEl) return;
     listEl.innerHTML = '<div class="loading-spinner">Cargando folios...</div>';
     try {
-        const history = await fetchHistory();
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        const history = await fetchHistory(passcode);
         if (!history || history.length === 0) { 
             listEl.innerHTML = '<div class="empty-msg" style="text-align:center; padding:40px; color:#888;"><i data-lucide="database-backup" style="width:40px; height:40px; margin-bottom:10px;"></i><p>No hay fichas registradas en la base de datos.</p></div>'; 
             if (window.lucide) window.lucide.createIcons();
@@ -407,7 +411,8 @@ async function renderStylists(filter = '') {
     if (!listEl) return;
     listEl.innerHTML = '<div class="loading-spinner">Cargando...</div>';
     try {
-        const stylists = await fetchStylists();
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        const stylists = await fetchStylistsSecure(passcode);
         listEl.innerHTML = '';
         if (!stylists || stylists.length === 0) { 
             listEl.innerHTML = '<p class="empty-msg">No hay estilistas registrados aún.</p>'; 
@@ -448,7 +453,14 @@ async function renderStylists(filter = '') {
     }
 }
 
-window.deleteStylist = async (id) => { if (confirm('¿Eliminar estilista?')) { await deleteStylistDb(id); renderStylists(); loadInitialData(); } };
+window.deleteStylist = async (id) => { 
+    if (confirm('¿Eliminar estilista?')) { 
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        await deleteStylistDb(id, passcode); 
+        renderStylists(); 
+        loadInitialData(); 
+    } 
+};
 window.addStylist = async () => { 
     const name = stylistInput.value.trim(); 
     const phone = document.getElementById('stylistPhoneInput').value.trim();
@@ -457,7 +469,8 @@ window.addStylist = async () => {
 
     if (!name || !pass) { alert('Nombre y Contraseña son obligatorios'); return; }
     try {
-        await addStylistDb({ nombre: name, telefono: phone, email: email, password: pass });
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        await addStylistDb({ nombre: name, telefono: phone, email: email, password: pass }, passcode);
         document.getElementById('stylistInput').value = '';
         document.getElementById('stylistPhoneInput').value = '';
         document.getElementById('stylistEmailInput').value = '';
@@ -471,7 +484,8 @@ window.addStylist = async () => {
 // ======================== VIEW FICHA ========================
 window.viewFicha = async (consecutivo) => {
     try {
-        const data = await getFichaByConsecutivo(consecutivo);
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        const data = await getFichaByConsecutivo(consecutivo, passcode);
         if (!data) return alert('No se encontró la ficha.');
         switchTab('new');
         isLocked = true;
@@ -535,7 +549,8 @@ if (docInput) {
             return;
         }
         try {
-            const lastFicha = await getLastFichaByDoc(val);
+            const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+            const lastFicha = await getLastFichaByDoc(val, passcode);
             window.currentLastFicha = lastFicha; // Guardar para el botón de importar
             const area = document.getElementById('clinicalBackgroundArea');
             const badge = document.getElementById('visitTypeBadge');
@@ -762,16 +777,22 @@ window.handleAdminClick = () => {
     }
 };
 
-window.verifyAdminAccess = () => {
+window.verifyAdminAccess = async () => {
     const pass = document.getElementById('adminPassInput').value;
-    // CLAVE MAESTRA TEMPORAL: JulieAdmin2024
-    if (pass === 'JulieAdmin2024') {
-        sessionStorage.setItem('julie_admin_auth', 'true');
-        location.href = 'admin.html?v=' + new Date().getTime();
-    } else {
-        alert('❌ Clave de Seguridad Incorrecta. Acceso denegado.');
-        document.getElementById('adminPassInput').value = '';
-        document.getElementById('adminLoginModal').classList.add('hidden');
+    try {
+        const isValid = await verifyAdminPasswordSecure(pass);
+        if (isValid) {
+            sessionStorage.setItem('julie_admin_auth', 'true');
+            sessionStorage.setItem('julie_pass_token', pass);
+            location.href = 'admin.html?v=' + new Date().getTime();
+        } else {
+            alert('❌ Clave de Seguridad Incorrecta. Acceso denegado.');
+            document.getElementById('adminPassInput').value = '';
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+    } catch (e) {
+        console.error('Admin Validation Error:', e);
+        alert('⚠️ Error al validar la clave maestra con el servidor.');
     }
 };
 
