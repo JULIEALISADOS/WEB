@@ -1,4 +1,4 @@
-/* Julie Alisados - Estilos Premium v1.1 */
+﻿/* Julie Alisados - Estilos Premium v1.1 */
 :root {
     --pearl-white: #FFFFFF;
     --soft-cream: #FFF0F5;
@@ -2671,37 +2671,3 @@ footer .section-title::after {
 .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .product-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid rgba(212, 175, 55, 0.2); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
 .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-gold); border-color: var(--gold); }
-
-
-
-
-/* FAQ Tabs CSS */
-.faq-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-.faq-tab {
-    background: transparent;
-    border: 2px solid var(--gold);
-    color: var(--gold-dark);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.faq-tab:hover {
-    background: rgba(212, 175, 55, 0.1);
-}
-.faq-tab.active {
-    background: var(--gold);
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
-}
-.faq-item {
-    transition: opacity 0.3s ease;
-}
