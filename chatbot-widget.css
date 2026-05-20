@@ -1,0 +1,541 @@
+/* ============================================================
+   CHATBOT WIDGET - LIA by Julie Alisados
+   Diseño ultra premium con paleta dorado & negro
+   ============================================================ */
+
+:root {
+  --lia-gold:          #D4AF37;
+  --lia-gold-light:    #F0D060;
+  --lia-gold-dark:     #A8892A;
+  --lia-gold-glow:     rgba(212, 175, 55, 0.35);
+  --lia-black:         #0D0D0D;
+  --lia-dark:          #1A1A1A;
+  --lia-dark-2:        #242424;
+  --lia-dark-3:        #2E2E2E;
+  --lia-white:         #FFFFFF;
+  --lia-gray:          #888888;
+  --lia-gray-light:    #CCCCCC;
+  --lia-bg-user:       #2A2010;
+  --lia-bg-bot:        #242424;
+  --lia-border:        rgba(212, 175, 55, 0.2);
+  --lia-shadow:        0 8px 40px rgba(0,0,0,0.6), 0 0 80px rgba(212,175,55,0.08);
+  --lia-radius:        18px;
+  --lia-radius-sm:     10px;
+  --lia-font:          'Lato', 'Helvetica Neue', Arial, sans-serif;
+  --lia-transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --lia-z:             99999;
+}
+
+/* ── FAB Button ──────────────────────────────────────────── */
+#lia-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--lia-z);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lia-gold-light) 0%, var(--lia-gold) 50%, var(--lia-gold-dark) 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 20px rgba(212, 175, 55, 0.5),
+    0 2px 8px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transition: transform var(--lia-transition), box-shadow var(--lia-transition);
+  animation: lia-fab-pulse 3s ease-in-out infinite;
+}
+
+#lia-fab:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 6px 30px rgba(212, 175, 55, 0.7),
+    0 4px 12px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+  animation: none;
+}
+
+#lia-fab:active {
+  transform: scale(0.96);
+}
+
+#lia-fab svg {
+  width: 30px;
+  height: 30px;
+  color: var(--lia-black);
+  transition: opacity var(--lia-transition), transform var(--lia-transition);
+}
+
+#lia-fab .lia-icon-chat   { opacity: 1;  transform: scale(1); }
+#lia-fab .lia-icon-close  { opacity: 0;  transform: scale(0.4) rotate(-90deg); position: absolute; }
+
+#lia-fab.lia-open .lia-icon-chat  { opacity: 0;  transform: scale(0.4) rotate(90deg); }
+#lia-fab.lia-open .lia-icon-close { opacity: 1;  transform: scale(1) rotate(0deg); }
+
+@keyframes lia-fab-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(212,175,55,0.5), 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3); }
+  50%       { box-shadow: 0 4px 28px rgba(212,175,55,0.75), 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3); }
+}
+
+/* ── Badge de notificación ───────────────────────────────── */
+#lia-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E53935;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--lia-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--lia-dark);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+}
+
+#lia-badge.lia-badge-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Chat Window ─────────────────────────────────────────── */
+#lia-window {
+  position: fixed;
+  bottom: 108px;
+  right: 28px;
+  z-index: var(--lia-z);
+  width: 380px;
+  height: 580px;
+  max-height: calc(100vh - 130px);
+  background: var(--lia-dark);
+  border-radius: var(--lia-radius);
+  border: 1px solid var(--lia-border);
+  box-shadow: var(--lia-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  pointer-events: none;
+  transition:
+    opacity 0.35s cubic-bezier(0.4,0,0.2,1),
+    transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
+  font-family: var(--lia-font);
+}
+
+#lia-window.lia-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+#lia-header {
+  background: linear-gradient(135deg, var(--lia-black) 0%, #1C1600 50%, var(--lia-black) 100%);
+  border-bottom: 1px solid var(--lia-border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lia-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lia-gold-light), var(--lia-gold-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--lia-gold-glow);
+  position: relative;
+}
+
+.lia-avatar::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 11px;
+  height: 11px;
+  background: #4CAF50;
+  border-radius: 50%;
+  border: 2px solid var(--lia-dark);
+}
+
+.lia-header-info {
+  flex: 1;
+}
+
+.lia-header-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lia-gold);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.lia-header-sub {
+  font-size: 10.5px;
+  color: var(--lia-gray);
+  margin-top: 1px;
+}
+
+.lia-header-status {
+  font-size: 11px;
+  color: #4CAF50;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lia-header-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4CAF50;
+  display: inline-block;
+  animation: lia-blink 2s ease-in-out infinite;
+}
+
+@keyframes lia-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.lia-header-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lia-btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--lia-border);
+  background: rgba(255,255,255,0.05);
+  color: var(--lia-gray-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--lia-transition), color var(--lia-transition), border-color var(--lia-transition);
+}
+
+.lia-btn-icon:hover {
+  background: var(--lia-gold-glow);
+  color: var(--lia-gold);
+  border-color: var(--lia-gold);
+}
+
+.lia-btn-icon svg { width: 16px; height: 16px; }
+
+/* ── Messages Area ───────────────────────────────────────── */
+#lia-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(212,175,55,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%, rgba(212,175,55,0.03) 0%, transparent 50%),
+    var(--lia-dark);
+}
+
+#lia-messages::-webkit-scrollbar         { width: 4px; }
+#lia-messages::-webkit-scrollbar-track   { background: transparent; }
+#lia-messages::-webkit-scrollbar-thumb   { background: var(--lia-border); border-radius: 4px; }
+#lia-messages::-webkit-scrollbar-thumb:hover { background: var(--lia-gold-dark); }
+
+/* ── Burbujas de mensaje ─────────────────────────────────── */
+.lia-msg {
+  display: flex;
+  gap: 8px;
+  animation: lia-msg-in 0.35s cubic-bezier(0.34,1.3,0.64,1) both;
+  max-width: 100%;
+}
+
+@keyframes lia-msg-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lia-msg-bot  { align-self: flex-start; }
+.lia-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+
+.lia-msg-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lia-gold-light), var(--lia-gold-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.lia-msg-user .lia-msg-avatar {
+  background: linear-gradient(135deg, #555, #333);
+}
+
+.lia-bubble {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  word-break: break-word;
+  position: relative;
+}
+
+.lia-msg-bot .lia-bubble {
+  background: var(--lia-bg-bot);
+  color: var(--lia-gray-light);
+  border: 1px solid var(--lia-border);
+  border-bottom-left-radius: 4px;
+}
+
+.lia-msg-user .lia-bubble {
+  background: linear-gradient(135deg, #3A2E00, var(--lia-bg-user));
+  color: var(--lia-gold-light);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-bottom-right-radius: 4px;
+}
+
+.lia-msg-time {
+  font-size: 10px;
+  color: var(--lia-gray);
+  margin-top: 3px;
+  text-align: right;
+}
+
+/* ── Botones de opciones ─────────────────────────────────── */
+.lia-buttons-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+  animation: lia-msg-in 0.4s 0.1s cubic-bezier(0.34,1.3,0.64,1) both;
+}
+
+.lia-opt-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--lia-gold);
+  background: transparent;
+  color: var(--lia-gold);
+  font-size: 12.5px;
+  font-family: var(--lia-font);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--lia-transition), color var(--lia-transition), transform 0.15s ease, box-shadow var(--lia-transition);
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+.lia-opt-btn:hover {
+  background: var(--lia-gold);
+  color: var(--lia-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(212,175,55,0.4);
+}
+
+.lia-opt-btn:active { transform: translateY(0); }
+
+.lia-opt-btn.lia-btn-whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-color: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lia-opt-btn.lia-btn-whatsapp:hover {
+  background: linear-gradient(135deg, #30E070, #1AA080);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+}
+
+.lia-opt-btn.lia-btn-whatsapp svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Typing indicator ────────────────────────────────────── */
+.lia-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 16px;
+  background: var(--lia-bg-bot);
+  border: 1px solid var(--lia-border);
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+  animation: lia-msg-in 0.3s ease both;
+}
+
+.lia-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lia-gold);
+  display: inline-block;
+  animation: lia-dot 1.2s ease-in-out infinite;
+}
+
+.lia-typing span:nth-child(2) { animation-delay: 0.2s; }
+.lia-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes lia-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── Precio card ─────────────────────────────────────────── */
+.lia-price-card {
+  background: linear-gradient(135deg, #1C1600, #2A2000);
+  border: 1px solid var(--lia-gold);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+  animation: lia-msg-in 0.4s 0.15s cubic-bezier(0.34,1.3,0.64,1) both;
+}
+
+.lia-price-card .lia-price-title {
+  font-size: 11.5px;
+  color: var(--lia-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.lia-price-card .lia-price-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--lia-gold);
+  line-height: 1.2;
+}
+
+.lia-price-card .lia-price-note {
+  font-size: 11px;
+  color: var(--lia-gray);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── Info card (horarios/ubicación) ──────────────────────── */
+.lia-info-card {
+  background: var(--lia-dark-2);
+  border: 1px solid var(--lia-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--lia-gray-light);
+  line-height: 1.7;
+  animation: lia-msg-in 0.4s 0.1s cubic-bezier(0.34,1.3,0.64,1) both;
+}
+
+.lia-info-card strong {
+  color: var(--lia-gold);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+#lia-footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--lia-border);
+  background: var(--lia-dark-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lia-footer-brand {
+  font-size: 11px;
+  color: var(--lia-gray);
+  letter-spacing: 0.5px;
+}
+
+.lia-footer-brand span {
+  color: var(--lia-gold);
+  font-weight: 700;
+}
+
+/* ── Divider de fecha ────────────────────────────────────── */
+.lia-date-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--lia-gray);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 4px 0;
+}
+
+.lia-date-divider::before,
+.lia-date-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--lia-border);
+}
+
+/* ── Responsive Mobile ───────────────────────────────────── */
+@media (max-width: 480px) {
+  #lia-window {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+
+  #lia-fab {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* ── Golden shimmer on header ────────────────────────────── */
+#lia-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lia-gold), transparent);
+  opacity: 0.6;
+}
