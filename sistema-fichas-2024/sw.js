@@ -1,7 +1,7 @@
 const CACHE_NAME = 'julie-app-v9.0';
 const ASSETS = [
   'index.html',
-  'style.css?v=8.4',
+  'style.css?v=9.0',
   'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/app.js?v=9.0',
   'manifest.json',
   'logo.png',

@@ -636,7 +636,8 @@ if (btnLoadPrev) {
 
 window.viewQuickHistory = async (doc) => {
     try {
-        const history = await fetchHistory();
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        const history = await fetchHistory(passcode);
         const clientFolios = history.filter(f => f.numero_documento === doc);
         let html = '<div style="max-height:400px; overflow-y:auto; padding:5px;">';
         
@@ -669,7 +670,8 @@ window.viewQuickHistory = async (doc) => {
 
 window.openFichaDetail = async (consecutivo) => {
     try {
-        const data = await getFichaByConsecutivo(consecutivo);
+        const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+        const data = await getFichaByConsecutivo(consecutivo, passcode);
         if (!data) return alert('No se encontró la ficha.');
 
         const body = document.getElementById('fichaDetailBody');
