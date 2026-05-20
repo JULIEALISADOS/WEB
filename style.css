@@ -1,4 +1,4 @@
-﻿/* Julie Alisados - Estilos Premium v1.1 */
+/* Julie Alisados - Estilos Premium v1.1 */
 :root {
     --pearl-white: #FFFFFF;
     --soft-cream: #FFF0F5;
@@ -1086,6 +1086,13 @@ header {
     box-shadow: var(--shadow-soft);
     flex: 0 1 320px;
     min-width: 280px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {
@@ -1128,6 +1135,21 @@ header {
 .service-card p {
     color: var(--light-text);
     font-size: 0.95rem;
+    margin-bottom: auto; /* Ensures flex alignment push the button to bottom */
+}
+
+.ver-mas-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--gold-dark);
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.service-card:hover .ver-mas-btn {
+    color: var(--gold);
+    transform: translateX(3px);
 }
 
 /* Results Section */
