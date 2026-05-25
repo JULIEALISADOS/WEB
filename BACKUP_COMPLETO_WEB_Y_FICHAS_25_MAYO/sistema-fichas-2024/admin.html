@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // SEGURIDAD: Verificar sesión de administrador
+        if (localStorage.getItem('julie_remember_pass')) {
+            sessionStorage.setItem('julie_pass_token', localStorage.getItem('julie_remember_pass'));
+        }
+        
+        const isAdmin = sessionStorage.getItem('julie_admin_auth') === 'true' || 
+                        localStorage.getItem('julie_role') === 'admin';
+                        
+        if (!isAdmin) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <title>JulieApp Admin - Dashboard de Ventas</title>
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --admin-bg: #f8f9fa;
+            --admin-sidebar: #1A1A1A;
+            --admin-card: #ffffff;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+        }
+
+        body {
+            background: var(--admin-bg);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: var(--admin-sidebar);
+            color: white;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--admin-card);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid #D4AF37;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--admin-sidebar);
+            margin: 10px 0;
+        }
+
+        .stat-card .trend {
+            font-size: 0.8rem;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .chart-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            color: #999;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f9f9f9;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-avatar {
+            width: 40px;
+            height: 40px;
+            background: #eee;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-dark);
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-google { background: #e8f0fe; color: #1a73e8; }
+        .badge-meta { background: #f0f2f5; color: #1877f2; }
+        .badge-tiktok { background: #ffeef2; color: #fe2c55; }
+
+        .btn-action {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 80px; padding: 10px; }
+            .sidebar span { display: none; }
+            .main-content { margin-left: 80px; width: calc(100% - 80px); }
+            .chart-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div style="text-align:center; margin-bottom: 40px;">
+            <img src="logo.png" alt="Julie Logo" style="width: 60px; margin-bottom:10px;">
+            <h2 style="font-family:'Playfair Display'; font-size:1.2rem; margin:0;">JulieApp <br><span style="font-size:0.7rem; opacity:0.6;">ADMIN v5.0</span></h2>
+        </div>
+        
+        <nav style="display:flex; flex-direction:column; gap:15px;" id="adminNav">
+            <a href="javascript:void(0)" onclick="showSection('dashboard')" class="nav-link active" style="color:white; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+                <i data-lucide="layout-dashboard"></i> <span>Dashboard</span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('clients')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+                <i data-lucide="users"></i> <span>Clientes</span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('analytics')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+                <i data-lucide="trending-up"></i> <span>Analíticas</span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('marketing')" class="nav-link" style="color:#aaa; text-decoration:none; display:flex; align-items:center; gap:15px; padding:12px; border-radius:12px;">
+                <i data-lucide="megaphone"></i> <span>Marketing Ads</span>
+            </a>
+        </nav>
+
+        <div style="margin-top:auto;">
+            <button onclick="adminLogout()" style="width:100%; padding:12px; border-radius:12px; border:1px solid #ff4d4f; background:transparent; color:#ff4d4f; cursor:pointer; font-weight: bold;">
+                <i data-lucide="log-out" style="width:16px;"></i> <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <div>
+                <h1 style="margin:0; font-family:'Playfair Display'; font-size:2rem;">Bienvenida, Julie</h1>
+                <p style="color:#666; margin:5px 0;">Aquí tienes el pulso de tu negocio hoy.</p>
+            </div>
+            <div style="display:flex; gap:15px;">
+                <button onclick="exportCRM()" style="padding:12px 20px; border-radius:12px; border:none; background:white; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.05); font-weight:600; color:var(--gold-dark);">
+                    <i data-lucide="download" style="width:16px; vertical-align:middle;"></i> Exportar Audiencia Ads
+                </button>
+            </div>
+        </header>
+
+        <div id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Clientes</h3>
+                    <div class="value" id="statTotalClients">0</div>
+                    <div class="trend"><i data-lucide="arrow-up"></i> +12% este mes</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Venta Estimada</h3>
+                    <div class="value" id="statRevenue">$0</div>
+                    <div class="trend"><i data-lucide="arrow-up"></i> Basado en folios</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Visitas JuliePixel</h3>
+                    <div class="value" id="statVisits">0</div>
+                    <div class="trend" style="color:#f39c12;">Rastreadas hoy</div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <div class="table-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0;">Clientes Recientes</h3>
+                    </div>
+                    <table id="recentClientsTable">
+                        <thead>
+                            <tr>
+                                <th>CLIENTE</th>
+                                <th>CABELLO</th>
+                                <th>EDAD</th>
+                                <th>ORIGEN</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="table-card">
+                    <h3>Origen de Tráfico</h3>
+                    <div id="originChart" style="margin-top:20px;">
+                        <!-- Gráficos dinámicos -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-clients" class="hidden">
+            <div class="table-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="font-family:'Playfair Display';">Base de Datos de Clientes</h2>
+                    <input type="text" id="adminSearchInput" oninput="filterClients()" placeholder="🔍 Buscar por nombre, cédula o teléfono..." style="padding:12px 20px; border-radius:15px; border:1px solid #ddd; width:350px; font-size:0.9rem;">
+                </div>
+                <table id="allClientsTable">
+                    <thead>
+                        <tr>
+                            <th>CLIENTE</th>
+                            <th>DOCUMENTO</th>
+                            <th>GÉNERO</th>
+                            <th>CABELLO</th>
+                            <th>ÚLTIMA VISITA</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="section-marketing" class="hidden">
+            <div class="stats-grid">
+                <div class="stat-card" style="border-left-color: #fe2c55;">
+                    <h3>TikTok Ads</h3>
+                    <div class="value" id="statTikTok">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+                <div class="stat-card" style="border-left-color: #1877f2;">
+                    <h3>Meta (FB/IG)</h3>
+                    <div class="value" id="statMeta">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+                <div class="stat-card" style="border-left-color: #4285f4;">
+                    <h3>Google Ads</h3>
+                    <div class="value" id="statGoogle">0</div>
+                    <p style="font-size:0.75rem; color:#888;">Conversiones registradas</p>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="font-family:'Playfair Display';">Rendimiento de Campañas</h2>
+                    <button onclick="exportCRM()" class="btn-action" style="background:var(--gold-gradient); color:white;">
+                        <i data-lucide="download"></i> Exportar para Públicos Personalizados
+                    </button>
+                </div>
+                <p style="margin-bottom:20px; color:#666; font-size:0.9rem;">
+                    Este informe toma los datos capturados por el <strong>JuliePixel</strong> y los UTMs de tus anuncios. Úsalos para decidir dónde invertir más presupuesto.
+                </p>
+                <div id="marketingReportArea">
+                    <!-- Resumen de campañas -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { fetchHistory } from './js/db.js';
+
+        let clientsData = [];
+
+        async function loadAdminData() {
+            const tbody = document.querySelector('#allClientsTable tbody');
+            const recentTbody = document.querySelector('#recentClientsTable tbody');
+            
+            if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Cargando folios...</td></tr>';
+            
+            try {
+                const passcode = sessionStorage.getItem('julie_pass_token') || localStorage.getItem('julie_remember_pass') || 'none';
+                clientsData = await fetchHistory(passcode);
+                console.log('Datos administrativos cargados:', clientsData.length);
+                
+                if (!clientsData || clientsData.length === 0) {
+                    if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay folios registrados aún.</td></tr>';
+                    return;
+                }
+                
+                renderDashboard();
+                renderClientsTable(clientsData);
+                renderMarketingInsights();
+                if (window.lucide) window.lucide.createIcons();
+            } catch (e) { 
+                console.error('Admin Load Error:', e); 
+                if (tbody) tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:red;">⚠️ Error al conectar con la base de datos. <br> <small>${e.message}</small></td></tr>`;
+            }
+        }
+
+        function renderDashboard() {
+            document.getElementById('statTotalClients').innerText = clientsData.length;
+            const revenue = clientsData.length * 250000;
+            document.getElementById('statRevenue').innerText = '$' + revenue.toLocaleString();
+
+            const recentTbody = document.querySelector('#recentClientsTable tbody');
+            recentTbody.innerHTML = '';
+            clientsData.slice(0, 5).forEach(f => {
+                const tr = document.createElement('tr');
+                const badgeClass = getBadgeClass(f.utm_source);
+                tr.innerHTML = `
+                    <td>
+                        <div class="client-info">
+                            <div class="client-avatar">${f.nombre_completo?.charAt(0)}</div>
+                            <div style="font-weight:600;">${f.nombre_completo}</div>
+                        </div>
+                    </td>
+                    <td>${f.tipo_cabello || 'N/A'}</td>
+                    <td>${f.edad || 'N/A'}</td>
+                    <td><span class="badge ${badgeClass}">${f.utm_source || 'Directo'}</span></td>
+                    <td>
+                        <button class="btn-action" onclick="window.open('https://wa.me/57${f.telefono}')">
+                            <i data-lucide="message-circle" style="width:14px;"></i>
+                        </button>
+                    </td>
+                `;
+                recentTbody.appendChild(tr);
+            });
+        }
+
+        function renderMarketingInsights() {
+            const sources = { tiktok: 0, meta: 0, google: 0, direct: 0 };
+            const campaigns = {};
+            const locations = {};
+
+            clientsData.forEach(f => {
+                const src = (f.utm_source || '').toLowerCase();
+                if (src.includes('tiktok')) sources.tiktok++;
+                else if (src.includes('meta') || src.includes('facebook') || src.includes('instagram')) sources.meta++;
+                else if (src.includes('google')) sources.google++;
+                else sources.direct++;
+
+                const camp = f.utm_campaign || 'Orgánico / Directo';
+                campaigns[camp] = (campaigns[camp] || 0) + 1;
+
+                const loc = f.ubicacion_gps || 'No detectada';
+                locations[loc] = (locations[loc] || 0) + 1;
+            });
+
+            document.getElementById('statTikTok').innerText = sources.tiktok;
+            document.getElementById('statMeta').innerText = sources.meta;
+            document.getElementById('statGoogle').innerText = sources.google;
+
+            let campHtml = '<h3>Rendimiento por Campaña</h3><table><thead><tr><th>CAMPAÑA</th><th>CONVERSIONES</th></tr></thead><tbody>';
+            Object.entries(campaigns).sort((a,b) => b[1] - a[1]).slice(0, 5).forEach(([name, count]) => {
+                campHtml += `<tr><td><strong>${name}</strong></td><td>${count}</td></tr>`;
+            });
+            campHtml += '</tbody></table>';
+
+            let locHtml = '<h3 style="margin-top:20px;">Top Ciudades / Ubicaciones</h3><table><thead><tr><th>CIUDAD</th><th>CLIENTES</th></tr></thead><tbody>';
+            Object.entries(locations).sort((a,b) => b[1] - a[1]).slice(0, 5).forEach(([name, count]) => {
+                locHtml += `<tr><td>${name}</td><td>${count}</td></tr>`;
+            });
+            locHtml += '</tbody></table>';
+            
+            const reportArea = document.getElementById('marketingReportArea');
+            if (reportArea) reportArea.innerHTML = campHtml + locHtml;
+        }
+
+        function renderClientsTable(data) {
+            const tbody = document.querySelector('#allClientsTable tbody');
+            tbody.innerHTML = '';
+            data.forEach(f => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${f.nombre_completo}</strong><br><small>${f.telefono}</small></td>
+                    <td>${f.numero_documento}</td>
+                    <td>${f.genero || 'N/A'}</td>
+                    <td>${f.tipo_cabello || 'N/A'}</td>
+                    <td>${new Date(f.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button class="btn-action" onclick="window.open('https://wa.me/57${f.telefono}')">
+                            <i data-lucide="message-circle" style="width:14px;"></i> WhatsApp
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function getBadgeClass(src) {
+            const s = src?.toLowerCase() || '';
+            if (s.includes('google')) return 'badge-google';
+            if (s.includes('meta') || s.includes('instagram')) return 'badge-meta';
+            if (s.includes('tiktok')) return 'badge-tiktok';
+            return 'badge-direct';
+        }
+
+        window.showSection = (id) => {
+            document.querySelectorAll('[id^="section-"]').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`section-${id}`).classList.remove('hidden');
+            
+            // Actualizar menu
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+                l.style.background = 'transparent';
+                l.style.color = '#aaa';
+            });
+            
+            // Buscar el link activo comparando el id en el onclick
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                if (l.getAttribute('onclick').includes(id)) {
+                    l.classList.add('active');
+                    l.style.background = 'var(--gold-gradient)';
+                    l.style.color = 'white';
+                }
+            });
+
+            if (window.lucide) window.lucide.createIcons();
+        };
+
+        window.filterClients = () => {
+            const query = document.getElementById('adminSearchInput').value.toLowerCase();
+            const filtered = clientsData.filter(c => 
+                (c.nombre_completo || '').toLowerCase().includes(query) || 
+                (c.numero_documento || '').toString().includes(query) ||
+                (c.telefono || '').toString().includes(query)
+            );
+            renderClientsTable(filtered);
+            if (window.lucide) window.lucide.createIcons();
+        };
+
+        window.adminLogout = () => {
+            sessionStorage.removeItem('julie_admin_auth');
+            location.href = 'index.html';
+        };
+
+        window.exportCRM = () => {
+            if (!clientsData || clientsData.length === 0) return alert('No hay datos para exportar');
+            let csv = 'Nombre,Telefono,Email,Documento,Ultima Visita\n';
+            clientsData.forEach(c => {
+                csv += `"${c.nombre_completo}","${c.telefono}","${c.email}","${c.numero_documento}","${new Date(c.created_at).toLocaleDateString()}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `clientes_julie_${new Date().toISOString().split('T')[0]}.csv`);
+            a.click();
+        };
+
+        // Inicializar inmediatamente (los scripts type="module" ya están deferred por defecto)
+        loadAdminData();
+    </script>
+</body>
+</html>
