@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17986280702');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JulieApp - Alisados</title>
+    
+    <!-- PWA Primary Meta Tags -->
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="description" content="App Premium de Diagnóstico Capilar para Julie Alisados">
+    
+    <!-- iOS Specific Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Julie Ficha">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css?v=9.0">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <link rel="apple-touch-icon" href="logo.png">
+    <script>
+        const APP_VERSION = '9.0';
+        async function checkVersionAndForceUpdate() {
+            const savedVersion = localStorage.getItem('julie_app_version');
+            if (savedVersion !== APP_VERSION) {
+                console.log('🔄 Nueva versión detectada:', APP_VERSION);
+                try {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    localStorage.setItem('julie_app_version', APP_VERSION);
+                    // Forzar recarga omitiendo cache del navegador
+                    window.location.href = window.location.href.split('?')[0] + '?v=' + Date.now();
+                } catch (e) { console.error('Error in force update:', e); }
+            }
+        }
+        checkVersionAndForceUpdate();
+
+        async function forceUpdate() {
+            try {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                window.location.reload(true);
+            } catch (e) { alert('Error al limpiar cache'); }
+        }
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1796200453804821');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1796200453804821&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D80VAEJC77UDOFSGH9CG');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <img src="logo.png" alt="Julie Alisados Logo" class="splash-logo">
+            <div class="splash-text">
+                <span class="welcome-text">Bienvenida a</span>
+                <h1 class="app-name">JulieFicha <small>BETA</small></h1>
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="watermark">Julie Alisados - Propiedad Privada</div>
+    <div id="loginSection" class="login-container">
+        <div class="login-box">
+            <img src="logo.png" alt="Logo" class="login-logo">
+            <h2>Acceso Seguro <small style="font-size: 0.8rem; vertical-align: middle; opacity: 0.6;">BETA</small></h2>
+            <p>Ingresa tus credenciales para continuar</p>
+            <form id="loginForm">
+                <div class="form-group" style="text-align:left;">
+                    <label>Usuario / Email</label>
+                    <input type="text" id="loginEmail" placeholder="Ingresa tu usuario" autocomplete="username">
+                </div>
+                <div class="form-group" style="text-align:left; position:relative;">
+                    <label>Contraseña</label>
+                    <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+                    <button type="button" onclick="togglePass()" style="position:absolute; right:10px; top:35px; background:none; border:none; color:#999; cursor:pointer;"><i id="passIcon" data-lucide="eye"></i></button>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:0.85rem; color:var(--text-secondary);">
+                    <input type="checkbox" id="rememberMe" style="width:16px; height:16px; accent-color:var(--gold-primary);">
+                    <label for="rememberMe" style="cursor:pointer; margin:0; text-transform:none; font-weight:400;">Recordar mis credenciales</label>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">ENTRAR</button>
+            </form>
+            <p id="loginError" class="error-text hidden">Credenciales incorrectas</p>
+            <button onclick="forceUpdate()" style="background:none; border:none; color:var(--gold-primary); font-size:0.75rem; margin-top:15px; cursor:pointer; text-decoration:underline;">¿No puedes entrar? Pulsa aquí para limpiar el sistema</button>
+        </div>
+    </div>
+
+    <div id="appMain" class="app-container hidden">
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="brand-wrapper">
+                    <button type="button" class="btn-back hidden" onclick="goBack()">
+                        <i data-lucide="arrow-left"></i>
+                    </button>
+                    <img src="logo.png" alt="Julie Alisados Logo" class="app-logo" id="adminLogoTrigger" onclick="handleAdminClick()">
+                    <div class="header-text">
+                        <h1>FICHA TÉCNICA JULIE</h1>
+                        <p>Diagnóstico Profesional Capilar</p>
+                    </div>
+                    <span class="version-badge">v8.5</span>
+                </div>
+                <div class="header-actions">
+                    <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                        <span>HISTORIAL</span>
+                    </button>
+                    <button type="button" id="changePassBtn" class="btn-refresh" onclick="openChangePassModal()" title="Cambiar mi Contraseña" style="background:var(--gold-light); color:var(--gold-dark); border:1px solid var(--gold-primary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span>CLAVE</span>
+                    </button>
+                    <button type="button" class="btn-refresh" onclick="forceUpdate()" title="Actualizar Sistema">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                        <span>ACTUALIZAR</span>
+                    </button>
+                    <button type="button" id="pdfBtn" class="btn-pdf hidden" onclick="generatePDF()" title="Descargar PDF">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                        <span>PDF</span>
+                    </button>
+                    <button type="button" class="btn-logout" onclick="logout()" title="Cerrar Sesión">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                        <span>SALIR</span>
+                    </button>
+                </div>
+            </div>
+            <div class="progress-container hidden">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="steps-info">PASO <span id="currentStepNum">1</span> DE 6</div>
+                <div class="quick-nav">
+                    <button type="button" onclick="jumpToStep(1)" class="btn-step active">1</button>
+                    <button type="button" onclick="jumpToStep(2)" class="btn-step">2</button>
+                    <button type="button" onclick="jumpToStep(3)" class="btn-step">3</button>
+                    <button type="button" onclick="jumpToStep(4)" class="btn-step">4</button>
+                    <button type="button" onclick="jumpToStep(5)" class="btn-step">5</button>
+                    <button type="button" onclick="jumpToStep(6)" class="btn-step">6</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="homeSection" class="home-wrapper">
+            <div class="welcome-banner">
+                <h2>¡Hola, Bienvenida!</h2>
+                <p>¿Qué vamos a hacer hoy en el salón?</p>
+            </div>
+            <div class="home-grid">
+                <div class="home-card primary" onclick="switchTab('new')">
+                    <div class="card-icon"><i data-lucide="plus-circle"></i></div>
+                    <h3>NUEVA FICHA</h3>
+                    <p>Iniciar diagnóstico profesional</p>
+                </div>
+                <div class="home-card" onclick="switchTab('history')">
+                    <div class="card-icon"><i data-lucide="file-text"></i></div>
+                    <h3>HISTORIAL</h3>
+                    <p>Ver y descargar reportes previos</p>
+                </div>
+                <!-- Oculto por solicitud del usuario, para uso futuro -->
+                <div class="home-card" onclick="openScheduling()" style="display: none;">
+                    <div class="card-icon" style="background: #e8f5e9; color: #2ecc71;"><i data-lucide="calendar"></i></div>
+                    <div class="card-text">
+                        <h3>AGENDAR CITA</h3>
+                        <p>Programar próximo servicio</p>
+                    </div>
+                </div>
+                <div class="home-card" onclick="switchTab('stylists')">
+                    <div class="card-icon"><i data-lucide="users"></i></div>
+                    <div class="card-text">
+                        <h3>ESTILISTAS</h3>
+                        <p>Gestionar equipo de trabajo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="form-wrapper hidden">
+            <form id="fichaForm">
+                <input type="hidden" name="consecutivo" id="fichaID">
+                <section class="step active" id="step1">
+                    <h2 class="section-title">DATOS DE LA CLIENTE</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">SEDE</label>
+                            <input type="hidden" name="sede" id="sedeInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="btn-option" onclick="setSede('Tunja')">TUNJA</button>
+                                <button type="button" class="btn-option" onclick="setSede('Moniquira')">MONIQUIRA</button>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">TIPO DOCUMENTO</label>
+                            <select name="tipo_documento" id="docType" required>
+                                <option value="CC">Cédula de Ciudadanía</option>
+                                <option value="TI">Tarjeta de Identidad (Menor)</option>
+                                <option value="CE">Cédula de Extranjería</option>
+                                <option value="PP">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="folio-header full-width">
+                            <div class="folio-info-badge">FOLIO: <span id="currentFolioNum">#---</span></div>
+                            <div id="visitTypeBadge" class="visit-badge">NUEVA CLIENTE</div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">TIPO DE CLIENTE</label>
+                            <input type="hidden" name="tipo_cliente" id="tipo_clienteInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('tipo_cliente', 'Nueva')">NUEVA CLIENTE</button>
+                                <button type="button" class="chip" onclick="setChip('tipo_cliente', 'Recurrente')">CLIENTE RECURRENTE</button>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">NUMERO DE DOCUMENTO</label>
+                            <input type="number" name="numero_documento" id="docNumberInput" required>
+                        </div>
+                        <div id="clinicalBackgroundArea" class="form-group full-width hidden clinical-bg-card">
+                            <h4 style="color: var(--gold-dark); margin-bottom: 5px;"><i data-lucide="user-check"></i> CLIENTE RECURRENTE DETECTADA</h4>
+                            <p id="backgroundText" style="font-size:0.85rem; margin-bottom:10px;"></p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button type="button" id="btnLoadPrevious" class="btn-secondary" style="font-size:0.8rem; padding:8px;">
+                                    <i data-lucide="copy"></i> Prellenar Datos Personales
+                                </button>
+                                <button type="button" onclick="switchTab('history')" class="btn-view" style="font-size:0.8rem; padding:8px; background: white;">
+                                    <i data-lucide="list"></i> Ver todos sus folios
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">EDAD (AÑOS)</label>
+                            <input type="number" name="edad" id="edadInput" required min="1" max="110">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">GÉNERO</label>
+                            <input type="hidden" name="genero" id="generoInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('genero', 'Femenino')">Femenino</button>
+                                <button type="button" class="chip" onclick="setChip('genero', 'Masculino')">Masculino</button>
+                                <button type="button" class="chip" onclick="setChip('genero', 'Otro')">Otro</button>
+                            </div>
+                        </div>
+                        <div class="form-group full-width hidden" id="tutorGroup">
+                            <label class="required">NOMBRE DEL TUTOR LEGAL</label>
+                            <input type="text" name="tutor_legal" id="tutorInput">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">NOMBRE COMPLETO</label>
+                            <input type="text" name="nombre_completo" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">TELEFONO</label>
+                            <input type="tel" name="telefono" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">CORREO ELECTRÓNICO</label>
+                            <input type="email" name="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">¿CÓMO NOS CONOCISTE?</label>
+                            <input type="hidden" name="como_nos_conociste" id="como_nos_conocisteInput" required>
+                            <div class="chip-group-mini">
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Instagram')">Instagram</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Facebook')">Facebook</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'TikTok')">TikTok</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Google')">Google</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Recomendación')">Recomendación</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Local')">Paso por Local</button>
+                                <button type="button" class="chip-sm" onclick="setChip('como_nos_conociste', 'Otro')">Otro</button>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">FECHA DILIGENCIAMIENTO</label>
+                            <input type="text" name="fecha_diligenciamiento" id="currentDateTime" readonly>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="step" id="step2">
+                    <h2 class="section-title">DIAGNÓSTICO TÉCNICO</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <h3 class="subsection-title">2.1 PATRÓN DE RIZO</h3>
+                            <div class="hair-guide"><img src="guia_cabello_tecnico_completa_julie_es_1774539016850.png" class="guide-img"></div>
+                            <input type="hidden" name="tipo_cabello" id="hairTypeInput" required>
+                            <div class="hair-type-categories">
+                                <div class="category"><span class="cat-label">Tipo 1: Liso</span><div class="cat-options"><button type="button" class="btn-hair" onclick="setHairType('1A', '1A: Muy fino')">1A</button><button type="button" class="btn-hair" onclick="setHairType('1B', '1B: Liso cuerpo')">1B</button><button type="button" class="btn-hair" onclick="setHairType('1C', '1C: Liso grueso')">1C</button></div></div>
+                                <div class="category"><span class="cat-label">Tipo 2: Ondulado</span><div class="cat-options"><button type="button" class="btn-hair" onclick="setHairType('2A', '2A: Ondas sueltas')">2A</button><button type="button" class="btn-hair" onclick="setHairType('2B', '2B: Ondas definidas')">2B</button><button type="button" class="btn-hair" onclick="setHairType('2C', '2C: Ondas en S')">2C</button></div></div>
+                                <div class="category"><span class="cat-label">Tipo 3: Rizado</span><div class="cat-options"><button type="button" class="btn-hair" onclick="setHairType('3A', '3A: Rizos grandes')">3A</button><button type="button" class="btn-hair" onclick="setHairType('3B', '3B: Rizos apretados')">3B</button><button type="button" class="btn-hair" onclick="setHairType('3C', '3C: Rizos compactos')">3C</button></div></div>
+                                <div class="category"><span class="cat-label">Tipo 4: Afro</span><div class="cat-options"><button type="button" class="btn-hair" onclick="setHairType('4A', '4A: Espiral apretado')">4A</button><button type="button" class="btn-hair" onclick="setHairType('4B', '4B: Zig-zag esponjoso')">4B</button><button type="button" class="btn-hair" onclick="setHairType('4C', '4C: Zig-zag compacto')">4C</button></div></div>
+                            </div>
+                            <p id="hairTypeSelectedLabel" class="selected-detail-text">Ningún patrón seleccionado</p>
+                        </div>
+                        <div class="form-group full-width"><label class="required">LONGITUD</label><input type="hidden" name="longitud" id="longitudInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('longitud', 'Corto')">Corto</button><button type="button" class="chip" onclick="setChip('longitud', 'Medio')">Medio</button><button type="button" class="chip" onclick="setChip('longitud', 'Largo')">Largo</button><button type="button" class="chip" onclick="setChip('longitud', 'Extralargo')">Extralargo</button></div></div>
+                        <div class="hair-states-grid">
+                            <div class="form-group"><label class="required">CRECIMIENTO</label><input type="hidden" name="estado_crecimiento" id="crecimientoInput" required><div class="chip-group-mini"><button type="button" class="chip-sm" onclick="setChip('crecimiento', 'Natural', true)">Natural</button><button type="button" class="chip-sm" onclick="setChip('crecimiento', 'Tinturado', true)">Tinturado</button><button type="button" class="chip-sm" onclick="setChip('crecimiento', 'Decolorado', true)">Decolorado</button><button type="button" class="chip-sm" onclick="setChip('crecimiento', 'Horquilla', true)">Horquilla</button><button type="button" class="chip-sm" onclick="setChip('crecimiento', 'Alisado', true)">Alisado</button></div></div>
+                            <div class="form-group"><label class="required">MEDIOS</label><input type="hidden" name="estado_medios" id="mediosInput" required><div class="chip-group-mini"><button type="button" class="chip-sm" onclick="setChip('medios', 'Natural')">Natural</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Tinturado')">Tinturado</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Decolorado')">Decolorado</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Horquilla')">Horquilla</button><button type="button" class="chip-sm" onclick="setChip('medios', 'Alisado')">Alisado</button></div></div>
+                            <div class="form-group"><label class="required">PUNTAS</label><input type="hidden" name="estado_puntas" id="puntasInput" required><div class="chip-group-mini"><button type="button" class="chip-sm" onclick="setChip('puntas', 'Natural')">Natural</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Tinturado')">Tinturado</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Decolorado')">Decolorado</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Horquilla')">Horquilla</button><button type="button" class="chip-sm" onclick="setChip('puntas', 'Alisado')">Alisado</button></div></div>
+                        </div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES DIAGNÓSTICO</label><textarea name="observaciones_diagnostico" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA DIAGNÓSTICO (OPCIONAL)</label><input type="file" id="fotoObsDiagInput" accept="image/*" onchange="previewImage(this, 'previewObsDiag')"><div id="previewObsDiag" class="img-preview-sm"></div></div>
+                    </div>
+                </section>
+
+                <section class="step" id="step3">
+                    <h2 class="section-title">CARACTERÍSTICAS</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width"><label class="required">PROCESOS QUÍMICOS</label><textarea name="procesos_quimicos" rows="3" required></textarea></div>
+                        <div class="form-group full-width"><label class="required">TERAPIAS CAPILARES</label><textarea name="terapias_capilares" rows="3" required></textarea></div>
+                        <div class="form-group full-width"><label class="required">TEXTURA</label><input type="hidden" name="textura" id="texturaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('textura', 'Delgado')">Delgado</button><button type="button" class="chip" onclick="setChip('textura', 'Medio')">Medio</button><button type="button" class="chip" onclick="setChip('textura', 'Grueso')">Grueso</button></div></div>
+                        <div class="form-group full-width"><label class="required">ELASTICIDAD</label><input type="hidden" name="elasticidad" id="elasticidadInput" required><div class="chip-group vertical"><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Baja')"><strong>Baja</strong> (Se rompe fácilmente al estirar)</button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Media')"><strong>Media</strong> (Se estira y vuelve a su estado natural)</button><button type="button" class="chip descriptive" onclick="setChip('elasticidad', 'Alta')"><strong>Alta</strong> (Se estira mucho sin romperse)</button></div></div>
+                        <div class="form-group full-width"><label class="required">RESISTENCIA</label><input type="hidden" name="resistencia" id="resistenciaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('resistencia', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('resistencia', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('resistencia', 'Baja')">Baja</button></div></div>
+                        <div class="form-group full-width"><label class="required">POROSIDAD</label><input type="hidden" name="porosidad" id="porosidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('porosidad', 'Alta')">Alta</button><button type="button" class="chip" onclick="setChip('porosidad', 'Media')">Media</button><button type="button" class="chip" onclick="setChip('porosidad', 'Baja')">Baja</button></div></div>
+                        <div class="form-group full-width"><label class="required">DENSIDAD</label><input type="hidden" name="densidad" id="densidadInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('densidad', 'Poco')">Poco</button><button type="button" class="chip" onclick="setChip('densidad', 'Regular')">Regular</button><button type="button" class="chip" onclick="setChip('densidad', 'Abundante')">Abundante</button></div></div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES ADICIONALES</label><textarea name="observaciones_caracteristicas" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA CARACTERÍSTICAS (OPCIONAL)</label><input type="file" id="fotoObsCaracInput" accept="image/*" onchange="previewImage(this, 'previewObsCarac')"><div id="previewObsCarac" class="img-preview-sm"></div></div>
+                    </div>
+                </section>
+
+                <section class="step" id="step4">
+                    <h2 class="section-title">CUERO CABELLUDO</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width"><label class="required">PIEL CABELLUDA</label><input type="hidden" name="piel_cabelluda" id="pielInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('piel', 'Seco')">Seco</button><button type="button" class="chip" onclick="setChip('piel', 'Equilibrado')">Equilibrado</button><button type="button" class="chip" onclick="setChip('piel', 'Graso')">Graso</button></div></div>
+                        <div class="form-group full-width"><label class="required">FRECUENCIA LAVADO</label><input type="hidden" name="frecuencia_lavado" id="lavadoInput" required><div class="chip-group">
+                            <button type="button" class="chip" onclick="setChip('lavado', 'A diario')">A diario</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Día de por medio')">Día de por medio</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 2-3 días')">Cada 2-3 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 4-5 días')">Cada 4-5 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Cada 6-7 días')">Cada 6-7 días</button>
+                            <button type="button" class="chip" onclick="setChip('lavado', 'Más de 7 días')">Más de 7 días</button>
+                        </div></div>
+                        <div class="form-group full-width"><label class="required">DERMATITIS</label><input type="hidden" name="dermatitis" id="dermatitisInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('dermatitis', 'No')">No</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('dermatitis', 'Severa')">Severa</button></div></div>
+                        <div class="form-group full-width"><label class="required">CAÍDA</label><input type="hidden" name="caida" id="caidaInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('caida', 'Normal')">Normal</button><button type="button" class="chip" onclick="setChip('caida', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('caida', 'Severa')">Severa</button></div></div>
+                        <div class="form-group full-width"><label class="required">DESCAMACIÓN</label><input type="hidden" name="descamacion" id="descamacionInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('descamacion', 'No')">No</button><button type="button" class="chip" onclick="setChip('descamacion', 'Leve')">Leve</button><button type="button" class="chip" onclick="setChip('descamacion', 'Severa')">Severa</button></div></div>
+                        <div class="form-group full-width"><label class="required">OBSERVACIONES CUERO</label><textarea name="observaciones_cuero" rows="2" required></textarea></div>
+                        <div class="form-group full-width"><label>📸 EVIDENCIA CUERO (OPCIONAL)</label><input type="file" id="fotoObsCueroInput" accept="image/*" onchange="previewImage(this, 'previewObsCuero')"><div id="previewObsCuero" class="img-preview-sm"></div></div>
+                    </div>
+                </section>
+
+                <section class="step" id="step5">
+                    <h2 class="section-title">PROCEDIMIENTO</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width"><label class="required">EMBARAZO</label><input type="hidden" name="embarazo" id="embarazoInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('embarazo', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('embarazo', 'No')">No</button></div></div>
+                        <div class="form-group full-width"><label class="required">ALERGIAS</label><input type="hidden" name="alergias" id="alergiasInput" required><div class="chip-group"><button type="button" class="chip" onclick="setChip('alergias', 'Si')">Si</button><button type="button" class="chip" onclick="setChip('alergias', 'No')">No</button></div></div>
+                        <div class="form-group full-width">
+                            <label class="required">PROCEDIMIENTO (SELECCIÓN MÚLTIPLE)</label>
+                            <input type="hidden" name="procedimiento" id="procedimientoInput" required>
+                            <div class="chip-group-mini">
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Saludable', true)">Alisado Saludable</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Alisado Light', true)">Alisado Light</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Retoque de Raíz', true)">Retoque de Raíz</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Balaca', true)">Balaca</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'R.C.P. Restauración', true)">R.C.P. Restauración</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Emulsión Zero', true)">Emulsión Zero</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Reposición Aminoácidos', true)">Reposición Aminoácidos</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'RE-CODE', true)">RE-CODE</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Biocomplex', true)">Biocomplex</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Choco Fix', true)">Choco Fix</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidra-Complex', true)">Hidra-Complex</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidra-Hair', true)">Hidra-Hair</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Ozonoterapia', true)">Ozonoterapia</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Relleno Molecular', true)">Relleno Molecular</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Hidratación S.O.S', true)">Hidratación S.O.S</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Corte de Puntas', true)">Corte de Puntas</button>
+                                <button type="button" class="chip-sm" onclick="setChip('procedimiento', 'Repolarización', true)">Repolarización</button>
+                            </div>
+                            <small style="color: var(--text-secondary); margin-top: 5px; display: block;">* Puedes elegir uno o varios servicios para este folio.</small>
+                        </div>
+                        <div class="form-group full-width"><label class="required">PORCENTAJE DE LISO GARANTIZADO</label><input type="hidden" name="porcentaje_liso" id="porcentajeInput" required><div class="chip-group">
+                            <button type="button" class="chip" onclick="setChip('porcentaje', '100%')">100%</button>
+                            <button type="button" class="chip" onclick="setChip('porcentaje', '90%')">90%</button>
+                            <button type="button" class="chip" onclick="setChip('porcentaje', '80%')">80%</button>
+                            <button type="button" class="chip" onclick="setChip('porcentaje', '70%')">70%</button>
+                            <button type="button" class="chip" onclick="setChip('porcentaje', '50%')">50%</button>
+                        </div></div>
+                        <div class="form-group full-width"><label class="required">TÉCNICA/PRODUCTOS</label><textarea name="tecnica_utilizada" rows="2" required></textarea></div>
+                        <div class="photo-grid full-width">
+                            <div class="form-group"><label class="required">ANTES</label><input type="file" id="fotoAntesInput" accept="image/*" onchange="previewImage(this, 'previewAntes')" required><div id="previewAntes" class="img-preview"></div></div>
+                            <div class="form-group"><label class="required">DESPUÉS</label><input type="file" id="fotoDespuesInput" accept="image/*" onchange="previewImage(this, 'previewDespues')" required><div id="previewDespues" class="img-preview"></div></div>
+                            <div class="form-group"><label>MÁS FOTOS (OPCIONAL)</label><input type="file" id="fotoExtraInput" accept="image/*" multiple onchange="previewMultiple(this, 'previewExtra')"><div id="previewExtra" class="img-preview-multi"></div></div>
+                            <div class="form-group"><label>VIDEO (OPCIONAL)</label><input type="file" id="videoInput" accept="video/*" onchange="previewVideo(this, 'previewVideo')"><div id="previewVideo" class="img-preview"></div></div>
+                        </div>
+                        <div class="form-group full-width"><label class="required">ESTILISTA RESPONSABLE</label><select name="estilista_responsable" id="responsableInput" required></select></div>
+                    </div>
+                </section>
+
+                <section class="step" id="step6">
+                    <h2 class="section-title">CONSENTIMIENTO INFORMADO</h2>
+                    
+                    <!-- Historial Adicional para Consentimiento -->
+                    <div class="clinical-bg-card" style="margin-bottom:20px;">
+                        <p class="cat-label">INFORMACIÓN REQUERIDA PARA EL CONSENTIMIENTO</p>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label class="required">¿HA RECIBIDO TRATAMIENTOS QUÍMICOS PREVIOS?</label>
+                            <input type="hidden" name="consent_quimicos" id="consentQuimicosInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('consentQuimicos', 'Si')">Si</button>
+                                <button type="button" class="chip" onclick="setChip('consentQuimicos', 'No')">No</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">¿ESTÁ BAJO TRATAMIENTO MÉDICO / MEDICAMENTOS?</label>
+                            <input type="hidden" name="consent_meds" id="consentMedsInput" required>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="setChip('consentMeds', 'Si')">Si</button>
+                                <button type="button" class="chip" onclick="setChip('consentMeds', 'No')">No</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Texto Legal Completo e Íntegro -->
+                    <div style="height: 350px; overflow-y: auto; background: #fdfaf0; padding: 25px; border: 2px solid var(--border-gold); border-radius: 14px; font-size: 0.85rem; line-height: 1.6; color: #333; margin-bottom: 20px; text-align: justify; font-family: sans-serif;">
+                        <center><h3 style="color: var(--gold-dark); margin-bottom: 20px; font-family: var(--font-serif);">CONSENTIMIENTO INFORMADO PARA PROCEDIMIENTO DE ALISADO – JULIE ALISADOS</h3></center>
+                        
+                        <p><strong>3. INFORMACIÓN SOBRE EL PROCEDIMIENTO:</strong> El alisado capilar consiste en la aplicación de productos químicos diseñados para modificar la estructura del cabello y lograr un efecto liso de manera temporal o semipermanente. El resultado del alisado depende de factores individuales como el tipo de cabello, historial de tratamientos químicos previos y cuidados posteriores al procedimiento. Los productos utilizados en el procedimiento cuentan con registro INVIMA y están aprobados para su uso en Colombia, garantizando su seguridad y cumplimiento con las normativas vigentes. Como todo procedimiento de belleza, el alisado capilar requiere de pos cuidados para que los resultados duren en el tiempo. Se recomienda el uso de productos específicos para el pos cuidado, según las indicaciones de Julie Alisados. El procedimiento de alisado capilar incluye lavado con productos capilares específicos, aplicación de mascarillas capilares, aplicación del producto alisador, secado con secador profesional y uso de plancha profesional.</p>
+                        
+                        <p><strong>4. EXPECTATIVAS DE RESULTADOS:</strong> El resultado final del alisado dependerá de las condiciones específicas del cabello del cliente, incluyendo historial de tratamientos previos y cuidados posteriores. Se garantiza un porcentaje de liso acorde con la evaluación realizada previamente y registrada en la ficha técnica firmada por el cliente. Es fundamental seguir las recomendaciones de pos cuidado para maximizar la durabilidad del alisado y que los resultados se mantengan en el tiempo.</p>
+
+                        <p><strong>5. EXONERACIÓN DE RESPONSABILIDAD:</strong> El cliente reconoce y acepta que los resultados del procedimiento pueden variar según su tipo de cabello, historial de tratamientos previos y cuidados posteriores. Julie Alisados no será responsable por resultados insatisfactorios si el cliente no sigue las recomendaciones proporcionadas.</p>
+
+                        <p><strong>6. RENUNCIA A RECLAMACIONES FUTURAS:</strong> Declaro que he recibido toda la información relevante sobre el procedimiento, riesgos y cuidados pos-tratamiento y que he formulado preguntas y resuelto mis dudas. Por lo tanto, renuncio expresamente a cualquier reclamación futura contra Julie Alisados por efectos adversos derivados del incumplimiento de las recomendaciones indicadas.</p>
+
+                        <p><strong>8. CONTRAINDICACIONES Y RIESGOS:</strong> Declaro que no tengo antecedentes de alergias a productos capilares, dermatitis severa, caída de cabello patológica o tratamientos recientes que puedan afectar los resultados. En caso de omitir información relevante, Julie Alisados no será responsable de los efectos adversos.</p>
+
+                        <p><strong>9. AUTORIZACIÓN PARA TRATAMIENTO DE DATOS PERSONALES (LEY 1581 DE 2012):</strong> Autorizo expresamente a Julie Alisados a recopilar, almacenar y tratar mis datos personales conforme a la Ley 1581 de 2012, con el fin de realizar seguimiento al procedimiento, contacto posterior y mejora en la calidad del servicio.</p>
+
+                        <p><strong>10. POLÍTICA DE GARANTÍA:</strong> La garantía cubre exclusivamente la aparición de ondas prematuras dentro de los 20 días calendario posteriores al procedimiento. Se debe solicitar la revisión a través de WhatsApp (304 358 8180) enviando un video y la confirmación de los cuidados en casa (champú y tratamiento poscuidado sin sal, y uso de secador). En sede se realizará un lavado diagnóstico; si procede, la reaplicación se agendará no antes de 8 días del servicio inicial. La garantía será anulada por: marcación de memoria capilar (cascos, moñas frecuentes), falta de higiene capilar, contacto con mar, piscinas o aguas termales, y por la realización de procedimientos químicos (tinturas, decoloraciones) o con herramientas de calor permanente en otros establecimientos. Si en la evaluación en sede no procede la garantía por fallas en el cuidado (no seguir recomendaciones de la sede y WhatsApp), la clienta cancelará $20.000 COP por el lavado técnico.</p>
+
+                        <p><strong>11. DECLARACIÓN DEL CLIENTE:</strong> Declaro de manera libre, voluntaria y consciente que he sido debidamente informado(a) por el personal de Julie Alisados sobre el procedimiento de alisado capilar que se me va a realizar, incluyendo los cuidados posteriores y las condiciones de la garantía.</p>
+
+                        <p><strong>12. DECLARACIÓN Y FIRMA:</strong> Declaro que he leído y comprendido toda la información contenida en este documento. Se me ha permitido formular preguntas y han sido respondidas de manera clara. Acepto voluntariamente someterme al procedimiento y seguir las recomendaciones dadas por Julie Alisados (en la sede y por WhatsApp). En constancia firmo el documento.</p>
+                    </div>
+
+                    <div class="authorization-check full-width prominent-check">
+                        <p style="font-size: 0.8rem; color: var(--gold-dark); margin-bottom: 15px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--gold-dark);">
+                            <i data-lucide="info" style="width:14px; vertical-align:middle;"></i> <strong>NOTA PARA MENORES:</strong> Si la cliente es menor de edad, las siguientes autorizaciones deben ser aceptadas y firmadas por su padre, madre o tutor legal.
+                        </p>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="authCheckbox" required>
+                            <span class="checkmark"></span>
+                            <strong>HE LEÍDO Y ACEPTO EL CONSENTIMIENTO INFORMADO</strong>
+                        </label>
+                        <label class="checkbox-container" style="margin-top:10px;">
+                            <input type="checkbox" id="planTrabajoCheckbox" required>
+                            <span class="checkmark"></span>
+                            <span>Acepto el Plan de Trabajo propuesto por el profesional.</span>
+                        </label>
+                        <label class="checkbox-container" style="margin-top:10px;">
+                            <input type="checkbox" id="photoPublicCheckbox" name="autoriza_publicidad">
+                            <span class="checkmark"></span>
+                            <span>Autorizo el uso de fotos para fines publicitarios.</span>
+                        </label>
+                    </div>
+
+                    <!-- BLOQUE DE FIRMAS INDEPENDIENTES -->
+                    <style>.signature-section { display:flex; flex-direction:column; gap:16px; padding: 0 25px; }</style>
+                    <div class="signature-section" style="margin-top: 30px;">
+                        
+                        <!-- 1. FIRMA CLIENTE / MENOR -->
+                        <div class="form-group full-width" style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                            <label class="required" style="color: var(--dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA DE LA CLIENTE (MENOR O ADULTO)</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--border-gold);"><canvas id="signature-pad-cliente" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('cliente')">Borrar</button></div>
+                        </div>
+
+                        <!-- 2. FIRMA TUTOR LEGAL (SOLO MENORES) -->
+                        <div class="form-group full-width hidden" id="tutorSignatureBox" style="border: 2px dashed var(--gold-primary); padding: 20px; border-radius: 14px; background: #fffcf5;">
+                            <label class="required" style="color: var(--gold-dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA OBLIGATORIA: TUTOR LEGAL / ACUDIENTE</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--gold-dark);"><canvas id="signature-pad-tutor" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tutor')">Borrar</button></div>
+                            <input type="text" id="tutorNameInput" placeholder="Nombre completo del padre, madre o tutor" style="margin-top:15px; width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                        </div>
+
+                        <!-- 3. FIRMA TÉCNICO -->
+                        <div class="form-group full-width">
+                            <label class="required" style="color: var(--dark); font-weight: bold; margin-bottom: 10px; display: block;">FIRMA DEL TÉCNICO PROFESIONAL</label>
+                            <div class="signature-container" style="background: #fff; border: 1px solid var(--border-gold);"><canvas id="signature-pad-tecnico" class="signature-pad"></canvas><button type="button" class="btn-clear-sig" onclick="clearSignature('tecnico')">Borrar</button></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Enlaces Legales Adicionales -->
+                    <div style="margin-top: 20px; padding: 12px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; display: flex; flex-direction: column; gap: 8px; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <a href="../politica-garantia.html" target="_blank" style="color: var(--gold-dark); text-decoration: none; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                            <i data-lucide="check-circle-2" style="width: 14px; height: 14px;"></i> Ver Política de Garantía
+                        </a>
+                        <a href="../politica-servicio.html" target="_blank" style="color: var(--gold-dark); text-decoration: none; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                            <i data-lucide="check-circle-2" style="width: 14px; height: 14px;"></i> Ver Política de Servicio
+                        </a>
+                    </div>
+                </section>
+            </form>
+        </main>
+
+        <footer class="form-footer hidden">
+            <button type="button" class="btn-secondary hidden" id="prevBtn">Anterior</button>
+            <button type="button" class="btn-primary" id="nextBtn">Siguiente</button>
+            <button type="button" class="btn-success hidden" id="saveBtn">Guardar</button>
+        </footer>
+
+        <!-- MODULO ADMINISTRATIVO: HISTORIAL -->
+        <section id="historySection" class="history-wrapper hidden" style="padding-bottom: 80px;">
+            <div class="history-header" style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                <h2 class="section-title" style="margin-bottom: 10px;">Control de Folios - JulieApp</h2>
+                <input type="text" id="searchInput" placeholder="🔍 Buscar cliente, cédula o folio..." style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #eee; font-size: 0.9rem;">
+            </div>
+            <div id="historyList" class="history-list" style="display: grid; gap: 12px;">
+                <!-- Las fichas se cargan aquí dinámicamente -->
+            </div>
+        </section>
+
+        <!-- MODULO ADMINISTRATIVO: EQUIPO -->
+        <section id="stylistSection" class="stylist-wrapper hidden" style="padding-bottom: 80px;">
+            <div class="section-header" style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                <h2 style="color: var(--gold-dark);">Gestión de Equipo</h2>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">Agrega o elimina profesionales del equipo</p>
+            </div>
+            
+            <div class="add-stylist-box" style="background: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div class="form-group"><label>NOMBRE COMPLETO</label><input type="text" id="stylistInput" placeholder="Ej: Maria Perez"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+                    <div class="form-group"><label>TELÉFONO</label><input type="tel" id="stylistPhoneInput"></div>
+                    <div class="form-group"><label>CORREO</label><input type="email" id="stylistEmailInput"></div>
+                </div>
+                <div class="form-group" style="margin-top:10px;"><label>CONTRASEÑA DE ACCESO</label><input type="password" id="stylistPassInput" placeholder="Contraseña para la app"></div>
+                <button onclick="addStylist()" class="btn-primary" style="width: 100%; margin-top: 15px; background: var(--gold-gradient); height: 45px;">Agregar Estilista</button>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="stylistSearchInput" placeholder="🔍 Filtrar equipo por nombre..." style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #eee;">
+            </div>
+            
+            <div id="stylistList" class="stylist-list">
+                <!-- Los estilistas se cargan aquí -->
+            </div>
+        </section>
+
+        <nav class="bottom-nav">
+            <button class="nav-item" onclick="switchTab('home')"><i data-lucide="home"></i><span>Inicio</span></button>
+            <button class="nav-item" onclick="switchTab('new')"><i data-lucide="plus-circle"></i><span>Nuevo</span></button>
+            <button class="nav-item" onclick="switchTab('history')"><i data-lucide="list"></i><span>Historial</span></button>
+            <button class="nav-item" onclick="switchTab('stylists')"><i data-lucide="users"></i><span>Estilistas</span></button>
+        </nav>
+    </div>
+
+    <div id="successModal" class="modal hidden">
+        <div class="modal-content" style="text-align: center; padding: 30px; max-width: 450px;">
+            <div style="background: #e8f5e9; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i data-lucide="check-circle-2" style="width: 45px; height: 45px; color: #2ecc71;"></i>
+            </div>
+            <h2 style="color: var(--gold-dark); margin-bottom: 10px; font-family: 'Playfair Display';">¡FOLIO EXITOSO!</h2>
+            <p style="color: #666; margin-bottom: 25px; font-size: 0.9rem;">El diagnóstico y el consentimiento han sido registrados correctamente en JulieApp.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button id="btnSendWhatsApp" class="btn-primary" style="background: #25D366; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; height: 55px; font-size: 1rem; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; width: 100%;">
+                    <i data-lucide="message-circle"></i> ENVIAR AL WHATSAPP CLIENTE
+                </button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button onclick="window.generatePDF()" class="btn-secondary" style="height: 45px; font-size: 0.8rem; border-radius: 10px;">
+                        <i data-lucide="download" style="width:14px;"></i> PDF
+                    </button>
+                    <button onclick="location.reload()" class="btn-outline" style="height: 45px; font-size: 0.8rem; border-radius: 10px;">
+                        <i data-lucide="plus" style="width:14px;"></i> NUEVA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="changePassModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Personalizar Contraseña</h3>
+            <p style="font-size:0.8rem; margin-bottom:15px;">Por seguridad legal, elige una clave que solo tú conozcas.</p>
+            <div class="form-group">
+                <label>NUEVA CONTRASEÑA</label>
+                <input type="password" id="newPassInput" placeholder="Mínimo 6 caracteres">
+            </div>
+            <div class="modal-actions" style="margin-top:20px;">
+                <button class="btn-secondary" onclick="closeChangePassModal()">Cancelar</button>
+                <button class="btn-primary" onclick="processChangePassword()">Guardar Nueva Clave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Historial Rápido -->
+    <div id="quickHistoryModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto; padding: 20px; background: white; border-radius: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid var(--gold-light); padding-bottom: 10px;">
+                <h3 style="font-family: var(--font-serif); color: var(--gold-dark); margin: 0;">Historial Clínico</h3>
+                <button onclick="document.getElementById('quickHistoryModal').classList.add('hidden')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <div id="quickHistoryBody"></div>
+            <button class="btn-secondary" onclick="document.getElementById('quickHistoryModal').classList.add('hidden')" style="width: 100%; margin-top: 15px;">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Detalle de Ficha (Lectura) -->
+    <div id="fichaDetailModal" class="modal hidden">
+        <div class="modal-content" style="max-width: 600px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 25px; background: white; border-radius: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--gold-primary); padding-bottom: 10px;">
+                <h2 id="detailFichaTitle" style="font-family: var(--font-serif); color: var(--gold-dark); margin: 0; font-size: 1.4rem;">Detalle del Folio</h2>
+                <button onclick="document.getElementById('fichaDetailModal').classList.add('hidden')" style="background: none; border: none; font-size: 1.8rem; cursor: pointer;">&times;</button>
+            </div>
+            <div id="fichaDetailBody" style="font-size: 0.9rem; color: var(--text-primary);">
+                <!-- Contenido dinámico -->
+            </div>
+            <div style="margin-top: 25px; display: flex; gap: 10px;">
+                <button id="btnPdfDetail" class="btn-primary" style="flex: 1;">
+                    <i data-lucide="download"></i> Descargar PDF
+                </button>
+                <button class="btn-secondary" onclick="document.getElementById('fichaDetailModal').classList.add('hidden')" style="flex: 1;">Volver al Diagnóstico</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Acceso Administrador (SEGURIDAD EXTRA) -->
+    <div id="adminLoginModal" class="modal hidden">
+        <div class="modal-content" style="max-width:350px; background: white; padding: 25px; border-radius: 20px;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <div style="background: #fff8e1; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                    <i data-lucide="shield-lock" style="width:32px; height:32px; color:var(--gold-dark);"></i>
+                </div>
+                <h3 style="margin-top:15px; font-family: 'Playfair Display';">Acceso de Control</h3>
+                <p style="font-size:0.8rem; color:#666;">Introduce la clave maestra de JulieApp para ver analíticas y ventas.</p>
+            </div>
+            <div class="form-group">
+                <input type="password" id="adminPassInput" placeholder="Clave de Seguridad" style="text-align:center; letter-spacing: 5px;">
+            </div>
+            <div class="modal-actions" style="margin-top:20px; display: flex; gap: 10px;">
+                <button class="btn-secondary" style="flex:1;" onclick="document.getElementById('adminLoginModal').classList.add('hidden')">Cancelar</button>
+                <button class="btn-primary" style="flex:1;" onclick="verifyAdminAccess()">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js?v=9.0"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js?v=9.0')
+                    .then(reg => {
+                        console.log('✅ Service Worker registrado');
+                        // Forzar actualización si hay un nuevo SW esperando
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('✨ Nueva versión lista. Recargando...');
+                                    location.reload();
+                                }
+                            });
+                        });
+                    })
+                    .catch(err => console.warn('❌ Error registrando SW', err));
+            });
+        }
+    </script>
+</body>
+</html>
