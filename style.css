@@ -1,4 +1,4 @@
-﻿/* Julie Alisados - Estilos Premium v1.1 */
+/* Julie Alisados - Estilos Premium v1.1 */
 :root {
     --pearl-white: #FFFFFF;
     --soft-cream: #FFF0F5;
@@ -2671,3 +2671,60 @@ footer .section-title::after {
 .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .product-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid rgba(212, 175, 55, 0.2); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
 .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-gold); border-color: var(--gold); }
+
+/* --- BOTÓN VOLVER ARRIBA EN LA PÁGINA PRINCIPAL --- */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 115px; /* Posicionado perfectamente arriba de la burbuja de WhatsApp en Desktop */
+    right: 40px;   /* Centrado con el botón de WhatsApp */
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    z-index: 1999; /* Justo debajo de la prioridad de WhatsApp (2000) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease, background 0.3s;
+}
+
+.scroll-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.scroll-to-top-btn:hover {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    transform: translateY(-3px);
+}
+
+.scroll-to-top-btn:hover svg {
+    transform: translateY(-3px); /* Micro-animación: la flecha rebota hacia arriba */
+}
+
+.scroll-to-top-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Optimización móvil */
+@media (max-width: 600px) {
+    .scroll-to-top-btn {
+        bottom: 85px; /* Posicionado perfectamente arriba de la burbuja de WhatsApp en Móviles */
+        right: 27px;  /* Centrado con la burbuja de 55px */
+        width: 40px;
+        height: 40px;
+    }
+}
