@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Servicio y Abonos | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo 1.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --light-pink: #FFF5F8;
+            --dark-grey: #333333;
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--dark-grey);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .header-logo img {
+            height: 120px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .welcome {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .legal-frame {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        h3 {
+            font-family: var(--font-body);
+            color: var(--gold-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--gold-dark);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            margin: 20px 0;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 4px solid var(--gold);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .option-card {
+            background: rgba(212, 175, 55, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .option-card strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .warning-box {
+            background: #fef8f8;
+            border-left: 4px solid #d9534f;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: rgba(212, 175, 55, 0.04);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            margin: 20px 0;
+        }
+
+        .important-box {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .important-box h2 {
+            color: var(--gold);
+            border-bottom: none;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .important-box p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .important-box strong {
+            color: var(--gold);
+        }
+
+        .contact-box {
+            background: rgba(212, 175, 55, 0.06);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .contact-box a {
+            color: var(--gold-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .legal-note {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .company-info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 30px;
+        }
+
+        .footer-sic {
+            margin: 30px auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-sic img {
+            height: 45px;
+            width: auto;
+        }
+
+        .footer-sic p {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .container { padding: 25px 20px; }
+            h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .options-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header-logo">
+            <img src="logo 1.png" alt="Julie Alisados">
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="index.html" class="back-link">← Volver a la página principal</a>
+        </div>
+
+        <p class="welcome">Bienvenida a Julie Alisados</p>
+        <h1>Política de Servicio y Abonos</h1>
+        <p class="subtitle">Compromiso de Servicio y Confianza</p>
+        <p class="legal-frame">
+            <strong>Marco Legal:</strong> Este documento se rige bajo la normativa colombiana vigente: Ley 1480 de 2011 (Estatuto del Consumidor), Ley 1581 de 2012 (Protección de Datos Personales), el Código Civil (Artículos 1602, 1859 a 1861 sobre Arras de Retractación y Contratos) y la normatividad de la Superintendencia de Industria y Comercio (SIC).<br>
+            <em>Última actualización: Mayo de 2026</em>
+        </p>
+
+        <div class="highlight-box">
+            <p>En Julie Alisados cada clienta es especial. Este documento nace de nuestro compromiso genuino con la honestidad, la transparencia y el respeto mutuo. Queremos que conozcas cómo trabajamos, qué puedes esperar de nosotras y cómo cuidamos cada detalle de tu experiencia. Estamos aquí para consentirte, escucharte y construir juntas una relación de confianza que va más allá de una cita en el salón.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 1 -->
+        <h2 id="abono-agenda">1. Nuestra Agenda y tu Abono</h2>
+        <p>Para garantizar la exclusividad de tu espacio, solicitamos un abono mínimo de <strong>$30.000 COP</strong> (o un valor mayor si deseas abonar más a tu servicio), el cual tiene la naturaleza jurídica de <strong>arras de retractación</strong> conforme a los Artículos 1859 a 1861 del Código Civil colombiano. Este valor será descontado del costo total de tu procedimiento el día de tu cita.</p>
+
+        <h3>Flexibilidad total</h3>
+        <p>Si necesitas cancelar o reprogramar, puedes hacerlo con total libertad avisándonos con <strong>48 horas de antelación</strong>. En este caso, tú eliges:</p>
+
+        <div class="options-grid">
+            <div class="option-card">
+                <strong>Reembolso</strong>
+                Te devolvemos tu dinero en un plazo máximo de treinta (30) días calendario (conforme al Art. 47 de la Ley 1480 de 2011), realizando la transferencia bancaria directamente al número de cuenta que nos proporciones.
+            </div>
+            <div class="option-card">
+                <strong>Productos</strong>
+                Lo usas para comprar productos de nuestra línea capilar.
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h3>Compromiso de cupo</h3>
+            <p>Entendemos que pueden surgir imprevistos; sin embargo, al ser un espacio reservado exclusivamente para ti, si la cancelación ocurre con menos de 48 horas de antelación, el abono no podrá ser reembolsado. Este valor nos ayuda a cubrir los gastos operativos y el tiempo del profesional que no pudo ser asignado a otra clienta.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 2 -->
+        <h2>2. Puntualidad y Llegada</h2>
+        <p>Valoramos profundamente tu tiempo y el de nuestro equipo. Te pedimos llegar a la hora acordada para garantizar que recibas el servicio completo y sin prisas.</p>
+        <ul>
+            <li><strong>Tolerancia:</strong> Contamos con una tolerancia máxima de <strong>30 minutos</strong> pasada la hora de tu cita.</li>
+            <li><strong>Llegada tarde:</strong> Queremos darte una experiencia impecable y sin prisas. Si tu retraso supera los 30 minutos, es posible que debamos ajustar la agenda para no comprometer el tiempo asignado a las demás clientas. Si ves que no logras llegar a tiempo, <strong>te pedimos escribirnos de inmediato a nuestro canal de WhatsApp para verificar si aún hay disponibilidad de cupo en la agenda y se puede realizar el procedimiento ese mismo día, o si de lo contrario es necesario reprogramar tu cita por una única vez (sujeta a disponibilidad de agenda)</strong>. De esta manera protegemos tu espacio y tu abono, teniendo en cuenta que al reservar el tiempo exclusivo de tu técnico capilar y preparar el salón para ti, este valor no es reembolsable en efectivo, pero estaremos encantados de guardarlo para tu nueva fecha conforme a nuestras <a href="#abono-agenda">Políticas de Cancelación y Abonos (Sección 1)</a>.</li>
+            <li><strong>Inasistencia sin aviso:</strong> Si no asistes a tu cita y no nos informas, el abono no será reembolsable, conforme a lo establecido en la sección de Compromiso de Cupo.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Sección 3 -->
+        <h2>3. Precios y Transparencia</h2>
+        <p>En Julie Alisados nos comprometemos con la transparencia:</p>
+        <ul>
+            <li>Los precios de nuestros servicios son informados <strong>antes</strong> de la realización del procedimiento.</li>
+            <li>El valor final incluye únicamente lo indicado en la cotización previa. Cualquier servicio adicional será consultado y autorizado por ti antes de realizarse.</li>
+            <li>Los precios pueden variar según la longitud, densidad y condición del cabello, por lo que cada cotización es personalizada tras el diagnóstico técnico.</li>
+            <li><strong>Pregunta con total tranquilidad:</strong> Queremos que inicies tu cambio de look con absoluta seguridad y confianza. Te invitamos y alentamos a hacernos todas las preguntas que consideres necesarias sobre tu cotización, las características de tu cabello o los detalles del procedimiento antes de comenzar. Para nuestro equipo, informarte con claridad y transparencia es el primer paso de una experiencia maravillosa.</li>
+            <li><strong>Promociones:</strong> Cada una de nuestras ofertas cuenta con términos y condiciones específicos, los cuales se detallan en nuestros <a href="promociones-condiciones.html" target="_blank" style="color: var(--gold-dark); font-weight: 700;">Términos y Condiciones de Promociones</a>. Ante cualquier duda, te invitamos a consultarnos antes de agendar tu cita.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Sección 4 -->
+        <h2>4. Consentimiento Informado y Salud Capilar</h2>
+        <p>Tu seguridad y bienestar son nuestra prioridad absoluta:</p>
+
+        <div class="info-box">
+            <h3>Consentimiento informado</h3>
+            <p>Antes de cada procedimiento químico, nuestras profesionales te informarán sobre los resultados esperados, las limitaciones según el estado actual de tu cabello y los cuidados posteriores necesarios. Al proceder con el servicio, aceptas que fuiste debidamente informada y que estás de acuerdo con el plan de trabajo propuesto.</p>
+
+            <h3>Alergias y condiciones médicas</h3>
+            <p>Para brindarte la mejor experiencia, te agradecemos informarnos sobre cualquier alergia, medicamento en uso, embarazo, lactancia o condición médica especial. Tu honestidad nos permite cuidarte mejor. La omisión de información relevante por parte de la clienta será tenida en cuenta dentro de la evaluación técnica de cualquier reclamación, especialmente cuando dicha omisión pueda haber incidido en el resultado del procedimiento o en una reacción adversa.</p>
+
+            <h3>Resultados esperados</h3>
+            <p>Los resultados de cada procedimiento dependen de múltiples factores, incluyendo el historial químico del cabello, su condición actual, su textura natural y el cumplimiento del post-cuidado. Julie Alisados <strong>no garantiza resultados idénticos a fotos de referencia</strong>, ya que cada cabello es único y responde de manera diferente a los tratamientos.</p>
+
+            <h3>Diagnóstico técnico y bienestar</h3>
+            <p>Si tras el diagnóstico la profesional determina que tu cabello no está en condiciones óptas para un proceso químico, te lo informaremos con total honestidad. Esta decisión se toma pensando exclusivamente en tu bienestar y en la salud a largo plazo de tu fibra capilar. Ninguna presión externa nos llevará a realizar un procedimiento que ponga en riesgo tu cabello.</p>
+
+            <h3>Modificaciones durante el servicio</h3>
+            <p>Si durante el procedimiento solicitas cambios que no fueron parte de la recomendación original del profesional, este te asesorará sobre la viabilidad técnica. Sin embargo, la clienta asumirá la responsabilidad sobre el resultado final de las modificaciones realizadas por fuera de la recomendación profesional.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 5 -->
+        <h2>5. Tu Privacidad y Seguridad</h2>
+        <p>En Julie Alisados, tu tranquilidad es prioridad:</p>
+
+        <div class="info-box">
+            <h3>Seguridad</h3>
+            <p>Nuestras instalaciones cuentan con monitoreo por CCTV para tu protección y la de nuestro equipo, bajo los estándares de seguridad vigentes. Las grabaciones se conservan únicamente con fines de seguridad y durante el tiempo establecido por la normatividad aplicable.</p>
+
+            <h3>Tu imagen en nuestras redes</h3>
+            <p>Nos encanta compartir los resultados de nuestro trabajo. Durante tu visita, nuestro equipo podrá invitarte a participar en registros de foto y video para nuestras redes sociales y material promocional. <strong>Tu participación es completamente voluntaria</strong> y será confirmada mediante autorización expresa en tu Ficha Técnica o de forma verbal en el momento del registro.</p>
+
+            <h3>Tú tienes el control</h3>
+            <p>Respetamos tu privacidad. Si prefieres no aparecer en redes o deseas que retiremos algún contenido, solo debes informárnoslo. Siempre tienes el derecho de conocer, actualizar o solicitar el borrado de tus datos e imagen.</p>
+
+            <h3>Registro fotográfico de evidencia</h3>
+            <p>Julie Alisados se reserva el derecho de documentar el estado del cabello antes y después de cada procedimiento con fines de respaldo técnico ante posibles reclamaciones. Estas fotografías son estrictamente <strong>confidenciales</strong> y no serán publicadas ni compartidas sin tu autorización.</p>
+
+            <h3>Pertenencias personales</h3>
+            <p>Para tu comodidad, Julie Alisados cuenta con percheros disponibles en nuestras instalaciones. Te recomendamos evitar llevar objetos de alto valor innecesarios a tu cita y mantener tus pertenencias bajo tu supervisión en todo momento. Si bien tomamos medidas razonables de seguridad en nuestras instalaciones, <strong>la custodia directa de tus objetos personales es tu responsabilidad</strong>.</p>
+
+            <h3>Política de Datos Personales</h3>
+            <p>Para conocer en detalle cómo tratamos y protegemos tu información personal, consulta nuestra <a href="politica-datos.html" target="_blank" style="color: var(--gold-dark); font-weight: 700;">Política de Tratamiento de Datos Personales</a>.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 6 -->
+        <h2>6. Menores de Edad</h2>
+        <p>Para la protección de los menores de edad, cualquier servicio o procedimiento realizado a personas menores de 18 años requiere la <strong>autorización y presencia de su padre, madre o acudiente legal</strong>. No se realizarán procedimientos a menores sin el cumplimiento de este requisito.</p>
+
+        <hr>
+
+        <!-- Sección 7 -->
+        <h2>7. Ambiente de Respeto y Exclusividad</h2>
+        <p>Queremos que cada visita sea un oasis de bienestar:</p>
+
+        <div class="info-box">
+            <h3>Convivencia</h3>
+            <p>Nos reservamos el derecho de admisión o de finalizar un servicio ante cualquier lenguaje ofensivo, comportamiento agresivo o falta de respeto hacia nuestro personal u otras clientas. Creemos firmemente en el trato amable y profesional como base de toda relación.</p>
+
+            <h3>Acompañantes</h3>
+            <p>Para mantener un ambiente de relajación y concentración profesional, se permite máximo <strong>un (1) acompañante</strong> por clienta. Los menores de edad que acompañen deben estar bajo la supervisión permanente de su acudiente en todo momento.</p>
+
+            <h3>Ética profesional</h3>
+            <p>Si tras el diagnóstico técnico notamos que tu cabello no es apto para un proceso químico, te lo diremos con honestidad. Tu salud capilar es lo más importante para nosotros. Nunca realizaremos un procedimiento que ponga en riesgo la integridad de tu cabello.</p>
+
+            <h3>Tu opinión nos importa</h3>
+            <p>Nos tomamos muy en serio cada comentario. Si en algún momento sientes que tu experiencia no fue la esperada, queremos saberlo de primera mano. Para poder brindarte una atención personalizada y una solución real, te pedimos que nos escribas por WhatsApp o correo electrónico. De esta manera, tu caso recibe la dedicación que merece, con un seguimiento adecuado y sin interrupciones.</p>
+
+            <h3>Siempre a tu alcance</h3>
+            <p>Nuestro equipo está preparado para resolver cualquier situación de forma ágil y justa. Si tienes alguna inquietud, estamos a un mensaje de distancia. Creemos en la comunicación directa como el camino más efectivo para garantizar tu satisfacción.</p>
+        </div>
+
+        <hr>
+
+        <!-- Sección 8 -->
+        <h2>8. Fuerza Mayor</h2>
+        <p>En caso de situaciones imprevistas fuera de nuestro control (cortes de energía, emergencias, enfermedad del profesional, desastres naturales u otros eventos de fuerza mayor), Julie Alisados se compromete a ofrecerte las siguientes alternativas sin ningún tipo de penalidad:</p>
+        <ul>
+            <li><strong>Reprogramación:</strong> Agendamos una nueva cita en la fecha que más te convenga.</li>
+            <li><strong>Reembolso:</strong> Te devolvemos el valor total de tu abono en un plazo máximo de treinta (30) días calendario, mediante transferencia bancaria al número de cuenta que nos indiques, conforme a los tiempos estipulados por la ley colombiana.</li>
+            <li><strong>Productos:</strong> Lo usas para comprar productos de nuestra línea capilar.</li>
+        </ul>
+
+        <hr>
+
+        <!-- Sección 9 -->
+        <h2>9. Garantía de Nuestros Servicios</h2>
+        <p>Los servicios de alisado progresivo realizados en nuestros locales cuentan con su propia <a href="politica-garantia.html" target="_blank" style="color: var(--gold-dark); font-weight: 700;">Política de Garantía Limitada</a>, la cual puedes consultar en detalle en nuestra página web o solicitarla directamente en cualquiera de nuestras sedes.</p>
+
+        <hr>
+
+        <!-- Sección 10 -->
+        <h2>10. Tus Derechos y Conciliación (PQR)</h2>
+        <p>Como nuestra clienta, tienes derecho a información clara, veraz y oportuna, y a un servicio de excelencia conforme al Estatuto del Consumidor (Ley 1480 de 2011). Siempre estamos disponibles para escucharte y buscar soluciones a través de la conciliación y el respeto mutuo.</p>
+        <ol>
+            <li><strong>Directamente con nosotros:</strong> Puedes presentar cualquier petición, queja o reclamo (PQR) a través de nuestro WhatsApp (304 358 8180) o correo electrónico (juliealisados@gmail.com). Nos comprometemos a responder en un plazo máximo de <strong>15 días hábiles</strong>.</li>
+            <li><strong>Ante la autoridad competente:</strong> Si consideras que tus derechos como consumidora no han sido atendidos, puedes acudir a la <strong>Superintendencia de Industria y Comercio (SIC)</strong> a través de su página web <a href="https://www.sic.gov.co" target="_blank" style="color: var(--gold-dark); font-weight: 700;">www.sic.gov.co</a> o de forma presencial.</li>
+        </ol>
+
+        <hr>
+
+        <!-- Canal de Atención -->
+        <div class="contact-box">
+            <h2 style="margin-top: 0; border: none;">Canal de Atención</h2>
+            <p>Si deseas cambiar de opinión, reprogramar tu cita, actualizar tus datos o tienes cualquier inquietud, comunícate con nosotros:</p>
+            <p><a href="https://wa.me/573043588180?text=Hola%20%F0%9F%91%8B%20tengo%20una%20duda%20sobre%20las%20pol%C3%ADticas%20de%20mi%20cita%20%E2%9C%A8%0A%0AAl%20continuar%20con%20esta%20conversaci%C3%B3n,%20confirmo%20que%20he%20le%C3%ADdo%20y%20acepto%20las%20pol%C3%ADticas%20de%20tratamiento%20de%20datos%20y%20servicio:%0Ahttps://juliealisados.com/politica-datos.html%0Ahttps://juliealisados.com/politica-servicio.html%0A%0AQuedo%20atenta%20%F0%9F%98%8A" target="_blank">WhatsApp: 304 358 8180</a></p>
+            <p>Correo: juliealisados@gmail.com</p>
+            <br>
+            <p><em>En Julie Alisados creemos que la confianza se construye con transparencia. Estamos para ti.</em></p>
+        </div>
+
+        <hr>
+
+        <p class="company-info">
+            <strong>JULIE ALISADOS S.A.S.</strong> — NIT: 901.918.276-5<br>
+            Moniquirá, Boyacá · Tunja, Boyacá
+        </p>
+
+        <div class="footer-sic">
+            <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
+                <img src="LOGO%20SIC%20NUEVO.png" alt="Superintendencia de Industria y Comercio">
+            </a>
+            <p>Superintendencia de Industria y Comercio</p>
+        </div>
+
+        <center><a href="index.html" class="back-link">← Volver a la página principal</a></center>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-floating-container">
+        <span class="whatsapp-label">Quiero mi cita</span>
+        <a href="https://wa.me/573043588180?text=Hola%20%F0%9F%91%8B%20quiero%20agendar%20una%20cita%20en%20Julie%20Alisados%20%E2%9C%A8%0A%0AAl%20continuar%20con%20esta%20conversaci%C3%B3n,%20confirmo%20que%20he%20le%C3%ADdo%20y%20acepto%20las%20pol%C3%ADticas%20de%20tratamiento%20de%20datos%20y%20servicio:%0Ahttps://juliealisados.com/politica-datos.html%0Ahttps://juliealisados.com/politica-servicio.html%0A%0AQuedo%20atenta%20%F0%9F%98%8A"
+            class="btn-whatsapp-floating" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+        </a>
+    </div>
+</body>
+
+</html>

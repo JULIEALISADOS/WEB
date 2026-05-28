@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condiciones de Promociones Mensuales | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --pearl-white: #FFFFFF;
+            --soft-cream: #FFF0F5;
+            --gold: #D4AF37;
+            --gold-light: #F2D06B;
+            --gold-dark: #B4941F;
+            --dark-text: #1A1A1A;
+            --light-text: #444444;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--soft-cream);
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding: 60px 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('FONDO WEB.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-small {
+            width: 180px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold-dark);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--light-text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-style: italic;
+            color: var(--light-text);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .service-category {
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-category:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        strong {
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        .important-box {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--gold);
+            margin: 40px 0;
+        }
+
+        .important-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--gold-dark);
+        }
+
+        .info-highlight-box {
+            margin-top: 15px;
+            background: rgba(255,255,255,0.7);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px dashed var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .commitment-line {
+            margin-bottom: 0;
+            padding: 12px 12px 12px 40px;
+            position: relative;
+            background: var(--soft-cream);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            list-style: none;
+        }
+
+        .commitment-line span {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: var(--gold-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(180, 148, 31, 0.3);
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(180, 148, 31, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .important-box {
+                padding: 15px;
+                margin: 25px 0;
+            }
+            .info-highlight-box {
+                padding: 15px;
+            }
+            .commitment-line {
+                padding: 10px 10px 10px 35px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-small {
+                width: 140px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            .intro-text {
+                font-size: 0.95rem;
+            }
+            .service-category h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1796200453804821');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1796200453804821&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D80VAEJC77UDOFSGH9CG');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17986280702');
+        gtag('config', 'G-2BPKBTDBG5');
+    </script>
+
+    <!-- Global Conversion Reporter -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
+            'event_callback': callback
+        });
+        gtag('event', 'generate_lead', {
+          'event_category': 'engagement',
+          'event_label': 'WhatsApp Click'
+        });
+        if (typeof fbq !== 'undefined') { fbq('track', 'Contact'); }
+        if (typeof ttq !== 'undefined') { ttq.track('Contact'); }
+        return false;
+      }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="back-nav" style="margin-bottom: 30px;">
+            <a href="index.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--gold-dark); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Volver al Inicio
+            </a>
+        </div>
+        <div class="header">
+            <img src="logo 1.png" alt="Julie Alisados Logo" class="logo-small">
+            <h1>Especial Mes de las Madres</h1>
+            <span class="subtitle">Mayo 2026</span>
+        </div>
+
+        <p class="intro-text">"Celebra la belleza y el cuidado capilar con nuestros tratamientos profesionales. Estas promociones son válidas únicamente del 1 al 31 de mayo."</p>
+
+        <div class="terms-grid">
+            <!-- ALISADO SALUDABLE -->
+            <div class="service-category">
+                <h2><i>01.</i> Alisado Saludable (Combo Especial)</h2>
+                <p style="margin-bottom: 15px; color: var(--light-text);">Nuestro servicio integral incluye Reposición Hidrolipídica y Crioterapia. Además, te obsequiamos un <strong>Kit de Shampoo y Acondicionador</strong> profesional para cuidar tu liso en casa.</p>
+                
+                <div style="background: var(--soft-cream); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">Inversión</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--dark-text);">$250.000</p>
+                </div>
+
+                <ul>
+                    <li><strong>Diagnóstico Profesional:</strong> ¡Queremos lo mejor para tu fibra! El kit de shampoo y acondicionador se entrega estrictamente según la recomendación de nuestra estilista tras tu diagnóstico, asegurando que sea justo lo que tu cabello necesita.</li>
+                    <li><strong>Sobre tu obsequio profesional:</strong> Esta es una cortesía especial para que cuides tu liso en casa. Por ello, no es posible cambiarlo por otros productos ni redimirlo por dinero en efectivo o descuentos; el valor de la inversión se mantiene igual si decides no recibirlo.</li>
+                    <li><strong>Pagos con Addi:</strong> Si eliges financiar con Addi, ten en cuenta que el obsequio de Shampoo y Acondicionador no será entregado, ya que este beneficio es exclusivo para pagos directos bajo tarifa promocional.</li>
+                    <li>Los cabellos abundantes o muy largos pagan <strong>$40.000</strong> adicionales.</li>
+                    <li>Esta tarifa promocional <strong>no aplica para cabellos afro</strong>.</li>
+                    <li>No es válido para pagos con <strong>Addi</strong> (en este caso se aplicará la tarifa plena y no incluirá el obsequio).</li>
+                </ul>
+            </div>
+
+            <!-- REPOSICIÓN DE AMINOÁCIDOS -->
+            <div class="service-category">
+                <h2><i>02.</i> Reposición de Aminoácidos (Terapia Disciplinante)</h2>
+                <p style="margin-bottom: 15px; color: var(--light-text);">Este tratamiento repone los aminoácidos esenciales, aportando hidratación, suavidad y brillo, además de disciplinar el cabello y disminuir el frizz.</p>
+                
+                <div style="background: var(--soft-cream); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">Inversión</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--dark-text);">$150.000</p>
+                </div>
+
+                <ul>
+                    <li>Aplica un recargo de <strong>$20.000</strong> adicionales para cabellos abundantes o muy largos.</li>
+                    <li>Esta tarifa promocional <strong>no aplica para cabellos afro</strong>.</li>
+                    <li>No aplica para pagos con <strong>Addi</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- EMULSIÓN ZERO -->
+            <div class="service-category">
+                <h2><i>03.</i> Emulsión Zero ❄️</h2>
+                <p style="margin-bottom: 15px; color: var(--light-text);">Una terapia innovadora a base de Plex, proteínas, aminoácidos, aceite de algodón y ácido hialurónico. Devuelve la suavidad y el brillo a las hebras, disminuye el frizz y relaja la onda entre un 40% y un 60%.</p>
+                
+                <div style="background: var(--soft-cream); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">Inversión</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--dark-text);">$170.000</p>
+                </div>
+
+                <ul>
+                    <li>Se cobrarán <strong>$20.000</strong> adicionales en cabellos abundantes o muy largos.</li>
+                    <li>Esta tarifa promocional <strong>no aplica para cabellos afro</strong>.</li>
+                    <li>No aplica para pagos con <strong>Addi</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- CHOCO FIX -->
+            <div class="service-category">
+                <h2><i>04.</i> Hidratación Choco Fix</h2>
+                <p style="margin-bottom: 15px; color: var(--light-text);">Un tratamiento profundo que brinda nutrición, fuerza y sedosidad gracias al poder del cacao.</p>
+                
+                <div style="background: var(--soft-cream); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px;">Inversión</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--dark-text);">$60.000</p>
+                </div>
+
+                <ul>
+                    <li><strong>¡Es válido para cualquier largo y cantidad de cabello!</strong></li>
+                    <li>No aplica para pagos con <strong>Addi</strong>.</li>
+                </ul>
+            </div>
+            <!-- BENEFICIO POST-ALISADO (PERMANENTE) -->
+            <div class="service-category" style="border: 2px solid var(--gold); padding: 25px; border-radius: 20px; background: #fffdf7;">
+                <h2 style="color: #d63384;"><i>05.</i> Beneficio Post-Alisado JulieApp ✨</h2>
+                <p style="margin-bottom: 15px; color: var(--light-text);">¡Queremos que tu liso dure y brille siempre! Premiamos tu compromiso con la salud capilar.</p>
+                
+                <div style="background: white; padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 20px; border: 1px solid var(--gold);">
+                    <p style="font-size: 0.9rem; text-transform: uppercase; color: #d63384; margin-bottom: 5px;">Descuento Especial</p>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--dark-text);">10% OFF</p>
+                    <p style="font-size: 0.8rem; color: var(--light-text);">En Terapias de Hidratación y Nutrición</p>
+                </div>
+
+                <p style="font-size: 0.9rem; margin-bottom: 10px; font-weight: bold; color: var(--gold-dark);">Terapias Incluidas:</p>
+                <ul style="margin-bottom: 20px; columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+                    <li>Biocomplex</li>
+                    <li>Choco Fix</li>
+                    <li>Hidra-Complex</li>
+                    <li>Hidra-Hair</li>
+                    <li>Ozonoterapia</li>
+                    <li>Relleno Molecular</li>
+                    <li>Hidratación S.O.S</li>
+                    <li>Vita Plus</li>
+                    <li>Proteína Gold</li>
+                </ul>
+
+                <div style="background: rgba(214, 51, 132, 0.05); padding: 15px; border-radius: 12px; border: 1px dashed #d63384;">
+                    <p style="font-size: 0.85rem; color: #d63384;"><strong>Condiciones del Beneficio:</strong></p>
+                    <ul style="font-size: 0.85rem; margin-top: 5px;">
+                        <li>Válido únicamente entre el <strong>día 8 y 10</strong> posterior a tu alisado.</li>
+                        <li><strong>No Acumulable:</strong> Si la terapia elegida ya cuenta con un precio de promoción en el mes actual (ej. Choco Fix en mayo), este descuento del 10% no será aplicable sobre dicho precio promocional.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="important-box">
+            <h3>AVISO LEGAL Y CONDICIONES GENERALES</h3>
+            <p style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed rgba(212, 175, 55, 0.3);"><strong>Nota sobre Vigencia:</strong> Las promociones descritas son válidas única y exclusivamente para el mes indicado. En caso de que las promociones del mes siguiente no hayan sido publicadas aún, se entenderá que no existen ofertas vigentes hasta que se realice el lanzamiento oficial del mes correspondiente.</p>
+            <p style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); color: #d63384;"><strong>Promociones No Acumulables:</strong> Se establece que ninguna promoción, descuento o beneficio descrito en este documento o en nuestras redes sociales es acumulable entre sí. Solo se podrá aplicar una (1) promoción por servicio y por cliente.</p>
+            <p>Todas las promociones mencionadas están sujetas a los términos y condiciones descritos en cada servicio y su vigencia es estricta y únicamente del <strong>1 al 31 de mayo de 2026</strong>.</p>
+            
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                <h4 style="color: var(--gold-dark); margin-bottom: 10px; font-family: var(--font-heading);">Condiciones de Pago con Addi:</h4>
+                <ul style="list-style: disc; margin-left: 20px;">
+                    <li style="margin-bottom: 8px;">Nuestras tarifas promocionales están diseñadas para pagos directos, por lo que <strong>no aplican</strong> si eliges pagar a través de <strong>Addi</strong>.</li>
+                    <li style="margin-bottom: 8px;">Si prefieres financiar tu servicio con Addi, se aplicará el <strong>valor completo (tarifa plena)</strong> del procedimiento elegido.</li>
+                    <li style="margin-bottom: 8px;">Recuerda que el <strong>pago de la comisión de Addi</strong> debe ser asumido en su totalidad por el cliente.</li>
+                    <li style="margin-bottom: 8px;">Los <strong>obsequios o beneficios adicionales</strong> (como el Kit de Shampoo y Acondicionador) son exclusivos de la tarifa promocional, por lo que no se incluyen en pagos con Addi.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                <h4 style="color: var(--gold-dark); margin-bottom: 10px; font-family: var(--font-heading);">Hablemos de tu inversión (Servicios Regulares y Financiación):</h4>
+                <p style="margin-bottom: 15px;">En Julie Alisados nos encanta cuidar cada detalle, por eso queremos que todo sea <strong>súper claro</strong> para ti desde el primer momento. Esta sección aplica para todos nuestros servicios regulares (fuera de promoción) y también para aquellas promociones que decidas financiar con <strong>Addi</strong>, ya que en estos casos se aplica nuestra tarifa plena.</p>
+                
+                <p style="margin-bottom: 15px;">Sabemos que cada cabello es único, por lo que el valor final depende estrictamente de las características de tu fibra capilar: <strong>largo, estado de salud y abundancia</strong>.</p>
+                
+                <div class="info-highlight-box">
+                    <p style="font-weight: 700; color: var(--gold-dark); margin-bottom: 15px; font-size: 1.1rem;">Tu tranquilidad es nuestra prioridad:</p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold); font-weight: bold;">✦</span>
+                            <strong>Cotización por WhatsApp:</strong> Al enviarnos una foto, te brindaremos un <strong>valor aproximado</strong> como referencia inicial. Ten en cuenta que la textura real, la porosidad y la salud profunda de tu fibra capilar solo pueden apreciarse plenamente "en vivo" bajo el ojo experto de nuestras especialistas.
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold); font-weight: bold;">✦</span>
+                            <strong>Valor Definitivo:</strong> El precio exacto se determinará únicamente de forma <strong>presencial</strong> tras un diagnóstico profesional en nuestras sedes.
+                        </li>
+                        <li class="commitment-line">
+                            <span>✔</span>
+                            <strong style="color: #d63384;">Compromiso JA:</strong> ¡Queremos que te sientas segura y feliz con tu elección!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                <h4 style="color: var(--gold-dark); margin-bottom: 10px; font-family: var(--font-heading);">Políticas Generales y Garantía:</h4>
+                <p>Todos nuestros servicios regulares y promociones están sujetos a nuestras políticas generales de atención. Te invitamos a conocer detalladamente nuestras reglas de reserva, abonos, puntualidad y tolerancia en nuestra <a href="politica-servicio.html" target="_blank" style="color: var(--gold-dark); font-weight: 700;">Política de Servicio y Abonos</a>. Asimismo, te recordamos que todos nuestros alisados cuentan con el respaldo de nuestra <a href="politica-garantia.html" target="_blank" style="color: var(--gold-dark); font-weight: 700;">Política de Garantía Limitada</a>.</p>
+            </div>
+        </div>
+
+        <center>
+            <a href="index.html" class="back-btn">Volver al Inicio</a>
+        </center>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-floating-container">
+        <span class="whatsapp-label">Quiero mi cita ya</span>
+        <a href="https://wa.me/573043588180?text=Hola%20%F0%9F%91%8B%20estoy%20interesada%20en%20las%20promociones%20del%20mes%20de%20las%20Madres%20%E2%9C%A8%0A%0AAl%20continuar%20con%20esta%20conversaci%C3%B3n,%20confirmo%20que%20he%20le%C3%ADdo%20y%20acepto%20las%20pol%C3%ADticas%20de%20tratamiento%20de%20datos,%20servicio%20y%20t%C3%A9rminos%20del%20mes:%0Ahttps://juliealisados.com/politica-datos.html%0Ahttps://juliealisados.com/politica-servicio.html%0Ahttps://juliealisados.com/promociones-condiciones.html%0A%0AQuedo%20atenta%20%F0%9F%98%8A"
+            class="btn-whatsapp-floating" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+        </a>
+    </div>
+</body>
+
+</html>
+
