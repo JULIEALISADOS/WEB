@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Tratamiento de Datos Personales | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --light-pink: #FFF0F5;
+            --dark-grey: #444444;
+            --gold: #C5A059;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--dark-grey);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-logo img {
+            height: 120px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-top: 35px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            margin-bottom: 15px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            margin: 40px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .footer-sic {
+            margin: 30px auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-sic img {
+            height: 45px;
+            width: auto;
+        }
+
+        .footer-sic p {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .contact-info {
+            background: rgba(197, 160, 89, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Floating WhatsApp Button */
+        .btn-whatsapp-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: #fff;
+            border: 2px solid #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transition: all 0.3s ease;
+            color: #25d366;
+            animation: luminous-pulse 2s infinite;
+        }
+
+        @keyframes luminous-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 600px) {
+            .btn-whatsapp-floating {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                opacity: 0.9;
+            }
+        }
+
+        .btn-whatsapp-floating:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+            background-color: #f0fff4;
+            color: #128c7e;
+            border-color: #128c7e;
+        }
+
+        .btn-whatsapp-floating svg {
+            width: 35px;
+            height: 35px;
+            fill: currentColor;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17986280702', { 'allow_enhanced_conversions': true });
+    </script>
+    <!-- Event snippet for WhatsApp Contact conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-logo">
+            <img src="logo 1.png" alt="Julie Alisados">
+        </div>
+        <h1>POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES</h1>
+
+        <p><strong>JULIE ALISADOS S.A.S.</strong><br>
+            NIT: 901.918.276-5<br>
+            Dirección: Carrera 6 No. 18-68, Moniquirá, Boyacá<br>
+            Teléfono de contacto: 304 358 8180<br>
+            Correo electrónico: juliealisados@gmail.com</p>
+
+        <hr>
+
+        <h2>1. MARCO LEGAL</h2>
+        <p>Esta política se desarrolla conforme a:</p>
+        <ul>
+            <li>Constitución Política de Colombia, Artículo 15</li>
+            <li>Ley 1581 de 2012</li>
+            <li>Decreto 1377 de 2013</li>
+            <li>Sentencia C-748 de 2011</li>
+            <li>Circular Externa 002 de 2015 (SIC)</li>
+        </ul>
+
+        <hr>
+
+        <h2>2. DEFINICIONES</h2>
+        <ul>
+            <li><strong>Dato personal:</strong> Cualquier información vinculada o que pueda asociarse a una persona
+                natural identificada o identificable.</li>
+            <li><strong>Datos sensibles:</strong> Información que afecta la intimidad del titular o cuyo uso indebido
+                puede generar discriminación (salud, origen racial, orientación sexual, etc.).</li>
+            <li><strong>Tratamiento:</strong> Cualquier operación sobre datos personales (recolección, almacenamiento,
+                uso, circulación o supresión).</li>
+            <li><strong>Encargado:</strong> Persona que realiza el tratamiento de datos por cuenta del responsable.</li>
+            <li><strong>Responsable:</strong> Persona natural o jurídica que decide sobre el tratamiento de los datos
+                personales.</li>
+        </ul>
+
+        <hr>
+
+        <h2>3. FINALIDADES DEL TRATAMIENTO</h2>
+        <p>Los datos recolectados por JULIE ALISADOS S.A.S. serán utilizados exclusivamente para:</p>
+        <ol>
+            <li>Agendar citas y confirmar asistencia.</li>
+            <li>Realizar diagnósticos capilares personalizados.</li>
+            <li>Gestionar el historial capilar y de servicios de los clientes.</li>
+            <li>Contactar a los clientes para seguimiento post-servicio o recordatorios.</li>
+            <li>Enviar promociones, campañas o novedades (previa autorización expresa).</li>
+            <li>Cumplir obligaciones legales, contractuales y contables.</li>
+            <li>Garantizar la seguridad de las instalaciones (cuando se usen cámaras de seguridad).</li>
+            <li>Mantener contacto con proveedores, empleados y terceros con fines administrativos.</li>
+            <li><strong>Uso Promocional de Imagen:</strong> Utilizar el registro fotográfico y videográfico (antes y después) de los procedimientos realizados para fines de marketing, publicidad y testimonios en redes sociales, sitios web y otros canales digitales. Esta autorización incluye la fijación, reproducción, comunicación pública y distribución de la imagen captada durante los procedimientos, renunciando a cualquier compensación económica por este concepto.</li>
+            <li><strong>Compartir con Socios Comerciales:</strong> Transferir o transmitir sus datos personales a aliados estratégicos y socios comerciales, con el fin de ofrecer servicios conjuntos, promociones especiales, mejorar la experiencia del cliente y realizar actividades de mercadeo directo.</li>
+        </ol>
+
+        <hr>
+
+        <h2>4. TRATAMIENTO DE DATOS SENSIBLES (SALUD E IMAGEN)</h2>
+        <p>De conformidad con la Ley 1581 de 2012, se consideran datos sensibles aquellos que afectan la intimidad del Titular o cuyo uso indebido puede generar discriminación. En <strong>JULIE ALISADOS S.A.S.</strong>, recolectamos datos sobre su estado de salud capilar, posibles alergias, estado de gestación e imágenes fotográficas/biométricas.</p>
+        <p><strong>ADVERTENCIA LEGAL:</strong> En virtud de la ley, el Titular no está obligado a autorizar el tratamiento de sus datos sensibles. No obstante, el suministro de información sobre salud es requisito indispensable para la seguridad y el éxito del procedimiento técnico-capilar. El uso de imágenes con fines promocionales se realizará respetando siempre la dignidad del Titular y bajo las finalidades descritas en la Sección 3 de esta política.</p>
+
+        <hr>
+
+        <h2>5. AUTORIZACIÓN DEL TITULAR</h2>
+        <p>JULIE ALISADOS S.A.S. solicita de forma previa, expresa e informada la autorización del titular de los datos
+            personales. Esta autorización se obtiene mediante:</p>
+        <ul>
+            <li>Formulario físico o electrónico.</li>
+            <li><strong>Aceptación por Conducta (WhatsApp):</strong> El Titular manifiesta su aceptación a la presente política al iniciar y/o continuar la interacción a través de nuestra línea de WhatsApp institucional, una vez enviado el mensaje de bienvenida que contiene el link a este documento.</li>
+            <li>Firma en formatos físicos o digitales (Ficha Técnica).</li>
+            <li>Expresión verbal (cuando sea verificable y documentada).</li>
+        </ul>
+
+        <hr>
+        
+        <h2>6. TRATAMIENTO DE DATOS DE MENORES DE EDAD</h2>
+        <p>El tratamiento de datos personales de niños, niñas y adolescentes se realizará respetando el interés superior de los mismos y asegurando el respeto de sus derechos fundamentales. La autorización para el tratamiento de estos datos deberá ser otorgada por su representante legal (Padre, Madre o Tutor), quien deberá firmar la correspondiente Ficha Técnica de Servicio.</p>
+
+        <hr>
+
+        <h2>7. DERECHOS DEL TITULAR</h2>
+        <p>Los titulares de datos tienen derecho a:</p>
+        <ol>
+            <li>Conocer, actualizar y rectificar sus datos personales.</li>
+            <li>Solicitar prueba de la autorización otorgada.</li>
+            <li>Ser informados sobre el uso que se ha dado a sus datos.</li>
+            <li>Presentar quejas ante la Superintendencia de Industria y Comercio.</li>
+            <li>Revocar la autorización o solicitar la supresión del dato cuando no se respete la ley. <strong>Nota:</strong> El Titular podrá solicitar en cualquier momento el cese de envío de comunicaciones comerciales y promocionales sin que ello afecte la prestación de los servicios contratados.</li>
+            <li>Acceder en forma gratuita a sus datos personales.</li>
+        </ol>
+
+        <hr>
+
+        <h2>8. PROCEDIMIENTO PARA EJERCER DERECHOS</h2>
+        <p>El titular podrá ejercer sus derechos enviando una solicitud a:</p>
+        <div class="contact-info">
+            📞 <strong>WhatsApp:</strong> 304 358 8180<br>
+            📧 <strong>Correo electrónico:</strong> juliealisados@gmail.com
+        </div>
+        <p><br>La solicitud debe contener:</p>
+        <ul>
+            <li>Nombre completo del titular</li>
+            <li>Número de identificación</li>
+            <li>Descripción clara del derecho que desea ejercer</li>
+            <li>Dirección de contacto</li>
+        </ul>
+        <p>El tiempo de respuesta será de:</p>
+        <ul>
+            <li>10 días hábiles para consultas</li>
+            <li>15 días hábiles para reclamos</li>
+        </ul>
+
+        <hr>
+
+        <h2>9. SEGURIDAD DE LA INFORMACIÓN</h2>
+        <p>Los datos serán tratados bajo estrictas medidas de confidencialidad y seguridad, con acceso restringido solo
+            al personal autorizado. Se emplean controles físicos, técnicos y administrativos para prevenir el acceso no
+            autorizado, pérdida o uso indebido.</p>
+
+        <hr>
+
+        <h2>10. TRANSMISIÓN Y TRANSFERENCIA DE DATOS</h2>
+        <p>Los datos no serán transferidos a terceros, salvo que:</p>
+        <ul>
+            <li>Exista autorización expresa del Titular (incluyendo la aceptación de esta política mediante el ingreso a la web o interacción por WhatsApp).</li>
+            <li>Sea requerido por autoridad competente.</li>
+            <li>Sea necesario para el cumplimiento de una relación contractual o comercial con socios estratégicos bajo cláusulas de confidencialidad.</li>
+        </ul>
+
+        <hr>
+
+        <h2>11. VIGENCIA DE LAS BASES DE DATOS</h2>
+        <p>Las bases de datos estarán vigentes durante el tiempo que sea razonable y necesario para cumplir con las
+            finalidades del tratamiento, y conforme a lo establecido en la legislación colombiana.</p>
+
+        <hr>
+
+        <h2>12. MODIFICACIONES A LA POLÍTICA</h2>
+        <p>Esta política puede ser modificada en cualquier momento. Cualquier cambio será informado a través de nuestros
+            canales de atención y redes sociales.</p>
+
+        <hr>
+
+        <h2>13. ENTRADA EN VIGENCIA</h2>
+        <p>La presente política rige a partir del 27 de Abril de 2026 y sustituye cualquier versión anterior.</p>
+
+        <div style="background: rgba(197, 160, 89, 0.1); padding: 25px; border-radius: 10px; margin-top: 40px; border-left: 5px solid var(--gold);">
+            <h3 style="margin-top: 0; color: var(--gold); font-family: var(--font-heading);">AUTORIZACIÓN EXPRESA:</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">Al aceptar esta política, el Titular autoriza de manera previa, expresa e informada a <strong>JULIE ALISADOS S.A.S.</strong> para tratar sus datos personales (incluyendo datos sensibles de salud e imagen) de acuerdo con las finalidades aquí descritas. El Titular manifiesta que ha sido informado sobre sus derechos a conocer, actualizar, rectificar y suprimir sus datos en los canales de atención suministrados.</p>
+        </div>
+
+        <div class="footer-sic">
+            <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
+                <img src="LOGO%20SIC%20NUEVO.png" alt="Superintendencia de Industria y Comercio">
+            </a>
+            <p>Superintendencia de Industria y Comercio</p>
+        </div>
+
+        <center><a href="index.html" class="back-link">← Volver a la página principal</a></center>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/573043588180?text=Hola%20%F0%9F%91%8B%20quiero%20agendar%20una%20cita%20en%20Julie%20Alisados%20%E2%9C%A8%0A%0AAl%20continuar%20con%20esta%20conversaci%C3%B3n,%20confirmo%20que%20he%20le%C3%ADdo%20y%20acepto%20las%20pol%C3%ADticas%20de%20tratamiento%20de%20datos%20y%20servicio:%0Ahttps://juliealisados.com/politica-datos.html%0Ahttps://juliealisados.com/politica-servicio.html%0A%0AQuedo%20atenta%20%F0%9F%98%8A"
+        class="btn-whatsapp-floating" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+        </svg>
+    </a>
+</body>
+
+</html>
