@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones de Envío | Julie Alisados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo 1.png">
+    <style>
+        :root {
+            --light-pink: #FFF5F8;
+            --dark-grey: #333333;
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            color: var(--dark-grey);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .header-logo img {
+            height: 120px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .welcome {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .legal-frame {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        h3 {
+            font-family: var(--font-body);
+            color: var(--gold-dark);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--gold-dark);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            margin: 35px 0;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 4px solid var(--gold);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fef8f8;
+            border-left: 4px solid #d9534f;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .important-box {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .important-box h2 {
+            color: var(--gold);
+            border-bottom: none;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .important-box p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .important-box strong {
+            color: var(--gold);
+        }
+
+        .contact-box {
+            background: rgba(212, 175, 55, 0.06);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .contact-box a {
+            color: var(--gold-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .company-info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 30px;
+        }
+
+        .top-nav-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .btn-back-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--gold-dark) !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back-top svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-back-top:hover {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: var(--gold);
+        }
+
+        .btn-back-top:hover svg {
+            transform: translateX(-3px);
+        }
+
+        .back-to-home-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .btn-back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.25);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-back-home svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+        }
+
+        .btn-back-home:hover svg {
+            transform: translateX(-4px);
+        }
+
+        .btn-back-home:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+        }
+
+        .scroll-to-top-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease, background 0.3s;
+        }
+
+        .scroll-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-to-top-btn:hover {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .scroll-to-top-btn:hover svg {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px 10px; }
+            .container { padding: 25px 20px; }
+            h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .scroll-to-top-btn {
+                bottom: 30px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="top-nav-bar">
+            <a href="index.html" class="btn-back-top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver al Inicio</span>
+            </a>
+        </div>
+
+        <div class="header-logo">
+            <img src="logo 1.png" alt="Julie Alisados">
+        </div>
+
+        <p class="welcome">¡Gracias por confiar en nosotras!</p>
+        <h1>Términos y Condiciones de Envío</h1>
+        <p class="subtitle">Queremos que tus productos favoritos lleguen con amor, seguridad y total claridad a tus manos</p>
+        
+        <p class="legal-frame">
+            <strong>Transparencia Legal:</strong> Este documento define las condiciones comerciales y legales que rigen el despacho y transporte de tus productos. Estructurado en cumplimiento de la normativa colombiana de comercio electrónico (Ley 1480 de 2011 - Estatuto del Consumidor, Decreto 587 de 2016, regulaciones de la SIC y el Código de Comercio).<br>
+            <em>Última actualización: Mayo de 2026</em>
+        </p>
+
+        <div class="highlight-box">
+            <p>En <strong>Julie Alisados</strong> nuestra prioridad es consentirte. Por eso, <strong>alistamos y empacamos con infinito amor y el máximo cuidado cada uno de tus productos</strong>, utilizando protectores térmicos, capas de amortiguación y embalaje de alta calidad. Nos esforzamos al máximo para que viajen totalmente protegidos y no sufran ningún tipo de daño en el camino. Para tu tranquilidad, aquí te explicamos de manera clara y amable cómo funciona nuestro proceso de envío y las responsabilidades compartidas de este viaje.</p>
+        </div>
+
+        <hr>
+
+        <h2>1. Nuestro Aliado Exclusivo de Transporte (Envía)</h2>
+        <p>Para garantizarte un servicio confiable, rápido y con las mejores tarifas del país, realizamos todos nuestros envíos exclusivamente a través de una de las mejores empresas de mensajería de Colombia: <strong>ENVÍA (Envía Colvanes S.A.S.)</strong>. Ellos se encargan de llevar tu pedido directamente hasta tu puerta.</p>
+        
+        <div class="warning-box">
+            <p><strong>¿Prefieres otra transportadora?</strong> Si de manera excepcional solicitas que enviemos tu pedido por una transportadora diferente a Envía (como Servientrega, Interrapidísimo o Coordinadora), haremos todo lo posible por ayudarte siempre que sea viable logísticamente. Sin embargo, ten en cuenta que <strong>el envío se realizará bajo tu total cuenta y riesgo</strong>.</p>
+            <p>En este caso especial, <strong>Julie Alisados S.A.S. queda completamente liberada de cualquier responsabilidad</strong> ante retrasos, daños físicos en el empaque, pérdidas o siniestros en la vía, debiendo gestionar cualquier solicitud de soporte de forma directa con la transportadora que hayas seleccionado.</p>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Cobertura Territorial:</strong> La disponibilidad del servicio de envío depende de la cobertura de Envía Colvanes S.A.S. en tu municipio. Si tu destino no cuenta con cobertura directa, nos comunicaremos contigo con mucho gusto para coordinar juntas la mejor alternativa de entrega.</p>
+        </div>
+
+        <hr>
+
+        <h2>2. Tu Envío a la Puerta: Costos, Pago Inmediato y Modalidad Contraentrega</h2>
+        <p>Para mantener la máxima transparencia y los precios más justos en nuestros productos, manejamos políticas claras y transparentes sobre el costo y el cobro del transporte:</p>
+        <ul>
+            <li><strong>Despacho previo Pago Verificado:</strong> Con el fin de agilizar la logística, <strong>el pago de los productos debe ser inmediato y total</strong>. Preparamos y entregamos tus paquetes a la transportadora únicamente después de verificar el ingreso exitoso del pago en nuestras cuentas. No realizamos despachos con saldos pendientes ni productos a crédito.</li>
+            <li><strong>Flete en Modalidad Contraentrega (Pago al Recibir):</strong> El costo del transporte y flete de envío es asumido en su totalidad por ti como compradora y <strong>se cancelará directamente al personal de la transportadora Envía, según los medios de pago disponibles en tu zona,</strong> en el momento en que recibas tu paquete en la dirección de destino.</li>
+            <li><strong>Cero Utilidad para Nosotras:</strong> Queremos que sepas que <strong>Julie Alisados no gana absolutamente nada con el valor del envío</strong>. No cobramos recargos ni comisiones sobre el transporte; la tarifa que pagas al mensajero corresponde única y estrictamente al cobro oficial liquidado por Envía S.A.S. según el peso, volumen y destino real del paquete.</li>
+        </ul>
+        <div class="warning-box">
+            <p><strong>¿Cuándo el envío es gratis?</strong> Julie Alisados asumirá con mucho gusto el costo total de tu flete de forma exclusiva cuando así lo especifiquemos, promocionemos o informemos explícitamente y por escrito dentro de campañas promocionales vigentes, compras superiores a un monto mínimo preestablecido o promociones específicas. De lo contrario, el valor del envío siempre se liquidará contraentrega a cargo del comprador.</p>
+        </div>
+
+        <hr>
+
+        <h2>3. Envíos 100% Protegidos y Asegurados</h2>
+        <p>¡Tu inversión está completamente segura! Para tu total tranquilidad, <strong>absolutamente todos los pedidos que despachamos con nuestro aliado Envía viajan con un seguro obligatorio</strong> que cubre el valor comercial total de los productos facturados.</p>
+        <ul>
+            <li><strong>¿Cómo funciona el seguro en caso de siniestro?</strong> Al estar la mercancía debidamente asegurada, si llega a presentarse una pérdida total, avería grave, robo o expoliación bajo la custodia de la transportadora, <strong>la reclamación y el cobro de la indemnización del seguro deben ser realizados y gestionados directamente por el cliente ante Envía Colvanes S.A.S. y NO ante Julie Alisados</strong>. Para ello se cancela el seguro en cada despacho, asegurando que tu dinero esté respaldado legalmente por ellos.</li>
+            <li><strong>Límites de Reembolsos de Julie Alisados:</strong> Nuestra empresa no realiza reenvíos ni devoluciones de dinero con fondos propios en caso de siniestros ocurridos durante el tránsito, ya que la responsabilidad legal sobre la mercancía reposa en la transportadora contratada. Estaremos felices de brindarte los soportes necesarios para que radiques con éxito tu cobro del seguro ante Envía.</li>
+            <li><strong>Cobertura del Seguro:</strong> Esta protección cubre novedades ocurridas bajo el cuidado de Envía y finaliza una vez se registre la entrega certificada en la dirección que nos proporcionaste.</li>
+        </ul>
+
+        <hr>
+
+        <h2>4. Tiempos de Despacho y Tiempos de Entrega</h2>
+        <p>Queremos ser súper ágiles para que disfrutes tus productos favoritos lo antes posible. Por eso, dividimos el tiempo en dos etapas muy claras:</p>
+        
+        <h3>A. Tiempos de Despacho (Nuestra preparación interna con amor)</h3>
+        <p>Es el tiempo que nos toma preparar con protectores térmicos tu pedido y entregarlo en la oficina de Envía:</p>
+        <ul>
+            <li><strong>Pagos verificados antes de las 12:00 p.m. (Mediodía):</strong> Despachamos y entregamos tu paquete a la transportadora <strong>el mismo día</strong> (de lunes a viernes).</li>
+            <li><strong>Pagos verificados después de las 12:00 p.m.:</strong> Tu pedido se despacha con amor <strong>al día siguiente hábil</strong>.</li>
+            <li><strong>Pagos los días Sábados, Domingos y Festivos:</strong> Preparamos tu paquete con todo el cuidado y se despacha <strong>el día lunes</strong> (o el siguiente día hábil si el lunes es festivo).</li>
+        </ul>
+
+        <h3>B. Tiempos de Entrega (Tránsito en manos de la transportadora)</h3>
+        <p><strong>Los tiempos de tránsito terrestre y entrega son responsabilidad única, directa y exclusiva de la transportadora (Envía)</strong>. Aunque nos encantaría controlar las vías, no tenemos injerencia en el tráfico o factores logísticos de la ruta. Los tiempos de tránsito estimados promedio a nivel nacional son:</p>
+        <ul>
+            <li><strong>Boyacá (Moniquirá, Tunja, etc.) y Bogotá:</strong> 1 a 2 días hábiles en condiciones normales.</li>
+            <li><strong>Ciudades Principales de Colombia:</strong> 2 a 3 días hábiles.</li>
+            <li><strong>Ciudades Secundarias o Destinos Especiales:</strong> 3 a 5 días hábiles.</li>
+        </ul>
+        <p><em>Cualquier retraso o novedad en el trayecto es responsabilidad directa de Envía, por lo que te sugerimos consultar su línea de atención ante cualquier novedad de tiempo de entrega.</em></p>
+        <div class="highlight-box">
+            <p><strong>Eventos de Fuerza Mayor:</strong> En situaciones extraordinarias e imprevisibles como desastres naturales, bloqueos viales, paros nacionales, emergencias sanitarias o cualquier evento de fuerza mayor o caso fortuito (Arts. 64 y 1604 del Código Civil colombiano), los tiempos de despacho y entrega podrán verse afectados sin que esto genere responsabilidad para Julie Alisados ni para la transportadora. En estos casos, te mantendremos informada con todo el cariño posible.</p>
+        </div>
+
+        <hr>
+
+        <h2>5. Seguimiento Fácil: Tu Número de Guía en tus Manos</h2>
+        <p>¡Nos encanta mantenerte informada en cada paso! Tan pronto tu pedido sea entregado a la transportadora Envía, te enviaremos oportunamente el <strong>número de guía de transporte</strong> a través de WhatsApp o correo electrónico para que sientas la emoción de ver su recorrido.</p>
+        <ul>
+            <li><strong>Tu rol en el seguimiento:</strong> Es responsabilidad exclusiva del comprador realizar el rastreo preventivo del paquete en tiempo real a través de la página web oficial de Envía con el número de guía suministrado.</li>
+            <li><strong>Límite de información:</strong> En caso de reprogramaciones, dudas sobre la entrega o demoras, <strong>debes comunicarte directamente con la transportadora Envía</strong>. Julie Alisados no cuenta con información privilegiada ni adicional a la que se muestra de forma pública con el número de guía en la página de rastreo de Envía.</li>
+        </ul>
+
+        <hr>
+
+        <h2>6. Dirección de Entrega y Entregas Fallidas</h2>
+        <p>Ayúdanos a llegar a tu puerta de forma rápida y segura ingresando una <strong>dirección exacta, completa y con todas las especificaciones necesarias</strong> (apartamento, torre, manzana, barrio, etc.).</p>
+        <ul>
+            <li>Si el paquete no puede entregarse debido a una <strong>dirección errónea o incompleta</strong> que nos hayas suministrado, o por la <strong>ausencia del destinatario</strong> en los tres (3) intentos de entrega reglamentarios que realiza la transportadora, el pedido retornará a nuestras instalaciones.</li>
+            <li>En este caso, para coordinar un nuevo despacho, <strong>deberás cancelar previamente el costo del nuevo flete de re-envío</strong>. Te recomendamos verificar con mucha atención tus datos antes de finalizar la compra.</li>
+        </ul>
+
+        <hr>
+
+        <h2>7. ¿Qué hacer en caso de Novedad o Avería? (Reclamaciones)</h2>
+        <p>En el caso muy poco probable de que algo pase con el paquete durante el transporte, queremos darte todo nuestro apoyo. Para reclamar con éxito el seguro ante Envía, es obligatorio que sigas estos pasos sencillos pero muy importantes:</p>
+        <ol>
+            <li><strong>Revisa tu paquete antes de firmar:</strong> Al recibir tu pedido del mensajero de Envía, tienes la <strong>obligación de revisar minuciosamente el estado externo de la caja o bolsa en presencia del transportador</strong>. Si notas que está rota, mojada, abierta o con sellos alterados, <strong>deberás rechazar el paquete de inmediato</strong> o escribir la anotación detallada en la planilla/sistema del mensajero antes de firmar (por ejemplo: <em>"Recibo caja abierta y rota con producto derramado"</em>).</li>
+            <li><strong>Plazo Oficial de Envía (Cinco Días Hábiles):</strong> De acuerdo con los términos de Envía Colvanes S.A.S., el destinatario cuenta con un plazo máximo improrrogable de <strong>cinco (5) días hábiles</strong> (desde la fecha de entrega registrada por ellos) para radicar la reclamación formal de seguro por daños o productos faltantes.</li>
+            <li><strong>¡Conserva el Empaque Original!</strong> Es un requisito obligatorio para el peritaje de Envía <strong>conservar el producto dañado y todo el embalaje original (caja, bolsa protectora, etc.)</strong> sin alteración alguna. Si desechas el empaque, la transportadora denegará automáticamente la reclamación del seguro.</li>
+            <li><strong>Reporta a Soporte Julie Alisados:</strong> Comunícate con nosotras dentro del mismo plazo de 5 días hábiles para guiarte en el proceso de seguro de Envía, enviándonos a WhatsApp:
+                <ul>
+                    <li>Foto legible de la etiqueta de la guía pegada en el paquete.</li>
+                    <li>Fotos y videos claros del estado externo e interno del empaque.</li>
+                    <li>Foto de los productos averiados o derramados.</li>
+                </ul>
+            </li>
+        </ol>
+        <div class="warning-box">
+            <p><strong>IMPORTANTE (Exclusión por Reclamación Extemporánea):</strong> Si firmas a conformidad sin dejar observaciones del daño y dejas pasar los <strong>cinco (5) días hábiles</strong> reglamentarios sin radicar la reclamación formal ante Envía, el seguro no cubrirá el siniestro. Julie Alisados no se hace responsable por reclamos extemporáneos o por el descarte de los empaques exigidos para la inspección técnica de la transportadora.</p>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Canales Oficiales de Reclamación ante Envía:</strong> Para radicar directamente tu PQR ante la transportadora, puedes utilizar su portal oficial <strong><a href="https://www.envia.co/pqr" target="_blank" style="color: var(--gold-dark);">www.envia.co/pqr</a></strong> o escribir al correo <strong>administradorpqr2@enviacolvanes.com.co</strong>. ¡Estaremos felices de orientarte en el proceso!</p>
+        </div>
+
+        <hr>
+
+        <h2>8. Tu Derecho de Retracto (Art. 47 Ley 1480 de 2011)</h2>
+        <p>Queremos que ames tu experiencia. Por ley, cuentas con un plazo de <strong>cinco (5) días hábiles</strong> de retracto desde que recibes tus productos. Al tratarse de cosméticos y productos de cuidado capilar de uso personal, aplicamos las siguientes directrices de bioseguridad:</p>
+        <ul>
+            <li>El producto debe ser devuelto en su <strong>empaque original de fábrica, totalmente sellado y sin ningún tipo de uso o alteración</strong>.</li>
+            <li><strong>Exclusión por Salud e Higiene:</strong> Por razones de bioseguridad e higiene pública, una vez que abras el sello de seguridad del producto capilar, <strong>no será posible ejercer el derecho de retracto</strong> (según las excepciones contempladas en el Art. 47 de la Ley 1480).</li>
+            <li><strong>Flete de Devolución:</strong> Los costos de transporte y envío para la devolución de los productos por retracto deberán ser <strong>asumidos en su totalidad por el comprador</strong>, tal como lo establece el Estatuto del Consumidor.</li>
+            <li><strong>Reintegro del Dinero:</strong> Cuando el retracto proceda en debida forma (producto sellado, dentro del plazo legal), Julie Alisados realizará el reintegro del valor de los productos dentro de los <strong>treinta (30) días calendario</strong> siguientes a la recepción física de la devolución en nuestras instalaciones, una vez verificada la integridad del sello y empaque original, conforme al Art. 47 §3 de la Ley 1480 de 2011.</li>
+        </ul>
+
+        <hr>
+
+        <h2>9. Reversión del Pago (Decreto 587 de 2016)</h2>
+        <p>En Julie Alisados respetamos plenamente tu derecho a la <strong>reversión del pago</strong> contemplado en el Art. 51 de la Ley 1480 de 2011 y reglamentado por el Decreto 587 de 2016. Podrás solicitar la reversión de la transacción ante tu entidad financiera en los siguientes casos:</p>
+        <ul>
+            <li>Cuando seas víctima de <strong>fraude</strong> o una transacción no autorizada en tu medio de pago.</li>
+            <li>Cuando la operación de compra <strong>no haya sido solicitada</strong> por ti.</li>
+            <li>Cuando el producto adquirido <strong>no sea recibido</strong> en los términos y plazos pactados.</li>
+            <li>Cuando el producto entregado <strong>no corresponda</strong> a lo solicitado o presente defectos comprobables.</li>
+        </ul>
+        <p>Para solicitar la reversión, deberás notificar tanto a Julie Alisados como a tu entidad financiera dentro de los <strong>cinco (5) días hábiles</strong> siguientes a la fecha en que tuviste conocimiento de la situación. Nosotras colaboraremos con toda la información necesaria para que el trámite se resuelva de la manera más ágil y transparente posible.</p>
+
+        <hr>
+
+        <h2>10. Disposiciones Generales</h2>
+        <ul>
+            <li><strong>Aceptación de Términos:</strong> Al realizar tu compra con nosotras, confirmas que has leído, comprendido y aceptado en su totalidad estos Términos y Condiciones de Envío, los cuales hacen parte integral de la relación comercial entre tú y Julie Alisados S.A.S.</li>
+            <li><strong>Modificaciones:</strong> Julie Alisados se reserva el derecho de actualizar o modificar estos términos en cualquier momento para adaptarlos a cambios normativos, operativos o comerciales. Las actualizaciones serán publicadas en esta misma página con la fecha de última modificación visible. Te recomendamos consultarla periódicamente.</li>
+            <li><strong>Legislación Aplicable:</strong> Estos términos se rigen íntegramente por las leyes de la República de Colombia. Cualquier controversia será resuelta de conformidad con los mecanismos establecidos por la Superintendencia de Industria y Comercio (SIC) y la jurisdicción ordinaria colombiana.</li>
+        </ul>
+
+        <hr>
+
+        <div class="contact-box">
+            <h2 style="margin-top: 0; border: none;">Estamos aquí para Acompañarte</h2>
+            <p>Si llegas a presentar alguna duda o novedad con tu flete o despacho dentro de los 5 días hábiles reglamentarios de Envía, comunícate de inmediato con nuestra línea exclusiva de atención. ¡Estaremos encantadas de ayudarte!</p>
+            <p><strong>JULIE ALISADOS S.A.S.</strong></p>
+            <p><a href="https://wa.me/573043588180?text=Hola%20tengo%20una%20novedad%20con%20el%20env%C3%ADo%20de%20mi%20pedido" target="_blank">Línea Exclusiva WhatsApp: 304 358 8180</a></p>
+            <p>Correo de Soporte: juliealisados@gmail.com</p>
+        </div>
+
+        <hr>
+
+        <p class="company-info">
+            <strong>JULIE ALISADOS S.A.S.</strong> — NIT: 901.918.276-5<br>
+            Sede Principal: Moniquirá, Boyacá<br>
+            Sede Tunja: Avenida Olímpica #190, Pasaje Boulevard, Local 140 · Tunja, Boyacá<br>
+            WhatsApp: 304 358 8180 · Correo: juliealisados@gmail.com
+        </p>
+
+        <div class="back-to-home-container">
+            <a href="index.html" class="btn-back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver a la Página Principal</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Botón Volver Arriba Flotante -->
+    <button id="btn-scroll-top" class="scroll-to-top-btn" aria-label="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // Lógica del Botón Volver Arriba
+        const btnScrollTop = document.getElementById('btn-scroll-top');
+        if (btnScrollTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btnScrollTop.classList.add('show');
+                } else {
+                    btnScrollTop.classList.remove('show');
+                }
+            });
+
+            btnScrollTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
