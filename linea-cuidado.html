@@ -44,7 +44,9 @@
 
     <!-- Global Conversion Reporter -->
     <script>
-      function gtag_report_conversion(url) {
+      function gtag_report_conversion(url, value, currency) {
+        var val = (typeof value !== 'undefined' && value > 0) ? value : 10000;
+        var curr = currency || 'COP';
         var callback = function () {
           if (typeof(url) != 'undefined') {
             window.location = url;
@@ -56,10 +58,23 @@
         });
         gtag('event', 'generate_lead', {
           'event_category': 'engagement',
-          'event_label': 'WhatsApp Click'
+          'event_label': 'WhatsApp Click',
+          'value': val,
+          'currency': curr
         });
-        if (typeof fbq !== 'undefined') { fbq('track', 'Contact'); }
-        if (typeof ttq !== 'undefined') { ttq.track('Contact'); }
+        if (typeof fbq !== 'undefined') { 
+          fbq('track', 'Contact', {
+            value: val,
+            currency: curr,
+            content_name: 'WhatsApp Contact'
+          }); 
+        }
+        if (typeof ttq !== 'undefined') { 
+          ttq.track('Contact', {
+            value: val,
+            currency: curr
+          }); 
+        }
         return false;
       }
     </script>
@@ -870,7 +885,7 @@
             const encodedText = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/573043588180?text=${encodedText}`;
             
-            return gtag_report_conversion(whatsappUrl);
+            return gtag_report_conversion(whatsappUrl, totalPrice, 'COP');
         }
     </script>
 

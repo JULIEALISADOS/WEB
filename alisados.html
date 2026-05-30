@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -44,17 +44,41 @@
 
     <!-- Global Conversion Reporter -->
     <script>
-      function gtag_report_conversion(url) {
+      function gtag_report_conversion(url, value, currency) {
+        var val = (typeof value !== 'undefined' && value > 0) ? value : 15000;
+        var curr = currency || 'COP';
         var callback = function () {
           if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
         if (typeof gtag !== 'undefined') {
-          gtag('event', 'generate_lead', { 'event_category': 'engagement', 'event_label': 'WhatsApp Alisados' });
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD',
+            'event_callback': callback
+          });
+          gtag('event', 'generate_lead', { 
+            'event_category': 'engagement', 
+            'event_label': 'WhatsApp Alisados',
+            'value': val,
+            'currency': curr
+          });
+        } else {
+          callback();
         }
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Contact', { content_name: 'Alisados WhatsApp' });
+          fbq('track', 'Contact', { 
+            content_name: 'Alisados WhatsApp',
+            value: val,
+            currency: curr
+          });
         }
         if (typeof ttq !== 'undefined') {
-          ttq.track('Contact', { content_name: 'Alisados WhatsApp' });
+          ttq.track('Contact', { 
+            content_name: 'Alisados WhatsApp',
+            value: val,
+            currency: curr
+          });
           ttq.track('SubmitForm');
         }
         return false;
@@ -152,10 +176,10 @@
                         <div class="feature-box">
                             <h3>Alisado Light | By Julie Valencia</h3>
                             <p>¡La solución ideal para cabellos naturales y resistentes! Este alisado es 100% libre de formol y cuenta con nuestra exclusiva <strong>tecnología enjuagable</strong>: el producto se retira antes de planchar, garantizando un proceso cómodo, seguro y libre de vapores molestos.</p>
-                            <p>Logra un <strong>alisado de un 80% a un 90%</strong> con una duración de 3 a 4 meses, manteniendo el movimiento y la vitalidad del cabello.</p>
+                            <p>Logra un <strong>alisado del 100%</strong> con una duración de 3 a 4 meses, manteniendo el movimiento y la vitalidad del cabello.</p>
                             <ul style="margin-top: 10px; color: var(--light-text); padding-left: 20px;">
                                 <li><strong>Especial para cabellos naturales:</strong> Ideal para melenas vírgenes o resistentes.</li>
-                                <li><strong>Alisado del 80% al 90%:</strong> Control efectivo de la onda y el volumen.</li>
+                                <li><strong>Alisado del 100%:</strong> Control efectivo de la onda y el volumen.</li>
                                 <li><strong>Resultado ya lavado:</strong> El efecto final se ve el mismo día en el salón.</li>
                             </ul>
                         </div>
