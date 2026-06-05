@@ -1514,6 +1514,8 @@ footer {
     padding: 15px 0 10px;
     text-align: center;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
 footer .section-title {
@@ -1680,6 +1682,8 @@ footer .section-title::after {
     font-size: 0.85rem;
     opacity: 0.6;
     transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 50;
 }
 
 .footer-legal a:hover {
