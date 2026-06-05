@@ -2552,6 +2552,7 @@ footer .section-title::after {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     z-index: 9998;
+    pointer-events: none; /* Allow underlying elements to be clickable */
 }
 
 /* Privacy Banner Styles */
