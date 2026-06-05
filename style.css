@@ -458,7 +458,7 @@ header {
     /* Ajustado para que el título sea visible bajo el menú fijo */
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Animaciones */
@@ -1515,7 +1515,7 @@ footer {
     text-align: center;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     position: relative;
-    z-index: 10;
+    z-index: 100;
 }
 
 footer .section-title {
@@ -2552,7 +2552,6 @@ footer .section-title::after {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     z-index: 9998;
-    pointer-events: none; /* Allow underlying elements to be clickable */
 }
 
 /* Privacy Banner Styles */
