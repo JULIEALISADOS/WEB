@@ -65,7 +65,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css?v=2.2">
     <!-- PRUEBA DE CAMBIO PARA GITHUB DESKTOP 2 -->
     <link rel="icon" type="image/png" href="logo 1.png">
     <link rel="apple-touch-icon" href="logo 1.png">
@@ -1169,7 +1169,16 @@
         // ======================== DYNAMIC REVIEWS (RESTORATION) ========================
         const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
         const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
-        const sb = window.supabase.createClient(SB_URL, SB_KEY);
+        let sb = null;
+        if (window.supabase) {
+            try {
+                sb = window.supabase.createClient(SB_URL, SB_KEY);
+            } catch (e) {
+                console.error("Error al inicializar Supabase:", e);
+            }
+        } else {
+            console.warn("La librería de Supabase no está disponible en window.");
+        }
 
         async function loadDynamicReviews() {
             const track = document.querySelector('.testimonials-infinite-track');
