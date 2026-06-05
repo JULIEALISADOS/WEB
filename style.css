@@ -176,7 +176,7 @@ header {
     /* Oculto por defecto en escritorio */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     header {
         background-color: var(--pearl-white);
         padding: 5px 0;
@@ -388,7 +388,7 @@ header {
     filter: brightness(1.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     .header-socials {
         border-right: none;
         padding-right: 0;
@@ -1743,7 +1743,7 @@ footer .section-title::after {
 
 /* Responsive */
 /* Desktop Refinements */
-@media (min-width: 768px) {
+@media (min-width: 1150px) {
     header {
         padding: 20px 0;
     }
