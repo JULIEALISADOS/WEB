@@ -149,7 +149,7 @@
         return false;
       }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 
 <body>
@@ -178,6 +178,9 @@
             </button>
 
             <nav class="nav-menu" id="nav-menu">
+                <div class="nav-menu-logo-container">
+                    <img src="logo 1.png" alt="Julie Alisados" loading="lazy">
+                </div>
                 <ul>
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#resultados">Resultados</a></li>
@@ -187,29 +190,21 @@
                     <li class="header-socials">
                         <a href="https://www.instagram.com/juliealisados/" class="header-social-icon instagram"
                             target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
                             </svg>
                         </a>
                         <a href="https://www.facebook.com/Juliealisados?locale=es_LA"
                             class="header-social-icon facebook" target="_blank" rel="noopener noreferrer"
                             aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 13.5h2.5l1-3H14V8.5c0-.8.7-1.5 1.5-1.5H18V4h-3c-2.5 0-4.5 2-4.5 4.5V10.5H8.5v3H10.5V20h3.5v-6.5z"/>
                             </svg>
                         </a>
                         <a href="https://www.tiktok.com/@juliealisados?lang=es-419" class="header-social-icon tiktok"
                             target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.03 2.61-.01 3.91-.01.08 1.53.63 3.02 1.59 4.23.86 1.08 2.06 1.83 3.4 2.18.02.94.02 1.88.01 2.82-1.22-.06-2.42-.46-3.41-1.17-.79-.57-1.44-1.35-1.89-2.24l-.04-.07v9.42c0 1.25-.33 2.48-.97 3.56-.81 1.34-2.11 2.32-3.62 2.73-1.63.45-3.39.27-4.9-.5-1.52-.77-2.67-2.14-3.19-3.79-.53-1.66-.32-3.49.57-5 1-1.68 2.73-2.8 4.7-3.04.14-.02.29-.02.43-.02v3.08c-.76.08-1.48.45-1.99 1.02-.62.7-.91 1.63-.8 2.56.12.92.65 1.74 1.43 2.22.84.53 1.87.61 2.78.22.77-.33 1.37-.99 1.63-1.8.08-.26.12-.53.12-.8V0l-.06.02z"/>
                             </svg>
                         </a>
                     </li>
@@ -260,57 +255,57 @@
                             <img src="pago%20a%20cuotas%20banner%20promociones.jpg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta" title="Financia tu liso perfecto">
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="alisado%20saludable%20junio.jpeg" data-video="alisado%20saludable%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Alisado Saludable Junio">
+                            <img src="alisado%20saludable%20junio.jpeg" data-video="alisado%20saludable%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Alisado Saludable Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="zero%20junio.jpeg" data-video="zer%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Emulsión Zero Junio">
+                            <img src="zero%20junio.jpeg" data-video="zer%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Emulsión Zero Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="rcp%20junio.jpeg" data-video="rc%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="RCP Junio">
+                            <img src="rcp%20junio.jpeg" data-video="rc%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="RCP Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card">
-                            <img src="aminoacidos%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Reposición Aminoácidos Junio">
+                            <img src="aminoacidos%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Reposición Aminoácidos Junio" loading="lazy">
                         </div>
                         <div class="image-card">
-                            <img src="hidracomplex%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Hidracomplex Junio">
+                            <img src="hidracomplex%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Hidracomplex Junio" loading="lazy">
                         </div>
                         
                         <!-- BLOQUE 2 PARA LOOP (DUPLICADOS) -->
                         <div class="image-card">
-                            <img src="pago%20a%20cuotas%20banner%20promociones.jpg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta" title="Financia tu liso perfecto">
+                            <img src="pago%20a%20cuotas%20banner%20promociones.jpg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Paga a cuotas con Addi o Tarjeta" title="Financia tu liso perfecto" loading="lazy">
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="alisado%20saludable%20junio.jpeg" data-video="alisado%20saludable%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Alisado Saludable Junio">
+                            <img src="alisado%20saludable%20junio.jpeg" data-video="alisado%20saludable%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Alisado Saludable Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="zero%20junio.jpeg" data-video="zer%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Emulsión Zero Junio">
+                            <img src="zero%20junio.jpeg" data-video="zer%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="Emulsión Zero Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card video-card-container">
-                            <img src="rcp%20junio.jpeg" data-video="rc%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="RCP Junio">
+                            <img src="rcp%20junio.jpeg" data-video="rc%20junio.mp4" class="banner-video lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" alt="RCP Junio" loading="lazy">
                             <div class="play-overlay">
                                 <svg viewBox="0 0 24 24" width="50" height="50"><path fill="rgba(255,255,255,0.8)" d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
                         <div class="image-card">
-                            <img src="aminoacidos%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Reposición Aminoácidos Junio">
+                            <img src="aminoacidos%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Reposición Aminoácidos Junio" loading="lazy">
                         </div>
                         <div class="image-card">
-                            <img src="hidracomplex%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Hidracomplex Junio">
+                            <img src="hidracomplex%20junio.jpeg" class="banner-video" style="width: 100%; height: 100%; object-fit: cover;" alt="Hidracomplex Junio" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -354,14 +349,14 @@
                         <a href="linea-cuidado.html" class="image-card product-link">
                             <img src="CAPILAR LINEA.jpg"
                                 alt="Línea de Cuidado Capilar Julie Alisados - Mantenimiento en Casa Argán y Extractos"
-                                class="placeholder-img-large">
+                                class="placeholder-img-large" loading="lazy">
                             <div class="product-label">Línea de Cuidado Capilar</div>
                         </a>
                         <!-- LÍNEA PROFESIONAL -->
                         <a href="linea-profesional.html" class="image-card product-link">
                             <img src="PROFESIONAL LINEA.jpg"
                                 alt="Línea Profesional Julie Alisados - Kit Alisado Saludable Orgánico para Estilistas"
-                                class="placeholder-img-large">
+                                class="placeholder-img-large" loading="lazy">
                             <div class="product-label">Línea Profesional</div>
                         </a>
                     </div>
@@ -552,21 +547,21 @@
                 <h3 class="section-title">Nuestros Resultados</h3>
                 <div class="results-grid">
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%201.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%201.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 1">
+                        <img src="antes%20despues%201.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%201.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 1" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%202.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%202.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 2">
+                        <img src="antes%20despues%202.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%202.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 2" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%203.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%203.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 3">
+                        <img src="antes%20despues%203.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%203.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 3" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
@@ -827,25 +822,20 @@
             <div class="social-links">
                 <a href="https://www.instagram.com/juliealisados/" class="social-icon instagram" aria-label="Instagram"
                     target="_blank" rel="noopener noreferrer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
                     </svg>
                 </a>
                 <a href="https://www.facebook.com/Juliealisados?locale=es_LA" class="social-icon facebook"
                     aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 13.5h2.5l1-3H14V8.5c0-.8.7-1.5 1.5-1.5H18V4h-3c-2.5 0-4.5 2-4.5 4.5V10.5H8.5v3H10.5V20h3.5v-6.5z"/>
                     </svg>
                 </a>
                 <a href="https://www.tiktok.com/@juliealisados?lang=es-419" class="social-icon tiktok"
                     aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.525.02c1.31-.03 2.61-.01 3.91-.01.08 1.53.63 3.02 1.59 4.23.86 1.08 2.06 1.83 3.4 2.18.02.94.02 1.88.01 2.82-1.22-.06-2.42-.46-3.41-1.17-.79-.57-1.44-1.35-1.89-2.24l-.04-.07v9.42c0 1.25-.33 2.48-.97 3.56-.81 1.34-2.11 2.32-3.62 2.73-1.63.45-3.39.27-4.9-.5-1.52-.77-2.67-2.14-3.19-3.79-.53-1.66-.32-3.49.57-5 1-1.68 2.73-2.8 4.7-3.04.14-.02.29-.02.43-.02v3.08c-.76.08-1.48.45-1.99 1.02-.62.7-.91 1.63-.8 2.56.12.92.65 1.74 1.43 2.22.84.53 1.87.61 2.78.22.77-.33 1.37-.99 1.63-1.8.08-.26.12-.53.12-.8V0l-.06.02z"/>
                     </svg>
                 </a>
             </div>
@@ -861,15 +851,15 @@
             <div class="footer-sic-payments">
                 <div class="footer-sic">
                     <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
-                        <img src="LOGO%20SIC%20NUEVO.png" alt="Superintendencia de Industria y Comercio" class="sic-logo">
+                        <img src="LOGO%20SIC%20NUEVO.png" alt="Superintendencia de Industria y Comercio" class="sic-logo" loading="lazy">
                     </a>
                     <p class="sic-text">Superintendencia de Industria y Comercio</p>
                 </div>
                 <div class="footer-payments">
-                    <img src="pago%20addi.jpg" alt="Addi" title="Addi">
-                    <img src="pago%20tarjeta.jpg" alt="Visa y Mastercard" title="Visa y Mastercard">
-                    <img src="nequi%20daviplata.jpeg" alt="Nequi y Daviplata" title="Nequi y Daviplata">
-                    <img src="breb.jpeg" alt="Breb" title="Breb">
+                    <img src="pago%20addi.jpg" alt="Addi" title="Addi" loading="lazy">
+                    <img src="pago%20tarjeta.jpg" alt="Visa y Mastercard" title="Visa y Mastercard" loading="lazy">
+                    <img src="nequi%20daviplata.jpeg" alt="Nequi y Daviplata" title="Nequi y Daviplata" loading="lazy">
+                    <img src="breb.jpeg" alt="Breb" title="Breb" loading="lazy">
                     <div class="cash-icon">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path fill="#2e7d32" d="M3,6H21V18H3V6M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M7,8A1,1 0 0,1 6,7A1,1 0 0,1 7,6A1,1 0 0,1 8,7A1,1 0 0,1 7,8M17,8A1,1 0 0,1 16,7A1,1 0 0,1 17,6A1,1 0 0,1 18,7A1,1 0 0,1 17,8M7,18A1,1 0 0,1 6,17A1,1 0 0,1 7,16A1,1 0 0,1 8,17A1,1 0 0,1 17,18Z"/>
@@ -1027,9 +1017,34 @@
         });
 
         document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                
+                // Si es un ancla local
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    // Cerrar el menú deslizante
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    
+                    if (targetElement) {
+                        const headerOffset = 90; // Altura aproximada del header fijo
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // Para enlaces que no son anclas locales (como redes sociales), cerrar el menú igualmente
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
             });
         });
 
@@ -1185,20 +1200,41 @@
             if (!track) return;
 
             try {
-                // Traer 15 recomendaciones recientes que sean significativas
-                const { data, error } = await sb.from('fichas')
-                    .select('nombre_completo, recomendaciones')
-                    .not('recomendaciones', 'is', null)
-                    .neq('recomendaciones', '')
-                    .order('created_at', { ascending: false })
-                    .limit(15);
+                let reviews = null;
+                const cachedData = localStorage.getItem('julie_reviews_cache');
+                const cachedTime = localStorage.getItem('julie_reviews_cache_time');
 
-                if (error) throw error;
+                // Si el caché tiene menos de 1 hora (3,600,000 milisegundos), se usa directamente
+                if (cachedData && cachedTime && (Date.now() - cachedTime < 3600000)) {
+                    reviews = JSON.parse(cachedData);
+                } else if (sb) {
+                    // Si no hay caché o expiró, traemos 35 registros recientes para asegurar opiniones de buena extensión
+                    const { data, error } = await sb.from('fichas')
+                        .select('nombre_completo, recomendaciones')
+                        .not('recomendaciones', 'is', null)
+                        .neq('recomendaciones', '')
+                        .order('created_at', { ascending: false })
+                        .limit(35);
 
-                const validReviews = (data || []).filter(r => r.recomendaciones.length > 20);
-                
-                // Mezclar un poco para variedad
-                const shuffled = validReviews.sort(() => 0.5 - Math.random()).slice(0, 8);
+                    if (error) throw error;
+
+                    // Filtrar que la longitud de la opinión sea mayor a 20 caracteres
+                    const validReviews = (data || []).filter(r => r.recomendaciones && r.recomendaciones.trim().length > 20);
+                    
+                    if (validReviews.length > 0) {
+                        reviews = validReviews;
+                        // Almacenamos en el caché local
+                        localStorage.setItem('julie_reviews_cache', JSON.stringify(reviews));
+                        localStorage.setItem('julie_reviews_cache_time', Date.now());
+                    }
+                }
+
+                if (!reviews || reviews.length === 0) {
+                    throw new Error('No hay opiniones disponibles.');
+                }
+
+                // Mezclamos aleatoriamente y tomamos un máximo de 8
+                const shuffled = reviews.sort(() => 0.5 - Math.random()).slice(0, 8);
 
                 shuffled.forEach(rev => {
                     const firstLetter = (rev.nombre_completo || 'C').charAt(0).toUpperCase();
@@ -1216,17 +1252,16 @@
                     track.appendChild(card);
                 });
 
-                // DUPLICAR TODO EL TRACK PARA EL LOOP INFINITO (Crucial para el CSS -50%)
+                // Duplicamos el track completo para mantener el scroll vertical infinito fluido de CSS
                 const allCards = Array.from(track.children);
                 allCards.forEach(card => {
                     const clone = card.cloneNode(true);
                     track.appendChild(clone);
                 });
 
-                updateDimensions(); // Recalcular anchos para el slider
             } catch (err) {
                 console.error('Error cargando opiniones dinámicas:', err);
-                // Si falla, al menos duplicamos las fijas para que el loop no se rompa
+                // Si la red o Supabase fallan, duplicamos las 10 fijas en HTML para no romper la visualización
                 const allCards = Array.from(track.children);
                 allCards.forEach(card => {
                     const clone = card.cloneNode(true);
@@ -1271,7 +1306,7 @@
         </svg>
     </button>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.400.0" defer></script>
     <script>
         lucide.createIcons();
 
