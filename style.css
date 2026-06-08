@@ -295,6 +295,21 @@ header {
         transform: translateX(0);
     }
 
+    /* Overlay oscuro para cuando el menú está abierto */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1040;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-overlay.active {
+        display: block;
+        opacity: 1;
+    }
     .nav-menu ul {
         display: flex !important;
         flex-direction: column !important;
