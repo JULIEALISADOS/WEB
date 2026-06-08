@@ -194,161 +194,57 @@ header {
     }
 
     .header-container {
-        height: 80px;
-        padding: 0 10px;
-    }
-
-    .logo-img {
-        height: 60px;
-    }
-
-    .header-titles {
-        padding-left: 10px;
-    }
-
-    .header-title {
-        font-size: 0.85rem;
-    }
-
-    .header-title span {
-        font-size: 0.6rem;
-    }
-
-    .header-subtitle {
-        font-size: 0.65rem;
-        letter-spacing: 1px;
-    }
-
-    .header-location-link {
-        font-size: 0.6rem;
-        padding: 3px 10px;
-        margin-top: 5px;
-        letter-spacing: 1px;
-    }
-
-    .services-differentiator {
-        font-size: 0.95rem;
-        margin-top: -10px;
-        margin-bottom: 25px;
-        padding: 0 10px;
-    }
-
-
-    .hamburger {
-        display: block;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid var(--gold);
-        border-radius: 8px;
-        cursor: pointer;
-        padding: 8px;
-        z-index: 1100;
-        transition: all 0.3s ease;
-    }
-
-    .hamburger span {
-        display: block;
-        width: 28px;
-        height: 2px;
-        background-color: var(--gold);
-        margin: 6px 0;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .hamburger.active {
-        background: var(--gold);
-    }
-
-    .hamburger.active span {
-        background-color: #fff;
-    }
-
-    .hamburger.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
     }
 
     .hamburger {
-        position: relative;
-        z-index: 2000;
-        /* Asegurar que el botón esté por encima de todo */
+        display: none !important;
     }
 
     .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 350px;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        padding: 100px 30px 40px;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-        z-index: 1050;
+        position: static;
+        width: 100%;
+        height: auto;
+        background: none;
+        padding: 0;
+        box-shadow: none;
         display: flex;
-        flex-direction: column;
-        border-left: 1px solid var(--gold);
-    }
-
-    .nav-menu.active {
-        right: 0;
-        visibility: visible;
-        opacity: 1;
+        justify-content: center;
+        border-left: none;
+        margin-top: 5px;
     }
 
     .nav-menu ul {
         display: flex !important;
-        flex-direction: column !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
         align-items: center !important;
         width: 100%;
-        gap: 25px !important;
-        margin-top: 20px;
+        gap: 12px !important;
+        margin-top: 0;
     }
 
     .nav-menu li {
-        width: 100%;
+        width: auto;
         text-align: center;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        padding-bottom: 15px;
-    }
-
-    .nav-menu li:last-child {
         border-bottom: none;
+        padding-bottom: 0;
     }
 
     .nav-menu a {
-        font-size: 1.1rem !important;
-        display: block;
-        width: 100%;
+        font-size: 0.8rem !important;
+        display: inline-block;
+        width: auto;
         color: var(--dark-text);
-        letter-spacing: 2px;
+        letter-spacing: 1px;
     }
 
     .nav-menu-logo-container {
-        display: block !important;
-        text-align: center;
-        margin-bottom: 25px;
-    }
-
-    .nav-menu-logo-container img {
-        width: 85px;
-        height: auto;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 6px;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-        border: 2px solid var(--gold);
-        display: inline-block;
+        display: none !important;
     }
 }
 
