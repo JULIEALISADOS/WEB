@@ -40,4 +40,19 @@
 3. **Instrucción de Restauración:** Si la IA (Antigravity/Claude/Gemini) pierde contexto en futuras sesiones, debe leer INMEDIATAMENTE este archivo y `GEMINI.md` para recuperar toda la información técnica, arquitectónica y legal del negocio antes de proponer cualquier cambio.
 
 ---
-*Copia de seguridad completada con éxito. Memoria y estado resguardados en Git y backups locales.*
+
+## 3. IDENTIDAD DE MARCA Y MARKETING (Para Claude Cowork & Gemini)
+
+- **Voz de marca:** Elegante, cercana y profesional. Nos enfocamos en empoderar a la mujer ofreciendo un "alisado saludable" libre de formol, priorizando la salud capilar y la transformación personal ("más que un liso, una transformación").
+- **Colores y fuentes:**
+  - **Paleta de Colores:** Dorado (`#d4af37` / `#c5a059`), Blanco Perla (`#fcfcfc`), Negro/Gris Oscuro Elegante.
+  - **Tipografías:** *Playfair Display* (elegante y sofisticada con serif) para títulos y encabezados; *Lato* (limpia y legible sans-serif) para cuerpo de texto y descripciones.
+- **Cliente ideal:** Mujeres que buscan un cabello liso, brillante y sano, libre de frizz y químicos agresivos (orgánico, libre de formol). Incluye un segmento especial de mujeres gestantes (a partir del 4to mes) y lactantes. Clientes ubicadas principalmente en Tunja y Moniquirá (Boyacá).
+- **Precios actuales:** No se publican fijos en la web, ya que dependen del diagnóstico capilar personalizado (largo, volumen y estado de la hebra). Se derivan las cotizaciones a WhatsApp. Promovemos facilidades de pago (Financiación a cuotas con **Addi** y tarjetas de crédito).
+- **Contenido con mayor respuesta:** Videos y fotos de resultados reales tipo **"Antes y Después"** (ej. Alisado Saludable, Emulsión Zero, R.C.P.), testimonios reales de Google/Facebook destacando el brillo y la sedosidad, y las promociones exclusivas de temporada (promos mensuales).
+- **Objetivos principales:** 
+  1. Captar clientas interesadas y agendar citas en las sedes de Tunja y Moniquirá a través de WhatsApp.
+  2. Impulsar la venta de la línea de productos de cuidado en casa (Línea JA) y la línea profesional para estilistas.
+
+---
+*Copia de seguridad y alineación de equipo completada con éxito. Memoria y estado resguardados en Git y backups locales.*
