@@ -13,6 +13,17 @@
     --font-body: 'Lato', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* Offset para cabecero fijo al navegar con anclas locales */
+section[id], 
+div[id], 
+footer[id] {
+    scroll-margin-top: 100px;
+}
+
 * {
     margin: 0;
     padding: 0;
