@@ -323,18 +323,21 @@ header {
         letter-spacing: 2px;
     }
 
-    /* Añadir un elemento decorativo al menú */
-    .nav-menu::before {
-        content: "JA";
-        position: absolute;
-        top: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: var(--font-heading);
-        font-size: 2.5rem;
-        color: var(--gold);
-        opacity: 0.2;
-        letter-spacing: 5px;
+    .nav-menu-logo-container {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .nav-menu-logo-container img {
+        width: 85px;
+        height: auto;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 6px;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        border: 2px solid var(--gold);
+        display: inline-block;
     }
 }
 
@@ -400,6 +403,10 @@ header {
 
 .nav-menu {
     margin-left: auto;
+}
+
+.nav-menu-logo-container {
+    display: none;
 }
 
 .nav-menu ul {
