@@ -1674,6 +1674,8 @@ footer .section-title::after {
     justify-content: center;
     gap: 15px 25px;
     margin-top: 10px;
+    position: relative;
+    z-index: 2100; /* Asegura estar sobre elementos flotantes si hay solapamiento en móvil */
 }
 
 .footer-legal a {
@@ -1683,7 +1685,9 @@ footer .section-title::after {
     opacity: 0.6;
     transition: opacity 0.3s ease;
     position: relative;
-    z-index: 50;
+    z-index: 2105;
+    display: inline-block; /* Caja de colisión táctil definida */
+    padding: 6px 10px; /* Incrementa el área de clic/toque en pantallas táctiles */
 }
 
 .footer-legal a:hover {
@@ -1884,8 +1888,12 @@ footer .section-title::after {
     transform: translateX(0) !important;
 }
 
-.whatsapp-floating-container * {
-    pointer-events: auto; /* Re-enable for children */
+.btn-whatsapp-floating {
+    pointer-events: auto; /* Reactiva clics solo en el botón circular */
+}
+
+.whatsapp-label {
+    pointer-events: none; /* La etiqueta no debe capturar clics ni toques táctiles */
 }
 
 .btn-whatsapp-floating {
