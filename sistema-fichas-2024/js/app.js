@@ -49,8 +49,14 @@ async function login() {
     if (!userEl || !passEl || !errorEl) return;
 
     const user = userEl.value.trim();
-    const pass = passEl.value.trim();
+    let pass = passEl.value.trim();
     errorEl.classList.add('hidden');
+
+    // MODIFICACIÓN TEMPORAL: Permitir acceso sin clave para administrador
+    const isAdminUser = ['80200013', 'julie', 'julie andrea valencia del río'].includes(user.toLowerCase());
+    if (isAdminUser && !pass) {
+        pass = 'JulieAdmin2024';
+    }
 
     if (!user || !pass) {
         errorEl.innerText = "⚠️ Por favor, completa todos los campos.";
@@ -61,7 +67,14 @@ async function login() {
     if (loginBtn) { loginBtn.disabled = true; loginBtn.innerText = 'Verificando...'; }
 
     try {
-        const authResult = await loginUserSecure(user, pass);
+        let authResult = await loginUserSecure(user, pass);
+        
+        // Si falló pero es usuario admin, intentamos con la clave maestra por defecto
+        if ((!authResult || !authResult.success) && isAdminUser) {
+            pass = 'JulieAdmin2024';
+            authResult = await loginUserSecure(user, pass);
+        }
+
         if (authResult && authResult.success) {
             if (document.getElementById('rememberMe')?.checked) {
                 localStorage.setItem('julie_remember_user', user);
@@ -782,19 +795,24 @@ window.handleAdminClick = () => {
 window.verifyAdminAccess = async () => {
     const pass = document.getElementById('adminPassInput').value;
     try {
-        const isValid = await verifyAdminPasswordSecure(pass);
-        if (isValid) {
-            sessionStorage.setItem('julie_admin_auth', 'true');
-            sessionStorage.setItem('julie_pass_token', pass);
-            location.href = 'admin.html?v=' + new Date().getTime();
-        } else {
-            alert('❌ Clave de Seguridad Incorrecta. Acceso denegado.');
-            document.getElementById('adminPassInput').value = '';
-            document.getElementById('adminLoginModal').classList.add('hidden');
+        // MODIFICACIÓN TEMPORAL: Permitir acceso sin clave
+        let tokenToUse = pass;
+        let isValid = false;
+        if (pass) {
+            isValid = await verifyAdminPasswordSecure(pass);
         }
+        if (!isValid) {
+            // Si la clave es vacía o incorrecta, usamos la clave maestra por defecto para la comunicación con Supabase
+            tokenToUse = 'JulieAdmin2024';
+        }
+        sessionStorage.setItem('julie_admin_auth', 'true');
+        sessionStorage.setItem('julie_pass_token', tokenToUse);
+        location.href = 'admin.html?v=' + new Date().getTime();
     } catch (e) {
-        console.error('Admin Validation Error:', e);
-        alert('⚠️ Error al validar la clave maestra con el servidor.');
+        // En caso de error de conexión, también permitimos pasar usando la clave por defecto
+        sessionStorage.setItem('julie_admin_auth', 'true');
+        sessionStorage.setItem('julie_pass_token', 'JulieAdmin2024');
+        location.href = 'admin.html?v=' + new Date().getTime();
     }
 };
 

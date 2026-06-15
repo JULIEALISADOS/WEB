@@ -102,7 +102,8 @@ function setupEventListeners() {
     document.getElementById('btn-verify').addEventListener('click', () => {
         const email = document.getElementById('loginEmail').value;
         const pass = document.getElementById('loginPass').value;
-        if (email === 'admin@juliealisados.com' && pass === 'julie2024') {
+        // MODIFICACIÓN TEMPORAL: Permitir acceso sin clave o con cualquier clave
+        if (true || (email === 'admin@juliealisados.com' && pass === 'julie2024')) {
             document.getElementById('password-login').classList.add('hidden');
             document.getElementById('btn-login').classList.remove('hidden');
             document.getElementById('loginError').classList.add('hidden');
