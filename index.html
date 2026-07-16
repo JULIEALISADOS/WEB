@@ -1041,8 +1041,47 @@
 
             // Escuchador para los enlaces del menú (anclas internas): permitir navegación nativa y cerrar menú con delay para evitar abortar la acción en móviles
             navMenu.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', () => {
-                    setTimeout(closeMenu, 300);
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Intercepta el clic nativo
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    
+                    if (targetEl) {
+                        let transitioned = false;
+                        
+                        // Manejador del final de la transición de cierre
+                        const handleTransitionEnd = (event) => {
+                            if (event.target !== navMenu) return; // Evita disparadores por transiciones en hijos
+                            if (transitioned) return;
+                            transitioned = true;
+                            
+                            navMenu.removeEventListener('transitionend', handleTransitionEnd);
+                            clearTimeout(fallbackTimeout);
+                            
+                            targetEl.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        };
+                        
+                        navMenu.addEventListener('transitionend', handleTransitionEnd);
+                        
+                        // Respaldo de seguridad (ej. accesibilidad 'prefers-reduced-motion' donde la animación se anula)
+                        const fallbackTimeout = setTimeout(() => {
+                            if (!transitioned) {
+                                transitioned = true;
+                                navMenu.removeEventListener('transitionend', handleTransitionEnd);
+                                targetEl.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        }, 350); // 300ms de transición CSS del menú + 50ms de margen
+                        
+                        closeMenu();
+                    } else {
+                        closeMenu();
+                    }
                 });
             });
 
