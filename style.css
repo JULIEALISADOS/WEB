@@ -288,15 +288,17 @@ header {
         padding: 100px 30px 40px;
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
         z-index: 1050;
         display: flex;
         flex-direction: column;
         border-left: 1px solid var(--gold);
+        visibility: hidden;
     }
 
     .nav-menu.active {
         transform: translateX(0);
+        visibility: visible;
     }
 
     /* Overlay oscuro para cuando el menú está abierto */
@@ -337,7 +339,7 @@ header {
         border-bottom: none;
     }
 
-    .nav-menu a {
+    .nav-menu a:not(.social-icon) {
         font-size: 1.1rem !important;
         display: block;
         width: 100%;
@@ -445,12 +447,12 @@ header {
         gap: 10px;
     }
 
-    .nav-menu a {
+    .nav-menu a:not(.social-icon) {
         font-size: 0.8rem;
     }
 }
 
-.nav-menu a {
+.nav-menu a:not(.social-icon) {
     text-decoration: none;
     color: var(--dark-text);
     font-size: 0.95rem;
@@ -461,7 +463,7 @@ header {
     white-space: nowrap;
 }
 
-.nav-menu a:hover {
+.nav-menu a:not(.social-icon):hover {
     color: var(--gold);
 }
 
@@ -2430,6 +2432,10 @@ footer .section-title::after {
 }
 
 @media (max-width: 768px) {
+    footer {
+        padding-bottom: 110px !important; /* Añade suficiente espacio para que la burbuja de WhatsApp y scroll-to-top no solapen ningún link del footer */
+    }
+
     .footer-legal {
         padding: 10px 15px 30px; /* Eleva los enlaces del footer para evitar conflictos de toques con gestos nativos del celular */
     }
