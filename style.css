@@ -1710,6 +1710,8 @@ footer .section-title::after {
     z-index: 2105;
     display: inline-block; /* Caja de colisión táctil definida */
     padding: 6px 10px; /* Incrementa el área de clic/toque en pantallas táctiles */
+    pointer-events: auto !important; /* Garantiza que los links siempre sean clickeables */
+    cursor: pointer;
 }
 
 .footer-legal a:hover {
@@ -2663,6 +2665,8 @@ footer .section-title::after {
 
 .slide-down {
     animation: slideDown 0.5s ease forwards;
+    /* Mantiene el estado final de la animación (elemento oculto fuera de pantalla) */
+    pointer-events: none !important; /* Elimina la región de colisión táctil INMEDIATAMENTE */
 }
 
 @keyframes slideUp {
@@ -2671,8 +2675,8 @@ footer .section-title::after {
 }
 
 @keyframes slideDown {
-    from { transform: translateY(0); }
-    to { transform: translateY(100%); }
+    from { transform: translateY(0); visibility: visible; }
+    to { transform: translateY(100%); visibility: hidden; }
 }
 
 @media (max-width: 768px) {
