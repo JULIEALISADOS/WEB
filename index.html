@@ -982,11 +982,15 @@
                     });
                 }
                 
-                // Desactivar inmediatamente eventos de puntero para evitar que bloquee clics en el footer
+                // Desactivar INMEDIATAMENTE los eventos de clic/toque en banner Y overlay
+                // Esto evita que bloqueen redes sociales, GPS y footer después de cerrar
                 banner.style.pointerEvents = 'none';
+                overlay.style.pointerEvents = 'none';
+                overlay.style.visibility = 'hidden';
+                overlay.classList.add('hidden');
+
                 banner.classList.remove('slide-up');
                 banner.classList.add('slide-down');
-                overlay.classList.add('hidden');
 
                 if (maratonPromo && !maratonPromo.classList.contains('hidden')) {
                     maratonPromo.style.pointerEvents = 'none';
