@@ -65,7 +65,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.8">
+    <link rel="stylesheet" href="style.css?v=3.9">
     <!-- PRUEBA DE CAMBIO PARA GITHUB DESKTOP 2 -->
     <link rel="icon" type="image/png" href="logo 1.png">
     <link rel="apple-touch-icon" href="logo 1.png">
@@ -1039,16 +1039,10 @@
             // Cerrar menú al tocar el overlay
             if (navOverlay) navOverlay.addEventListener('click', closeMenu);
 
-            // Escuchador para los enlaces del menú (anclas internas)
+            // Escuchador para los enlaces del menú (anclas internas): cerrar menú y permitir navegación nativa con scroll-margin-top
             navMenu.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetEl = document.getElementById(targetId);
-                    if (targetEl) {
-                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    setTimeout(closeMenu, 150);
+                link.addEventListener('click', () => {
+                    closeMenu();
                 });
             });
 
