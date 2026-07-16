@@ -65,7 +65,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.7">
+    <link rel="stylesheet" href="style.css?v=2.8">
     <!-- PRUEBA DE CAMBIO PARA GITHUB DESKTOP 2 -->
     <link rel="icon" type="image/png" href="logo 1.png">
     <link rel="apple-touch-icon" href="logo 1.png">
@@ -318,12 +318,13 @@
                         </div>
                     </div>
                 </div>
-
-                <div style="text-align: center; margin-top: 20px; position: relative; z-index: 30;">
-                    <a href="https://juliealisados.com/promociones-condiciones.html" target="_blank" rel="noopener noreferrer" style="color: var(--gold-dark); text-decoration: none; font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">✦ Ver Términos y Condiciones de Julio ✦</a>
-                </div>
             </div>
         </section>
+
+        <!-- Enlace independiente T&C - fuera del hero para evitar bloqueos de overflow:hidden -->
+        <div style="text-align: center; padding: 10px 20px; position: relative; z-index: 9000; background: transparent;">
+            <a href="https://juliealisados.com/promociones-condiciones.html" target="_blank" rel="noopener noreferrer" style="color: var(--gold-dark); text-decoration: none; font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; transition: opacity 0.3s ease; display: inline-block; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">✦ Ver Términos y Condiciones de Julio ✦</a>
+        </div>
 
         <!-- SECCIÓN DE MEDIOS DE PAGO -->
         <section class="payment-methods-banner fade-in" style="animation-delay: 0.8s;">
