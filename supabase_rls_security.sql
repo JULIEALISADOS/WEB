@@ -28,17 +28,38 @@ WITH CHECK (true);
 
 -- =========================================================================
 -- API SEGURA (RPC) MEDIANTE FUNCIONES DE SERVIDOR (SECURITY DEFINER)
--- Estas funciones se ejecutan en el servidor con privilegios elevados (bypassing RLS),
--- pero verifican estrictamente la contraseña del usuario antes de retornar los datos.
+-- Cifrado seguro utilizando la extensión pgcrypto (Blowfish).
 -- =========================================================================
 
+-- Activar extensión de criptografía en Supabase
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- Tabla para almacenar los hashes de las claves administrativas
+CREATE TABLE IF NOT EXISTS admin_credentials (
+    id serial PRIMARY KEY,
+    password_hash text NOT NULL UNIQUE
+);
+
+-- Inicializar las claves del administrador con hash Blowfish si no existen
+INSERT INTO admin_credentials (password_hash)
+VALUES 
+    (crypt('JulieAdmin2024', gen_salt('bf', 8))),
+    (crypt('Lisolaloca01', gen_salt('bf', 8))),
+    (crypt('Lisolaloca01:', gen_salt('bf', 8))),
+    (crypt('Polaresgay01:', gen_salt('bf', 8)))
+ON CONFLICT DO NOTHING;
+
 -- --- 1. FUNCIÓN PARA COMPROBAR CONTRASEÑA DE ADMINISTRADOR ---
+-- Verifica la contraseña ingresada contra los hashes seguros almacenados.
 CREATE OR REPLACE FUNCTION verify_admin_password_rpc(passcode text)
 RETURNS boolean
 SECURITY DEFINER
 AS $$
 BEGIN
-    RETURN passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:');
+    RETURN EXISTS (
+        SELECT 1 FROM admin_credentials
+        WHERE password_hash = crypt(passcode, password_hash)
+    );
 END;
 $$ LANGUAGE plpgsql;
 
@@ -60,17 +81,17 @@ DECLARE
     found_telefono text;
 BEGIN
     -- 1. Verificar si es Administrador Maestro
-    IF (user_id IN ('80200013', 'julie', 'Julie andrea valencia del río') AND passcode IN ('Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:', 'JulieAdmin2024')) THEN
+    IF (user_id IN ('80200013', 'julie', 'Julie andrea valencia del río') AND verify_admin_password_rpc(passcode)) THEN
         RETURN QUERY SELECT true, 'admin'::text, 'Julie andrea valencia del río'::text, 'yulian.2804.jv@gmail.com'::text, '3150777443'::text;
         RETURN;
     END IF;
 
-    -- 2. Buscar en la tabla de estilistas
+    -- 2. Buscar en la tabla de estilistas (soporta contraseñas heredadas en texto plano y hashes seguros)
     SELECT id, e.nombre, e.email, e.telefono 
     INTO found_id, found_nombre, found_email, found_telefono
     FROM estilistas e
     WHERE (LOWER(e.nombre) = LOWER(user_id) OR LOWER(e.email) = LOWER(user_id)) 
-      AND e.password = passcode;
+      AND (e.password = passcode OR e.password = crypt(passcode, e.password));
 
     IF found_id IS NOT NULL THEN
         -- Si es Julie en la tabla de estilistas, asignarle rol de admin
@@ -118,8 +139,8 @@ RETURNS SETOF fichas
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND e.password = passcode) THEN
+    IF verify_admin_password_rpc(passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND (e.password = passcode OR e.password = crypt(passcode, e.password))) THEN
         RETURN QUERY SELECT * FROM fichas ORDER BY created_at DESC;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: Credenciales de administrador incorrectas.';
@@ -133,8 +154,8 @@ RETURNS SETOF fichas
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE e.password = passcode) THEN
+    IF verify_admin_password_rpc(passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE e.password = passcode OR e.password = crypt(passcode, e.password)) THEN
         RETURN QUERY SELECT * FROM fichas WHERE consecutivo = consec_num LIMIT 1;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: Credenciales incorrectas.';
@@ -148,8 +169,8 @@ RETURNS SETOF fichas
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE e.password = passcode) THEN
+    IF verify_admin_password_rpc(passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE e.password = passcode OR e.password = crypt(passcode, e.password)) THEN
         RETURN QUERY SELECT * FROM fichas WHERE numero_documento = doc_num ORDER BY created_at DESC LIMIT 1;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: Credenciales incorrectas.';
@@ -169,8 +190,8 @@ RETURNS TABLE (
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND e.password = passcode) THEN
+    IF verify_admin_password_rpc(passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND (e.password = passcode OR e.password = crypt(passcode, e.password))) THEN
         RETURN QUERY SELECT e.id, e.nombre, e.telefono, e.email, e.password FROM estilistas e ORDER BY e.nombre;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: Credenciales de administrador incorrectas.';
@@ -178,7 +199,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- --- 9. AGREGAR ESTILISTA (ADMIN ONLY) ---
+-- --- 9. AGREGAR ESTILISTA CON HASH (ADMIN ONLY) ---
 CREATE OR REPLACE FUNCTION add_stylist_secure(
     stylist_nombre text, 
     stylist_telefono text, 
@@ -190,11 +211,11 @@ RETURNS boolean
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF admin_passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND e.password = admin_passcode) THEN
+    IF verify_admin_password_rpc(admin_passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND (e.password = admin_passcode OR e.password = crypt(admin_passcode, e.password))) THEN
         
         INSERT INTO estilistas (nombre, telefono, email, password)
-        VALUES (stylist_nombre, stylist_telefono, stylist_email, stylist_password);
+        VALUES (stylist_nombre, stylist_telefono, stylist_email, crypt(stylist_password, gen_salt('bf', 8)));
         RETURN true;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: Credenciales de administrador incorrectas.';
@@ -208,8 +229,8 @@ RETURNS boolean
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF admin_passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND e.password = admin_passcode) THEN
+    IF verify_admin_password_rpc(admin_passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND (e.password = admin_passcode OR e.password = crypt(admin_passcode, e.password))) THEN
         
         DELETE FROM estilistas WHERE id = stylist_id;
         RETURN true;
@@ -219,14 +240,18 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- --- 11. CAMBIAR CONTRASEÑA DE ESTILISTA (SELF-SERVICE) ---
+-- --- 11. CAMBIAR CONTRASEÑA DE ESTILISTA CON HASH (SELF-SERVICE) ---
 CREATE OR REPLACE FUNCTION update_stylist_password_secure(stylist_name text, old_pass text, new_pass text)
 RETURNS boolean
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) = LOWER(stylist_name) AND e.password = old_pass) THEN
-        UPDATE estilistas SET password = new_pass WHERE LOWER(nombre) = LOWER(stylist_name);
+    IF EXISTS (
+        SELECT 1 FROM estilistas e 
+        WHERE LOWER(e.nombre) = LOWER(stylist_name) 
+          AND (e.password = old_pass OR e.password = crypt(old_pass, e.password))
+    ) THEN
+        UPDATE estilistas SET password = crypt(new_pass, gen_salt('bf', 8)) WHERE LOWER(nombre) = LOWER(stylist_name);
         RETURN true;
     ELSE
         RAISE EXCEPTION 'Acceso denegado: La contraseña actual es incorrecta.';
@@ -240,8 +265,8 @@ RETURNS boolean
 SECURITY DEFINER
 AS $$
 BEGIN
-    IF admin_passcode IN ('JulieAdmin2024', 'Lisolaloca01', 'Lisolaloca01:', 'Polaresgay01:') OR
-       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND e.password = admin_passcode) THEN
+    IF verify_admin_password_rpc(admin_passcode) OR
+       EXISTS (SELECT 1 FROM estilistas e WHERE LOWER(e.nombre) LIKE '%julie%' AND (e.password = admin_passcode OR e.password = crypt(admin_passcode, e.password))) THEN
         
         DELETE FROM fichas WHERE consecutivo = consec_num;
         RETURN true;
