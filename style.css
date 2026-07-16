@@ -2387,6 +2387,10 @@ footer .section-title::after {
 }
 
 @media (max-width: 768px) {
+    .footer-legal {
+        padding: 10px 15px 30px; /* Eleva los enlaces del footer para evitar conflictos de toques con gestos nativos del celular */
+    }
+
     .footer-sic-payments {
         flex-direction: column;
         gap: 20px;
