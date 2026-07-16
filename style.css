@@ -1762,8 +1762,8 @@ footer .section-title::after {
 .footer-legal a {
     color: var(--dark-text);
     text-decoration: none;
-    font-size: 0.85rem;
-    opacity: 0.6;
+    font-size: 0.9rem;
+    opacity: 0.82;
     transition: opacity 0.3s ease;
     position: relative;
     z-index: 2105;
@@ -2810,5 +2810,22 @@ footer .section-title::after {
         right: 27px;  /* Centrado con la burbuja de 55px */
         width: 40px;
         height: 40px;
+    }
+}
+
+/* Respuesta táctil activa para dispositivos móviles */
+@media (max-width: 1150px) {
+    .btn-gps:active,
+    .social-icon:active,
+    .btn-whatsapp-floating:active,
+    .badge-gold:active,
+    .hamburger:active,
+    .header-location-link:active,
+    .scroll-to-top-btn:active,
+    .nav-menu a:active,
+    .product-link:active {
+        transform: scale(0.95) !important;
+        opacity: 0.8 !important;
+        transition: transform 0.1s ease, opacity 0.1s ease;
     }
 }
