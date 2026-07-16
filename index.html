@@ -954,7 +954,7 @@
             if (!hasAccepted) {
                 setTimeout(() => {
                     banner.classList.remove('hidden');
-                    // overlay.classList.remove('hidden'); // Comentado para no bloquear clics en la web
+                    overlay.classList.remove('hidden'); // Bloquea la navegación hasta aceptar/rechazar
                     if (maratonPromo) {
                         maratonPromo.classList.remove('hidden');
                         setTimeout(() => {
@@ -962,7 +962,7 @@
                         }, 50);
                     }
                     banner.classList.add('slide-up');
-                    // document.body.style.overflow = 'hidden'; // Comentado para mantener el scroll activo
+                    document.body.style.overflow = 'hidden'; // Bloquea el scroll hasta aceptar/rechazar
                 }, 1000); 
             }
 
