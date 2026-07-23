@@ -1,69 +1,70 @@
 $ErrorActionPreference = 'Stop'
-
-# Phone number used for all WhatsApp CTA links
 $Phone = '573043588180'
 
-# Mapping of HTML file names (lowercase) to the specific WhatsApp message that should be sent
-$MessageMap = @{
-    'index.html'                = 'Hola 😊 estoy interesada en obtener más información sobre los servicios de Julie Alisados'
-    'alisados.html'             = 'Hola 😊 me gustaría saber más sobre el Alisado Saludable'
-    'taninoplastia.html'        = 'Hola 😊 quiero información sobre la Taninoplastia'
-    'fototerapia.html'          = 'Hola 😊 estoy interesada en la Fototerapia'
-    'recuperacion-capilar.html' = 'Hola 😊 quisiera saber sobre la Recuperación Capilar'
-    'reposicion-aminoacidos.html' = 'Hola 😊 quiero detalles de la Reposición de Aminoácidos'
-    'emulsion-zero.html'        = 'Hola 😊 me interesa la Emulsión Zero'
-    'diagnostico-capilar.html'  = 'Hola 😊 quiero un diagnóstico capilar personalizado'
-    'linea-cuidado.html'        = 'Hola 😊 me gustaría conocer la Línea de Cuidado Capilar'
-    'shampoo.html'              = 'Hola 😊 quiero información sobre los Shampoos de la Línea de Cuidado'
-    'mascarillas.html'          = 'Hola 😊 estoy interesada en las Mascarillas'
-    'termoprotector.html'       = 'Hola 😊 quiero saber más del Termoprotector'
-    'kits.html'                 = 'Hola 😊 me gustaría conocer los Kits disponibles'
-    'linea-profesional.html'    = 'Hola 😊 quiero información sobre la Línea Profesional'
-    'distribuidores.html'       = 'Hola 😊 me gustaría ser distribuidora de Julie Alisados'
-    'julie-tips.html'           = 'Hola 😊 estoy leyendo un artículo de Julie Tips y quisiera una valoración personalizada para mi cabello'
-    'contacto.html'             = 'Hola 😊 quiero contactar y agendar una cita'
-    'promociones.html'          = 'Hola 😊 estoy interesada en las promociones actuales'
-    'default'                   = 'Hola 😊 estoy interesada en los servicios de Julie Alisados y quisiera más información'
-}
-
-function Get-MessageForFile([string]$Path) {
-    $lower = $Path.ToLower()
-    foreach($key in $MessageMap.Keys) {
-        if($key -ne 'default' -and $lower -like "*$key") {
-            return $MessageMap[$key]
-        }
+function Update-File {
+    param([string]$FilePath, [string]$Mensaje)
+    if (-not (Test-Path $FilePath)) {
+        Write-Output "NO ENCONTRADO: $FilePath"
+        return
     }
-    return $MessageMap['default']
-}
-
-# Retrieve every .html file in the repository, ignoring any backup directories
-$HtmlFiles = Get-ChildItem -Path "C:\Users\JETO0\OneDrive\Documentos\GitHub\WEB" -Recurse -Filter '*.html' |
-    Where-Object { $_.FullName -notmatch 'BACKUP_' }
-
-$ModifiedFiles = @()
-foreach($File in $HtmlFiles) {
-    $Content = Get-Content -Path $File.FullName -Raw -Encoding utf8
+    $Bytes    = [System.IO.File]::ReadAllBytes($FilePath)
+    $Content  = [System.Text.Encoding]::UTF8.GetString($Bytes)
     $Original = $Content
-
-    # Build the WhatsApp URL that contains the context‑specific message
-    $rawMessage = Get-MessageForFile $File.FullName
-    $encodedMsg = [System.Net.WebUtility]::UrlEncode($rawMessage)
-    $NewHref = "https://wa.me/$Phone?text=$encodedMsg"
-    $NewInnerText = "💬 ¡Quiero más info!"
-
-    # Replace any existing WhatsApp URL (api.whatsapp.com or wa.me) with the new one
-    $UrlPattern = 'https?://(?:api\.whatsapp\.com\/send\?phone=\d+&text=|wa\.me\/\d+\?text=)\S*'
-    $Content = $Content -replace $UrlPattern, $NewHref
-
-    # Replace the anchor text of links that now point to the new URL
-    $AnchorPattern = "(<a[^>]*href=`"$NewHref`"[^>]*>)(.*?)(</a>)"
-    $Content = $Content -replace $AnchorPattern, "`$1$NewInnerText`$3"
-
-    if($Content -ne $Original) {
-        Set-Content -Path $File.FullName -Value $Content -Encoding utf8
-        $ModifiedFiles += $File.FullName
+    $encoded  = [Uri]::EscapeDataString($Mensaje)
+    $NewUrl   = "https://wa.me/$Phone?text=$encoded"
+    # Reemplaza cualquier URL de WhatsApp existente (correcta o mal formada)
+    $Content = $Content -replace 'https?://(?:api\.whatsapp\.com/send[^"''>\s]*|wa\.me/[^"''>\s]*)', $NewUrl
+    if ($Content -ne $Original) {
+        [System.IO.File]::WriteAllBytes($FilePath, [System.Text.Encoding]::UTF8.GetBytes($Content))
+        Write-Output "OK: $FilePath"
+    } else {
+        Write-Output "Sin cambios: $FilePath"
     }
 }
 
-Write-Output "Modified files count: $($ModifiedFiles.Count)"
-foreach($f in $ModifiedFiles) { Write-Output $f }
+$Base = 'C:\Users\JETO0\OneDrive\Documentos\GitHub\WEB'
+
+Update-File "$Base\index.html" `
+"Hola, estoy visitando la pagina de Julie Alisados y me gustaria recibir una asesoria personalizada para saber que tratamiento es el ideal para mi cabello. Cuando me pueden atender?"
+
+Update-File "$Base\alisados.html" `
+"Hola, vi los servicios de Alisado Saludable y me interesa mucho. Me gustaria saber cual es el mas adecuado para mi tipo de cabello y conocer la disponibilidad."
+
+Update-File "$Base\linea-cuidado.html" `
+"Hola, estoy viendo la Linea de Cuidado Capilar y quiero saber cual de los productos es el mas adecuado para mi cabello. Me pueden orientar?"
+
+Update-File "$Base\linea-profesional.html" `
+"Hola, soy profesional del cabello y me interesa conocer la Linea Profesional de Julie Alisados para implementarla en mi salon. Como puedo obtener mas informacion?"
+
+Update-File "$Base\politica-envios.html" `
+"Hola, tengo una pregunta sobre los envios de los productos Julie Alisados. Me pueden ayudar?"
+
+Update-File "$Base\politica-garantia.html" `
+"Hola, tengo una pregunta sobre la garantia de los productos Julie Alisados. Me pueden ayudar?"
+
+Update-File "$Base\politica-servicio.html" `
+"Hola, tengo una consulta sobre el servicio al cliente de Julie Alisados. Me pueden orientar?"
+
+Update-File "$Base\promociones-condiciones.html" `
+"Hola, estoy revisando las condiciones de las promociones de Julie Alisados y tengo una duda. Me pueden ayudar?"
+
+Update-File "$Base\terapias-hidratantes.html" `
+"Hola, mi cabello esta muy reseco y me interesa una Terapia Hidratante. Me gustaria saber cual es la mas indicada para mi y como agendar una cita."
+
+Update-File "$Base\terapias-nutritivas.html" `
+"Hola, vi las Terapias Nutritivas de Julie Alisados y me interesa saber cual es la ideal para cabello sin vida y debilitado. Me pueden orientar?"
+
+Update-File "$Base\terapias-restauradoras.html" `
+"Hola, mi cabello esta muy danado por quimica y busco una Terapia Restauradora. Quisiera una valoracion y saber el tratamiento ideal para mi caso."
+
+Update-File "$Base\terapias-disciplinantes.html" `
+"Hola, tengo mucho frizz y el cabello muy rebelde. Vi las Terapias Disciplinantes y me gustaria saber cual me recomiendan y como agendar."
+
+Update-File "$Base\julie-tips\index.html" `
+"Hola, estoy leyendo el blog de Julie Tips y me surgio una duda sobre el cuidado de mi cabello. Podrian darme una asesoria personalizada?"
+
+Update-File "$Base\julie-tips\articulo.html" `
+"Hola, lei uno de los articulos de Julie Tips y me interesa aplicar esos consejos en mi cabello. Me gustaria recibir una valoracion capilar personalizada."
+
+Write-Output ""
+Write-Output "Proceso terminado."
