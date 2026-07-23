@@ -140,10 +140,28 @@ function initArticlePage(articles) {
     if (!article) return;
 
     // Actualizar Head Metadata SEO
-    document.title = article.seo?.title || article.title;
-    updateMeta('description', article.seo?.description || article.summary);
+    const articleTitle = article.seo?.title || article.title;
+    const articleDesc = article.seo?.description || article.summary;
+    const articleUrl = `https://juliealisados.com/julie-tips/${article.slug}`;
+    const articleImg = article.image ? `https://juliealisados.com/${article.image.replace('../', '')}` : 'https://juliealisados.com/logo%201.png';
+
+    document.title = articleTitle;
+    updateMeta('description', articleDesc);
     updateMeta('keywords', (article.seo?.keywords || []).join(', '));
-    updateCanonical(`https://juliealisados.com/julie-tips/${article.slug}`);
+    updateCanonical(articleUrl);
+
+    // Open Graph Metadata
+    updateMetaProperty('og:title', articleTitle);
+    updateMetaProperty('og:description', articleDesc);
+    updateMetaProperty('og:url', articleUrl);
+    updateMetaProperty('og:image', articleImg);
+    updateMetaProperty('og:type', 'article');
+
+    // Twitter Card Metadata
+    updateMeta('twitter:card', 'summary_large_image');
+    updateMeta('twitter:title', articleTitle);
+    updateMeta('twitter:description', articleDesc);
+    updateMeta('twitter:image', articleImg);
 
     // Inyectar Schemas JSON-LD
     injectSchemas(article);
@@ -394,6 +412,16 @@ function updateMeta(name, value) {
     if (!el) {
         el = document.createElement('meta');
         el.name = name;
+        document.head.appendChild(el);
+    }
+    el.content = value;
+}
+
+function updateMetaProperty(property, value) {
+    let el = document.querySelector(`meta[property="${property}"]`);
+    if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('property', property);
         document.head.appendChild(el);
     }
     el.content = value;
