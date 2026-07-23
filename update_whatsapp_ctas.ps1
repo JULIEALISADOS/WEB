@@ -11,9 +11,21 @@ function Update-File {
     $Content  = [System.Text.Encoding]::UTF8.GetString($Bytes)
     $Original = $Content
     $encoded  = [Uri]::EscapeDataString($Mensaje)
-    $NewUrl   = "https://wa.me/$Phone?text=$encoded"
-    # Reemplaza cualquier URL de WhatsApp existente (correcta o mal formada)
-    $Content = $Content -replace 'https?://(?:api\.whatsapp\.com/send[^"''>\s]*|wa\.me/[^"''>\s]*)', $NewUrl
+    $NewUrl   = "https://wa.me/$Phone`?text=$encoded"
+
+    # Reemplaza api.whatsapp.com/send... 
+    $Content = [System.Text.RegularExpressions.Regex]::Replace(
+        $Content,
+        'https?://api\.whatsapp\.com/send[^\s"''<>]*',
+        $NewUrl
+    )
+    # Reemplaza wa.me/... (cualquier variante, incluyendo mal formadas)
+    $Content = [System.Text.RegularExpressions.Regex]::Replace(
+        $Content,
+        'https?://wa\.me/[^\s"''<>]*',
+        $NewUrl
+    )
+
     if ($Content -ne $Original) {
         [System.IO.File]::WriteAllBytes($FilePath, [System.Text.Encoding]::UTF8.GetBytes($Content))
         Write-Output "OK: $FilePath"
