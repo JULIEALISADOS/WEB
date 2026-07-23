@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!response.ok) {
             throw new Error('Error al cargar articles.json');
         }
-        articlesData = await response.json();
+        const data = await response.json();
+        articlesData = Array.isArray(data) ? data : [data];
     } catch (err) {
         console.error('No se pudo cargar la base de artículos:', err);
     }
@@ -148,6 +149,9 @@ function initArticlePage(articles) {
     injectSchemas(article);
 
     // Inyectar Contenido en el DOM
+    const breadcrumbElem = document.getElementById('breadcrumb-current');
+    if (breadcrumbElem) breadcrumbElem.textContent = article.title;
+
     document.getElementById('art-title').textContent = article.title;
     document.getElementById('art-subtitle').textContent = article.subtitle || '';
     document.getElementById('art-category').textContent = article.category;
@@ -185,6 +189,40 @@ function initArticlePage(articles) {
         `).join('');
     }
 
+    // Renderizar Fuentes y Bibliografía Científica
+    const sourcesBox = document.getElementById('art-sources-container');
+    const sourcesList = document.getElementById('art-sources-list');
+    if (sourcesBox && sourcesList) {
+        if (article.sources && article.sources.length > 0) {
+            sourcesList.innerHTML = article.sources.map(src => `<li>${src}</li>`).join('');
+            sourcesBox.style.display = 'block';
+        } else {
+            sourcesBox.style.display = 'none';
+        }
+    }
+
+    // Renderizar Navegación Anterior / Siguiente
+    const currentIndex = articles.findIndex(a => a.id === article.id || a.slug === article.slug);
+    const prevNav = document.getElementById('art-prev-nav');
+    const nextNav = document.getElementById('art-next-nav');
+
+    if (prevNav) {
+        if (currentIndex > 0) {
+            const prevArticle = articles[currentIndex - 1];
+            prevNav.innerHTML = `<a href="./${prevArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">← Anterior: ${prevArticle.title}</a>`;
+        } else {
+            prevNav.innerHTML = '';
+        }
+    }
+    if (nextNav) {
+        if (currentIndex >= 0 && currentIndex < articles.length - 1) {
+            const nextArticle = articles[currentIndex + 1];
+            nextNav.innerHTML = `<a href="./${nextArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">Siguiente: ${nextArticle.title} →</a>`;
+        } else {
+            nextNav.innerHTML = '';
+        }
+    }
+
     // Renderizar Productos Relacionados
     const productsContainer = document.getElementById('art-related-products');
     if (productsContainer && article.relatedProducts) {
@@ -206,7 +244,7 @@ function initArticlePage(articles) {
                 <img src="${s.image}" alt="${s.name}" loading="lazy">
                 <h4>${s.name}</h4>
                 <p>${s.desc}</p>
-                <a href="${s.link}" class="btn-gold-fill">Agendar servicio</a>
+                <a href="${s.link}" class="btn-gold-fill" onclick="return gtag_report_conversion(this.href);">Agendar servicio</a>
             </div>
         `).join('');
     }
