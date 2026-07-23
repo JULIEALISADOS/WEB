@@ -137,6 +137,9 @@
         <!-- Encabezado del Artículo -->
         <article class="article-wrapper">
             <div class="article-header container">
+                <nav class="breadcrumb-nav" aria-label="Migas de pan" style="margin-bottom: 15px; font-size: 0.85rem; color: #777;">
+                    <a href="../index.html" style="color: var(--gold-dark); text-decoration: none;">Inicio</a> &nbsp;›&nbsp; <a href="./index.html" style="color: var(--gold-dark); text-decoration: none;">Julie Tips</a> &nbsp;›&nbsp; <span id="breadcrumb-current" style="color: var(--dark-text); font-weight:700;"></span>
+                </nav>
                 <span id="art-category" class="article-cat"></span>
                 <h1 id="art-title"></h1>
                 <p id="art-subtitle" class="article-subtitle"></p>
@@ -213,6 +216,18 @@
                 <div class="related-services-block">
                     <h3 class="related-block-title">Servicios Relacionados</h3>
                     <div id="art-related-services" class="related-cards-grid"></div>
+                </div>
+
+                <!-- Fuentes y Bibliografía Científica -->
+                <div id="art-sources-container" class="article-sources-box" style="margin-top: 40px; padding: 20px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 4px solid var(--gold);">
+                    <h4 style="margin-bottom: 8px; color: var(--gold-dark); font-size: 1.05rem;">📚 Fuentes y Referencias Técnicas:</h4>
+                    <ul id="art-sources-list" style="margin: 0; padding-left: 20px; font-size: 0.88rem; color: #666;"></ul>
+                </div>
+
+                <!-- Navegación Anterior / Siguiente -->
+                <div class="article-prev-next-nav" style="display: flex; justify-content: space-between; gap: 20px; margin-top: 40px; padding-top: 25px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                    <div id="art-prev-nav"></div>
+                    <div id="art-next-nav" style="text-align: right;"></div>
                 </div>
 
                 <!-- Artículos Relacionados -->
