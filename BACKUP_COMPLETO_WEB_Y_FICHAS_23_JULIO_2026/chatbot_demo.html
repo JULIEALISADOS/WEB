@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIA Master (Menú Completo) | Julie Alisados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B4941F;
+            --wa-bg: #E5DDD5;
+            --wa-msg-in: #FFFFFF;
+            --wa-msg-out: #DCF8C6;
+            --dark: #1A1A1A;
+            --danger: #d32f2f;
+            --info: #0277bd;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            gap: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .phone-mockup {
+            width: 360px;
+            height: 680px;
+            background: var(--wa-bg);
+            border-radius: 30px;
+            border: 12px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wa-header {
+            background: #075E54;
+            color: white;
+            padding: 40px 15px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            background: var(--wa-msg-in);
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .message.user {
+            background: var(--wa-msg-out);
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .option-btn:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        .option-btn:not(:disabled):hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        .legal-disclaimer {
+            font-size: 0.72rem;
+            color: #666;
+            margin-top: 8px;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+            font-style: italic;
+        }
+
+        .admin-panel {
+            width: 420px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .admin-panel h3 {
+            color: var(--gold-dark);
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+        }
+
+        .log-entry {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--gold);
+            font-family: monospace;
+            display: none;
+            line-height: 1.6;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .wa-input-bar {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .input-wrapper {
+            background: white;
+            flex: 1;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        #user-input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        .send-btn {
+            background: #075E54;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+
+        .typing-indicator {
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 5px;
+            display: none;
+        }
+
+        .link-preview {
+            color: #039be5;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-mockup">
+        <div class="wa-header">
+            <div class="avatar">
+                <img src="logo 1.png" alt="Lia">
+            </div>
+            <div>
+                <div style="font-weight: bold;">Lia By Julie Valencia</div>
+                <div style="font-size: 0.75rem; opacity: 0.8;" id="status">En línea</div>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chat">
+            <div class="message bot" id="node-welcome">
+                ¡Hola! ✨ Soy <strong>LIA</strong>, tu asistente virtual en Julie Alisados. Estamos listas para brindarte una asesoría experta en tu salud capilar. 🌸<br><br>
+                <div class="legal-disclaimer">
+                    🔒 Al continuar, aceptas nuestra <a href="https://juliealisados.com/politica-datos.html" class="link-preview" target="_blank">Política de Datos</a> y nuestros <a href="https://juliealisados.com/promociones-condiciones.html" class="link-preview" target="_blank">Términos de Servicio</a>.
+                    <div class="options-container">
+                        <button class="option-btn" onclick="askName()">Acepto y deseo continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typing" style="padding-left: 20px;">Lia está escribiendo...</div>
+
+        <form class="wa-input-bar" onsubmit="handleSend(event)">
+            <div class="input-wrapper">
+                <input type="text" id="user-input" placeholder="Escribe aquí..." disabled>
+            </div>
+            <button type="submit" class="send-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            </button>
+        </form>
+    </div>
+
+    <div class="admin-panel">
+        <h3>LIA - Monitor Maestro</h3>
+        <p>Menú con Línea Profesional integrada.</p>
+        
+        <div id="log" class="log-entry">
+            <div class="status-badge" id="log-badge">REPORTE</div>
+            <div id="log-content"></div>
+        </div>
+
+        <button onclick="location.reload()" style="margin-top: 20px; background: #eee; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Reiniciar</button>
+    </div>
+
+    <script>
+        let currentName = "";
+        let currentSede = "";
+        let currentChoice = "";
+        let step = "idle";
+
+        function addMessage(text, side) {
+            const chat = document.getElementById('chat');
+            const msg = document.createElement('div');
+            msg.className = `message ${side}`;
+            msg.innerHTML = text;
+            chat.appendChild(msg);
+            scrollChat();
+            return msg;
+        }
+
+        function scrollChat() {
+            const chat = document.getElementById('chat');
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function showTyping(show) {
+            document.getElementById('typing').style.display = show ? 'block' : 'none';
+            document.getElementById('status').innerText = show ? 'Lia está escribiendo...' : 'En línea';
+        }
+
+        function disableButtons(id) {
+            const container = document.getElementById(id);
+            if(container) {
+                container.style.opacity = "0.5";
+                container.querySelectorAll('button').forEach(b => b.disabled = true);
+            }
+        }
+
+        function askName() {
+            disableButtons('node-welcome');
+            addMessage("Acepto y deseo continuar", 'user');
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                addMessage(`¡Perfecto! Para iniciar nuestra charla, ¿me podrías decir tu <strong>nombre completo</strong>? 😊`, 'bot');
+                document.getElementById('user-input').disabled = false;
+                document.getElementById('user-input').focus();
+                step = "waiting_name";
+            }, 1000);
+        }
+
+        function handleSend(e) {
+            e.preventDefault();
+            const input = document.getElementById('user-input');
+            const val = input.value.trim();
+            if (val === "" || input.disabled) return;
+
+            addMessage(val, 'user');
+            input.value = "";
+            
+            if(step === "waiting_name") {
+                currentName = val;
+                input.disabled = true;
+                showTyping(true);
+                setTimeout(() => {
+                    showTyping(false);
+                    const msg = addMessage(`Un placer saludarte, <strong>${currentName}</strong>. 🌸 Cuéntame, ¿cómo podemos ayudarte hoy?`, 'bot');
+                    msg.id = "node-main-menu";
+                    const opt = document.createElement('div');
+                    opt.className = 'options-container';
+                    opt.innerHTML = `
+                        <button class="option-btn" onclick="goToAgendar()">📅 Quiero agendar</button>
+                        <button class="option-btn" onclick="goToCotizar()">📸 Quiero cotizar</button>
+                        <button class="option-btn" onclick="alert('Redirigiendo a Productos Postcuidado...')">🛍️ Productos (Postcuidado)</button>
+                        <button class="option-btn" onclick="alert('Redirigiendo a Línea Profesional...')">💈 Línea Profesional Estilistas</button>
+                        <button class="option-btn" onclick="alert('Abriendo Promos...')">🎁 Promociones del Mes</button>
+                        <button class="option-btn" onclick="goToGarantia()">🛡️ Solicitud de Garantía</button>
+                        <button class="option-btn" onclick="goToAsesora()">👩‍💼 Hablar con Asesora</button>
+                    `;
+                    msg.appendChild(opt);
+                }, 1000);
+            } else if(step === "waiting_photo") {
+                input.disabled = true;
+                showTyping(true);
+                setTimeout(() => {
+                    showTyping(false);
+                    addMessage(`¡Perfecto! He recibido tu información. Ya te estoy conectando con una especialista para darte tu presupuesto personalizado. ✨`, 'bot');
+                    triggerNotification("COTIZACIÓN", `<strong>${currentName}</strong> envió info para cotizar. 📸`);
+                }, 1000);
+            }
+        }
+
+        function goToAgendar() {
+            disableButtons('node-main-menu');
+            addMessage("📅 Quiero agendar", 'user');
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                const msg = addMessage(`¡Excelente! ¿Para qué sede deseas agendar tu servicio?`, 'bot');
+                msg.id = "node-sede-choice";
+                const opt = document.createElement('div');
+                opt.className = 'options-container';
+                opt.innerHTML = `
+                    <button class="option-btn" onclick="selectSede('Tunja')">📍 Sede Tunja</button>
+                    <button class="option-btn" onclick="selectSede('Moniquirá')">📍 Sede Moniquirá</button>
+                `;
+                msg.appendChild(opt);
+            }, 1000);
+        }
+
+        function selectSede(sede) {
+            currentSede = sede;
+            disableButtons('node-sede-choice');
+            addMessage(`📍 ${sede}`, 'user');
+            askAge();
+        }
+
+        function goToCotizar() {
+            disableButtons('node-main-menu');
+            addMessage("📸 Quiero cotizar", 'user');
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                addMessage(`¡Excelente! Para darte el presupuesto exacto, por favor envíame una foto de tu cabello cumpliendo esto:<br><br>1️⃣ Pelo suelto, sin cepillar ni planchar (al natural).<br>2️⃣ Que esté seco y se vea de espalda completo.<br>3️⃣ No es necesario que muestres tu carita. 🌸`, 'bot');
+                document.getElementById('user-input').disabled = false;
+                document.getElementById('user-input').focus();
+                step = "waiting_photo";
+            }, 1000);
+        }
+
+        function goToGarantia() {
+            disableButtons('node-main-menu');
+            addMessage("🛡️ Solicitud de Garantía", 'user');
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                addMessage(`Entiendo, hermosa. Para revisar tu caso bajo nuestras políticas, confírmame estos puntos:`, 'bot');
+                setTimeout(() => {
+                    const msg = addMessage(`1️⃣ ¿Has seguido el postcuidado enviado por WhatsApp?<br>2️⃣ ¿Usas los productos recomendados?<br>3️⃣ ¿Secaste tu cabello al 100% con secador?<br><br><strong>¿Confirmas que has seguido estos pasos?</strong>`, 'bot');
+                    msg.id = "node-garantia-check";
+                    const opt = document.createElement('div');
+                    opt.className = 'options-container';
+                    opt.innerHTML = `
+                        <button class="option-btn" onclick="finishGarantia(true)">✅ SÍ, he seguido los pasos</button>
+                        <button class="option-btn" onclick="finishGarantia(false)">❌ NO, me falta algo</button>
+                    `;
+                    msg.appendChild(opt);
+                }, 1000);
+            }, 1000);
+        }
+
+        function finishGarantia(success) {
+            disableButtons('node-garantia-check');
+            if(success) {
+                addMessage("✅ SÍ", 'user');
+                showTyping(true);
+                setTimeout(() => {
+                    showTyping(false);
+                    addMessage(`¡Perfecto! Pásame el <strong>video de tu cabello seco</strong> por aquí 📸 y ya te conecto con una especialista.`, 'bot');
+                    triggerNotification("GARANTÍA", `Video pendiente de <strong>${currentName}</strong>`);
+                }, 1000);
+            } else {
+                addMessage("❌ NO", 'user');
+                addMessage(`No te preocupes. Revisa el postcuidado y cuando estés lista, vuelve para ayudarte. ❤️`, 'bot');
+            }
+        }
+
+        function askAge() {
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                const msg = addMessage(`Antes de conectarte con nuestras especialistas, por seguridad legal confírmame: <br><br><strong>¿Eres mayor de edad (18+)?</strong>`, 'bot');
+                msg.id = "node-age-check";
+                const opt = document.createElement('div');
+                opt.className = 'options-container';
+                opt.innerHTML = `
+                    <button class="option-btn" onclick="confirmAge(true)">✅ SÍ, soy mayor</button>
+                    <button class="option-btn" onclick="confirmAge(false)">❌ NO, soy menor</button>
+                `;
+                msg.appendChild(opt);
+            }, 1000);
+        }
+
+        function confirmAge(isAdult) {
+            if(isAdult) {
+                disableButtons('node-age-check');
+                addMessage("✅ SÍ", 'user');
+                showTyping(true);
+                setTimeout(() => {
+                    showTyping(false);
+                    addMessage(`¡Excelente! Dejas constancia de tu mayoría de edad y aceptación de nuestras políticas en <a href="https://juliealisados.com/promociones-condiciones.html" class="link-preview" target="_blank">juliealisados.com/terminos</a>.<br><br>Te estoy conectando con una asesora para finalizar tu agendamiento en <strong>${currentSede}</strong>. ✨`, 'bot');
+                    triggerNotification("DERIVACIÓN", `<strong>${currentName}</strong> lista para ${currentSede}`);
+                }, 1000);
+            } else {
+                addMessage("❌ NO", 'user');
+                addMessage(`Entiendo. Por norma legal, el agendamiento debe realizarlo tu acudiente. Si está contigo, puede marcar <strong>SÍ</strong> ahora.`, 'bot');
+            }
+        }
+
+        function goToAsesora() {
+            disableButtons('node-main-menu');
+            addMessage("👩‍💼 Hablar con Asesora", 'user');
+            showTyping(true);
+            setTimeout(() => {
+                showTyping(false);
+                addMessage(`¡Entendido! Te voy a conectar con una de nuestras especialistas de inmediato. 👩‍💼✨`, 'bot');
+                triggerNotification("ATENCIÓN", `<strong>${currentName}</strong> espera asesora 🚨`);
+            }, 1000);
+        }
+
+        function triggerNotification(type, content) {
+            const log = document.getElementById('log');
+            log.style.display = 'block';
+            document.getElementById('log-badge').innerText = type;
+            document.getElementById('log-content').innerHTML = content;
+        }
+    </script>
+</body>
+</html>

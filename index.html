@@ -57,6 +57,10 @@
         gtag('config', 'G-2BPKBTDBG5');
     </script>
     
+    <!-- Central Analytics Tracker & Privacy Consent -->
+    <script src="js/tracker.js" defer></script>
+    <script src="js/consent.js" defer></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julie Alisados | El Alisado Saludable #1 de Colombia</title>
@@ -74,28 +78,53 @@
 
     <!-- Open Graph (Para redes sociales y Google) -->
     <meta property="og:title" content="Julie Alisados | El Alisado Saludable #1 de Colombia">
-    <meta property="og:description" content="Especialistas en alisado orgánico y liso saludable libre de formol.">
+    <meta property="og:description" content="Especialistas en alisado orgánico y liso saludable 100% libre de formol en Tunja y Moniquirá.">
     <meta property="og:image" content="https://juliealisados.com/logo%201.png">
-    <meta property="og:url" content="https://juliealisados.com">
+    <meta property="og:url" content="https://juliealisados.com/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Julie Alisados">
+    <meta property="og:locale" content="es_CO">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Julie Alisados | El Alisado Saludable #1 de Colombia">
+    <meta name="twitter:description" content="Especialistas en alisado orgánico y liso saludable 100% libre de formol en Tunja y Moniquirá.">
+    <meta name="twitter:image" content="https://juliealisados.com/logo%201.png">
 
     <meta name="google-site-verification" content="jWDvmFZaIf2edq9obpK6RLJqt-ZG3Y25oqVUa__96fY" />
     <link rel="canonical" href="https://juliealisados.com/" />
 
-    <!-- Datos Estructurados para Google (Logo e Identidad) -->
+    <!-- Datos Estructurados para Google (Organization & LocalBusiness BeautySalon) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Julie Alisados",
-      "url": "https://juliealisados.com",
-      "logo": "https://juliealisados.com/logo%201.png",
-      "sameAs": [
-        "https://www.instagram.com/juliealisados/",
-        "https://www.facebook.com/Juliealisados?locale=es_LA",
-        "https://www.tiktok.com/@juliealisados?lang=es-419"
-      ]
-    }
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Julie Alisados",
+        "url": "https://juliealisados.com/",
+        "logo": "https://juliealisados.com/logo%201.png",
+        "sameAs": [
+          "https://www.instagram.com/juliealisados/",
+          "https://www.facebook.com/Juliealisados?locale=es_LA",
+          "https://www.tiktok.com/@juliealisados?lang=es-419"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Julie Alisados",
+        "image": "https://juliealisados.com/logo%201.png",
+        "@id": "https://juliealisados.com/#salon",
+        "url": "https://juliealisados.com/",
+        "telephone": "+573043588180",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tunja y Moniquirá",
+          "addressRegion": "Boyacá",
+          "addressCountry": "CO"
+        }
+      }
+    ]
     </script>
 
     <!-- Event snippet for WhatsApp Contact conversion page -->
@@ -159,7 +188,7 @@
                 <a href="#" class="logo-link">
                     <img src="logo 1.png"
                         alt="Julie Alisados - Expertos en Alisado Orgánico y Saludable en Tunja y Moniquirá"
-                        class="logo-img" fetchpriority="high">
+                        class="logo-img" fetchpriority="high" width="90" height="90">
                 </a>
                 <div class="header-titles">
                     <h1 class="header-title">JULIE ALISADOS <span>By Julie Valencia</span></h1>
@@ -546,21 +575,21 @@
                 <h3 class="section-title">Nuestros Resultados</h3>
                 <div class="results-grid">
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%201.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%201.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 1" loading="lazy">
+                        <img src="antes%20despues%201.jpg" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%201.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 1" width="800" height="800" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%202.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%202.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 2" loading="lazy">
+                        <img src="antes%20despues%202.jpg" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%202.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 2" width="800" height="800" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
                         <div class="result-label">Antes / Después</div>
                     </div>
                     <div class="image-container" style="position: relative;">
-                        <img src="antes%20despues%203.png" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%203.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 3" loading="lazy">
+                        <img src="antes%20despues%203.jpg" data-video="ANTES%20DESPUES%20%20ALISADO%20SALUDABLE%203.mp4" class="result-video-thumb lazy-img-clickable" style="cursor: pointer; width: 100%; height: auto;" alt="Resultado Alisado 3" width="800" height="800" loading="lazy">
                         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.2); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; pointer-events: none; border: 1px solid rgba(212, 175, 55, 0.4);">
                             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="rgba(255,255,255,0.7)" d="M8 5v14l11-7z"/></svg>
                         </div>
@@ -598,8 +627,31 @@
             </div>
         </section>
 
-
-    </main>
+        <!-- Sección de Valoración Capilar (Captura de Leads CRO) -->
+        <section class="lead-capture-section" style="padding: 60px 0; background: linear-gradient(135deg, var(--soft-cream) 0%, #ffffff 100%); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+            <div class="container" style="max-width: 800px; text-align: center;">
+                <h3 class="section-title" style="margin-bottom: 10px;">Diagnóstico Capilar Profesional</h3>
+                <p style="font-size: 1.1rem; color: var(--light-text); margin-bottom: 30px;">Recibe una asesoría personalizada sobre el estado de tu hebra y descubre el tratamiento ideal para ti.</p>
+                <form id="lead-assessment-form" onsubmit="event.preventDefault(); window.JulieTracker.trackLeadFormSubmit('Diagnostico', {}); window.open('https://api.whatsapp.com/send?phone=573043588180&text=Hola%20Julie%20Alisados,%20quiero%20mi%20diagn%C3%B3stico%20capilar%20personalizado');" style="display: flex; flex-direction: column; gap: 15px; background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: var(--shadow-soft); border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                        <input type="text" placeholder="Tu Nombre" required style="padding: 14px 20px; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.3); outline: none;">
+                        <input type="tel" placeholder="Tu WhatsApp" required style="padding: 14px 20px; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.3); outline: none;">
+                    </div>
+                    <select style="padding: 14px 20px; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.3); outline: none; background: #fff;">
+                        <option value="">¿Cómo definirías tu cabello actualmente?</option>
+                        <option value="natural">Natural sin procesos químicos</option>
+                        <option value="tinturado">Tinturado (sin decolorar)</option>
+                        <option value="decolorado">Con decoloración / mechas</option>
+                        <option value="maltratado">Poroso o maltratado</option>
+                    </select>
+                    <label style="font-size: 0.8rem; color: #777; text-align: left;">
+                        <input type="checkbox" required checked> Autorizo el tratamiento de mis datos según la <a href="https://juliealisados.com/politica-datos.html" target="_blank" style="color: var(--gold-dark);">Ley 1581 de 2012</a>.
+                    </label>
+                    <button type="submit" class="btn-gold-fill" style="padding: 14px 28px; border: none; cursor: pointer; font-size: 1rem;">Solicitar Valoración Gratuita</button>
+                    <p style="font-size: 0.82rem; color: var(--gold-dark); margin-top: 6px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px;">⚡ Asesoría 100% personalizada por WhatsApp | 🔒 Sin compromiso</p>
+                </form>
+            </div>
+        </section>
 
     <!-- Sección de Dudas Frecuentes (SEO) -->
         <section class="faq-section" id="dudas">
