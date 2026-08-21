@@ -975,30 +975,39 @@
                 });
             });
         }
-        // Banner Lógica: Movimiento Permanente (Marquee) Optimizado
+        // Banner Lógica: Movimiento Continuo Suave + Deslizamiento Táctil con el Dedo (Touch & Drag)
         const track = document.getElementById('promo-track');
+        const promoWrapper = document.querySelector('.promo-slider-wrapper');
 
         let isPaused = false;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let startCurrentX = 0;
+        let lastTouchX = 0;
+        let lastTouchTime = 0;
+        let velocityX = 0;
+        let dragDistance = 0;
+        let resumeTimer = null;
         let currentX = 0;
-        const speed = 1.0; 
+        const speed = 0.85; 
         
         let cardWidth = 0;
         let blockWidth = 0;
 
         function updateDimensions() {
             const firstCard = track?.querySelector('.image-card');
-            if (firstCard) {
+            if (firstCard && track) {
                 const cardStyle = window.getComputedStyle(firstCard);
                 const marginRight = parseFloat(cardStyle.marginRight) || 0;
                 cardWidth = firstCard.offsetWidth + marginRight;
-                // Contar cuántos elementos hay para el loop (dividido por 2 porque están duplicados)
                 const uniqueCards = track.querySelectorAll('.image-card').length / 2;
                 blockWidth = cardWidth * uniqueCards; 
             }
         }
 
         function animate() {
-            if (!isPaused && track && blockWidth > 0) {
+            if (!isPaused && !isDragging && track && blockWidth > 0) {
                 currentX -= speed;
                 if (Math.abs(currentX) >= blockWidth) {
                     currentX = 0;
@@ -1006,6 +1015,127 @@
                 track.style.transform = `translateX(${currentX}px)`;
             }
             requestAnimationFrame(animate);
+        }
+
+        // CONTROL TÁCTIL PARA CELULARES (SWIPE / DEDO)
+        if (track && promoWrapper) {
+            promoWrapper.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                clearTimeout(resumeTimer);
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startCurrentX = currentX;
+                lastTouchX = startX;
+                lastTouchTime = performance.now();
+                velocityX = 0;
+                dragDistance = 0;
+                track.style.transition = 'none';
+            }, { passive: true });
+
+            promoWrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentTouchX = e.touches[0].clientX;
+                const currentTouchY = e.touches[0].clientY;
+                const deltaX = currentTouchX - startX;
+                const deltaY = currentTouchY - startY;
+                dragDistance = Math.abs(deltaX);
+
+                // Si el movimiento es horizontal, evitar scroll vertical no deseado
+                if (Math.abs(deltaX) > Math.abs(deltaY) && e.cancelable) {
+                    e.preventDefault();
+                }
+
+                const now = performance.now();
+                const dt = now - lastTouchTime;
+                if (dt > 0) {
+                    velocityX = (currentTouchX - lastTouchX) / dt;
+                }
+                lastTouchX = currentTouchX;
+                lastTouchTime = now;
+
+                currentX = startCurrentX + deltaX;
+                if (blockWidth > 0) {
+                    while (currentX > 0) { currentX -= blockWidth; startCurrentX -= blockWidth; }
+                    while (currentX < -blockWidth) { currentX += blockWidth; startCurrentX += blockWidth; }
+                }
+                track.style.transform = `translateX(${currentX}px)`;
+            }, { passive: false });
+
+            const endTouch = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                // Efecto de inercia suave al soltar el dedo
+                let momentum = velocityX * 120;
+                if (Math.abs(momentum) > 280) momentum = Math.sign(momentum) * 280;
+                currentX += momentum;
+                if (blockWidth > 0) {
+                    while (currentX > 0) currentX -= blockWidth;
+                    while (currentX < -blockWidth) currentX += blockWidth;
+                }
+
+                track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                track.style.transform = `translateX(${currentX}px)`;
+
+                setTimeout(() => {
+                    if (track) track.style.transition = 'none';
+                }, 400);
+
+                // Reanudar desplazamiento automático después de 2.5 segundos de inactividad
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => {
+                    isPaused = false;
+                }, 2500);
+            };
+
+            promoWrapper.addEventListener('touchend', endTouch);
+            promoWrapper.addEventListener('touchcancel', endTouch);
+
+            // CONTROL DE ARRASTRE CON RATÓN PARA COMPUTADORAS
+            let isMouseDown = false;
+            promoWrapper.addEventListener('mousedown', (e) => {
+                isMouseDown = true;
+                isDragging = true;
+                clearTimeout(resumeTimer);
+                startX = e.clientX;
+                startY = e.clientY;
+                startCurrentX = currentX;
+                lastTouchX = startX;
+                lastTouchTime = performance.now();
+                velocityX = 0;
+                dragDistance = 0;
+                track.style.transition = 'none';
+                promoWrapper.style.cursor = 'grabbing';
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isMouseDown) return;
+                const deltaX = e.clientX - startX;
+                dragDistance = Math.abs(deltaX);
+
+                const now = performance.now();
+                const dt = now - lastTouchTime;
+                if (dt > 0) {
+                    velocityX = (e.clientX - lastTouchX) / dt;
+                }
+                lastTouchX = e.clientX;
+                lastTouchTime = now;
+
+                currentX = startCurrentX + deltaX;
+                if (blockWidth > 0) {
+                    while (currentX > 0) { currentX -= blockWidth; startCurrentX -= blockWidth; }
+                    while (currentX < -blockWidth) { currentX += blockWidth; startCurrentX += blockWidth; }
+                }
+                track.style.transform = `translateX(${currentX}px)`;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isMouseDown) {
+                    isMouseDown = false;
+                    promoWrapper.style.cursor = 'grab';
+                    endTouch();
+                }
+            });
         }
 
         window.addEventListener('load', () => {
@@ -1034,6 +1164,12 @@
         // Clicks en imágenes del banner de promociones (lazy-img-clickable)
         document.querySelectorAll('.lazy-img-clickable').forEach(item => {
             item.addEventListener('click', (e) => {
+                // Si el usuario estaba arrastrando con el dedo, no abrir modal por accidente
+                if (dragDistance > 10) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
                 e.stopPropagation();
                 const videoSrc = item.dataset.video;
                 if (videoSrc) openModal(videoSrc);
@@ -1043,6 +1179,11 @@
         // Clicks en el overlay de play (el botón de play sobre la imagen)
         document.querySelectorAll('.play-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
+                if (dragDistance > 10) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
                 e.stopPropagation();
                 const container = overlay.closest('.video-card-container');
                 const img = container?.querySelector('.lazy-img-clickable');
