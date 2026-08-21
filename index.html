@@ -1091,9 +1091,17 @@
             promoWrapper.addEventListener('touchend', endTouch);
             promoWrapper.addEventListener('touchcancel', endTouch);
 
-            // CONTROL DE ARRASTRE CON RATÓN PARA COMPUTADORAS
+            // CONTROL DE ARRASTRE CON RATÓN PARA COMPUTADORAS (PC / LAPTOP)
             let isMouseDown = false;
+
+            // Desactivar arrastre fantasma de imágenes por defecto del navegador
+            track.querySelectorAll('img').forEach(img => {
+                img.setAttribute('draggable', 'false');
+                img.addEventListener('dragstart', (e) => e.preventDefault());
+            });
+
             promoWrapper.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return; // Solo responder a clic izquierdo
                 isMouseDown = true;
                 isDragging = true;
                 clearTimeout(resumeTimer);
@@ -1105,7 +1113,8 @@
                 velocityX = 0;
                 dragDistance = 0;
                 track.style.transition = 'none';
-                promoWrapper.style.cursor = 'grabbing';
+                promoWrapper.classList.add('is-dragging');
+                e.preventDefault(); // Previene selección de texto y arrastre nativo
             });
 
             window.addEventListener('mousemove', (e) => {
@@ -1132,10 +1141,28 @@
             window.addEventListener('mouseup', () => {
                 if (isMouseDown) {
                     isMouseDown = false;
-                    promoWrapper.style.cursor = 'grab';
+                    promoWrapper.classList.remove('is-dragging');
                     endTouch();
                 }
             });
+
+            // Soporte para Rueda del Mouse y Touchpad Horizontal en PC
+            promoWrapper.addEventListener('wheel', (e) => {
+                const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+                if (delta !== 0) {
+                    e.preventDefault();
+                    clearTimeout(resumeTimer);
+                    isPaused = true;
+                    currentX -= delta * 0.8;
+                    if (blockWidth > 0) {
+                        while (currentX > 0) currentX -= blockWidth;
+                        while (currentX < -blockWidth) currentX += blockWidth;
+                    }
+                    track.style.transition = 'none';
+                    track.style.transform = `translateX(${currentX}px)`;
+                    resumeTimer = setTimeout(() => { isPaused = false; }, 2000);
+                }
+            }, { passive: false });
         }
 
         window.addEventListener('load', () => {
