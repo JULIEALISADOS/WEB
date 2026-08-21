@@ -913,34 +913,44 @@ header {
 
 /* Ajuste específico para la Línea de Productos - OPTIMIZADO PREMIUM */
 .product-line .image-card {
-    width: 450px !important;
-    max-width: 90% !important;
-    height: 320px !important;
-    /* Más horizontal para que coincida con tus fotos */
+    width: 480px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1000 / 702;
     background: #fff !important;
     border: 1px solid var(--gold);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px !important;
+    overflow: hidden;
+    position: relative;
 }
 
 .product-line .placeholder-img-large {
-    object-fit: contain !important;
-    /* Ahora sí se verá completa y sin huecos grandes */
-    padding: 10px;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    padding: 0 !important;
     background-color: #fff;
+    border-radius: 20px !important;
 }
 
-.product-line .product-label {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
-    font-family: var(--font-heading);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    padding: 15px;
+/* Banner promocional principal dentro de cada linea */
+.hero-line-banner {
+    width: 100%;
+    max-width: 850px;
+    height: auto;
+    aspect-ratio: 1000 / 702;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.22);
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    object-fit: cover;
 }
 
 .image-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.25);
 }
 
 /* Estilos para etiquetas de productos en banner */
@@ -1892,7 +1902,10 @@ footer .section-title::after {
     }
 
     .product-line .image-card {
-        height: 320px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1000 / 702;
     }
 
     .product-grid {
