@@ -175,25 +175,30 @@
 
         .product-image-container {
             width: 100%;
-            height: 450px;
-            /* Cubre todo el ancho del banner de la tarjeta */
+            height: 340px;
             overflow: hidden;
-            background-color: #fff;
+            background-color: #faf7f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
         }
 
         .product-card-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* ¡Perfecto! Rellena todo de lado a lado */
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             display: block;
-            background: #fff;
-            padding: 0;
-            transition: transform 0.8s ease;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
         }
 
         .product-card-large:hover img {
-            transform: scale(1.1);
+            transform: scale(1.06);
         }
 
         .product-info {
@@ -269,62 +274,189 @@
             }
         }
 
-        /* Lightbox Modal Optimizado */
-        .modal {
+        /* Lightbox Modal Optimizado (Sin rebordes feos ni solapamiento) */
+        .modal-detail-overlay {
             display: none;
             position: fixed;
-            z-index: 3000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            transition: all 0.3s ease;
+            padding: 15px;
+            box-sizing: border-box;
         }
 
-        .modal-content {
-            max-width: 95%;
-            max-height: 85vh;
-            object-fit: contain;
-            /* Evita que se estire feo */
+        .modal-detail-card {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 740px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
-            background: #000;
-            animation: zoomIn 0.3s ease-out;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            animation: modalFadeIn 0.25s ease-out;
         }
 
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .close-modal {
+        .modal-detail-close {
             position: absolute;
-            top: 25px;
-            right: 35px;
-            color: #fff;
-            font-size: 50px;
-            font-weight: 300;
-            cursor: pointer;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f2f2f4;
+            color: #222222;
+            border: 1px solid #e0e0e0;
+            font-size: 22px;
+            font-weight: 700;
             line-height: 1;
-            transition: 0.3s;
-            z-index: 3001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 30;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            padding: 0;
+            margin: 0;
         }
 
-        .close-modal:hover {
-            color: var(--gold);
-            transform: rotate(90deg) scale(1.2);
+        .modal-detail-close:hover {
+            background: var(--gold);
+            color: #ffffff;
+            border-color: var(--gold);
+            transform: scale(1.08);
+        }
+
+        .modal-body-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 24px;
+            gap: 20px;
+        }
+
+        .modal-img-col {
+            flex: 1 1 260px;
+            background: #faf7f2;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            min-height: 240px;
+        }
+
+        .modal-product-img {
+            max-width: 100% !important;
+            max-height: 300px !important;
+            height: auto !important;
+            width: auto !important;
+            object-fit: contain !important;
+            border-radius: 10px !important;
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .modal-info-col {
+            flex: 1 1 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 25px;
+            padding-top: 5px;
+        }
+
+        .modal-product-title {
+            font-family: var(--font-heading);
+            color: #1a1a1a;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+            padding-right: 20px;
+        }
+
+        .modal-product-price {
+            font-size: 1.35rem;
+            color: var(--gold-dark);
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .modal-product-desc {
+            font-size: 0.93rem;
+            color: #333333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-product-desc strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        @media (max-width: 640px) {
+            .modal-detail-overlay {
+                padding: 12px;
+            }
+
+            .modal-detail-card {
+                max-height: 88vh;
+                border-radius: 16px;
+            }
+
+            .modal-body-wrapper {
+                padding: 18px 16px;
+                gap: 14px;
+                flex-direction: column;
+            }
+
+            .modal-img-col {
+                flex: 0 0 auto;
+                width: 100%;
+                min-height: 200px;
+                padding: 12px;
+            }
+
+            .modal-product-img {
+                max-height: 220px !important;
+            }
+
+            .modal-info-col {
+                padding-right: 0;
+                padding-top: 0;
+            }
+
+            .modal-product-title {
+                font-size: 1.2rem;
+                padding-right: 25px;
+            }
+
+            .modal-detail-close {
+                top: 10px;
+                right: 10px;
+                width: 34px;
+                height: 34px;
+                font-size: 20px;
+            }
         }
 
         /* Selectores de cantidad elegantes integrados en la tarjeta */
@@ -527,18 +659,18 @@
     </header>
 
     <!-- MODAL DE DETALLE PROFESIONAL -->
-    <div id="imageModal" class="modal-detail-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
-        <div class="modal-detail-card" style="background: #ffffff; border-radius: 20px; max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; border: 2px solid var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column;">
-            <span class="close-modal" id="closeModal" style="position: absolute; top: 15px; right: 20px; font-size: 32px; font-weight: bold; color: #333; cursor: pointer; z-index: 10; line-height: 1;">&times;</span>
-            <div class="modal-body-wrapper" style="display: flex; flex-wrap: wrap; padding: 25px; gap: 20px;">
-                <div class="modal-img-col" style="flex: 1 1 280px; text-align: center; display: flex; align-items: center; justify-content: center; background: #fafafa; border-radius: 15px; padding: 15px;">
-                    <img class="modal-content" id="imgFull" style="max-width: 100%; max-height: 320px; object-fit: contain; border-radius: 10px;">
+    <div id="imageModal" class="modal-detail-overlay">
+        <div class="modal-detail-card">
+            <button type="button" class="modal-detail-close" id="closeModal" aria-label="Cerrar modal">&times;</button>
+            <div class="modal-body-wrapper">
+                <div class="modal-img-col">
+                    <img class="modal-product-img" id="imgFull" alt="Vista previa de producto">
                 </div>
-                <div class="modal-info-col" style="flex: 1 1 320px; display: flex; flex-direction: column; justify-content: center;">
-                    <h3 id="modalProductName" style="font-family: var(--font-heading); color: #1a1a1a; font-size: 1.4rem; margin-bottom: 8px;"></h3>
-                    <span id="modalProductPrice" class="product-price" style="font-size: 1.3rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 15px; display: block;"></span>
-                    <div id="modalProductDetails" style="font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 20px; white-space: pre-line;"></div>
-                    <a id="modalWaBtn" href="#" target="_blank" class="btn-gold" style="text-align: center; padding: 12px 20px; font-weight: 700; text-decoration: none; border-radius: 10px; display: inline-block;">Consultar Pedido Estilista en WhatsApp 💬</a>
+                <div class="modal-info-col">
+                    <h3 id="modalProductName" class="modal-product-title"></h3>
+                    <span id="modalProductPrice" class="modal-product-price"></span>
+                    <div id="modalProductDetails" class="modal-product-desc"></div>
+                    <a id="modalWaBtn" href="#" target="_blank" class="modal-wa-btn">Consultar Pedido Estilista en WhatsApp 💬</a>
                 </div>
             </div>
         </div>
@@ -576,9 +708,9 @@
                 </div>
 
                 <!-- 2. ALISADO SALUDABLE PASO 2 -->
-                <div class="product-card-large" data-name="Alisado Saludable - Paso 2 (1100 g)" data-price="380000" data-img="KIT ALISADO.jpeg" data-details="💫 **Alisado Saludable Paso 02 (1100 g)**&#10;&#10;Tratamiento alisador orgánico vegetal para uso profesional en salón.&#10;&#10;• Liso 100% perfecto, natural, sano y brillante.&#10;• Registro INVIMA y fórmula 100% libre de formol o vapores molestos.&#10;• Restaura la fibra mientras alinea la cutícula.&#10;• Gran rendimiento para múltiples servicios en peluquería." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Alisado Saludable - Paso 2 (1100 g)" data-price="380000" data-img="alisado-saludable-pro.jpg" data-details="💫 **Alisado Saludable Paso 02 (1100 g)**&#10;&#10;Tratamiento alisador orgánico vegetal para uso profesional en salón.&#10;&#10;• Liso 100% perfecto, natural, sano y brillante.&#10;• Registro INVIMA y fórmula 100% libre de formol o vapores molestos.&#10;• Restaura la fibra mientras alinea la cutícula.&#10;• Gran rendimiento para múltiples servicios en peluquería." onclick="openProductModal(this)">
                     <div class="product-image-container">
-                        <img src="KIT ALISADO.jpeg" alt="Alisado Saludable - Paso 2">
+                        <img src="alisado-saludable-pro.jpg" alt="Alisado Saludable - Paso 2">
                     </div>
                     <div class="product-info">
                         <h3>Alisado Saludable - Paso 2 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1100 g)</span></h3>
@@ -602,9 +734,9 @@
                 </div>
 
                 <!-- 4. MASCARILLA REPARADORA PASO 3 -->
-                <div class="product-card-large" data-name="Mascarilla Reparadora - Paso 3 (500 ml)" data-price="52000" data-img="KIT ALISADO.jpeg" data-details="👑 **Mascarilla Reparadora Paso 03 (500 ml)**&#10;&#10;Broche de oro técnico para finalizar alisados y tratamientos profesionales.&#10;&#10;• Estabiliza el pH de la hebra post-proceso térmico.&#10;• Sella la cutícula atrapando nutrientes e hidratación.&#10;• Repone lípidos y aporta una suavidad inolvidable.&#10;• Fija un brillo de espejo espectacular." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Mascarilla Reparadora - Paso 3 (500 ml)" data-price="52000" data-img="mascarilla-oro.jpeg" data-details="👑 **Mascarilla Reparadora Paso 03 (500 ml)**&#10;&#10;Broche de oro técnico para finalizar alisados y tratamientos profesionales.&#10;&#10;• Estabiliza el pH de la hebra post-proceso térmico.&#10;• Sella la cutícula atrapando nutrientes e hidratación.&#10;• Repone lípidos y aporta una suavidad inolvidable.&#10;• Fija un brillo de espejo espectacular." onclick="openProductModal(this)">
                     <div class="product-image-container">
-                        <img src="KIT ALISADO.jpeg" alt="Mascarilla Reparadora - Paso 3">
+                        <img src="mascarilla-oro.jpeg" alt="Mascarilla Reparadora - Paso 3">
                     </div>
                     <div class="product-info">
                         <h3>Mascarilla Reparadora - Paso 3 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
@@ -708,7 +840,12 @@
             modalImg.src = img;
             modalName.textContent = name;
             modalPrice.textContent = "$" + parseInt(price).toLocaleString("es-CO");
-            modalDetails.innerText = details;
+            
+            // Formatear negritas de Markdown (**texto**) a <strong>texto</strong> e incluir saltos de línea limpios
+            let formattedDetails = details
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            modalDetails.innerHTML = formattedDetails;
 
             const waText = encodeURIComponent(`Hola 👋 soy estilista profesional, estoy viendo el producto *${name}* en la Línea Profesional de Julie Alisados y deseo solicitar más información para adquirirlo ✨`);
             modalWaBtn.href = `https://wa.me/573043588180?text=${waText}`;
@@ -717,17 +854,19 @@
             document.body.style.overflow = "hidden";
         }
 
-        span.onclick = function () {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
+        if (span) {
+            span.onclick = function () {
                 modal.style.display = "none";
                 document.body.style.overflow = "auto";
             }
         }
+
+        window.addEventListener('click', function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
     </script>
 
     <!-- Floating WhatsApp Button -->
