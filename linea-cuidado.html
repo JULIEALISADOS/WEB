@@ -537,17 +537,29 @@
         </div>
     </header>
 
-    <div id="imageModal" class="modal">
-        <span class="close-modal" id="closeModal">&times;</span>
-        <img class="modal-content" id="imgFull">
+    <!-- MODAL DE DETALLE DE PRODUCTO -->
+    <div id="imageModal" class="modal-detail-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
+        <div class="modal-detail-card" style="background: #ffffff; border-radius: 20px; max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; border: 2px solid var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column;">
+            <span class="close-modal" id="closeModal" style="position: absolute; top: 15px; right: 20px; font-size: 32px; font-weight: bold; color: #333; cursor: pointer; z-index: 10; line-height: 1;">&times;</span>
+            <div class="modal-body-wrapper" style="display: flex; flex-wrap: wrap; padding: 25px; gap: 20px;">
+                <div class="modal-img-col" style="flex: 1 1 280px; text-align: center; display: flex; align-items: center; justify-content: center; background: #fafafa; border-radius: 15px; padding: 15px;">
+                    <img class="modal-content" id="imgFull" style="max-width: 100%; max-height: 320px; object-fit: contain; border-radius: 10px;">
+                </div>
+                <div class="modal-info-col" style="flex: 1 1 320px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 id="modalProductName" style="font-family: var(--font-heading); color: #1a1a1a; font-size: 1.4rem; margin-bottom: 8px;"></h3>
+                    <span id="modalProductPrice" class="product-price" style="font-size: 1.3rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 15px; display: block;"></span>
+                    <div id="modalProductDetails" style="font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 20px; white-space: pre-line;"></div>
+                    <a id="modalWaBtn" href="#" target="_blank" class="btn-gold" style="text-align: center; padding: 12px 20px; font-weight: 700; text-decoration: none; border-radius: 10px; display: inline-block;">Comprar por WhatsApp 💬</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <main class="product-detail-section">
         <div class="container">
             <div class="back-nav">
                 <a href="index.html#cuidado-ja" class="btn-back">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
@@ -557,163 +569,124 @@
 
             <h2 class="section-title">Línea de Cuidado Capilar</h2>
             <p class="product-intro">
-                Tener el pelo de un millón de dólares no es un lujo, ¡es algo que todas merecemos! Nuestra colección de
-                cuidado capilar está pensada para proteger tu cabello, ya sea que tengas alisado o que simplemente
-                quieras que se te vea sano, fuerte y con una suavidad de infarto. No importa tu tipo de pelo, aquí
-                tenemos el secreto.
+                Tener el pelo de un millón de dólares no es un lujo, ¡es algo que todas merecemos! Nuestra colección de cuidado capilar está pensada para proteger tu cabello, ya sea que tengas alisado o que simplemente quieras que se te vea sano, fuerte y con una suavidad de infarto.
             </p>
 
             <div class="product-grid">
                 <!-- 1. SHAMPOO EXTRACTOS -->
-                <div class="product-card-large" data-name="Shampoo Extractos Naturales (1000 ml)" data-price="38000" onclick="openModal('shampoo extractos.jpeg')">
+                <div class="product-card-large" data-name="Shampoo Extractos Naturales (1000 ml)" data-price="38000" data-img="shampoo extractos.jpeg" data-details="🌿 **Fórmula Botánica Purificante (1000 ml)**&#10;&#10;¿Raíz grasosa o cabello pesado? Este shampoo combina 12 extractos naturales, libre de sal y libre de parabenos. Especial para cuero cabelludo de normal a graso.&#10;&#10;• Limpieza profunda que respeta la hidratación de las puntas.&#10;• Remueve el exceso de grasa y sudor diario.&#10;• Deja el cabello fresco, suelto y liviano todo el día.&#10;• Rinde muchísimo y cuida el pH de tu cuero cabelludo." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="shampoo extractos.jpeg" alt="Shampoo Extractos Naturales">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(1000 ml)</span></h3>
+                        <h3>Shampoo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$38.000</span>
-                        <p><strong>¿Raíz grasosa o cabello pesado?</strong> Limpieza profunda con 12 extractos naturales, sin sal y sin parabenos. Ideal para cuero cabelludo de normal a graso. Remueve el exceso de grasa y sudor sin resecar las puntas, dejando tu cabello fresco, suelto y liviano todo el día.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Limpieza profunda con 12 extractos naturales, sin sal y sin parabenos. Ideal para cuero cabelludo normal a graso.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 2. ACONDICIONADOR EXTRACTOS -->
-                <div class="product-card-large" data-name="Acondicionador Extractos Naturales (1000 ml)" data-price="39000" onclick="openModal('acondiconador extractos.jpeg')">
+                <div class="product-card-large" data-name="Acondicionador Extractos Naturales (1000 ml)" data-price="39000" data-img="acondiconador extractos.jpeg" data-details="🌿 **Desenredo e Hidratación Ligera (1000 ml)**&#10;&#10;El desenredante perfecto si buscas suavidad sin perder volumen. Fórmula sin sal y sin parabenos.&#10;&#10;• Hidrata de medios a puntas sin aportar peso.&#10;• Sella la cutícula para controlar el frizz.&#10;• Deja el cabello dócil, suave y muy fácil de peinar.&#10;• Ideal para todo tipo de cabello." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="acondiconador extractos.jpeg" alt="Acondicionador Extractos Naturales">
                     </div>
                     <div class="product-info">
-                        <h3>Acondicionador Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(1000 ml)</span></h3>
+                        <h3>Acondicionador Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$39.000</span>
-                        <p><strong>Desenredo fácil y soltura natural.</strong> Hidrata de medios a puntas sin dejar el cabello pesado ni grasoso. Sella la cutícula para controlar el frizz y dejar tu cabello dócil, suave y muy fácil de peinar.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Hidrata de medios a puntas sin dejar el cabello pesado ni grasoso. Sella la cutícula y controla el frizz.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 3. SHAMPOO ARGÁN -->
-                <div class="product-card-large" data-name="Shampoo Aceite de Argán (500 ml)" data-price="36000" onclick="openModal('shampoo-argan.jpeg')">
+                <div class="product-card-large" data-name="Shampoo Aceite de Argán (500 ml)" data-price="36000" data-img="shampoo-argan.jpeg" data-details="✨ **Rescate con Biotina y Argán (500 ml)**&#10;&#10;¿Pelo seco, maltratado o con procesos químicos? Su fórmula limpia delicadamente mientras restaura la elasticidad de la hebra.&#10;&#10;• Enriquecido con Biotina y Aceite de Argán puro.&#10;• Especial para cuero cabelludo normal a seco.&#10;• Evita el quiebre y nutre intensamente la fibra.&#10;• 100% Libre de sal y parabenos." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="shampoo-argan.jpeg" alt="Shampoo Aceite de Argán">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Shampoo Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$36.000</span>
-                        <p><strong>Rescate para cabello seco o maltratado.</strong> Fórmula suave enriquecida con Biotina y Aceite de Argán, sin sal ni parabenos. Especial para cuero cabelludo normal a seco. Limpia delicadamente, fortalece la hebra para evitar el quiebre y devuelve la elasticidad.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Fórmula suave con Biotina y Aceite de Argán. Especial para cuero cabelludo normal a seco y cabello maltratado.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 4. ACONDICIONADOR ARGÁN -->
-                <div class="product-card-large" data-name="Acondicionador Aceite de Argán (500 ml)" data-price="37000" onclick="openModal('acondiconador argan.jpeg')">
+                <div class="product-card-large" data-name="Acondicionador Aceite de Argán (500 ml)" data-price="37000" data-img="acondiconador argan.jpeg" data-details="💎 **Nutrición con Argán y Ácido Hialurónico (500 ml)**&#10;&#10;Nutrición profunda para un brillo de espejo y sedosidad incomparable.&#10;&#10;• Enriquecido con Ácido Hialurónico para rellenar la porosidad.&#10;• Ideal para cabellos secos, decolorados o tinturados.&#10;• Sella puntas abiertas y elimina el frizz.&#10;• Aporta tacto aterciopelado y soltura." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="acondiconador argan.jpeg" alt="Acondicionador Aceite de Argán">
                     </div>
                     <div class="product-info">
-                        <h3>Acondicionador Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Acondicionador Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$37.000</span>
-                        <p><strong>Nutrición con Argán y Ácido Hialurónico.</strong> Ideal para cabellos secos, decolorados o tinturados. Rellena la humedad de la hebra, sella las puntas abiertas, elimina el frizz y deja una suavidad y un brillo espectacular.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Nutrición intensa con Argán y Ácido Hialurónico. Ideal para cabellos secos, decolorados o tinturados.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 5. MASCARILLA ORO LÍQUIDO -->
-                <div class="product-card-large" data-name="Mascarilla Capilar Oro Líquido (250 ml)" data-price="35000" onclick="openModal('mascarilla-oro.jpeg')">
+                <div class="product-card-large" data-name="Mascarilla Capilar Oro Líquido (250 ml)" data-price="35000" data-img="mascarilla-oro.jpeg" data-details="👑 **Tratamiento de Rescate y Pre-Shampoo (250 ml)**&#10;&#10;Pura vitalidad en un frasco con Jojoba y Keratina para restaurar cabellos apagados.&#10;&#10;• Uso dual: Como Pre-Shampoo protector o mascarilla semanal.&#10;• Reconstruye la fibra y elimina el frizz rebelde.&#10;• Efecto spa inmediato desde la primera aplicación.&#10;• Libre de sal y parabenos." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="mascarilla-oro.jpeg" alt="Mascarilla Capilar Oro Líquido">
                     </div>
                     <div class="product-info">
-                        <h3>Mascarilla Capilar Oro Líquido <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(250 ml)</span></h3>
+                        <h3>Mascarilla Capilar Oro Líquido <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
-                        <p><strong>Tratamiento de rescate inmediato y Pre-Shampoo.</strong> Con Jojoba y Keratina. Devuelve la vida al cabello apagado, suave la hebra y elimina el frizz rebelde. Puedes usarla antes del shampoo para proteger tus puntas o como mascarilla semanal.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Tratamiento de rescate con Jojoba y Keratina. Úsala antes del shampoo para proteger puntas o como mascarilla semanal.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 6. TRATAMIENTO MULTIACTIVO -->
-                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 (300 ml)" data-price="36000" onclick="openModal('tratamiento-multiactivo.jpeg')">
+                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 (300 ml)" data-price="36000" data-img="tratamiento-multiactivo.jpeg" data-details="🌟 **Solución Todo en Uno con 12 Activos (300 ml)**&#10;&#10;Combina 12 ingredientes poderosos (Keratina, Argán, Biotina, Aloe Vera, Té Verde, Vitamina E y más).&#10;&#10;• Nutre, repara, desenreda y aporta brillo espejo.&#10;• Protege el cabello contra el sol y el calor diario.&#10;• Manejabilidad envidiable y control de frizz.&#10;• Apto para todo tipo de cabello." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="tratamiento-multiactivo.jpeg" alt="Tratamiento Multiactivo 12 Ingredientes">
                     </div>
                     <div class="product-info">
-                        <h3>Tratamiento Multiactivo 12-en-1 <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(300 ml)</span></h3>
+                        <h3>Tratamiento Multiactivo 12-en-1 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(300 ml)</span></h3>
                         <span class="product-price">$36.000</span>
-                        <p><strong>La solución práctica "todo en uno".</strong> Combina 12 ingredientes poderosos (Keratina, Argán, Biotina, Aloe Vera y más). Repara, nutre, combate el frizz y protege tu cabello contra el sol y el calor diario.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Combina 12 ingredientes poderosos. Repara, nutre, combate el frizz y protege contra el sol y el calor diario.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 7. AMPOLLA REPARACIÓN S.O.S. -->
-                <div class="product-card-large" data-name="Ampolla de Reparación S.O.S. (20 ml)" data-price="16000" onclick="openModal('la ampolla.jpg')">
+                <div class="product-card-large" data-name="Ampolla de Reparación S.O.S. (20 ml)" data-price="16000" data-img="la ampolla.jpg" data-details="💉 **Choque Concentrado de Emergencia (20 ml)**&#10;&#10;Elixir ultra concentrado para reconstruir la fibra capilar maltratada en minutos.&#10;&#10;• Ideal para cabellos sensibilizados por decoloración o plancha.&#10;• Sella la cutícula de inmediato y elimina porosidad.&#10;• Devuelve la firmeza, elasticidad y brillo.&#10;• Rinde de 2 a 3 aplicaciones." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="la ampolla.jpg" alt="Ampolla de Reparación S.O.S.">
                     </div>
                     <div class="product-info">
-                        <h3>Ampolla de Reparación S.O.S. <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(20 ml)</span></h3>
+                        <h3>Ampolla de Reparación S.O.S. <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
                         <span class="product-price">$16.000</span>
-                        <p><strong>Dosis concentrada para reparar en minutos.</strong> Ideal si tu cabello está castigado por sol, decoloración o plancha. Reconstruye la fibra capilar, sella la cutícula y devuelve el brillo de inmediato.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Dosis concentrada para reparar en minutos. Ideal si tu cabello está castigado por decoloración o plancha.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 8. TERMOPROTECTOR Y PERFUME -->
-                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar (250 ml)" data-price="35000" onclick="openModal('el termoprotector.jpg')">
+                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar (250 ml)" data-price="35000" data-img="el termoprotector.jpg" data-details="🔥 **Escudo Térmico + Perfume de Lujo (250 ml)**&#10;&#10;Protección contra el calor del secador, plancha y sol combinada con una fragancia exquisita.&#10;&#10;• Crea un escudo protector contra temperaturas altas.&#10;• Neutraliza malos olores (humo, cocina, sudor).&#10;• Elimina el frizz y aporta brillo sin grasitud.&#10;• Bruma ligera de amplio rendimiento." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="el termoprotector.jpg" alt="Termoprotector y Perfume Capilar">
                     </div>
                     <div class="product-info">
-                        <h3>Termoprotector y Perfume Capilar <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(250 ml)</span></h3>
+                        <h3>Termoprotector y Perfume Capilar <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
-                        <p><strong>Escudo contra el calor y fragancia deliciosa.</strong> Crea una barrera invisible antes de usar secador o plancha. Controla el frizz y neutraliza malos olores dejando un aroma increíble sin engrasar.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Escudo contra el calor del secador y plancha con fragancia de lujo que neutraliza malos olores sin engrasar.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
 
                 <!-- 9. ACEITE REPARADOR -->
-                <div class="product-card-large" data-name="Aceite Reparador de Argán (60 ml)" data-price="28000" onclick="openModal('aceite-reparador.jpeg')">
+                <div class="product-card-large" data-name="Aceite Reparador de Argán (60 ml)" data-price="28000" data-img="aceite-reparador.jpeg" data-details="✨ **Toque Final Brillo Espejo (60 ml)**&#10;&#10;Gotas de brillo y nutrición seca para sellar tu peinado con acabado de revista.&#10;&#10;• Absorción rápida sin dejar sensación pesada.&#10;• Sella puntas abiertas y elimina el frizz.&#10;• Brillo de espejo espectacular.&#10;• Súper rendidor (2 a 3 gotas por uso)." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="aceite-reparador.jpeg" alt="Aceite Reparador de Argán">
                     </div>
                     <div class="product-info">
-                        <h3>Aceite Reparador de Argán <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(60 ml)</span></h3>
+                        <h3>Aceite Reparador de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
                         <span class="product-price">$28.000</span>
-                        <p><strong>El toque final para tus puntas.</strong> Aceite liviano de absorción rápida que sella puntas abiertas, elimina el frizz y aporta un brillo espejo radiante sin dejar sensación pesada.</p>
-                        <div class="qty-selector-container" onclick="event.stopPropagation()">
-                            <button class="qty-btn btn-minus" onclick="changeQty(this, -1)">−</button>
-                            <span class="qty-display">0</span>
-                            <button class="qty-btn btn-plus" onclick="changeQty(this, 1)">+</button>
-                        </div>
+                        <p>Aceite liviano de absorción rápida que sella puntas abiertas, elimina el frizz y aporta brillo espejo.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles completos</button>
                     </div>
                 </div>
             </div>
@@ -766,12 +739,28 @@
     <script>
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("imgFull");
+        const modalName = document.getElementById("modalProductName");
+        const modalPrice = document.getElementById("modalProductPrice");
+        const modalDetails = document.getElementById("modalProductDetails");
+        const modalWaBtn = document.getElementById("modalWaBtn");
         const span = document.getElementById("closeModal");
 
-        function openModal(imgSrc) {
+        function openProductModal(card) {
+            const name = card.getAttribute("data-name") || "Producto";
+            const price = card.getAttribute("data-price") || "0";
+            const img = card.getAttribute("data-img") || card.querySelector("img")?.src;
+            const details = card.getAttribute("data-details") || "Detalles del producto de alta calidad Julie Alisados.";
+
+            modalImg.src = img;
+            modalName.textContent = name;
+            modalPrice.textContent = "$" + parseInt(price).toLocaleString("es-CO");
+            modalDetails.innerText = details;
+
+            const waText = encodeURIComponent(`Hola 👋 estoy viendo el producto *${name}* en la página web de Julie Alisados y deseo solicitar más información o comprarlo ✨`);
+            modalWaBtn.href = `https://wa.me/573043588180?text=${waText}`;
+
             modal.style.display = "flex";
-            modalImg.src = imgSrc;
-            document.body.style.overflow = "hidden"; // Bloquear scroll
+            document.body.style.overflow = "hidden";
         }
 
         span.onclick = function () {
