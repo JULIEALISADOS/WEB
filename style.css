@@ -724,8 +724,15 @@ header {
     -webkit-user-select: none;
 }
 
-.promo-slider-wrapper:active {
-    cursor: grabbing;
+.promo-slider-wrapper img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: auto;
+}
+
+.promo-slider-wrapper:active,
+.promo-slider-wrapper.is-dragging {
+    cursor: grabbing !important;
 }
 
 @media (max-width: 768px) {
