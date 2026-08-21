@@ -526,17 +526,29 @@
         </div>
     </header>
 
-    <div id="imageModal" class="modal">
-        <span class="close-modal" id="closeModal">&times;</span>
-        <img class="modal-content" id="imgFull">
+    <!-- MODAL DE DETALLE PROFESIONAL -->
+    <div id="imageModal" class="modal-detail-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
+        <div class="modal-detail-card" style="background: #ffffff; border-radius: 20px; max-width: 750px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; border: 2px solid var(--gold); box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column;">
+            <span class="close-modal" id="closeModal" style="position: absolute; top: 15px; right: 20px; font-size: 32px; font-weight: bold; color: #333; cursor: pointer; z-index: 10; line-height: 1;">&times;</span>
+            <div class="modal-body-wrapper" style="display: flex; flex-wrap: wrap; padding: 25px; gap: 20px;">
+                <div class="modal-img-col" style="flex: 1 1 280px; text-align: center; display: flex; align-items: center; justify-content: center; background: #fafafa; border-radius: 15px; padding: 15px;">
+                    <img class="modal-content" id="imgFull" style="max-width: 100%; max-height: 320px; object-fit: contain; border-radius: 10px;">
+                </div>
+                <div class="modal-info-col" style="flex: 1 1 320px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 id="modalProductName" style="font-family: var(--font-heading); color: #1a1a1a; font-size: 1.4rem; margin-bottom: 8px;"></h3>
+                    <span id="modalProductPrice" class="product-price" style="font-size: 1.3rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 15px; display: block;"></span>
+                    <div id="modalProductDetails" style="font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 20px; white-space: pre-line;"></div>
+                    <a id="modalWaBtn" href="#" target="_blank" class="btn-gold" style="text-align: center; padding: 12px 20px; font-weight: 700; text-decoration: none; border-radius: 10px; display: inline-block;">Consultar Pedido Estilista en WhatsApp 💬</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <main class="product-detail-section">
         <div class="container">
             <div class="back-nav">
                 <a href="index.html#cuidado-ja" class="btn-back">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
@@ -546,111 +558,109 @@
 
             <h2 class="section-title">Línea Profesional</h2>
             <p class="product-intro">
-                Para los estilistas que no se conforman con lo normal y buscan resultados extraordinarios. Nuestros
-                productos de alta gama son tus mejores aliados en el salón para dejar a tus clientas con la boca
-                abierta. Fórmulas <strong>100% libres de formol</strong>, con <strong>Registro INVIMA</strong> y la
-                garantía de una marca que sabe lo que el cabello necesita.
+                Para estilistas que buscan resultados extraordinarios. Fórmulas <strong>100% libres de formol</strong>, con <strong>Registro INVIMA</strong> y garantía de rendimiento profesional para tu salón.
             </p>
 
             <div class="product-grid">
                 <!-- 1. KIT 3 PASOS ALISADO SALUDABLE -->
-                <div class="product-card-large" data-name="Kit 3 Pasos Alisado Saludable" data-price="440000" onclick="openModal('alisado-saludable-pro.jpg')">
+                <div class="product-card-large" data-name="Kit 3 Pasos Alisado Saludable" data-price="440000" data-img="alisado-saludable-pro.jpg" data-details="💫 **Kit Profesional Alisado Saludable (3 Pasos)**&#10;&#10;El sistema profesional de alisado vegetal número uno en Colombia. Fórmulas libres de formol y amoníaco con Registro INVIMA.&#10;&#10;• Paso 1 - Shampoo Anti-Residuo (500 ml): Desintoxica y abre la cutícula de forma uniforme.&#10;• Paso 2 - Alisado Saludable (1100 g): Alinea la hebra desde la corteza con soltura y brillo espejado.&#10;• Paso 3 - Mascarilla Reparadora (500 ml): Sella el proceso térmico y fija suavidad extrema.&#10;• Garantía y seguridad total para el estilista y la clienta en el salón." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="alisado-saludable-pro.jpg" alt="Kit 3 Pasos Alisado Saludable By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Kit 3 Pasos Alisado Saludable <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(Paso 1: 500 ml | Paso 2: 1100 g | Paso 3: 500 ml)</span></h3>
+                        <h3>Kit 3 Pasos Alisado Saludable <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(Paso 1: 500 ml | Paso 2: 1100 g | Paso 3: 500 ml)</span></h3>
                         <span class="product-price">$440.000</span>
-                        <p><strong>¿Quieres ser el mejor en alisados de tu ciudad?</strong> Este kit completo es tu herramienta secreta. Incluye el Shampoo Anti-residuo Paso 1 (500 ml) para limpiar a fondo, el Alisado Paso 2 (1100 g) para transformar la hebra con suavidad y la Mascarilla Reparadora Paso 3 (500 ml) para sellar con broche de oro. Garantiza un liso perfecto, sano y con un brillo de otro planeta.</p>
+                        <p>Kit completo de 3 pasos para salones de belleza. Alisado orgánico vegetal 100% libre de formol con Registro INVIMA.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 2. ALISADO SALUDABLE PASO 2 -->
-                <div class="product-card-large" data-name="Alisado Saludable - Paso 2 (1100 g)" data-price="380000" onclick="openModal('alisado-saludable-pro.jpg')">
+                <div class="product-card-large" data-name="Alisado Saludable - Paso 2 (1100 g)" data-price="380000" data-img="alisado-saludable-pro.jpg" data-details="💫 **Alisado Saludable Paso 02 (1100 g)**&#10;&#10;Tratamiento alisador orgánico vegetal para uso profesional en salón.&#10;&#10;• Liso 100% perfecto, natural, sano y brillante.&#10;• Registro INVIMA y fórmula 100% libre de formol o vapores molestos.&#10;• Restaura la fibra mientras alinea la cutícula.&#10;• Gran rendimiento para múltiples servicios en peluquería." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="alisado-saludable-pro.jpg" alt="Alisado Saludable - Paso 2">
                     </div>
                     <div class="product-info">
-                        <h3>Alisado Saludable - Paso 2 <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(1100 g)</span></h3>
+                        <h3>Alisado Saludable - Paso 2 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1100 g)</span></h3>
                         <span class="product-price">$380.000</span>
-                        <p><strong>El alisado orgánico vegetal de alto rendimiento.</strong> Transforma y alinea la fibra capilar desde la corteza hasta la cutícula sin agredir el cabello, aportando nutrición y un liso 100% natural, sano y brillante. Fórmulas libres de formol con Registro INVIMA.</p>
+                        <p>Alisado orgánico vegetal de alto rendimiento. Modifica la hebra con suavidad aportando liso natural y brillo de espejo.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 3. SHAMPOO ANTI-RESIDUO PASO 1 -->
-                <div class="product-card-large" data-name="Shampoo Antiresiduos - Paso 1 (500 ml)" data-price="22000" onclick="openModal('alisado-saludable-pro.jpg')">
+                <div class="product-card-large" data-name="Shampoo Antiresiduos - Paso 1 (500 ml)" data-price="22000" data-img="alisado-saludable-pro.jpg" data-details="🧼 **Shampoo Anti-Residuo Paso 01 (500 ml)**&#10;&#10;Preparador técnico desintoxicante indispensable para cualquier servicio de salón.&#10;&#10;• Purifica la hebra eliminando acumulaciones de siliconas, grasa y químicos.&#10;• Abre las escamas de forma uniforme para una absorción perfecta.&#10;• No irrita el cuero cabelludo.&#10;• Libre de sal y parabenos." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="alisado-saludable-pro.jpg" alt="Shampoo Antiresiduos - Paso 1">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Antiresiduos - Paso 1 <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Shampoo Antiresiduos - Paso 1 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$22.000</span>
-                        <p><strong>Limpieza profunda y apertura de cutícula.</strong> Remueve excesos de siliconas, grasa y residuos químicos acumulados en la fibra, preparando el cabello perfectamente para recibir el alisado o cualquier tratamiento técnico.</p>
+                        <p>Limpieza profunda y apertura de cutícula en el lavacabezas. Prepara el cabello para alisados o tratamientos técnicos.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 4. MASCARILLA REPARADORA PASO 3 -->
-                <div class="product-card-large" data-name="Mascarilla Reparadora - Paso 3 (500 ml)" data-price="52000" onclick="openModal('alisado-saludable-pro.jpg')">
+                <div class="product-card-large" data-name="Mascarilla Reparadora - Paso 3 (500 ml)" data-price="52000" data-img="alisado-saludable-pro.jpg" data-details="👑 **Mascarilla Reparadora Paso 03 (500 ml)**&#10;&#10;Broche de oro técnico para finalizar alisados y tratamientos profesionales.&#10;&#10;• Estabiliza el pH de la hebra post-proceso térmico.&#10;• Sella la cutícula atrapando nutrientes e hidratación.&#10;• Repone lípidos y aporta una suavidad inolvidable.&#10;• Fija un brillo de espejo espectacular." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="alisado-saludable-pro.jpg" alt="Mascarilla Reparadora - Paso 3">
                     </div>
                     <div class="product-info">
-                        <h3>Mascarilla Reparadora - Paso 3 <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Mascarilla Reparadora - Paso 3 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$52.000</span>
-                        <p><strong>Sellador térmico y estabilizador de pH.</strong> Cierra herméticamente la cutícula tras el alisado o proceso técnico, reponiendo lípidos y asegurando un brillo espejado y suavidad duradera.</p>
+                        <p>Sellador térmico y estabilizador de pH post-alisado. Cierra la cutícula atrapando la hidratación y fijando brillo espejo.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 5. REPOSICIÓN DE AMINOÁCIDOS -->
-                <div class="product-card-large" data-name="Reposición de Aminoácidos (500 ml)" data-price="168000" onclick="openModal('reposicion-aminoacidos.jpg')">
+                <div class="product-card-large" data-name="Reposición de Aminoácidos (500 ml)" data-price="168000" data-img="reposicion-aminoacidos.jpg" data-details="🧬 **Reposición de Aminoácidos (500 ml)**&#10;&#10;Recarga de energía y masa proteica para cabellos procesados o sensibilizados en salón.&#10;&#10;• Rellena los vacíos de la hebra porosa y delgada.&#10;• Elimina el efecto chicle y evita el quiebre.&#10;• Fortalece desde la corteza sin alterar la forma natural.&#10;• Con Registro INVIMA, libre de formol y sal." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="reposicion-aminoacidos.jpg" alt="Reposición de Aminoácidos">
                     </div>
                     <div class="product-info">
-                        <h3>Reposición de Aminoácidos <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Reposición de Aminoácidos <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$168.000</span>
-                        <p><strong>¡El tratamiento que le devuelve el alma al cabello!</strong> Esta fórmula profesional es pura potencia para recuperar la masa capilar que se ha perdido por químicos, sol o tinturas. Fortalece el pelo desde su corazón, dejándolo resistente, sedoso y con un movimiento tan natural que enamora.</p>
+                        <p>Recuperación de masa capilar perdida por químicos o decoloraciones. Fortalece el cabello desde el interior eliminando el quiebre.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 6. R.C.P RESTAURACIÓN CAPILAR PROFUNDA -->
-                <div class="product-card-large" data-name="R.C.P - Restauración Capilar Profunda (500 ml)" data-price="145000" onclick="openModal('rcp-restauracion.jpg')">
+                <div class="product-card-large" data-name="R.C.P - Restauración Capilar Profunda (500 ml)" data-price="145000" data-img="rcp-restauracion.jpg" data-details="🛡️ **R.C.P - Restauración Capilar Profunda (500 ml)**&#10;&#10;Tratamiento de impacto profesional para fibras sensibilizadas o deshidratadas.&#10;&#10;• Cierra la porosidad extrema y sella las escamas.&#10;• Devuelve la elasticidad y flexibilidad natural.&#10;• Brillo de espejo instantáneo en el lavacabezas.&#10;• Resultados visibles desde la primera sesión." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="rcp-restauracion.jpg" alt="R.C.P Restauración Capilar Profunda">
                     </div>
                     <div class="product-info">
-                        <h3>R.C.P - Restauración Capilar Profunda <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>R.C.P - Restauración Capilar Profunda <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$145.000</span>
-                        <p><strong>Es el "escudo" salvador en tu peluquería.</strong> Nutre, hidrata y restaura hasta el cabello más poroso o sensible con resultados que se notan desde la primera aplicación. Su avanzada combinación de ingredientes actúa rápido para devolverle la elasticidad y ese brillo espejo que tus clientas tanto buscan.</p>
+                        <p>Tratamiento de impacto profesional para cabellos porosos, deshidratados o muy sensibles. Brillo de espejo instantáneo.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
 
                 <!-- 7. EMULSIÓN ZERO -->
-                <div class="product-card-large" data-name="Emulsión Zero Restauradora (1000 g)" data-price="370000" onclick="openModal('EMULSION ZERO.jpg')">
+                <div class="product-card-large" data-name="Emulsión Zero Restauradora (1000 g)" data-price="370000" data-img="EMULSION ZERO.jpg" data-details="💧 **Emulsión Zero Restauradora (1000 g)**&#10;&#10;Fórmula disciplinante antifrizz de alta gama para fibras rebeldes o desnutridas.&#10;&#10;• Repone lípidos y proteínas esenciales.&#10;• Disciplina el volumen incontrolable y elimina el frizz.&#10;• Devuelve el brillo natural y la soltura.&#10;• Libre de formol con Registro INVIMA." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img src="EMULSION ZERO.jpg" alt="Emulsión Zero Restauradora">
                     </div>
                     <div class="product-info">
-                        <h3>Emulsión Zero Restauradora <span style="font-size: 0.82em; font-weight: 600; opacity: 0.85; color: var(--gold-dark);">(1000 g)</span></h3>
+                        <h3>Emulsión Zero Restauradora <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 g)</span></h3>
                         <span class="product-price">$370.000</span>
-                        <p><strong>El tratamiento disciplinante definitivo para una transformación total.</strong> Actúa como una potente fórmula antifrizz y recuperadora, especializada en la <strong>reposición de lípidos y proteínas</strong>. Devuelve al cabello su suavidad y brillo natural, garantizando una hidratación y nutrición profunda que disciplina la fibra rebelde.</p>
+                        <p>Tratamiento disciplinante antifrizz de alta gama que repone lípidos y proteínas en fibras rebeldes o desnutridas.</p>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
                     </div>
                 </div>
             </div>
 
             <div style="margin-top: 60px; text-align: center;">
-                <p style="color: var(--gold-dark); font-weight: 700; margin-bottom: 20px;">¿Eres profesional y quieres
-                    adquirir estos productos?</p>
-                <a href="https://wa.me/573043588180?text=Hola%2C%20soy%20profesional%20del%20cabello%20y%20me%20interesa%20conocer%20la%20Linea%20Profesional%20de%20Julie%20Alisados%20para%20implementarla%20en%20mi%20salon.%20Como%20puedo%20obtener%20mas%20informacion%3F"
-                    class="btn-gold" target="_blank"
-                    onclick="return gtag_report_conversion(this.href);">Escríbenos
-                    por WhatsApp</a>
+                <p style="color: var(--gold-dark); font-weight: 700; margin-bottom: 20px;">¿Eres profesional y quieres adquirir estos productos?</p>
+                <a href="https://wa.me/573043588180?text=Hola%2C%20soy%20profesional%20del%20cabello%20y%20me%20interesa%20conocer%20la%20Linea%20Profesional%20de%20Julie%20Alisados%20para%20implementarla%20en%20mi%20salon.%20Como%20puedo%20obtener%20mas%20informacion%3F" class="btn-gold" target="_blank" onclick="return gtag_report_conversion(this.href);">Escríbenos por WhatsApp</a>
             </div>
-
             <div class="back-nav" style="margin-top: 50px; text-align: center; margin-bottom: 0;">
                 <a href="index.html#cuidado-ja" class="btn-back">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
@@ -683,11 +693,27 @@
 
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("imgFull");
+        const modalName = document.getElementById("modalProductName");
+        const modalPrice = document.getElementById("modalProductPrice");
+        const modalDetails = document.getElementById("modalProductDetails");
+        const modalWaBtn = document.getElementById("modalWaBtn");
         const span = document.getElementById("closeModal");
 
-        function openModal(imgSrc) {
+        function openProductModal(card) {
+            const name = card.getAttribute("data-name") || "Producto Profesional";
+            const price = card.getAttribute("data-price") || "0";
+            const img = card.getAttribute("data-img") || card.querySelector("img")?.src;
+            const details = card.getAttribute("data-details") || "Detalles del producto profesional Julie Alisados.";
+
+            modalImg.src = img;
+            modalName.textContent = name;
+            modalPrice.textContent = "$" + parseInt(price).toLocaleString("es-CO");
+            modalDetails.innerText = details;
+
+            const waText = encodeURIComponent(`Hola 👋 soy estilista profesional, estoy viendo el producto *${name}* en la Línea Profesional de Julie Alisados y deseo solicitar más información para adquirirlo ✨`);
+            modalWaBtn.href = `https://wa.me/573043588180?text=${waText}`;
+
             modal.style.display = "flex";
-            modalImg.src = imgSrc;
             document.body.style.overflow = "hidden";
         }
 
