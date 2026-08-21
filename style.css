@@ -643,11 +643,11 @@ header {
     animation: none !important;
 }
 
-/* Slider Manual Modificado - Controles Superpuestos */
+/* Slider Manual Modificado - Soporte Táctil y Arrastre */
 .manual-track {
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     animation: none !important;
     width: max-content !important;
+    will-change: transform;
 }
 
 .slider-controls {
@@ -715,9 +715,17 @@ header {
 
 .promo-slider-wrapper {
     display: flex;
-    justify-content: center;
-    /* En PC, si caben varias se centran */
+    justify-content: flex-start;
     padding-bottom: 30px;
+    touch-action: pan-y;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.promo-slider-wrapper:active {
+    cursor: grabbing;
 }
 
 @media (max-width: 768px) {
