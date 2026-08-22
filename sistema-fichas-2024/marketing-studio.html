@@ -4,23 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <title>Julie Marketing Studio 🔒 | Privado</title>
+    <title>JulieApp Admin - Marketing Studio IA 🚀</title>
+    
+    <script>
+        // SEGURIDAD: Verificar sesión de administrador JulieApp
+        if (localStorage.getItem('julie_remember_pass')) {
+            sessionStorage.setItem('julie_pass_token', localStorage.getItem('julie_remember_pass'));
+        }
+        const isAdmin = sessionStorage.getItem('julie_admin_auth') === 'true' || 
+                        localStorage.getItem('julie_role') === 'admin' ||
+                        sessionStorage.getItem('julie_studio_auth') === 'true';
+                        
+        if (!isAdmin) {
+            window.location.href = 'index.html';
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="logo 1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <style>
         :root {
             --gold: #D4AF37;
             --gold-light: #F2D06B;
             --gold-dark: #A68612;
-            --dark: #1A1A1A;
-            --light-bg: #FCF9F6;
+            --admin-sidebar: #1A1A1A;
+            --light-bg: #f8f9fa;
             --card-bg: #FFFFFF;
             --border: rgba(212, 175, 55, 0.25);
             --radius: 16px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.25);
         }
 
@@ -28,111 +43,27 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
             background: var(--light-bg);
-            color: var(--dark);
+            color: #333;
             min-height: 100vh;
             padding-bottom: 60px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-
-        /* Lock Screen Modal */
-        #lock-screen {
-            position: fixed;
-            inset: 0;
-            background: #111111;
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .lock-box {
-            background: #1a1a1a;
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            padding: 40px 30px;
-            max-width: 380px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-            color: #fff;
-        }
-
-        .lock-box img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .lock-box h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--gold-light);
-            margin-bottom: 8px;
-        }
-
-        .lock-box p {
-            font-size: 0.85rem;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-
-        .pin-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1.3rem;
-            text-align: center;
-            letter-spacing: 6px;
-            border: 2px solid var(--gold);
-            background: #000;
-            color: #fff;
-            border-radius: 10px;
-            outline: none;
-            margin-bottom: 15px;
-        }
-
-        .btn-unlock {
-            background: var(--gold);
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            width: 100%;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-unlock:hover {
-            background: var(--gold-dark);
-        }
-
-        .lock-error {
-            color: #ff4d4f;
-            font-size: 0.85rem;
-            margin-top: 10px;
-            display: none;
         }
 
         /* Top Header */
         header {
             background: #fff;
             border-bottom: 1px solid var(--border);
-            padding: 25px 0 20px;
-            text-align: center;
+            padding: 20px 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
@@ -143,7 +74,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
         }
 
         .logo-wrap {
@@ -151,22 +81,20 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--dark);
-            margin: 0 auto;
+            color: #1a1a1a;
         }
 
         .logo-wrap img {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 2px solid var(--gold);
         }
 
         .brand-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--dark);
-            letter-spacing: 1px;
+            font-size: 1.35rem;
+            color: #1a1a1a;
             line-height: 1.1;
         }
 
@@ -174,28 +102,26 @@
             font-size: 0.75rem;
             color: var(--gold-dark);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             font-weight: 700;
         }
 
-        .btn-lock-session {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: 1px solid #ddd;
-            padding: 6px 12px;
+        .btn-back-admin {
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: #666;
+            font-size: 0.85rem;
+            font-weight: 600;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .btn-lock-session:hover {
-            border-color: var(--dark);
-            color: var(--dark);
+        .btn-back-admin:hover {
+            background: var(--gold-dark);
         }
 
         /* Navigation Tabs */
@@ -203,7 +129,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 25px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
@@ -214,7 +140,7 @@
             border-radius: 30px;
             font-size: 0.92rem;
             font-weight: 700;
-            color: var(--dark);
+            color: #444;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -268,7 +194,7 @@
         .controls-card label {
             font-weight: 700;
             font-size: 0.95rem;
-            color: var(--dark);
+            color: #1a1a1a;
         }
 
         .select-input {
@@ -277,15 +203,15 @@
             border-radius: 8px;
             background: #fff;
             font-size: 0.95rem;
-            color: var(--dark);
+            color: #1a1a1a;
             outline: none;
             cursor: pointer;
             flex-grow: 1;
-            max-width: 380px;
+            max-width: 420px;
         }
 
         .btn-action {
-            background: var(--dark);
+            background: #1a1a1a;
             color: #fff;
             border: none;
             padding: 11px 22px;
@@ -326,7 +252,7 @@
 
         .result-card h2 {
             font-family: 'Playfair Display', serif;
-            color: var(--dark);
+            color: #1a1a1a;
             font-size: 1.4rem;
             margin-bottom: 15px;
             border-bottom: 2px solid var(--gold-light);
@@ -337,7 +263,7 @@
         }
 
         .badge-meta {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 0.78rem;
             background: rgba(212, 175, 55, 0.15);
             color: var(--gold-dark);
@@ -377,7 +303,7 @@
 
         .scene-audio {
             font-weight: 600;
-            color: var(--dark);
+            color: #1a1a1a;
             background: #fff;
             padding: 10px 14px;
             border-radius: 6px;
@@ -468,7 +394,7 @@
         .slide-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
-            color: var(--dark);
+            color: #1a1a1a;
             margin-bottom: 8px;
         }
 
@@ -493,7 +419,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: var(--dark);
+            background: #1a1a1a;
             color: #fff;
             padding: 12px 24px;
             border-radius: 30px;
@@ -520,10 +446,6 @@
                 flex-direction: column;
                 gap: 10px;
             }
-            .btn-lock-session {
-                position: static;
-                transform: none;
-            }
             .controls-card {
                 flex-direction: column;
                 align-items: stretch;
@@ -539,41 +461,17 @@
 </head>
 <body>
 
-    <!-- PANTALLA DE BLOQUEO CON PIN -->
-    <div id="lock-screen">
-        <div class="lock-box">
-            <img src="logo 1.png" alt="Julie Alisados">
-            <h2>ACCESO PRIVADO</h2>
-            <p>Julie Marketing Studio está reservado para la administración de Julie Alisados.</p>
-            <form onsubmit="handleUnlock(event)">
-                <input type="password" id="pin-input" class="pin-input" placeholder="••••" maxlength="8" autofocus required>
-                <button type="submit" class="btn-unlock">🔓 Desbloquear Studio</button>
-            </form>
-            <div id="lock-error" class="lock-error">❌ PIN incorrecto. Intenta de nuevo.</div>
-        </div>
-    </div>
-
-    <!-- Distintivo Esquina: Bandera de Colombia -->
-    <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none;" title="Orgullo Colombiano • Julie Alisados">
-        <svg viewBox="0 0 52 52" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 0 L 26 0 L 0 26 Z" fill="#FCD116" />
-            <path d="M 26 0 L 39 0 L 0 39 L 0 26 Z" fill="#003893" />
-            <path d="M 39 0 L 52 0 L 0 52 L 0 39 Z" fill="#CE1126" />
-            <line x1="52" y1="0" x2="0" y2="52" stroke="#D4AF37" stroke-width="1.2" stroke-opacity="0.8" />
-        </svg>
-    </div>
-
     <header>
         <div class="container">
             <div class="header-inner">
-                <a href="index.html" class="logo-wrap">
-                    <img src="logo 1.png" alt="Julie Alisados">
+                <a href="admin.html" class="logo-wrap">
+                    <img src="logo.png" alt="Julie Alisados">
                     <div class="brand-text">
                         <h1>JULIE MARKETING STUDIO</h1>
-                        <span>Generador Autónomo de Contenido & Redes Sociales</span>
+                        <span>Generador Autónomo de Contenido • JulieApp v5.0</span>
                     </div>
                 </a>
-                <button class="btn-lock-session" onclick="lockSession()">🔒 Bloquear</button>
+                <a href="admin.html" class="btn-back-admin">← Volver al Dashboard</a>
             </div>
 
             <div class="tabs-nav">
@@ -591,7 +489,7 @@
         <section id="tab-reels" class="tab-content active">
             <div class="controls-card">
                 <div>
-                    <label for="reel-topic">🎯 Selecciona la Temática:</label>
+                    <label for="reel-topic">🎯 Selecciona la Temática Científica:</label>
                     <select id="reel-topic" class="select-input">
                         <option value="ciencia_crecimiento">🔬 La Verdad del Crecimiento (Retención vs Quiebre)</option>
                         <option value="alisado_saludable">✨ Alisado Saludable (Tecnología Enjuagable & Tricología)</option>
@@ -681,46 +579,9 @@
     </div>
 
     <!-- Cargar Motor de Marketing -->
-    <script src="js/marketing-engine.js?v=20260822_utf8"></script>
+    <script src="js/marketing-engine.js"></script>
 
     <script>
-        // ================= SECURITY & PIN SYSTEM =================
-        const MASTER_PIN = "2026"; // PIN privado de Julie Alisados
-
-        function checkAuth() {
-            const isAuth = sessionStorage.getItem('julie_studio_auth');
-            const lockScreen = document.getElementById('lock-screen');
-            if (isAuth === 'true') {
-                lockScreen.style.display = 'none';
-            } else {
-                lockScreen.style.display = 'flex';
-            }
-        }
-
-        function handleUnlock(e) {
-            e.preventDefault();
-            const input = document.getElementById('pin-input').value.trim();
-            const errorBox = document.getElementById('lock-error');
-
-            if (input === MASTER_PIN) {
-                sessionStorage.setItem('julie_studio_auth', 'true');
-                document.getElementById('lock-screen').style.display = 'none';
-                errorBox.style.display = 'none';
-                renderReel();
-            } else {
-                errorBox.style.display = 'block';
-                document.getElementById('pin-input').value = '';
-                document.getElementById('pin-input').focus();
-            }
-        }
-
-        function lockSession() {
-            sessionStorage.removeItem('julie_studio_auth');
-            document.getElementById('pin-input').value = '';
-            document.getElementById('lock-screen').style.display = 'flex';
-            document.getElementById('pin-input').focus();
-        }
-
         // Tab switching
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -835,7 +696,7 @@
 
                 <div style="margin-top: 25px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="font-size: 1.1rem; color: var(--dark);">📝 Copy & Hashtags para Publicación:</h3>
+                        <h3 style="font-size: 1.1rem; color: #1a1a1a;">📝 Copy & Hashtags para Publicación:</h3>
                         <button class="btn-copy" onclick="copyToClipboard(\`${data.copyInstagram.replace(/`/g, '\\`')}\`, this)">📋 Copiar Solo Copy</button>
                     </div>
                     <div class="copy-box">${data.copyInstagram}</div>
@@ -879,7 +740,7 @@
                 </div>
 
                 <div style="margin-top: 25px;">
-                    <h3 style="font-size: 1.1rem; color: var(--dark); margin-bottom: 8px;">📝 Copy para el Post de Instagram / Facebook:</h3>
+                    <h3 style="font-size: 1.1rem; color: #1a1a1a; margin-bottom: 8px;">📝 Copy para el Post de Instagram / Facebook:</h3>
                     <div class="copy-box">${data.copy}</div>
                 </div>
             `;
@@ -944,10 +805,7 @@
 
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            checkAuth();
-            if (sessionStorage.getItem('julie_studio_auth') === 'true') {
-                renderReel();
-            }
+            renderReel();
         });
     </script>
 </body>
