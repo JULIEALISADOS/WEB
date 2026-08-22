@@ -657,16 +657,319 @@
             z-index: 10000;
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* ================= ESTILOS ESTUDIO VISUAL & PROMPTS IA ================= */
+        .visual-subtabs-nav {
             display: flex;
-            align-items: center;
             gap: 10px;
-            border-left: 4px solid var(--gold);
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
         }
 
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
+        .visual-subtab-btn {
+            flex: 1;
+            padding: 10px 18px;
+            border: none;
+            background: transparent;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .visual-subtab-btn.active {
+            background: var(--black);
+            color: var(--gold-light);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+        .visual-subtab-btn:hover:not(.active) {
+            color: #111;
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        /* Uploader & Dropzone */
+        .media-dropzone {
+            border: 2px dashed var(--gold);
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.4) 0%, rgba(253, 251, 247, 0.9) 100%);
+            border-radius: 14px;
+            padding: 26px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .media-dropzone:hover, .media-dropzone.dragover {
+            border-color: var(--gold-dark);
+            background: rgba(212, 175, 55, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .dropzone-icon {
+            font-size: 2.4rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .dropzone-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .dropzone-desc {
+            font-size: 0.84rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .btn-browse {
+            background: var(--black);
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-browse:hover {
+            background: var(--gold-dark);
+            color: #fff;
+        }
+
+        /* Preview Container */
+        .media-preview-container {
+            display: none;
+            background: #fff;
+            border: 1.5px solid var(--gold);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .media-preview-container.active {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .preview-media-box {
+            position: relative;
+            max-height: 380px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-media-box img, .preview-media-box video {
+            max-width: 100%;
+            max-height: 380px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .preview-info-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.84rem;
+            color: #555;
+            padding-top: 6px;
+            border-top: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .btn-remove-media {
+            background: #fff0f0;
+            color: #d9534f;
+            border: 1px solid #d9534f;
+            padding: 5px 12px;
+            border-radius: 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-remove-media:hover {
+            background: #d9534f;
+            color: #fff;
+        }
+
+        /* Diagnostic Card */
+        .diagnostic-card {
+            background: linear-gradient(135deg, #111111 0%, #1c1c1c 100%);
+            border: 1.5px solid var(--gold);
+            border-radius: 14px;
+            padding: 20px 22px;
+            color: #fff;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .diagnostic-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        .diagnostic-tag-badge {
+            background: var(--gold);
+            color: #111;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .diagnostic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .diagnostic-grid-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 14px;
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .diagnostic-grid-item strong {
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Prompt Cards */
+        .prompt-card {
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .prompt-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .prompt-badge {
+            background: #111;
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .prompt-content-box {
+            background: #181818;
+            color: #eee;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.88rem;
+            padding: 16px 18px;
+            border-radius: 8px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 12px;
+        }
+
+        .art-direction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+            background: #FAFAFA;
+            border: 1px solid #EEE;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.84rem;
+        }
+
+        .art-direction-item strong {
+            color: var(--black);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .palette-pills {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .palette-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.12);
+            font-weight: 600;
+        }
+
+        .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
         }
 
         @media (max-width: 768px) {
@@ -710,6 +1013,9 @@
             .result-card {
                 padding: 16px;
             }
+            .visual-subtabs-nav {
+                flex-direction: column;
+            }
             .toast {
                 left: 20px;
                 right: 20px;
@@ -741,6 +1047,7 @@
                 <button class="tab-btn" onclick="switchTab('carruseles', this)">📸 Carruseles & Posts</button>
                 <button class="tab-btn" onclick="switchTab('whatsapp', this)">💬 Estados WhatsApp</button>
                 <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog)</button>
+                <button class="tab-btn" onclick="switchTab('visual', this)">🎨 Estudio Visual & Prompts IA</button>
             </div>
         </div>
     </header>
@@ -992,6 +1299,157 @@
             </div>
         </section>
 
+        <!-- ================= PESTAÑA 5: ESTUDIO VISUAL & PROMPTS IA ================= -->
+        <section id="tab-visual" class="tab-content">
+            <!-- Subtabs Selector: Foto/Video vs Prompts IA -->
+            <div class="visual-subtabs-nav">
+                <button type="button" class="visual-subtab-btn active" id="btn-subtab-media" onclick="switchVisualSubtab('media')">
+                    📸 Generar Idea a partir de mi Foto / Video
+                </button>
+                <button type="button" class="visual-subtab-btn" id="btn-subtab-prompts" onclick="switchVisualSubtab('prompts')">
+                    🎨 Creador de Prompts de Imágenes IA (Google Imagen / Midjourney)
+                </button>
+            </div>
+
+            <!-- SUBPANEL 1: ANALIZADOR MULTIMEDIA (FOTO / VIDEO) -->
+            <div id="visual-subpanel-media">
+                <!-- Selector de Objetivo de Contenido -->
+                <div class="objective-selector-box">
+                    <div class="objective-label">
+                        <span>🎯 Objetivo para el Contenido Visual:</span>
+                    </div>
+                    <div class="objective-options-group" id="visual-objective-group">
+                        <button type="button" class="btn-obj-option active" data-obj="venta" onclick="setObjective('visual', 'venta', this)">
+                            🎯 Venta Directa & Agendamiento
+                        </button>
+                        <button type="button" class="btn-obj-option" data-obj="educativo_clienta" onclick="setObjective('visual', 'educativo_clienta', this)">
+                            🎓 Educativo para Clientas
+                        </button>
+                        <button type="button" class="btn-obj-option" data-obj="tecnico_estilista" onclick="setObjective('visual', 'tecnico_estilista', this)">
+                            ✂️ Técnico para Estilistas & Salón
+                        </button>
+                    </div>
+                </div>
+
+                <div class="controls-card">
+                    <!-- Dropzone Uploader -->
+                    <div class="media-dropzone" id="media-dropzone" onclick="document.getElementById('media-file-input').click()">
+                        <input type="file" id="media-file-input" accept="image/*,video/*" style="display: none;" onchange="handleMediaSelect(this.files)">
+                        <span class="dropzone-icon">📸 / 🎬</span>
+                        <div class="dropzone-title">Sube una foto o video de tu trabajo</div>
+                        <div class="dropzone-desc">Arrastra tu archivo aquí o tócalo para abrir la cámara / galería (Soporta JPG, PNG, WEBP, MP4, MOV)</div>
+                        <button type="button" class="btn-browse" onclick="event.stopPropagation(); document.getElementById('media-file-input').click()">
+                            📁 Seleccionar Foto / Video
+                        </button>
+                    </div>
+
+                    <!-- Live Preview Container -->
+                    <div class="media-preview-container" id="media-preview-container">
+                        <div class="preview-media-box" id="preview-media-box">
+                            <!-- Inyectado dinámicamente imagen o video -->
+                        </div>
+                        <div class="preview-info-bar">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="badge-objective" id="preview-media-badge">FOTO CARGADA</span>
+                                <span id="preview-media-filename" style="font-weight:600; color:#222;">archivo.jpg</span>
+                                <span id="preview-media-size" style="color:#888;">(0 MB)</span>
+                            </div>
+                            <button type="button" class="btn-remove-media" onclick="removeUploadedMedia()">
+                                🗑️ Quitar / Cambiar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Diagnóstico Visual y Parámetros -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 10px;">
+                        <div>
+                            <label for="media-diagnostic-select">🔎 Diagnóstico Visual del Cabello en la Foto/Video:</label>
+                            <select id="media-diagnostic-select" class="select-input" onchange="renderMediaAnalysis()">
+                                <option value="resultado_espejo" selected>✨ Resultado Final: Brillo Espejo Glass Hair</option>
+                                <option value="decolorado_mechas">👱‍♀️ Cabello Decolorado o con Mechas (Porosidad Alta)</option>
+                                <option value="frizz_humedad">🌧️ Frizz Severo por Humedad y Clima Frío</option>
+                                <option value="rizo_rebelde">🌀 Rizo Rebelde y Voluminoso (Patrón 3A a 4C)</option>
+                                <option value="opaco_danado">🌾 Opacidad, Resequedad y Falta de Brillo (Efecto Paja)</option>
+                                <option value="infantil_madres">👧 Niña, Cabello Infantil o Madre Lactante (Emulsión Zero)</option>
+                                <option value="retoque_raiz">📏 Retoque de Crecimiento / Raíz Nueva</option>
+                                <option value="maltratado_calor">🔥 Cabello Maltratado por Plancha Diaria</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="media-custom-notes">✍️ Notas o Detalles Específicos del Caso (Opcional):</label>
+                            <input type="text" id="media-custom-notes" class="custom-topic-input" 
+                                   placeholder="Ej: Clienta vino de Sogamoso, se decoloró hace 2 meses, quiere liso sin perder el rubio..."
+                                   onkeydown="if(event.key==='Enter') renderMediaAnalysis()">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 18px;">
+                        <button class="btn-action btn-gold" style="width: 100%; padding: 13px; font-size: 0.96rem;" onclick="renderMediaAnalysis()">
+                            ✨ Analizar Imagen y Generar Contenido IA (Reel + Carrusel + Copy)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="media-analysis-result-box">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+
+            <!-- SUBPANEL 2: CREADOR DE PROMPTS DE IMÁGENES IA -->
+            <div id="visual-subpanel-prompts" style="display: none;">
+                <div class="controls-card">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
+                        <div>
+                            <label for="prompt-theme-select">🎨 Temática / Escena Publicitaria de Julie Alisados:</label>
+                            <select id="prompt-theme-select" class="select-input" onchange="renderVisualPrompt()">
+                                <option value="glass_hair_model" selected>🪞 Modelo Glass Hair en Salón Boutique de Lujo</option>
+                                <option value="macro_fiber">🔬 Macrofotografía Científica de Fibra Capilar Alineada</option>
+                                <option value="wash_experience">🛁 Experiencia en Lavacabezas Spa & Enjuague Libre de Formol</option>
+                                <option value="before_after_split">⚡ Antes y Después Dividido (Split Screen de Alto Impacto)</option>
+                                <option value="product_still_life">🧴 Bodegón de Productos Oficiales JA con Gotas de Oro y Argán</option>
+                                <option value="stylist_consultation">✂️ Diagnóstico Tricológico Profesional en Salón Boutique</option>
+                                <option value="mother_daughter">👧 Madre e Hija: Bioseguridad y Emulsión Zero</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="prompt-format-select">📐 Formato / Relación de Aspecto (Aspect Ratio):</label>
+                            <select id="prompt-format-select" class="select-input" onchange="renderVisualPrompt()">
+                                <option value="9:16" selected>📱 9:16 Vertical (Reels, TikTok, Instagram Stories)</option>
+                                <option value="1:1">🔲 1:1 Cuadrado (Feed Instagram / Facebook)</option>
+                                <option value="4:5">📐 4:5 Retrato Vertical (Instagram Feed Portrait)</option>
+                                <option value="16:9">🖥️ 16:9 Panorámico (Banner Web / YouTube)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="prompt-style-select">💎 Estilo Visual & Tratamiento Fotográfico:</label>
+                            <select id="prompt-style-select" class="select-input" onchange="renderVisualPrompt()">
+                                <option value="editorial_luxury" selected>💎 Fotografía Editorial de Lujo 8K (Vogue / Harper's Bazaar)</option>
+                                <option value="commercial_salon">💇‍♀️ Fotografía Comercial de Salón Boutique (Obsidian & Gold)</option>
+                                <option value="cinematic_gold">🌟 Iluminación Cinematográfica Cálida Gold (3200K Rim Light)</option>
+                                <option value="scientific_macro">🧪 Macrofotografía Científica Tricológica (Lente 100mm Macro)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px;">
+                        <label for="prompt-custom-notes">✍️ Detalles Adicionales para la Imagen (Opcional):</label>
+                        <div class="custom-input-group">
+                            <input type="text" id="prompt-custom-notes" class="custom-topic-input" 
+                                   placeholder="Ej: Vestido negro satinado, destellos ámbar en el cabello, fondo de mármol negro con sutil dorado..."
+                                   onkeydown="if(event.key==='Enter') renderVisualPrompt()">
+                            <button class="btn-action btn-gold" onclick="renderVisualPrompt()">
+                                🎨 Generar Prompts IA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="visual-prompts-result-box">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Toast Notification -->
@@ -1008,7 +1466,17 @@
             reels: 'venta',
             carruseles: 'venta',
             whatsapp: 'venta',
-            tips: 'venta'
+            tips: 'venta',
+            visual: 'venta'
+        };
+
+        // Estado multimedia cargado
+        const uploadedMediaState = {
+            file: null,
+            dataUrl: null,
+            type: 'image',
+            name: '',
+            sizeText: ''
         };
 
         // Estado centralizado para copiado seguro
@@ -1016,7 +1484,9 @@
             reel: { fullScript: "", copy: "" },
             carousel: { copy: "" },
             whatsapp: [],
-            tips: { fullArticle: "" }
+            tips: { fullArticle: "" },
+            visualMedia: { fullScript: "", copy: "", carouselCopy: "" },
+            visualPrompts: { promptEs: "", promptEn: "", artDirection: "" }
         };
 
         function setObjective(tab, obj, btnElement) {
@@ -1043,6 +1513,7 @@
             if (tab === 'carruseles') renderCarousel(false);
             if (tab === 'whatsapp') renderWhatsApp(false);
             if (tab === 'tips') renderTips(false);
+            if (tab === 'visual') renderMediaAnalysis();
         }
 
         // Tab switching
@@ -1058,7 +1529,7 @@
             if (btnElement && btnElement.classList) {
                 btnElement.classList.add('active');
             } else {
-                const tabMap = { reels: 0, carruseles: 1, whatsapp: 2, tips: 3 };
+                const tabMap = { reels: 0, carruseles: 1, whatsapp: 2, tips: 3, visual: 4 };
                 const idx = tabMap[tabId] ?? 0;
                 const allBtns = document.querySelectorAll('.tab-btn');
                 if (allBtns[idx]) allBtns[idx].classList.add('active');
@@ -1068,7 +1539,130 @@
             if (tabId === 'carruseles') renderCarousel(false);
             if (tabId === 'whatsapp') renderWhatsApp(false);
             if (tabId === 'tips') renderTips(false);
+            if (tabId === 'visual') {
+                renderMediaAnalysis();
+                renderVisualPrompt();
+            }
         }
+
+        // Subtabs del Estudio Visual
+        function switchVisualSubtab(mode) {
+            const btnMedia = document.getElementById('btn-subtab-media');
+            const btnPrompts = document.getElementById('btn-subtab-prompts');
+            const panelMedia = document.getElementById('visual-subpanel-media');
+            const panelPrompts = document.getElementById('visual-subpanel-prompts');
+
+            if (mode === 'media') {
+                btnMedia?.classList.add('active');
+                btnPrompts?.classList.remove('active');
+                if (panelMedia) panelMedia.style.display = 'block';
+                if (panelPrompts) panelPrompts.style.display = 'none';
+                renderMediaAnalysis();
+            } else {
+                btnPrompts?.classList.add('active');
+                btnMedia?.classList.remove('active');
+                if (panelMedia) panelMedia.style.display = 'none';
+                if (panelPrompts) panelPrompts.style.display = 'block';
+                renderVisualPrompt();
+            }
+        }
+
+        // Gestor de Archivo Multimedia (Foto / Video)
+        function handleMediaSelect(files) {
+            if (!files || !files.length) return;
+            const file = files[0];
+            const isVideo = file.type.startsWith('video/');
+            const isImage = file.type.startsWith('image/');
+
+            if (!isImage && !isVideo) {
+                showToast("⚠️ Por favor selecciona una imagen o un video válido");
+                return;
+            }
+
+            const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+            uploadedMediaState.file = file;
+            uploadedMediaState.type = isVideo ? 'video' : 'image';
+            uploadedMediaState.name = file.name;
+            uploadedMediaState.sizeText = `(${sizeMB} MB)`;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedMediaState.dataUrl = e.target.result;
+                displayMediaPreview();
+                showToast(`✅ ${isVideo ? 'Video' : 'Foto'} cargada con éxito`);
+                renderMediaAnalysis();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayMediaPreview() {
+            const container = document.getElementById('media-preview-container');
+            const box = document.getElementById('preview-media-box');
+            const badge = document.getElementById('preview-media-badge');
+            const nameEl = document.getElementById('preview-media-filename');
+            const sizeEl = document.getElementById('preview-media-size');
+
+            if (!container || !box) return;
+
+            if (uploadedMediaState.type === 'video') {
+                box.innerHTML = `<video controls src="${uploadedMediaState.dataUrl}" style="width:100%; max-height:380px;"></video>`;
+                if (badge) badge.textContent = "🎬 VIDEO CARGADO";
+            } else {
+                box.innerHTML = `<img src="${uploadedMediaState.dataUrl}" alt="Preview" style="max-width:100%; max-height:380px;">`;
+                if (badge) badge.textContent = "📸 FOTO CARGADA";
+            }
+
+            if (nameEl) nameEl.textContent = uploadedMediaState.name;
+            if (sizeEl) sizeEl.textContent = uploadedMediaState.sizeText;
+            container.classList.add('active');
+        }
+
+        function removeUploadedMedia() {
+            uploadedMediaState.file = null;
+            uploadedMediaState.dataUrl = null;
+            uploadedMediaState.type = 'image';
+            uploadedMediaState.name = '';
+            uploadedMediaState.sizeText = '';
+
+            const container = document.getElementById('media-preview-container');
+            const box = document.getElementById('preview-media-box');
+            const fileInput = document.getElementById('media-file-input');
+
+            if (container) container.classList.remove('active');
+            if (box) box.innerHTML = '';
+            if (fileInput) fileInput.value = '';
+
+            showToast("Archivo multimedia quitado");
+            renderMediaAnalysis();
+        }
+
+        // Configurar Drag and Drop en Dropzone
+        window.addEventListener('DOMContentLoaded', () => {
+            const dropzone = document.getElementById('media-dropzone');
+            if (dropzone) {
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropzone.classList.add('dragover');
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropzone.classList.remove('dragover');
+                    }, false);
+                });
+
+                dropzone.addEventListener('drop', (e) => {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    handleMediaSelect(files);
+                }, false);
+            }
+        });
 
         // Toast Helper
         function showToast(msg = "✅ Copiado al portapapeles con éxito") {
@@ -1159,6 +1753,14 @@
             }
         }
         function copyTipsArticle(btn) { copyToClipboard(currentMarketingData.tips.fullArticle, btn); }
+
+        // Delegados de copiado para Estudio Visual
+        function copyVisualReelCopy(btn) { copyToClipboard(currentMarketingData.visualMedia.copy, btn); }
+        function copyVisualReelFull(btn) { copyToClipboard(currentMarketingData.visualMedia.fullScript, btn); }
+        function copyVisualCarouselCopy(btn) { copyToClipboard(currentMarketingData.visualMedia.carouselCopy, btn); }
+        function copyPromptEs(btn) { copyToClipboard(currentMarketingData.visualPrompts.promptEs, btn); }
+        function copyPromptEn(btn) { copyToClipboard(currentMarketingData.visualPrompts.promptEn, btn); }
+        function copyArtDirection(btn) { copyToClipboard(currentMarketingData.visualPrompts.artDirection, btn); }
 
         function scrollToResult(boxId) {
             const el = document.getElementById(boxId);
@@ -1396,6 +1998,244 @@
                 </div>
             `;
             if (isCustom) scrollToResult('tips-result-box');
+        }
+
+        // ================= RENDER ANALIZADOR MULTIMEDIA IA =================
+        function renderMediaAnalysis() {
+            const diagSelect = document.getElementById('media-diagnostic-select');
+            const customNotesInput = document.getElementById('media-custom-notes');
+            const box = document.getElementById('media-analysis-result-box');
+            if (!box) return;
+
+            const visualTag = diagSelect ? diagSelect.value : 'resultado_espejo';
+            const customNotes = customNotesInput ? customNotesInput.value.trim() : '';
+            const obj = currentObjectives.visual || 'venta';
+            const mediaType = uploadedMediaState.type || 'image';
+
+            const result = JulieMarketingEngine.generateFromMedia(mediaType, visualTag, customNotes, obj);
+            const reel = result.reel;
+            const carousel = result.carousel;
+            const diag = result.diagnostico;
+
+            const fullScriptText = `🎬 ${reel.titulo}\n🎯 Objetivo: ${reel.objetivo}\n⏱️ Duración: ${reel.duracionSugerida}\n🎵 Audio: ${reel.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${reel.gancho.visual}\nVoz: "${reel.gancho.audio}"\nTexto pantalla: ${reel.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${reel.problema.visual}\nVoz: "${reel.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${reel.solucion.visual}\nVoz: "${reel.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${reel.cierre.visual}\nVoz: "${reel.cierre.audio}"\n\n📝 COPY PARA PUBLICACIÓN:\n${reel.copyInstagram}`;
+
+            currentMarketingData.visualMedia = {
+                fullScript: fullScriptText,
+                copy: reel.copyInstagram,
+                carouselCopy: carousel.copy
+            };
+
+            let slidesHtml = '';
+            carousel.slides.forEach(s => {
+                slidesHtml += `
+                    <div class="slide-card">
+                        <div>
+                            <div class="slide-num">Slide ${s.slide} • ${s.tipo}</div>
+                            <div class="slide-title">${s.titulo}</div>
+                            <div class="slide-desc">${s.contenido || ''}</div>
+                        </div>
+                        <div class="slide-visual-hint">📸 <strong>Diseño Visual:</strong> ${s.visual}</div>
+                    </div>
+                `;
+            });
+
+            box.innerHTML = `
+                <!-- Diagnóstico Tricológico Card -->
+                <div class="diagnostic-card">
+                    <div class="diagnostic-header">
+                        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                            <span class="diagnostic-tag-badge">🔬 Diagnóstico IA: ${diag.tag}</span>
+                            <span style="font-family:'Playfair Display', serif; font-size:1.15rem; font-weight:700;">${diag.titulo}</span>
+                        </div>
+                        <span class="badge-objective">${reel.objetivo}</span>
+                    </div>
+                    <div class="diagnostic-grid">
+                        <div class="diagnostic-grid-item">
+                            <strong>🔎 Hallazgo Visual en la Fibra:</strong>
+                            <p>${diag.hallazgo}</p>
+                        </div>
+                        <div class="diagnostic-grid-item">
+                            <strong>🌿 Solución Julie Alisados:</strong>
+                            <p>${diag.solucion}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. GUION DE REEL / TIKTOK -->
+                <div class="result-card">
+                    <h2>
+                        <span>🎬 Guion de Reel / TikTok Adaptado a la Imagen</span>
+                        <button class="btn-copy" onclick="copyVisualReelFull(this)">📋 Copiar Guion Completo</button>
+                    </h2>
+                    
+                    <p style="color: #666; font-size: 0.88rem; margin-bottom: 20px;">
+                        🎵 <strong>Audio sugerido:</strong> ${reel.audioRecomendado} &nbsp;•&nbsp; ⏱️ <strong>Duración:</strong> ${reel.duracionSugerida}
+                    </p>
+
+                    <div class="scene-block">
+                        <div class="scene-header">
+                            <span>1. 🎯 GANCHO INICIAL</span>
+                            <span>${reel.gancho.tiempo}</span>
+                        </div>
+                        <div class="scene-body">
+                            <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${reel.gancho.visual}</div>
+                            <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${reel.gancho.audio}"</div>
+                            <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${reel.gancho.textoPantalla}</span></div>
+                        </div>
+                    </div>
+
+                    <div class="scene-block">
+                        <div class="scene-header">
+                            <span>2. 🤦‍♀️ EL PROBLEMA / HALLAZGO</span>
+                            <span>${reel.problema.tiempo}</span>
+                        </div>
+                        <div class="scene-body">
+                            <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${reel.problema.visual}</div>
+                            <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${reel.problema.audio}"</div>
+                            <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${reel.problema.textoPantalla}</span></div>
+                        </div>
+                    </div>
+
+                    <div class="scene-block">
+                        <div class="scene-header">
+                            <span>3. ✨ LA SOLUCIÓN EN SALÓN</span>
+                            <span>${reel.solucion.tiempo}</span>
+                        </div>
+                        <div class="scene-body">
+                            <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${reel.solucion.visual}</div>
+                            <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${reel.solucion.audio}"</div>
+                            <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${reel.solucion.textoPantalla}</span></div>
+                        </div>
+                    </div>
+
+                    <div class="scene-block">
+                        <div class="scene-header">
+                            <span>4. 📲 CIERRE Y LLAMADO A LA ACCIÓN</span>
+                            <span>${reel.cierre.tiempo}</span>
+                        </div>
+                        <div class="scene-body">
+                            <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${reel.cierre.visual}</div>
+                            <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${reel.cierre.audio}"</div>
+                            <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${reel.cierre.textoPantalla.replace(/\n/g, ' • ')}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CARRUSEL DE 6 SLIDES -->
+                <div class="result-card">
+                    <h2>
+                        <span>📸 Carrusel de 6 Diapositivas para Instagram</span>
+                        <button class="btn-copy" onclick="copyVisualCarouselCopy(this)">📋 Copiar Copy Carrusel</button>
+                    </h2>
+                    <div class="slides-grid">
+                        ${slidesHtml}
+                    </div>
+                </div>
+
+                <!-- 3. COPY PUBLICITARIO & HASHTAGS -->
+                <div class="result-card">
+                    <h2>
+                        <span>📝 Copy Publicitario Listo para Publicar</span>
+                        <button class="btn-copy" onclick="copyVisualReelCopy(this)">📋 Copiar Solo Copy</button>
+                    </h2>
+                    <div class="copy-box">${reel.copyInstagram}</div>
+                </div>
+            `;
+        }
+
+        // ================= RENDER CREADOR DE PROMPTS IA =================
+        function renderVisualPrompt() {
+            const themeSelect = document.getElementById('prompt-theme-select');
+            const formatSelect = document.getElementById('prompt-format-select');
+            const styleSelect = document.getElementById('prompt-style-select');
+            const customNotesInput = document.getElementById('prompt-custom-notes');
+            const box = document.getElementById('visual-prompts-result-box');
+            if (!box) return;
+
+            const theme = themeSelect ? themeSelect.value : 'glass_hair_model';
+            const format = formatSelect ? formatSelect.value : '9:16';
+            const style = styleSelect ? styleSelect.value : 'editorial_luxury';
+            const customNotes = customNotesInput ? customNotesInput.value.trim() : '';
+
+            const promptData = JulieMarketingEngine.generateVisualPrompt(theme, format, style, customNotes);
+
+            const artDirectionText = `🎨 DIRECCIÓN DE ARTE OFICIAL - JULIE ALISADOS\n` +
+                `• Título: ${promptData.titulo}\n` +
+                `• Formato / Ratio: ${promptData.formato}\n` +
+                `• Colores Oficiales: ${promptData.artDirection.colores}\n` +
+                `• Iluminación: ${promptData.artDirection.iluminacion}\n` +
+                `• Composición: ${promptData.artDirection.composicion}\n` +
+                `• Lente Recomendado: ${promptData.artDirection.lente}\n` +
+                `• Consejo de Producción: ${promptData.artDirection.consejo}`;
+
+            currentMarketingData.visualPrompts = {
+                promptEs: promptData.promptEs,
+                promptEn: promptData.promptEn,
+                artDirection: artDirectionText
+            };
+
+            box.innerHTML = `
+                <!-- TARJETA 1: PROMPT EN ESPAÑOL -->
+                <div class="prompt-card">
+                    <div class="prompt-card-header">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <span class="prompt-badge">🇪🇸 PROMPT EN ESPAÑOL</span>
+                            <span style="font-weight:700; color:#111; font-size:0.95rem;">${promptData.titulo}</span>
+                        </div>
+                        <button class="btn-copy" onclick="copyPromptEs(this)">📋 Copiar Prompt Español</button>
+                    </div>
+                    <p style="font-size:0.84rem; color:#666; margin-bottom:10px;">Ideal para Google Imagen 3, DALL-E 3 o generación con instrucciones en español:</p>
+                    <div class="prompt-content-box">${promptData.promptEs}</div>
+                </div>
+
+                <!-- TARJETA 2: PROMPT EN INGLÉS OPTIMIZADO -->
+                <div class="prompt-card">
+                    <div class="prompt-card-header">
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <span class="prompt-badge" style="background:var(--gold); color:#111;">🇬🇧 OPTIMIZED PROMPT (MIDJOURNEY / GOOGLE FLOW)</span>
+                            <span class="badge-meta">Ratio: ${promptData.formato}</span>
+                        </div>
+                        <button class="btn-copy" onclick="copyPromptEn(this)">📋 Copiar Prompt Inglés</button>
+                    </div>
+                    <p style="font-size:0.84rem; color:#666; margin-bottom:10px;">Optimizado con parámetros avanzados para Midjourney v6, Google Imagen 3 y Google Flow:</p>
+                    <div class="prompt-content-box" style="border-color:var(--gold);">${promptData.promptEn}</div>
+                </div>
+
+                <!-- TARJETA 3: GUÍA DE DIRECCIÓN DE ARTE OFICIAL -->
+                <div class="prompt-card">
+                    <div class="prompt-card-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span class="prompt-badge">🎨 GUÍA DE DIRECCIÓN DE ARTE</span>
+                            <span style="font-weight:700; color:#111; font-size:0.95rem;">Estética Oficial Julie Alisados</span>
+                        </div>
+                        <button class="btn-copy" onclick="copyArtDirection(this)">📋 Copiar Ficha Técnica</button>
+                    </div>
+                    
+                    <div class="art-direction-grid">
+                        <div class="art-direction-item">
+                            <strong>🎨 Paleta de Marca Oficial:</strong>
+                            <div class="palette-pills">
+                                <span class="palette-pill"><span class="color-dot" style="background:#D4AF37;"></span> Gold #D4AF37</span>
+                                <span class="palette-pill"><span class="color-dot" style="background:#111111;"></span> Black #111111</span>
+                                <span class="palette-pill"><span class="color-dot" style="background:#FFF0F5;"></span> Rose Ice #FFF0F5</span>
+                                <span class="palette-pill"><span class="color-dot" style="background:#FFD1DC;"></span> Blush #FFD1DC</span>
+                            </div>
+                        </div>
+                        <div class="art-direction-item">
+                            <strong>💡 Iluminación de Estudio:</strong>
+                            <span>${promptData.artDirection.iluminacion}</span>
+                        </div>
+                        <div class="art-direction-item">
+                            <strong>📷 Composición & Lente:</strong>
+                            <span>${promptData.artDirection.lente} • ${promptData.artDirection.composicion}</span>
+                        </div>
+                        <div class="art-direction-item" style="grid-column: 1 / -1;">
+                            <strong>✨ Consejo de Producción & Uso Publicitario:</strong>
+                            <span>${promptData.artDirection.consejo}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         // Inicializar al cargar

@@ -787,34 +787,394 @@ const JulieMarketingEngine = (() => {
             ctaFinal = `Cuida tu cabello con ciencia y cariño. Conoce más sobre la filosofía de Salud Primero (100% Libre de Formol) de Julie Alisados en nuestras sedes de Tunja y Moniquirá o escríbenos al WhatsApp +57 304 358 8180 para recibir asesoría personalizada.`;
         } else {
             // tecnico_estilista
-            tituloArticulo = `Protocolo Técnico Profesional: ${topic.title} para Salones de Belleza`;
-            extracto = `Manual de procedimientos, bioquímica aplicada y control termodinámico para estilistas y profesionales de la salud capilar.`;
-            sec1.contenido = `El diagnóstico tricológico previo es el pilar fundamental del éxito en salón. Evaluar la fuerza tensil mediante la prueba de tracción hidrométrica y determinar el grado de daño químico previo previene accidentes térmicos y permite calibrar la temperatura de la herramienta de sellado entre 180°C y 230°C.`;
-            sec2.contenido = `El mecanismo de acción de los alisados orgánicos de Julie Alisados se basa en la flexibilización temporal de los enlaces disulfuro y puentes de hidrógeno a través de un pH ácido biocompatible. La tecnología 100% enjuagable antes del sellado elimina la formación de humos volátiles y evita la degradación de la fibra por contacto químico directo con calor extremo.`;
-            sec3.contenido = `La reventa técnica de productos de mantenimiento domiciliario es vital para la reputación del salón. Prescribir shampoos sin sulfatos agresivos y acondicionadores catiónicos mantiene la cutícula sellada en su punto isoeléctrico, garantizando una durabilidad de 4 a 6 meses y una fidelización superior al 85%.`;
-            ctaFinal = `Eleva los estándares técnicos y comerciales de tu salón de belleza. Para capacitaciones profesionales, certificaciones de aplicación y distribución de producto, contáctanos al WhatsApp profesional +57 304 358 8180.`;
+    // 5. GENERADOR DE CONTENIDO A PARTIR DE FOTO / VIDEO (DIAGNÓSTICO VISUAL IA)
+    const VISUAL_DIAGNOSTICS = {
+        decolorado_mechas: {
+            title: "Cabello Decolorado o con Mechas",
+            tag: "Decolorado / Mechas",
+            hallazgo: "Fibra capilar con alta porosidad, cutícula abierta por decoloración previa y pérdida de masa lipídica. Requiere reposición de aminoácidos y sellado térmico a temperatura calibrada.",
+            solucion: "Alisado Saludable 100% libre de formol con aminoácidos biomiméticos que alisan sin alterar el tono rubio ni cristalizar la fibra.",
+            hooks: {
+                venta: "¿Te dijeron que por tener mechas no te podías alisar? Mira esta transformación 👱‍♀️✨",
+                educativo_clienta: "¿Se puede alisar un cabello decolorado sin dañarlo? La verdad científica 🔬✨",
+                tecnico_estilista: "Protocolo técnico para alisar cabello con mechas sin barrer color ni sobrecalentar ✂️🌡️"
+            },
+            audio: "Trending Luxury Acoustic / Upbeat Fashion Pop",
+            duracion: "30-40 segundos"
+        },
+        frizz_humedad: {
+            title: "Frizz Severo por Humedad y Clima Frío",
+            tag: "Frizz por Humedad",
+            hallazgo: "Cutícula porosa e higroscópica que absorbe el agua ambiental, generando hinchamiento desordenado y pérdida de control.",
+            solucion: "Sellado hidrofóbico plano con pH ácido balanceado (4.5 a 5.5) que crea una barrera impermeable contra el clima de Boyacá.",
+            hooks: {
+                venta: "¿Cansada de que el frío o la llovizna arruinen tu cabello en 5 minutos? Mira esto 🌧️➡️✨",
+                educativo_clienta: "Por qué tu cabello se esponja con la humedad aunque uses aceites pesados 💧😱",
+                tecnico_estilista: "Termodinámica del sellado de cutícula contra la absorción de humedad ambiental 🔬✂️"
+            },
+            audio: "Chill Modern R&B / Inspiring Beat",
+            duracion: "25-35 segundos"
+        },
+        rizo_rebelde: {
+            title: "Rizo Rebelde y Voluminoso (Patrón 3A a 4C)",
+            tag: "Rizo Muy Rebelde",
+            hallazgo: "Estructura helicoidal con densidad alta de puentes disulfuro y cutícula con aperturas en las zonas de curvatura.",
+            solucion: "Reordenamiento molecular orgánico que alinea la fibra al 100% manteniendo la elasticidad natural y aportando movimiento de seda.",
+            hooks: {
+                venta: "De rizo rebelde y voluminoso a liso espejo en una sola sesión sin formol 🌀➡️💎",
+                educativo_clienta: "La diferencia entre quemar un rizo con químicos y flexibilizarlo con aminoácidos 🧪🌿",
+                tecnico_estilista: "Protocolo de planchado y número de pasadas en rizos tipo 3C y 4A con fórmula orgánica 📐✂️"
+            },
+            audio: "Dramatic Reveal Sound / Luxury Viral Glow",
+            duracion: "35-45 segundos"
+        },
+        opaco_danado: {
+            title: "Opacidad, Resequedad y Falta de Brillo (Efecto Paja)",
+            tag: "Opacidad y Resequedad",
+            hallazgo: "Superficie cuticular erosionada y deslipidizada. La luz incidente se dispersa irregularmente provocando ausencia total de reflejo.",
+            solucion: "Baño de aminoácidos y nutrición con Aceite de Argán y Macadamia JA que devuelve el reflejo óptico de espejo líquido (Glass Hair).",
+            hooks: {
+                venta: "Así revivimos un cabello opaco y seco para convertirlo en un espejo líquido 🪞✨",
+                educativo_clienta: "¿Por qué tu cabello parece paja aunque le pongas mil mascarillas de supermercado? 🌾❌",
+                tecnico_estilista: "Reflectancia óptica y el índice de refracción en la cutícula capilar sellada 🔬💡"
+            },
+            audio: "Warm Aesthetic Lo-Fi / Elegant Beauty Vibes",
+            duracion: "25-35 segundos"
+        },
+        infantil_madres: {
+            title: "Niña, Cabello Infantil o Madre Lactante",
+            tag: "Infantil / Lactancia Segura",
+            hallazgo: "Fibra capilar delgada o cuero cabelludo sensible. Se requiere máxima bioseguridad, sin humos, sin formol y sin irritación.",
+            solucion: "Tratamiento con Emulsión Zero: 100% biocompatible, sin vapores molestos, aprobado para pequeñas desde los 7 años y madres.",
+            hooks: {
+                venta: "El único tratamiento de disciplina capilar 100% seguro para niñas y mamás en Boyacá 👧💖",
+                educativo_clienta: "Por qué jamás debes aplicar alisados tradicionales en niñas pequeñas ⚠️👧",
+                tecnico_estilista: "Bioseguridad en salón: Protocolos sin formol para clientas con cuero cabelludo reactivo 🌿🛡️"
+            },
+            audio: "Sweet Instrumental Piano / Gentle Uplifting Beat",
+            duracion: "30-40 segundos"
+        },
+        resultado_espejo: {
+            title: "Resultado Final: Brillo Espejo Glass Hair",
+            tag: "Resultado Glass Hair",
+            hallazgo: "Cutícula 100% sellada y alineada. Reflejo especular de la luz, caída suelta y cero saturación cosmética residual.",
+            solucion: "Mantenimiento con Dúo Argán JA y Termoprotector para preservar el liso impecable durante más de 5 meses.",
+            hooks: {
+                venta: "Esto es lo que pasa cuando te haces el Alisado Saludable en Julie Alisados 🪞✨",
+                educativo_clienta: "El secreto para que tu brillo espejo no se caiga con las lavadas en casa 🚿💎",
+                tecnico_estilista: "Control de calidad en salón: Cómo verificar el sellado perfecto en lavacabezas 🔬✂️"
+            },
+            audio: "Viral Luxury Glow / Modern Fashion Beat",
+            duracion: "20-30 segundos"
+        },
+        retoque_raiz: {
+            title: "Retoque de Crecimiento / Raíz Nueva",
+            tag: "Retoque de Raíz",
+            hallazgo: "Crecimiento natural de 4 a 6 meses en raíz con textura ondulada/frizz, mientras los medios y puntas conservan el liso previo.",
+            solucion: "Aplicación técnica localizada en los centímetros de crecimiento nuevo, protegiendo los largos ya procesados con Termoprotector JA.",
+            hooks: {
+                venta: "¿Tienes 4 meses de crecimiento y tu raíz ya pide ayuda? Mira este retoque impecable 📏✨",
+                educativo_clienta: "¿Cada cuánto tiempo debes retocar tu raíz sin sobreprocesar los largos? 📅🌸",
+                tecnico_estilista: "Técnica de aislamiento y empalme térmico en retoques de raíz para evitar quiebre ✂️🔬"
+            },
+            audio: "Upbeat Routine / Salon Day Aesthetic",
+            duracion: "25-35 segundos"
+        },
+        maltratado_calor: {
+            title: "Cabello Maltratado por Plancha Diaria",
+            tag: "Daño Térmico",
+            hallazgo: "Desnaturalización de queratina por exceso de calor directo sin protección térmica. Puntas abiertas y quiebre continuo.",
+            solucion: "Alisado Saludable con reposición lipídica que elimina para siempre la necesidad de plancharse a diario.",
+            hooks: {
+                venta: "Dile adiós a la plancha de todas las mañanas: Liso perfecto solo con secador tibio 🔌❌➡️✨",
+                educativo_clienta: "Lo que la plancha diaria le está haciendo a tu fibra capilar por dentro 🛑🔥",
+                tecnico_estilista: "Recuperación de corteza con aminoácidos en fibras con shock térmico por plancha 🔬✂️"
+            },
+            audio: "Dramatic Problem to Solution Sound / Inspiring",
+            duracion: "30-40 segundos"
         }
+    };
+
+    const generateFromMedia = (mediaType = "image", visualTag = "resultado_espejo", customNotes = "", objective = "venta") => {
+        const diag = VISUAL_DIAGNOSTICS[visualTag] || VISUAL_DIAGNOSTICS.resultado_espejo;
+        const objKey = ['venta', 'educativo_clienta', 'tecnico_estilista'].includes(objective) ? objective : 'venta';
+        const isVideo = mediaType === "video";
+        const extraNote = customNotes ? sanitizeText(customNotes).trim() : "";
+        const ctaText = TOPICS.alisado_saludable.cta[objKey];
+
+        const mainHook = diag.hooks[objKey] || diag.hooks.venta;
+        const visualSubject = isVideo ? "video clip en movimiento" : "fotografía en primer plano";
+
+        // Reel personalizado
+        const reel = {
+            titulo: sanitizeText(`Reel IA (${diag.tag}): ${mainHook}`),
+            objetivo: objKey === 'venta' ? '🎯 Venta Directa' : (objKey === 'educativo_clienta' ? '🎓 Educativo Clienta' : '✂️ Técnico Salón'),
+            duracionSugerida: diag.duracion,
+            audioRecomendado: diag.audio,
+            gancho: {
+                tiempo: "0:00 - 0:03s",
+                visual: sanitizeText(`Toma dinámica de la ${visualSubject} destacando el estado del cabello (${diag.tag}). Cámara en paneo rápido o efecto zoom in.`),
+                audio: sanitizeText(mainHook),
+                textoPantalla: sanitizeText(mainHook.replace(/[^\w\s\u00C0-\u017F¿?¡!]/gi, '').trim())
+            },
+            problema: {
+                tiempo: "0:03 - 0:12s",
+                visual: sanitizeText(`Detalle en macro de la fibra: ${diag.hallazgo}. ${extraNote ? `Detalle del caso: ${extraNote}.` : ''}`),
+                audio: sanitizeText(
+                    objKey === 'tecnico_estilista' 
+                        ? `Analizamos el estado de la fibra: ${diag.hallazgo}. En salón, aplicar químicos agresivos aquí sería un error fatal.` 
+                        : (objKey === 'educativo_clienta'
+                            ? `Si te pasa esto en el cabello, no es que no tenga arreglo, es que le falta nutrición real y sellado adecuado.`
+                            : `Muchas clientas llegan frustradas porque sienten que su cabello no tiene solución o le temen a los químicos que queman.`)
+                ),
+                textoPantalla: sanitizeText(`Diagnóstico: ${diag.tag} 🔎`)
+            },
+            solucion: {
+                tiempo: "0:12 - 0:26s",
+                visual: sanitizeText(`Proceso en salón Julie Alisados: Aplicación orgánica, enjuague total en lavacabezas con agua tibia y secado al aire mostrando el liso espejo líquido.`),
+                audio: sanitizeText(
+                    objKey === 'tecnico_estilista'
+                        ? `Trabajamos con más de 14 aminoácidos y pH 4.5 a 5.5. Enjuagamos al 100% antes del sellado térmico para proteger la elasticidad.`
+                        : (objKey === 'educativo_clienta'
+                            ? `Nuestro Alisado Saludable nutre el córtex y alinea la cutícula al 100% sin formol. El cabello queda lavado y seco al instante.`
+                            : `Con nuestro Alisado Saludable logramos esta caída de seda, brillo espejo y duración de 4 a 6 meses sin esclavizarte a la plancha.`)
+                ),
+                textoPantalla: sanitizeText(`✨ Fórmula Orgánica Enjuagable • 100% Libre de Formol`)
+            },
+            cierre: {
+                tiempo: "0:26 - 0:35s",
+                visual: sanitizeText(`Resultado final con movimiento natural 'Glass Hair', la clienta sonriendo feliz y datos de contacto de Julie Alisados.`),
+                audio: sanitizeText(
+                    objKey === 'tecnico_estilista'
+                        ? `Eleva el estándar de tu salón con protocolos científicos. Escríbenos al WhatsApp para capacitaciones profesionales.`
+                        : `¿Lista para transformar tu cabello? Agenda tu cita en nuestras sedes de Tunja o Moniquirá. Escríbenos al WhatsApp ahora mismo.`
+                ),
+                textoPantalla: sanitizeText(`📍 Tunja & Moniquirá\n📲 WhatsApp: ${BRAND.whatsappDisplay}`)
+            },
+            copyInstagram: sanitizeText(
+                `${mainHook}\n\n` +
+                `🔍 **Diagnóstico Visual:** ${diag.hallazgo}\n\n` +
+                `✨ **Nuestra Solución:** ${diag.solucion}\n\n` +
+                `${extraNote ? `📝 **Nota del caso:** ${extraNote}\n\n` : ''}` +
+                `💎 **${BRAND.name}** • _"${BRAND.slogan}"_\n` +
+                `🌿 100% Libre de Formol • Enjuagable en Salón\n\n` +
+                `${ctaText}\n\n` +
+                `📍 **Sedes Oficiales:**\n` +
+                `• Tunja: ${BRAND.sedes[0].direccion}\n` +
+                `• Moniquirá: ${BRAND.sedes[1].direccion}\n` +
+                `📲 WhatsApp: ${BRAND.whatsappDisplay}\n\n` +
+                `${BRAND.hashtagsGenerales.join(" ")} #${diag.tag.replace(/\s+/g, '')}`
+            )
+        };
+
+        // Carrusel de 6 diapositivas adaptado al diagnóstico
+        const slides = [
+            {
+                slide: 1,
+                tipo: "PORTADA (Gancho Visual)",
+                titulo: sanitizeText(mainHook),
+                contenido: sanitizeText(`Desliza para ver el diagnóstico y la transformación real de este caso ➡️`),
+                visual: sanitizeText(`Foto principal de la imagen/video cargada (${diag.tag}) con diseño elegante en Antique Gold y Obsidian Black.`)
+            },
+            {
+                slide: 2,
+                tipo: "EL DIAGNÓSTICO",
+                titulo: `¿Qué le pasaba a este cabello?`,
+                contenido: sanitizeText(`🔎 **Hallazgo Tricológico:**\n${diag.hallazgo}\n\n${extraNote ? `💡 **Detalle adicional:** ${extraNote}` : '⚠️ Sin el tratamiento adecuado, la fibra continúa perdiendo hidratación y quiebre.'}`),
+                visual: "Primer plano de la textura inicial con indicadores gráficos dorados."
+            },
+            {
+                slide: 3,
+                tipo: "EL ERROR COMÚN",
+                titulo: "Lo que NO debes hacer:",
+                contenido: sanitizeText(`❌ Aplicar formol o químicos agresivos que asfixian la cutícula.\n❌ Planchar sobre producto sin enjuagar.\n❌ Usar shampoos con sal que resecan y barren los nutrientes.`),
+                visual: "Iconografía de alerta suave con estética pulcra de Julie Alisados."
+            },
+            {
+                slide: 4,
+                tipo: "EL PROTOCOLO SALUDABLE",
+                titulo: "La Transformación en Salón:",
+                contenido: sanitizeText(`🌿 Aplicación de fórmula orgánica con 14+ aminoácidos.\n🚿 Enjuague al 100% en lavacabezas (cero humos tóxicos).\n✨ Sellado térmico plano a temperatura calibrada para brillo espejo.`),
+                visual: "Foto del proceso de lavado y peinado en el salón boutique."
+            },
+            {
+                slide: 5,
+                tipo: "EL RESULTADO",
+                titulo: "Liso Líquido 'Glass Hair':",
+                contenido: sanitizeText(`💎 Cabello 100% liso, suave y con caída natural.\n💧 Cero frizz ante la lluvia o clima húmedo.\n⏳ Duración garantizada de 4 a 6 meses con mantenimiento en casa.`),
+                visual: "Foto del resultado final con reflejo de luz impecable."
+            },
+            {
+                slide: 6,
+                tipo: "CIERRE & AGENDAMIENTO",
+                titulo: "Tu Cabello en Manos Expertas",
+                contenido: sanitizeText(`"Más que un liso, una transformación"\n\n📍 Sedes: Tunja y Moniquirá\n💬 WhatsApp de Citas: ${BRAND.whatsappDisplay}\n\n👉 Guarda este post y compártelo con alguien que necesite esta transformación.`),
+                visual: "Firma de Julie Valencia y datos de contacto oficiales."
+            }
+        ];
 
         return {
-            titulo: sanitizeText(tituloArticulo),
-            objetivo: objKey,
-            extracto: sanitizeText(extracto),
-            secciones: [
-                { subtitulo: sanitizeText(sec1.subtitulo), contenido: sanitizeText(sec1.contenido) },
-                { subtitulo: sanitizeText(sec2.subtitulo), contenido: sanitizeText(sec2.contenido) },
-                { subtitulo: sanitizeText(sec3.subtitulo), contenido: sanitizeText(sec3.contenido) }
-            ],
-            cta: sanitizeText(ctaFinal)
+            diagnostico: {
+                titulo: sanitizeText(diag.title),
+                tag: diag.tag,
+                hallazgo: sanitizeText(diag.hallazgo),
+                solucion: sanitizeText(diag.solucion),
+                enfoque: objKey
+            },
+            reel: reel,
+            carousel: {
+                titulo: sanitizeText(`Carrusel IA (${diag.tag}): ${diag.title}`),
+                slides: slides,
+                copy: reel.copyInstagram
+            },
+            copy: reel.copyInstagram
+        };
+    };
+
+    // 6. CREADOR DE PROMPTS VISUALES IA (GOOGLE IMAGEN / MIDJOURNEY / DALL-E / FLOW)
+    const PROMPT_THEMES = {
+        glass_hair_model: {
+            title: "Modelo Glass Hair en Salón Boutique de Lujo",
+            description: "Mujer elegante luciendo cabello liso efecto espejo líquido con reflejo dorado y caída de seda.",
+            baseEs: "Fotografía publicitaria de ultra alta gama de una mujer colombiana elegante de espaldas y tres cuartos en un salón boutique de lujo. Cabello ultra liso, pulido, con brillo efecto espejo 'Glass Hair' que refleja la luz con movimiento de seda líquida, sin frizz ni pesadez. Paleta de colores oficial: negro obsidiana (#111111), toques de oro envejecido Antique Gold (#D4AF37) y blanco mármol. Iluminación de estudio cinematográfica con softbox lateral que resalta el brillo dorado del cabello. Lente 85mm f/1.4, profundidad de campo suave, calidad 8K hiperrealista, portada de revista de belleza de lujo.",
+            baseEn: "Ultra-luxury high-end commercial beauty photograph of an elegant Colombian woman with sleek liquid-mirror 'Glass Hair' in an exclusive boutique salon. Ultra-straight, perfectly aligned, silky glossy hair reflecting studio light like polished obsidian with warm amber and gold highlights, flawless movement, zero frizz. Luxurious modern salon interior with obsidian black marble and subtle Antique Gold (#D4AF37) metallic accents in soft bokeh background. Shot on Hasselblad H6D-100c, 85mm f/1.4 lens, softbox three-point lighting, rim light emphasizing hair shine, hyperrealistic texture, 8k resolution, cinematic color grading, Vogue cover editorial quality",
+            artDirection: {
+                colores: "Antique Gold (#D4AF37), Obsidian Black (#111111), Rose Ice (#FFF0F5)",
+                iluminacion: "Luz de recorte cálida (3200K) en el contorno del cabello con softbox frontal suave.",
+                composicion: "Plano medio o tres cuartos con el cabello como centro focal del reflejo.",
+                lente: "85mm f/1.4 con apertura amplia y desenfoque cremoso de fondo.",
+                consejo: "Ideal para portadas de campañas publicitarias, anuncios de Instagram Ads y banners web de alta conversión."
+            }
+        },
+        macro_fiber: {
+            title: "Macrofotografía Científica de Fibra Capilar Alineada",
+            description: "Enfoque microscópico en cutícula capilar 100% sellada reflejando destellos dorados de aminoácidos.",
+            baseEs: "Fotografía macro científica de una fibra capilar humana perfectamente sellada, lisa y brillante, tratada con aminoácidos orgánicos y pH ácido balanceado. Enfoque microscópico extremo en la cutícula capilar que luce compacta, suave y reflejando destellos de luz dorada (#D4AF37) como una superficie de cristal. Fondo minimalista negro obsidiana (#111111) con sutiles moléculas de aminoácidos y gotas microscópicas de aceite de argán flotando con iluminación de laboratorio de alta tecnología. 8K, hiperrealismo científico cosmético.",
+            baseEn: "Scientific macro photography of a single perfectly sealed human hair fiber, treated with organic amino acids. Extreme microscopic close-up revealing flawless, smooth, tightly aligned cuticle scales reflecting brilliant golden light (#D4AF37) like polished crystal. Minimalist obsidian black (#111111) and deep champagne background with subtle glowing cosmetic amino acid molecules and micro-droplets of pure argan oil in soft suspension. Scientific laboratory lighting, high-speed macro lens 100mm f/2.8, depth of field with razor-sharp center, 8k, photorealistic",
+            artDirection: {
+                colores: "Obsidian Black (#111111), Antique Gold (#D4AF37), Blanco Puro",
+                iluminacion: "Luz de laboratorio precisa y puntual sobre el eje de la fibra.",
+                composicion: "Macro central con profundidad de campo milimétrica.",
+                lente: "100mm f/2.8 Macro Lens con relación 1:1 o 2:1.",
+                consejo: "Excelente para publicaciones educativas de tricología, historias científicas y demostración de tecnología sin formol."
+            }
+        },
+        wash_experience: {
+            title: "Experiencia en Lavacabezas Spa & Enjuague Libre de Formol",
+            description: "Clienta disfrutando de un lavado relajante con agua cristalina y espuma botánica en salón boutique.",
+            baseEs: "Fotografía de estilo de vida de lujo en el área de spa capilar de Julie Alisados. Clienta relajada recostada en un sillón ergonómico de lavacabezas negro obsidiana, mientras una estilista profesional enjuaga suavemente el cabello con agua tibia y espuma botánica libre de formol. Iluminación tenue y relajante con velas aromáticas, toallas blancas impecables y detalles dorados Antique Gold. Textura de agua cristalina fluyendo sobre el cabello alineado. Calidad fotográfica 8K, atmósfera de bienestar y exclusividad.",
+            baseEn: "Luxury spa lifestyle photograph in an exclusive hair sanctuary salon. Elegant client reclined comfortably in a premium ergonomic black leather wash station, smiling serenely as a professional stylist gently rinses silky smooth hair with crystal water and botanical organic lather. Warm ambient lighting, soft golden candlelight, pristine white rolled towels, subtle Antique Gold (#D4AF37) fixtures in background. Water droplets catching warm highlights. Shot on Sony A7R V, 50mm f/1.2, relaxing luxury atmosphere, hyperrealistic, 8k",
+            artDirection: {
+                colores: "Blush Pink (#FFD1DC), Obsidian Black (#111111), Antique Gold (#D4AF37)",
+                iluminacion: "Luz ambiental tenue, cálida y envolvente.",
+                composicion: "Plano medio lateral con sensación de paz y mimo sensorial.",
+                lente: "50mm f/1.2 para capturar la atmósfera íntima del spa capilar.",
+                consejo: "Perfecta para transmitir la filosofía de salud, confort y cero olores tóxicos."
+            }
+        },
+        before_after_split: {
+            title: "Antes y Después Dividido (Split Screen de Alto Impacto)",
+            description: "Contraste honesto y dramático entre cabello esponjado con frizz y cabello liso espejo pulido.",
+            baseEs: "Fotografía publicitaria de pantalla dividida (Before & After) mostrando una transformación capilar real. Lado izquierdo (Antes): Cabello con frizz rebelde, deshidratado, sin brillo y con volumen desordenado. Lado derecho (Después): Mismo cabello completamente liso, con efecto espejo 'Glass Hair', pulido, sedoso y con brillo líquido deslumbrante. Fondo de salón boutique pulcro en tonos negros y dorados. Transición nítida y honesta, iluminación uniforme de estudio que demuestra la efectividad del Alisado Saludable sin filtros exagerados. 8K.",
+            baseEn: "High-impact split screen before-and-after commercial beauty photograph showing real hair transformation. Left side (Before): Frizzy, dry, unaligned, dull textured curly hair under studio lights. Right side (After): The exact same hair transformed into silky, liquid-mirror sleek 'Glass Hair', perfectly straight, intensely shiny, deeply hydrated with healthy bounce. Clean modern salon background in obsidian black and warm gold tones. Authentic, razor-sharp split line, professional studio lighting, 8k resolution, photorealistic",
+            artDirection: {
+                colores: "Contraste visual neutro en Antes vs Antique Gold (#D4AF37) y brillo en Después",
+                iluminacion: "Luz de estudio simétrica de alta fidelidad cromática (CRI 98+).",
+                composicion: "División 50/50 vertical con alineación exacta de la modelo.",
+                lente: "85mm f/2.8 para nitidez de borde a borde.",
+                consejo: "El recurso visual con mayor tasa de conversión para anuncios de agendamiento directo."
+            }
+        },
+        product_still_life: {
+            title: "Bodegón de Productos Oficiales JA con Gotas de Oro y Argán",
+            description: "Envases cosméticos de lujo sobre mármol negro con salpicaduras doradas y botánicos.",
+            baseEs: "Fotografía de producto publicitaria de lujo (Still Life). Botellas elegantes de la línea 'JA By Julie Valencia' (Dúo de Argán con Ácido Hialurónico, Dúo Extractos Naturales y Termoprotector) dispuestas sobre un pedestal de mármol negro obsidiana. Gotas doradas translúcidas de aceite de argán y macadamia cayendo suavemente sobre la superficie pulida. Fondo con sutiles ramas botánicas e iluminación dorada Antique Gold (#D4AF37). Lente macro 100mm f/2.8, reflejos nítidos, estética de cosmética de lujo parisina.",
+            baseEn: "Ultra-premium commercial still-life product photography. Sleek amber and black cosmetic bottles with luxury gold typography and labels, placed on an obsidian black marble pedestal with gentle water and argan oil splash droplets. Subtle botanical extracts and golden liquid ribbons floating in the background. Soft golden rim lighting (#D4AF37), dramatic studio lighting, 100mm macro lens, ultra-sharp reflections, luxury cosmetic advertising aesthetic, 8k",
+            artDirection: {
+                colores: "Obsidian Black (#111111), Antique Gold (#D4AF37), Mármol Oscuro",
+                iluminacion: "Reflejos de caja de luz (strip box) marcados en las curvas de las botellas.",
+                composicion: "Bodegón triangular armónico con gotas dinámicas.",
+                lente: "100mm f/4 para máxima definición en etiquetas y texturas.",
+                consejo: "Ideal para promocionar la venta de productos de cuidado en casa con envíos nacionales."
+            }
+        },
+        stylist_consultation: {
+            title: "Diagnóstico Tricológico Profesional en Salón Boutique",
+            description: "Especialista analizando la elasticidad de la fibra capilar frente a un espejo circular dorado.",
+            baseEs: "Fotografía profesional de una consulta tricológica en Julie Alisados. Estilista experta vestida de negro elegante sosteniendo un mechón de cabello de una clienta sonriente para realizar una prueba de elasticidad e inspección de cutícula. Entorno de salón moderno y luminoso con espejos circulares con marco de oro Antique Gold, frascos de tratamiento ordenados y herramientas de salón profesionales. Atmósfera de confianza científica y calidez humana. 8K.",
+            baseEn: "Professional documentary beauty photography of a hair specialist conducting an honest elasticity and porosity hair diagnostic in a high-end salon. Friendly expert stylist in chic black uniform analyzing a hair strand with client smiling in the mirror. Modern minimalist boutique salon with circular gold-rimmed backlit mirrors, warm ambient light, high-end hairdressing equipment. 85mm portrait lens, natural expressions, authentic beauty salon atmosphere, 8k",
+            artDirection: {
+                colores: "Obsidian Black (#111111), Antique Gold (#D4AF37), Blanco Cálido",
+                iluminacion: "Luz de espejo retroiluminada combinada con luz difusa suave.",
+                composicion: "Plano medio con reflejo en el espejo.",
+                lente: "85mm f/1.8 para enfoque nítido en el gesto profesional.",
+                consejo: "Excelente para transmitir transparencia profesional y rigor científico."
+            }
+        },
+        mother_daughter: {
+            title: "Madre e Hija: Bioseguridad y Emulsión Zero",
+            description: "Madre e hija sonrientes en salón luciendo cabello brillante, sano y natural sin formol.",
+            baseEs: "Fotografía tierna y elegante de una madre joven y su pequeña hija de 8 años en el salón Julie Alisados. Ambas luciendo un cabello saludable, suave, brillante y peinado con total soltura. La niña ríe feliz mientras la madre le acaricia el cabello. Fondo acogedor de salón boutique con tonos crema, rosa hielo (#FFF0F5) y detalles dorados. Iluminación natural suave de ventanal, transmitiendo seguridad, inocuidad total (sin formol) y amor familiar. 8K.",
+            baseEn: "Heartwarming luxury lifestyle photography of a mother and her 8-year-old daughter in a boutique salon. Both showcasing healthy, naturally smooth, shiny, and soft hair. The young girl is laughing happily as her mother smiles beside her. Warm, safe, organic salon environment with soft blush pink (#FFF0F5) and gentle golden accents. Soft natural window lighting, genuine emotions, representing 100% formaldehyde-free safe care for children, 8k, photorealistic",
+            artDirection: {
+                colores: "Rose Ice (#FFF0F5), Blush Pink (#FFD1DC), Antique Gold (#D4AF37)",
+                iluminacion: "Luz natural suave tipo ventanal con reflectores dorados.",
+                composicion: "Retrato emocional plano medio de madre e hija.",
+                lente: "50mm o 85mm f/1.4 con tonos cálidos y naturales.",
+                consejo: "Ideal para promocionar la Emulsión Zero para niñas y madres gestantes/lactantes."
+            }
+        }
+    };
+
+    const generateVisualPrompt = (themeKey = "glass_hair_model", formatKey = "9:16", styleKey = "editorial_luxury", customNotes = "") => {
+        const theme = PROMPT_THEMES[themeKey] || PROMPT_THEMES.glass_hair_model;
+        const extra = customNotes ? sanitizeText(customNotes).trim() : "";
+        const ar = formatKey === "1:1" ? "1:1" : (formatKey === "4:5" ? "4:5" : (formatKey === "16:9" ? "16:9" : "9:16"));
+
+        let styleDescEs = "Fotografía editorial de ultra alta definición 8K con acabado cinematográfico de lujo.";
+        let styleDescEn = "hyperrealistic 8k resolution, shot on professional cinema camera, master studio lighting";
+
+        if (styleKey === "commercial_salon") {
+            styleDescEs = "Fotografía comercial de salón boutique con iluminación cálida dorada, tonos obsidiana y acentos dorados Antique Gold (#D4AF37).";
+            styleDescEn = "commercial beauty advertising, warm luxury salon interior lighting, rich black obsidian and Antique Gold highlights";
+        } else if (styleKey === "cinematic_gold") {
+            styleDescEs = "Iluminación cinematográfica cálida gold (3200K rim lighting), contraluz dorado intenso, bokeh ámbar y textura de seda líquida hiperrealista.";
+            styleDescEn = "cinematic warm gold rim lighting, amber bokeh reflections, liquid silk texture, dramatic golden hour salon backlight";
+        } else if (styleKey === "scientific_macro") {
+            styleDescEs = "Macrofotografía científica tricológica con lente macro 100mm f/2.8, nitidez milimétrica en cutícula compacta y destellos de aminoácidos.";
+            styleDescEn = "scientific trichology macro photography, 100mm f/2.8 macro lens, extreme optical sharpness on cuticle scales, cosmetic amino acid molecules";
+        }
+
+        const promptEsFinal = sanitizeText(
+            `${theme.baseEs} ${extra ? `Detalles adicionales de la escena: ${extra}.` : ''} Estilo: ${styleDescEs}`
+        );
+
+        const promptEnFinal = sanitizeText(
+            `${theme.baseEn}, ${extra ? `Additional scene specifics: ${extra}, ` : ''}${styleDescEn} --ar ${ar} --v 6.0 --style raw`
+        );
+
+        return {
+            titulo: theme.title,
+            descripcion: theme.description,
+            formato: ar,
+            estilo: styleKey,
+            promptEs: promptEsFinal,
+            promptEn: promptEnFinal,
+            artDirection: theme.artDirection
         };
     };
 
     return {
         BRAND,
         TOPICS,
+        VISUAL_DIAGNOSTICS,
+        PROMPT_THEMES,
         generateReelScript,
         generateCarousel,
         generateWhatsAppMessages,
         generateTipsArticle,
+        generateFromMedia,
+        generateVisualPrompt,
         sanitizeText
     };
 })();
