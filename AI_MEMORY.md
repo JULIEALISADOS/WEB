@@ -43,16 +43,24 @@
 
 ## 3. IDENTIDAD DE MARCA Y MARKETING (Para Claude Cowork & Gemini)
 
-- **Voz de marca:** Elegante, cercana y profesional. Nos enfocamos en empoderar a la mujer ofreciendo un "alisado saludable" libre de formol, priorizando la salud capilar y la transformación personal ("más que un liso, una transformación").
+- **Nombre de Marca Oficial de Productos:** **Marca JA By Julie Valencia** / **JA By Julie Valencia**.
+- **Reglas Críticas de Vocabulario:**
+  - ❌ **PROHIBIDO:** Usar la palabra *"hebra"* (sustituir siempre por *cabello, fibra capilar, melena, puntas*).
+  - ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir siempre por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de larga duración*).
+- **Enfoque Comercial de la Línea de Post-Cuidado:**
+  - **No es solo para alisados:** Es una línea profesional para cualquier persona con cabello natural, tinturado o procesado.
+  - **Especialización técnica honesta:** No se venden como champús mágicos que se adaptan a todo; se explica que Julie Alisados cuenta con la fórmula exacta para cada necesidad:
+    - *Extractos Naturales:* Cuero cabelludo normal a graso / búsqueda de ligereza y frescura.
+    - *Aceite de Argán:* Cuero cabelludo normal a seco / cabello seco, poroso, tinturado o maltratado.
+    - *Tratamientos, Mascarillas y Ampollas:* Cuidado intensivo, rescate y protección térmica universal.
+- **Voz de marca:** Elegante, cercana, empática y altamente vendedora/profesional.
 - **Colores y fuentes:**
   - **Paleta de Colores:** Dorado (`#d4af37` / `#c5a059`), Blanco Perla (`#fcfcfc`), Negro/Gris Oscuro Elegante.
-  - **Tipografías:** *Playfair Display* (elegante y sofisticada con serif) para títulos y encabezados; *Lato* (limpia y legible sans-serif) para cuerpo de texto y descripciones.
-- **Cliente ideal:** Mujeres que buscan un cabello liso, brillante y sano, libre de frizz y químicos agresivos (orgánico, libre de formol). Incluye un segmento especial de mujeres gestantes (a partir del 4to mes) y lactantes. Clientes ubicadas principalmente en Tunja y Moniquirá (Boyacá).
-- **Precios actuales:** No se publican fijos en la web, ya que dependen del diagnóstico capilar personalizado (largo, volumen y estado de la hebra). Se derivan las cotizaciones a WhatsApp. Promovemos facilidades de pago (Financiación a cuotas con **Addi** y tarjetas de crédito).
-- **Contenido con mayor respuesta:** Videos y fotos de resultados reales tipo **"Antes y Después"** (ej. Alisado Saludable, Emulsión Zero, R.C.P.), testimonios reales de Google/Facebook destacando el brillo y la sedosidad, y las promociones exclusivas de temporada (promos mensuales).
+  - **Tipografías:** *Playfair Display* para títulos y encabezados; *Lato* para cuerpo de texto.
+- **Cliente ideal:** Mujeres que buscan un cabello sano, brillante y sin frizz con fórmulas limpias libres de sal y formol.
 - **Objetivos principales:** 
-  1. Captar clientas interesadas y agendar citas en las sedes de Tunja y Moniquirá a través de WhatsApp.
-  2. Impulsar la venta de la línea de productos de cuidado en casa (Línea JA) y la línea profesional para estilistas.
+  1. Captar clientas y agendar citas en Tunja y Moniquirá por WhatsApp.
+  2. Impulsar la venta de la **Línea de Cuidado Capilar JA By Julie Valencia** y la **Línea Profesional JA By Julie Valencia**.
 
 ---
 
