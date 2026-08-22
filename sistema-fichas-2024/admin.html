@@ -1444,15 +1444,103 @@
                     <div class="trend" style="color:#FE2C55;"><i data-lucide="target" style="width:14px;"></i> Costo cliente sentada</div>
                 </div>
                 <div class="stat-card" style="border-left-color: var(--gold);">
-                    <h3>💎 Ventas Atribuidas</h3>
+                    <h3>💎 Ventas Reales (Fichas)</h3>
                     <div class="value" id="cmoStatRevenue">$0</div>
-                    <div class="trend" style="color:var(--gold-dark);"><i data-lucide="trending-up" style="width:14px;"></i> Facturación estimada COP</div>
+                    <div class="trend" style="color:var(--gold-dark);"><i data-lucide="trending-up" style="width:14px;"></i> Facturación real calculada COP</div>
                 </div>
                 <div class="stat-card" style="border-left-color: #10B981;">
                     <h3>📈 ROAS Global</h3>
                     <div class="value" id="cmoStatROAS" style="color:#10B981;">0.0x</div>
                     <div class="trend" style="color:#10B981;"><i data-lucide="zap" style="width:14px;"></i> Retorno sobre inversión</div>
                 </div>
+            </div>
+
+            <!-- ================= CONEXIÓN & INVERSIÓN PUBLICITARIA REAL ================= -->
+            <div class="card-panel" style="background: linear-gradient(180deg, #FFFFFF 0%, #FAFBFD 100%); border: 1.5px solid rgba(212, 175, 55, 0.35);">
+                <div class="card-panel-header" style="border-bottom: 1px solid #EFEFEF; padding-bottom: 14px; margin-bottom: 18px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <h2>🔗 Conexión & Inversión Publicitaria Real</h2>
+                            <span class="badge" style="background: #E8F5E9; color: #2E7D32; font-weight: 700; font-size: 0.8rem; padding: 4px 10px;">
+                                🟢 Datos sincronizados con base de datos de Supabase en tiempo real (<span id="cmoDbFoliosCount">0</span> folios analizados)
+                            </span>
+                        </div>
+                        <p style="color:#666; font-size:0.85rem; margin-top:4px;">
+                            Ingresa tu presupuesto / inversión real ejecutada este mes en Meta Ads, TikTok Ads y Google Ads para calcular automáticamente el ROAS y CPA reales a partir de los folios creados.
+                        </p>
+                    </div>
+                    <button type="button" class="btn-header" onclick="loadAdminData()" title="Recargar folios de Supabase">
+                        <i data-lucide="refresh-cw" style="width:15px;"></i> Sincronizar Base de Datos
+                    </button>
+                </div>
+
+                <form id="adAccountsForm" onsubmit="handleSaveAdAccounts(event)">
+                    <!-- Sub-bloque 1: Inversión Real del Mes -->
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--black); font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; display:flex; align-items:center; gap:8px;">
+                            <i data-lucide="dollar-sign" style="width:16px; color:var(--gold-dark);"></i> 1. Presupuesto & Inversión Real Invertida este Mes (COP)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 14px; border-radius: 12px;">
+                                <label style="display:block; font-weight:700; font-size:0.82rem; color:#1877F2; margin-bottom:6px;">
+                                    🟦 Meta Ads (Instagram / FB) ($ COP):
+                                </label>
+                                <input type="number" id="inputMetaSpend" class="filter-select" style="width:100%; font-size:1rem; font-weight:700;" placeholder="380000" min="0" step="5000" required>
+                                <small style="color:#777; font-size:0.75rem; display:block; margin-top:4px;">Inversión mensual ejecutada</small>
+                            </div>
+                            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 14px; border-radius: 12px;">
+                                <label style="display:block; font-weight:700; font-size:0.82rem; color:#FE2C55; margin-bottom:6px;">
+                                    🎵 TikTok Ads ($ COP):
+                                </label>
+                                <input type="number" id="inputTiktokSpend" class="filter-select" style="width:100%; font-size:1rem; font-weight:700;" placeholder="240000" min="0" step="5000" required>
+                                <small style="color:#777; font-size:0.75rem; display:block; margin-top:4px;">Inversión mensual ejecutada</small>
+                            </div>
+                            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 14px; border-radius: 12px;">
+                                <label style="display:block; font-weight:700; font-size:0.82rem; color:#0F9D58; margin-bottom:6px;">
+                                    🌐 Google Ads ($ COP):
+                                </label>
+                                <input type="number" id="inputGoogleSpend" class="filter-select" style="width:100%; font-size:1rem; font-weight:700;" placeholder="180000" min="0" step="5000" required>
+                                <small style="color:#777; font-size:0.75rem; display:block; margin-top:4px;">Búsqueda y Maps Boyacá</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub-bloque 2: Identificadores de Cuenta Publicitaria & Tokens API -->
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--black); font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; display:flex; align-items:center; gap:8px;">
+                            <i data-lucide="key" style="width:16px; color:var(--gold-dark);"></i> 2. Identificadores de Cuenta & Credenciales de Conexión
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
+                            <div>
+                                <label style="display:block; font-weight:600; font-size:0.82rem; margin-bottom:4px;">Meta Ads Account ID / Pixel ID:</label>
+                                <input type="text" id="inputMetaAccountId" class="filter-select" style="width:100%;" placeholder="act_84920194820">
+                            </div>
+                            <div>
+                                <label style="display:block; font-weight:600; font-size:0.82rem; margin-bottom:4px;">TikTok Advertiser ID / Pixel ID:</label>
+                                <input type="text" id="inputTiktokAccountId" class="filter-select" style="width:100%;" placeholder="728491049281938">
+                            </div>
+                            <div>
+                                <label style="display:block; font-weight:600; font-size:0.82rem; margin-bottom:4px;">Google Ads Customer ID:</label>
+                                <input type="text" id="inputGoogleAccountId" class="filter-select" style="width:100%;" placeholder="938-291-4820">
+                            </div>
+                            <div>
+                                <label style="display:block; font-weight:600; font-size:0.82rem; margin-bottom:4px;">Token de Acceso API (Meta / TikTok):</label>
+                                <input type="password" id="inputApiToken" class="filter-select" style="width:100%;" placeholder="EAABw... (opcional para sync automática)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón Guardar -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:12px; padding-top: 14px; border-top: 1px solid #ECECEC;">
+                        <span id="adAccountsSyncStatus" style="font-size:0.82rem; color:#666;">
+                            🕒 Última sincronización: <strong id="adAccountsLastUpdate">Reciente</strong>
+                        </span>
+                        <button type="submit" class="btn-header primary" style="padding: 11px 22px; font-size:0.92rem;">
+                            <i data-lucide="save" style="width:16px;"></i>
+                            <span>💾 Guardar Inversión Real</span>
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <!-- Bloque del Agente CMO con Diagnóstico en Tiempo Real -->
@@ -1462,7 +1550,7 @@
                         <div class="cmo-avatar-badge">🤖</div>
                         <div class="cmo-profile-info">
                             <h3>Julie CMO Agent • Centro de Inteligencia Publicitaria</h3>
-                            <span><i data-lucide="shield-check" style="width:14px; color:var(--gold-light);"></i> Estrategia Activa • Alineada al Brand Book 100%</span>
+                            <span><i data-lucide="shield-check" style="width:14px; color:var(--gold-light);"></i> Estrategia Activa • Conectada a Supabase en Vivo</span>
                         </div>
                     </div>
 
@@ -1663,6 +1751,7 @@
                 console.log('Datos administrativos cargados:', clientsData ? clientsData.length : 0);
 
                 if (!clientsData) clientsData = [];
+                window.allFichasData = clientsData;
 
                 // Renderizar módulos
                 renderDashboard();
@@ -1683,8 +1772,8 @@
             const total = clientsData.length;
             document.getElementById('statTotalClients').innerText = total;
 
-            const revenue = total * 250000;
-            document.getElementById('statRevenue').innerText = '$' + revenue.toLocaleString('es-CO');
+            const cmoStats = JulieCMOEngine.computeAggregates(clientsData);
+            document.getElementById('statRevenue').innerText = '$' + Math.round(cmoStats.realTotalRevenue).toLocaleString('es-CO');
 
             const uniqueDocs = new Set(clientsData.map(c => c.numero_documento)).size;
             document.getElementById('statUniqueClients').innerText = uniqueDocs;
@@ -1938,12 +2027,38 @@
         // ================= 4. RENDER AGENTE CMO & ADS =================
         function renderCMOModule() {
             const stats = JulieCMOEngine.computeAggregates(clientsData);
+            const adAcc = stats.adAccounts || JulieCMOEngine.getAdAccounts();
+
+            // Sincronizar indicador de folios reales de Supabase
+            const foliosBadge = document.getElementById('cmoDbFoliosCount');
+            if (foliosBadge) foliosBadge.innerText = stats.totalFolios;
+
+            // Población del formulario de cuentas e inversión real
+            const metaInp = document.getElementById('inputMetaSpend');
+            const tiktokInp = document.getElementById('inputTiktokSpend');
+            const googleInp = document.getElementById('inputGoogleSpend');
+            const metaAccInp = document.getElementById('inputMetaAccountId');
+            const tiktokAccInp = document.getElementById('inputTiktokAccountId');
+            const googleAccInp = document.getElementById('inputGoogleAccountId');
+            const apiTokenInp = document.getElementById('inputApiToken');
+            const lastUpdateElem = document.getElementById('adAccountsLastUpdate');
+
+            if (metaInp && !metaInp.matches(':focus')) metaInp.value = adAcc.metaSpend || 0;
+            if (tiktokInp && !tiktokInp.matches(':focus')) tiktokInp.value = adAcc.tiktokSpend || 0;
+            if (googleInp && !googleInp.matches(':focus')) googleInp.value = adAcc.googleSpend || 0;
+            if (metaAccInp && !metaAccInp.matches(':focus')) metaAccInp.value = adAcc.metaAccountId || '';
+            if (tiktokAccInp && !tiktokAccInp.matches(':focus')) tiktokAccInp.value = adAcc.tiktokAccountId || '';
+            if (googleAccInp && !googleAccInp.matches(':focus')) googleAccInp.value = adAcc.googleAccountId || '';
+            if (apiTokenInp && !apiTokenInp.matches(':focus')) apiTokenInp.value = adAcc.metaToken || '';
+            if (lastUpdateElem && adAcc.lastSync) {
+                lastUpdateElem.innerText = new Date(adAcc.lastSync).toLocaleString('es-CO');
+            }
 
             // 1. KPIs Principales
             document.getElementById('cmoStatSpend').innerText = '$' + Math.round(stats.totalSpend).toLocaleString('es-CO');
             document.getElementById('cmoStatAppointments').innerText = stats.totalAppointments;
             document.getElementById('cmoStatCPA').innerText = '$' + Math.round(stats.cpa).toLocaleString('es-CO');
-            document.getElementById('cmoStatRevenue').innerText = '$' + Math.round(stats.attributedRevenue).toLocaleString('es-CO');
+            document.getElementById('cmoStatRevenue').innerText = '$' + Math.round(stats.realTotalRevenue).toLocaleString('es-CO');
             document.getElementById('cmoStatROAS').innerText = `${stats.roas}x`;
 
             // 2. Diagnóstico según temporalidad activa
@@ -2045,6 +2160,24 @@
 
             if (window.lucide) window.lucide.createIcons();
         }
+
+        // Guardar configuración de cuentas e inversión publicitaria real
+        window.handleSaveAdAccounts = (e) => {
+            e.preventDefault();
+            const updated = {
+                metaSpend: Number(document.getElementById('inputMetaSpend').value) || 0,
+                tiktokSpend: Number(document.getElementById('inputTiktokSpend').value) || 0,
+                googleSpend: Number(document.getElementById('inputGoogleSpend').value) || 0,
+                metaAccountId: (document.getElementById('inputMetaAccountId')?.value || '').trim(),
+                tiktokAccountId: (document.getElementById('inputTiktokAccountId')?.value || '').trim(),
+                googleAccountId: (document.getElementById('inputGoogleAccountId')?.value || '').trim(),
+                metaToken: (document.getElementById('inputApiToken')?.value || '').trim()
+            };
+
+            JulieCMOEngine.saveAdAccounts(updated);
+            renderCMOModule();
+            showToast('💾 Inversión publicitaria real guardada y recalculada con éxito');
+        };
 
         // Acciones interactivas del CMO
         window.switchCMOTimeframe = (tf, btn) => {
