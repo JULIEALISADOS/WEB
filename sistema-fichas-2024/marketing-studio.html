@@ -146,6 +146,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .tab-btn:hover {
@@ -176,18 +177,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Selector Bar */
+        /* Selector Bar & Custom Topic Box */
         .controls-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px 25px;
+            padding: 22px 25px;
             margin-bottom: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-            justify-content: space-between;
             box-shadow: var(--shadow);
         }
 
@@ -195,19 +191,73 @@
             font-weight: 700;
             font-size: 0.95rem;
             color: #1a1a1a;
+            display: block;
+            margin-bottom: 6px;
         }
 
         .select-input {
-            padding: 10px 15px;
-            border: 1px solid var(--gold);
+            padding: 11px 15px;
+            border: 1.5px solid var(--gold);
             border-radius: 8px;
             background: #fff;
             font-size: 0.95rem;
             color: #1a1a1a;
             outline: none;
             cursor: pointer;
-            flex-grow: 1;
-            max-width: 420px;
+            width: 100%;
+        }
+
+        .custom-input-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            margin-top: 6px;
+            align-items: center;
+        }
+
+        .custom-topic-input {
+            flex: 1;
+            padding: 11px 15px;
+            border: 1.5px solid var(--gold);
+            border-radius: 8px;
+            background: #fff;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .custom-topic-input:focus {
+            border-color: var(--gold-dark);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .controls-divider {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 18px 0 16px 0;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .controls-divider::before,
+        .controls-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.35);
+        }
+
+        .controls-divider:not(:empty)::before {
+            margin-right: 14px;
+        }
+
+        .controls-divider:not(:empty)::after {
+            margin-left: 14px;
         }
 
         .btn-action {
@@ -222,7 +272,9 @@
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-action:hover {
@@ -237,6 +289,17 @@
 
         .btn-gold:hover {
             background: var(--gold-dark);
+        }
+
+        .btn-custom-generate {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-custom-generate:hover {
+            background: var(--gold-dark);
+            color: #fff;
         }
 
         /* Result Display Card */
@@ -260,6 +323,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .badge-meta {
@@ -342,7 +407,7 @@
             background: #fff;
             border: 1px solid var(--gold);
             color: var(--gold-dark);
-            padding: 6px 14px;
+            padding: 7px 15px;
             border-radius: 6px;
             font-weight: 700;
             font-size: 0.85rem;
@@ -351,6 +416,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-copy:hover {
@@ -444,17 +510,33 @@
         @media (max-width: 768px) {
             .header-inner {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
+                text-align: center;
             }
             .controls-card {
+                padding: 16px;
+            }
+            .custom-input-group {
                 flex-direction: column;
                 align-items: stretch;
+            }
+            .custom-input-group button {
+                width: 100%;
             }
             .select-input {
                 max-width: 100%;
             }
             .slides-grid {
                 grid-template-columns: 1fr;
+            }
+            .result-card {
+                padding: 20px;
+            }
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                justify-content: center;
             }
         }
     </style>
@@ -475,10 +557,10 @@
             </div>
 
             <div class="tabs-nav">
-                <button class="tab-btn active" onclick="switchTab('reels')">🎬 Reels & TikTok</button>
-                <button class="tab-btn" onclick="switchTab('carruseles')">📸 Carruseles & Posts</button>
-                <button class="tab-btn" onclick="switchTab('whatsapp')">💬 Estados WhatsApp</button>
-                <button class="tab-btn" onclick="switchTab('tips')">📝 Julie Tips (Blog)</button>
+                <button class="tab-btn active" onclick="switchTab('reels', this)">🎬 Reels & TikTok</button>
+                <button class="tab-btn" onclick="switchTab('carruseles', this)">📸 Carruseles & Posts</button>
+                <button class="tab-btn" onclick="switchTab('whatsapp', this)">💬 Estados WhatsApp</button>
+                <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog)</button>
             </div>
         </div>
     </header>
@@ -488,22 +570,38 @@
         <!-- ================= PESTAÑA 1: REELS & TIKTOK ================= -->
         <section id="tab-reels" class="tab-content active">
             <div class="controls-card">
-                <div>
-                    <label for="reel-topic">🎯 Selecciona la Temática o Tendencia Viral:</label>
-                    <select id="reel-topic" class="select-input">
-                        <option value="glass_hair">🪞 Tendencia 'Glass Hair' (Efecto Espejo Líquido Viral)</option>
-                        <option value="skinification">🧴 Tendencia 'Skinification' (Cuidado de Raíz & Ácido Hialurónico)</option>
-                        <option value="hair_cycling">🔄 Tendencia 'Hair Cycling' (Ciclado Capilar Semanal)</option>
-                        <option value="ciencia_crecimiento">🔬 La Verdad del Crecimiento (Retención vs Quiebre)</option>
-                        <option value="alisado_saludable">✨ Alisado Saludable (Tecnología Enjuagable & Tricología)</option>
-                        <option value="emulsion_zero">👧 Emulsión Zero (Biocompatible Niñas y Madres)</option>
-                        <option value="reposicion_aminoacidos">🧪 Reposición de Aminoácidos (SOS Anti-Quiebre)</option>
-                        <option value="cuidado_casa">🧼 Química del Cuidado en Casa JA By Julie Valencia</option>
-                    </select>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 260px;">
+                        <label for="reel-topic">🎯 Opción 1: Selecciona una Tendencia Viral:</label>
+                        <select id="reel-topic" class="select-input" onchange="renderReel(false)">
+                            <option value="glass_hair">🪞 Tendencia 'Glass Hair' (Efecto Espejo Líquido Viral)</option>
+                            <option value="skinification">🧴 Tendencia 'Skinification' (Cuidado de Raíz & Ácido Hialurónico)</option>
+                            <option value="hair_cycling">🔄 Tendencia 'Hair Cycling' (Ciclado Capilar Semanal)</option>
+                            <option value="ciencia_crecimiento">🔬 La Verdad del Crecimiento (Retención vs Quiebre)</option>
+                            <option value="alisado_saludable">✨ Alisado Saludable (Tecnología Enjuagable & Tricología)</option>
+                            <option value="emulsion_zero">👧 Emulsión Zero (Biocompatible Niñas y Madres)</option>
+                            <option value="reposicion_aminoacidos">🧪 Reposición de Aminoácidos (SOS Anti-Quiebre)</option>
+                            <option value="cuidado_casa">🧼 Química del Cuidado en Casa JA By Julie Valencia</option>
+                        </select>
+                    </div>
+                    <button class="btn-action btn-gold" onclick="renderReel(false)">
+                        ✨ Generar de Tendencia
+                    </button>
                 </div>
-                <button class="btn-action btn-gold" onclick="renderReel()">
-                    ✨ Generar Nuevo Guion
-                </button>
+
+                <div class="controls-divider">O escribe tu propio tema libremente</div>
+
+                <div>
+                    <label for="reel-custom-topic">✍️ Opción 2: Tema Personalizado (Escribe cualquier tema):</label>
+                    <div class="custom-input-group">
+                        <input type="text" id="reel-custom-topic" class="custom-topic-input" 
+                               placeholder="Ej: Consejos para cabello con mechas, Alisado en clima frío, Promoción fin de mes..." 
+                               onkeydown="if(event.key==='Enter') renderReel(true)">
+                        <button class="btn-action btn-custom-generate" onclick="renderReel(true)">
+                            🚀 Generar con mi Tema Personalizado
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="result-card" id="reel-result-box">
@@ -514,22 +612,38 @@
         <!-- ================= PESTAÑA 2: CARRUSELES INSTAGRAM ================= -->
         <section id="tab-carruseles" class="tab-content">
             <div class="controls-card">
-                <div>
-                    <label for="carousel-topic">📸 Temática del Carrusel:</label>
-                    <select id="carousel-topic" class="select-input">
-                        <option value="glass_hair">🪞 Cómo lograr el efecto Glass Hair sin dañarte</option>
-                        <option value="skinification">🧴 Skinification: Por qué tu cuero cabelludo necesita skincare</option>
-                        <option value="hair_cycling">🔄 Guía paso a paso de Hair Cycling para maximizar tu brillo</option>
-                        <option value="ciencia_crecimiento">🔬 Mitos vs Realidad del Crecimiento Capilar</option>
-                        <option value="alisado_saludable">✨ Alisado Saludable: Liso de Revista sin Formol</option>
-                        <option value="emulsion_zero">👧 Emulsión Zero: La Solución Segura para Niñas</option>
-                        <option value="reposicion_aminoacidos">🧪 Cabello Chicloso y SOS Decoloración</option>
-                        <option value="cuidado_casa">🧼 Por qué los Shampoos con Sal barren tu Alisado</option>
-                    </select>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 260px;">
+                        <label for="carousel-topic">📸 Opción 1: Temática Prediseñada del Carrusel:</label>
+                        <select id="carousel-topic" class="select-input" onchange="renderCarousel(false)">
+                            <option value="glass_hair">🪞 Cómo lograr el efecto Glass Hair sin dañarte</option>
+                            <option value="skinification">🧴 Skinification: Por qué tu cuero cabelludo necesita skincare</option>
+                            <option value="hair_cycling">🔄 Guía paso a paso de Hair Cycling para maximizar tu brillo</option>
+                            <option value="ciencia_crecimiento">🔬 Mitos vs Realidad del Crecimiento Capilar</option>
+                            <option value="alisado_saludable">✨ Alisado Saludable: Liso de Revista sin Formol</option>
+                            <option value="emulsion_zero">👧 Emulsión Zero: La Solución Segura para Niñas</option>
+                            <option value="reposicion_aminoacidos">🧪 Cabello Chicloso y SOS Decoloración</option>
+                            <option value="cuidado_casa">🧼 Por qué los Shampoos con Sal barren tu Alisado</option>
+                        </select>
+                    </div>
+                    <button class="btn-action btn-gold" onclick="renderCarousel(false)">
+                        ✨ Generar Carrusel
+                    </button>
                 </div>
-                <button class="btn-action btn-gold" onclick="renderCarousel()">
-                    ✨ Generar Carrusel
-                </button>
+
+                <div class="controls-divider">O escribe tu propio tema libremente</div>
+
+                <div>
+                    <label for="carousel-custom-topic">✍️ Opción 2: Tema Personalizado para Carrusel:</label>
+                    <div class="custom-input-group">
+                        <input type="text" id="carousel-custom-topic" class="custom-topic-input" 
+                               placeholder="Ej: Mitos de la keratina con formol, Cuidado post-decoloración, Alisado en cabello tinturado..." 
+                               onkeydown="if(event.key==='Enter') renderCarousel(true)">
+                        <button class="btn-action btn-custom-generate" onclick="renderCarousel(true)">
+                            🚀 Generar con mi Tema Personalizado
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="result-card" id="carousel-result-box">
@@ -540,13 +654,29 @@
         <!-- ================= PESTAÑA 3: ESTADOS Y DIFUSIÓN WHATSAPP ================= -->
         <section id="tab-whatsapp" class="tab-content">
             <div class="controls-card">
-                <div>
-                    <label>💬 Mensajes Listos para Estados y Difusión:</label>
-                    <p style="font-size: 0.85rem; color: #666; margin-top: 3px;">Textos de alta conversión listos para copiar y publicar en tus estados de WhatsApp.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 260px;">
+                        <label>💬 Opción 1: Mensajes Rápidos de Alta Conversión:</label>
+                        <p style="font-size: 0.85rem; color: #666;">Textos comerciales listos para copiar y publicar en estados o listas de difusión.</p>
+                    </div>
+                    <button class="btn-action btn-gold" onclick="renderWhatsApp(false)">
+                        🔄 Mensajes Predeterminados
+                    </button>
                 </div>
-                <button class="btn-action btn-gold" onclick="renderWhatsApp()">
-                    🔄 Refrescar Mensajes
-                </button>
+
+                <div class="controls-divider">O personaliza el enfoque de tus estados</div>
+
+                <div>
+                    <label for="whatsapp-custom-topic">✍️ Opción 2: Tema o Promoción Personalizada para WhatsApp:</label>
+                    <div class="custom-input-group">
+                        <input type="text" id="whatsapp-custom-topic" class="custom-topic-input" 
+                               placeholder="Ej: Promoción fin de mes, Alisado en niñas, Cuidados en días de lluvia, Oferta dúo de argán..." 
+                               onkeydown="if(event.key==='Enter') renderWhatsApp(true)">
+                        <button class="btn-action btn-custom-generate" onclick="renderWhatsApp(true)">
+                            🚀 Generar con mi Tema Personalizado
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div id="whatsapp-result-box">
@@ -557,22 +687,38 @@
         <!-- ================= PESTAÑA 4: JULIE TIPS (BLOG SEO) ================= -->
         <section id="tab-tips" class="tab-content">
             <div class="controls-card">
-                <div>
-                    <label for="tips-topic">📝 Tema del Artículo:</label>
-                    <select id="tips-topic" class="select-input">
-                        <option value="glass_hair">🪞 La Física y Química del Efecto Glass Hair</option>
-                        <option value="skinification">🧴 Skinification Capilar: El Futuro del Cuidado del Folículo</option>
-                        <option value="hair_cycling">🔄 El Método Científico de Hair Cycling</option>
-                        <option value="ciencia_crecimiento">🔬 Bases Científicas del Crecimiento y Retención</option>
-                        <option value="alisado_saludable">✨ Guía del Alisado Saludable sin Químicos Agresivos</option>
-                        <option value="emulsion_zero">👧 Cuidado Capilar en Niñas y Madres Lactantes</option>
-                        <option value="cuidado_casa">🧼 La Rutina en Casa para Proteger tu Alisado</option>
-                        <option value="reposicion_aminoacidos">🧪 Cómo Recuperar un Cabello Decolorado y Chicloso</option>
-                    </select>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 260px;">
+                        <label for="tips-topic">📝 Opción 1: Tema Sugerido para Blog / SEO:</label>
+                        <select id="tips-topic" class="select-input" onchange="renderTips(false)">
+                            <option value="glass_hair">🪞 La Física y Química del Efecto Glass Hair</option>
+                            <option value="skinification">🧴 Skinification Capilar: El Futuro del Cuidado del Folículo</option>
+                            <option value="hair_cycling">🔄 El Método Científico de Hair Cycling</option>
+                            <option value="ciencia_crecimiento">🔬 Bases Científicas del Crecimiento y Retención</option>
+                            <option value="alisado_saludable">✨ Guía del Alisado Saludable sin Químicos Agresivos</option>
+                            <option value="emulsion_zero">👧 Cuidado Capilar en Niñas y Madres Lactantes</option>
+                            <option value="cuidado_casa">🧼 La Rutina en Casa para Proteger tu Alisado</option>
+                            <option value="reposicion_aminoacidos">🧪 Cómo Recuperar un Cabello Decolorado y Chicloso</option>
+                        </select>
+                    </div>
+                    <button class="btn-action btn-gold" onclick="renderTips(false)">
+                        ✨ Generar Artículo
+                    </button>
                 </div>
-                <button class="btn-action btn-gold" onclick="renderTips()">
-                    ✨ Generar Artículo
-                </button>
+
+                <div class="controls-divider">O redacta un artículo sobre tu tema libre</div>
+
+                <div>
+                    <label for="tips-custom-topic">✍️ Opción 2: Tema Personalizado para Julie Tips:</label>
+                    <div class="custom-input-group">
+                        <input type="text" id="tips-custom-topic" class="custom-topic-input" 
+                               placeholder="Ej: Cómo recuperar cabello con mechas, Por qué no usar formol, Beneficios de aminoácidos..." 
+                               onkeydown="if(event.key==='Enter') renderTips(true)">
+                        <button class="btn-action btn-custom-generate" onclick="renderTips(true)">
+                            🚀 Generar con mi Tema Personalizado
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="result-card" id="tips-result-box">
@@ -591,8 +737,16 @@
     <script src="js/marketing-engine.js"></script>
 
     <script>
-        // Tab switching
-        function switchTab(tabId) {
+        // Estado centralizado para copiado seguro sin problemas de comillas en HTML
+        const currentMarketingData = {
+            reel: { fullScript: "", copy: "" },
+            carousel: { copy: "" },
+            whatsapp: [],
+            tips: { fullArticle: "" }
+        };
+
+        // Tab switching compatible con móviles y ejecución programática
+        function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
@@ -601,17 +755,25 @@
                 targetTab.classList.add('active');
             }
 
-            event.currentTarget.classList.add('active');
+            if (btnElement && btnElement.classList) {
+                btnElement.classList.add('active');
+            } else {
+                const tabMap = { reels: 0, carruseles: 1, whatsapp: 2, tips: 3 };
+                const idx = tabMap[tabId] ?? 0;
+                const allBtns = document.querySelectorAll('.tab-btn');
+                if (allBtns[idx]) allBtns[idx].classList.add('active');
+            }
 
-            if (tabId === 'reels') renderReel();
-            if (tabId === 'carruseles') renderCarousel();
-            if (tabId === 'whatsapp') renderWhatsApp();
-            if (tabId === 'tips') renderTips();
+            if (tabId === 'reels') renderReel(false);
+            if (tabId === 'carruseles') renderCarousel(false);
+            if (tabId === 'whatsapp') renderWhatsApp(false);
+            if (tabId === 'tips') renderTips(false);
         }
 
         // Toast Helper
-        function showToast(msg = "✅ Copiado al portapapeles") {
+        function showToast(msg = "✅ Copiado al portapapeles con éxito") {
             const toast = document.getElementById('toast');
+            if (!toast) return;
             toast.querySelector('span').textContent = msg;
             toast.classList.add('show');
             setTimeout(() => {
@@ -619,10 +781,62 @@
             }, 2500);
         }
 
-        // Clipboard Copy Helper
-        function copyToClipboard(text, btnElement) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast();
+        // Clipboard Copy Helper compatible 100% con iPhone Safari y Android Chrome
+        async function copyToClipboard(text, btnElement) {
+            if (!text) return;
+            let success = false;
+
+            // Método 1: Async Clipboard API (Navegadores modernos en contexto seguro)
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    success = true;
+                } catch (err) {
+                    console.warn("navigator.clipboard fallo, usando fallback:", err);
+                    success = false;
+                }
+            }
+
+            // Método 2: Fallback para iOS Safari, webviews y Android
+            if (!success) {
+                try {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.top = "0";
+                    textArea.style.left = "-9999px";
+                    textArea.style.width = "2em";
+                    textArea.style.height = "2em";
+                    textArea.style.padding = "0";
+                    textArea.style.border = "none";
+                    textArea.style.outline = "none";
+                    textArea.style.boxShadow = "none";
+                    textArea.style.background = "transparent";
+                    textArea.setAttribute("readonly", "");
+                    document.body.appendChild(textArea);
+
+                    if (navigator.userAgent.match(/ipad|iphone/i)) {
+                        const range = document.createRange();
+                        range.selectNodeContents(textArea);
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                        textArea.setSelectionRange(0, 999999);
+                    } else {
+                        textArea.focus();
+                        textArea.select();
+                    }
+
+                    success = document.execCommand("copy");
+                    document.body.removeChild(textArea);
+                } catch (e) {
+                    console.error("Fallback execCommand fallo:", e);
+                    success = false;
+                }
+            }
+
+            if (success) {
+                showToast("✅ Copiado al portapapeles con éxito");
                 if (btnElement) {
                     const originalText = btnElement.innerHTML;
                     btnElement.innerHTML = "✅ ¡Copiado!";
@@ -632,18 +846,54 @@
                         btnElement.classList.remove('copied');
                     }, 2000);
                 }
-            }).catch(err => {
-                alert("Error al copiar: " + err);
-            });
+            } else {
+                window.prompt("Copia el texto manualmente con Ctrl+C o presionando copiar:", text);
+            }
+        }
+
+        // Delegados seguros para botones de copiado
+        function copyReelCopy(btn) {
+            copyToClipboard(currentMarketingData.reel.copy, btn);
+        }
+
+        function copyReelFull(btn) {
+            copyToClipboard(currentMarketingData.reel.fullScript, btn);
+        }
+
+        function copyCarouselCopy(btn) {
+            copyToClipboard(currentMarketingData.carousel.copy, btn);
+        }
+
+        function copyWhatsAppMsg(idx, btn) {
+            if (currentMarketingData.whatsapp[idx]) {
+                copyToClipboard(currentMarketingData.whatsapp[idx].texto, btn);
+            }
+        }
+
+        function copyTipsArticle(btn) {
+            copyToClipboard(currentMarketingData.tips.fullArticle, btn);
         }
 
         // ================= RENDERS =================
-        function renderReel() {
+        function renderReel(isCustom = false) {
+            const customInput = document.getElementById('reel-custom-topic');
+            const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
+            if (isCustom && !customVal) {
+                showToast("⚠️ Por favor escribe un tema personalizado");
+                customInput?.focus();
+                return;
+            }
+
             const topic = document.getElementById('reel-topic').value;
-            const data = JulieMarketingEngine.generateReelScript(topic);
+            const data = JulieMarketingEngine.generateReelScript(topic, customVal);
             const box = document.getElementById('reel-result-box');
 
             const fullScriptText = `🎬 ${data.titulo}\n⏱️ Duración: ${data.duracionSugerida}\n🎵 Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto en pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\n📝 COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
+
+            currentMarketingData.reel = {
+                fullScript: fullScriptText,
+                copy: data.copyInstagram
+            };
 
             box.innerHTML = `
                 <h2>
@@ -687,7 +937,7 @@
                     <div class="scene-body">
                         <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.solucion.visual}</div>
                         <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.solucion.audio}"</div>
-                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.solucion.textoPantalla.replace('\n', ' • ')}</span></div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.solucion.textoPantalla.replace(/\n/g, ' • ')}</span></div>
                     </div>
                 </div>
 
@@ -699,30 +949,42 @@
                     <div class="scene-body">
                         <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.cierre.visual}</div>
                         <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.cierre.audio}"</div>
-                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.cierre.textoPantalla.replace('\n', ' • ')}</span></div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.cierre.textoPantalla.replace(/\n/g, ' • ')}</span></div>
                     </div>
                 </div>
 
                 <div style="margin-top: 25px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                         <h3 style="font-size: 1.1rem; color: #1a1a1a;">📝 Copy & Hashtags para Publicación:</h3>
-                        <button class="btn-copy" onclick="copyToClipboard(\`${data.copyInstagram.replace(/`/g, '\\`')}\`, this)">📋 Copiar Solo Copy</button>
+                        <button class="btn-copy" onclick="copyReelCopy(this)">📋 Copiar Solo Copy</button>
                     </div>
                     <div class="copy-box">${data.copyInstagram}</div>
                 </div>
 
                 <div style="margin-top: 25px; text-align: right;">
-                    <button class="btn-action btn-gold" onclick="copyToClipboard(\`${fullScriptText.replace(/`/g, '\\`')}\`, this)">
+                    <button class="btn-action btn-gold" onclick="copyReelFull(this)">
                         📋 Copiar Guion Completo
                     </button>
                 </div>
             `;
         }
 
-        function renderCarousel() {
+        function renderCarousel(isCustom = false) {
+            const customInput = document.getElementById('carousel-custom-topic');
+            const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
+            if (isCustom && !customVal) {
+                showToast("⚠️ Por favor escribe un tema para el carrusel");
+                customInput?.focus();
+                return;
+            }
+
             const topic = document.getElementById('carousel-topic').value;
-            const data = JulieMarketingEngine.generateCarousel(topic);
+            const data = JulieMarketingEngine.generateCarousel(topic, customVal);
             const box = document.getElementById('carousel-result-box');
+
+            currentMarketingData.carousel = {
+                copy: data.copy
+            };
 
             let slidesHtml = '';
             data.slides.forEach(s => {
@@ -741,7 +1003,7 @@
             box.innerHTML = `
                 <h2>
                     <span>${data.titulo}</span>
-                    <button class="btn-copy" onclick="copyToClipboard(\`${data.copy.replace(/`/g, '\\`')}\`, this)">📋 Copiar Copy</button>
+                    <button class="btn-copy" onclick="copyCarouselCopy(this)">📋 Copiar Copy</button>
                 </h2>
 
                 <div class="slides-grid">
@@ -755,9 +1017,19 @@
             `;
         }
 
-        function renderWhatsApp() {
-            const msgs = JulieMarketingEngine.generateWhatsAppMessages();
+        function renderWhatsApp(isCustom = false) {
+            const customInput = document.getElementById('whatsapp-custom-topic');
+            const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
+            if (isCustom && !customVal) {
+                showToast("⚠️ Por favor escribe un tema para WhatsApp");
+                customInput?.focus();
+                return;
+            }
+
+            const msgs = JulieMarketingEngine.generateWhatsAppMessages(customVal);
             const box = document.getElementById('whatsapp-result-box');
+
+            currentMarketingData.whatsapp = msgs;
 
             let html = '';
             msgs.forEach((m, idx) => {
@@ -765,7 +1037,7 @@
                     <div class="result-card">
                         <h2>
                             <span>💬 ${m.tipo}</span>
-                            <button class="btn-copy" onclick="copyToClipboard(\`${m.texto.replace(/`/g, '\\`')}\`, this)">📋 Copiar Mensaje</button>
+                            <button class="btn-copy" onclick="copyWhatsAppMsg(${idx}, this)">📋 Copiar Mensaje</button>
                         </h2>
                         <div class="copy-box" style="margin-top: 10px;">${m.texto}</div>
                     </div>
@@ -775,9 +1047,17 @@
             box.innerHTML = html;
         }
 
-        function renderTips() {
+        function renderTips(isCustom = false) {
+            const customInput = document.getElementById('tips-custom-topic');
+            const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
+            if (isCustom && !customVal) {
+                showToast("⚠️ Por favor escribe un tema para el artículo");
+                customInput?.focus();
+                return;
+            }
+
             const topic = document.getElementById('tips-topic').value;
-            const article = JulieMarketingEngine.generateTipsArticle(topic);
+            const article = JulieMarketingEngine.generateTipsArticle(topic, customVal);
             const box = document.getElementById('tips-result-box');
 
             let sectionsHtml = '';
@@ -794,10 +1074,14 @@
                 article.secciones.map(s => `## ${s.subtitulo}\n${s.contenido}`).join('\n\n') + 
                 `\n\n---\n${article.cta}`;
 
+            currentMarketingData.tips = {
+                fullArticle: fullArticleText
+            };
+
             box.innerHTML = `
                 <h2>
                     <span>${article.titulo}</span>
-                    <button class="btn-copy" onclick="copyToClipboard(\`${fullArticleText.replace(/`/g, '\\`')}\`, this)">📋 Copiar Artículo Markdown</button>
+                    <button class="btn-copy" onclick="copyTipsArticle(this)">📋 Copiar Artículo Markdown</button>
                 </h2>
                 <p style="font-size: 1.05rem; font-style: italic; color: #666; margin-bottom: 20px; border-left: 3px solid var(--gold); padding-left: 12px;">
                     ${article.extracto}
@@ -812,9 +1096,9 @@
             `;
         }
 
-        // Initialize on load
+        // Inicializar al cargar
         window.addEventListener('DOMContentLoaded', () => {
-            renderReel();
+            renderReel(false);
         });
     </script>
 </body>

@@ -1,7 +1,7 @@
 /**
- * Julie Alisados - Marketing Engine v2.0 (Tendencias Virales & Tricología Real)
+ * Julie Alisados - Marketing Engine v3.0 (IA Generativa & Temas Personalizados)
  * Generador inteligente de contenido para Redes Sociales y Blog
- * Monitoreo de tendencias virales en belleza capilar (Glass Hair, Skinification, Hair Cycling, Retención).
+ * Soporta tendencias virales automáticas Y búsqueda/redacción sobre CUALQUIER TEMA PERSONALIZADO que escriba la usuaria.
  * 100% fundamentado en dermatología, tricología y química cosmética.
  * CERO PSEUDOCIENCIA.
  */
@@ -37,15 +37,14 @@ const JulieMarketingEngine = (() => {
 
     // Biblioteca de Temáticas y Tendencias Virales Activas
     const TOPICS = {
-        // 🔥 TENDENCIAS VIRALES
         glass_hair: {
-            title: "🔥 Tendencia 'Glass Hair': El Efecto Espejo Líquido Viral en TikTok",
+            title: "Tendencia 'Glass Hair': El Efecto Espejo Líquido Viral en TikTok",
             categoria: "Tendencia Viral",
-            target: "Mujeres que buscan el acabado ultra liso, pulido, brillante y con caída de seda que es tendencia global.",
+            target: "Mujeres que buscan el acabado ultra liso, pulido, brillante y con caída de seda.",
             painPoints: [
                 "Cabello opaco y poroso que absorbe la luz en vez de reflejarla",
                 "Frizz estático que arruina el efecto liso perfecto",
-                "Dependencia excesiva de siliconas pesadas que dejan el cabello grasoso y pesado"
+                "Dependencia excesiva de siliconas pesadas que dejan el cabello grasoso"
             ],
             solutions: [
                 "Alineación molecular y sellado termoactivo que cierra las escamas de la cutícula al 100%",
@@ -60,7 +59,7 @@ const JulieMarketingEngine = (() => {
             cta: "Consigue el efecto Glass Hair en Julie Alisados. ¡Escríbenos al WhatsApp para agendar tu valoración!"
         },
         skinification: {
-            title: "🔥 Tendencia 'Skinification Capilar': Cuidar el Cuero Cabelludo como el Rostro",
+            title: "Tendencia 'Skinification Capilar': Cuidar el Cuero Cabelludo como el Rostro",
             categoria: "Tendencia Viral",
             target: "Mujeres interesadas en la salud capilar integral, raíz grasa y nutrición avanzada.",
             painPoints: [
@@ -81,7 +80,7 @@ const JulieMarketingEngine = (() => {
             cta: "Descubre la línea de Skinification Capilar JA By Julie Valencia con envíos a todo el país 🛍️"
         },
         hair_cycling: {
-            title: "🔥 Tendencia 'Hair Cycling': El Método de Ciclado Capilar Semanal",
+            title: "Tendencia 'Hair Cycling': El Método de Ciclado Capilar Semanal",
             categoria: "Tendencia Viral",
             target: "Clientas que quieren maximizar los resultados de su rutina en casa alternando días.",
             painPoints: [
@@ -101,9 +100,8 @@ const JulieMarketingEngine = (() => {
             ],
             cta: "Arma tu kit de Hair Cycling con nuestros combos JA. Escríbenos al WhatsApp para asesorarte 📲"
         },
-        // 🔬 CIENCIA & TRICOLOGÍA
         ciencia_crecimiento: {
-            title: "🔬 La Verdad del Crecimiento Capilar (Retención vs Quiebre)",
+            title: "La Verdad del Crecimiento Capilar (Retención vs Quiebre)",
             categoria: "Ciencia Capilar",
             target: "Mujeres frustradas que sienten que su cabello 'no les crece' o que recurren a mitos.",
             painPoints: [
@@ -124,7 +122,7 @@ const JulieMarketingEngine = (() => {
             cta: "Aprende a cuidar tu fibra capilar con ciencia real. Asesórate con nuestras profesionales en Tunja y Moniquirá al WhatsApp 📲"
         },
         alisado_saludable: {
-            title: "✨ Alisado Saludable (Tecnología Enjuagable & Tricología)",
+            title: "Alisado Saludable (Tecnología Enjuagable & Tricología)",
             categoria: "Tratamiento Salón",
             target: "Mujeres que buscan un liso perfecto, brillante y sedoso 100% libre de formol.",
             painPoints: [
@@ -145,7 +143,7 @@ const JulieMarketingEngine = (() => {
             cta: "Escríbenos al WhatsApp y agenda tu valoración técnica personalizada en Tunja o Moniquirá 📲"
         },
         emulsion_zero: {
-            title: "👧 Emulsión Zero (Fórmula Biocompatible para Niñas y Madres)",
+            title: "Emulsión Zero (Fórmula Biocompatible para Niñas y Madres)",
             categoria: "Tratamiento Salón",
             target: "Niñas desde 4 años, mamás lactantes, embarazadas y cabellos ultra procesados.",
             painPoints: [
@@ -166,7 +164,7 @@ const JulieMarketingEngine = (() => {
             cta: "Dale a tu pequeña mañanas felices y sin tirones. Agenda su cita en Julie Alisados al WhatsApp 📲"
         },
         reposicion_aminoacidos: {
-            title: "🧪 Reposición de Aminoácidos (SOS Anti-Quiebre & Reconstrucción)",
+            title: "Reposición de Aminoácidos (SOS Anti-Quiebre & Reconstrucción)",
             categoria: "Terapia Capilar",
             target: "Cabellos elásticos, chiclosos, decolorados o con daño químico severo.",
             painPoints: [
@@ -187,7 +185,7 @@ const JulieMarketingEngine = (() => {
             cta: "Realizamos una prueba técnica de elasticidad gratuita en tu valoración. ¡Escríbenos hoy mismo!"
         },
         cuidado_casa: {
-            title: "🧼 Química del Cuidado en Casa JA By Julie Valencia",
+            title: "Química del Cuidado en Casa JA By Julie Valencia",
             categoria: "Línea de Productos",
             target: "Clientas con alisado o cabello que busca mantenimiento profesional diario.",
             painPoints: [
@@ -211,8 +209,43 @@ const JulieMarketingEngine = (() => {
         }
     };
 
-    const generateReelScript = (topicKey) => {
-        const topic = TOPICS[topicKey] || TOPICS.glass_hair;
+    // Función Inteligente para Generar desde un TEMA PERSONALIZADO
+    const buildCustomTopic = (customQuery) => {
+        const clean = sanitizeText(customQuery).trim();
+        if (!clean) return TOPICS.glass_hair;
+
+        return {
+            title: `Especial: ${clean.charAt(0).toUpperCase() + clean.slice(1)}`,
+            categoria: "Tema Personalizado",
+            target: "Clientas de Julie Alisados interesadas en este tema específico.",
+            painPoints: [
+                `Lidiar con ${clean.toLowerCase()} sin saber cuál es el tratamiento adecuado`,
+                "Tener miedo a empeorar la condición de la fibra capilar por usar productos agresivos",
+                "Falta de asesoría personalizada y diagnósticos erróneos"
+            ],
+            solutions: [
+                `Protocolo especializado de Julie Alisados adaptado para ${clean.toLowerCase()}`,
+                "Fórmulas 100% libres de formol enriquecidas con aminoácidos y botánicos",
+                "Diagnóstico capilar previo y asesoría de mantenimiento con la línea JA By Julie Valencia"
+            ],
+            hooks: [
+                `¿Tienes dudas sobre ${clean.toLowerCase()}? Esto es lo que necesitas saber antes de tu cita ✨🔍`,
+                `Todo lo que nadie te había explicado sobre ${clean.toLowerCase()} según la ciencia capilar 🔬`,
+                `3 claves fundamentales para cuidar tu cabello si tienes ${clean.toLowerCase()} 💖`
+            ],
+            cta: `¿Quieres una valoración personalizada para tu caso? Escríbenos al WhatsApp de Julie Alisados (+57 304 358 8180) 📲`
+        };
+    };
+
+    const getTopicData = (topicKey, customQuery = "") => {
+        if (customQuery && customQuery.trim().length > 2) {
+            return buildCustomTopic(customQuery);
+        }
+        return TOPICS[topicKey] || TOPICS.glass_hair;
+    };
+
+    const generateReelScript = (topicKey, customQuery = "") => {
+        const topic = getTopicData(topicKey, customQuery);
         const randomHook = topic.hooks[Math.floor(Math.random() * topic.hooks.length)];
         const pain = topic.painPoints[Math.floor(Math.random() * topic.painPoints.length)];
         const solution = topic.solutions[Math.floor(Math.random() * topic.solutions.length)];
@@ -220,16 +253,16 @@ const JulieMarketingEngine = (() => {
         return {
             titulo: `Guion Reel / TikTok: ${topic.title}`,
             duracionSugerida: "30 a 45 segundos",
-            audioRecomendado: "Voz en off clara y profesional + música trending aesthetic o beat dinámico en tendencia",
+            audioRecomendado: "Voz en off clara y profesional + música trending aesthetic suave",
             gancho: {
                 tiempo: "0:00 - 0:03 (Primeros 3 segundos)",
-                visual: "Primer plano nítido demostrando el efecto visual (brillo espejo en movimiento, efecto líquido o prueba en cámara).",
+                visual: "Primer plano nítido del cabello brillante en movimiento o prueba visual en cámara.",
                 audio: randomHook,
                 textoPantalla: randomHook.replace(/[^\w\s¿?¡!]/gi, '').slice(0, 45) + "..."
             },
             problema: {
-                tiempo: "0:03 - 0:12 (El problema / Mito viral)",
-                visual: "Tomas de cabello con frizz, opaco o cometiendo errores cotidianos de cuidado.",
+                tiempo: "0:03 - 0:12 (El problema / Empatía)",
+                visual: "Tomas rápidas de cabello con frizz o cometiendo errores cotidianos de cuidado.",
                 audio: `La mayoría de personas creen que ${pain.toLowerCase()}, pero el secreto real está en cómo tratas la cutícula.`,
                 textoPantalla: "¿Te pasa esto con tu cabello? 🤦‍♀️"
             },
@@ -245,46 +278,46 @@ const JulieMarketingEngine = (() => {
                 audio: `${topic.cta}. Visítanos en Tunja o Moniquirá. ¡Clic al enlace del perfil!`,
                 textoPantalla: "📍 Sedes en Tunja & Moniquirá\n📲 Agenda tu cita al WhatsApp"
             },
-            copyInstagram: sanitizeText(`✨ ${randomHook}\n\n¿Quieres sumarte a las mejores tendencias capilares con resultados profesionales y saludables?\n\n🌿 **Claves de este resultado:**\n• ${topic.solutions.join("\n• ")}\n\n📍 **Sedes Oficiales:**\n• Tunja: Av. Olímpica #190, Pasaje Boulevard Local 140\n• Moniquirá: Cra 6 # 18-68\n\n📲 **Asesoría y citas:** WhatsApp +57 304 358 8180 (Enlace directo en la biografía).\n\n${BRAND.hashtagsGenerales.join(" ")}`)
+            copyInstagram: sanitizeText(`✨ ${randomHook}\n\n¿Quieres lucir un cabello impecable y saludable?\n\n🌿 **Claves de este resultado:**\n• ${topic.solutions.join("\n• ")}\n\n📍 **Sedes Oficiales:**\n• Tunja: Av. Olímpica #190, Pasaje Boulevard Local 140\n• Moniquirá: Cra 6 # 18-68\n\n📲 **Asesoría y citas:** WhatsApp +57 304 358 8180 (Enlace directo en la biografía).\n\n${BRAND.hashtagsGenerales.join(" ")}`)
         };
     };
 
-    const generateCarousel = (topicKey) => {
-        const topic = TOPICS[topicKey] || TOPICS.glass_hair;
+    const generateCarousel = (topicKey, customQuery = "") => {
+        const topic = getTopicData(topicKey, customQuery);
 
         let slides = [
             {
                 slide: 1,
-                tipo: "PORTADA (Gancho de Tendencia)",
+                tipo: "PORTADA (Gancho)",
                 titulo: sanitizeText(topic.hooks[0]),
                 visual: "Foto de resultado de impacto con tipografía editorial en dorado y blanco.",
-                nota: "Invita a deslizar para conocer el secreto de la tendencia."
+                nota: "Invita a deslizar para conocer el secreto del tratamiento."
             },
             {
                 slide: 2,
-                tipo: "EL ERROR / MITO",
-                titulo: "Por qué no lo habías logrado:",
-                contenido: sanitizeText(`• ${topic.painPoints[0]}\n• Usar productos inadecuados solo engrasa la superficie.\n• La verdadera transformación ocurre desde el interior de la fibra capilar.`),
+                tipo: "EL ERROR COMÚN",
+                titulo: "Lo que muchas no saben:",
+                contenido: sanitizeText(`• ${topic.painPoints[0]}\n• Los químicos agresivos o formol solo asfixian la fibra capilar.\n• La verdadera transformación ocurre desde el interior con aminoácidos.`),
                 visual: "Foto en detalle de fibra capilar o textura del producto."
             },
             {
                 slide: 3,
-                tipo: "LA CIENCIA DETRÁS DE LA TENDENCIA",
-                titulo: "El protocolo técnico:",
-                contenido: sanitizeText(`✨ Sellado cuticular perfecto que permite el reflejo total de la luz.\n🌿 Aporte de aminoácidos biocompatibles sin asfixiar la médula.\n💧 Retención hídrica prolongada sin frizz ni estática.`),
+                tipo: "EL PROTOCOLO TÉCNICO",
+                titulo: "La diferencia saludable:",
+                contenido: sanitizeText(`✨ ${topic.solutions[0]}\n🌿 Aporte de aminoácidos biocompatibles sin vapores molestos.\n💧 Retención hídrica prolongada sin frizz ni estática.`),
                 visual: "Foto aplicando el tratamiento con pincel en Julie Alisados."
             },
             {
                 slide: 4,
                 tipo: "RESULTADO COMPROBADO",
-                titulo: "Lo que verás en el espejo:",
-                contenido: sanitizeText(`1. Salir de la ducha y secar tu cabello solo con manos en minutos.\n2. Cero frizz en climas húmedos.\n3. Caída suelta, sedosa y brillo espejo real.`),
+                titulo: "Lo que vas a disfrutar:",
+                contenido: sanitizeText(`1. Salir de la ducha y secar tu cabello solo con manos en minutos.\n2. Cero frizz incluso en días de lluvia.\n3. Caída suelta, sedosa y brillo espejo real.`),
                 visual: "Foto o video del cabello en movimiento con luz natural."
             },
             {
                 slide: 5,
                 tipo: "MANTENIMIENTO EN CASA",
-                titulo: "Cómo conservarlo por meses:",
+                titulo: "El secreto para que dure meses:",
                 contenido: sanitizeText(`Usa la línea oficial JA By Julie Valencia:\n• Shampoos sin sal ni sulfatos agresivos (pH 4.5 - 5.5).\n• Termoprotector diario contra planchas y sol.\n• Gotas de Aceite de Argán y Macadamia JA en puntas.`),
                 visual: "Foto estética de los productos JA By Julie Valencia."
             },
@@ -297,54 +330,80 @@ const JulieMarketingEngine = (() => {
             }
         ];
 
-        let copy = sanitizeText(`Desliza para descubrir cómo lograr esta tendencia en tu cabello ➡️✨\n\n${topic.title}: La combinación perfecta entre estética de revista y salud capilar real.\n\n¿Quieres saber cuál es el protocolo ideal para ti? Escríbenos al enlace de la bio y te asesoramos con gusto 💖\n\n${BRAND.hashtagsGenerales.join(" ")}`);
+        let copy = sanitizeText(`Desliza para descubrir todo sobre este tema ➡️✨\n\n${topic.title}: La combinación perfecta entre estética de salón y salud capilar real.\n\n¿Tienes dudas? Escríbenos al enlace de la bio y te asesoramos con gusto 💖\n\n${BRAND.hashtagsGenerales.join(" ")}`);
 
         return {
-            titulo: `Carrusel de Tendencia: ${topic.title}`,
+            titulo: `Carrusel de 6 Diapositivas: ${topic.title}`,
             slides: slides,
             copy: copy
         };
     };
 
-    const generateWhatsAppMessages = () => {
+    const generateWhatsAppMessages = (customQuery = "") => {
+        const customText = customQuery ? sanitizeText(customQuery).trim() : "";
+        const topicMention = customText ? `sobre *${customText}*` : "sobre nuestro Alisado Saludable";
+
         return [
             {
-                tipo: "Estado de WhatsApp (Tendencia Glass Hair)",
-                texto: sanitizeText(`🪞 ¿Quieres el efecto 'Glass Hair' (brillo espejo) en tu cabello?\n\nEn Julie Alisados logramos un liso líquido, suelto y con brillo reflectivo real con nuestro Alisado Saludable 100% libre de formol.\n\n📍 Sedes: Tunja y Moniquirá\n📲 Responde a este estado para cotizar o agendar tu cita 💖`)
+                tipo: "Estado de WhatsApp (Venta & Asesoría)",
+                texto: sanitizeText(`✨ ¿Buscabas información ${topicMention}?\n\nEn Julie Alisados cuidamos tu fibra capilar con fórmulas 100% libres de formol y enjuagables en salón.\n\n📍 Sedes: Tunja y Moniquirá\n📲 Responde a este estado para cotizar o agendar tu cita 💖`)
             },
             {
-                tipo: "Difusión / Skinification Capilar (Cuero Cabelludo & Raíz)",
-                texto: sanitizeText(`Hola bella 💖! ¿Sabías que el secreto de un cabello abundante y brillante empieza en el cuero cabelludo?\n\nNuestra línea JA By Julie Valencia equilibra la grasa en la raíz y nutre las puntas con Ácido Hialurónico, Biotina y 12 Extractos Botánicos.\n\n📦 Pide tu combo hoy con envío inmediato a todo Colombia respondiendo a este mensaje! 🛍️✨`)
+                tipo: "Difusión / Cuidado Especializado",
+                texto: customText ? sanitizeText(`Hola bella 💖! ¿Sabías que el tratamiento adecuado para ${customText.toLowerCase()} requiere un diagnóstico profesional y nutrición con aminoácidos?\n\nEn Julie Alisados formulamos protocolos libres de químicos agresivos para que tu cabello luzca impecable.\n\n📦 Escríbenos para asesorarte o pedir tu kit oficial JA con envíos a toda Colombia! 🛍️✨`) : sanitizeText(`Hola bella 💖! ¿Sabías que el secreto de un cabello abundante y brillante empieza en el cuero cabelludo?\n\nNuestra línea JA By Julie Valencia equilibra la grasa en la raíz y nutre las puntas con Ácido Hialurónico, Biotina y 12 Extractos Botánicos.\n\n📦 Pide tu combo hoy con envío inmediato a todo Colombia respondiendo a este mensaje! 🛍️✨`)
             },
             {
-                tipo: "Recordatorio de Retoque (Mantén tu Liso de Revista)",
-                texto: sanitizeText(`¡Hola hermosa! 🌸 Te saludamos de Julie Alisados.\n\nSi ya pasaron entre 4 y 6 meses desde tu último Alisado Saludable, tu raíz está lista para retoque. Alisar a tiempo la raíz nueva mantiene tu disciplina perfecta sin dañar los largos.\n\nTenemos cupos disponibles para esta semana en Tunja y Moniquirá. ¿Te agendamos un turno? 💖`)
+                tipo: "Recordatorio de Retoque de Raíz",
+                texto: sanitizeText(`¡Hola hermosa! 🌸 Te saludamos de Julie Alisados.\n\nSi ya pasaron entre 4 y 6 meses desde tu último tratamiento, tu raíz está lista para retoque. Alisar a tiempo la raíz nueva mantiene tu disciplina perfecta sin dañar los largos.\n\nTenemos cupos disponibles para esta semana en Tunja y Moniquirá. ¿Te agendamos un turno? 💖`)
             },
             {
-                tipo: "Alerta de Cupos de Fin de Semana",
-                texto: sanitizeText(`🚨 ¡ÚLTIMOS CUPOS PARA ESTE FIN DE SEMANA! 🚨\n\nLuce un cabello impecable y sin frizz para tus eventos sin esclavizarte a la plancha.\n\n📍 Tunja: Pasaje Boulevard Local 140\n📍 Moniquirá: Cra 6 # 18-68\n\nEscríbenos ahora mismo y asegura tu cita antes de que se agoten 📲✨`)
+                tipo: "Alerta de Cupos / Especial",
+                texto: customText ? sanitizeText(`🚨 ¡ESPECIAL: ${customText.toUpperCase()}! 🚨\n\n¿Quieres solucionar esto de forma saludable y sin maltratar tu cabello?\n\n📍 Tunja: Pasaje Boulevard Local 140\n📍 Moniquirá: Cra 6 # 18-68\n\nEscríbenos ahora mismo y asegura tu valoración con nuestras profesionales 📲✨`) : sanitizeText(`🚨 ¡ÚLTIMOS CUPOS PARA ESTE FIN DE SEMANA! 🚨\n\nLuce un cabello impecable y sin frizz para tus eventos sin esclavizarte a la plancha.\n\n📍 Tunja: Pasaje Boulevard Local 140\n📍 Moniquirá: Cra 6 # 18-68\n\nEscríbenos ahora mismo y asegura tu cita antes de que se agoten 📲✨`)
             }
         ];
     };
 
-    const generateTipsArticle = (topicKey) => {
-        const topic = TOPICS[topicKey] || TOPICS.glass_hair;
+    const generateTipsArticle = (topicKey, customQuery = "") => {
+        const topic = getTopicData(topicKey, customQuery);
+        const clean = customQuery ? sanitizeText(customQuery).trim() : "";
+
+        if (clean && clean.length > 2) {
+            return {
+                titulo: sanitizeText(`Guía Especializada: ${clean.charAt(0).toUpperCase() + clean.slice(1)}`),
+                extracto: sanitizeText(`Todo lo que necesitas saber sobre ${clean.toLowerCase()} con respaldo científico, tricología y salud para tu fibra capilar.`),
+                secciones: [
+                    {
+                        subtitulo: sanitizeText(`1. Diagnóstico y evaluación para ${clean.toLowerCase()}`),
+                        contenido: sanitizeText(`Cada tipo de cabello responde de manera única según su porosidad, elasticidad y antecedentes químicos. Para abordar ${clean.toLowerCase()}, en Julie Alisados evaluamos la fibra antes de cualquier servicio para garantizar un resultado seguro y duradero.`)
+                    },
+                    {
+                        subtitulo: sanitizeText("2. Por qué evitar químicos agresivos y formol"),
+                        contenido: sanitizeText(`Muchos productos tradicionales contienen formol que plastifica la cutícula temporalmente pero la debilita a largo plazo. En Julie Alisados utilizamos fórmulas bio-orgánicas y tecnología enjuagable que nutre con aminoácidos esenciales.`)
+                    },
+                    {
+                        subtitulo: sanitizeText("3. El protocolo de cuidado en el hogar"),
+                        contenido: sanitizeText(`Para garantizar una duración de 4 a 6 meses, es indispensable utilizar shampoos sin sal con pH balanceado y termoprotectores como los de la línea oficial JA By Julie Valencia.`)
+                    }
+                ],
+                cta: sanitizeText(`¿Lista para lucir el cabello de tus sueños? Agenda tu cita en nuestras sedes de Tunja (Pasaje Boulevard Local 140) o Moniquirá (Cra 6 # 18-68). ¡Escríbenos al WhatsApp +57 304 358 8180!`)
+            };
+        }
 
         return {
-            titulo: sanitizeText(`Tendencias & Ciencia: ${topic.title}`),
-            extracto: sanitizeText(`Todo lo que necesitas saber para sumarte a las tendencias capilares más virales con respaldo científico y salud para tu fibra capilar.`),
+            titulo: sanitizeText(`Guía Especializada: ${topic.title}`),
+            extracto: sanitizeText(`Todo lo que necesitas saber para cuidar tu cabello con respaldo científico, tricología y salud para tu fibra capilar.`),
             secciones: [
                 {
-                    subtitulo: sanitizeText("1. El origen y la física detrás de esta tendencia"),
-                    contenido: sanitizeText(`Las tendencias actuales en belleza buscan acabados naturales, pulidos y con movimiento orgánico. A nivel óptico, el brillo no es más que el reflejo de la luz sobre una cutícula capilar completamente plana y sellada. Cuando el cabello está poroso o dañado por formol o calor excesivo, la luz se dispersa y el cabello luce opaco.`)
+                    subtitulo: sanitizeText("1. La importancia de un diagnóstico capilar profesional"),
+                    contenido: sanitizeText(`Cada tipo de cabello responde de manera única según su porosidad, elasticidad y antecedentes químicos. En Julie Alisados evaluamos la fibra antes de cualquier servicio para garantizar un resultado seguro y duradero.`)
                 },
                 {
-                    subtitulo: sanitizeText("2. Por qué no debes usar siliconas pesadas para simular brillo"),
-                    contenido: sanitizeText(`Muchos productos comerciales crean una falsa ilusión de brillo aplicando siliconas no solubles que terminan asfixiando el cabello y acumulando peso. En Julie Alisados trabajamos con aceites finos como el Aceite Reparador de Argán y Macadamia JA (rico en Omega 7) y formulaciones biocompatibles que nutren sin dejar residuo graso.`)
+                    subtitulo: sanitizeText("2. Por qué evitar químicos agresivos y formol"),
+                    contenido: sanitizeText(`Muchos productos tradicionales contienen formol que plastifica la cutícula temporalmente pero la debilita a largo plazo. En Julie Alisados utilizamos fórmulas orgánicas y tecnología enjuagable que nutre con aminoácidos esenciales.`)
                 },
                 {
-                    subtitulo: sanitizeText("3. El protocolo en salón y el cuidado en el hogar"),
-                    contenido: sanitizeText(`Para lograr una durabilidad de 4 a 6 meses, es indispensable combinar el servicio profesional en salón con una rutina libre de sal y cloruros agresivos en casa. La línea JA By Julie Valencia garantiza que la cutícula permanezca sellada en cada lavado.`)
+                    subtitulo: sanitizeText("3. El protocolo de cuidado en el hogar"),
+                    contenido: sanitizeText(`Para garantizar una duración de 4 a 6 meses, es indispensable utilizar shampoos sin sal con pH balanceado y termoprotectores como los de la línea oficial JA By Julie Valencia.`)
                 }
             ],
             cta: sanitizeText(`¿Lista para lucir el cabello de tus sueños? Agenda tu cita en nuestras sedes de Tunja (Pasaje Boulevard Local 140) o Moniquirá (Cra 6 # 18-68). ¡Escríbenos al WhatsApp +57 304 358 8180!`)
