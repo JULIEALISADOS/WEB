@@ -41,32 +41,42 @@
 
 ---
 
-## 3. IDENTIDAD DE MARCA Y MARKETING (Para Claude Cowork & Gemini)
+## 3. LIBRO DE MARCA OFICIAL (BRAND BOOK - BY JULIE VALENCIA)
 
-- **Nombre de Marca Oficial de Productos:** **Marca JA By Julie Valencia** / **JA By Julie Valencia**.
-- **Reglas Críticas de Vocabulario y Contenido Científico:**
-  - ❌ **PROHIBIDO:** Usar las palabras *"hebra"* y *"melena"* (sustituir siempre por *cabello, fibra capilar, puntas*).
-  - ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir siempre por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de larga duración*).
-  - ❌ **ESTRICTAMENTE PROHIBIDA LA PSEUDOCIENCIA Y MITOS MÁGICOS:** Nada de crecimiento acelerado por "fases de la luna", menjurjes caseros dañinos (cebolla, mayonesa, limón), o promesas de crecimiento milagroso.
-  - ✅ **BASE CIENTÍFICA Y TRICOLOGÍA REAL:** Todo el marketing, guiones y artículos de *Julie Tips* deben fundamentarse en **ciencia capilar real, tricología, dermatología y química cosmética**.
-    - El crecimiento capilar es biológico (~1 a 1.2 cm por mes según la fase anágena y la genética). La rutina profesional no "acelera mágicamente el folículo", sino que **fortalece la fibra y evita el quiebre de las puntas**, permitiendo retener el largo real.
-    - Se educa sobre pH, sellado cuticular, reestructuración proteica con aminoácidos y protección térmica contra el daño oxidativo y mecánico.
-- **Enfoque Comercial de la Línea de Post-Cuidado:**
-  - **No es solo para alisados:** Es una línea profesional para cualquier persona con cabello natural, tinturado o procesado.
-  - **Especialización técnica honesta:** No se venden como champús mágicos que se adaptan a todo; se explica que Julie Alisados cuenta con la fórmula exacta para cada necesidad:
-    - *Extractos Naturales:* Cuero cabelludo normal a graso / búsqueda de ligereza y frescura.
-    - *Aceite de Argán:* Cuero cabelludo normal a seco / cabello seco, poroso, tinturado o maltratado.
-    - *Tratamientos, Mascarillas y Ampollas:* Cuidado intensivo, rescate y nutrición profunda.
-    - *Termoprotector y Perfume Capilar:* Ayuda a reducir el daño por calor de plancha y secador, protege contra el sol y polución, y perfuma el cabello todo el día sin engrasar (NO prometer límites específicos de temperatura numérica).
-    - *Aceite Reparador de Argán y Macadamia (60 ml):* Gotas de nutrición seca con Argán Puro y Nuez de Macadamia (Omega 7) para sellar puntas, nutrir y aportar brillo espejo sin efecto graso.
-- **Voz de marca:** Elegante, cercana, empática y altamente vendedora/profesional.
-- **Colores y fuentes:**
-  - **Paleta de Colores:** Dorado (`#d4af37` / `#c5a059`), Blanco Perla (`#fcfcfc`), Negro/Gris Oscuro Elegante.
-  - **Tipografías:** *Playfair Display* para títulos y encabezados; *Lato* para cuerpo de texto.
-- **Cliente ideal:** Mujeres que buscan un cabello sano, brillante y sin frizz con fórmulas limpias libres de sal y formol.
-- **Objetivos principales:** 
-  1. Captar clientas y agendar citas en Tunja y Moniquirá por WhatsApp.
-  2. Impulsar la venta de la **Línea de Cuidado Capilar JA By Julie Valencia** y la **Línea Profesional JA By Julie Valencia**.
+### 🌟 01. Resumen y Slogan Oficial
+- **Slogan Principal:** *"Más que un liso, una transformación."*
+- **Misión de Marca:** Marca y salón de belleza colombiano especializado en alisados de alto rendimiento y tratamientos restauradores, fundado por Julie Valencia. Enfoque pionero en **'Alisado Saludable'** utilizando fórmulas exclusivas 100% libres de formol y tecnología avanzada para transformar el cabello priorizando la salud y seguridad de la fibra capilar.
+
+### 🎨 02. Paleta de Colores Oficial (Exact Color Palette)
+- **Antique Gold:** `#D4AF37` (RGB: 212, 175, 55 | CMYK: 0%, 17%, 74%, 17%) $\rightarrow$ Distinción, elegancia y brillo.
+- **Obsidian Black:** `#111111` (RGB: 17, 17, 17 | CMYK: 0%, 0%, 0%, 93%) $\rightarrow$ Contraste premium y fuerza visual.
+- **Snow White:** `#FFF0F5` (RGB: 255, 240, 245 | CMYK: 0%, 6%, 4%, 0%) $\rightarrow$ Fondo suave e iluminado.
+- **Soft Pink:** `#FFD1DC` (RGB: 255, 209, 220 | CMYK: 0%, 18%, 14%, 0%) $\rightarrow$ Acento femenino y calidez estética.
+
+### ✍️ 03. Tipografías Oficiales (Typography)
+- **Primary Typeface (Títulos y Jerarquía):** `Playfair Display` (Elegante, serifada, sofisticada).
+- **Secondary Typeface (Cuerpos de Texto y Lectura):** `Lato` (Limpia, moderna, legible).
+
+### 💎 04. Valores Fundamentales (Brand Values)
+1. **Health-First (Formaldehyde-free):** La salud del cabello y de la persona siempre es la prioridad #1. Cero formol.
+2. **Professional Transparency:** Transparencia profesional, diagnósticos reales y honestidad técnica total.
+3. **Scientific Innovation:** Innovación científica, química cosmética avanzada y tricología comprobada (Cero pseudociencia).
+4. **Personalized Excellence:** Excelencia y diagnóstico personalizado para cada tipo de fibra capilar.
+
+### 🎙️ 05. Tono de Voz y Estética (Tone & Aesthetic)
+- **Tono de Voz:**
+  - **Profesional:** Con conocimiento técnico y autoridad en salud capilar.
+  - **Transparente:** Honesto, claro y sin falsas promesas.
+  - **Cálido & Empático (Caring):** Cercano, amoroso y enfocado en resolver las inseguridades de la clienta.
+  - **Entusiasta:** Apasionado por el brillo, la libertad y la transformación del cabello.
+- **Estética Visual:** *Golden sophistication, modern feminine minimalist, polished professionalism, soft-focus luxury, clean beauty identity.*
+
+### 🚫 06. Reglas Críticas de Vocabulario y Marca
+- ❌ **PROHIBIDO:** Usar las palabras *"hebra"* y *"melena"* (sustituir siempre por *cabello, fibra capilar, puntas*).
+- ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de 1000 ml*).
+- ❌ **PROHIBIDA LA PSEUDOCIENCIA:** Nada de "fases de la luna" ni recetas de cocina. Crecimiento = 1 a 1.2 cm/mes; el secreto es la retención anti-quiebre.
+- **Línea de Post-Cuidado JA By Julie Valencia:** *Extractos Naturales (1000 ml)*, *Aceite de Argán con Biotina y Ácido Hialurónico (500 ml)*, *Termoprotector JA con Perfume Capilar*, *Aceite Reparador de Argán y Macadamia JA (60 ml)*, *Ampolla S.O.S.*.
+- **Sedes Comerciales:** Tunja (Avenida Olímpica #190, Pasaje Boulevard, Local 140) y Moniquirá (Carrera 6 # 18 - 68). WhatsApp: +57 304 358 8180.
 
 ---
 
