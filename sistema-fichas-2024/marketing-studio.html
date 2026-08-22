@@ -1021,11 +1021,23 @@
 
         function setObjective(tab, obj, btnElement) {
             currentObjectives[tab] = obj;
-            const container = document.getElementById(`${tab === 'carruseles' ? 'carousel' : tab}-objective-group`);
-            if (container) {
-                container.querySelectorAll('.btn-obj-option').forEach(b => b.classList.remove('active'));
+            if (btnElement) {
+                const group = btnElement.closest('.objective-options-group');
+                if (group) {
+                    group.querySelectorAll('.btn-obj-option').forEach(b => b.classList.remove('active'));
+                }
+                btnElement.classList.add('active');
+            } else {
+                const targetSelector = `#tab-${tab} .btn-obj-option[data-obj="${obj}"]`;
+                const btn = document.querySelector(targetSelector);
+                if (btn) {
+                    const group = btn.closest('.objective-options-group');
+                    if (group) {
+                        group.querySelectorAll('.btn-obj-option').forEach(b => b.classList.remove('active'));
+                    }
+                    btn.classList.add('active');
+                }
             }
-            if (btnElement) btnElement.classList.add('active');
 
             if (tab === 'reels') renderReel(false);
             if (tab === 'carruseles') renderCarousel(false);
