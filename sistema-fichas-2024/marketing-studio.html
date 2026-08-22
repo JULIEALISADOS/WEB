@@ -1378,14 +1378,14 @@
                         <div>
                             <label for="media-custom-notes">✍️ Notas o Detalles Específicos del Caso (Opcional):</label>
                             <input type="text" id="media-custom-notes" class="custom-topic-input" 
-                                   placeholder="Ej: Clienta vino de Sogamoso, se decoloró hace 2 meses, quiere liso sin perder el rubio..."
-                                   onkeydown="if(event.key==='Enter') renderMediaAnalysis()">
+                                   placeholder="Ej: Clienta vino de Sogamoso, se decoloró hace 2 meses, quiere liso sin perder el rubio..." 
+                                   onkeydown="if(event.key==='Enter') renderMediaAnalysis(true)">
                         </div>
                     </div>
 
                     <div style="margin-top: 18px;">
-                        <button class="btn-action btn-gold" style="width: 100%; padding: 13px; font-size: 0.96rem;" onclick="renderMediaAnalysis()">
-                            ✨ Analizar Imagen y Generar Contenido IA (Reel + Carrusel + Copy)
+                        <button type="button" class="btn-action btn-gold" style="width: 100%; padding: 13px; font-size: 0.96rem;" onclick="renderMediaAnalysis(true)">
+                            ✨ Analizar Imagen/Video y Generar Contenido IA (Reel + Carrusel + Copy)
                         </button>
                     </div>
                 </div>
@@ -1571,11 +1571,11 @@
         function handleMediaSelect(files) {
             if (!files || !files.length) return;
             const file = files[0];
-            const isVideo = file.type.startsWith('video/');
-            const isImage = file.type.startsWith('image/');
+            const isVideo = file.type.startsWith('video/') || (file.name && file.name.match(/\.(mp4|mov|avi|webm|mkv|3gp)$/i));
+            const isImage = file.type.startsWith('image/') || (file.name && file.name.match(/\.(jpg|jpeg|png|webp|heic|gif)$/i));
 
             if (!isImage && !isVideo) {
-                showToast("⚠️ Por favor selecciona una imagen o un video válido");
+                showToast("⚠️ Por favor selecciona una foto o un video válido");
                 return;
             }
 
@@ -1585,14 +1585,19 @@
             uploadedMediaState.name = file.name;
             uploadedMediaState.sizeText = `(${sizeMB} MB)`;
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                uploadedMediaState.dataUrl = e.target.result;
-                displayMediaPreview();
-                showToast(`✅ ${isVideo ? 'Video' : 'Foto'} cargada con éxito`);
-                renderMediaAnalysis();
-            };
-            reader.readAsDataURL(file);
+            // Usar URL.createObjectURL para carga instantánea de videos pesados sin congelar el navegador
+            try {
+                if (uploadedMediaState.dataUrl && uploadedMediaState.dataUrl.startsWith('blob:')) {
+                    URL.revokeObjectURL(uploadedMediaState.dataUrl);
+                }
+                uploadedMediaState.dataUrl = URL.createObjectURL(file);
+            } catch(e) {
+                console.warn("ObjectURL fallback", e);
+            }
+
+            displayMediaPreview();
+            showToast(`✅ ${isVideo ? 'Video' : 'Foto'} cargado con éxito`);
+            renderMediaAnalysis(true);
         }
 
         function displayMediaPreview() {
@@ -1605,10 +1610,10 @@
             if (!container || !box) return;
 
             if (uploadedMediaState.type === 'video') {
-                box.innerHTML = `<video controls src="${uploadedMediaState.dataUrl}" style="width:100%; max-height:380px;"></video>`;
+                box.innerHTML = `<video controls playsinline preload="metadata" src="${uploadedMediaState.dataUrl}" style="width:100%; max-height:380px; border-radius:8px;"></video>`;
                 if (badge) badge.textContent = "🎬 VIDEO CARGADO";
             } else {
-                box.innerHTML = `<img src="${uploadedMediaState.dataUrl}" alt="Preview" style="max-width:100%; max-height:380px;">`;
+                box.innerHTML = `<img src="${uploadedMediaState.dataUrl}" alt="Preview" style="max-width:100%; max-height:380px; border-radius:8px;">`;
                 if (badge) badge.textContent = "📸 FOTO CARGADA";
             }
 
@@ -1618,6 +1623,9 @@
         }
 
         function removeUploadedMedia() {
+            if (uploadedMediaState.dataUrl && uploadedMediaState.dataUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(uploadedMediaState.dataUrl);
+            }
             uploadedMediaState.file = null;
             uploadedMediaState.dataUrl = null;
             uploadedMediaState.type = 'image';
@@ -1633,7 +1641,7 @@
             if (fileInput) fileInput.value = '';
 
             showToast("Archivo multimedia quitado");
-            renderMediaAnalysis();
+            renderMediaAnalysis(false);
         }
 
         // Configurar Drag and Drop en Dropzone
@@ -2001,7 +2009,7 @@
         }
 
         // ================= RENDER ANALIZADOR MULTIMEDIA IA =================
-        function renderMediaAnalysis() {
+        function renderMediaAnalysis(autoScroll = false) {
             const diagSelect = document.getElementById('media-diagnostic-select');
             const customNotesInput = document.getElementById('media-custom-notes');
             const box = document.getElementById('media-analysis-result-box');
@@ -2141,6 +2149,10 @@
                     <div class="copy-box">${reel.copyInstagram}</div>
                 </div>
             `;
+
+            if (autoScroll) {
+                scrollToResult('media-analysis-result-box');
+            }
         }
 
         // ================= RENDER CREADOR DE PROMPTS IA =================
