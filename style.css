@@ -61,27 +61,6 @@ body::before {
     /* Detrás de todo */
 }
 
-/* ==========================================================================
-   Distintivo Esquina: Bandera de Colombia (Corner Ribbon)
-   ========================================================================== */
-.colombia-corner-badge {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 32px;
-    height: 32px;
-    z-index: 10000;
-    pointer-events: none;
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
-    transition: transform 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .colombia-corner-badge {
-        width: 24px;
-        height: 24px;
-    }
-}
 
 
 .container {

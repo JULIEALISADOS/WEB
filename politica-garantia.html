@@ -424,20 +424,6 @@
 </head>
 
 <body>
-    <!-- Distintivo Esquina: Bandera de Colombia (Discreto 32px) -->
-    <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 32px; height: 32px; z-index: 10000; pointer-events: none; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));" title="Julie Alisados • Colombia 🇨🇴" aria-label="Bandera de Colombia">
-        <svg viewBox="0 0 52 52" width="32" height="32" style="display: block; width: 32px; height: 32px;" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Amarillo (50%) -->
-            <path d="M 0 0 L 26 0 L 0 26 Z" fill="#FCD116" />
-            <!-- Azul (25%) -->
-            <path d="M 26 0 L 39 0 L 0 39 L 0 26 Z" fill="#003893" />
-            <!-- Rojo (25%) -->
-            <path d="M 39 0 L 52 0 L 0 52 L 0 39 Z" fill="#CE1126" />
-            <!-- Borde dorado fino -->
-            <line x1="52" y1="0" x2="0" y2="52" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.8" />
-        </svg>
-    </div>
-
     <div class="container">
 
         <div class="top-nav-bar">
@@ -451,7 +437,16 @@
         </div>
 
         <div class="header-logo">
-            <a href="index.html"><img src="logo 1.png" alt="Julie Alisados"></a>
+            <a href="index.html" style="position: relative; display: inline-flex; align-items: center;">
+                <img src="logo 1.png" alt="Julie Alisados">
+                <span class="logo-colombia-pin" style="position: absolute; top: 4px; left: 0; line-height: 0; z-index: 2;" title="Julie Alisados • Empresa 100% Colombiana 🇨🇴" aria-label="Bandera de Colombia">
+                    <svg viewBox="0 0 20 14" width="20" height="14" style="display: block; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,0.3); border: 1px solid #D4AF37;" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="20" height="7" fill="#FCD116"/>
+                        <rect y="7" width="20" height="3.5" fill="#003893"/>
+                        <rect y="10.5" width="20" height="3.5" fill="#CE1126"/>
+                    </svg>
+                </span>
+            </a>
         </div>
 
         <h1>Política de Garantía para Alisados Progresivos</h1>
