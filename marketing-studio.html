@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <title>Julie Marketing Studio ðŸ”’ | Privado</title>
+    <title>Julie Marketing Studio 🔒 | Privado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -544,17 +544,17 @@
         <div class="lock-box">
             <img src="logo 1.png" alt="Julie Alisados">
             <h2>ACCESO PRIVADO</h2>
-            <p>Julie Marketing Studio estÃ¡ reservado para la administraciÃ³n de Julie Alisados.</p>
+            <p>Julie Marketing Studio está reservado para la administración de Julie Alisados.</p>
             <form onsubmit="handleUnlock(event)">
-                <input type="password" id="pin-input" class="pin-input" placeholder="â€¢â€¢â€¢â€¢" maxlength="8" autofocus required>
-                <button type="submit" class="btn-unlock">ðŸ”“ Desbloquear Studio</button>
+                <input type="password" id="pin-input" class="pin-input" placeholder="••••" maxlength="8" autofocus required>
+                <button type="submit" class="btn-unlock">🔓 Desbloquear Studio</button>
             </form>
-            <div id="lock-error" class="lock-error">âŒ PIN incorrecto. Intenta de nuevo.</div>
+            <div id="lock-error" class="lock-error">❌ PIN incorrecto. Intenta de nuevo.</div>
         </div>
     </div>
 
     <!-- Distintivo Esquina: Bandera de Colombia -->
-    <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none;" title="Orgullo Colombiano â€¢ Julie Alisados">
+    <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none;" title="Orgullo Colombiano • Julie Alisados">
         <svg viewBox="0 0 52 52" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M 0 0 L 26 0 L 0 26 Z" fill="#FCD116" />
             <path d="M 26 0 L 39 0 L 0 39 L 0 26 Z" fill="#003893" />
@@ -570,105 +570,105 @@
                     <img src="logo 1.png" alt="Julie Alisados">
                     <div class="brand-text">
                         <h1>JULIE MARKETING STUDIO</h1>
-                        <span>Generador AutÃ³nomo de Contenido & Redes Sociales</span>
+                        <span>Generador Autónomo de Contenido & Redes Sociales</span>
                     </div>
                 </a>
-                <button class="btn-lock-session" onclick="lockSession()">ðŸ”’ Bloquear</button>
+                <button class="btn-lock-session" onclick="lockSession()">🔒 Bloquear</button>
             </div>
 
             <div class="tabs-nav">
-                <button class="tab-btn active" onclick="switchTab('reels')">ðŸŽ¬ Reels & TikTok</button>
-                <button class="tab-btn" onclick="switchTab('carruseles')">ðŸ“¸ Carruseles & Posts</button>
-                <button class="tab-btn" onclick="switchTab('whatsapp')">ðŸ’¬ Estados WhatsApp</button>
-                <button class="tab-btn" onclick="switchTab('tips')">ðŸ“ Julie Tips (Blog)</button>
+                <button class="tab-btn active" onclick="switchTab('reels')">🎬 Reels & TikTok</button>
+                <button class="tab-btn" onclick="switchTab('carruseles')">📸 Carruseles & Posts</button>
+                <button class="tab-btn" onclick="switchTab('whatsapp')">💬 Estados WhatsApp</button>
+                <button class="tab-btn" onclick="switchTab('tips')">📝 Julie Tips (Blog)</button>
             </div>
         </div>
     </header>
 
     <main class="container">
 
-        <!-- ================= PESTAÃ‘A 1: REELS & TIKTOK ================= -->
+        <!-- ================= PESTAÑA 1: REELS & TIKTOK ================= -->
         <section id="tab-reels" class="tab-content active">
             <div class="controls-card">
                 <div>
-                    <label for="reel-topic">ðŸŽ¯ Selecciona la TemÃ¡tica:</label>
+                    <label for="reel-topic">🎯 Selecciona la Temática:</label>
                     <select id="reel-topic" class="select-input">
-                        <option value="alisado_saludable">Alisado Saludable (TecnologÃ­a Enjuagable)</option>
-                        <option value="emulsion_zero">EmulsiÃ³n Zero (Apta NiÃ±as y Madres)</option>
-                        <option value="reposicion_aminoacidos">ReposiciÃ³n de AminoÃ¡cidos (SOS Anti-Quiebre)</option>
+                        <option value="alisado_saludable">Alisado Saludable (Tecnología Enjuagable)</option>
+                        <option value="emulsion_zero">Emulsión Zero (Apta Niñas y Madres)</option>
+                        <option value="reposicion_aminoacidos">Reposición de Aminoácidos (SOS Anti-Quiebre)</option>
                         <option value="cuidado_casa">Rutina de Cuidado en Casa JA</option>
                         <option value="mitos_verdades">Mitos y Verdades del Alisado</option>
                     </select>
                 </div>
                 <button class="btn-action btn-gold" onclick="renderReel()">
-                    âœ¨ Generar Nuevo Guion
+                    ✨ Generar Nuevo Guion
                 </button>
             </div>
 
             <div class="result-card" id="reel-result-box">
-                <!-- Se llena dinÃ¡micamente -->
+                <!-- Se llena dinámicamente -->
             </div>
         </section>
 
-        <!-- ================= PESTAÃ‘A 2: CARRUSELES INSTAGRAM ================= -->
+        <!-- ================= PESTAÑA 2: CARRUSELES INSTAGRAM ================= -->
         <section id="tab-carruseles" class="tab-content">
             <div class="controls-card">
                 <div>
-                    <label for="carousel-topic">ðŸ“¸ TemÃ¡tica del Carrusel:</label>
+                    <label for="carousel-topic">📸 Temática del Carrusel:</label>
                     <select id="carousel-topic" class="select-input">
                         <option value="alisado_saludable">Alisado Saludable: El Liso de Revista</option>
-                        <option value="emulsion_zero">EmulsiÃ³n Zero: La SoluciÃ³n para NiÃ±as</option>
-                        <option value="reposicion_aminoacidos">Cabello Chicloso y SOS DecoloraciÃ³n</option>
+                        <option value="emulsion_zero">Emulsión Zero: La Solución para Niñas</option>
+                        <option value="reposicion_aminoacidos">Cabello Chicloso y SOS Decoloración</option>
                         <option value="cuidado_casa">3 Secretos de Ducha para que Dure 6 Meses</option>
-                        <option value="mitos_verdades">Â¿Por quÃ© el formol arruina tu cabello?</option>
+                        <option value="mitos_verdades">¿Por qué el formol arruina tu cabello?</option>
                     </select>
                 </div>
                 <button class="btn-action btn-gold" onclick="renderCarousel()">
-                    âœ¨ Generar Carrusel
+                    ✨ Generar Carrusel
                 </button>
             </div>
 
             <div class="result-card" id="carousel-result-box">
-                <!-- Se llena dinÃ¡micamente -->
+                <!-- Se llena dinámicamente -->
             </div>
         </section>
 
-        <!-- ================= PESTAÃ‘A 3: ESTADOS Y DIFUSIÃ“N WHATSAPP ================= -->
+        <!-- ================= PESTAÑA 3: ESTADOS Y DIFUSIÓN WHATSAPP ================= -->
         <section id="tab-whatsapp" class="tab-content">
             <div class="controls-card">
                 <div>
-                    <label>ðŸ’¬ Mensajes Listos para Estados y DifusiÃ³n:</label>
-                    <p style="font-size: 0.85rem; color: #666; margin-top: 3px;">Textos de alta conversiÃ³n listos para copiar y publicar en tus estados de WhatsApp.</p>
+                    <label>💬 Mensajes Listos para Estados y Difusión:</label>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 3px;">Textos de alta conversión listos para copiar y publicar en tus estados de WhatsApp.</p>
                 </div>
                 <button class="btn-action btn-gold" onclick="renderWhatsApp()">
-                    ðŸ”„ Refrescar Mensajes
+                    🔄 Refrescar Mensajes
                 </button>
             </div>
 
             <div id="whatsapp-result-box">
-                <!-- Se llena dinÃ¡micamente -->
+                <!-- Se llena dinámicamente -->
             </div>
         </section>
 
-        <!-- ================= PESTAÃ‘A 4: JULIE TIPS (BLOG SEO) ================= -->
+        <!-- ================= PESTAÑA 4: JULIE TIPS (BLOG SEO) ================= -->
         <section id="tab-tips" class="tab-content">
             <div class="controls-card">
                 <div>
-                    <label for="tips-topic">ðŸ“ Tema del ArtÃ­culo:</label>
+                    <label for="tips-topic">📝 Tema del Artículo:</label>
                     <select id="tips-topic" class="select-input">
-                        <option value="alisado_saludable">GuÃ­a del Alisado Saludable sin QuÃ­micos</option>
-                        <option value="emulsion_zero">Cuidado Capilar en NiÃ±as y Madres Lactantes</option>
+                        <option value="alisado_saludable">Guía del Alisado Saludable sin Químicos</option>
+                        <option value="emulsion_zero">Cuidado Capilar en Niñas y Madres Lactantes</option>
                         <option value="cuidado_casa">La Rutina en Casa para Proteger tu Alisado</option>
-                        <option value="reposicion_aminoacidos">CÃ³mo Recuperar un Cabello Decolorado</option>
+                        <option value="reposicion_aminoacidos">Cómo Recuperar un Cabello Decolorado</option>
                     </select>
                 </div>
                 <button class="btn-action btn-gold" onclick="renderTips()">
-                    âœ¨ Generar ArtÃ­culo
+                    ✨ Generar Artículo
                 </button>
             </div>
 
             <div class="result-card" id="tips-result-box">
-                <!-- Se llena dinÃ¡micamente -->
+                <!-- Se llena dinámicamente -->
             </div>
         </section>
 
@@ -676,11 +676,11 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="toast">
-        <span>âœ… Copiado al portapapeles con Ã©xito</span>
+        <span>✅ Copiado al portapapeles con éxito</span>
     </div>
 
     <!-- Cargar Motor de Marketing -->
-    <script src="js/marketing-engine.js"></script>
+    <script src="js/marketing-engine.js?v=20260822_utf8"></script>
 
     <script>
         // ================= SECURITY & PIN SYSTEM =================
@@ -739,7 +739,7 @@
         }
 
         // Toast Helper
-        function showToast(msg = "âœ… Copiado al portapapeles") {
+        function showToast(msg = "✅ Copiado al portapapeles") {
             const toast = document.getElementById('toast');
             toast.querySelector('span').textContent = msg;
             toast.classList.add('show');
@@ -754,7 +754,7 @@
                 showToast();
                 if (btnElement) {
                     const originalText = btnElement.innerHTML;
-                    btnElement.innerHTML = "âœ… Â¡Copiado!";
+                    btnElement.innerHTML = "✅ ¡Copiado!";
                     btnElement.classList.add('copied');
                     setTimeout(() => {
                         btnElement.innerHTML = originalText;
@@ -772,77 +772,77 @@
             const data = JulieMarketingEngine.generateReelScript(topic);
             const box = document.getElementById('reel-result-box');
 
-            const fullScriptText = `ðŸŽ¬ ${data.titulo}\nâ±ï¸ DuraciÃ³n: ${data.duracionSugerida}\nðŸŽµ Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto en pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÃ“N (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\nðŸ“ COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
+            const fullScriptText = `🎬 ${data.titulo}\n⏱️ Duración: ${data.duracionSugerida}\n🎵 Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto en pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\n📝 COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
 
             box.innerHTML = `
                 <h2>
                     <span>${data.titulo}</span>
-                    <span class="badge-meta">â±ï¸ ${data.duracionSugerida}</span>
+                    <span class="badge-meta">⏱️ ${data.duracionSugerida}</span>
                 </h2>
                 
                 <p style="color: #666; font-size: 0.88rem; margin-bottom: 20px;">
-                    ðŸŽµ <strong>Audio sugerido:</strong> ${data.audioRecomendado}
+                    🎵 <strong>Audio sugerido:</strong> ${data.audioRecomendado}
                 </p>
 
                 <div class="scene-block">
                     <div class="scene-header">
-                        <span>1. ðŸŽ¯ GANCHO INICIAL</span>
+                        <span>1. 🎯 GANCHO INICIAL</span>
                         <span>${data.gancho.tiempo}</span>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.gancho.visual}</div>
-                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.gancho.audio}"</div>
-                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.gancho.textoPantalla}</span></div>
+                        <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.gancho.visual}</div>
+                        <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.gancho.audio}"</div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.gancho.textoPantalla}</span></div>
                     </div>
                 </div>
 
                 <div class="scene-block">
                     <div class="scene-header">
-                        <span>2. ðŸ¤¦â€â™€ï¸ EL PROBLEMA (EMPATÃA)</span>
+                        <span>2. 🤦‍♀️ EL PROBLEMA (EMPATÍA)</span>
                         <span>${data.problema.tiempo}</span>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.problema.visual}</div>
-                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.problema.audio}"</div>
-                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.problema.textoPantalla}</span></div>
+                        <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.problema.visual}</div>
+                        <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.problema.audio}"</div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.problema.textoPantalla}</span></div>
                     </div>
                 </div>
 
                 <div class="scene-block">
                     <div class="scene-header">
-                        <span>3. âœ¨ LA SOLUCIÃ“N SALUDABLE</span>
+                        <span>3. ✨ LA SOLUCIÓN SALUDABLE</span>
                         <span>${data.solucion.tiempo}</span>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.solucion.visual}</div>
-                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.solucion.audio}"</div>
-                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.solucion.textoPantalla.replace('\n', ' â€¢ ')}</span></div>
+                        <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.solucion.visual}</div>
+                        <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.solucion.audio}"</div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.solucion.textoPantalla.replace('\n', ' • ')}</span></div>
                     </div>
                 </div>
 
                 <div class="scene-block">
                     <div class="scene-header">
-                        <span>4. ðŸ“² LLAMADO A LA ACCIÃ“N (CTA)</span>
+                        <span>4. 📲 LLAMADO A LA ACCIÓN (CTA)</span>
                         <span>${data.cierre.tiempo}</span>
                     </div>
                     <div class="scene-body">
-                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.cierre.visual}</div>
-                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.cierre.audio}"</div>
-                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.cierre.textoPantalla.replace('\n', ' â€¢ ')}</span></div>
+                        <div class="scene-visual">👁️ <strong>Lo que se ve:</strong> ${data.cierre.visual}</div>
+                        <div class="scene-audio">🗣️ <strong>Voz en off:</strong> "${data.cierre.audio}"</div>
+                        <div class="scene-overlay">📱 <strong>Texto en pantalla:</strong> <span>${data.cierre.textoPantalla.replace('\n', ' • ')}</span></div>
                     </div>
                 </div>
 
                 <div style="margin-top: 25px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="font-size: 1.1rem; color: var(--dark);">ðŸ“ Copy & Hashtags para PublicaciÃ³n:</h3>
-                        <button class="btn-copy" onclick="copyToClipboard(\`${data.copyInstagram.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Solo Copy</button>
+                        <h3 style="font-size: 1.1rem; color: var(--dark);">📝 Copy & Hashtags para Publicación:</h3>
+                        <button class="btn-copy" onclick="copyToClipboard(\`${data.copyInstagram.replace(/`/g, '\\`')}\`, this)">📋 Copiar Solo Copy</button>
                     </div>
                     <div class="copy-box">${data.copyInstagram}</div>
                 </div>
 
                 <div style="margin-top: 25px; text-align: right;">
                     <button class="btn-action btn-gold" onclick="copyToClipboard(\`${fullScriptText.replace(/`/g, '\\`')}\`, this)">
-                        ðŸ“‹ Copiar Guion Completo
+                        📋 Copiar Guion Completo
                     </button>
                 </div>
             `;
@@ -858,11 +858,11 @@
                 slidesHtml += `
                     <div class="slide-card">
                         <div>
-                            <div class="slide-num">Slide ${s.slide} â€¢ ${s.tipo}</div>
+                            <div class="slide-num">Slide ${s.slide} • ${s.tipo}</div>
                             <div class="slide-title">${s.titulo}</div>
                             <div class="slide-desc">${s.contenido || ''}</div>
                         </div>
-                        <div class="slide-visual-hint">ðŸ“¸ <strong>DiseÃ±o sugerido:</strong> ${s.visual}</div>
+                        <div class="slide-visual-hint">📸 <strong>Diseño sugerido:</strong> ${s.visual}</div>
                     </div>
                 `;
             });
@@ -870,7 +870,7 @@
             box.innerHTML = `
                 <h2>
                     <span>${data.titulo}</span>
-                    <button class="btn-copy" onclick="copyToClipboard(\`${data.copy.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Copy</button>
+                    <button class="btn-copy" onclick="copyToClipboard(\`${data.copy.replace(/`/g, '\\`')}\`, this)">📋 Copiar Copy</button>
                 </h2>
 
                 <div class="slides-grid">
@@ -878,7 +878,7 @@
                 </div>
 
                 <div style="margin-top: 25px;">
-                    <h3 style="font-size: 1.1rem; color: var(--dark); margin-bottom: 8px;">ðŸ“ Copy para el Post de Instagram / Facebook:</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--dark); margin-bottom: 8px;">📝 Copy para el Post de Instagram / Facebook:</h3>
                     <div class="copy-box">${data.copy}</div>
                 </div>
             `;
@@ -893,8 +893,8 @@
                 html += `
                     <div class="result-card">
                         <h2>
-                            <span>ðŸ’¬ ${m.tipo}</span>
-                            <button class="btn-copy" onclick="copyToClipboard(\`${m.texto.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Mensaje</button>
+                            <span>💬 ${m.tipo}</span>
+                            <button class="btn-copy" onclick="copyToClipboard(\`${m.texto.replace(/`/g, '\\`')}\`, this)">📋 Copiar Mensaje</button>
                         </h2>
                         <div class="copy-box" style="margin-top: 10px;">${m.texto}</div>
                     </div>
@@ -926,7 +926,7 @@
             box.innerHTML = `
                 <h2>
                     <span>${article.titulo}</span>
-                    <button class="btn-copy" onclick="copyToClipboard(\`${fullArticleText.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar ArtÃ­culo Markdown</button>
+                    <button class="btn-copy" onclick="copyToClipboard(\`${fullArticleText.replace(/`/g, '\\`')}\`, this)">📋 Copiar Artículo Markdown</button>
                 </h2>
                 <p style="font-size: 1.05rem; font-style: italic; color: #666; margin-bottom: 20px; border-left: 3px solid var(--gold); padding-left: 12px;">
                     ${article.extracto}
@@ -935,7 +935,7 @@
                 ${sectionsHtml}
 
                 <div style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 15px 20px; border-radius: 10px; margin-top: 20px;">
-                    <strong>ðŸ“ Cierre del ArtÃ­culo (Llamado a la acciÃ³n):</strong>
+                    <strong>📍 Cierre del Artículo (Llamado a la acción):</strong>
                     <p style="margin-top: 5px; font-size: 0.95rem;">${article.cta}</p>
                 </div>
             `;
