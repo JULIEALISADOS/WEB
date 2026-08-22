@@ -1,18 +1,18 @@
-﻿/**
+/**
  * Julie Alisados - Marketing Engine v1.0
  * Generador inteligente de contenido para Redes Sociales (Reels, TikTok, Instagram, WhatsApp y Julie Tips)
- * DiseÃ±ado con reglas estrictas de identidad de marca.
+ * Diseñado con reglas estrictas de identidad de marca.
  */
 
 const JulieMarketingEngine = (() => {
     // Reglas de marca y datos oficiales
     const BRAND = {
         name: "Julie Alisados",
-        tagline: "El Alisado Saludable #1 de Colombia â€¢ By Julie Valencia",
+        tagline: "El Alisado Saludable #1 de Colombia • By Julie Valencia",
         whatsapp: "573043588180",
         sedes: [
-            { ciudad: "Tunja", direccion: "Avenida OlÃ­mpica #190, Pasaje Boulevard, Local 140" },
-            { ciudad: "MoniquirÃ¡", direccion: "Carrera 6 # 18 - 68" }
+            { ciudad: "Tunja", direccion: "Avenida Olímpica #190, Pasaje Boulevard, Local 140" },
+            { ciudad: "Moniquirá", direccion: "Carrera 6 # 18 - 68" }
         ],
         hashtagsGenerales: [
             "#JulieAlisados", "#AlisadoSaludable", "#AlisadosSinFormol", "#AlisadosTunja", 
@@ -30,113 +30,113 @@ const JulieMarketingEngine = (() => {
             .replace(/\bhebra\b/gi, "fibra capilar")
             .replace(/\bhebras\b/gi, "fibras capilares")
             .replace(/\brendimiento gigante\b/gi, "alto rendimiento profesional")
-            .replace(/\brendimiento familiar\b/gi, "presentaciÃ³n profesional de 1000 ml");
+            .replace(/\brendimiento familiar\b/gi, "presentación profesional de 1000 ml");
     };
 
-    // Biblioteca de TemÃ¡ticas y Datos Clave
+    // Biblioteca de Temáticas y Datos Clave
     const TOPICS = {
         alisado_saludable: {
-            title: "Alisado Saludable (TecnologÃ­a Enjuagable)",
+            title: "Alisado Saludable (Tecnología Enjuagable)",
             target: "Mujeres que buscan un liso perfecto, brillante y sedoso 100% libre de formol.",
             painPoints: [
-                "Cansada de plancharte todos los dÃ­as y quemar tu cabello",
-                "Miedo a los quÃ­micos agresivos y al olor picante del formol",
+                "Cansada de plancharte todos los días y quemar tu cabello",
+                "Miedo a los químicos agresivos y al olor picante del formol",
                 "Frizz incontrolable cuando llueve o hay humedad"
             ],
             solutions: [
                 "Liso 100% con movimiento natural, brillo espejo y suavidad extrema",
-                "FÃ³rmula enriquecida con mÃ¡s de 14 aminoÃ¡cidos y proteÃ­nas naturales",
-                "TecnologÃ­a enjuagable: saldrÃ¡s del salÃ³n con el cabello lavado y secado solo a mano con aire tibio"
+                "Fórmula enriquecida con más de 14 aminoácidos y proteínas naturales",
+                "Tecnología enjuagable: saldrás del salón con el cabello lavado y secado solo a mano con aire tibio"
             ],
             hooks: [
-                "Â¿TodavÃ­a crees que para tener un liso perfecto tienes que aguantar humo y picazÃ³n? ðŸ™…â€â™€ï¸",
-                "Esto es lo que pasa cuando dejas la plancha y te haces un Alisado Saludable âœ¨",
-                "El secreto para salir de la ducha, dejar que tu cabello se seque al aire y que quede liso tabla ðŸ˜±",
-                "3 seÃ±ales de que tu cabello te estÃ¡ suplicando que dejes la plancha y el formol ðŸ›‘"
+                "¿Todavía crees que para tener un liso perfecto tienes que aguantar humo y picazón? 🙅‍♀️",
+                "Esto es lo que pasa cuando dejas la plancha y te haces un Alisado Saludable ✨",
+                "El secreto para salir de la ducha, dejar que tu cabello se seque al aire y que quede liso tabla 😱",
+                "3 señales de que tu cabello te está suplicando que dejes la plancha y el formol 🛑"
             ],
-            cta: "EscrÃ­benos al WhatsApp y agenda tu valoraciÃ³n tÃ©cnica personalizada en Tunja o MoniquirÃ¡ ðŸ“²"
+            cta: "Escríbenos al WhatsApp y agenda tu valoración técnica personalizada en Tunja o Moniquirá 📲"
         },
         emulsion_zero: {
-            title: "EmulsiÃ³n Zero (Apta para NiÃ±as y Madres)",
-            target: "NiÃ±as desde 4 aÃ±os, mamÃ¡s lactantes, embarazadas y cabellos ultra procesados.",
+            title: "Emulsión Zero (Apta para Niñas y Madres)",
+            target: "Niñas desde 4 años, mamás lactantes, embarazadas y cabellos ultra procesados.",
             painPoints: [
                 "El drama diario de peinar y desenredar a tu hija con tirones y llanto",
-                "Cabello afro, rebelde o con volumen excesivo difÃ­cil de manejar en la maÃ±ana",
-                "MamÃ¡s que no quieren exponer a sus hijas a quÃ­micos nocivos"
+                "Cabello afro, rebelde o con volumen excesivo difícil de manejar en la mañana",
+                "Mamás que no quieren exponer a sus hijas a químicos nocivos"
             ],
             solutions: [
-                "FÃ³rmula botÃ¡nica extra suave con pH balanceado y activos biocompatibles",
+                "Fórmula botánica extra suave con pH balanceado y activos biocompatibles",
                 "Reduce el volumen en un 80-90% y disciplina el rizo sin alterar la estructura natural",
                 "Facilita el peinado matutino en solo 2 minutos con cero dolor"
             ],
             hooks: [
-                "MamÃ¡: Â¿las maÃ±anas antes de ir al colegio son un campo de batalla por culpa del cepillo? ðŸ‘§ðŸŽ€",
-                "Â¿Existe un alisado verdaderamente seguro para niÃ±as? Te contamos la verdad sobre la EmulsiÃ³n Zero âœ¨",
-                "Transformamos el cabello de esta princesa sin lÃ¡grimas, sin formol y con puro brillo ðŸ’–"
+                "Mamá: ¿las mañanas antes de ir al colegio son un campo de batalla por culpa del cepillo? 👧🎀",
+                "¿Existe un alisado verdaderamente seguro para niñas? Te contamos la verdad sobre la Emulsión Zero ✨",
+                "Transformamos el cabello de esta princesa sin lágrimas, sin formol y con puro brillo 💖"
             ],
-            cta: "Dale a tu pequeÃ±a maÃ±anas felices sin tirones. Agenda su cita en Julie Alisados al WhatsApp ðŸ“²"
+            cta: "Dale a tu pequeña mañanas felices sin tirones. Agenda su cita en Julie Alisados al WhatsApp 📲"
         },
         reposicion_aminoacidos: {
-            title: "ReposiciÃ³n de AminoÃ¡cidos (SOS Anti-Quiebre)",
-            target: "Cabellos elÃ¡sticos, chiclosos, decolorados o con puntas abiertas.",
+            title: "Reposición de Aminoácidos (SOS Anti-Quiebre)",
+            target: "Cabellos elásticos, chiclosos, decolorados o con puntas abiertas.",
             painPoints: [
                 "Cabello chicloso que se estira y se parte al peinarlo mojado",
-                "PÃ©rdida de grosor y fuerza tras decoloraciones o tinturas",
+                "Pérdida de grosor y fuerza tras decoloraciones o tinturas",
                 "Falta de brillo y textura pajosa"
             ],
             solutions: [
-                "InyecciÃ³n intensiva de queratina biomimÃ©tica y aminoÃ¡cidos esenciales",
-                "Rellena la corteza capilar restaurando la fuerza interna desde la primera sesiÃ³n",
+                "Inyección intensiva de queratina biomimética y aminoácidos esenciales",
+                "Rellena la corteza capilar restaurando la fuerza interna desde la primera sesión",
                 "Detiene el quiebre y devuelve la elasticidad sana al cabello"
             ],
             hooks: [
-                "Â¡ALERTA! Si tu cabello hace esto cuando estÃ¡ mojado, estÃ¡ al borde de romperse ðŸ˜±ðŸš¨",
-                "CÃ³mo revivimos un cabello decolorado y chicloso en solo una sesiÃ³n tÃ©cnica ðŸ”¬âœ¨",
-                "No cortes tu cabello maltratado antes de probar esta terapia de aminoÃ¡cidos ðŸ’‡â€â™€ï¸âŒ"
+                "¡ALERTA! Si tu cabello hace esto cuando está mojado, está al borde de romperse 😱🚨",
+                "Cómo revivimos un cabello decolorado y chicloso en solo una sesión técnica 🔬✨",
+                "No cortes tu cabello maltratado antes de probar esta terapia de aminoácidos 💇‍♀️❌"
             ],
-            cta: "Realizamos una prueba de elasticidad gratuita en tu valoraciÃ³n. Â¡EscrÃ­benos hoy mismo!"
+            cta: "Realizamos una prueba de elasticidad gratuita en tu valoración. ¡Escríbenos hoy mismo!"
         },
         cuidado_casa: {
             title: "Rutina de Cuidado en Casa JA By Julie Valencia",
-            target: "Clientas con alisado o cabello que busca nutriciÃ³n profesional diaria.",
+            target: "Clientas con alisado o cabello que busca nutrición profesional diaria.",
             painPoints: [
                 "Usar shampoos con sal del supermercado que barren el alisado en 1 mes",
                 "Falta de brillo y resequedad por culpa del calor de la plancha y el sol",
                 "Puntas abiertas y frizz en medios"
             ],
             solutions: [
-                "LÃ­nea 100% libre de sal, sulfatos agresivos y parabenos",
-                "DÃºo Extractos Naturales (1000 ml) con 12 botÃ¡nicos para equilibrar la raÃ­z grasa",
-                "DÃºo ArgÃ¡n con Biotina y Ãcido HialurÃ³nico (500 ml) para nutriciÃ³n extrema",
-                "Termoprotector JA que reduce el daÃ±o tÃ©rmico de planchas y secadores, protege del sol y perfuma todo el dÃ­a",
-                "Aceite Reparador de ArgÃ¡n y Macadamia JA (60 ml) con tacto seco y cero peso"
+                "Línea 100% libre de sal, sulfatos agresivos y parabenos",
+                "Dúo Extractos Naturales (1000 ml) con 12 botánicos para equilibrar la raíz grasa",
+                "Dúo Argán con Biotina y Ácido Hialurónico (500 ml) para nutrición extrema",
+                "Termoprotector JA que reduce el daño térmico de planchas y secadores, protege del sol y perfuma todo el día",
+                "Aceite Reparador de Argán y Macadamia JA (60 ml) con tacto seco y cero peso"
             ],
             hooks: [
-                "El error #1 que cometes al salir del salÃ³n y que estÃ¡ arruinando tu alisado ðŸ¤¦â€â™€ï¸",
-                "Â¿Por quÃ© tu alisado no te dura 6 meses? Esta es la razÃ³n oculta en tu ducha ðŸš¿âŒ",
-                "3 productos indispensables que toda mujer con cabello alisado debe tener en su tocador âœ¨"
+                "El error #1 que cometes al salir del salón y que está arruinando tu alisado 🤦‍♀️",
+                "¿Por qué tu alisado no te dura 6 meses? Esta es la razón oculta en tu ducha 🚿❌",
+                "3 productos indispensables que toda mujer con cabello alisado debe tener en su tocador ✨"
             ],
-            cta: "Adquiere tu kit de cuidado capilar con envÃ­o a todo el paÃ­s o en nuestras sedes de Tunja y MoniquirÃ¡ ðŸ›ï¸"
+            cta: "Adquiere tu kit de cuidado capilar con envío a todo el país o en nuestras sedes de Tunja y Moniquirá 🛍️"
         },
         mitos_verdades: {
             title: "Mitos y Verdades sobre los Alisados",
-            target: "Mujeres indecisas que tienen miedo a daÃ±arse el cabello.",
+            target: "Mujeres indecisas que tienen miedo a dañarse el cabello.",
             painPoints: [
                 "Creer que todos los alisados tienen formol o queman el cuero cabelludo",
                 "Creer que un alisado sin formol no dura nada",
-                "Pensar que no puedes lavarte el cabello durante 3 dÃ­as"
+                "Pensar que no puedes lavarte el cabello durante 3 días"
             ],
             solutions: [
-                "En Julie Alisados el cabello se lava completamente en el salÃ³n: lo ves seco y liso al instante",
+                "En Julie Alisados el cabello se lava completamente en el salón: lo ves seco y liso al instante",
                 "Dura de 4 a 6 meses con el cuidado adecuado en casa",
-                "Nuestros ingredientes orgÃ¡nicos reestructuran y nutren la fibra capilar"
+                "Nuestros ingredientes orgánicos reestructuran y nutren la fibra capilar"
             ],
             hooks: [
-                "Â¿Mito o verdad? Â¿Si te alisas el cabello no puedes lavÃ¡rtelo por 3 dÃ­as? ðŸ¤¯ðŸš¿",
-                "Te mintieron: El formol NO alisa mejor, solo plastifica y quema tu cabello âš ï¸",
-                "3 mitos gigantes sobre el alisado orgÃ¡nico que debes dejar de creer hoy mismo âŒ"
+                "¿Mito o verdad? ¿Si te alisas el cabello no puedes lavártelo por 3 días? 🤯🚿",
+                "Te mintieron: El formol NO alisa mejor, solo plastifica y quema tu cabello ⚠️",
+                "3 mitos gigantes sobre el alisado orgánico que debes dejar de creer hoy mismo ❌"
             ],
-            cta: "VisÃ­tanos en Tunja o MoniquirÃ¡ para una valoraciÃ³n personalizada y comprueba la diferencia ðŸ’–"
+            cta: "Visítanos en Tunja o Moniquirá para una valoración personalizada y comprueba la diferencia 💖"
         }
     };
 
@@ -149,32 +149,32 @@ const JulieMarketingEngine = (() => {
         return {
             titulo: `Guion Reel / TikTok: ${topic.title}`,
             duracionSugerida: "30 a 45 segundos",
-            audioRecomendado: "Voz en off clara + mÃºsica de fondo acÃºstica o trending aesthetic suave",
+            audioRecomendado: "Voz en off clara + música de fondo acústica o trending aesthetic suave",
             gancho: {
                 tiempo: "0:00 - 0:03 (Primeros 3 segundos)",
-                visual: "Primer plano impactante del cabello brillante en movimiento o expresiÃ³n de sorpresa mirando a la cÃ¡mara.",
+                visual: "Primer plano impactante del cabello brillante en movimiento o expresión de sorpresa mirando a la cámara.",
                 audio: randomHook,
-                textoPantalla: randomHook.replace(/[^\w\sÂ¿?Â¡!]/gi, '').slice(0, 45) + "..."
+                textoPantalla: randomHook.replace(/[^\w\s¿?¡!]/gi, '').slice(0, 45) + "..."
             },
             problema: {
                 tiempo: "0:03 - 0:12 (El problema)",
-                visual: "Muestra tomas rÃ¡pidas de cabello con frizz o usando plancha con vapor.",
-                audio: `Seguro te pasa que vives frustrada porque ${pain.toLowerCase()}, y sientes que ningÃºn tratamiento de salÃ³n te dura mÃ¡s de dos semanas.`,
-                textoPantalla: "Â¿Te pasa esto todos los dÃ­as? ðŸ¤¦â€â™€ï¸"
+                visual: "Muestra tomas rápidas de cabello con frizz o usando plancha con vapor.",
+                audio: `Seguro te pasa que vives frustrada porque ${pain.toLowerCase()}, y sientes que ningún tratamiento de salón te dura más de dos semanas.`,
+                textoPantalla: "¿Te pasa esto todos los días? 🤦‍♀️"
             },
             solucion: {
-                tiempo: "0:12 - 0:28 (La soluciÃ³n de Julie Alisados)",
-                visual: "Tomas en el salÃ³n: aplicando producto, lavando en el lavacabezas con abundante agua, secando solo con secador y manos, y el resultado final brillante.",
-                audio: `Por eso en Julie Alisados creamos un protocolo diferente: ${solution}. Con nuestra fÃ³rmula orgÃ¡nica libre de formol, tu fibra capilar queda protegida, suave y con un brillo espejo real.`,
-                textoPantalla: "âœ¨ Liso Saludable 100% Enjuagable\nðŸŒ¿ Sin Formol ni Olores Fuertes"
+                tiempo: "0:12 - 0:28 (La solución de Julie Alisados)",
+                visual: "Tomas en el salón: aplicando producto, lavando en el lavacabezas con abundante agua, secando solo con secador y manos, y el resultado final brillante.",
+                audio: `Por eso en Julie Alisados creamos un protocolo diferente: ${solution}. Con nuestra fórmula orgánica libre de formol, tu fibra capilar queda protegida, suave y con un brillo espejo real.`,
+                textoPantalla: "✨ Liso Saludable 100% Enjuagable\n🌿 Sin Formol ni Olores Fuertes"
             },
             cierre: {
-                tiempo: "0:28 - 0:35 (Llamado a la acciÃ³n - CTA)",
-                visual: "Julie o la estilista sonriendo seÃ±alando el botÃ³n de WhatsApp, mientras la clienta mueve su cabello feliz.",
-                audio: `${topic.cta}. Estamos en Tunja y MoniquirÃ¡. Â¡Comenta 'QUIERO MI LISO' o dale clic al enlace de nuestro perfil!`,
-                textoPantalla: "ðŸ“ Tunja & MoniquirÃ¡\nðŸ“² Clic en el enlace del perfil para agendar"
+                tiempo: "0:28 - 0:35 (Llamado a la acción - CTA)",
+                visual: "Julie o la estilista sonriendo señalando el botón de WhatsApp, mientras la clienta mueve su cabello feliz.",
+                audio: `${topic.cta}. Estamos en Tunja y Moniquirá. ¡Comenta 'QUIERO MI LISO' o dale clic al enlace de nuestro perfil!`,
+                textoPantalla: "📍 Tunja & Moniquirá\n📲 Clic en el enlace del perfil para agendar"
             },
-            copyInstagram: sanitizeText(`âœ¨ ${randomHook}\n\nÂ¿Cansada de lidiar con el frizz y la plancha todos los dÃ­as? En Julie Alisados transformamos tu cabello con tecnologÃ­a 100% saludable, enjuagable y libre de formol.\n\nðŸŒ¿ Beneficios clave:\nâ€¢ ${topic.solutions.join("\nâ€¢ ")}\n\nðŸ“ VisÃ­tanos en nuestras sedes:\nâ€¢ Tunja: Av. OlÃ­mpica #190, Pasaje Boulevard Local 140\nâ€¢ MoniquirÃ¡: Cra 6 # 18-68\n\nðŸ“² Agenda tu valoraciÃ³n al WhatsApp: +57 304 358 8180 (Enlace directo en la biografÃ­a).\n\n${BRAND.hashtagsGenerales.join(" ")}`)
+            copyInstagram: sanitizeText(`✨ ${randomHook}\n\n¿Cansada de lidiar con el frizz y la plancha todos los días? En Julie Alisados transformamos tu cabello con tecnología 100% saludable, enjuagable y libre de formol.\n\n🌿 Beneficios clave:\n• ${topic.solutions.join("\n• ")}\n\n📍 Visítanos en nuestras sedes:\n• Tunja: Av. Olímpica #190, Pasaje Boulevard Local 140\n• Moniquirá: Cra 6 # 18-68\n\n📲 Agenda tu valoración al WhatsApp: +57 304 358 8180 (Enlace directo en la biografía).\n\n${BRAND.hashtagsGenerales.join(" ")}`)
         };
     };
 
@@ -186,47 +186,47 @@ const JulieMarketingEngine = (() => {
                 slide: 1,
                 tipo: "PORTADA (Gancho)",
                 titulo: sanitizeText(topic.hooks[0]),
-                visual: "Foto de resultado impecable antes/despuÃ©s con texto grande y tipografÃ­a elegante.",
+                visual: "Foto de resultado impecable antes/después con texto grande y tipografía elegante.",
                 nota: "El objetivo es incitar a deslizar hacia la izquierda."
             },
             {
                 slide: 2,
                 tipo: "EL PROBLEMA OCULTO",
                 titulo: "Lo que muchas no te cuentan...",
-                contenido: sanitizeText(`â€¢ ${topic.painPoints[0]}\nâ€¢ Los quÃ­micos agresivos plastifican la fibra capilar en vez de nutrirla.\nâ€¢ Terminas esclava del secador y la plancha cada fin de semana.`),
+                contenido: sanitizeText(`• ${topic.painPoints[0]}\n• Los químicos agresivos plastifican la fibra capilar en vez de nutrirla.\n• Terminas esclava del secador y la plancha cada fin de semana.`),
                 visual: "Foto en detalle de puntas resecas o cabello perdiendo brillo."
             },
             {
                 slide: 3,
                 tipo: "LA DIFERENCIA SALUDABLE",
-                titulo: "Â¿Por quÃ© el Alisado Saludable es diferente?",
-                contenido: sanitizeText(`ðŸŒ¿ 100% Libre de Formol y derivados tÃ³xicos.\nðŸ’§ Enjuagable en el salÃ³n: te vas con el cabello limpio y sin olores.\nâœ¨ Aporte de mÃ¡s de 14 aminoÃ¡cidos esenciales que reconstruyen la fuerza interna.`),
-                visual: "Foto aplicando el producto con pincel en el salÃ³n de Julie Alisados."
+                titulo: "¿Por qué el Alisado Saludable es diferente?",
+                contenido: sanitizeText(`🌿 100% Libre de Formol y derivados tóxicos.\n💧 Enjuagable en el salón: te vas con el cabello limpio y sin olores.\n✨ Aporte de más de 14 aminoácidos esenciales que reconstruyen la fuerza interna.`),
+                visual: "Foto aplicando el producto con pincel en el salón de Julie Alisados."
             },
             {
                 slide: 4,
                 tipo: "LOS RESULTADOS REALES",
-                titulo: "Lo que vas a disfrutar todos los dÃ­as:",
-                contenido: sanitizeText(`1. Salir de la ducha y secar tu cabello solo con aire tibio en 5 minutos.\n2. Cero frizz incluso en dÃ­as de lluvia o humedad.\n3. Brillo espejo y movimiento natural con suavidad al tacto.`),
+                titulo: "Lo que vas a disfrutar todos los días:",
+                contenido: sanitizeText(`1. Salir de la ducha y secar tu cabello solo con aire tibio en 5 minutos.\n2. Cero frizz incluso en días de lluvia o humedad.\n3. Brillo espejo y movimiento natural con suavidad al tacto.`),
                 visual: "Foto o video de la clienta moviendo su cabello con brillo intenso."
             },
             {
                 slide: 5,
                 tipo: "CUIDADO EN CASA",
                 titulo: "El secreto para que dure 4 a 6 meses:",
-                contenido: sanitizeText(`Usa siempre nuestra lÃ­nea especializada JA By Julie Valencia:\nâ€¢ Shampoo y Acondicionador sin sal ni parabenos.\nâ€¢ Termoprotector diario contra el sol y calor.\nâ€¢ Aceite Reparador de ArgÃ¡n y Macadamia en las puntas.`),
-                visual: "Foto estÃ©tica de los productos de la lÃ­nea de Cuidado Capilar JA."
+                contenido: sanitizeText(`Usa siempre nuestra línea especializada JA By Julie Valencia:\n• Shampoo y Acondicionador sin sal ni parabenos.\n• Termoprotector diario contra el sol y calor.\n• Aceite Reparador de Argán y Macadamia en las puntas.`),
+                visual: "Foto estética de los productos de la línea de Cuidado Capilar JA."
             },
             {
                 slide: 6,
-                tipo: "LLAMADO A LA ACCIÃ“N (CTA)",
-                titulo: "Â¡Empieza tu transformaciÃ³n hoy!",
-                contenido: sanitizeText(`ðŸ“ Sedes en Tunja y MoniquirÃ¡.\nðŸ’¬ EscrÃ­benos al WhatsApp: 304 358 8180\n\nðŸ‘‰ Guarda este post para no perderlo y compÃ¡rtelo con tu amiga que no suelta la plancha.`),
+                tipo: "LLAMADO A LA ACCIÓN (CTA)",
+                titulo: "¡Empieza tu transformación hoy!",
+                contenido: sanitizeText(`📍 Sedes en Tunja y Moniquirá.\n💬 Escríbenos al WhatsApp: 304 358 8180\n\n👉 Guarda este post para no perderlo y compártelo con tu amiga que no suelta la plancha.`),
                 visual: "Logo de Julie Alisados con botones de WhatsApp e iconos de guardar/compartir."
             }
         ];
 
-        let copy = sanitizeText(`Desliza para descubrir cÃ³mo transformar tu cabello sin daÃ±arlo âž¡ï¸âœ¨\n\n${topic.title}: La verdadera alternativa para lucir un liso de salÃ³n todos los dÃ­as sin pasar horas frente al espejo.\n\nÂ¿Tienes dudas sobre si tu cabello es apto? EscrÃ­benos al link de nuestra bio y una de nuestras especialistas te asesorarÃ¡ con todo el cariÃ±o ðŸ’–\n\n${BRAND.hashtagsGenerales.join(" ")}`);
+        let copy = sanitizeText(`Desliza para descubrir cómo transformar tu cabello sin dañarlo ➡️✨\n\n${topic.title}: La verdadera alternativa para lucir un liso de salón todos los días sin pasar horas frente al espejo.\n\n¿Tienes dudas sobre si tu cabello es apto? Escríbenos al link de nuestra bio y una de nuestras especialistas te asesorará con todo el cariño 💖\n\n${BRAND.hashtagsGenerales.join(" ")}`);
 
         return {
             titulo: `Carrusel de 6 Diapositivas: ${topic.title}`,
@@ -239,19 +239,19 @@ const JulieMarketingEngine = (() => {
         return [
             {
                 tipo: "Estado de WhatsApp (Venta Directa)",
-                texto: sanitizeText(`âœ¨ Â¿Cansada de la plancha todos los dÃ­as?\n\nEn Julie Alisados te dejamos el cabello liso, brillante y sedoso con nuestro Alisado Saludable 100% libre de formol.\n\nðŸŒ¸ SaldrÃ¡s de nuestra sede con el cabello completamente lavado y seco al aire.\n\nðŸ“ Sedes: Tunja y MoniquirÃ¡\nðŸ“² Responde a este estado para cotizar o agendar tu cita de esta semana ðŸ’–`)
+                texto: sanitizeText(`✨ ¿Cansada de la plancha todos los días?\n\nEn Julie Alisados te dejamos el cabello liso, brillante y sedoso con nuestro Alisado Saludable 100% libre de formol.\n\n🌸 Saldrás de nuestra sede con el cabello completamente lavado y seco al aire.\n\n📍 Sedes: Tunja y Moniquirá\n📲 Responde a este estado para cotizar o agendar tu cita de esta semana 💖`)
             },
             {
-                tipo: "DifusiÃ³n / Recordatorio de Retoque (Clientas 4-6 meses)",
-                texto: sanitizeText(`Hola bella ðŸ’–! Esperamos que estÃ©s teniendo un dÃ­a hermoso.\n\nTe escribimos de Julie Alisados para recordarte que ya han pasado varios meses desde tu Ãºltimo tratamiento y es el momento ideal para realizar el retoque de tu raÃ­z antes de que pierdas la disciplina en tu cabello.\n\nTenemos cupos disponibles para esta semana en nuestras sedes de Tunja y MoniquirÃ¡. Â¿Te gustarÃ­a que te reservemos tu espacio? ðŸŒ¸âœ¨`)
+                tipo: "Difusión / Recordatorio de Retoque (Clientas 4-6 meses)",
+                texto: sanitizeText(`Hola bella 💖! Esperamos que estés teniendo un día hermoso.\n\nTe escribimos de Julie Alisados para recordarte que ya han pasado varios meses desde tu último tratamiento y es el momento ideal para realizar el retoque de tu raíz antes de que pierdas la disciplina en tu cabello.\n\nTenemos cupos disponibles para esta semana en nuestras sedes de Tunja y Moniquirá. ¿Te gustaría que te reservemos tu espacio? 🌸✨`)
             },
             {
-                tipo: "PromociÃ³n de la LÃ­nea de Cuidado Capilar",
-                texto: sanitizeText(`Â¿SabÃ­as que el 70% de la duraciÃ³n de tu alisado depende de lo que usas en la ducha? ðŸš¿âœ¨\n\nNuestros combos JA By Julie Valencia (Extractos Naturales y Aceite de ArgÃ¡n) son 100% libres de sal y sulfatos agresivos para mantener tu brillo intacto por meses.\n\nðŸ“¦ EnvÃ­os a todo el paÃ­s y entrega inmediata en sedes de Tunja y MoniquirÃ¡. Â¡Pide el tuyo respondiendo a este mensaje! ðŸ›ï¸`)
+                tipo: "Promoción de la Línea de Cuidado Capilar",
+                texto: sanitizeText(`¿Sabías que el 70% de la duración de tu alisado depende de lo que usas en la ducha? 🚿✨\n\nNuestros combos JA By Julie Valencia (Extractos Naturales y Aceite de Argán) son 100% libres de sal y sulfatos agresivos para mantener tu brillo intacto por meses.\n\n📦 Envíos a todo el país y entrega inmediata en sedes de Tunja y Moniquirá. ¡Pide el tuyo respondiendo a este mensaje! 🛍️`)
             },
             {
                 tipo: "Oferta Especial / Cupos de Fin de Semana",
-                texto: sanitizeText(`ðŸš¨ Â¡ÃšLTIMOS 3 CUPOS PARA ESTE FIN DE SEMANA! ðŸš¨\n\nSi quieres lucir un cabello impecable, brillante y sin frizz para tus eventos, Â¡este es tu momento!\n\nðŸ“ Tunja: Pasaje Boulevard Local 140\nðŸ“ MoniquirÃ¡: Cra 6 # 18-68\n\nEscrÃ­benos ahora mismo para apartar tu cita antes de que se agoten ðŸ“²âœ¨`)
+                texto: sanitizeText(`🚨 ¡ÚLTIMOS 3 CUPOS PARA ESTE FIN DE SEMANA! 🚨\n\nSi quieres lucir un cabello impecable, brillante y sin frizz para tus eventos, ¡este es tu momento!\n\n📍 Tunja: Pasaje Boulevard Local 140\n📍 Moniquirá: Cra 6 # 18-68\n\nEscríbenos ahora mismo para apartar tu cita antes de que se agoten 📲✨`)
             }
         ];
     };
@@ -260,23 +260,23 @@ const JulieMarketingEngine = (() => {
         const topic = TOPICS[topicKey] || TOPICS.alisado_saludable;
 
         return {
-            titulo: sanitizeText(`GuÃ­a Completa: CÃ³mo lograr un ${topic.title} y mantenerlo perfecto por meses`),
-            extracto: sanitizeText(`Descubre los secretos profesionales para transformar tu cabello con fÃ³rmulas 100% libres de formol y cuidados en casa con la lÃ­nea JA By Julie Valencia.`),
+            titulo: sanitizeText(`Guía Completa: Cómo lograr un ${topic.title} y mantenerlo perfecto por meses`),
+            extracto: sanitizeText(`Descubre los secretos profesionales para transformar tu cabello con fórmulas 100% libres de formol y cuidados en casa con la línea JA By Julie Valencia.`),
             secciones: [
                 {
-                    subtitulo: sanitizeText("Â¿Por quÃ© elegir un Alisado Saludable sin quÃ­micos agresivos?"),
-                    contenido: sanitizeText(`Durante aÃ±os, muchas personas creyeron errÃ³neamente que para tener un cabello liso era necesario exponerse a vapores molestos y formol. En Julie Alisados rompimos ese paradigma con formulaciones enriquecidas con mÃ¡s de 14 aminoÃ¡cidos y proteÃ­nas que nutren la fibra capilar desde el interior.`)
+                    subtitulo: sanitizeText("¿Por qué elegir un Alisado Saludable sin químicos agresivos?"),
+                    contenido: sanitizeText(`Durante años, muchas personas creyeron erróneamente que para tener un cabello liso era necesario exponerse a vapores molestos y formol. En Julie Alisados rompimos ese paradigma con formulaciones enriquecidas con más de 14 aminoácidos y proteínas que nutren la fibra capilar desde el interior.`)
                 },
                 {
-                    subtitulo: sanitizeText("La importancia del lavado en el salÃ³n"),
-                    contenido: sanitizeText(`Una de nuestras seÃ±as de identidad es la tecnologÃ­a enjuagable: no te vas a tu casa con el producto en la cabeza ni tienes que esperar 3 dÃ­as para lavarte el cabello. En el salÃ³n lavamos tu cabello con agua abundante y lo secamos simplemente con aire de secador y las manos para que veas el resultado real inmediato.`)
+                    subtitulo: sanitizeText("La importancia del lavado en el salón"),
+                    contenido: sanitizeText(`Una de nuestras señas de identidad es la tecnología enjuagable: no te vas a tu casa con el producto en la cabeza ni tienes que esperar 3 días para lavarte el cabello. En el salón lavamos tu cabello con agua abundante y lo secamos simplemente con aire de secador y las manos para que veas el resultado real inmediato.`)
                 },
                 {
-                    subtitulo: sanitizeText("CÃ³mo cuidar tu tratamiento en casa"),
-                    contenido: sanitizeText(`Para garantizar una duraciÃ³n de 4 a 6 meses, recomendamos usar exclusivamente shampoos sin sal como el DÃºo Extractos Naturales o el DÃºo Aceite de ArgÃ¡n de nuestra lÃ­nea JA, ademÃ¡s de proteger tu cabello con el Termoprotector JA antes de exponerlo a herramientas tÃ©rmicas o al sol.`)
+                    subtitulo: sanitizeText("Cómo cuidar tu tratamiento en casa"),
+                    contenido: sanitizeText(`Para garantizar una duración de 4 a 6 meses, recomendamos usar exclusivamente shampoos sin sal como el Dúo Extractos Naturales o el Dúo Aceite de Argán de nuestra línea JA, además de proteger tu cabello con el Termoprotector JA antes de exponerlo a herramientas térmicas o al sol.`)
                 }
             ],
-            cta: sanitizeText(`Â¿Quieres vivir la experiencia en persona? Te esperamos en nuestras sedes de Tunja (Pasaje Boulevard Local 140) y MoniquirÃ¡ (Cra 6 # 18-68). Â¡Agenda tu cita al WhatsApp +57 304 358 8180!`)
+            cta: sanitizeText(`¿Quieres vivir la experiencia en persona? Te esperamos en nuestras sedes de Tunja (Pasaje Boulevard Local 140) y Moniquirá (Cra 6 # 18-68). ¡Agenda tu cita al WhatsApp +57 304 358 8180!`)
         };
     };
 
