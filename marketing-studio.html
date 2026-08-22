@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julie Marketing Studio ðŸš€ | Generador de Contenido IA</title>
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <title>Julie Marketing Studio ðŸ”’ | Privado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -43,6 +44,89 @@
             padding: 0 20px;
         }
 
+        /* Lock Screen Modal */
+        #lock-screen {
+            position: fixed;
+            inset: 0;
+            background: #111111;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lock-box {
+            background: #1a1a1a;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            color: #fff;
+        }
+
+        .lock-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .lock-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+
+        .lock-box p {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.3rem;
+            text-align: center;
+            letter-spacing: 6px;
+            border: 2px solid var(--gold);
+            background: #000;
+            color: #fff;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .btn-unlock {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-unlock:hover {
+            background: var(--gold-dark);
+        }
+
+        .lock-error {
+            color: #ff4d4f;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+
         /* Top Header */
         header {
             background: #fff;
@@ -55,12 +139,20 @@
             z-index: 100;
         }
 
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
         .logo-wrap {
             display: inline-flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
             color: var(--dark);
+            margin: 0 auto;
         }
 
         .logo-wrap img {
@@ -72,18 +164,38 @@
 
         .brand-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--dark);
             letter-spacing: 1px;
             line-height: 1.1;
         }
 
         .brand-text span {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--gold-dark);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
+        }
+
+        .btn-lock-session {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+
+        .btn-lock-session:hover {
+            border-color: var(--dark);
+            color: var(--dark);
         }
 
         /* Navigation Tabs */
@@ -404,6 +516,14 @@
         }
 
         @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-lock-session {
+                position: static;
+                transform: none;
+            }
             .controls-card {
                 flex-direction: column;
                 align-items: stretch;
@@ -419,6 +539,20 @@
 </head>
 <body>
 
+    <!-- PANTALLA DE BLOQUEO CON PIN -->
+    <div id="lock-screen">
+        <div class="lock-box">
+            <img src="logo 1.png" alt="Julie Alisados">
+            <h2>ACCESO PRIVADO</h2>
+            <p>Julie Marketing Studio estÃ¡ reservado para la administraciÃ³n de Julie Alisados.</p>
+            <form onsubmit="handleUnlock(event)">
+                <input type="password" id="pin-input" class="pin-input" placeholder="â€¢â€¢â€¢â€¢" maxlength="8" autofocus required>
+                <button type="submit" class="btn-unlock">ðŸ”“ Desbloquear Studio</button>
+            </form>
+            <div id="lock-error" class="lock-error">âŒ PIN incorrecto. Intenta de nuevo.</div>
+        </div>
+    </div>
+
     <!-- Distintivo Esquina: Bandera de Colombia -->
     <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none;" title="Orgullo Colombiano â€¢ Julie Alisados">
         <svg viewBox="0 0 52 52" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -431,13 +565,16 @@
 
     <header>
         <div class="container">
-            <a href="index.html" class="logo-wrap">
-                <img src="logo 1.png" alt="Julie Alisados">
-                <div class="brand-text">
-                    <h1>JULIE MARKETING STUDIO</h1>
-                    <span>Generador AutÃ³nomo de Contenido & Redes Sociales</span>
-                </div>
-            </a>
+            <div class="header-inner">
+                <a href="index.html" class="logo-wrap">
+                    <img src="logo 1.png" alt="Julie Alisados">
+                    <div class="brand-text">
+                        <h1>JULIE MARKETING STUDIO</h1>
+                        <span>Generador AutÃ³nomo de Contenido & Redes Sociales</span>
+                    </div>
+                </a>
+                <button class="btn-lock-session" onclick="lockSession()">ðŸ”’ Bloquear</button>
+            </div>
 
             <div class="tabs-nav">
                 <button class="tab-btn active" onclick="switchTab('reels')">ðŸŽ¬ Reels & TikTok</button>
@@ -546,6 +683,43 @@
     <script src="js/marketing-engine.js"></script>
 
     <script>
+        // ================= SECURITY & PIN SYSTEM =================
+        const MASTER_PIN = "2026"; // PIN privado de Julie Alisados
+
+        function checkAuth() {
+            const isAuth = sessionStorage.getItem('julie_studio_auth');
+            const lockScreen = document.getElementById('lock-screen');
+            if (isAuth === 'true') {
+                lockScreen.style.display = 'none';
+            } else {
+                lockScreen.style.display = 'flex';
+            }
+        }
+
+        function handleUnlock(e) {
+            e.preventDefault();
+            const input = document.getElementById('pin-input').value.trim();
+            const errorBox = document.getElementById('lock-error');
+
+            if (input === MASTER_PIN) {
+                sessionStorage.setItem('julie_studio_auth', 'true');
+                document.getElementById('lock-screen').style.display = 'none';
+                errorBox.style.display = 'none';
+                renderReel();
+            } else {
+                errorBox.style.display = 'block';
+                document.getElementById('pin-input').value = '';
+                document.getElementById('pin-input').focus();
+            }
+        }
+
+        function lockSession() {
+            sessionStorage.removeItem('julie_studio_auth');
+            document.getElementById('pin-input').value = '';
+            document.getElementById('lock-screen').style.display = 'flex';
+            document.getElementById('pin-input').focus();
+        }
+
         // Tab switching
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -769,7 +943,10 @@
 
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            renderReel();
+            checkAuth();
+            if (sessionStorage.getItem('julie_studio_auth') === 'true') {
+                renderReel();
+            }
         });
     </script>
 </body>
