@@ -531,7 +531,7 @@ const JulieMarketingEngine = (() => {
         const objKey = ['venta', 'educativo_clienta', 'tecnico_estilista'].includes(objective) ? objective : 'venta';
         
         const hooksList = (topic.hooks && topic.hooks[objKey]) ? topic.hooks[objKey] : topic.hooks.venta;
-        const mainHook = hooksList[0];
+        const mainHook = hooksList[Math.floor(Math.random() * hooksList.length)] || hooksList[0];
         const ctaText = (topic.cta && topic.cta[objKey]) ? topic.cta[objKey] : topic.cta.venta;
 
         let slides = [];
@@ -787,6 +787,26 @@ const JulieMarketingEngine = (() => {
             ctaFinal = `Cuida tu cabello con ciencia y cariño. Conoce más sobre la filosofía de Salud Primero (100% Libre de Formol) de Julie Alisados en nuestras sedes de Tunja y Moniquirá o escríbenos al WhatsApp +57 304 358 8180 para recibir asesoría personalizada.`;
         } else {
             // tecnico_estilista
+            tituloArticulo = `Protocolo Técnico: ${topic.title} y Manejo de Enlace Capilar`;
+            extracto = `Guía avanzada de tricología aplicada para estilistas y salones sobre sellado térmico y pH balanceado.`;
+            sec1.contenido = `El diagnóstico inicial requiere evaluar la resistencia a la tracción húmeda. Si la fibra presenta elongación plástica superior al 30% con memoria lenta, se debe calibrar la temperatura antes del sellado térmico.`;
+            sec2.contenido = `Nuestra formulación opera a un pH ácido balanceado de 4.5 a 5.5, reordenando los puentes de cistina mediante puentes de hidrógeno y enlaces iónicos temporales sin romper agresivamente la matriz cortical.`;
+            sec3.contenido = `La termodinámica del planchado debe calibrarse: 180°C a 200°C en fibras sensibilizadas o decoloradas y 210°C a 230°C en estructuras vírgenes resistentes, realizando pasadas continuas y uniformes.`;
+            ctaFinal = `Eleva el estándar técnico de tu salón con la bioseguridad de Julie Alisados. Contáctanos al +57 304 358 8180 para conocer más sobre nuestros protocolos y distribución técnica en Boyacá.`;
+        }
+
+        return {
+            titulo: sanitizeText(tituloArticulo),
+            extracto: sanitizeText(extracto),
+            secciones: [
+                { subtitulo: sanitizeText(sec1.subtitulo), contenido: sanitizeText(sec1.contenido) },
+                { subtitulo: sanitizeText(sec2.subtitulo), contenido: sanitizeText(sec2.contenido) },
+                { subtitulo: sanitizeText(sec3.subtitulo), contenido: sanitizeText(sec3.contenido) }
+            ],
+            cta: sanitizeText(ctaFinal)
+        };
+    };
+
     // 5. GENERADOR DE CONTENIDO A PARTIR DE FOTO / VIDEO (DIAGNÓSTICO VISUAL IA)
     const VISUAL_DIAGNOSTICS = {
         decolorado_mechas: {
