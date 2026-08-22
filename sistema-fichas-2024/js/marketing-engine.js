@@ -28,10 +28,10 @@ const JulieMarketingEngine = (() => {
             { ciudad: "Moniquirá", direccion: "Carrera 6 # 18 - 68" }
         ],
         values: [
-            { name: "Health-First", desc: "Prioridad absoluta a la salud capilar y respiratoria. 100% libre de formol." },
-            { name: "Professional Transparency", desc: "Diagnóstico técnico honesto con prueba de elasticidad real." },
-            { name: "Scientific Innovation", desc: "Aminoácidos biocompatibles, pH equilibrado 4.5-5.5 y tecnología enjuagable." },
-            { name: "Personalized Excellence", desc: "Tratamiento personalizado a la medida de cada fibra capilar." }
+            { name: "Salud Primero (Sin Formol)", desc: "Prioridad absoluta a la salud capilar y respiratoria. 100% libre de formol." },
+            { name: "Transparencia Profesional", desc: "Diagnóstico técnico honesto con prueba de elasticidad real." },
+            { name: "Innovación Científica", desc: "Aminoácidos biocompatibles, pH equilibrado 4.5-5.5 y tecnología enjuagable." },
+            { name: "Excelencia Personalizada", desc: "Tratamiento personalizado a la medida de cada fibra capilar." }
         ],
         colors: {
             gold: "#D4AF37",
@@ -239,7 +239,7 @@ const JulieMarketingEngine = (() => {
             },
             cta: {
                 venta: "¡Escríbenos al WhatsApp (+57 304 358 8180) y agenda tu transformación en Tunja o Moniquirá! 'Más que un liso, una transformación' 📲💖",
-                educativo_clienta: "Conoce más sobre nuestra filosofía Health-First y cuida tu salud capilar con Julie Alisados 🌿✨",
+                educativo_clienta: "Conoce más sobre nuestra filosofía de Salud Primero (100% Libre de Formol) y cuida tu salud capilar con Julie Alisados 🌿✨",
                 tecnico_estilista: "Actualízate hacia la cosmética orgánica profesional libre de formol con Julie Alisados ✂️📚"
             }
         },
@@ -613,7 +613,7 @@ const JulieMarketingEngine = (() => {
                 },
                 {
                     slide: 5,
-                    tipo: "FILOSOFÍA HEALTH-FIRST",
+                    tipo: "FILOSOFÍA SALUD PRIMERO (SIN FORMOL)",
                     titulo: "Por qué decimos 'No al Formol':",
                     contenido: sanitizeText(`⚠️ El formol plastifica la fibra temporalmente pero la asfixia por dentro.\n✨ En Julie Alisados trabajamos con ácidos orgánicos que reordenan la fibra sin dañar tu salud ni tus pulmones.`),
                     visual: "Sello de '100% Libre de Formol • Enjuagable en Salón'."
@@ -784,7 +784,7 @@ const JulieMarketingEngine = (() => {
             sec1.contenido = `Muchas mujeres creen que cortar el cabello frecuentemente acelera su crecimiento. Sin embargo, el crecimiento ocurre exclusivamente a nivel folicular en el cuero cabelludo (1 a 1.2 cm al mes). La pérdida de longitud se debe casi siempre a la rotura en las puntas por falta de hidratación y exceso de plancha.`;
             sec2.contenido = `El formol tradicional crea una película plástica impermeable sobre la cutícula que aparenta brillo, pero impide la entrada de agua y nutrientes, provocando que el cabello se vuelva quebradizo a mediano plazo. Por el contrario, los aminoácidos biomiméticos penetran en el córtex reparando la queratina natural.`;
             sec3.contenido = `El cuidado en el hogar debe basarse en productos con pH balanceado (4.5 a 5.5) y libres de sal añadida. La sal común actúa como un detergente abrasivo que abre las escamas de la cutícula y barre los nutrientes. Complementar con termoprotector y gotas de argán sella las puntas con tacto seco.`;
-            ctaFinal = `Cuida tu cabello con ciencia y cariño. Conoce más sobre la filosofía Health-First de Julie Alisados en nuestras sedes de Tunja y Moniquirá o escríbenos al WhatsApp +57 304 358 8180 para recibir asesoría personalizada.`;
+            ctaFinal = `Cuida tu cabello con ciencia y cariño. Conoce más sobre la filosofía de Salud Primero (100% Libre de Formol) de Julie Alisados en nuestras sedes de Tunja y Moniquirá o escríbenos al WhatsApp +57 304 358 8180 para recibir asesoría personalizada.`;
         } else {
             // tecnico_estilista
             tituloArticulo = `Protocolo Técnico Profesional: ${topic.title} para Salones de Belleza`;
