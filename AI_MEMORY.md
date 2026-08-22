@@ -52,7 +52,8 @@
   - **Especialización técnica honesta:** No se venden como champús mágicos que se adaptan a todo; se explica que Julie Alisados cuenta con la fórmula exacta para cada necesidad:
     - *Extractos Naturales:* Cuero cabelludo normal a graso / búsqueda de ligereza y frescura.
     - *Aceite de Argán:* Cuero cabelludo normal a seco / cabello seco, poroso, tinturado o maltratado.
-    - *Tratamientos, Mascarillas y Ampollas:* Cuidado intensivo, rescate y protección térmica universal.
+    - *Tratamientos, Mascarillas y Ampollas:* Cuidado intensivo, rescate y nutrición profunda.
+    - *Termoprotector y Perfume Capilar:* Ayuda a reducir el daño por calor de plancha y secador, protege contra el sol y polución, y perfuma la melena todo el día sin engrasar (NO prometer límites específicos de temperatura numérica).
 - **Voz de marca:** Elegante, cercana, empática y altamente vendedora/profesional.
 - **Colores y fuentes:**
   - **Paleta de Colores:** Dorado (`#d4af37` / `#c5a059`), Blanco Perla (`#fcfcfc`), Negro/Gris Oscuro Elegante.
