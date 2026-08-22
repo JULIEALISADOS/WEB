@@ -45,7 +45,7 @@
 
 - **Nombre de Marca Oficial de Productos:** **Marca JA By Julie Valencia** / **JA By Julie Valencia**.
 - **Reglas Críticas de Vocabulario:**
-  - ❌ **PROHIBIDO:** Usar la palabra *"hebra"* (sustituir siempre por *cabello, fibra capilar, melena, puntas*).
+  - ❌ **PROHIBIDO:** Usar las palabras *"hebra"* y *"melena"* (sustituir siempre por *cabello, fibra capilar, puntas*).
   - ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir siempre por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de larga duración*).
 - **Enfoque Comercial de la Línea de Post-Cuidado:**
   - **No es solo para alisados:** Es una línea profesional para cualquier persona con cabello natural, tinturado o procesado.
@@ -53,7 +53,8 @@
     - *Extractos Naturales:* Cuero cabelludo normal a graso / búsqueda de ligereza y frescura.
     - *Aceite de Argán:* Cuero cabelludo normal a seco / cabello seco, poroso, tinturado o maltratado.
     - *Tratamientos, Mascarillas y Ampollas:* Cuidado intensivo, rescate y nutrición profunda.
-    - *Termoprotector y Perfume Capilar:* Ayuda a reducir el daño por calor de plancha y secador, protege contra el sol y polución, y perfuma la melena todo el día sin engrasar (NO prometer límites específicos de temperatura numérica).
+    - *Termoprotector y Perfume Capilar:* Ayuda a reducir el daño por calor de plancha y secador, protege contra el sol y polución, y perfuma el cabello todo el día sin engrasar (NO prometer límites específicos de temperatura numérica).
+    - *Aceite Reparador de Argán y Macadamia (60 ml):* Gotas de nutrición seca con Argán Puro y Nuez de Macadamia (Omega 7) para sellar puntas, nutrir y aportar brillo espejo sin efecto graso.
 - **Voz de marca:** Elegante, cercana, empática y altamente vendedora/profesional.
 - **Colores y fuentes:**
   - **Paleta de Colores:** Dorado (`#d4af37` / `#c5a059`), Blanco Perla (`#fcfcfc`), Negro/Gris Oscuro Elegante.
