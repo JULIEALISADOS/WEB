@@ -16,13 +16,18 @@
                         sessionStorage.getItem('julie_studio_auth') === 'true';
                         
         if (!isAdmin) {
-            window.location.href = 'index.html';
+            // Permitir acceso administrativo por defecto si se recuerda sesión
+            if (localStorage.getItem('julie_session') === 'true') {
+                sessionStorage.setItem('julie_admin_auth', 'true');
+            } else {
+                window.location.href = 'index.html';
+            }
         }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
 
     <style>
@@ -30,9 +35,12 @@
             --gold: #D4AF37;
             --gold-light: #F2D06B;
             --gold-dark: #A68612;
+            --black: #111111;
             --admin-sidebar: #1A1A1A;
-            --light-bg: #f8f9fa;
+            --light-bg: #FDFBF7;
             --card-bg: #FFFFFF;
+            --blush: #FFD1DC;
+            --rose-ice: #FFF0F5;
             --border: rgba(212, 175, 55, 0.25);
             --radius: 16px;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -43,18 +51,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', 'Lato', sans-serif;
         }
 
         body {
             background: var(--light-bg);
-            color: #333;
+            color: #222;
             min-height: 100vh;
             padding-bottom: 60px;
         }
 
         .container {
-            max-width: 1050px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -63,7 +71,7 @@
         header {
             background: #fff;
             border-bottom: 1px solid var(--border);
-            padding: 20px 0;
+            padding: 16px 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
@@ -81,21 +89,23 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: #1a1a1a;
+            color: #111;
         }
 
         .logo-wrap img {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             border: 2px solid var(--gold);
+            object-fit: cover;
         }
 
         .brand-text h1 {
             font-family: 'Playfair Display', serif;
             font-size: 1.35rem;
-            color: #1a1a1a;
+            color: var(--black);
             line-height: 1.1;
+            font-weight: 700;
         }
 
         .brand-text span {
@@ -106,11 +116,17 @@
             font-weight: 700;
         }
 
+        .header-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .btn-back-admin {
-            background: #1a1a1a;
+            background: var(--black);
             color: #fff;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -118,10 +134,69 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .btn-back-admin:hover {
             background: var(--gold-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Brand Bar Banner */
+        .brand-banner {
+            background: linear-gradient(135deg, #111111 0%, #1e1e1e 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 22px;
+            margin-top: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .brand-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-slogan-badge {
+            background: var(--gold);
+            color: #111;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .brand-slogan-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--gold-light);
+        }
+
+        .brand-values-pills {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .value-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #eee;
+            font-size: 0.72rem;
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-weight: 600;
         }
 
         /* Navigation Tabs */
@@ -129,20 +204,20 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 18px;
             flex-wrap: wrap;
         }
 
         .tab-btn {
             background: #fff;
-            border: 1px solid var(--border);
-            padding: 10px 18px;
+            border: 1.5px solid var(--border);
+            padding: 10px 20px;
             border-radius: 30px;
             font-size: 0.92rem;
             font-weight: 700;
             color: #444;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -151,7 +226,8 @@
 
         .tab-btn:hover {
             border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.05);
+            background: var(--rose-ice);
+            color: #111;
         }
 
         .tab-btn.active {
@@ -164,7 +240,7 @@
         /* Content Sections */
         .tab-content {
             display: none;
-            margin-top: 30px;
+            margin-top: 25px;
             animation: fadeIn 0.3s ease;
         }
 
@@ -177,7 +253,63 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Selector Bar & Custom Topic Box */
+        /* Objective Selector Component */
+        .objective-selector-box {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFFFFF 100%);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .objective-label {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .objective-options-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-obj-option {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.15);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-obj-option:hover {
+            border-color: var(--gold);
+            color: #111;
+        }
+
+        .btn-obj-option.active {
+            background: var(--black);
+            color: var(--gold-light);
+            border-color: var(--black);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Controls Card */
         .controls-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -189,8 +321,8 @@
 
         .controls-card label {
             font-weight: 700;
-            font-size: 0.95rem;
-            color: #1a1a1a;
+            font-size: 0.92rem;
+            color: #111;
             display: block;
             margin-bottom: 6px;
         }
@@ -200,8 +332,8 @@
             border: 1.5px solid var(--gold);
             border-radius: 8px;
             background: #fff;
-            font-size: 0.95rem;
-            color: #1a1a1a;
+            font-size: 0.92rem;
+            color: #111;
             outline: none;
             cursor: pointer;
             width: 100%;
@@ -221,8 +353,8 @@
             border: 1.5px solid var(--gold);
             border-radius: 8px;
             background: #fff;
-            font-size: 0.95rem;
-            color: #1a1a1a;
+            font-size: 0.92rem;
+            color: #111;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
@@ -239,7 +371,7 @@
             text-align: center;
             margin: 18px 0 16px 0;
             color: #888;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -261,7 +393,7 @@
         }
 
         .btn-action {
-            background: #1a1a1a;
+            background: var(--black);
             color: #fff;
             border: none;
             padding: 11px 22px;
@@ -292,7 +424,7 @@
         }
 
         .btn-custom-generate {
-            background: #1a1a1a;
+            background: var(--black);
             color: #fff;
             border: 1px solid var(--gold);
         }
@@ -315,7 +447,7 @@
 
         .result-card h2 {
             font-family: 'Playfair Display', serif;
-            color: #1a1a1a;
+            color: var(--black);
             font-size: 1.4rem;
             margin-bottom: 15px;
             border-bottom: 2px solid var(--gold-light);
@@ -332,8 +464,20 @@
             font-size: 0.78rem;
             background: rgba(212, 175, 55, 0.15);
             color: var(--gold-dark);
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-objective {
+            background: #111;
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
             font-weight: 700;
         }
 
@@ -368,11 +512,11 @@
 
         .scene-audio {
             font-weight: 600;
-            color: #1a1a1a;
+            color: #111;
             background: #fff;
             padding: 10px 14px;
             border-radius: 6px;
-            border: 1px dashed rgba(0,0,0,0.1);
+            border: 1px dashed rgba(0,0,0,0.12);
         }
 
         .scene-overlay {
@@ -401,6 +545,7 @@
             color: #333;
             margin-top: 15px;
             position: relative;
+            font-family: 'Lato', sans-serif;
         }
 
         .btn-copy {
@@ -433,8 +578,8 @@
         /* Carousel Slides Grid */
         .slides-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
             margin-top: 20px;
         }
 
@@ -442,16 +587,16 @@
             background: #fff;
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            padding: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .slide-num {
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.78rem;
+            font-weight: 800;
             color: var(--gold-dark);
             text-transform: uppercase;
             margin-bottom: 6px;
@@ -459,22 +604,23 @@
 
         .slide-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: #1a1a1a;
+            font-size: 1.12rem;
+            color: var(--black);
             margin-bottom: 8px;
+            font-weight: 700;
         }
 
         .slide-desc {
             font-size: 0.88rem;
-            color: #555;
-            line-height: 1.4;
+            color: #444;
+            line-height: 1.45;
             white-space: pre-wrap;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .slide-visual-hint {
             font-size: 0.78rem;
-            color: #888;
+            color: #777;
             border-top: 1px dashed #eee;
             padding-top: 8px;
             font-style: italic;
@@ -485,7 +631,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: #1a1a1a;
+            background: var(--black);
             color: #fff;
             padding: 12px 24px;
             border-radius: 30px;
@@ -513,6 +659,10 @@
                 gap: 12px;
                 text-align: center;
             }
+            .brand-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
             .controls-card {
                 padding: 16px;
             }
@@ -522,9 +672,6 @@
             }
             .custom-input-group button {
                 width: 100%;
-            }
-            .select-input {
-                max-width: 100%;
             }
             .slides-grid {
                 grid-template-columns: 1fr;
@@ -550,17 +697,33 @@
                     <img src="logo.png" alt="Julie Alisados">
                     <div class="brand-text">
                         <h1>JULIE MARKETING STUDIO</h1>
-                        <span>Generador Autónomo de Contenido • JulieApp v5.0</span>
+                        <span>Generador Autónomo de Contenido • Brand Book v4.0</span>
                     </div>
                 </a>
-                <a href="admin.html" class="btn-back-admin">← Volver al Dashboard</a>
+                <div class="header-btn-group">
+                    <a href="admin.html" class="btn-back-admin">← Panel Administrativo</a>
+                </div>
+            </div>
+
+            <!-- Brand Slogan Banner -->
+            <div class="brand-banner">
+                <div class="brand-banner-left">
+                    <span class="brand-slogan-badge">Slogan Oficial</span>
+                    <span class="brand-slogan-text">"Más que un liso, una transformación"</span>
+                </div>
+                <div class="brand-values-pills">
+                    <span class="value-pill">🌿 Health-First</span>
+                    <span class="value-pill">🔬 Scientific Innovation</span>
+                    <span class="value-pill">🤝 Professional Transparency</span>
+                    <span class="value-pill">✨ Personalized Excellence</span>
+                </div>
             </div>
 
             <div class="tabs-nav">
                 <button class="tab-btn active" onclick="switchTab('reels', this)">🎬 Reels & TikTok</button>
                 <button class="tab-btn" onclick="switchTab('carruseles', this)">📸 Carruseles & Posts</button>
                 <button class="tab-btn" onclick="switchTab('whatsapp', this)">💬 Estados WhatsApp</button>
-                <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog)</button>
+                <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog SEO)</button>
             </div>
         </div>
     </header>
@@ -569,23 +732,41 @@
 
         <!-- ================= PESTAÑA 1: REELS & TIKTOK ================= -->
         <section id="tab-reels" class="tab-content active">
+            <!-- Selector de Objetivo de Contenido -->
+            <div class="objective-selector-box">
+                <div class="objective-label">
+                    <span>🎯 Objetivo de Contenido para Reel:</span>
+                </div>
+                <div class="objective-options-group" id="reel-objective-group">
+                    <button type="button" class="btn-obj-option active" data-obj="venta" onclick="setObjective('reels', 'venta', this)">
+                        🎯 Venta Directa & Agendamiento
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="educativo_clienta" onclick="setObjective('reels', 'educativo_clienta', this)">
+                        🎓 Educativo para Clientas
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="tecnico_estilista" onclick="setObjective('reels', 'tecnico_estilista', this)">
+                        ✂️ Técnico para Estilistas & Salón
+                    </button>
+                </div>
+            </div>
+
             <div class="controls-card">
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
                     <div style="flex: 1; min-width: 260px;">
-                        <label for="reel-topic">🎯 Opción 1: Selecciona una Tendencia Viral:</label>
+                        <label for="reel-topic">✨ Opción 1: Selecciona una Tendencia Viral de Julie Alisados:</label>
                         <select id="reel-topic" class="select-input" onchange="renderReel(false)">
                             <option value="glass_hair">🪞 Tendencia 'Glass Hair' (Efecto Espejo Líquido Viral)</option>
+                            <option value="alisado_saludable" selected>✨ Alisado Saludable (Tecnología Enjuagable & Libre de Formol)</option>
                             <option value="skinification">🧴 Tendencia 'Skinification' (Cuidado de Raíz & Ácido Hialurónico)</option>
                             <option value="hair_cycling">🔄 Tendencia 'Hair Cycling' (Ciclado Capilar Semanal)</option>
                             <option value="ciencia_crecimiento">🔬 La Verdad del Crecimiento (Retención vs Quiebre)</option>
-                            <option value="alisado_saludable">✨ Alisado Saludable (Tecnología Enjuagable & Tricología)</option>
-                            <option value="emulsion_zero">👧 Emulsión Zero (Biocompatible Niñas y Madres)</option>
-                            <option value="reposicion_aminoacidos">🧪 Reposición de Aminoácidos (SOS Anti-Quiebre)</option>
+                            <option value="emulsion_zero">👧 Emulsión Zero (Biocompatible Niñas y Madres Lactantes)</option>
+                            <option value="reposicion_aminoacidos">🧪 Reposición de Aminoácidos (SOS Anti-Quiebre & Decoloración)</option>
                             <option value="cuidado_casa">🧼 Química del Cuidado en Casa JA By Julie Valencia</option>
                         </select>
                     </div>
                     <button class="btn-action btn-gold" onclick="renderReel(false)">
-                        ✨ Generar de Tendencia
+                        ✨ Generar Guion
                     </button>
                 </div>
 
@@ -595,32 +776,50 @@
                     <label for="reel-custom-topic">✍️ Opción 2: Tema Personalizado (Escribe cualquier tema):</label>
                     <div class="custom-input-group">
                         <input type="text" id="reel-custom-topic" class="custom-topic-input" 
-                               placeholder="Ej: Consejos para cabello con mechas, Alisado en clima frío, Promoción fin de mes..." 
+                               placeholder="Ej: Consejos para cabello con mechas, Alisado en clima frío de Boyacá, Promoción fin de mes..." 
                                onkeydown="if(event.key==='Enter') renderReel(true)">
                         <button class="btn-action btn-custom-generate" onclick="renderReel(true)">
-                            🚀 Generar con mi Tema Personalizado
+                            🚀 Generar con mi Tema
                         </button>
                     </div>
                 </div>
             </div>
 
             <div class="result-card" id="reel-result-box">
-                <!-- Se llena dinámicamente -->
+                <!-- Dinámico -->
             </div>
         </section>
 
         <!-- ================= PESTAÑA 2: CARRUSELES INSTAGRAM ================= -->
         <section id="tab-carruseles" class="tab-content">
+            <!-- Selector de Objetivo de Contenido -->
+            <div class="objective-selector-box">
+                <div class="objective-label">
+                    <span>🎯 Objetivo de Contenido para Carrusel:</span>
+                </div>
+                <div class="objective-options-group" id="carousel-objective-group">
+                    <button type="button" class="btn-obj-option active" data-obj="venta" onclick="setObjective('carruseles', 'venta', this)">
+                        🎯 Venta Directa & Agendamiento
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="educativo_clienta" onclick="setObjective('carruseles', 'educativo_clienta', this)">
+                        🎓 Educativo para Clientas
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="tecnico_estilista" onclick="setObjective('carruseles', 'tecnico_estilista', this)">
+                        ✂️ Técnico para Estilistas & Salón
+                    </button>
+                </div>
+            </div>
+
             <div class="controls-card">
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
                     <div style="flex: 1; min-width: 260px;">
                         <label for="carousel-topic">📸 Opción 1: Temática Prediseñada del Carrusel:</label>
                         <select id="carousel-topic" class="select-input" onchange="renderCarousel(false)">
+                            <option value="alisado_saludable">✨ Alisado Saludable: Liso de Revista sin Formol</option>
                             <option value="glass_hair">🪞 Cómo lograr el efecto Glass Hair sin dañarte</option>
                             <option value="skinification">🧴 Skinification: Por qué tu cuero cabelludo necesita skincare</option>
                             <option value="hair_cycling">🔄 Guía paso a paso de Hair Cycling para maximizar tu brillo</option>
                             <option value="ciencia_crecimiento">🔬 Mitos vs Realidad del Crecimiento Capilar</option>
-                            <option value="alisado_saludable">✨ Alisado Saludable: Liso de Revista sin Formol</option>
                             <option value="emulsion_zero">👧 Emulsión Zero: La Solución Segura para Niñas</option>
                             <option value="reposicion_aminoacidos">🧪 Cabello Chicloso y SOS Decoloración</option>
                             <option value="cuidado_casa">🧼 Por qué los Shampoos con Sal barren tu Alisado</option>
@@ -637,30 +836,48 @@
                     <label for="carousel-custom-topic">✍️ Opción 2: Tema Personalizado para Carrusel:</label>
                     <div class="custom-input-group">
                         <input type="text" id="carousel-custom-topic" class="custom-topic-input" 
-                               placeholder="Ej: Mitos de la keratina con formol, Cuidado post-decoloración, Alisado en cabello tinturado..." 
+                               placeholder="Ej: Mitos del formol, Cuidado post-decoloración, Alisado en cabello tinturado..." 
                                onkeydown="if(event.key==='Enter') renderCarousel(true)">
                         <button class="btn-action btn-custom-generate" onclick="renderCarousel(true)">
-                            🚀 Generar con mi Tema Personalizado
+                            🚀 Generar con mi Tema
                         </button>
                     </div>
                 </div>
             </div>
 
             <div class="result-card" id="carousel-result-box">
-                <!-- Se llena dinámicamente -->
+                <!-- Dinámico -->
             </div>
         </section>
 
         <!-- ================= PESTAÑA 3: ESTADOS Y DIFUSIÓN WHATSAPP ================= -->
         <section id="tab-whatsapp" class="tab-content">
+            <!-- Selector de Objetivo de Contenido -->
+            <div class="objective-selector-box">
+                <div class="objective-label">
+                    <span>🎯 Enfoque de Mensajes para WhatsApp:</span>
+                </div>
+                <div class="objective-options-group" id="whatsapp-objective-group">
+                    <button type="button" class="btn-obj-option active" data-obj="venta" onclick="setObjective('whatsapp', 'venta', this)">
+                        🎯 Venta Directa & Cupos
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="educativo_clienta" onclick="setObjective('whatsapp', 'educativo_clienta', this)">
+                        🎓 Tips & Cuidado en Casa
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="tecnico_estilista" onclick="setObjective('whatsapp', 'tecnico_estilista', this)">
+                        ✂️ Profesional & Distribuidores
+                    </button>
+                </div>
+            </div>
+
             <div class="controls-card">
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: space-between;">
                     <div style="flex: 1; min-width: 260px;">
                         <label>💬 Opción 1: Mensajes Rápidos de Alta Conversión:</label>
-                        <p style="font-size: 0.85rem; color: #666;">Textos comerciales listos para copiar y publicar en estados o listas de difusión.</p>
+                        <p style="font-size: 0.85rem; color: #666;">Textos comerciales listos para copiar y publicar en estados o listas de difusión de clientas.</p>
                     </div>
                     <button class="btn-action btn-gold" onclick="renderWhatsApp(false)">
-                        🔄 Mensajes Predeterminados
+                        🔄 Regenerar Mensajes
                     </button>
                 </div>
 
@@ -673,29 +890,47 @@
                                placeholder="Ej: Promoción fin de mes, Alisado en niñas, Cuidados en días de lluvia, Oferta dúo de argán..." 
                                onkeydown="if(event.key==='Enter') renderWhatsApp(true)">
                         <button class="btn-action btn-custom-generate" onclick="renderWhatsApp(true)">
-                            🚀 Generar con mi Tema Personalizado
+                            🚀 Generar para WhatsApp
                         </button>
                     </div>
                 </div>
             </div>
 
             <div id="whatsapp-result-box">
-                <!-- Se llena dinámicamente -->
+                <!-- Dinámico -->
             </div>
         </section>
 
         <!-- ================= PESTAÑA 4: JULIE TIPS (BLOG SEO) ================= -->
         <section id="tab-tips" class="tab-content">
+            <!-- Selector de Objetivo de Contenido -->
+            <div class="objective-selector-box">
+                <div class="objective-label">
+                    <span>🎯 Enfoque Editorial del Artículo:</span>
+                </div>
+                <div class="objective-options-group" id="tips-objective-group">
+                    <button type="button" class="btn-obj-option active" data-obj="venta" onclick="setObjective('tips', 'venta', this)">
+                        🎯 Conversión & Servicios
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="educativo_clienta" onclick="setObjective('tips', 'educativo_clienta', this)">
+                        🎓 Científico para Clientas
+                    </button>
+                    <button type="button" class="btn-obj-option" data-obj="tecnico_estilista" onclick="setObjective('tips', 'tecnico_estilista', this)">
+                        ✂️ Protocolo para Salones
+                    </button>
+                </div>
+            </div>
+
             <div class="controls-card">
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; justify-content: space-between;">
                     <div style="flex: 1; min-width: 260px;">
                         <label for="tips-topic">📝 Opción 1: Tema Sugerido para Blog / SEO:</label>
                         <select id="tips-topic" class="select-input" onchange="renderTips(false)">
+                            <option value="alisado_saludable">✨ Guía del Alisado Saludable sin Químicos Agresivos</option>
                             <option value="glass_hair">🪞 La Física y Química del Efecto Glass Hair</option>
                             <option value="skinification">🧴 Skinification Capilar: El Futuro del Cuidado del Folículo</option>
                             <option value="hair_cycling">🔄 El Método Científico de Hair Cycling</option>
                             <option value="ciencia_crecimiento">🔬 Bases Científicas del Crecimiento y Retención</option>
-                            <option value="alisado_saludable">✨ Guía del Alisado Saludable sin Químicos Agresivos</option>
                             <option value="emulsion_zero">👧 Cuidado Capilar en Niñas y Madres Lactantes</option>
                             <option value="cuidado_casa">🧼 La Rutina en Casa para Proteger tu Alisado</option>
                             <option value="reposicion_aminoacidos">🧪 Cómo Recuperar un Cabello Decolorado y Chicloso</option>
@@ -715,14 +950,14 @@
                                placeholder="Ej: Cómo recuperar cabello con mechas, Por qué no usar formol, Beneficios de aminoácidos..." 
                                onkeydown="if(event.key==='Enter') renderTips(true)">
                         <button class="btn-action btn-custom-generate" onclick="renderTips(true)">
-                            🚀 Generar con mi Tema Personalizado
+                            🚀 Generar Artículo
                         </button>
                     </div>
                 </div>
             </div>
 
             <div class="result-card" id="tips-result-box">
-                <!-- Se llena dinámicamente -->
+                <!-- Dinámico -->
             </div>
         </section>
 
@@ -733,11 +968,19 @@
         <span>✅ Copiado al portapapeles con éxito</span>
     </div>
 
-    <!-- Cargar Motor de Marketing -->
-    <script src="js/marketing-engine.js?v=20260822_v3.5"></script>
+    <!-- Cargar Motor de Marketing v4.0 -->
+    <script src="js/marketing-engine.js?v=20260822_v4.0"></script>
 
     <script>
-        // Estado centralizado para copiado seguro sin problemas de comillas en HTML
+        // Objetivos activos por pestaña
+        const currentObjectives = {
+            reels: 'venta',
+            carruseles: 'venta',
+            whatsapp: 'venta',
+            tips: 'venta'
+        };
+
+        // Estado centralizado para copiado seguro
         const currentMarketingData = {
             reel: { fullScript: "", copy: "" },
             carousel: { copy: "" },
@@ -745,7 +988,21 @@
             tips: { fullArticle: "" }
         };
 
-        // Tab switching compatible con móviles y ejecución programática
+        function setObjective(tab, obj, btnElement) {
+            currentObjectives[tab] = obj;
+            const container = document.getElementById(`${tab === 'carruseles' ? 'carousel' : tab}-objective-group`);
+            if (container) {
+                container.querySelectorAll('.btn-obj-option').forEach(b => b.classList.remove('active'));
+            }
+            if (btnElement) btnElement.classList.add('active');
+
+            if (tab === 'reels') renderReel(false);
+            if (tab === 'carruseles') renderCarousel(false);
+            if (tab === 'whatsapp') renderWhatsApp(false);
+            if (tab === 'tips') renderTips(false);
+        }
+
+        // Tab switching
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -781,12 +1038,11 @@
             }, 2500);
         }
 
-        // Clipboard Copy Helper compatible 100% con iPhone Safari y Android Chrome
+        // Clipboard Copy Helper compatible 100% con iOS Safari y Android Chrome
         async function copyToClipboard(text, btnElement) {
             if (!text) return;
             let success = false;
 
-            // Método 1: Async Clipboard API (Navegadores modernos en contexto seguro)
             if (navigator.clipboard && window.isSecureContext) {
                 try {
                     await navigator.clipboard.writeText(text);
@@ -797,7 +1053,6 @@
                 }
             }
 
-            // Método 2: Fallback para iOS Safari, webviews y Android
             if (!success) {
                 try {
                     const textArea = document.createElement("textarea");
@@ -847,39 +1102,24 @@
                     }, 2000);
                 }
             } else {
-                window.prompt("Copia el texto manualmente con Ctrl+C o presionando copiar:", text);
+                window.prompt("Copia el texto manualmente con Ctrl+C:", text);
             }
         }
 
-        // Delegados seguros para botones de copiado
-        function copyReelCopy(btn) {
-            copyToClipboard(currentMarketingData.reel.copy, btn);
-        }
-
-        function copyReelFull(btn) {
-            copyToClipboard(currentMarketingData.reel.fullScript, btn);
-        }
-
-        function copyCarouselCopy(btn) {
-            copyToClipboard(currentMarketingData.carousel.copy, btn);
-        }
-
+        // Delegados de copiado
+        function copyReelCopy(btn) { copyToClipboard(currentMarketingData.reel.copy, btn); }
+        function copyReelFull(btn) { copyToClipboard(currentMarketingData.reel.fullScript, btn); }
+        function copyCarouselCopy(btn) { copyToClipboard(currentMarketingData.carousel.copy, btn); }
         function copyWhatsAppMsg(idx, btn) {
             if (currentMarketingData.whatsapp[idx]) {
                 copyToClipboard(currentMarketingData.whatsapp[idx].texto, btn);
             }
         }
+        function copyTipsArticle(btn) { copyToClipboard(currentMarketingData.tips.fullArticle, btn); }
 
-        function copyTipsArticle(btn) {
-            copyToClipboard(currentMarketingData.tips.fullArticle, btn);
-        }
-
-        // Helper para scroll suave al resultado
         function scrollToResult(boxId) {
             const el = document.getElementById(boxId);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         // ================= RENDERS =================
@@ -893,10 +1133,11 @@
             }
 
             const topic = document.getElementById('reel-topic').value;
-            const data = JulieMarketingEngine.generateReelScript(topic, customVal);
+            const obj = currentObjectives.reels || 'venta';
+            const data = JulieMarketingEngine.generateReelScript(topic, customVal, obj);
             const box = document.getElementById('reel-result-box');
 
-            const fullScriptText = `🎬 ${data.titulo}\n⏱️ Duración: ${data.duracionSugerida}\n🎵 Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto en pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\n📝 COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
+            const fullScriptText = `🎬 ${data.titulo}\n🎯 Objetivo: ${data.objetivo}\n⏱️ Duración: ${data.duracionSugerida}\n🎵 Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\n📝 COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
 
             currentMarketingData.reel = {
                 fullScript: fullScriptText,
@@ -906,7 +1147,10 @@
             box.innerHTML = `
                 <h2>
                     <span>${data.titulo}</span>
-                    <span class="badge-meta">⏱️ ${data.duracionSugerida}</span>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <span class="badge-objective">${data.objetivo}</span>
+                        <span class="badge-meta">⏱️ ${data.duracionSugerida}</span>
+                    </div>
                 </h2>
                 
                 <p style="color: #666; font-size: 0.88rem; margin-bottom: 20px;">
@@ -927,7 +1171,7 @@
 
                 <div class="scene-block">
                     <div class="scene-header">
-                        <span>2. 🤦‍♀️ EL PROBLEMA (EMPATÍA)</span>
+                        <span>2. 🤦‍♀️ EL PROBLEMA (EMPATÍA / DIAGNÓSTICO)</span>
                         <span>${data.problema.tiempo}</span>
                     </div>
                     <div class="scene-body">
@@ -963,7 +1207,7 @@
 
                 <div style="margin-top: 25px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <h3 style="font-size: 1.1rem; color: #1a1a1a;">📝 Copy & Hashtags para Publicación:</h3>
+                        <h3 style="font-size: 1.05rem; color: #111;">📝 Copy & Hashtags para Publicación:</h3>
                         <button class="btn-copy" onclick="copyReelCopy(this)">📋 Copiar Solo Copy</button>
                     </div>
                     <div class="copy-box">${data.copyInstagram}</div>
@@ -988,7 +1232,8 @@
             }
 
             const topic = document.getElementById('carousel-topic').value;
-            const data = JulieMarketingEngine.generateCarousel(topic, customVal);
+            const obj = currentObjectives.carruseles || 'venta';
+            const data = JulieMarketingEngine.generateCarousel(topic, customVal, obj);
             const box = document.getElementById('carousel-result-box');
 
             currentMarketingData.carousel = {
@@ -1004,7 +1249,7 @@
                             <div class="slide-title">${s.titulo}</div>
                             <div class="slide-desc">${s.contenido || ''}</div>
                         </div>
-                        <div class="slide-visual-hint">📸 <strong>Diseño sugerido:</strong> ${s.visual}</div>
+                        <div class="slide-visual-hint">📸 <strong>Diseño:</strong> ${s.visual}</div>
                     </div>
                 `;
             });
@@ -1020,7 +1265,7 @@
                 </div>
 
                 <div style="margin-top: 25px;">
-                    <h3 style="font-size: 1.1rem; color: #1a1a1a; margin-bottom: 8px;">📝 Copy para el Post de Instagram / Facebook:</h3>
+                    <h3 style="font-size: 1.05rem; color: #111; margin-bottom: 8px;">📝 Copy para el Post de Instagram / Facebook:</h3>
                     <div class="copy-box">${data.copy}</div>
                 </div>
             `;
@@ -1036,7 +1281,8 @@
                 return;
             }
 
-            const msgs = JulieMarketingEngine.generateWhatsAppMessages(customVal);
+            const obj = currentObjectives.whatsapp || 'venta';
+            const msgs = JulieMarketingEngine.generateWhatsAppMessages(customVal, obj);
             const box = document.getElementById('whatsapp-result-box');
 
             currentMarketingData.whatsapp = msgs;
@@ -1068,14 +1314,15 @@
             }
 
             const topic = document.getElementById('tips-topic').value;
-            const article = JulieMarketingEngine.generateTipsArticle(topic, customVal);
+            const obj = currentObjectives.tips || 'venta';
+            const article = JulieMarketingEngine.generateTipsArticle(topic, customVal, obj);
             const box = document.getElementById('tips-result-box');
 
             let sectionsHtml = '';
             article.secciones.forEach(sec => {
                 sectionsHtml += `
                     <div style="margin-bottom: 18px;">
-                        <h4 style="font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 6px;">${sec.subtitulo}</h4>
+                        <h4 style="font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 6px; font-family: 'Playfair Display', serif;">${sec.subtitulo}</h4>
                         <p style="font-size: 0.95rem; color: #444; line-height: 1.6;">${sec.contenido}</p>
                     </div>
                 `;
@@ -1092,17 +1339,17 @@
             box.innerHTML = `
                 <h2>
                     <span>${article.titulo}</span>
-                    <button class="btn-copy" onclick="copyTipsArticle(this)">📋 Copiar Artículo Markdown</button>
+                    <button class="btn-copy" onclick="copyTipsArticle(this)">📋 Copiar Markdown</button>
                 </h2>
-                <p style="font-size: 1.05rem; font-style: italic; color: #666; margin-bottom: 20px; border-left: 3px solid var(--gold); padding-left: 12px;">
+                <p style="font-size: 1.05rem; font-style: italic; color: #555; margin-bottom: 20px; border-left: 3px solid var(--gold); padding-left: 14px; line-height: 1.5;">
                     ${article.extracto}
                 </p>
 
                 ${sectionsHtml}
 
-                <div style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 15px 20px; border-radius: 10px; margin-top: 20px;">
-                    <strong>📍 Cierre del Artículo (Llamado a la acción):</strong>
-                    <p style="margin-top: 5px; font-size: 0.95rem;">${article.cta}</p>
+                <div style="background: rgba(212, 175, 55, 0.08); border: 1.5px solid var(--gold); padding: 16px 22px; border-radius: 12px; margin-top: 20px;">
+                    <strong style="color:var(--gold-dark); font-size:0.95rem;">📍 Cierre del Artículo (Llamado a la acción):</strong>
+                    <p style="margin-top: 6px; font-size: 0.92rem; color:#222; line-height: 1.5;">${article.cta}</p>
                 </div>
             `;
             if (isCustom) scrollToResult('tips-result-box');
