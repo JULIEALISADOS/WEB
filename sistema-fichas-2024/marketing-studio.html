@@ -734,7 +734,7 @@
     </div>
 
     <!-- Cargar Motor de Marketing -->
-    <script src="js/marketing-engine.js"></script>
+    <script src="js/marketing-engine.js?v=20260822_v3.5"></script>
 
     <script>
         // Estado centralizado para copiado seguro sin problemas de comillas en HTML
@@ -874,6 +874,14 @@
             copyToClipboard(currentMarketingData.tips.fullArticle, btn);
         }
 
+        // Helper para scroll suave al resultado
+        function scrollToResult(boxId) {
+            const el = document.getElementById(boxId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
         // ================= RENDERS =================
         function renderReel(isCustom = false) {
             const customInput = document.getElementById('reel-custom-topic');
@@ -967,6 +975,7 @@
                     </button>
                 </div>
             `;
+            if (isCustom) scrollToResult('reel-result-box');
         }
 
         function renderCarousel(isCustom = false) {
@@ -1015,6 +1024,7 @@
                     <div class="copy-box">${data.copy}</div>
                 </div>
             `;
+            if (isCustom) scrollToResult('carousel-result-box');
         }
 
         function renderWhatsApp(isCustom = false) {
@@ -1045,6 +1055,7 @@
             });
 
             box.innerHTML = html;
+            if (isCustom) scrollToResult('whatsapp-result-box');
         }
 
         function renderTips(isCustom = false) {
@@ -1094,6 +1105,7 @@
                     <p style="margin-top: 5px; font-size: 0.95rem;">${article.cta}</p>
                 </div>
             `;
+            if (isCustom) scrollToResult('tips-result-box');
         }
 
         // Inicializar al cargar
