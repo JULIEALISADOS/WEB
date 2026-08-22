@@ -1,0 +1,776 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julie Marketing Studio ðŸš€ | Generador de Contenido IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo 1.png">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F2D06B;
+            --gold-dark: #A68612;
+            --dark: #1A1A1A;
+            --light-bg: #FCF9F6;
+            --card-bg: #FFFFFF;
+            --border: rgba(212, 175, 55, 0.25);
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body {
+            background: var(--light-bg);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 25px 0 20px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo-wrap img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+        }
+
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            font-size: 0.78rem;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        /* Navigation Tabs */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Selector Bar */
+        .controls-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+        }
+
+        .controls-card label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .select-input {
+            padding: 10px 15px;
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            background: #fff;
+            font-size: 0.95rem;
+            color: var(--dark);
+            outline: none;
+            cursor: pointer;
+            flex-grow: 1;
+            max-width: 380px;
+        }
+
+        .btn-action {
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Result Display Card */
+        .result-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .result-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-meta {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.78rem;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        /* Script Breakdown */
+        .scene-block {
+            background: #FAFAFA;
+            border-left: 4px solid var(--gold);
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 18px;
+        }
+
+        .scene-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+        }
+
+        .scene-body {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .scene-visual {
+            color: #555;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .scene-audio {
+            font-weight: 600;
+            color: var(--dark);
+            background: #fff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .scene-overlay {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .scene-overlay span {
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Copy Block */
+        .copy-box {
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .btn-copy {
+            background: #fff;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-copy:hover {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .btn-copy.copied {
+            background: #28a745 !important;
+            color: #fff !important;
+            border-color: #28a745 !important;
+        }
+
+        /* Carousel Slides Grid */
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .slide-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide-num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .slide-desc {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+
+        .slide-visual-hint {
+            font-size: 0.78rem;
+            color: #888;
+            border-top: 1px dashed #eee;
+            padding-top: 8px;
+            font-style: italic;
+        }
+
+        /* Toast Alert */
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--dark);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 10000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .controls-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .select-input {
+                max-width: 100%;
+            }
+            .slides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Distintivo Esquina: Bandera de Colombia -->
+    <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none;" title="Orgullo Colombiano â€¢ Julie Alisados">
+        <svg viewBox="0 0 52 52" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 0 L 26 0 L 0 26 Z" fill="#FCD116" />
+            <path d="M 26 0 L 39 0 L 0 39 L 0 26 Z" fill="#003893" />
+            <path d="M 39 0 L 52 0 L 0 52 L 0 39 Z" fill="#CE1126" />
+            <line x1="52" y1="0" x2="0" y2="52" stroke="#D4AF37" stroke-width="1.2" stroke-opacity="0.8" />
+        </svg>
+    </div>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-wrap">
+                <img src="logo 1.png" alt="Julie Alisados">
+                <div class="brand-text">
+                    <h1>JULIE MARKETING STUDIO</h1>
+                    <span>Generador AutÃ³nomo de Contenido & Redes Sociales</span>
+                </div>
+            </a>
+
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('reels')">ðŸŽ¬ Reels & TikTok</button>
+                <button class="tab-btn" onclick="switchTab('carruseles')">ðŸ“¸ Carruseles & Posts</button>
+                <button class="tab-btn" onclick="switchTab('whatsapp')">ðŸ’¬ Estados WhatsApp</button>
+                <button class="tab-btn" onclick="switchTab('tips')">ðŸ“ Julie Tips (Blog)</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ================= PESTAÃ‘A 1: REELS & TIKTOK ================= -->
+        <section id="tab-reels" class="tab-content active">
+            <div class="controls-card">
+                <div>
+                    <label for="reel-topic">ðŸŽ¯ Selecciona la TemÃ¡tica:</label>
+                    <select id="reel-topic" class="select-input">
+                        <option value="alisado_saludable">Alisado Saludable (TecnologÃ­a Enjuagable)</option>
+                        <option value="emulsion_zero">EmulsiÃ³n Zero (Apta NiÃ±as y Madres)</option>
+                        <option value="reposicion_aminoacidos">ReposiciÃ³n de AminoÃ¡cidos (SOS Anti-Quiebre)</option>
+                        <option value="cuidado_casa">Rutina de Cuidado en Casa JA</option>
+                        <option value="mitos_verdades">Mitos y Verdades del Alisado</option>
+                    </select>
+                </div>
+                <button class="btn-action btn-gold" onclick="renderReel()">
+                    âœ¨ Generar Nuevo Guion
+                </button>
+            </div>
+
+            <div class="result-card" id="reel-result-box">
+                <!-- Se llena dinÃ¡micamente -->
+            </div>
+        </section>
+
+        <!-- ================= PESTAÃ‘A 2: CARRUSELES INSTAGRAM ================= -->
+        <section id="tab-carruseles" class="tab-content">
+            <div class="controls-card">
+                <div>
+                    <label for="carousel-topic">ðŸ“¸ TemÃ¡tica del Carrusel:</label>
+                    <select id="carousel-topic" class="select-input">
+                        <option value="alisado_saludable">Alisado Saludable: El Liso de Revista</option>
+                        <option value="emulsion_zero">EmulsiÃ³n Zero: La SoluciÃ³n para NiÃ±as</option>
+                        <option value="reposicion_aminoacidos">Cabello Chicloso y SOS DecoloraciÃ³n</option>
+                        <option value="cuidado_casa">3 Secretos de Ducha para que Dure 6 Meses</option>
+                        <option value="mitos_verdades">Â¿Por quÃ© el formol arruina tu cabello?</option>
+                    </select>
+                </div>
+                <button class="btn-action btn-gold" onclick="renderCarousel()">
+                    âœ¨ Generar Carrusel
+                </button>
+            </div>
+
+            <div class="result-card" id="carousel-result-box">
+                <!-- Se llena dinÃ¡micamente -->
+            </div>
+        </section>
+
+        <!-- ================= PESTAÃ‘A 3: ESTADOS Y DIFUSIÃ“N WHATSAPP ================= -->
+        <section id="tab-whatsapp" class="tab-content">
+            <div class="controls-card">
+                <div>
+                    <label>ðŸ’¬ Mensajes Listos para Estados y DifusiÃ³n:</label>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 3px;">Textos de alta conversiÃ³n listos para copiar y publicar en tus estados de WhatsApp.</p>
+                </div>
+                <button class="btn-action btn-gold" onclick="renderWhatsApp()">
+                    ðŸ”„ Refrescar Mensajes
+                </button>
+            </div>
+
+            <div id="whatsapp-result-box">
+                <!-- Se llena dinÃ¡micamente -->
+            </div>
+        </section>
+
+        <!-- ================= PESTAÃ‘A 4: JULIE TIPS (BLOG SEO) ================= -->
+        <section id="tab-tips" class="tab-content">
+            <div class="controls-card">
+                <div>
+                    <label for="tips-topic">ðŸ“ Tema del ArtÃ­culo:</label>
+                    <select id="tips-topic" class="select-input">
+                        <option value="alisado_saludable">GuÃ­a del Alisado Saludable sin QuÃ­micos</option>
+                        <option value="emulsion_zero">Cuidado Capilar en NiÃ±as y Madres Lactantes</option>
+                        <option value="cuidado_casa">La Rutina en Casa para Proteger tu Alisado</option>
+                        <option value="reposicion_aminoacidos">CÃ³mo Recuperar un Cabello Decolorado</option>
+                    </select>
+                </div>
+                <button class="btn-action btn-gold" onclick="renderTips()">
+                    âœ¨ Generar ArtÃ­culo
+                </button>
+            </div>
+
+            <div class="result-card" id="tips-result-box">
+                <!-- Se llena dinÃ¡micamente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span>âœ… Copiado al portapapeles con Ã©xito</span>
+    </div>
+
+    <!-- Cargar Motor de Marketing -->
+    <script src="js/marketing-engine.js"></script>
+
+    <script>
+        // Tab switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            event.currentTarget.classList.add('active');
+
+            if (tabId === 'reels') renderReel();
+            if (tabId === 'carruseles') renderCarousel();
+            if (tabId === 'whatsapp') renderWhatsApp();
+            if (tabId === 'tips') renderTips();
+        }
+
+        // Toast Helper
+        function showToast(msg = "âœ… Copiado al portapapeles") {
+            const toast = document.getElementById('toast');
+            toast.querySelector('span').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Clipboard Copy Helper
+        function copyToClipboard(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+                if (btnElement) {
+                    const originalText = btnElement.innerHTML;
+                    btnElement.innerHTML = "âœ… Â¡Copiado!";
+                    btnElement.classList.add('copied');
+                    setTimeout(() => {
+                        btnElement.innerHTML = originalText;
+                        btnElement.classList.remove('copied');
+                    }, 2000);
+                }
+            }).catch(err => {
+                alert("Error al copiar: " + err);
+            });
+        }
+
+        // ================= RENDERS =================
+        function renderReel() {
+            const topic = document.getElementById('reel-topic').value;
+            const data = JulieMarketingEngine.generateReelScript(topic);
+            const box = document.getElementById('reel-result-box');
+
+            const fullScriptText = `ðŸŽ¬ ${data.titulo}\nâ±ï¸ DuraciÃ³n: ${data.duracionSugerida}\nðŸŽµ Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto en pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÃ“N (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\nðŸ“ COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
+
+            box.innerHTML = `
+                <h2>
+                    <span>${data.titulo}</span>
+                    <span class="badge-meta">â±ï¸ ${data.duracionSugerida}</span>
+                </h2>
+                
+                <p style="color: #666; font-size: 0.88rem; margin-bottom: 20px;">
+                    ðŸŽµ <strong>Audio sugerido:</strong> ${data.audioRecomendado}
+                </p>
+
+                <div class="scene-block">
+                    <div class="scene-header">
+                        <span>1. ðŸŽ¯ GANCHO INICIAL</span>
+                        <span>${data.gancho.tiempo}</span>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.gancho.visual}</div>
+                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.gancho.audio}"</div>
+                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.gancho.textoPantalla}</span></div>
+                    </div>
+                </div>
+
+                <div class="scene-block">
+                    <div class="scene-header">
+                        <span>2. ðŸ¤¦â€â™€ï¸ EL PROBLEMA (EMPATÃA)</span>
+                        <span>${data.problema.tiempo}</span>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.problema.visual}</div>
+                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.problema.audio}"</div>
+                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.problema.textoPantalla}</span></div>
+                    </div>
+                </div>
+
+                <div class="scene-block">
+                    <div class="scene-header">
+                        <span>3. âœ¨ LA SOLUCIÃ“N SALUDABLE</span>
+                        <span>${data.solucion.tiempo}</span>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.solucion.visual}</div>
+                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.solucion.audio}"</div>
+                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.solucion.textoPantalla.replace('\n', ' â€¢ ')}</span></div>
+                    </div>
+                </div>
+
+                <div class="scene-block">
+                    <div class="scene-header">
+                        <span>4. ðŸ“² LLAMADO A LA ACCIÃ“N (CTA)</span>
+                        <span>${data.cierre.tiempo}</span>
+                    </div>
+                    <div class="scene-body">
+                        <div class="scene-visual">ðŸ‘ï¸ <strong>Lo que se ve:</strong> ${data.cierre.visual}</div>
+                        <div class="scene-audio">ðŸ—£ï¸ <strong>Voz en off:</strong> "${data.cierre.audio}"</div>
+                        <div class="scene-overlay">ðŸ“± <strong>Texto en pantalla:</strong> <span>${data.cierre.textoPantalla.replace('\n', ' â€¢ ')}</span></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 1.1rem; color: var(--dark);">ðŸ“ Copy & Hashtags para PublicaciÃ³n:</h3>
+                        <button class="btn-copy" onclick="copyToClipboard(\`${data.copyInstagram.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Solo Copy</button>
+                    </div>
+                    <div class="copy-box">${data.copyInstagram}</div>
+                </div>
+
+                <div style="margin-top: 25px; text-align: right;">
+                    <button class="btn-action btn-gold" onclick="copyToClipboard(\`${fullScriptText.replace(/`/g, '\\`')}\`, this)">
+                        ðŸ“‹ Copiar Guion Completo
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderCarousel() {
+            const topic = document.getElementById('carousel-topic').value;
+            const data = JulieMarketingEngine.generateCarousel(topic);
+            const box = document.getElementById('carousel-result-box');
+
+            let slidesHtml = '';
+            data.slides.forEach(s => {
+                slidesHtml += `
+                    <div class="slide-card">
+                        <div>
+                            <div class="slide-num">Slide ${s.slide} â€¢ ${s.tipo}</div>
+                            <div class="slide-title">${s.titulo}</div>
+                            <div class="slide-desc">${s.contenido || ''}</div>
+                        </div>
+                        <div class="slide-visual-hint">ðŸ“¸ <strong>DiseÃ±o sugerido:</strong> ${s.visual}</div>
+                    </div>
+                `;
+            });
+
+            box.innerHTML = `
+                <h2>
+                    <span>${data.titulo}</span>
+                    <button class="btn-copy" onclick="copyToClipboard(\`${data.copy.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Copy</button>
+                </h2>
+
+                <div class="slides-grid">
+                    ${slidesHtml}
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <h3 style="font-size: 1.1rem; color: var(--dark); margin-bottom: 8px;">ðŸ“ Copy para el Post de Instagram / Facebook:</h3>
+                    <div class="copy-box">${data.copy}</div>
+                </div>
+            `;
+        }
+
+        function renderWhatsApp() {
+            const msgs = JulieMarketingEngine.generateWhatsAppMessages();
+            const box = document.getElementById('whatsapp-result-box');
+
+            let html = '';
+            msgs.forEach((m, idx) => {
+                html += `
+                    <div class="result-card">
+                        <h2>
+                            <span>ðŸ’¬ ${m.tipo}</span>
+                            <button class="btn-copy" onclick="copyToClipboard(\`${m.texto.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar Mensaje</button>
+                        </h2>
+                        <div class="copy-box" style="margin-top: 10px;">${m.texto}</div>
+                    </div>
+                `;
+            });
+
+            box.innerHTML = html;
+        }
+
+        function renderTips() {
+            const topic = document.getElementById('tips-topic').value;
+            const article = JulieMarketingEngine.generateTipsArticle(topic);
+            const box = document.getElementById('tips-result-box');
+
+            let sectionsHtml = '';
+            article.secciones.forEach(sec => {
+                sectionsHtml += `
+                    <div style="margin-bottom: 18px;">
+                        <h4 style="font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 6px;">${sec.subtitulo}</h4>
+                        <p style="font-size: 0.95rem; color: #444; line-height: 1.6;">${sec.contenido}</p>
+                    </div>
+                `;
+            });
+
+            const fullArticleText = `# ${article.titulo}\n\n${article.extracto}\n\n` + 
+                article.secciones.map(s => `## ${s.subtitulo}\n${s.contenido}`).join('\n\n') + 
+                `\n\n---\n${article.cta}`;
+
+            box.innerHTML = `
+                <h2>
+                    <span>${article.titulo}</span>
+                    <button class="btn-copy" onclick="copyToClipboard(\`${fullArticleText.replace(/`/g, '\\`')}\`, this)">ðŸ“‹ Copiar ArtÃ­culo Markdown</button>
+                </h2>
+                <p style="font-size: 1.05rem; font-style: italic; color: #666; margin-bottom: 20px; border-left: 3px solid var(--gold); padding-left: 12px;">
+                    ${article.extracto}
+                </p>
+
+                ${sectionsHtml}
+
+                <div style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 15px 20px; border-radius: 10px; margin-top: 20px;">
+                    <strong>ðŸ“ Cierre del ArtÃ­culo (Llamado a la acciÃ³n):</strong>
+                    <p style="margin-top: 5px; font-size: 0.95rem;">${article.cta}</p>
+                </div>
+            `;
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderReel();
+        });
+    </script>
+</body>
+</html>
