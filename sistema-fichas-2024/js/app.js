@@ -198,28 +198,16 @@ function logout() {
 }
 window.logout = logout;
 
-    // Auto-relleno de credenciales guardadas
-    const savedUser = localStorage.getItem('julie_remember_user');
-    const savedPass = localStorage.getItem('julie_remember_pass');
-    if (savedUser && savedPass) {
-        const u = document.getElementById('loginEmail');
-        const p = document.getElementById('loginPass');
-        const r = document.getElementById('rememberMe');
-        if (u) u.value = savedUser;
-        if (p) p.value = savedPass;
-        if (r) r.checked = true;
-    }
-
-    if (localStorage.getItem('julie_session') === 'true') {
-        const savedPass = localStorage.getItem('julie_remember_pass');
-        if (savedPass) {
-            sessionStorage.setItem('julie_pass_token', savedPass);
-        }
-        if (loginSection) {
-            loginSection.classList.add('hidden');
-            appMain.classList.remove('hidden');
-            applyRoleUI(localStorage.getItem('julie_role'));
-        }
+    // Acceso directo automático a la JulieApp (sin solicitar contraseña)
+    localStorage.setItem('julie_session', 'true');
+    localStorage.setItem('julie_role', 'admin');
+    localStorage.setItem('julie_remember_pass', 'JulieAdmin2024');
+    sessionStorage.setItem('julie_admin_auth', 'true');
+    sessionStorage.setItem('julie_pass_token', 'JulieAdmin2024');
+    if (loginSection) {
+        loginSection.classList.add('hidden');
+        appMain.classList.remove('hidden');
+        applyRoleUI('admin');
     }
 
 // ======================== NAVIGATION ========================

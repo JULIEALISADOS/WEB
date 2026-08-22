@@ -1,10 +1,10 @@
-const CACHE_NAME = 'julie-app-v9.3';
+const CACHE_NAME = 'julie-app-v9.4';
 const ASSETS = [
   'index.html',
   'admin.html',
   'marketing-studio.html',
   'style.css?v=9.0',
-  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/marketing-engine.js', 'js/app.js?v=9.1',
+  'js/config.js', 'js/db.js', 'js/ui.js', 'js/signature.js', 'js/pdf.js', 'js/marketing-engine.js', 'js/app.js?v=9.4',
   'manifest.json',
   'logo.png',
   'guia_cabello_tecnico_completa_julie_es_1774539016850.png',
