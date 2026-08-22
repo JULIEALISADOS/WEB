@@ -147,6 +147,10 @@
                     <span class="version-badge">v8.5</span>
                 </div>
                 <div class="header-actions">
+                    <button type="button" id="marketingStudioBtn" class="btn-refresh" onclick="window.location.href='marketing-studio.html'" title="Marketing Studio IA" style="background:var(--gold-primary); color:white; border:none; font-weight:700;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+                        <span>MARKETING IA</span>
+                    </button>
                     <button type="button" id="headerHistoryBtn" class="btn-refresh hidden" onclick="triggerQuickHistory()" title="Ver Historial de la Cliente" style="background:var(--gold-primary); color:white; border:none;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
                         <span>HISTORIAL</span>
@@ -199,12 +203,11 @@
                     <h3>HISTORIAL</h3>
                     <p>Ver y descargar reportes previos</p>
                 </div>
-                <!-- Oculto por solicitud del usuario, para uso futuro -->
-                <div class="home-card" onclick="openScheduling()" style="display: none;">
-                    <div class="card-icon" style="background: #e8f5e9; color: #2ecc71;"><i data-lucide="calendar"></i></div>
+                <div class="home-card" onclick="window.location.href='marketing-studio.html'" style="border: 2px solid var(--gold-primary); background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, #ffffff 100%);">
+                    <div class="card-icon" style="background: var(--gold-primary); color: white;"><i data-lucide="sparkles"></i></div>
                     <div class="card-text">
-                        <h3>AGENDAR CITA</h3>
-                        <p>Programar próximo servicio</p>
+                        <h3 style="color: var(--gold-dark);">MARKETING STUDIO</h3>
+                        <p>Generador IA de Guiones, Reels y Posts</p>
                     </div>
                 </div>
                 <div class="home-card" onclick="switchTab('stylists')">
