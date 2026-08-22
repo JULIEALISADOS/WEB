@@ -44,9 +44,13 @@
 ## 3. IDENTIDAD DE MARCA Y MARKETING (Para Claude Cowork & Gemini)
 
 - **Nombre de Marca Oficial de Productos:** **Marca JA By Julie Valencia** / **JA By Julie Valencia**.
-- **Reglas Críticas de Vocabulario:**
+- **Reglas Críticas de Vocabulario y Contenido Científico:**
   - ❌ **PROHIBIDO:** Usar las palabras *"hebra"* y *"melena"* (sustituir siempre por *cabello, fibra capilar, puntas*).
   - ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir siempre por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de larga duración*).
+  - ❌ **ESTRICTAMENTE PROHIBIDA LA PSEUDOCIENCIA Y MITOS MÁGICOS:** Nada de crecimiento acelerado por "fases de la luna", menjurjes caseros dañinos (cebolla, mayonesa, limón), o promesas de crecimiento milagroso.
+  - ✅ **BASE CIENTÍFICA Y TRICOLOGÍA REAL:** Todo el marketing, guiones y artículos de *Julie Tips* deben fundamentarse en **ciencia capilar real, tricología, dermatología y química cosmética**.
+    - El crecimiento capilar es biológico (~1 a 1.2 cm por mes según la fase anágena y la genética). La rutina profesional no "acelera mágicamente el folículo", sino que **fortalece la fibra y evita el quiebre de las puntas**, permitiendo retener el largo real.
+    - Se educa sobre pH, sellado cuticular, reestructuración proteica con aminoácidos y protección térmica contra el daño oxidativo y mecánico.
 - **Enfoque Comercial de la Línea de Post-Cuidado:**
   - **No es solo para alisados:** Es una línea profesional para cualquier persona con cabello natural, tinturado o procesado.
   - **Especialización técnica honesta:** No se venden como champús mágicos que se adaptan a todo; se explica que Julie Alisados cuenta con la fórmula exacta para cada necesidad:
