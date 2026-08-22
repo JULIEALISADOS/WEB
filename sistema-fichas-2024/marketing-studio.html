@@ -71,8 +71,8 @@
         header {
             background: #fff;
             border-bottom: 1px solid var(--border);
-            padding: 16px 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            padding: 8px 0 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -87,59 +87,75 @@
         .logo-wrap {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             text-decoration: none;
             color: #111;
         }
 
         .logo-wrap img {
-            width: 46px;
-            height: 46px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            border: 2px solid var(--gold);
+            border: 1.5px solid var(--gold);
             object-fit: cover;
         }
 
         .brand-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
+            font-size: 1.1rem;
             color: var(--black);
             line-height: 1.1;
             font-weight: 700;
         }
 
         .brand-text span {
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             color: var(--gold-dark);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             font-weight: 700;
+            display: block;
         }
 
         .header-btn-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .btn-back-admin {
             background: var(--black);
             color: #fff;
             text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
             font-weight: 600;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .btn-back-admin:hover {
             background: var(--gold-dark);
-            transform: translateY(-1px);
+            color: #fff;
+        }
+
+        /* Nav Tabs */
+        .tabs-nav {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 2px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tabs-nav::-webkit-scrollbar {
+            display: none;
         }
 
         /* Brand Bar Banner */
@@ -655,16 +671,31 @@
 
         @media (max-width: 768px) {
             .header-inner {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
+                flex-direction: row;
+                gap: 8px;
+                text-align: left;
+            }
+            .logo-wrap img {
+                width: 30px;
+                height: 30px;
+            }
+            .brand-text h1 {
+                font-size: 0.95rem;
+            }
+            .brand-text span {
+                font-size: 0.62rem;
+            }
+            .tab-btn {
+                padding: 6px 12px;
+                font-size: 0.78rem;
             }
             .brand-banner {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 10px 14px;
             }
             .controls-card {
-                padding: 16px;
+                padding: 14px;
             }
             .custom-input-group {
                 flex-direction: column;
@@ -677,7 +708,7 @@
                 grid-template-columns: 1fr;
             }
             .result-card {
-                padding: 20px;
+                padding: 16px;
             }
             .toast {
                 left: 20px;
@@ -697,25 +728,11 @@
                     <img src="logo.png" alt="Julie Alisados">
                     <div class="brand-text">
                         <h1>JULIE MARKETING STUDIO</h1>
-                        <span>Generador Autónomo de Contenido • Brand Book v4.0</span>
+                        <span>Generador Autónomo de Contenido</span>
                     </div>
                 </a>
                 <div class="header-btn-group">
-                    <a href="admin.html" class="btn-back-admin">← Panel Administrativo</a>
-                </div>
-            </div>
-
-            <!-- Brand Slogan Banner -->
-            <div class="brand-banner">
-                <div class="brand-banner-left">
-                    <span class="brand-slogan-badge">Slogan Oficial</span>
-                    <span class="brand-slogan-text">"Más que un liso, una transformación"</span>
-                </div>
-                <div class="brand-values-pills">
-                    <span class="value-pill">🌿 Health-First</span>
-                    <span class="value-pill">🔬 Scientific Innovation</span>
-                    <span class="value-pill">🤝 Professional Transparency</span>
-                    <span class="value-pill">✨ Personalized Excellence</span>
+                    <a href="admin.html" class="btn-back-admin">← Dashboard</a>
                 </div>
             </div>
 
@@ -723,12 +740,26 @@
                 <button class="tab-btn active" onclick="switchTab('reels', this)">🎬 Reels & TikTok</button>
                 <button class="tab-btn" onclick="switchTab('carruseles', this)">📸 Carruseles & Posts</button>
                 <button class="tab-btn" onclick="switchTab('whatsapp', this)">💬 Estados WhatsApp</button>
-                <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog SEO)</button>
+                <button class="tab-btn" onclick="switchTab('tips', this)">📝 Julie Tips (Blog)</button>
             </div>
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" style="padding-top: 15px;">
+
+        <!-- Brand Slogan Banner (No pegajoso) -->
+        <div class="brand-banner" style="margin-bottom: 20px;">
+            <div class="brand-banner-left">
+                <span class="brand-slogan-badge">Slogan Oficial</span>
+                <span class="brand-slogan-text">"Más que un liso, una transformación"</span>
+            </div>
+            <div class="brand-values-pills">
+                <span class="value-pill">🌿 Health-First</span>
+                <span class="value-pill">🔬 Scientific Innovation</span>
+                <span class="value-pill">🤝 Transparency</span>
+                <span class="value-pill">✨ Excellence</span>
+            </div>
+        </div>
 
         <!-- ================= PESTAÑA 1: REELS & TIKTOK ================= -->
         <section id="tab-reels" class="tab-content active">
