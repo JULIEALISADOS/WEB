@@ -960,13 +960,14 @@
         </a>
     </div>
 
-    <!-- Video Modal (En Grande al hacer click) -->
+    <!-- Media Modal (En Grande al hacer click en promociones o videos) -->
     <div id="video-modal" class="video-modal">
-        <span class="modal-close">&times;</span>
+        <span class="modal-close" aria-label="Cerrar modal">&times;</span>
         <div class="modal-content">
-            <video id="modal-video" controls playsinline>
+            <video id="modal-video" controls playsinline style="display: none;">
                 <source src="" type="video/mp4">
             </video>
+            <img id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
         </div>
     </div>
 
@@ -1221,19 +1222,50 @@
         // Repara dimensiones al cambiar tamaño de pantalla
         window.addEventListener('resize', updateDimensions);
 
-        // Lógica de Modales de Video
+        // Lógica de Modales de Video e Imágenes de Promoción
         const modal = document.getElementById('video-modal');
         const modalVideo = document.getElementById('modal-video');
-        const modalSource = modalVideo.querySelector('source');
+        const modalImage = document.getElementById('modal-image');
+        const modalSource = modalVideo ? modalVideo.querySelector('source') : null;
         const modalClose = document.querySelector('.modal-close');
         
-        const openModal = (src) => {
-            if (!src) return;
-            modalSource.src = src;
-            modalVideo.load();
+        const openModal = (src, isVideo = false) => {
+            if (!src || !modal) return;
+            if (isVideo) {
+                if (modalImage) modalImage.style.display = 'none';
+                if (modalVideo && modalSource) {
+                    modalVideo.style.display = 'block';
+                    modalSource.src = src;
+                    modalVideo.load();
+                    modalVideo.play().catch(() => {});
+                }
+            } else {
+                if (modalVideo) {
+                    modalVideo.pause();
+                    modalVideo.style.display = 'none';
+                }
+                if (modalImage) {
+                    modalImage.src = src;
+                    modalImage.style.display = 'block';
+                }
+            }
             modal.classList.add('active');
-            modalVideo.play().catch(() => {}); // Silenciar error si autoplay falla
             isPaused = true;
+        };
+
+        const closeModalFunc = () => {
+            if (!modal) return;
+            modal.classList.remove('active');
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.style.display = 'none';
+                if (modalSource) modalSource.src = "";
+            }
+            if (modalImage) {
+                modalImage.style.display = 'none';
+                modalImage.src = "";
+            }
+            isPaused = false;
         };
 
         // Clicks en imágenes del banner de promociones (lazy-img-clickable)
@@ -1247,7 +1279,11 @@
                 }
                 e.stopPropagation();
                 const videoSrc = item.dataset.video;
-                if (videoSrc) openModal(videoSrc);
+                if (videoSrc) {
+                    openModal(videoSrc, true);
+                } else if (item.src) {
+                    openModal(item.src, false);
+                }
             });
         });
 
@@ -1263,7 +1299,11 @@
                 const container = overlay.closest('.video-card-container');
                 const img = container?.querySelector('.lazy-img-clickable');
                 const videoSrc = img?.dataset.video;
-                if (videoSrc) openModal(videoSrc);
+                if (videoSrc) {
+                    openModal(videoSrc, true);
+                } else if (img?.src) {
+                    openModal(img.src, false);
+                }
             });
         });
 
@@ -1271,7 +1311,7 @@
         document.querySelectorAll('.result-video').forEach(item => {
             item.addEventListener('click', () => {
                 const src = item.querySelector('source')?.src || item.src;
-                openModal(src);
+                openModal(src, true);
             });
         });
 
@@ -1280,23 +1320,25 @@
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const videoSrc = item.dataset.video;
-                if (videoSrc) openModal(videoSrc);
+                if (videoSrc) {
+                    openModal(videoSrc, true);
+                } else if (item.src) {
+                    openModal(item.src, false);
+                }
             });
         });
 
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-            modalVideo.pause();
-            modalSource.src = "";
-            modalVideo.load(); // Reset del video
-            isPaused = false;
-        });
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModalFunc);
+        }
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modalClose.click();
-            }
-        });
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target === modalClose) {
+                    closeModalFunc();
+                }
+            });
+        }
 
         // ======================== DYNAMIC REVIEWS (RESTORATION) ========================
         const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
