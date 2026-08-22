@@ -1761,7 +1761,6 @@
             }
         }
         function copyTipsArticle(btn) { copyToClipboard(currentMarketingData.tips.fullArticle, btn); }
-
         // Delegados de copiado para Estudio Visual
         function copyVisualReelCopy(btn) { copyToClipboard(currentMarketingData.visualMedia.copy, btn); }
         function copyVisualReelFull(btn) { copyToClipboard(currentMarketingData.visualMedia.fullScript, btn); }
@@ -1776,7 +1775,7 @@
         }
 
         // ================= RENDERS =================
-        function renderReel(isCustom = false) {
+        function renderReel(isCustom = false, autoScroll = false) {
             const customInput = document.getElementById('reel-custom-topic');
             const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
             if (isCustom && !customVal) {
@@ -1785,10 +1784,11 @@
                 return;
             }
 
-            const topic = document.getElementById('reel-topic').value;
+            const topic = document.getElementById('reel-topic')?.value || 'alisado_saludable';
             const obj = currentObjectives.reels || 'venta';
             const data = JulieMarketingEngine.generateReelScript(topic, customVal, obj);
             const box = document.getElementById('reel-result-box');
+            if (!box) return;
 
             const fullScriptText = `🎬 ${data.titulo}\n🎯 Objetivo: ${data.objetivo}\n⏱️ Duración: ${data.duracionSugerida}\n🎵 Audio: ${data.audioRecomendado}\n\n1. GANCHO (0-3s):\nVisual: ${data.gancho.visual}\nVoz: "${data.gancho.audio}"\nTexto pantalla: ${data.gancho.textoPantalla}\n\n2. PROBLEMA (3-12s):\nVisual: ${data.problema.visual}\nVoz: "${data.problema.audio}"\n\n3. SOLUCIÓN (12-28s):\nVisual: ${data.solucion.visual}\nVoz: "${data.solucion.audio}"\n\n4. CIERRE & CTA (28-35s):\nVisual: ${data.cierre.visual}\nVoz: "${data.cierre.audio}"\n\n📝 COPY PARA INSTAGRAM / TIKTOK:\n${data.copyInstagram}`;
 
@@ -1872,10 +1872,13 @@
                     </button>
                 </div>
             `;
-            if (isCustom) scrollToResult('reel-result-box');
+            if (isCustom || autoScroll) {
+                scrollToResult('reel-result-box');
+                showToast("✨ Guion de Reel generado");
+            }
         }
 
-        function renderCarousel(isCustom = false) {
+        function renderCarousel(isCustom = false, autoScroll = false) {
             const customInput = document.getElementById('carousel-custom-topic');
             const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
             if (isCustom && !customVal) {
@@ -1884,10 +1887,11 @@
                 return;
             }
 
-            const topic = document.getElementById('carousel-topic').value;
+            const topic = document.getElementById('carousel-topic')?.value || 'alisado_saludable';
             const obj = currentObjectives.carruseles || 'venta';
             const data = JulieMarketingEngine.generateCarousel(topic, customVal, obj);
             const box = document.getElementById('carousel-result-box');
+            if (!box) return;
 
             currentMarketingData.carousel = {
                 copy: data.copy
@@ -1922,10 +1926,13 @@
                     <div class="copy-box">${data.copy}</div>
                 </div>
             `;
-            if (isCustom) scrollToResult('carousel-result-box');
+            if (isCustom || autoScroll) {
+                scrollToResult('carousel-result-box');
+                showToast("✨ Carrusel generado con éxito");
+            }
         }
 
-        function renderWhatsApp(isCustom = false) {
+        function renderWhatsApp(isCustom = false, autoScroll = false) {
             const customInput = document.getElementById('whatsapp-custom-topic');
             const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
             if (isCustom && !customVal) {
@@ -1937,6 +1944,7 @@
             const obj = currentObjectives.whatsapp || 'venta';
             const msgs = JulieMarketingEngine.generateWhatsAppMessages(customVal, obj);
             const box = document.getElementById('whatsapp-result-box');
+            if (!box) return;
 
             currentMarketingData.whatsapp = msgs;
 
@@ -1954,10 +1962,13 @@
             });
 
             box.innerHTML = html;
-            if (isCustom) scrollToResult('whatsapp-result-box');
+            if (isCustom || autoScroll) {
+                scrollToResult('whatsapp-result-box');
+                showToast("✨ Mensajes de WhatsApp generados");
+            }
         }
 
-        function renderTips(isCustom = false) {
+        function renderTips(isCustom = false, autoScroll = false) {
             const customInput = document.getElementById('tips-custom-topic');
             const customVal = isCustom ? (customInput ? customInput.value.trim() : '') : '';
             if (isCustom && !customVal) {
@@ -1966,10 +1977,11 @@
                 return;
             }
 
-            const topic = document.getElementById('tips-topic').value;
+            const topic = document.getElementById('tips-topic')?.value || 'alisado_saludable';
             const obj = currentObjectives.tips || 'venta';
             const article = JulieMarketingEngine.generateTipsArticle(topic, customVal, obj);
             const box = document.getElementById('tips-result-box');
+            if (!box) return;
 
             let sectionsHtml = '';
             article.secciones.forEach(sec => {
@@ -2005,7 +2017,10 @@
                     <p style="margin-top: 6px; font-size: 0.92rem; color:#222; line-height: 1.5;">${article.cta}</p>
                 </div>
             `;
-            if (isCustom) scrollToResult('tips-result-box');
+            if (isCustom || autoScroll) {
+                scrollToResult('tips-result-box');
+                showToast("✨ Artículo Julie Tips generado");
+            }
         }
 
         // ================= RENDER ANALIZADOR MULTIMEDIA IA =================
@@ -2252,7 +2267,16 @@
 
         // Inicializar al cargar
         window.addEventListener('DOMContentLoaded', () => {
-            renderReel(false);
+            try {
+                renderReel(false, false);
+                renderCarousel(false, false);
+                renderWhatsApp(false, false);
+                renderTips(false, false);
+                renderMediaAnalysis(false);
+                renderVisualPrompt();
+            } catch(e) {
+                console.error("Error inicializando marketing studio:", e);
+            }
         });
     </script>
 </body>
