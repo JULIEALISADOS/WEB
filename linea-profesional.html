@@ -295,9 +295,9 @@
         .modal-detail-card {
             background: #ffffff;
             border-radius: 20px;
-            max-width: 740px;
+            max-width: 880px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 88vh;
             overflow-y: auto;
             position: relative;
             border: 2px solid var(--gold);
@@ -345,26 +345,32 @@
 
         .modal-body-wrapper {
             display: flex;
-            flex-wrap: wrap;
-            padding: 24px;
-            gap: 20px;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            padding: 28px;
+            gap: 24px;
         }
 
         .modal-img-col {
-            flex: 1 1 260px;
+            flex: 0 0 320px;
+            width: 320px;
             background: #faf7f2;
             border-radius: 16px;
-            padding: 16px;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            min-height: 240px;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            align-self: flex-start;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            box-sizing: border-box;
         }
 
         .modal-product-img {
             max-width: 100% !important;
-            max-height: 300px !important;
+            max-height: 340px !important;
             height: auto !important;
             width: auto !important;
             object-fit: contain !important;
@@ -372,25 +378,27 @@
             border: none !important;
             background: transparent !important;
             box-shadow: none !important;
+            display: block;
         }
 
         .modal-info-col {
-            flex: 1 1 320px;
+            flex: 1 1 auto;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding-right: 25px;
-            padding-top: 5px;
+            justify-content: flex-start;
+            padding-right: 10px;
+            padding-top: 0;
         }
 
         .modal-product-title {
             font-family: var(--font-heading);
             color: #1a1a1a;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 700;
             margin: 0 0 8px 0;
             line-height: 1.3;
-            padding-right: 20px;
+            padding-right: 25px;
         }
 
         .modal-product-price {
@@ -443,7 +451,7 @@
             color: #ffffff !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .modal-detail-overlay {
                 padding: 12px;
             }
@@ -454,20 +462,23 @@
             }
 
             .modal-body-wrapper {
-                padding: 18px 16px;
-                gap: 14px;
+                padding: 20px 16px;
+                gap: 16px;
                 flex-direction: column;
+                flex-wrap: wrap;
             }
 
             .modal-img-col {
                 flex: 0 0 auto;
                 width: 100%;
                 min-height: 200px;
-                padding: 12px;
+                padding: 14px;
+                position: static;
+                align-self: auto;
             }
 
             .modal-product-img {
-                max-height: 220px !important;
+                max-height: 240px !important;
             }
 
             .modal-info-col {
