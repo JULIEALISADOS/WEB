@@ -1216,20 +1216,185 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45);
         }
+        
+        /* Barra de Período y Filtro de Fechas */
+        .finance-period-toolbar {
+            background: #FFFFFF;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-lg);
+            padding: 18px 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .finance-period-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            border-bottom: 1px solid #F3F1EC;
+            padding-bottom: 12px;
+        }
+        .period-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .period-icon-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.14);
+            color: var(--gold-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .finance-period-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn-period-chip {
+            padding: 7px 15px;
+            border-radius: 20px;
+            border: 1px solid #E5E0D5;
+            background: #FDFBF7;
+            color: #333333;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-period-chip:hover {
+            border-color: var(--gold);
+            color: var(--gold-dark);
+            background: #FFFFFF;
+        }
+        .btn-period-chip.active {
+            background: var(--gold-gradient);
+            color: #FFFFFF;
+            border-color: var(--gold);
+            font-weight: 700;
+            box-shadow: 0 3px 12px rgba(212, 175, 55, 0.35);
+        }
+        .finance-custom-dates-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: #F9F8F5;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px dashed #D6CFBE;
+        }
+        .date-field-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #444;
+        }
+
         .stylist-liq-card {
             background: #FFFFFF;
             border: 1px solid var(--border-card);
             border-radius: var(--radius-md);
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 16px 18px;
+            margin-bottom: 14px;
             transition: all 0.2s ease;
         }
         .stylist-liq-card:hover {
             border-color: var(--gold);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+        .stylist-liq-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .stylist-actions-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #ECECEC;
+        }
+        .btn-liq-action {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .btn-liq-whatsapp {
+            background: #25D366;
+            color: #FFFFFF;
+        }
+        .btn-liq-whatsapp:hover {
+            background: #1EBE5D;
+            transform: translateY(-1px);
+        }
+        .btn-liq-pdf {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold-dark);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .btn-liq-pdf:hover {
+            background: var(--gold-gradient);
+            color: #FFFFFF;
+            border-color: var(--gold);
+        }
+        .btn-liq-toggle {
+            background: #F4F4F6;
+            color: #555;
+            border-color: #E2E2E6;
+        }
+        .btn-liq-toggle:hover {
+            background: #E8E8EC;
+            color: #111;
+        }
+        .btn-liq-settle {
+            background: var(--black);
+            color: #FFFFFF;
+        }
+        .btn-liq-settle:hover {
+            background: #333;
+        }
+        .stylist-services-breakdown {
+            margin-top: 12px;
+            background: #FAF9F6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            border: 1px solid #EBE7DD;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .service-breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid #ECE7DB;
+            font-size: 0.78rem;
+        }
+        .service-breakdown-row:last-child {
+            border-bottom: none;
         }
         @media (max-width: 1024px) {
             .pos-grid-container {
@@ -1563,6 +1728,73 @@
                 </div>
             </div>
 
+            <!-- Barra de Período y Fechas para Finanzas & Liquidaciones -->
+            <div class="finance-period-toolbar">
+                <div class="finance-period-header">
+                    <div class="period-title-wrap">
+                        <div class="period-icon-badge">
+                            <i data-lucide="calendar-range" style="width:22px; height:22px;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size:1rem; font-weight:700; color:var(--black); margin-bottom:2px;">
+                                📅 Período de Liquidación & Rendimiento Financiero
+                            </h4>
+                            <div id="financePeriodIndicator" style="font-size:0.78rem; color:#666;">
+                                Mostrando: <strong>Este Mes</strong> • Prorrateo 100% de Gastos Fijos (Mes Completo) • Sede: <strong>Todas</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label style="font-size:0.75rem; font-weight:700; color:#555;">Sede:</label>
+                        <select id="financeSedeFilter" class="filter-select" onchange="handleFinancePeriodChange()" style="font-size:0.8rem; padding:6px 12px; font-weight:700;">
+                            <option value="Todas">📍 Todas las Sedes (Tunja & Moniquirá)</option>
+                            <option value="Tunja">📍 Solo Tunja (Pasaje Boulevard)</option>
+                            <option value="Moniquira">📍 Solo Moniquirá (Cra 6)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Botones de Períodos Rápidos -->
+                <div class="finance-period-buttons">
+                    <button type="button" class="btn-period-chip active" id="btnPeriod_este_mes" onclick="selectFinancePeriod('este_mes')">
+                        📅 Este Mes
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_quincena_1" onclick="selectFinancePeriod('quincena_1')">
+                        🌓 1ª Quincena (1-15)
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_quincena_2" onclick="selectFinancePeriod('quincena_2')">
+                        🌕 2ª Quincena (16-fin)
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_hoy" onclick="selectFinancePeriod('hoy')">
+                        ⚡ Hoy
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_esta_semana" onclick="selectFinancePeriod('esta_semana')">
+                        📆 Esta Semana
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_mes_anterior" onclick="selectFinancePeriod('mes_anterior')">
+                        ⏪ Mes Anterior
+                    </button>
+                    <button type="button" class="btn-period-chip" id="btnPeriod_personalizado" onclick="selectFinancePeriod('personalizado')">
+                        🎯 Rango Personalizado
+                    </button>
+                </div>
+
+                <!-- Controles de Fecha Desde / Hasta -->
+                <div class="finance-custom-dates-row" id="financeCustomDatesRow" style="display:none;">
+                    <div class="date-field-group">
+                        <label>Desde:</label>
+                        <input type="date" id="financeStartDate" class="filter-select" onchange="handleCustomDateChange()">
+                    </div>
+                    <div class="date-field-group">
+                        <label>Hasta:</label>
+                        <input type="date" id="financeEndDate" class="filter-select" onchange="handleCustomDateChange()">
+                    </div>
+                    <button type="button" class="btn-header primary" onclick="handleApplyCustomDates()" style="padding:6px 14px; font-size:0.8rem;">
+                        <i data-lucide="filter" style="width:14px;"></i> Aplicar Filtro
+                    </button>
+                </div>
+            </div>
+
             <!-- 6 Tarjetas KPI Financieras -->
             <div class="stats-grid">
                 <div class="stat-card" style="border-left-color: var(--gold);">
@@ -1576,7 +1808,7 @@
                     <div class="trend" style="color:#E67E22;"><i data-lucide="package" style="width:14px;"></i> Fórmulas orgánicas aplicadas</div>
                 </div>
                 <div class="stat-card" style="border-left-color: #9B59B6;">
-                    <h3>✂️ Pago Estilistas (30%)</h3>
+                    <h3>✂️ Pago Estilistas (Tarifas Oficiales)</h3>
                     <div class="value" id="kpiStylists">$0</div>
                     <div class="trend" style="color:#9B59B6;"><i data-lucide="scissors" style="width:14px;"></i> Comisiones por servicios</div>
                 </div>
@@ -1652,15 +1884,27 @@
                                 <div>
                                     <label style="display:block; font-size:0.75rem; font-weight:700; color:#555; margin-bottom:3px;">Procedimiento Realizado:</label>
                                     <select id="posProcedureSelect" class="filter-select" style="width:100%; font-weight:700;" onchange="updatePOSTicket()">
-                                        <option value="alisado_saludable" selected>Alisado Saludable - $250.000 (Insumo: $30k | Comisión: $75k)</option>
-                                        <option value="alisado_light">Alisado Light - $220.000 (Insumo: $25k | Comisión: $66k)</option>
-                                        <option value="retoque_raiz">Retoque de Raíz - $190.000 (Insumo: $25k | Comisión: $57k)</option>
-                                        <option value="emulsion_zero">Emulsión Zero - $170.000 (Insumo: $25k | Comisión: $51k)</option>
-                                        <option value="reposicion_aminoacidos">Reposición Aminoácidos - $150.000 (Insumo: $20k | Comisión: $45k)</option>
-                                        <option value="re_code">RE-CODE Reconstructivo - $160.000 (Insumo: $20k | Comisión: $48k)</option>
-                                        <option value="balaca">Balaca / Zonas - $120.000 (Insumo: $15k | Comisión: $36k)</option>
-                                        <option value="rcp_restauracion">R.C.P. Restauración - $180.000 (Insumo: $25k | Comisión: $54k)</option>
-                                        <option value="hidratacion_choco">Hidratación / Choco Fix - $75.000 (Insumo: $15k | Comisión: $22.5k)</option>
+                                        <option value="alisado_estandar" selected>Alisado Estándar / Saludable - $250.000 (Insumo: $30k | Comisión: $60k)</option>
+                                        <option value="alisado_afro">Alisado Afro (Tipo 4) - $280.000 (Insumo: $35k | Comisión: $70k)</option>
+                                        <option value="retoque_raiz">Retoque de Raíz - $190.000 (Insumo: $25k | Comisión: $45k)</option>
+                                        <option value="emulsion_zero">Emulsión Zero - $170.000 (Insumo: $25k | Comisión: $35k)</option>
+                                        <option value="reposicion_aminoacidos">Reposición Aminoácidos - $150.000 (Insumo: $20k | Comisión: $35k)</option>
+                                        <option value="rcp">R.C.P. Restauración - $180.000 (Insumo: $25k | Comisión: $35k)</option>
+                                        <option value="recode">Recode Reconstructivo - $160.000 (Insumo: $20k | Comisión: $35k)</option>
+                                        <option value="terapia_triming">Terapia Triming - $60.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="proteina_gold">Proteína Gold - $70.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="hidracomplex">Hidracomplex - $70.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="chocofix">Chocofix - $65.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="detox">Detox Capilar - $65.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="relleno_molecular">Relleno Molecular - $75.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="biocomplex">Biocomplex - $75.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="plan_amigas">Plan Amigas - $70.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="hidratacion">Hidratación Profunda - $60.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="ritual_anticaida">Ritual Anticaída - $80.000 (Insumo: $18k | Comisión: $25k)</option>
+                                        <option value="balaca">Balaca / Zonas - $90.000 (Insumo: $15k | Comisión: $25k)</option>
+                                        <option value="corte_estandar">Corte de Cabello - $25.000 (Insumo: $2k | Comisión: $7.5k)</option>
+                                        <option value="corte_triming">Corte Triming / Horquilla - $30.000 (Insumo: $2k | Comisión: $10k)</option>
+                                        <option value="lavado_cabello">Lavado de Cabello - $20.000 (Insumo: $3k | Comisión: $10k)</option>
                                         <option value="ninguno">-- Sin Procedimiento (Solo Productos) --</option>
                                     </select>
                                 </div>
@@ -2926,9 +3170,329 @@
             showToast('✅ Métricas de campaña actualizadas correctamente');
         };
 
-        // ================= MÓDULO DE FINANZAS & POS ALEGRA =================
+        // ================= MÓDULO DE FINANZAS & POS ALEGRA (CON FILTRO POR FECHAS Y PERÍODOS) =================
+        let currentFinancePeriod = 'este_mes';
+        let currentFinanceStartDate = '';
+        let currentFinanceEndDate = '';
+        let currentFinanceSede = 'Todas';
+
+        function formatDateToISO(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+
+        function getSelectedPeriodInfo() {
+            const today = new Date();
+            const curYear = today.getFullYear();
+            const curMonth = today.getMonth(); // 0-indexed
+            
+            let start = '';
+            let end = '';
+            let label = 'Este Mes';
+            let prorationText = 'Prorrateo 100% de Gastos Fijos (Mes Completo)';
+
+            if (currentFinancePeriod === 'este_mes') {
+                const firstDay = new Date(curYear, curMonth, 1);
+                const lastDay = new Date(curYear, curMonth + 1, 0);
+                start = formatDateToISO(firstDay);
+                end = formatDateToISO(lastDay);
+                label = `Este Mes (${firstDay.toLocaleString('es-CO', { month: 'long', year: 'numeric' })})`;
+                prorationText = 'Prorrateo 100% de Gastos Fijos (Mes Completo)';
+            } else if (currentFinancePeriod === 'quincena_1') {
+                const firstDay = new Date(curYear, curMonth, 1);
+                const q1Day = new Date(curYear, curMonth, 15);
+                start = formatDateToISO(firstDay);
+                end = formatDateToISO(q1Day);
+                label = `1ª Quincena (1 al 15 de ${firstDay.toLocaleString('es-CO', { month: 'long' })})`;
+                prorationText = 'Prorrateo 50% de Gastos Fijos (15 días)';
+            } else if (currentFinancePeriod === 'quincena_2') {
+                const q2Day = new Date(curYear, curMonth, 16);
+                const lastDay = new Date(curYear, curMonth + 1, 0);
+                start = formatDateToISO(q2Day);
+                end = formatDateToISO(lastDay);
+                label = `2ª Quincena (16 al ${lastDay.getDate()} de ${lastDay.toLocaleString('es-CO', { month: 'long' })})`;
+                prorationText = `Prorrateo ${Math.round(((lastDay.getDate() - 15) / 30) * 100)}% de Gastos Fijos`;
+            } else if (currentFinancePeriod === 'hoy') {
+                start = formatDateToISO(today);
+                end = formatDateToISO(today);
+                label = `Hoy (${today.toLocaleDateString('es-CO')})`;
+                prorationText = 'Prorrateo 1/30 (3.33%) de Gastos Fijos';
+            } else if (currentFinancePeriod === 'esta_semana') {
+                const dayOfWeek = today.getDay(); // 0 is Sun, 1 is Mon
+                const diffToMon = (dayOfWeek === 0 ? -6 : 1) - dayOfWeek;
+                const monday = new Date(today);
+                monday.setDate(today.getDate() + diffToMon);
+                const sunday = new Date(monday);
+                sunday.setDate(monday.getDate() + 6);
+                start = formatDateToISO(monday);
+                end = formatDateToISO(sunday);
+                label = `Esta Semana (${monday.toLocaleDateString('es-CO', {day:'numeric', month:'short'})} al ${sunday.toLocaleDateString('es-CO', {day:'numeric', month:'short'})})`;
+                prorationText = 'Prorrateo 7/30 (23.3%) de Gastos Fijos';
+            } else if (currentFinancePeriod === 'mes_anterior') {
+                const firstDayPrev = new Date(curYear, curMonth - 1, 1);
+                const lastDayPrev = new Date(curYear, curMonth, 0);
+                start = formatDateToISO(firstDayPrev);
+                end = formatDateToISO(lastDayPrev);
+                label = `Mes Anterior (${firstDayPrev.toLocaleString('es-CO', { month: 'long', year: 'numeric' })})`;
+                prorationText = 'Prorrateo 100% de Gastos Fijos';
+            } else if (currentFinancePeriod === 'personalizado') {
+                start = currentFinanceStartDate || formatDateToISO(new Date(curYear, curMonth, 1));
+                end = currentFinanceEndDate || formatDateToISO(today);
+                const d1 = new Date(start + 'T00:00:00');
+                const d2 = new Date(end + 'T00:00:00');
+                const days = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)) + 1);
+                label = `Rango Personalizado (${start} al ${end})`;
+                prorationText = `Prorrateo ${days} días (${Math.round((days / 30) * 100)}%) de Gastos Fijos`;
+            }
+
+            return { period: currentFinancePeriod, start, end, label, prorationText };
+        }
+
+        window.selectFinancePeriod = (periodKey) => {
+            currentFinancePeriod = periodKey;
+            document.querySelectorAll('.btn-period-chip').forEach(btn => btn.classList.remove('active'));
+            const btn = document.getElementById(`btnPeriod_${periodKey}`);
+            if (btn) btn.classList.add('active');
+
+            const customRow = document.getElementById('financeCustomDatesRow');
+            if (customRow) {
+                customRow.style.display = periodKey === 'personalizado' ? 'flex' : 'none';
+            }
+
+            const info = getSelectedPeriodInfo();
+            const startInput = document.getElementById('financeStartDate');
+            const endInput = document.getElementById('financeEndDate');
+            if (startInput) startInput.value = info.start;
+            if (endInput) endInput.value = info.end;
+
+            renderFinanceModule();
+        };
+
+        window.handleFinancePeriodChange = () => {
+            const sedeSelect = document.getElementById('financeSedeFilter');
+            if (sedeSelect) currentFinanceSede = sedeSelect.value;
+            renderFinanceModule();
+        };
+
+        window.handleCustomDateChange = () => {
+            const startInput = document.getElementById('financeStartDate');
+            const endInput = document.getElementById('financeEndDate');
+            if (startInput) currentFinanceStartDate = startInput.value;
+            if (endInput) currentFinanceEndDate = endInput.value;
+            currentFinancePeriod = 'personalizado';
+            
+            document.querySelectorAll('.btn-period-chip').forEach(btn => btn.classList.remove('active'));
+            const btn = document.getElementById('btnPeriod_personalizado');
+            if (btn) btn.classList.add('active');
+
+            renderFinanceModule();
+        };
+
+        window.handleApplyCustomDates = () => {
+            handleCustomDateChange();
+        };
+
+        window.toggleStylistBreakdown = (id) => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none';
+            }
+        };
+
+        window.sendStylistWhatsApp = (stylistName) => {
+            const periodInfo = getSelectedPeriodInfo();
+            const voucher = JulieFinanceEngine.generateStylistVoucher(stylistName, periodInfo.label, periodInfo.start, periodInfo.end, clientsData);
+            window.open(voucher.whatsappUrl, '_blank');
+        };
+
+        window.downloadStylistVoucherPDF = (stylistName) => {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                const periodInfo = getSelectedPeriodInfo();
+                const fin = JulieFinanceEngine.calculateFinancials(clientsData, periodInfo.start, periodInfo.end, currentFinanceSede);
+                const st = fin.stylists.find(s => s.name.toLowerCase().trim() === stylistName.toLowerCase().trim());
+
+                if (!st || !st.servicesList || st.servicesList.length === 0) {
+                    return alert(`No hay servicios registrados para ${stylistName} en el período seleccionado.`);
+                }
+
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
+
+                // 1. Header Obsidian Black & Gold
+                doc.setFillColor(17, 17, 17);
+                doc.rect(0, 0, pageWidth, 38, 'F');
+
+                doc.setFillColor(212, 175, 55);
+                doc.rect(0, 38, pageWidth, 2.5, 'F');
+
+                doc.setTextColor(212, 175, 55);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(16);
+                doc.text('JULIE ALISADOS • LIQUIDACIÓN DE ESTILISTAS', 15, 16);
+
+                doc.setTextColor(255, 255, 255);
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(8.5);
+                doc.text('Más que un liso, una transformación • Tunja Pasaje Boulevard & Moniquirá Cra 6', 15, 24);
+                doc.text('WhatsApp Oficial: +57 304 358 8180 | Sistema de Finanzas JulieApp', 15, 30);
+
+                // 2. Info Box
+                let y = 48;
+                doc.setFillColor(253, 251, 247);
+                doc.setDrawColor(220, 215, 200);
+                doc.roundedRect(15, y, pageWidth - 30, 24, 3, 3, 'FD');
+
+                doc.setTextColor(17, 17, 17);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(11);
+                doc.text(`Estilista: ${st.name}`, 20, y + 8);
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(9);
+                doc.text(`Período: ${periodInfo.label} (${periodInfo.start || 'Inicio'} al ${periodInfo.end || 'Hoy'})`, 20, y + 15);
+                doc.text(`Fecha de Emisión: ${new Date().toLocaleDateString('es-CO')} ${new Date().toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit'})}`, 20, y + 21);
+
+                doc.setFont('helvetica', 'bold');
+                doc.text(`Servicios: ${st.services}`, pageWidth - 60, y + 8);
+                doc.setTextColor(212, 175, 55);
+                doc.text(`Comisión: $${Math.round(st.commissionEarned).toLocaleString('es-CO')}`, pageWidth - 60, y + 16);
+
+                // 3. Table Header
+                y += 32;
+                doc.setFillColor(240, 238, 230);
+                doc.rect(15, y, pageWidth - 30, 8, 'F');
+                doc.setTextColor(50, 50, 50);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(8);
+                doc.text('#', 18, y + 5.5);
+                doc.text('FECHA', 25, y + 5.5);
+                doc.text('CLIENTA / DOCUMENTO', 48, y + 5.5);
+                doc.text('PROCEDIMIENTO REALIZADO', 105, y + 5.5);
+                doc.text('SEDE', 150, y + 5.5);
+                doc.text('PRECIO', 168, y + 5.5);
+                doc.text('COMISIÓN', pageWidth - 20, y + 5.5, { align: 'right' });
+
+                // 4. Table Rows
+                y += 8;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(7.5);
+
+                st.servicesList.forEach((item, index) => {
+                    if (y > pageHeight - 40) {
+                        doc.addPage();
+                        y = 20;
+                        doc.setFillColor(240, 238, 230);
+                        doc.rect(15, y, pageWidth - 30, 8, 'F');
+                        doc.setTextColor(50, 50, 50);
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(8);
+                        doc.text('#', 18, y + 5.5);
+                        doc.text('FECHA', 25, y + 5.5);
+                        doc.text('CLIENTA / DOCUMENTO', 48, y + 5.5);
+                        doc.text('PROCEDIMIENTO REALIZADO', 105, y + 5.5);
+                        doc.text('SEDE', 150, y + 5.5);
+                        doc.text('PRECIO', 168, y + 5.5);
+                        doc.text('COMISIÓN', pageWidth - 20, y + 5.5, { align: 'right' });
+                        y += 8;
+                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(7.5);
+                    }
+
+                    if (index % 2 === 1) {
+                        doc.setFillColor(250, 249, 245);
+                        doc.rect(15, y, pageWidth - 30, 7, 'F');
+                    }
+
+                    doc.setTextColor(30, 30, 30);
+                    doc.text(`${index + 1}`, 18, y + 5);
+                    doc.text(`${item.date || ''}`, 25, y + 5);
+                    
+                    const clientStr = `${item.clientName || 'Clienta'} (${item.clientDoc || '---'})`;
+                    doc.text(doc.splitTextToSize(clientStr, 54)[0], 48, y + 5);
+
+                    const procStr = `${item.procedureName || 'Servicio'}`;
+                    doc.text(doc.splitTextToSize(procStr, 42)[0], 105, y + 5);
+
+                    doc.text(`${item.sede || 'Tunja'}`, 150, y + 5);
+                    doc.text(`$${Math.round(item.price).toLocaleString('es-CO')}`, 168, y + 5);
+                    
+                    doc.setFont('helvetica', 'bold');
+                    doc.setTextColor(155, 89, 182);
+                    doc.text(`$${Math.round(item.commission).toLocaleString('es-CO')}`, pageWidth - 20, y + 5, { align: 'right' });
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(30, 30, 30);
+
+                    y += 7;
+                });
+
+                // 5. Totals Box
+                y += 6;
+                if (y > pageHeight - 50) {
+                    doc.addPage();
+                    y = 25;
+                }
+
+                doc.setFillColor(245, 243, 235);
+                doc.setDrawColor(212, 175, 55);
+                doc.roundedRect(pageWidth - 95, y, 80, 24, 2, 2, 'FD');
+
+                doc.setTextColor(60, 60, 60);
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(8.5);
+                doc.text(`Facturación Total:`, pageWidth - 90, y + 7);
+                doc.text(`$${Math.round(st.totalSales).toLocaleString('es-CO')}`, pageWidth - 20, y + 7, { align: 'right' });
+
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(9.5);
+                doc.setTextColor(17, 17, 17);
+                doc.text(`TOTAL A PAGAR:`, pageWidth - 90, y + 16);
+                doc.setTextColor(212, 175, 55);
+                doc.text(`$${Math.round(st.commissionEarned).toLocaleString('es-CO')} COP`, pageWidth - 20, y + 16, { align: 'right' });
+
+                // 6. Signatures Box
+                y += 36;
+                if (y > pageHeight - 30) {
+                    doc.addPage();
+                    y = 30;
+                }
+
+                doc.setDrawColor(180, 180, 180);
+                doc.line(25, y + 15, 85, y + 15);
+                doc.line(pageWidth - 85, y + 15, pageWidth - 25, y + 15);
+
+                doc.setTextColor(100, 100, 100);
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(8);
+                doc.text(`Firma Julie Valencia / Administradora`, 55, y + 20, { align: 'center' });
+                doc.text(`Firma de Recibido: ${st.name}`, pageWidth - 55, y + 20, { align: 'center' });
+
+                const filename = `Liquidacion_${st.name.replace(/\s+/g, '_')}_${periodInfo.label.replace(/\s+/g, '_')}.pdf`;
+                doc.save(filename);
+                showToast(`📄 Comprobante PDF generado para ${st.name}`);
+            } catch (e) {
+                console.error('Error al generar PDF de liquidación:', e);
+                alert('❌ Error al generar el PDF: ' + e.message);
+            }
+        };
+
         function renderFinanceModule() {
-            const fin = JulieFinanceEngine.calculateFinancials(clientsData);
+            const periodInfo = getSelectedPeriodInfo();
+            const fin = JulieFinanceEngine.calculateFinancials(clientsData, periodInfo.start, periodInfo.end, currentFinanceSede);
+
+            // Actualizar indicador de período
+            const indicatorEl = document.getElementById('financePeriodIndicator');
+            if (indicatorEl) {
+                indicatorEl.innerHTML = `Mostrando: <strong>${periodInfo.label}</strong> • ${periodInfo.prorationText} • Sede: <strong>${currentFinanceSede}</strong>`;
+            }
 
             // 1. Tarjetas KPI
             const elGross = document.getElementById('kpiGrossRevenue');
@@ -2987,30 +3551,75 @@
                 if (activeCountEl) activeCountEl.innerText = `${stylistsList.length} estilistas`;
 
                 if (stylistsList.length === 0) {
-                    containerLiq.innerHTML = '<p style="color:#888; font-size:0.85rem; text-align:center; padding:15px;">No hay servicios registrados para liquidar comisiones.</p>';
+                    containerLiq.innerHTML = `
+                        <div style="text-align:center; padding:25px; color:#888;">
+                            <i data-lucide="scissors" style="width:28px; height:28px; color:#CCC; margin-bottom:8px;"></i>
+                            <p style="font-size:0.85rem;">No hay servicios registrados en este rango (${periodInfo.label}).</p>
+                        </div>`;
                 } else {
-                    stylistsList.forEach(st => {
+                    stylistsList.forEach((st, idx) => {
+                        const cleanId = 'st_breakdown_' + idx;
                         const div = document.createElement('div');
                         div.className = 'stylist-liq-card';
+                        
+                        let breakdownRowsHtml = '';
+                        if (st.servicesList && st.servicesList.length > 0) {
+                            st.servicesList.forEach((srv, srvIdx) => {
+                                breakdownRowsHtml += `
+                                    <div class="service-breakdown-row">
+                                        <div>
+                                            <strong>${srvIdx + 1}. ${srv.procedureName}</strong><br>
+                                            <span style="color:#777;">📅 ${srv.date} • ${srv.clientName} (CC: ${srv.clientDoc}) • Sede ${srv.sede}</span>
+                                        </div>
+                                        <div style="text-align:right;">
+                                            <span style="color:#111; font-weight:700;">$${Math.round(srv.price).toLocaleString('es-CO')}</span><br>
+                                            <span style="color:#9B59B6; font-weight:700;">Com: $${Math.round(srv.commission).toLocaleString('es-CO')}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            breakdownRowsHtml = '<p style="color:#888; font-size:0.75rem; padding:6px 0;">Sin detalle disponible.</p>';
+                        }
+
                         div.innerHTML = `
-                            <div>
-                                <strong style="font-size:0.92rem; color:#111;">${st.name}</strong>
-                                <div style="font-size:0.75rem; color:#666; margin-top:2px;">
-                                    <span>Servicios: <strong>${st.services}</strong></span> • 
-                                    <span>Ventas: <strong>$${Math.round(st.totalSales).toLocaleString('es-CO')}</strong></span>
+                            <div class="stylist-liq-main">
+                                <div>
+                                    <strong style="font-size:0.98rem; color:#111;">👑 ${st.name}</strong>
+                                    <div style="font-size:0.78rem; color:#666; margin-top:3px;">
+                                        <span>Procedimientos: <strong>${st.services}</strong></span> • 
+                                        <span>Ventas: <strong>$${Math.round(st.totalSales).toLocaleString('es-CO')}</strong></span>
+                                    </div>
+                                    <div style="font-size:0.85rem; color:#9B59B6; font-weight:700; margin-top:3px;">
+                                        Total Comisión: $${Math.round(st.commissionEarned).toLocaleString('es-CO')}
+                                    </div>
                                 </div>
-                                <div style="font-size:0.8rem; color:#9B59B6; font-weight:700; margin-top:3px;">
-                                    Comisión 30%: $${Math.round(st.commissionEarned).toLocaleString('es-CO')}
+                                <div style="text-align:right;">
+                                    <div style="font-size:0.75rem; color:#888;">Saldo Pendiente:</div>
+                                    <div style="font-size:1.05rem; font-weight:800; color:#E67E22; margin-bottom:4px;">
+                                        $${Math.round(st.pendingCommission).toLocaleString('es-CO')}
+                                    </div>
                                 </div>
                             </div>
-                            <div style="text-align:right;">
-                                <div style="font-size:0.75rem; color:#888;">Saldo Pendiente:</div>
-                                <div style="font-size:0.95rem; font-weight:800; color:#E67E22; margin-bottom:4px;">
-                                    $${Math.round(st.pendingCommission).toLocaleString('es-CO')}
-                                </div>
-                                <button type="button" class="btn-header primary" style="padding:4px 10px; font-size:0.75rem;" onclick="handleLiquidateStylist('${st.name}')">
-                                    Liquidar
+                            
+                            <div class="stylist-actions-row">
+                                <button type="button" class="btn-liq-action btn-liq-whatsapp" onclick="sendStylistWhatsApp('${st.name}')" title="Enviar liquidación detallada por WhatsApp">
+                                    <i data-lucide="message-circle" style="width:14px;"></i> 📲 Enviar por WhatsApp
                                 </button>
+                                <button type="button" class="btn-liq-action btn-liq-pdf" onclick="downloadStylistVoucherPDF('${st.name}')" title="Descargar comprobante PDF oficial">
+                                    <i data-lucide="file-text" style="width:14px;"></i> 📋 Descargar PDF
+                                </button>
+                                <button type="button" class="btn-liq-action btn-liq-toggle" onclick="toggleStylistBreakdown('${cleanId}')">
+                                    <i data-lucide="eye" style="width:14px;"></i> Desglose (${st.services})
+                                </button>
+                                <button type="button" class="btn-liq-action btn-liq-settle" onclick="handleLiquidateStylist('${st.name}')" title="Liquidar comisiones">
+                                    <i data-lucide="check" style="width:14px;"></i> Liquidar
+                                </button>
+                            </div>
+
+                            <div class="stylist-services-breakdown" id="${cleanId}" style="display:none;">
+                                <strong style="font-size:0.78rem; color:#333; display:block; margin-bottom:6px;">Servicios Realizados en el Período (${periodInfo.label}):</strong>
+                                ${breakdownRowsHtml}
                             </div>
                         `;
                         containerLiq.appendChild(div);

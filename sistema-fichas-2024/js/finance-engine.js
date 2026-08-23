@@ -1,7 +1,7 @@
 /**
  * Julie Alisados - Motor de Finanzas, Rentabilidad & POS Inteligente
- * Cálculo de márgenes reales, insumos, comisiones del 30%, gastos operativos
- * y liquidación de estilistas para Tunja & Moniquirá.
+ * Cálculo de márgenes reales, insumos, comisiones del 30% / tarifas fijas por procedimiento,
+ * prorrateo de gastos fijos por períodos/fechas y liquidación de estilistas para Tunja & Moniquirá.
  */
 
 export const JulieFinanceEngine = (() => {
@@ -14,8 +14,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Alisados y Retoques',
             price: 250000,
             suppliesCost: 30000,
-            commissionAmount: 60000, // Completo oficial
-            commissionHalf: 30000,   // Medio oficial
+            commissionAmount: 60000, // Completo oficial ($60.000)
+            commissionHalf: 30000,   // Medio oficial ($30.000)
             netMargin: 160000
         },
         'alisado_afro': {
@@ -24,8 +24,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Alisados y Retoques',
             price: 280000,
             suppliesCost: 35000,
-            commissionAmount: 70000, // Completo oficial
-            commissionHalf: 35000,   // Medio oficial
+            commissionAmount: 70000, // Completo oficial ($70.000)
+            commissionHalf: 35000,   // Medio oficial ($35.000)
             netMargin: 175000
         },
         'retoque_raiz': {
@@ -34,8 +34,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Alisados y Retoques',
             price: 190000,
             suppliesCost: 25000,
-            commissionAmount: 45000, // Completo oficial
-            commissionHalf: 22500,   // Medio oficial
+            commissionAmount: 45000, // Completo oficial ($45.000)
+            commissionHalf: 22500,   // Medio oficial ($22.500)
             netMargin: 120000
         },
 
@@ -46,8 +46,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Terapias Premium',
             price: 170000,
             suppliesCost: 25000,
-            commissionAmount: 35000, // Completo oficial
-            commissionHalf: 17500,   // Medio oficial
+            commissionAmount: 35000, // Completo oficial ($35.000)
+            commissionHalf: 17500,   // Medio oficial ($17.500)
             netMargin: 110000
         },
         'reposicion_aminoacidos': {
@@ -56,8 +56,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Terapias Premium',
             price: 150000,
             suppliesCost: 20000,
-            commissionAmount: 35000, // Completo oficial
-            commissionHalf: 17500,   // Medio oficial
+            commissionAmount: 35000, // Completo oficial ($35.000)
+            commissionHalf: 17500,   // Medio oficial ($17.500)
             netMargin: 95000
         },
         'rcp': {
@@ -66,8 +66,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Terapias Premium',
             price: 180000,
             suppliesCost: 25000,
-            commissionAmount: 35000, // Completo oficial
-            commissionHalf: 17500,   // Medio oficial
+            commissionAmount: 35000, // Completo oficial ($35.000)
+            commissionHalf: 17500,   // Medio oficial ($17.500)
             netMargin: 120000
         },
         'recode': {
@@ -76,8 +76,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Terapias Premium',
             price: 160000,
             suppliesCost: 20000,
-            commissionAmount: 35000, // Completo oficial
-            commissionHalf: 17500,   // Medio oficial
+            commissionAmount: 35000, // Completo oficial ($35.000)
+            commissionHalf: 17500,   // Medio oficial ($17.500)
             netMargin: 105000
         },
 
@@ -86,9 +86,9 @@ export const JulieFinanceEngine = (() => {
             id: 'corte_estandar',
             name: 'Corte de Cabello Estándar',
             category: 'Cortes y Otros',
-            price: 250000 ? 25000 : 25000,
+            price: 25000,
             suppliesCost: 2000,
-            commissionAmount: 7500, // Oficial
+            commissionAmount: 7500, // Oficial ($7.500)
             commissionHalf: 3750,
             netMargin: 15500
         },
@@ -98,7 +98,7 @@ export const JulieFinanceEngine = (() => {
             category: 'Cortes y Otros',
             price: 30000,
             suppliesCost: 2000,
-            commissionAmount: 10000, // Oficial
+            commissionAmount: 10000, // Oficial ($10.000)
             commissionHalf: 5000,
             netMargin: 18000
         },
@@ -108,7 +108,7 @@ export const JulieFinanceEngine = (() => {
             category: 'Cortes y Otros',
             price: 20000,
             suppliesCost: 3000,
-            commissionAmount: 10000, // Oficial
+            commissionAmount: 10000, // Oficial ($10.000)
             commissionHalf: 5000,
             netMargin: 7000
         },
@@ -120,8 +120,8 @@ export const JulieFinanceEngine = (() => {
             category: 'Terapias Estándar',
             price: 60000,
             suppliesCost: 15000,
-            commissionAmount: 25000, // Completo oficial
-            commissionHalf: 12500,   // Medio oficial
+            commissionAmount: 25000, // Completo oficial ($25.000)
+            commissionHalf: 12500,   // Medio oficial ($12.500)
             netMargin: 20000
         },
         'proteina_gold': {
@@ -235,7 +235,7 @@ export const JulieFinanceEngine = (() => {
             price: 85000,
             cost: 40000,
             margin: 45000,
-            commissionRate: 0.10 // 10% comisión por venta producto
+            commissionRate: 0.10 // 10% comisión por venta producto ($8.500)
         },
         'duo_argan_500': {
             id: 'duo_argan_500',
@@ -244,7 +244,7 @@ export const JulieFinanceEngine = (() => {
             price: 65000,
             cost: 30000,
             margin: 35000,
-            commissionRate: 0.10
+            commissionRate: 0.10 // 10% ($6.500)
         },
         'termoprotector_ja': {
             id: 'termoprotector_ja',
@@ -253,7 +253,7 @@ export const JulieFinanceEngine = (() => {
             price: 45000,
             cost: 20000,
             margin: 25000,
-            commissionRate: 0.10
+            commissionRate: 0.10 // 10% ($4.500)
         },
         'aceite_argan_macadamia': {
             id: 'aceite_argan_macadamia',
@@ -262,7 +262,7 @@ export const JulieFinanceEngine = (() => {
             price: 35000,
             cost: 15000,
             margin: 20000,
-            commissionRate: 0.10
+            commissionRate: 0.10 // 10% ($3.500)
         },
         'ampolla_sos': {
             id: 'ampolla_sos',
@@ -271,7 +271,7 @@ export const JulieFinanceEngine = (() => {
             price: 25000,
             cost: 10000,
             margin: 15000,
-            commissionRate: 0.10
+            commissionRate: 0.10 // 10% ($2.500)
         }
     };
 
@@ -283,7 +283,7 @@ export const JulieFinanceEngine = (() => {
         liquidations: 'julie_finance_liquidations_v2'
     };
 
-    // 3. Gastos Fijos por Defecto
+    // 3. Gastos Fijos por Defecto (Mensuales)
     const DEFAULT_FIXED_EXPENSES = {
         arriendoTunja: 1500000,
         arriendoMoniquira: 1100000,
@@ -381,14 +381,14 @@ export const JulieFinanceEngine = (() => {
         }
     };
 
-    const liquidateStylist = (stylistName, sede = 'Todas') => {
+    const liquidateStylist = (stylistName, sede = 'Todas', periodInfo = null) => {
         const txs = getPOSTransactions();
         let totalCommissions = 0;
         let countServices = 0;
 
         txs.forEach(t => {
             if (t.stylist === stylistName && !t.liquidated) {
-                if (sede === 'Todas' || t.sede === sede) {
+                if (sede === 'Todas' || (t.sede || '').toLowerCase().includes(sede.toLowerCase())) {
                     t.liquidated = true;
                     totalCommissions += (t.stylistCommission || 0);
                     countServices++;
@@ -406,6 +406,7 @@ export const JulieFinanceEngine = (() => {
             sede: sede,
             servicesCount: countServices,
             amountPaid: totalCommissions,
+            period: periodInfo || 'Liquidación corriente',
             timestamp: new Date().toISOString()
         };
         liquidations.unshift(record);
@@ -413,36 +414,121 @@ export const JulieFinanceEngine = (() => {
         return record;
     };
 
-    // Helper de mapeo de nombres de procedimientos a claves
-    const findProcedureKey = (procName) => {
-        if (!procName) return 'alisado_saludable';
-        const str = procName.toLowerCase();
-        if (str.includes('light')) return 'alisado_light';
-        if (str.includes('raiz') || str.includes('raíz')) return 'retoque_raiz';
-        if (str.includes('zero') || str.includes('emulsion') || str.includes('emulsión')) return 'emulsion_zero';
-        if (str.includes('amino') || str.includes('reposicion') || str.includes('reposición')) return 'reposicion_aminoacidos';
-        if (str.includes('code') || str.includes('re-code')) return 're_code';
-        if (str.includes('balaca')) return 'balaca';
-        if (str.includes('rcp') || str.includes('restauracion') || str.includes('restauración')) return 'rcp_restauracion';
-        if (str.includes('choco') || str.includes('hidrat')) return 'hidratacion_choco';
-        return 'alisado_saludable';
+    // Helper para formatear fechas a YYYY-MM-DD
+    const normalizeDateStr = (val) => {
+        if (!val) return null;
+        if (typeof val === 'string' && /^\d{4}-\d{2}-\d{2}/.test(val)) {
+            return val.substring(0, 10);
+        }
+        try {
+            const d = new Date(val);
+            if (!isNaN(d.getTime())) {
+                const y = d.getFullYear();
+                const m = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${y}-${m}-${day}`;
+            }
+        } catch (e) {}
+        return null;
     };
 
-    // 7. Cálculo Global de Finanzas & Métricas
-    const calculateFinancials = (dbClients = []) => {
+    // Helper de mapeo de nombres de procedimientos a claves
+    const findProcedureKey = (procName) => {
+        if (!procName) return 'alisado_estandar';
+        const str = procName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (str.includes('afro') || str.includes('tipo 4')) return 'alisado_afro';
+        if (str.includes('raiz') || str.includes('retoque')) return 'retoque_raiz';
+        if (str.includes('emulsion') || str.includes('zero')) return 'emulsion_zero';
+        if (str.includes('amino') || str.includes('reposicion')) return 'reposicion_aminoacidos';
+        if (str.includes('rcp') || str.includes('restauracion')) return 'rcp';
+        if (str.includes('recode') || str.includes('re-code')) return 'recode';
+        if (str.includes('triming') && str.includes('terapia')) return 'terapia_triming';
+        if (str.includes('triming') || str.includes('horquilla')) return 'corte_triming';
+        if (str.includes('lavado')) return 'lavado_cabello';
+        if (str.includes('corte')) return 'corte_estandar';
+        if (str.includes('proteina')) return 'proteina_gold';
+        if (str.includes('hidra') || str.includes('hidro')) return 'hidracomplex';
+        if (str.includes('choco')) return 'chocofix';
+        if (str.includes('detox')) return 'detox';
+        if (str.includes('relleno')) return 'relleno_molecular';
+        if (str.includes('biocomplex') || str.includes('bio')) return 'biocomplex';
+        if (str.includes('amiga')) return 'plan_amigas';
+        if (str.includes('anticaida')) return 'ritual_anticaida';
+        if (str.includes('balaca')) return 'balaca';
+        if (str.includes('hidratacion')) return 'hidratacion';
+        if (str.includes('alisado') || str.includes('organico') || str.includes('saludable') || str.includes('light')) return 'alisado_estandar';
+        return 'alisado_estandar';
+    };
+
+    // 7. Cálculo Global de Finanzas & Métricas con Filtro por Fechas, Períodos y Sedes
+    const calculateFinancials = (dbClients = [], startDate = null, endDate = null, selectedSede = 'Todas') => {
         const fixed = getFixedExpenses();
         const customExpenses = getCustomExpenses();
         const posTransactions = getPOSTransactions();
 
-        // 1. Gastos Fijos Totales
-        const totalFixedTunja = Number(fixed.arriendoTunja || 0) + Number(fixed.serviciosTunja || 0);
-        const totalFixedMoniquira = Number(fixed.arriendoMoniquira || 0) + Number(fixed.serviciosMoniquira || 0);
-        const totalFixedAdsOther = Number(fixed.publicidadAds || 0) + Number(fixed.otrosGastosFijos || 0);
-        const totalFixedExpenses = totalFixedTunja + totalFixedMoniquira + totalFixedAdsOther;
+        const start = normalizeDateStr(startDate);
+        const end = normalizeDateStr(endDate);
 
-        // 2. Gastos Variables / Egresos Registrados
+        // Helper de filtro de fecha
+        const inDateRange = (dateVal) => {
+            const dStr = normalizeDateStr(dateVal);
+            if (!dStr) return true; // Si no tiene fecha, incluir por defecto
+            if (start && dStr < start) return false;
+            if (end && dStr > end) return false;
+            return true;
+        };
+
+        // Helper de filtro de sede
+        const inSedeRange = (sedeVal) => {
+            if (!selectedSede || selectedSede === 'Todas') return true;
+            const sLower = (sedeVal || '').toLowerCase();
+            const targetLower = selectedSede.toLowerCase();
+            if (targetLower.includes('moniquira')) return sLower.includes('moniquira');
+            if (targetLower.includes('tunja')) return !sLower.includes('moniquira');
+            return true;
+        };
+
+        // 1. Prorrateo de Gastos Fijos según el rango de días
+        let prorationFactor = 1.0;
+        let daysInPeriod = 30;
+
+        if (start && end) {
+            try {
+                const d1 = new Date(start + 'T00:00:00');
+                const d2 = new Date(end + 'T00:00:00');
+                const diffMs = d2 - d1;
+                if (!isNaN(diffMs)) {
+                    daysInPeriod = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
+                    // Si el período es de 28 a 31 días, se considera 1 mes completo (100%)
+                    if (daysInPeriod >= 28 && daysInPeriod <= 31) {
+                        prorationFactor = 1.0;
+                    } else {
+                        prorationFactor = daysInPeriod / 30; // ej: 15 días = 0.5 (50%), 1 día = 0.0333
+                    }
+                }
+            } catch (e) {
+                prorationFactor = 1.0;
+            }
+        }
+
+        const totalFixedTunja = ((Number(fixed.arriendoTunja || 0) + Number(fixed.serviciosTunja || 0))) * prorationFactor;
+        const totalFixedMoniquira = ((Number(fixed.arriendoMoniquira || 0) + Number(fixed.serviciosMoniquira || 0))) * prorationFactor;
+        const totalFixedAdsOther = ((Number(fixed.publicidadAds || 0) + Number(fixed.otrosGastosFijos || 0))) * prorationFactor;
+        
+        let totalFixedExpenses = totalFixedTunja + totalFixedMoniquira + totalFixedAdsOther;
+        if (selectedSede === 'Tunja') {
+            totalFixedExpenses = totalFixedTunja + (totalFixedAdsOther / 2);
+        } else if (selectedSede === 'Moniquira' || selectedSede === 'Moniquirá') {
+            totalFixedExpenses = totalFixedMoniquira + (totalFixedAdsOther / 2);
+        }
+
+        // 2. Gastos Variables / Egresos Registrados (Filtrados por fecha y sede)
         let customExpTunja = 0, customExpMoniquira = 0;
         customExpenses.forEach(exp => {
+            const expDate = exp.date || exp.timestamp;
+            if (!inDateRange(expDate)) return;
+            if (!inSedeRange(exp.sede)) return;
+
             if ((exp.sede || '').toLowerCase().includes('moniquira')) {
                 customExpMoniquira += Number(exp.amount || 0);
             } else {
@@ -463,16 +549,19 @@ export const JulieFinanceEngine = (() => {
         const stylistSummary = {};
 
         // A. Procesar folios de la base de datos Supabase
-        const processedDocMap = new Set();
-
         dbClients.forEach(c => {
+            const clientDate = c.created_at || c.fecha_diligenciamiento || c.fecha || c.timestamp;
+            if (!inDateRange(clientDate)) return;
+            if (!inSedeRange(c.sede)) return;
+
             const pKey = findProcedureKey(c.procedimiento);
-            const proc = PROCEDURES[pKey] || PROCEDURES.alisado_saludable;
+            const proc = PROCEDURES[pKey] || PROCEDURES.alisado_estandar;
             const price = Number(c.precio_cobrado || proc.price);
             const supply = proc.suppliesCost;
-            const commission = price * proc.commissionRate;
+            const commission = proc.commissionAmount || (price * 0.30);
             const isMoniquira = (c.sede || '').toLowerCase().includes('moniquira');
             const stylistName = c.estilista_responsable || 'Julie Valencia';
+            const dateFormatted = normalizeDateStr(clientDate) || new Date().toISOString().split('T')[0];
 
             grossRevenue += price;
             totalSupplies += supply;
@@ -494,7 +583,8 @@ export const JulieFinanceEngine = (() => {
                     services: 0,
                     totalSales: 0,
                     commissionEarned: 0,
-                    pendingCommission: 0
+                    pendingCommission: 0,
+                    servicesList: []
                 };
             }
             stylistSummary[stylistName].services++;
@@ -502,43 +592,78 @@ export const JulieFinanceEngine = (() => {
             stylistSummary[stylistName].commissionEarned += commission;
             stylistSummary[stylistName].pendingCommission += commission;
 
-            processedDocMap.add(c.numero_documento);
+            stylistSummary[stylistName].servicesList.push({
+                id: c.consecutivo || c.id || ('FOL-' + Math.floor(Math.random() * 10000)),
+                date: dateFormatted,
+                clientName: c.nombre_completo || 'Cliente Julie Alisados',
+                clientDoc: c.numero_documento || '---',
+                clientPhone: c.telefono || '',
+                procedureName: proc.name,
+                price: price,
+                suppliesCost: supply,
+                commission: commission,
+                sede: isMoniquira ? 'Moniquirá' : 'Tunja',
+                isPOS: false
+            });
         });
 
-        // B. Procesar ventas adicionales desde POS local si las hay
+        // B. Procesar ventas desde POS local
         posTransactions.forEach(tx => {
-            // Solo sumar si no está ya en la lista de clientes o es venta directa de productos
-            grossRevenue += Number(tx.totalAmount || 0);
-            totalSupplies += Number(tx.suppliesCost || 0);
-            totalCommissions += Number(tx.stylistCommission || 0);
+            const txDate = tx.date || tx.timestamp;
+            if (!inDateRange(txDate)) return;
+            if (!inSedeRange(tx.sede)) return;
 
+            const txAmount = Number(tx.totalAmount || 0);
+            const txSupplies = Number(tx.suppliesCost || 0);
+            const txComm = Number(tx.stylistCommission || 0);
             const isMoniquira = (tx.sede || '').toLowerCase().includes('moniquira');
+            const stylistName = tx.stylist || 'Julie Valencia';
+            const dateFormatted = normalizeDateStr(txDate) || new Date().toISOString().split('T')[0];
+
+            grossRevenue += txAmount;
+            totalSupplies += txSupplies;
+            totalCommissions += txComm;
+
             if (isMoniquira) {
-                moniquiraGross += Number(tx.totalAmount || 0);
-                moniquiraSupplies += Number(tx.suppliesCost || 0);
-                moniquiraCommissions += Number(tx.stylistCommission || 0);
+                moniquiraGross += txAmount;
+                moniquiraSupplies += txSupplies;
+                moniquiraCommissions += txComm;
             } else {
-                tunjaGross += Number(tx.totalAmount || 0);
-                tunjaSupplies += Number(tx.suppliesCost || 0);
-                tunjaCommissions += Number(tx.stylistCommission || 0);
+                tunjaGross += txAmount;
+                tunjaSupplies += txSupplies;
+                tunjaCommissions += txComm;
             }
 
-            const stylistName = tx.stylist || 'Julie Valencia';
             if (!stylistSummary[stylistName]) {
                 stylistSummary[stylistName] = {
                     name: stylistName,
                     services: 0,
                     totalSales: 0,
                     commissionEarned: 0,
-                    pendingCommission: 0
+                    pendingCommission: 0,
+                    servicesList: []
                 };
             }
             stylistSummary[stylistName].services += (tx.items?.length || 1);
-            stylistSummary[stylistName].totalSales += Number(tx.totalAmount || 0);
-            stylistSummary[stylistName].commissionEarned += Number(tx.stylistCommission || 0);
+            stylistSummary[stylistName].totalSales += txAmount;
+            stylistSummary[stylistName].commissionEarned += txComm;
             if (!tx.liquidated) {
-                stylistSummary[stylistName].pendingCommission += Number(tx.stylistCommission || 0);
+                stylistSummary[stylistName].pendingCommission += txComm;
             }
+
+            stylistSummary[stylistName].servicesList.push({
+                id: tx.invoiceNumber || tx.id,
+                date: dateFormatted,
+                clientName: tx.clientName || 'Cliente POS',
+                clientDoc: tx.clientDoc || '---',
+                clientPhone: tx.clientPhone || '',
+                procedureName: tx.items?.map(i => i.name).join(', ') || 'Venta POS Mostrador',
+                price: txAmount,
+                suppliesCost: txSupplies,
+                commission: txComm,
+                sede: isMoniquira ? 'Moniquirá' : 'Tunja',
+                isPOS: true
+            });
         });
 
         // 4. Ganancia Neta y Margen
@@ -549,11 +674,10 @@ export const JulieFinanceEngine = (() => {
         const tunjaNet = tunjaGross - tunjaSupplies - tunjaCommissions - totalFixedTunja - customExpTunja;
         const moniquiraNet = moniquiraGross - moniquiraSupplies - moniquiraCommissions - totalFixedMoniquira - customExpMoniquira;
 
-        // 6. Punto de Equilibrio (Día del mes)
-        // Costo fijo diario = totalOperatingExpenses / 30
-        // Ganancia marginal promedio por servicio = 65% del ingreso
+        // 6. Punto de Equilibrio
         const avgMarginRate = grossRevenue > 0 ? (grossRevenue - totalSupplies - totalCommissions) / grossRevenue : 0.60;
-        const dailyGross = grossRevenue / Math.max(new Date().getDate(), 1);
+        const daysDivisor = Math.max(daysInPeriod, 1);
+        const dailyGross = grossRevenue / daysDivisor;
         const dailyContribution = dailyGross * avgMarginRate;
         const breakEvenDay = dailyContribution > 0 ? Math.min(30, Math.ceil(totalOperatingExpenses / dailyContribution)) : 18;
 
@@ -567,6 +691,11 @@ export const JulieFinanceEngine = (() => {
             netProfit,
             profitMargin: profitMargin.toFixed(1),
             breakEvenDay,
+            daysInPeriod,
+            prorationFactor,
+            startDate: start,
+            endDate: end,
+            selectedSede,
             sedes: {
                 tunja: {
                     gross: tunjaGross,
@@ -592,6 +721,65 @@ export const JulieFinanceEngine = (() => {
         };
     };
 
+    // 8. Generador Oficial de Comprobante / Voucher para WhatsApp
+    const generateStylistVoucher = (stylistName, periodText = 'Período Seleccionado', startDate = null, endDate = null, dbClients = []) => {
+        const fin = calculateFinancials(dbClients, startDate, endDate, 'Todas');
+        const st = fin.stylists.find(s => s.name.toLowerCase().trim() === stylistName.toLowerCase().trim()) || {
+            name: stylistName,
+            services: 0,
+            totalSales: 0,
+            commissionEarned: 0,
+            pendingCommission: 0,
+            servicesList: []
+        };
+
+        const rangeStr = (startDate && endDate) ? `${startDate} al ${endDate}` : (startDate || endDate || 'Histórico Completo');
+        
+        let servicesFormatted = '';
+        if (st.servicesList && st.servicesList.length > 0) {
+            st.servicesList.forEach((s, idx) => {
+                servicesFormatted += `${idx + 1}. 📅 ${s.date} | ${s.sede}\n`;
+                servicesFormatted += `   👤 *Clienta:* ${s.clientName} (CC: ${s.clientDoc})\n`;
+                servicesFormatted += `   ✂️ *Servicio:* ${s.procedureName}\n`;
+                servicesFormatted += `   💵 *Cobrado:* $${Math.round(s.price).toLocaleString('es-CO')} | 💰 *Comisión:* $${Math.round(s.commission).toLocaleString('es-CO')}\n\n`;
+            });
+        } else {
+            servicesFormatted = '   _(No se registraron servicios en este rango de fechas)_\n\n';
+        }
+
+        const msg = 
+`✨ *JULIE ALISADOS • COMPROBANTE OFICIAL DE LIQUIDACIÓN* ✨
+🏢 *Julie Alisados - Salón Especializado en Alisados & Terapias*
+💬 _"Más que un liso, una transformación"_
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+👑 *Estilista:* ${st.name}
+📅 *Período:* ${periodText} (${rangeStr})
+📍 *Sedes:* Tunja Pasaje Boulevard & Moniquirá Cra 6
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💇‍♀️ *DETALLE DE PROCEDIMIENTOS REALIZADOS (${st.services}):*
+
+${servicesFormatted}━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 *RESUMEN DE LIQUIDACIÓN:*
+🔹 *Total Procedimientos:* ${st.services}
+🔹 *Venta Total Generada:* $${Math.round(st.totalSales).toLocaleString('es-CO')} COP
+⭐ *TOTAL COMISIÓN ACUMULADA:* *$${Math.round(st.commissionEarned).toLocaleString('es-CO')} COP*
+🔸 *Saldo Pendiente por Pagar:* *$${Math.round(st.pendingCommission).toLocaleString('es-CO')} COP*
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏢 *Julie Alisados • Sistema de Control y Finanzas*
+📲 WhatsApp Oficial: +57 304 358 8180`;
+
+        return {
+            text: msg,
+            whatsappUrl: `https://wa.me/?text=${encodeURIComponent(msg)}`,
+            stylist: st,
+            periodText: periodText,
+            startDate: startDate,
+            endDate: endDate
+        };
+    };
+
     return {
         PROCEDURES,
         PRODUCTS,
@@ -605,6 +793,8 @@ export const JulieFinanceEngine = (() => {
         getLiquidations,
         liquidateStylist,
         calculateFinancials,
-        findProcedureKey
+        generateStylistVoucher,
+        findProcedureKey,
+        normalizeDateStr
     };
 })();
