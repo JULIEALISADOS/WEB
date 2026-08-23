@@ -180,4 +180,53 @@
 ```
 
 ---
+
+## 5. TARIFARIO OFICIAL Y UNIFICADO DE LIQUIDACIÓN DE NÓMINA (AGOSTO 2026)
+> **CLASIFICACIÓN: ESTRICTAMENTE CONFIDENCIAL / SECRETO EMPRESARIAL**
+> **Aplicación:** Sedes Tunja & Moniquirá • Vigente a partir de Agosto 2026.
+
+### 1. ALISADOS Y RETOQUES (Liquidación por Servicio):
+| Servicio | Cobro Clienta | Pago Estilista Completo | Pago Estilista Medio (50%) |
+| :--- | :--- | :--- | :--- |
+| **Alisado Estándar / Saludable** | $250.000 COP | **$60.000 COP** | **$30.000 COP** |
+| **Alisado Afro (Tipo 4)** | $280.000 COP | **$70.000 COP** | **$35.000 COP** |
+| **Retoque de Raíz** | $190.000 COP | **$45.000 COP** | **$22.500 COP** |
+
+### 2. TERAPIAS PREMIUM (Liquidación por Servicio):
+| Servicio | Cobro Clienta | Pago Estilista Completo | Pago Estilista Medio (50%) |
+| :--- | :--- | :--- | :--- |
+| **Emulsión / Emulsión Zero** | $170.000 COP | **$35.000 COP** | **$17.500 COP** |
+| **Reposición de Aminoácidos** | $150.000 COP | **$35.000 COP** | **$17.500 COP** |
+| **R.C.P. Restauración** | $180.000 COP | **$35.000 COP** | **$17.500 COP** |
+| **Recode Reconstructivo** | $160.000 COP | **$35.000 COP** | **$17.500 COP** |
+
+### 3. CORTES Y OTROS:
+| Servicio | Cobro Clienta | Pago Estilista | Detalle |
+| :--- | :--- | :--- | :--- |
+| **Corte de Cabello Estándar** | $25.000 COP | **$7.500 COP** | Básico / Tradicional |
+| **Corte Triming / Horquilla** | $30.000 COP | **$10.000 COP** | Remoción de horquilla |
+| **Lavado de Cabello** | $20.000 COP | **$10.000 COP** | Servicio individual |
+
+### 4. TERAPIAS ESTÁNDAR:
+| Servicio | Pago Estilista Completo | Pago Estilista Medio (50%) |
+| :--- | :--- | :--- |
+| **Terapia Triming (Solo tto.)** | **$25.000 COP** | **$12.500 COP** |
+| **Proteína / Proteína Gold** | **$25.000 COP** | **$12.500 COP** |
+| **Hidracomplex / Hidrocomplex** | **$25.000 COP** | **$12.500 COP** |
+| **Chocofix** | **$25.000 COP** | **$12.500 COP** |
+| **Detox Capilar** | **$25.000 COP** | **$12.500 COP** |
+| **Relleno / Relleno Molecular** | **$25.000 COP** | **$12.500 COP** |
+| **Biocomplex** | **$25.000 COP** | **$12.500 COP** |
+| **Plan Amigas** | **$25.000 COP** | **$12.500 COP** |
+| **Hidratación Profunda** | **$25.000 COP** | **$12.500 COP** |
+| **Ritual Anticaída** | **$25.000 COP** | **$12.500 COP** |
+| **Balaca** | **$25.000 COP** | **$12.500 COP** |
+
+### 5. REGLAS OFICIALES DE LIQUIDACIÓN DE NÓMINA:
+1. **Unificación Total:** No existen tarifas o excepciones especiales individuales por estilista. Todas las profesionales de ambas sedes (Tunja y Moniquirá) cobran y ganan exactamente los mismos valores establecidos en este tarifario oficial.
+2. **Medios Servicios:** Se calcula y liquida estrictamente el 50% de la tarifa completa para fines contables y de nómina.
+3. **Corte Triming:** Equivale exactamente a un Corte de Horquilla ($10.000) en todas las planillas sin excepción.
+4. **Protección de Datos & Secreto Empresarial:** Toda la información de facturación en Alegra, márgenes de ganancia neta, comisiones acumuladas, arriendos y balances de caja de JuliePOS vive únicamente en el panel de administración privado (`admin.html`) y jamás debe quedar expuesta a estilistas ni a público general.
+
+---
 *Copia de seguridad y alineación de equipo completada con éxito. Memoria y estado resguardados en Git y backups locales.*

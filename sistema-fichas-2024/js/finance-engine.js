@@ -5,97 +5,224 @@
  */
 
 export const JulieFinanceEngine = (() => {
-    // 1. Catálogo Oficial de Procedimientos Capilares
+    // 1. Catálogo Oficial de Procedimientos Capilares (Tarifario Oficial Agosto 2026)
     const PROCEDURES = {
-        'alisado_saludable': {
-            id: 'alisado_saludable',
-            name: 'Alisado Saludable',
-            category: 'Procedimiento',
+        // --- 1. ALISADOS Y RETOQUES ---
+        'alisado_estandar': {
+            id: 'alisado_estandar',
+            name: 'Alisado Estándar / Saludable',
+            category: 'Alisados y Retoques',
             price: 250000,
             suppliesCost: 30000,
-            commissionRate: 0.30, // 30%
-            commissionAmount: 75000,
-            netMargin: 145000
+            commissionAmount: 60000, // Completo oficial
+            commissionHalf: 30000,   // Medio oficial
+            netMargin: 160000
         },
-        'alisado_light': {
-            id: 'alisado_light',
-            name: 'Alisado Light',
-            category: 'Procedimiento',
-            price: 220000,
-            suppliesCost: 25000,
-            commissionRate: 0.30,
-            commissionAmount: 66000,
-            netMargin: 129000
+        'alisado_afro': {
+            id: 'alisado_afro',
+            name: 'Alisado Afro (Tipo 4)',
+            category: 'Alisados y Retoques',
+            price: 280000,
+            suppliesCost: 35000,
+            commissionAmount: 70000, // Completo oficial
+            commissionHalf: 35000,   // Medio oficial
+            netMargin: 175000
         },
         'retoque_raiz': {
             id: 'retoque_raiz',
             name: 'Retoque de Raíz',
-            category: 'Procedimiento',
+            category: 'Alisados y Retoques',
             price: 190000,
             suppliesCost: 25000,
-            commissionRate: 0.30,
-            commissionAmount: 57000,
-            netMargin: 108000
+            commissionAmount: 45000, // Completo oficial
+            commissionHalf: 22500,   // Medio oficial
+            netMargin: 120000
         },
+
+        // --- 2. TERAPIAS PREMIUM ---
         'emulsion_zero': {
             id: 'emulsion_zero',
-            name: 'Emulsión Zero (Niñas & Lactantes)',
-            category: 'Procedimiento',
+            name: 'Emulsión / Emulsión Zero',
+            category: 'Terapias Premium',
             price: 170000,
             suppliesCost: 25000,
-            commissionRate: 0.30,
-            commissionAmount: 51000,
-            netMargin: 94000
+            commissionAmount: 35000, // Completo oficial
+            commissionHalf: 17500,   // Medio oficial
+            netMargin: 110000
         },
         'reposicion_aminoacidos': {
             id: 'reposicion_aminoacidos',
             name: 'Reposición de Aminoácidos',
-            category: 'Procedimiento',
+            category: 'Terapias Premium',
             price: 150000,
             suppliesCost: 20000,
-            commissionRate: 0.30,
-            commissionAmount: 45000,
-            netMargin: 85000
+            commissionAmount: 35000, // Completo oficial
+            commissionHalf: 17500,   // Medio oficial
+            netMargin: 95000
         },
-        're_code': {
-            id: 're_code',
-            name: 'RE-CODE Reconstructivo',
-            category: 'Procedimiento',
+        'rcp': {
+            id: 'rcp',
+            name: 'R.C.P. Restauración',
+            category: 'Terapias Premium',
+            price: 180000,
+            suppliesCost: 25000,
+            commissionAmount: 35000, // Completo oficial
+            commissionHalf: 17500,   // Medio oficial
+            netMargin: 120000
+        },
+        'recode': {
+            id: 'recode',
+            name: 'Recode Reconstructivo',
+            category: 'Terapias Premium',
             price: 160000,
             suppliesCost: 20000,
-            commissionRate: 0.30,
-            commissionAmount: 48000,
-            netMargin: 92000
+            commissionAmount: 35000, // Completo oficial
+            commissionHalf: 17500,   // Medio oficial
+            netMargin: 105000
+        },
+
+        // --- 3. CORTES Y OTROS ---
+        'corte_estandar': {
+            id: 'corte_estandar',
+            name: 'Corte de Cabello Estándar',
+            category: 'Cortes y Otros',
+            price: 250000 ? 25000 : 25000,
+            suppliesCost: 2000,
+            commissionAmount: 7500, // Oficial
+            commissionHalf: 3750,
+            netMargin: 15500
+        },
+        'corte_triming': {
+            id: 'corte_triming',
+            name: 'Corte Triming / Horquilla',
+            category: 'Cortes y Otros',
+            price: 30000,
+            suppliesCost: 2000,
+            commissionAmount: 10000, // Oficial
+            commissionHalf: 5000,
+            netMargin: 18000
+        },
+        'lavado_cabello': {
+            id: 'lavado_cabello',
+            name: 'Lavado de Cabello (Individual)',
+            category: 'Cortes y Otros',
+            price: 20000,
+            suppliesCost: 3000,
+            commissionAmount: 10000, // Oficial
+            commissionHalf: 5000,
+            netMargin: 7000
+        },
+
+        // --- 4. TERAPIAS ESTÁNDAR ---
+        'terapia_triming': {
+            id: 'terapia_triming',
+            name: 'Terapia Triming (Solo tto.)',
+            category: 'Terapias Estándar',
+            price: 60000,
+            suppliesCost: 15000,
+            commissionAmount: 25000, // Completo oficial
+            commissionHalf: 12500,   // Medio oficial
+            netMargin: 20000
+        },
+        'proteina_gold': {
+            id: 'proteina_gold',
+            name: 'Proteína / Proteína Gold',
+            category: 'Terapias Estándar',
+            price: 70000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 30000
+        },
+        'hidracomplex': {
+            id: 'hidracomplex',
+            name: 'Hidracomplex / Hidrocomplex',
+            category: 'Terapias Estándar',
+            price: 70000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 30000
+        },
+        'chocofix': {
+            id: 'chocofix',
+            name: 'Chocofix',
+            category: 'Terapias Estándar',
+            price: 65000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 25000
+        },
+        'detox': {
+            id: 'detox',
+            name: 'Detox Capilar',
+            category: 'Terapias Estándar',
+            price: 65000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 25000
+        },
+        'relleno_molecular': {
+            id: 'relleno_molecular',
+            name: 'Relleno / Relleno Molecular',
+            category: 'Terapias Estándar',
+            price: 75000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 35000
+        },
+        'biocomplex': {
+            id: 'biocomplex',
+            name: 'Biocomplex',
+            category: 'Terapias Estándar',
+            price: 75000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 35000
+        },
+        'plan_amigas': {
+            id: 'plan_amigas',
+            name: 'Plan Amigas',
+            category: 'Terapias Estándar',
+            price: 70000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 30000
+        },
+        'hidratacion': {
+            id: 'hidratacion',
+            name: 'Hidratación Profunda',
+            category: 'Terapias Estándar',
+            price: 60000,
+            suppliesCost: 15000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 20000
+        },
+        'ritual_anticaida': {
+            id: 'ritual_anticaida',
+            name: 'Ritual Anticaída',
+            category: 'Terapias Estándar',
+            price: 80000,
+            suppliesCost: 18000,
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 37000
         },
         'balaca': {
             id: 'balaca',
-            name: 'Balaca / Zonas Específicas',
-            category: 'Procedimiento',
-            price: 120000,
+            name: 'Balaca',
+            category: 'Terapias Estándar',
+            price: 90000,
             suppliesCost: 15000,
-            commissionRate: 0.30,
-            commissionAmount: 36000,
-            netMargin: 69000
-        },
-        'rcp_restauracion': {
-            id: 'rcp_restauracion',
-            name: 'R.C.P. Restauración Intensiva',
-            category: 'Procedimiento',
-            price: 180000,
-            suppliesCost: 25000,
-            commissionRate: 0.30,
-            commissionAmount: 54000,
-            netMargin: 101000
-        },
-        'hidratacion_choco': {
-            id: 'hidratacion_choco',
-            name: 'Hidratación Profunda / Choco Fix',
-            category: 'Procedimiento',
-            price: 75000,
-            suppliesCost: 15000,
-            commissionRate: 0.30,
-            commissionAmount: 22500,
-            netMargin: 37500
+            commissionAmount: 25000,
+            commissionHalf: 12500,
+            netMargin: 50000
         }
     };
 
