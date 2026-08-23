@@ -226,52 +226,124 @@ export const JulieFinanceEngine = (() => {
         }
     };
 
-    // 2. Catálogo Oficial de Productos JA By Julie Valencia (Venta de Mostrador)
+    // 2. Catálogo Oficial de Productos JA By Julie Valencia (Precios Reales Web & Tienda)
     const PRODUCTS = {
-        'duo_extractos_1000': {
-            id: 'duo_extractos_1000',
-            name: 'Dúo Extractos Naturales 1000ml',
-            category: 'Producto',
-            price: 85000,
-            cost: 40000,
-            margin: 45000,
-            commissionRate: 0.10 // 10% comisión por venta producto ($8.500)
+        'combo_extractos_1000': {
+            id: 'combo_extractos_1000',
+            name: 'Combo Extractos Naturales (1000 ml c/u)',
+            category: 'Combos y Kits',
+            price: 74000,
+            cost: 35000,
+            margin: 39000,
+            commissionRate: 0.10
         },
-        'duo_argan_500': {
-            id: 'duo_argan_500',
-            name: 'Dúo Argán 500ml',
-            category: 'Producto',
-            price: 65000,
-            cost: 30000,
-            margin: 35000,
-            commissionRate: 0.10 // 10% ($6.500)
+        'combo_argan_500': {
+            id: 'combo_argan_500',
+            name: 'Combo Aceite de Argán (500 ml c/u)',
+            category: 'Combos y Kits',
+            price: 70000,
+            cost: 32000,
+            margin: 38000,
+            commissionRate: 0.10
         },
-        'termoprotector_ja': {
-            id: 'termoprotector_ja',
-            name: 'Termoprotector Capilar JA',
-            category: 'Producto',
-            price: 45000,
-            cost: 20000,
-            margin: 25000,
-            commissionRate: 0.10 // 10% ($4.500)
+        'kit_extractos_completo': {
+            id: 'kit_extractos_completo',
+            name: 'Kit Completo Extractos Naturales (6 productos)',
+            category: 'Combos y Kits',
+            price: 208000,
+            cost: 95000,
+            margin: 113000,
+            commissionRate: 0.10
         },
-        'aceite_argan_macadamia': {
-            id: 'aceite_argan_macadamia',
-            name: 'Aceite Argán & Macadamia 60ml',
-            category: 'Producto',
-            price: 35000,
-            cost: 15000,
+        'kit_argan_completo': {
+            id: 'kit_argan_completo',
+            name: 'Kit Completo Argán (6 productos)',
+            category: 'Combos y Kits',
+            price: 204000,
+            cost: 90000,
+            margin: 114000,
+            commissionRate: 0.10
+        },
+        'shampoo_extractos_1000': {
+            id: 'shampoo_extractos_1000',
+            name: 'Shampoo Extractos Naturales (1000 ml)',
+            category: 'Cuidado Individual',
+            price: 38000,
+            cost: 18000,
             margin: 20000,
-            commissionRate: 0.10 // 10% ($3.500)
+            commissionRate: 0.10
         },
-        'ampolla_sos': {
-            id: 'ampolla_sos',
-            name: 'Ampolla SOS Restauración Rápida',
-            category: 'Producto',
-            price: 25000,
-            cost: 10000,
-            margin: 15000,
-            commissionRate: 0.10 // 10% ($2.500)
+        'acondicionador_extractos_1000': {
+            id: 'acondicionador_extractos_1000',
+            name: 'Acondicionador Extractos Naturales (1000 ml)',
+            category: 'Cuidado Individual',
+            price: 39000,
+            cost: 19000,
+            margin: 20000,
+            commissionRate: 0.10
+        },
+        'shampoo_argan_500': {
+            id: 'shampoo_argan_500',
+            name: 'Shampoo Aceite de Argán (500 ml)',
+            category: 'Cuidado Individual',
+            price: 36000,
+            cost: 17000,
+            margin: 19000,
+            commissionRate: 0.10
+        },
+        'acondicionador_argan_500': {
+            id: 'acondicionador_argan_500',
+            name: 'Acondicionador Aceite de Argán (500 ml)',
+            category: 'Cuidado Individual',
+            price: 37000,
+            cost: 17000,
+            margin: 20000,
+            commissionRate: 0.10
+        },
+        'mascarilla_oro_liquido_250': {
+            id: 'mascarilla_oro_liquido_250',
+            name: 'Mascarilla Capilar Oro Líquido (250 ml)',
+            category: 'Tratamientos',
+            price: 35000,
+            cost: 16000,
+            margin: 19000,
+            commissionRate: 0.10
+        },
+        'tratamiento_multiactivo_300': {
+            id: 'tratamiento_multiactivo_300',
+            name: 'Tratamiento Multiactivo 12-en-1 (300 ml)',
+            category: 'Tratamientos',
+            price: 36000,
+            cost: 17000,
+            margin: 19000,
+            commissionRate: 0.10
+        },
+        'termoprotector_perfume_250': {
+            id: 'termoprotector_perfume_250',
+            name: 'Termoprotector y Perfume Capilar (250 ml)',
+            category: 'Finalizadores',
+            price: 35000,
+            cost: 16000,
+            margin: 19000,
+            commissionRate: 0.10
+        },
+        'aceite_reparador_60': {
+            id: 'aceite_reparador_60',
+            name: 'Aceite Reparador de Argán y Macadamia (60 ml)',
+            category: 'Finalizadores',
+            price: 28000,
+            cost: 12000,
+            margin: 16000,
+            commissionRate: 0.10
+        },
+        'ampolla_sos_20': {
+            id: 'ampolla_sos_20',
+            name: 'Ampolla de Reparación S.O.S. (20 ml)',
+            category: 'Finalizadores',
+            price: 16000,
+            cost: 7000,
+            margin: 9000,
+            commissionRate: 0.10
         }
     };
 

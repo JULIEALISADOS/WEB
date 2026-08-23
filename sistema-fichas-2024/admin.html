@@ -1924,62 +1924,8 @@
                         <!-- Productos de Mostrador JA By Julie Valencia -->
                         <div style="margin-bottom:16px;">
                             <div class="pos-section-title"><i data-lucide="shopping-bag" style="width:16px; color:var(--gold-dark);"></i> 3. Productos JA By Julie Valencia (Mostrador)</div>
-                            <div id="posProductsList">
-                                <div class="pos-product-row">
-                                    <div>
-                                        <strong style="font-size:0.85rem;">Dúo Extractos 1000ml</strong>
-                                        <div style="font-size:0.75rem; color:#888;">PVP: $85.000 | Costo: $40.000</div>
-                                    </div>
-                                    <div class="pos-qty-control">
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('duo_extractos_1000', -1)">-</button>
-                                        <span id="qty_duo_extractos_1000" style="font-weight:800; min-width:20px; text-align:center;">0</span>
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('duo_extractos_1000', 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="pos-product-row">
-                                    <div>
-                                        <strong style="font-size:0.85rem;">Dúo Argán 500ml</strong>
-                                        <div style="font-size:0.75rem; color:#888;">PVP: $65.000 | Costo: $30.000</div>
-                                    </div>
-                                    <div class="pos-qty-control">
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('duo_argan_500', -1)">-</button>
-                                        <span id="qty_duo_argan_500" style="font-weight:800; min-width:20px; text-align:center;">0</span>
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('duo_argan_500', 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="pos-product-row">
-                                    <div>
-                                        <strong style="font-size:0.85rem;">Termoprotector JA</strong>
-                                        <div style="font-size:0.75rem; color:#888;">PVP: $45.000 | Costo: $20.000</div>
-                                    </div>
-                                    <div class="pos-qty-control">
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('termoprotector_ja', -1)">-</button>
-                                        <span id="qty_termoprotector_ja" style="font-weight:800; min-width:20px; text-align:center;">0</span>
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('termoprotector_ja', 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="pos-product-row">
-                                    <div>
-                                        <strong style="font-size:0.85rem;">Aceite Argán & Macadamia 60ml</strong>
-                                        <div style="font-size:0.75rem; color:#888;">PVP: $35.000 | Costo: $15.000</div>
-                                    </div>
-                                    <div class="pos-qty-control">
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('aceite_argan_macadamia', -1)">-</button>
-                                        <span id="qty_aceite_argan_macadamia" style="font-weight:800; min-width:20px; text-align:center;">0</span>
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('aceite_argan_macadamia', 1)">+</button>
-                                    </div>
-                                </div>
-                                <div class="pos-product-row">
-                                    <div>
-                                        <strong style="font-size:0.85rem;">Ampolla SOS</strong>
-                                        <div style="font-size:0.75rem; color:#888;">PVP: $25.000 | Costo: $10.000</div>
-                                    </div>
-                                    <div class="pos-qty-control">
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('ampolla_sos', -1)">-</button>
-                                        <span id="qty_ampolla_sos" style="font-weight:800; min-width:20px; text-align:center;">0</span>
-                                        <button type="button" class="btn-qty" onclick="changeProductQty('ampolla_sos', 1)">+</button>
-                                    </div>
-                                </div>
+                            <div id="posProductsList" style="max-height: 280px; overflow-y: auto; padding-right: 6px; border: 1px solid #ECECEC; border-radius: 8px; padding: 8px;">
+                                <!-- Renderizado dinámico desde JulieFinanceEngine.PRODUCTS -->
                             </div>
                         </div>
 
@@ -3664,12 +3610,60 @@
             // 5. Facturas Alegra
             renderAlegraInvoicesTable();
 
-            // 6. Actualizar Ticket POS
+            // 6. Renderizar catálogo completo de productos JA
+            renderPOSProductsList();
+
+            // 7. Actualizar Ticket POS
             updatePOSTicket();
 
             if (window.lucide) window.lucide.createIcons();
         }
         window.renderFinanceModule = renderFinanceModule;
+
+        // Renderizado dinámico del catálogo de 13 productos JA By Julie Valencia
+        function renderPOSProductsList() {
+            const list = document.getElementById('posProductsList');
+            if (!list) return;
+            list.innerHTML = '';
+
+            const categories = {
+                'Combos y Kits': [],
+                'Cuidado Individual': [],
+                'Tratamientos': [],
+                'Finalizadores': []
+            };
+
+            Object.values(JulieFinanceEngine.PRODUCTS).forEach(p => {
+                const cat = p.category || 'Otros';
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push(p);
+            });
+
+            Object.entries(categories).forEach(([catName, prods]) => {
+                if (prods.length === 0) return;
+                const catHeader = document.createElement('div');
+                catHeader.style.cssText = 'font-size:0.75rem; font-weight:800; color:var(--gold-dark); text-transform:uppercase; margin:10px 0 4px 0; letter-spacing:0.5px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:2px;';
+                catHeader.textContent = catName;
+                list.appendChild(catHeader);
+
+                prods.forEach(prod => {
+                    const row = document.createElement('div');
+                    row.className = 'pos-product-row';
+                    row.innerHTML = `
+                        <div>
+                            <strong style="font-size:0.84rem; color:#111;">${prod.name}</strong>
+                            <div style="font-size:0.75rem; color:#666;">Precio: <strong>$${prod.price.toLocaleString('es-CO')}</strong></div>
+                        </div>
+                        <div class="pos-qty-control">
+                            <button type="button" class="btn-qty" onclick="changeProductQty('${prod.id}', -1)">-</button>
+                            <span id="qty_${prod.id}" style="font-weight:800; min-width:20px; text-align:center;">${posSelectedProducts[prod.id] || 0}</span>
+                            <button type="button" class="btn-qty" onclick="changeProductQty('${prod.id}', 1)">+</button>
+                        </div>
+                    `;
+                    list.appendChild(row);
+                });
+            });
+        }
 
         // Selección de cliente existente para auto-rellenar
         window.handleSelectExistingClient = (doc) => {

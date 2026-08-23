@@ -74,8 +74,20 @@
 ### 🚫 06. Reglas Críticas de Vocabulario y Marca
 - ❌ **PROHIBIDO:** Usar las palabras *"hebra"* y *"melena"* (sustituir siempre por *cabello, fibra capilar, puntas*).
 - ❌ **PROHIBIDO:** Usar expresiones vulgares como *"rendimiento familiar gigante"* (sustituir por *Presentación profesional de alto rendimiento*, *Fórmula concentrada de 1000 ml*).
-- ❌ **PROHIBIDA LA PSEUDOCIENCIA:** Nada de "fases de la luna" ni recetas de cocina. Crecimiento = 1 a 1.2 cm/mes; el secreto es la retención anti-quiebre.
-- **Línea de Post-Cuidado JA By Julie Valencia:** *Extractos Naturales (1000 ml)*, *Aceite de Argán con Biotina y Ácido Hialurónico (500 ml)*, *Termoprotector JA con Perfume Capilar*, *Aceite Reparador de Argán y Macadamia JA (60 ml)*, *Ampolla S.O.S.*.
+- **Catálogo Oficial de Post-Cuidado JA By Julie Valencia (Precios Reales Web):**
+  1. *Combo Extractos Naturales (1000 ml c/u):* $74.000 COP
+  2. *Combo Aceite de Argán (500 ml c/u):* $70.000 COP
+  3. *Kit Completo Extractos Naturales (6 productos):* $208.000 COP
+  4. *Kit Completo Argán (6 productos):* $204.000 COP
+  5. *Shampoo Extractos Naturales (1000 ml):* $38.000 COP
+  6. *Acondicionador Extractos Naturales (1000 ml):* $39.000 COP
+  7. *Shampoo Aceite de Argán (500 ml):* $36.000 COP
+  8. *Acondicionador Aceite de Argán (500 ml):* $37.000 COP
+  9. *Mascarilla Capilar Oro Líquido (250 ml):* $35.000 COP
+  10. *Tratamiento Multiactivo 12-en-1 (300 ml):* $36.000 COP
+  11. *Termoprotector y Perfume Capilar (250 ml):* $35.000 COP
+  12. *Aceite Reparador de Argán y Macadamia (60 ml):* $28.000 COP
+  13. *Ampolla de Reparación S.O.S. (20 ml):* $16.000 COP
 - **Sedes Comerciales:** Tunja (Avenida Olímpica #190, Pasaje Boulevard, Local 140) y Moniquirá (Carrera 6 # 18 - 68). WhatsApp: +57 304 358 8180.
 
 ---
