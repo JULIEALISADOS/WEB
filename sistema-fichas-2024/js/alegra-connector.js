@@ -1,22 +1,27 @@
 /**
  * Julie Alisados - Conector Oficial Alegra API v1
- * Integración de Facturación Electrónica, Contactos y Cuentas de Pago
- * Credenciales: jeto1984@gmail.com / f0ea5e2490cfce07d851
+ * Integración Segura de Facturación Electrónica, Contactos y Cuentas de Pago
+ * Seguridad: Las credenciales NUNCA se almacenan en código fuente público.
  */
 
 export const AlegraConnector = (() => {
     const CONFIG = {
-        user: 'jeto1984@gmail.com',
-        token: 'f0ea5e2490cfce07d851',
+        getUser: () => sessionStorage.getItem('julie_alegra_user') || localStorage.getItem('julie_alegra_user_secure') || '',
+        getToken: () => sessionStorage.getItem('julie_alegra_token') || localStorage.getItem('julie_alegra_token_secure') || '',
         baseUrl: 'https://api.alegra.com/api/v1',
-        companyName: 'Pérez belleza (Julie Alisados)',
+        companyName: 'Julie Alisados (Pérez belleza)',
         storageKey: 'julie_alegra_invoices_v1',
         contactsCacheKey: 'julie_alegra_contacts_cache'
     };
 
     // Helper para cabeceras HTTP con Basic Auth
     const getHeaders = () => {
-        const credentials = btoa(`${CONFIG.user}:${CONFIG.token}`);
+        const user = CONFIG.getUser();
+        const token = CONFIG.getToken();
+        if (!user || !token) {
+            throw new Error('Credenciales de Alegra no configuradas en sesión segura.');
+        }
+        const credentials = btoa(`${user}:${token}`);
         return {
             'Authorization': `Basic ${credentials}`,
             'Content-Type': 'application/json',

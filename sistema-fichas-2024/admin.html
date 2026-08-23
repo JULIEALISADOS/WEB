@@ -1709,13 +1709,16 @@
                 <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
                     <span class="alegra-badge-live" id="alegraStatusPill">
                         <span class="alegra-pulse-dot"></span>
-                        <span id="alegraStatusText">🟢 Conectado con Pérez belleza (Alegra API)</span>
+                        <span id="alegraStatusText">🟢 Conexión Cloud Segura y Encriptada</span>
                     </span>
-                    <span style="font-size: 0.78rem; color: #D4AF37; font-weight: 600;">
-                        Usuario: <strong style="color:#FFF;">jeto1984@gmail.com</strong> | Facturación Legal Electrónica
+                    <span style="font-size: 0.78rem; color: #D4AF37; font-weight: 600;" id="alegraUserDisplay">
+                        🔒 Facturación Electrónica DIAN & POS Blindado
                     </span>
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button type="button" class="btn-header" onclick="openAlegraKeyModal()" style="padding: 8px 14px; font-size: 0.8rem; background: rgba(255,255,255,0.1); color: #FFF; border-color: rgba(212,175,55,0.4);">
+                        <i data-lucide="key" style="width:14px; color:var(--gold-light);"></i> Credenciales API
+                    </button>
                     <button type="button" class="btn-header" onclick="handleTestAlegraConnection()" style="padding: 8px 14px; font-size: 0.8rem; background: rgba(255,255,255,0.1); color: #FFF; border-color: rgba(212,175,55,0.4);">
                         <i data-lucide="zap" style="width:14px; color:var(--gold-light);"></i> Probar Conexión
                     </button>
@@ -3907,18 +3910,46 @@
             }
         };
 
+        // Modal de gestión segura de credenciales API (Alegra / Siigo)
+        window.openAlegraKeyModal = () => {
+            const currentUser = localStorage.getItem('julie_alegra_user_secure') || '';
+            const currentToken = localStorage.getItem('julie_alegra_token_secure') || '';
+            
+            const userPrompt = prompt('🔒 Ingresa el correo o usuario de tu cuenta de Facturación (Alegra API):', currentUser);
+            if (userPrompt === null) return;
+            
+            const tokenPrompt = prompt('🔑 Ingresa tu Token / Access Key privado de la API (Solo se guardará en tu navegador):', currentToken);
+            if (tokenPrompt === null) return;
+
+            if (userPrompt.trim() && tokenPrompt.trim()) {
+                localStorage.setItem('julie_alegra_user_secure', userPrompt.trim());
+                localStorage.setItem('julie_alegra_token_secure', tokenPrompt.trim());
+                sessionStorage.setItem('julie_alegra_user', userPrompt.trim());
+                sessionStorage.setItem('julie_alegra_token', tokenPrompt.trim());
+                showToast('🔒 Credenciales API guardadas de forma segura y privada en este dispositivo.');
+                handleTestAlegraConnection();
+            } else {
+                alert('⚠️ No se ingresaron credenciales válidas.');
+            }
+        };
+
         // Probar conexión con Alegra
         window.handleTestAlegraConnection = async () => {
             const statusText = document.getElementById('alegraStatusText');
             if (statusText) statusText.innerText = '⏳ Verificando credenciales con Alegra...';
 
-            const res = await AlegraConnector.testConnection();
-            if (res.success) {
-                if (statusText) statusText.innerText = `🟢 Conectado con ${res.company} (Alegra API)`;
-                showToast(`✅ Conexión con Alegra verificada: ${res.company} (${res.identification})`);
-            } else {
-                if (statusText) statusText.innerText = '⚠️ Error de autenticación con Alegra';
-                alert(`⚠️ No se pudo verificar la empresa en Alegra: ${res.message}`);
+            try {
+                const res = await AlegraConnector.testConnection();
+                if (res.success) {
+                    if (statusText) statusText.innerText = `🟢 Conectado con ${res.company} (Alegra API)`;
+                    showToast(`✅ Conexión con Alegra verificada: ${res.company} (${res.identification})`);
+                } else {
+                    if (statusText) statusText.innerText = '⚠️ Credenciales API pendientes';
+                    alert(`⚠️ No se pudo verificar la empresa en Alegra: ${res.message}\nHaz clic en "Credenciales API" para ingresarlas.`);
+                }
+            } catch (err) {
+                if (statusText) statusText.innerText = '⚠️ Credenciales no configuradas';
+                alert('⚠️ Por favor haz clic en "Credenciales API" para ingresar tu usuario y token privado.');
             }
         };
 
