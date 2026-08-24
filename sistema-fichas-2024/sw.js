@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'julie-app-v13.0';
+﻿const CACHE_NAME = 'julie-app-v14.0';
 const ASSETS = [
   'index.html',
   'admin.html',
@@ -13,7 +13,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
-  self.skipWaiting(); // Forzar activaciÃ³n inmediata
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
@@ -22,7 +22,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     Promise.all([
-      self.clients.claim(), // Tomar control de los clientes inmediatamente
+      self.clients.claim(),
       caches.keys().then(keys => Promise.all(
         keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       ))
@@ -31,14 +31,12 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Para pÃ¡ginas HTML, JS y CSS, intentar red primero
   if (event.request.mode === 'navigate' || event.request.destination === 'style' || event.request.destination === 'script') {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
     return;
   }
-  // Para el resto (imÃ¡genes, etc), Cache First
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
   );
