@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://hzvwruiybynkifqsekkp.supabase.co">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
     <link rel="dns-prefetch" href="https://analytics.tiktok.com">
@@ -218,7 +217,6 @@
         return false;
       }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 
 <body>
@@ -1343,96 +1341,19 @@
             });
         }
 
-        // ======================== DYNAMIC REVIEWS (RESTORATION) ========================
-        const SB_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
-        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
-        let sb = null;
-        if (window.supabase) {
-            try {
-                sb = window.supabase.createClient(SB_URL, SB_KEY);
-            } catch (e) {
-                console.error("Error al inicializar Supabase:", e);
-            }
-        } else {
-            console.warn("La librería de Supabase no está disponible en window.");
-        }
-
-        async function loadDynamicReviews() {
+        // ======================== TESTIMONIALS INFINITE SCROLL ========================
+        function initInfiniteTestimonials() {
             const track = document.querySelector('.testimonials-infinite-track');
             if (!track) return;
-
-            try {
-                let reviews = null;
-                const cachedData = localStorage.getItem('julie_reviews_cache');
-                const cachedTime = localStorage.getItem('julie_reviews_cache_time');
-
-                // Si el caché tiene menos de 1 hora (3,600,000 milisegundos), se usa directamente
-                if (cachedData && cachedTime && (Date.now() - cachedTime < 3600000)) {
-                    reviews = JSON.parse(cachedData);
-                } else if (sb) {
-                    // Si no hay caché o expiró, traemos 35 registros recientes para asegurar opiniones de buena extensión
-                    const { data, error } = await sb.from('fichas')
-                        .select('nombre_completo, recomendaciones')
-                        .not('recomendaciones', 'is', null)
-                        .neq('recomendaciones', '')
-                        .order('created_at', { ascending: false })
-                        .limit(35);
-
-                    if (error) throw error;
-
-                    // Filtrar que la longitud de la opinión sea mayor a 20 caracteres
-                    const validReviews = (data || []).filter(r => r.recomendaciones && r.recomendaciones.trim().length > 20);
-                    
-                    if (validReviews.length > 0) {
-                        reviews = validReviews;
-                        // Almacenamos en el caché local
-                        localStorage.setItem('julie_reviews_cache', JSON.stringify(reviews));
-                        localStorage.setItem('julie_reviews_cache_time', Date.now());
-                    }
-                }
-
-                if (!reviews || reviews.length === 0) {
-                    throw new Error('No hay opiniones disponibles.');
-                }
-
-                // Mezclamos aleatoriamente y tomamos un máximo de 8
-                const shuffled = reviews.sort(() => 0.5 - Math.random()).slice(0, 8);
-
-                shuffled.forEach(rev => {
-                    const firstLetter = (rev.nombre_completo || 'C').charAt(0).toUpperCase();
-                    const card = document.createElement('div');
-                    card.className = 'testimonial-card';
-                    card.innerHTML = `
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="quote">"${rev.recomendaciones}"</p>
-                        <div class="google-user">
-                            <div class="user-avatar">${firstLetter}</div>
-                            <strong>${rev.nombre_completo}</strong>
-                            <span class="source">Cliente Verificado</span>
-                        </div>
-                    `;
-                    track.appendChild(card);
-                });
-
-                // Duplicamos el track completo para mantener el scroll vertical infinito fluido de CSS
-                const allCards = Array.from(track.children);
-                allCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    track.appendChild(clone);
-                });
-
-            } catch (err) {
-                console.error('Error cargando opiniones dinámicas:', err);
-                // Si la red o Supabase fallan, duplicamos las 10 fijas en HTML para no romper la visualización
-                const allCards = Array.from(track.children);
-                allCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    track.appendChild(clone);
-                });
-            }
+            // Duplicamos las tarjetas para mantener el scroll vertical infinito fluido de CSS
+            const allCards = Array.from(track.children);
+            allCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                track.appendChild(clone);
+            });
         }
 
-        window.addEventListener('DOMContentLoaded', loadDynamicReviews);
+        window.addEventListener('DOMContentLoaded', initInfiniteTestimonials);
 
         // Lógica de texto alternante en el botón de WhatsApp
         const dynamicLabel = document.getElementById('whatsapp-dynamic-label');
