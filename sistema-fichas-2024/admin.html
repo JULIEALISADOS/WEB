@@ -4443,6 +4443,14 @@
 
             if (sectionId === 'finance') {
                 renderFinanceModule();
+            } else if (sectionId === 'marketing') {
+                renderCMOModule();
+            } else if (sectionId === 'analytics') {
+                renderAnalytics();
+            } else if (sectionId === 'clients') {
+                renderClientsTable(clientsData);
+            } else if (sectionId === 'dashboard') {
+                renderDashboard();
             }
 
             if (window.lucide) window.lucide.createIcons();

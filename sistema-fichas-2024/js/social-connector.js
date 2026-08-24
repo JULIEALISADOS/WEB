@@ -1,8 +1,8 @@
 ﻿/**
  * Julie Alisados - Conector Oficial de Redes Sociales, Meta Graph API v19.0, TikTok Ads & Google Ads API
- * Módulo de Inteligencia de Instagram Lives, Reels, TikTok Ads y Google Ads
+ * MÃ³dulo de Inteligencia de Instagram Lives, Reels, TikTok Ads y Google Ads
  * 
- * Marca Oficial: Julie Alisados • By Julie Valencia
+ * Marca Oficial: Julie Alisados â€¢ By Julie Valencia
  * Cuentas Oficiales Blindadas y Certificadas:
  * - Meta / Instagram: @juliealisados (ID: 17841414293382471)
  * - TikTok Ads Advertiser ID: 7334876328849670145 (Pixel: D80VAEJC77UDOFSGH9CG)
@@ -61,13 +61,13 @@ export const JulieSocialConnector = (() => {
         }
 
         try {
-            const url = https://graph.facebook.com/v19.0/?fields=name,username,followers_count,follows_count,media_count,profile_picture_url,biography&access_token=;
+            const url = `https://graph.facebook.com/v19.0/${activeId}?fields=name,username,followers_count,follows_count,media_count,profile_picture_url,biography&access_token=${activeToken}`;
             const response = await fetch(url);
-            if (!response.ok) throw new Error(Meta Graph API error: );
+            if (!response.ok) throw new Error('Meta Graph API error: ' + response.statusText);
             const data = await response.json();
 
             return {
-                account: @,
+                account: '@' + (data.username || 'juliealisados'),
                 name: data.name || 'Julie Alisados',
                 followers: data.followers_count || 13702,
                 mediaCount: data.media_count || 2718,
@@ -119,9 +119,9 @@ export const JulieSocialConnector = (() => {
             totalSpend: 406000,
             campaigns: [
                 { name: 'JA TUNJA', status: 'Active (Habilitada)', target: 'Tunja (Radio 10km)' },
-                { name: 'moniquira busqueda', status: 'Active (Habilitada)', target: 'Moniquirá (Radio 8km)' },
-                { name: 'alisado saludable', status: 'Paused (Detenida)', target: 'Boyacá' },
-                { name: 'Búsqueda - Sedes Locales', status: 'Paused (Detenida)', target: 'Boyacá' }
+                { name: 'moniquira busqueda', status: 'Active (Habilitada)', target: 'MoniquirÃ¡ (Radio 8km)' },
+                { name: 'alisado saludable', status: 'Paused (Detenida)', target: 'BoyacÃ¡' },
+                { name: 'BÃºsqueda - Sedes Locales', status: 'Paused (Detenida)', target: 'BoyacÃ¡' }
             ]
         };
     };
@@ -129,7 +129,7 @@ export const JulieSocialConnector = (() => {
     const getFallbackInstagramMetrics = () => {
         return {
             account: '@juliealisados',
-            name: 'Julie Alisados • By Julie Valencia',
+            name: 'Julie Alisados â€¢ By Julie Valencia',
             followers: 13702,
             mediaCount: 2718,
             reachMonthly: 142600,
@@ -156,7 +156,7 @@ export const JulieSocialConnector = (() => {
             },
             recentLives: [
                 {
-                    title: '🔴 En Vivo: Caso Extremo de Decoloración + Alisado Saludable en Tunja',
+                    title: 'ðŸ”´ En Vivo: Caso Extremo de DecoloraciÃ³n + Alisado Saludable en Tunja',
                     date: '2026-08-18',
                     peakViewers: 645,
                     totalViewers: 4230,
@@ -166,7 +166,7 @@ export const JulieSocialConnector = (() => {
                     citasAgendadas: 14
                 },
                 {
-                    title: '🔴 En Vivo: Por qué el Formol quema la hebra vs Alisado Orgánico JA',
+                    title: 'ðŸ”´ En Vivo: Por quÃ© el Formol quema la hebra vs Alisado OrgÃ¡nico JA',
                     date: '2026-08-11',
                     peakViewers: 510,
                     totalViewers: 3680,
@@ -177,11 +177,11 @@ export const JulieSocialConnector = (() => {
                 }
             ],
             topReels: [
-                { title: 'Testimonio y Emoción: Te amo y te amaré siempre hermanito', likes: 216, comments: 14 },
+                { title: 'Testimonio y EmociÃ³n: Te amo y te amarÃ© siempre hermanito', likes: 216, comments: 14 },
                 { title: 'Humor & Cotidianidad: Hamburguesa triple', likes: 85, comments: 1 },
                 { title: 'El cambio que tu cabello estaba pidiendo a gritos', likes: 59, comments: 1 },
-                { title: 'Fe y Alisado Saludable en Boyacá', likes: 48, comments: 4 },
-                { title: 'Transformación Cabello XL Abundante', likes: 46, comments: 8 }
+                { title: 'Fe y Alisado Saludable en BoyacÃ¡', likes: 48, comments: 4 },
+                { title: 'TransformaciÃ³n Cabello XL Abundante', likes: 46, comments: 8 }
             ]
         };
     };
@@ -221,3 +221,7 @@ export const JulieSocialConnector = (() => {
         fetchGoogleAdsMetrics
     };
 })();
+
+if (typeof window !== 'undefined') {
+    window.JulieSocialConnector = JulieSocialConnector;
+}

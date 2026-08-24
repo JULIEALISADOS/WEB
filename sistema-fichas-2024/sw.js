@@ -1,4 +1,4 @@
-const CACHE_NAME = 'julie-app-v12.0';
+﻿const CACHE_NAME = 'julie-app-v13.0';
 const ASSETS = [
   'index.html',
   'admin.html',
@@ -13,7 +13,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
-  self.skipWaiting(); // Forzar activación inmediata
+  self.skipWaiting(); // Forzar activaciÃ³n inmediata
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
@@ -31,14 +31,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Para páginas HTML, JS y CSS, intentar red primero
+  // Para pÃ¡ginas HTML, JS y CSS, intentar red primero
   if (event.request.mode === 'navigate' || event.request.destination === 'style' || event.request.destination === 'script') {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
     return;
   }
-  // Para el resto (imágenes, etc), Cache First
+  // Para el resto (imÃ¡genes, etc), Cache First
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
   );
