@@ -1,3 +1,15 @@
+# Sistema interno de fichas (AISLADO en repo privado)
+sistema-fichas-2024/
+JulieComisiones/
+
+# Archivos internos y de memoria AI
+AI_MEMORY.md
+REBOOT_STATE.md
+ENTRENAMIENTO_GEMINI.txt
+SUPER_ENTRENAMIENTO_GEMINI.txt
+supabase_rls_security.sql
+audit*
+
 # Backups locales (NO subir al repositorio)
 BACKUP_*/
 BACKUP_ARQUITECTURA_DATOS.md
