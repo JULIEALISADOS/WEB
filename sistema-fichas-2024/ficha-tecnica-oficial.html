@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha TÃ©cnica Oficial â€¢ Julie Alisados By Julie Valencia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-dark: #A68612;
+            --gold-light: #F2D06B;
+            --black-obsidian: #111111;
+            --black-surface: #1A1A1A;
+            --bg-creme: #FFFDF9;
+            --border-color: #E8DFD0;
+            --text-main: #222222;
+            --text-muted: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #2C2C2C;
+            color: var(--text-main);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .action-bar {
+            width: 100%;
+            max-width: 850px;
+            background: #111;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8010 100%);
+            color: #111;
+            font-weight: 800;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Document Sheet A4 */
+        .sheet-page {
+            width: 100%;
+            max-width: 850px;
+            background: #FFFFFF;
+            padding: 35px 40px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        /* Header */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold-primary);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+
+        .brand-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-primary);
+            object-fit: cover;
+        }
+
+        .brand-titles h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--black-obsidian);
+            line-height: 1.1;
+        }
+
+        .brand-titles span {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .doc-meta {
+            text-align: right;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            background: var(--black-obsidian);
+            color: var(--gold-light);
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Titles & Badges */
+        .product-hero-title {
+            background: linear-gradient(135deg, #111111 0%, #222222 100%);
+            color: #FFFFFF;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--gold-primary);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .product-hero-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+        }
+
+        .product-hero-title span {
+            font-size: 0.82rem;
+            background: rgba(212, 175, 55, 0.2);
+            color: #FFF;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--black-obsidian);
+            margin: 20px 0 10px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+        }
+
+        p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        /* Actives Grid */
+        .actives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .active-card {
+            background: var(--bg-creme);
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+        }
+
+        .active-card strong {
+            display: block;
+            color: var(--black-obsidian);
+            margin-bottom: 2px;
+            font-size: 0.85rem;
+        }
+
+        /* Protocol Blocks */
+        .protocol-box {
+            background: #FAFAFA;
+            border: 1px solid #E5E5E5;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+        }
+
+        .protocol-box.highlight {
+            background: #FFFDF6;
+            border-color: rgba(212, 175, 55, 0.4);
+            border-left: 4px solid var(--gold-primary);
+        }
+
+        .protocol-box h3 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--black-obsidian);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            font-size: 0.86rem;
+            line-height: 1.55;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 20px;
+            height: 20px;
+            background: var(--black-obsidian);
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 0.72rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Table */
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+        }
+
+        .table-custom th, .table-custom td {
+            padding: 9px 12px;
+            text-align: left;
+            border: 1px solid #E8E8E8;
+        }
+
+        .table-custom th {
+            background: var(--black-obsidian);
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .table-custom tr:nth-child(even) {
+            background: #FDFDFD;
+        }
+
+        /* Footer */
+        .doc-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 14px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            color: var(--black-obsidian);
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .action-bar {
+                display: none;
+            }
+            .sheet-page {
+                box-shadow: none;
+                padding: 20mm;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de AcciÃ³n Superior -->
+    <div class="action-bar no-print">
+        <div style="color:#FFF; font-size:0.9rem;">
+            <strong style="color:var(--gold-light);">ðŸ’Ž Ficha TÃ©cnica Oficial de Marca</strong> â€¢ Julie Alisados By Julie Valencia
+        </div>
+        <button class="btn-download" onclick="downloadPDF()">
+            ðŸ“¥ Descargar Ficha TÃ©cnica Oficial (PDF)
+        </button>
+    </div>
+
+    <!-- PÃGINA 1: FICHA TÃ‰CNICA Y BENEFICIOS INSTITUCIONALES -->
+    <div class="sheet-page" id="pdfDoc">
+        
+        <!-- Header -->
+        <div class="doc-header">
+            <div class="brand-logo-area">
+                <img src="logo.png" alt="Julie Alisados Logo" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/65x65?text=JA'">
+                <div class="brand-titles">
+                    <h1>JULIE ALISADOS</h1>
+                    <span>BY JULIE VALENCIA â€¢ ALTA COSMÃ‰TICA CAPILAR</span>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div class="doc-badge">DOCUMENTO TÃ‰CNICO OFICIAL</div>
+                <div><strong>Ref:</strong> FT-JA-2026 â€¢ VersiÃ³n 3.2</div>
+                <div><strong>Uso:</strong> Exclusivo Salones & Estilistas Certificados</div>
+            </div>
+        </div>
+
+        <!-- Hero Title -->
+        <div class="product-hero-title">
+            <div>
+                <h2>EMULSIÃ“N ZERO & ALISADO SALUDABLE JA</h2>
+                <div style="font-size:0.8rem; opacity:0.9; margin-top:2px;">FÃ³rmula Termoactiva OrgÃ¡nica con Bio-PolÃ­meros y Ãcido HialurÃ³nico</div>
+            </div>
+            <span>100% LIBRE DE FORMOL</span>
+        </div>
+
+        <!-- DescripciÃ³n & Beneficios -->
+        <div class="section-title">1. DESCRIPCIÃ“N & BENEFICIOS TERAPÃ‰UTICOS</div>
+        <p>
+            Tratamiento alisador profesional orgÃ¡nico de Ãºltima generaciÃ³n diseÃ±ado para alinear la fibra capilar, restaurar el cÃ³rtex y aportar hasta <strong>5 veces mÃ¡s brillo</strong> efecto espejo (<em>Glass Hair</em>). Su fÃ³rmula inteligente incorpora mÃ¡s de <strong>14 aminoÃ¡cidos y lÃ­pidos botÃ¡nicos</strong> que nutren profundamente sin alterar la salud de la estilista ni de la clienta.
+        </p>
+        <p>
+            <strong>GarantÃ­a de Bioseguridad:</strong> No emite vapores tÃ³xicos ni gases irritantes. Es apto para su aplicaciÃ³n en <strong>mujeres embarazadas, en perÃ­odo de lactancia y niÃ±as</strong>. Brinda una durabilidad de <strong>4 a 6 meses</strong> con resistencia al agua de piscina, mar y actividad fÃ­sica.
+        </p>
+
+        <!-- Matriz de Activos BotÃ¡nicos -->
+        <div class="section-title">2. COMPLEJO BOTÃNICO & AMINOÃCIDOS ACTIVOS</div>
+        <div class="actives-grid">
+            <div class="active-card">
+                <strong>ðŸ’Ž Ãcido HialurÃ³nico</strong>
+                RetenciÃ³n de humedad intra-cÃ³rtex y relleno de fisuras cuticulares.
+            </div>
+            <div class="active-card">
+                <strong>ðŸŒ¿ Manteca de Murumuru</strong>
+                NutriciÃ³n lipÃ­dica profunda y control estricto del frizz.
+            </div>
+            <div class="active-card">
+                <strong>ðŸŒ¸ Sericina & ProteÃ­nas</strong>
+                Nano-molÃ©culas que sellan y blindan la superficie capilar.
+            </div>
+            <div class="active-card">
+                <strong>ðŸ¥‘ ArgÃ¡n & Macadamia</strong>
+                Aceites nobles antioxidantes con elasticidad natural.
+            </div>
+            <div class="active-card">
+                <strong>ðŸƒ TÃ© Verde & CafÃ© Cereza</strong>
+                EstimulaciÃ³n folicular y protecciÃ³n contra el envejecimiento.
+            </div>
+            <div class="active-card">
+                <strong>ðŸ§´ Aloe Vera & AlgodÃ³n</strong>
+                Acondicionamiento suave y protecciÃ³n tÃ©rmica superior.
+            </div>
+        </div>
+
+        <!-- Especificaciones FisicoquÃ­micas -->
+        <div class="section-title">3. ESPECIFICACIONES FISICOQUÃMICAS</div>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>PROPIEDAD</th>
+                    <th>ESPECIFICACIÃ“N OFICIAL</th>
+                    <th>BENEFICIO EN SALÃ“N</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>pH Balanceado</strong></td>
+                    <td>4.5 â€“ 5.5</td>
+                    <td>Sella cutÃ­cula sin deshidratar ni resecar la fibra.</td>
+                </tr>
+                <tr>
+                    <td><strong>Aspecto & Aroma</strong></td>
+                    <td>EmulsiÃ³n cremosa / Frutos dulces y notas suaves</td>
+                    <td>Ambiente de salÃ³n libre de humo y libre de olores fuertes.</td>
+                </tr>
+                <tr>
+                    <td><strong>Termo-Resistencia</strong></td>
+                    <td>Hasta 230Â°C (450Â°F)</td>
+                    <td>Protege la fibra del calor mecÃ¡nico de la plancha.</td>
+                </tr>
+                <tr>
+                    <td><strong>Rendimiento</strong></td>
+                    <td>10 a 14 aplicaciones por litro / galÃ³n</td>
+                    <td>Alta rentabilidad y margen superior para el salÃ³n aliado.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- PÃGINA 2: PROTOCOLOS DE APLICACIÃ“N -->
+        <div style="page-break-before: always; margin-top:30px;"></div>
+
+        <div class="section-title">4. PROTOCOLO TÃ‰CNICO DE APLICACIÃ“N PROFESIONAL</div>
+        
+        <!-- MÃ©todo 1 -->
+        <div class="protocol-box highlight">
+            <h3>MÃ‰TODO A: TECNOLOGÃA ENJUAGABLE (CABELLOS SENSIBILIZADOS / RUBIOS / FINOS)</h3>
+            <ol class="step-list">
+                <li><strong>PreparaciÃ³n Cuticular (Paso 1):</strong> Lavar con Shampoo Antirresiduo JA de 2 a 3 veces hasta que la fibra se sienta limpia y con cutÃ­cula receptiva.</li>
+                <li><strong>Secado Previo:</strong> Secar la raÃ­z al 100% y medios a puntas hÃºmedos (sin goteo). Segmentar en cuadrantes.</li>
+                <li><strong>AplicaciÃ³n del Activo:</strong> Aplicar de raÃ­z a puntas con brocha y repasar con peinilla fina para retirar excedentes. <em>(No sobre-empapar la fibra)</em>.</li>
+                <li><strong>Tiempo de Pose:</strong> Dejar actuar <strong>45 minutos</strong> (hasta 60 minutos en rizos muy cerrados).</li>
+                <li><strong>Enjuague Previo al Planchado:</strong> Retirar el producto <strong>100% solo con agua</strong> (en raÃ­ces muy crespas dejar un 40% de activo en la zona de crecimiento).</li>
+                <li><strong>Mascarilla Sellante (Paso 3):</strong> Aplicar mascarilla sellante de medios a puntas por 5 min y enjuagar. Secar al 100% con secador en caliente.</li>
+                <li><strong>TermoactivaciÃ³n & Planchado:</strong> Tomar mechones transparentes delgados (15 a 20 pasadas segÃºn resistencia de la fibra).</li>
+            </ol>
+        </div>
+
+        <!-- MÃ©todo 2 -->
+        <div class="protocol-box">
+            <h3>MÃ‰TODO B: PROCEDIMIENTO CONVENCIONAL (CABELLOS AFRO / GRUESOS / REBELDES)</h3>
+            <ol class="step-list">
+                <li><strong>Lavado Profundo:</strong> Lavar 3 a 4 veces con Shampoo Antirresiduo hasta lograr apertura cuticular total.</li>
+                <li><strong>Secado Completo:</strong> Secar el cabello al 100% con secador.</li>
+                <li><strong>AplicaciÃ³n & ReposiciÃ³n:</strong> Aplicar el activo uniformemente respetando 0.5 cm de raÃ­z. Tiempo de pose: <strong>50 a 60 minutos</strong>.</li>
+                <li><strong>Secado Total:</strong> Secar con secador en caliente al 100% (hacer brushing suave).</li>
+                <li><strong>CauterizaciÃ³n con Plancha:</strong> Planchar a 230Â°C (450Â°F) en mechones ultrafinos (18 a 22 pasadas por mechÃ³n).</li>
+                <li><strong>FinalizaciÃ³n:</strong> Esperar 20 minutos a que el cabello tome temperatura ambiente, enjuagar con agua frÃ­a y sellar con Mascarilla Nutritiva JA.</li>
+            </ol>
+        </div>
+
+        <!-- Tabla de Planchado -->
+        <div class="section-title">5. TABLA MAESTRA DE TERMOACTIVACIÃ“N SEGÃšN TIPO DE CABELLO</div>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>TIPO DE CABELLO / ESTADO</th>
+                    <th>TEMPERATURA PLANCHA</th>
+                    <th>PASADAS POR MECHÃ“N</th>
+                    <th>MÃ‰TODO RECOMENDADO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Decolorado / Mechas / Muy Sensible</strong></td>
+                    <td>190Â°C â€“ 200Â°C (375Â°F)</td>
+                    <td>12 a 15 pasadas</td>
+                    <td>MÃ©todo A (Enjuagable)</td>
+                </tr>
+                <tr>
+                    <td><strong>Tinturado / Normal / Con Frizz</strong></td>
+                    <td>210Â°C â€“ 220Â°C (410Â°F)</td>
+                    <td>15 a 18 pasadas</td>
+                    <td>MÃ©todo A o B</td>
+                </tr>
+                <tr>
+                    <td><strong>Virgen / Grueso / Muy Rebelde / Afro</strong></td>
+                    <td>230Â°C (450Â°F)</td>
+                    <td>18 a 22 pasadas</td>
+                    <td>MÃ©todo B (Convencional)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Recomendaciones y Cuidados -->
+        <div class="section-title">6. RECOMENDACIONES DE POST-CUIDADO EN CASA</div>
+        <ul style="font-size:0.84rem; line-height:1.6; padding-left:20px; margin-bottom:15px;">
+            <li>Lavar exclusivamente con el <strong>DÃºo Extractos o ArgÃ¡n JA By Julie Valencia</strong> (100% Libre de Sal y Sulfatos agresivos).</li>
+            <li>Activar con secador tibio/caliente despuÃ©s de cada lavado para reactivar la memoria termoactiva del liso.</li>
+            <li>No usar champÃºs anticaspa comerciales por su excesiva alcalinidad.</li>
+            <li>Prohibida la inmersiÃ³n en piscina o mar durante los primeros 15 dÃ­as posteriores al tratamiento.</li>
+            <li>Procesos de coloraciÃ³n sin amonÃ­aco permitidos a partir del 3er dÃ­a; con amonÃ­aco despuÃ©s de 10 dÃ­as.</li>
+        </ul>
+
+        <!-- Footer -->
+        <div class="doc-footer">
+            <div>
+                <div class="footer-brand">JULIE ALISADOS â€¢ MARCA REGISTRADA</div>
+                <div>Sede Tunja: Pasaje Boulevard Local 107 â€¢ Sede MoniquirÃ¡: Cra 6</div>
+                <div>LÃ­nea de AtenciÃ³n Mayoristas & Salones: +57 304 358 8180</div>
+            </div>
+            <div style="text-align:right;">
+                <strong style="color:var(--gold-dark);">"MÃ¡s que un liso, una transformaciÃ³n"</strong><br>
+                <span>juliealisados.com â€¢ BoyacÃ¡, Colombia</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('pdfDoc');
+            const opt = {
+                margin:       [8, 8, 8, 8],
+                filename:     'Ficha_Tecnica_Oficial_Julie_Alisados.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
