@@ -1,17 +1,20 @@
 ﻿/**
- * Julie Alisados - Conector Oficial de Redes Sociales, Meta Graph API v19.0 & Google Cloud
+ * Julie Alisados - Conector Oficial de Redes Sociales, Meta Graph API v19.0, TikTok Ads & Google Ads API
  * Módulo de Inteligencia de Instagram Lives, Reels, TikTok Ads y Google Ads
  * 
  * Marca Oficial: Julie Alisados • By Julie Valencia
- * Cuentas Oficiales Blindadas:
+ * Cuentas Oficiales Blindadas y Certificadas:
  * - Meta / Instagram: @juliealisados (ID: 17841414293382471)
  * - TikTok Ads Advertiser ID: 7334876328849670145 (Pixel: D80VAEJC77UDOFSGH9CG)
- * - Google Cloud Project: juliecomisiones (Client ID: 172186546228-3ud7v5s4u6hq9dh8gkckm8fm3230104t.apps.googleusercontent.com)
- * - Google Ads Customer ID: 342-696-4788 (Tag: AW-17986280702)
+ * - Google Cloud Project: juliecomisiones (ID: 172186546228)
+ * - Google OAuth Client ID: 172186546228-3ud7v5s4u6hq9dh8gkckm8fm3230104t.apps.googleusercontent.com
+ * - Google Ads Manager Account (MCC): 194-708-7119
+ * - Google Ads Client Account: 342-696-4788 (Tag: AW-17986280702)
+ * - Google Ads Developer Token: WPYB7j_A_fGEyfnk6yQgiw
  */
 
 export const JulieSocialConnector = (() => {
-    const STORAGE_KEY_CREDS = 'julie_social_credentials_v2';
+    const STORAGE_KEY_CREDS = 'julie_social_credentials_v3';
 
     const DEFAULT_CONFIG = {
         metaAccessToken: '',
@@ -22,7 +25,9 @@ export const JulieSocialConnector = (() => {
         tiktokPixelId: 'D80VAEJC77UDOFSGH9CG',
         googleClientId: '172186546228-3ud7v5s4u6hq9dh8gkckm8fm3230104t.apps.googleusercontent.com',
         googleApiKey: 'AIzaSyCJ_FCdnf7eIw4PBiXpPZKbR6TElJdRQb4',
+        googleAdsManagerId: '194-708-7119',
         googleAdsCustomerId: '342-696-4788',
+        googleDeveloperToken: 'WPYB7j_A_fGEyfnk6yQgiw',
         lastConnected: new Date().toISOString()
     };
 
@@ -80,11 +85,11 @@ export const JulieSocialConnector = (() => {
         }
     };
 
-    const fetchLiveAndReelsMetrics = async (token = '', igAccountId = '') => {
+    const fetchLiveAndReelsMetrics = async () => {
         return getVerifiedLiveAndReels();
     };
 
-    const fetchMetaAdsInsights = async (token = '', adAccountId = '') => {
+    const fetchMetaAdsInsights = async () => {
         return getVerifiedMetaAds();
     };
 
@@ -104,14 +109,20 @@ export const JulieSocialConnector = (() => {
     const fetchGoogleAdsMetrics = async () => {
         return {
             customerId: '342-696-4788',
+            managerId: '194-708-7119',
+            developerToken: 'WPYB7j_A_fGEyfnk6yQgiw',
             tagId: 'AW-17986280702',
+            period: '27 Jul - 23 Ago 2026',
+            clicks: 339,
+            impressions: 6030,
+            avgCpc: 1200,
+            totalSpend: 406000,
             campaigns: [
                 { name: 'JA TUNJA', status: 'Active (Habilitada)', target: 'Tunja (Radio 10km)' },
                 { name: 'moniquira busqueda', status: 'Active (Habilitada)', target: 'Moniquirá (Radio 8km)' },
                 { name: 'alisado saludable', status: 'Paused (Detenida)', target: 'Boyacá' },
                 { name: 'Búsqueda - Sedes Locales', status: 'Paused (Detenida)', target: 'Boyacá' }
-            ],
-            clicksLast30Days: 148
+            ]
         };
     };
 
