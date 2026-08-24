@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Julie Alisados - Agente Gerente de Marketing con IA (Julie CMO Agent)
  * Centro de Inteligencia Publicitaria & Atribución de Ventas con Datos Reales de Supabase
  * 
@@ -59,7 +59,7 @@ export const JulieCMOEngine = (() => {
         googleSpend: 180000,
         metaAccountId: 'act_84920194820',
         tiktokAccountId: '728491049281938',
-        googleAccountId: '938-291-4820',
+        googleAccountId: '342-696-4788',
         metaToken: '',
         tiktokToken: '',
         lastSync: new Date().toISOString()
