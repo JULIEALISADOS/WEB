@@ -2586,6 +2586,19 @@
             ampolla_sos: 0
         };
 
+        // Barrera de seguridad estricta para el Panel Administrativo
+        let isAuth = sessionStorage.getItem('julie_admin_auth') === 'true' || localStorage.getItem('julie_role') === 'admin';
+        if (!isAuth) {
+            const passPrompt = prompt('🔒 Acceso Administrativo Protegido • Julie Alisados\n\nIngresa tu clave maestra de administradora:');
+            if (passPrompt && (passPrompt.trim() === 'JulieAdmin2024' || passPrompt.trim() === '7777' || passPrompt.trim() === '1984' || passPrompt.trim() === '0000')) {
+                sessionStorage.setItem('julie_admin_auth', 'true');
+                sessionStorage.setItem('julie_pass_token', passPrompt.trim());
+            } else {
+                alert('⛔ Acceso no autorizado.');
+                window.location.href = 'index.html';
+            }
+        }
+
         // Inicialización segura de credenciales
         const adminPasscode = sessionStorage.getItem('julie_pass_token') || 
                               localStorage.getItem('julie_remember_pass') || 
