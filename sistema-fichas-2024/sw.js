@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'julie-app-v15.0';
+const CACHE_NAME = 'julie-app-v16.0';
 const ASSETS = [
   'index.html',
   'admin.html',

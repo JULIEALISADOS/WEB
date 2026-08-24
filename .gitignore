@@ -1,0 +1,32 @@
+# Backups locales (NO subir al repositorio)
+BACKUP_*/
+BACKUP_ARQUITECTURA_DATOS.md
+backups-web-v1.0/
+
+# Archivos de entorno y secretos
+.env
+.env.local
+.env.production
+*.secret
+*.key
+
+# Archivos del sistema operativo
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+
+# Node / npm (si se usa en el futuro)
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+
+# Archivos de Gemini / Antigravity (no subir al repo del proyecto)
+.gemini/

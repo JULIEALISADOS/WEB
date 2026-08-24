@@ -1,16 +1,9 @@
-﻿/**
- * Julie Alisados - Conector Oficial de Redes Sociales, Meta Graph API v19.0, TikTok Ads & Google Ads API
- * MÃ³dulo de Inteligencia de Instagram Lives, Reels, TikTok Ads y Google Ads
+/**
+ * Julie Alisados - Conector Oficial de Redes Sociales, Meta Graph API, TikTok Ads & Google Ads API
+ * Módulo de Inteligencia de Instagram Lives, Reels, TikTok Ads y Google Ads
  * 
- * Marca Oficial: Julie Alisados â€¢ By Julie Valencia
- * Cuentas Oficiales Blindadas y Certificadas:
- * - Meta / Instagram: @juliealisados (ID: 17841414293382471)
- * - TikTok Ads Advertiser ID: 7334876328849670145 (Pixel: D80VAEJC77UDOFSGH9CG)
- * - Google Cloud Project: juliecomisiones (ID: 172186546228)
- * - Google OAuth Client ID: 172186546228-3ud7v5s4u6hq9dh8gkckm8fm3230104t.apps.googleusercontent.com
- * - Google Ads Manager Account (MCC): 194-708-7119
- * - Google Ads Client Account: 342-696-4788 (Tag: AW-17986280702)
- * - Google Ads Developer Token: WPYB7j_A_fGEyfnk6yQgiw
+ * Marca Oficial: Julie Alisados • By Julie Valencia
+ * Las credenciales se cargan exclusivamente desde el almacenamiento seguro de sesión.
  */
 
 export const JulieSocialConnector = (() => {
@@ -18,16 +11,16 @@ export const JulieSocialConnector = (() => {
 
     const DEFAULT_CONFIG = {
         metaAccessToken: '',
-        instagramAccountId: '17841414293382471',
-        facebookPageId: '314659972759237',
-        metaAdAccountId: 'act_84991826',
-        tiktokAdvertiserId: '7334876328849670145',
-        tiktokPixelId: 'D80VAEJC77UDOFSGH9CG',
-        googleClientId: '172186546228-3ud7v5s4u6hq9dh8gkckm8fm3230104t.apps.googleusercontent.com',
-        googleApiKey: 'AIzaSyCJ_FCdnf7eIw4PBiXpPZKbR6TElJdRQb4',
-        googleAdsManagerId: '194-708-7119',
-        googleAdsCustomerId: '342-696-4788',
-        googleDeveloperToken: 'WPYB7j_A_fGEyfnk6yQgiw',
+        instagramAccountId: '',
+        facebookPageId: '',
+        metaAdAccountId: '',
+        tiktokAdvertiserId: '',
+        tiktokPixelId: '',
+        googleClientId: '',
+        googleApiKey: '',
+        googleAdsManagerId: '',
+        googleAdsCustomerId: '',
+        googleDeveloperToken: '',
         lastConnected: new Date().toISOString()
     };
 
