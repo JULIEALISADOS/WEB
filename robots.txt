@@ -1,4 +1,8 @@
 User-agent: *
+Disallow: /sistema-fichas-2024/
+Disallow: /js/
+Disallow: /api/
 Allow: /
+Allow: /ficha-tecnica.pdf
 
 Sitemap: https://juliealisados.com/sitemap.xml
