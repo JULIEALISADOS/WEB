@@ -2606,12 +2606,12 @@
                 if (!clientsData) clientsData = [];
                 window.allFichasData = clientsData;
 
-                // Renderizar módulos
-                renderDashboard();
-                renderClientsTable(clientsData);
-                renderFinanceModule();
-                renderAnalytics();
-                renderCMOModule();
+                // Renderizar módulos de forma aislada y segura
+                try { renderDashboard(); } catch(err) { console.error('Dashboard error:', err); }
+                try { renderClientsTable(clientsData); } catch(err) { console.error('Clients error:', err); }
+                try { renderFinanceModule(); } catch(err) { console.error('Finance error:', err); }
+                try { renderAnalytics(); } catch(err) { console.error('Analytics error:', err); }
+                try { renderCMOModule(); } catch(err) { console.error('CMO error:', err); }
                 
                 if (window.lucide) window.lucide.createIcons();
             } catch (e) {
@@ -2924,6 +2924,7 @@
             // 4. Tabla de Campañas
             renderCMOCampaignsTable(stats.campaigns);
         }
+        window.renderCMOModule = renderCMOModule;
 
         function renderCMODiagnostic() {
             const diag = JulieCMOEngine.generateDiagnostics(currentCMOTimeframe, clientsData);
@@ -4485,7 +4486,8 @@
             a.click();
         };
 
-        // Iniciar carga
+        // Iniciar carga inmediata
+        try { renderCMOModule(); } catch(e) { console.warn('CMO instant render:', e); }
         loadAdminData();
     </script>
 </body>
