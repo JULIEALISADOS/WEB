@@ -424,6 +424,12 @@
 </head>
 
 <body>
+    <!-- Barra Superior de Anuncios Pro (Top Announcement Bar) -->
+    <div class="top-announcement-bar" role="region" aria-label="Anuncios destacados">
+        <div class="announcement-item active" data-index="0">💳 <strong>¡Paga fácil y seguro!</strong> Aceptamos PSE, Nequi, Tarjetas, Efecty y Addi a cuotas.</div>
+        <div class="announcement-item" data-index="1">🌿 <strong>Fórmulas 100% Libres de Formol y Sal</strong> • Salud y Brillo Real para tu Cabello.</div>
+        <div class="announcement-item" data-index="2">📦 <strong>Despachos rápidos y seguros a toda Colombia</strong> • Asesoría personalizada por WhatsApp.</div>
+    </div>
     <!-- Distintivo Esquina: Bandera de Colombia (Corner Ribbon) -->
     <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.25));" title="Orgullo Colombiano • Julie Alisados" aria-label="Bandera de Colombia">
         <svg viewBox="0 0 52 52" width="36" height="36" style="display: block; width: 36px; height: 36px;" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -778,6 +784,19 @@
                 });
             });
         }
+    </script>
+    <script>
+        (function() {
+            const items = document.querySelectorAll('.top-announcement-bar .announcement-item');
+            if (items.length > 1) {
+                let currentIndex = 0;
+                setInterval(function() {
+                    items[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % items.length;
+                    items[currentIndex].classList.add('active');
+                }, 4000);
+            }
+        })();
     </script>
 </body>
 
