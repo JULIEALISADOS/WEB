@@ -368,21 +368,21 @@
 
         function showServiceResult() {
             var title = "Alisado Saludable Orgánico JA";
-            var desc = "Tu cabello es perfectamente apto para nuestro procedimiento insignia. Lograrás un liso perfecto, sellado de cutículas y brillo espejo sin agredir tu salud.";
-            var details = "<strong>Protocolo en Salón:</strong> Lavado de apertura + Aplicación de fórmula botánica + Aceleración con Fototerapia Láser + Cauterización térmica + Sellado de aminoácidos.";
+            var desc = "¡Tu cabello está listo para una transformación espectacular! En nuestras sedes de Boyacá aplicamos nuestra fórmula insignia 100% libre de formol con Fototerapia Láser, logrando un liso impecable de hasta el 100% con movimiento y brillo espejo.";
+            var details = "<strong>Tu Experiencia en Salón:</strong> Lavado preparatorio + Aplicación botánica nanotecnológica + Aceleración con Fototerapia Láser + Cauterización térmica + Sellado de aminoácidos.";
 
-                        if (serviceAnswers.history === 'natural') {
+            if (serviceAnswers.history === 'natural') {
                 title = "Alisado Saludable Orgánico (Cabello Natural)";
-                desc = "Tu cabello es 100% virgen y resistente. Es el candidato ideal para lograr un liso perfecto de hasta el 100%, con máxima soltura, movimiento natural y brillo de espejo sin formol.";
-                details = "<strong>Protocolo en Salón:</strong> Lavado preparatorio + Alisado orgánico botánico con nanotecnología + Fototerapia capilar láser + Cauterización térmica sellante.";
+                desc = "¡El candidato soñado para un resultado de revista! Al tener una fibra virgen, lograremos un liso perfecto, sellado total de cutículas y un brillo reflectante inigualable sin comprometer la salud de tu hebra.";
+                details = "<strong>Tu Experiencia en Salón:</strong> Diagnóstico personalizado + Alisado orgánico botánico + Fototerapia capilar láser + Cauterización térmica sellante.";
             } else if (serviceAnswers.elasticity === 'elastico' || serviceAnswers.history === 'decolorado') {
-                title = "Terapia Pre-Alisado + Reposición de Aminoácidos";
-                desc = "Debido a la decoloración o sensibilidad de tu hebra, te recomendamos realizar una sesión previa de reposición de aminoácidos o RCP para devolverle fuerza interna a tu cabello antes de alisar.";
-                details = "<strong>Protocolo Recomendado:</strong> Test de mechón en sede + Terapia de Restauración Profunda (RCP) + Crioterapia capilar para recuperar elasticidad.";
+                title = "Alisado Saludable con Blindaje de Aminoácidos";
+                desc = "¡Estás en las mejores manos expertas! En cabellos con procesos químicos o decoloración, aplicamos nuestro protocolo especializado con blindaje de aminoácidos y fototerapia para restaurar la fuerza interna de la hebra y entregarte un liso suave, resistente y radiante.";
+                details = "<strong>Tu Experiencia en Salón:</strong> Prueba de mechón + Infusión de aminoácidos y lípidos + Alisado orgánico sin formol + Crioterapia capilar para máximo brillo.";
             } else if (serviceAnswers.elasticity === 'seco') {
-                title = "Alisado Saludable + Terapia Choco-Fix";
-                desc = "Procedimiento ideal para aportar nutrición intensiva a las puntas mientras alisamos la fibra de raíz a puntas con efecto espejo.";
-                details = "<strong>Protocolo en Salón:</strong> Alisado orgánico sin formol + Shot de nutrición lipídica en puntas + Fototerapia capilar.";
+                title = "Alisado Saludable + Shot Nutritivo Choco-Fix";
+                desc = "¡La combinación perfecta de nutrición y liso espejo! Eliminaremos por completo la resequedad de las puntas mientras alisamos la fibra de raíz a puntas para un cabello sedoso y sin encrespamiento.";
+                details = "<strong>Tu Experiencia en Salón:</strong> Alisado orgánico nanotecnológico + Shot de nutrición lipídica en puntas + Fototerapia capilar fotónica.";
             }
 
             var locText = "Sede Seleccionada: " + serviceAnswers.location;
@@ -392,7 +392,7 @@
             document.getElementById('serviceResultDesc').textContent = desc;
             document.getElementById('serviceResultDetails').innerHTML = details;
 
-            var waMsg = "Hola Julie Alisados 👋 Hice la Valoración Capilar para Salón en la web. Mi cabello es *" + serviceAnswers.history + "*, estado *" + serviceAnswers.elasticity + "* y deseo agendar en *Sede " + serviceAnswers.location + "* para el servicio: *" + title + "* ✨";
+            var waMsg = "Hola Julie Alisados 👋 Hice la Valoración Capilar para Salón en la web. Mi cabello es *" + serviceAnswers.history + "*, estado *" + serviceAnswers.elasticity + "* y deseo asegurar mi cita en *Sede " + serviceAnswers.location + "* para el servicio: *" + title + "* ✨";
             document.getElementById('serviceWaBtn').href = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
         }
 
