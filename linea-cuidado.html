@@ -720,6 +720,97 @@
             display: block;
             animation: fadeIn 0.3s ease;
         }
+    
+        /* Estilos de PestaÃ±as directas en las Tarjetas de Producto */
+        .card-tabs-nav {
+            display: flex;
+            gap: 4px;
+            margin: 10px 0 10px;
+            background: #f8f6f2;
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .card-tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 6px 4px;
+            border-radius: 20px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .card-tab-btn:hover {
+            color: var(--gold-dark);
+        }
+
+        .card-tab-btn.active {
+            background: linear-gradient(135deg, #a45a76, #843b56) !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 6px rgba(164, 90, 118, 0.3);
+        }
+
+        .card-tab-pane {
+            display: none;
+            font-size: 0.85rem;
+            color: var(--light-text);
+            min-height: 110px;
+            margin-bottom: 12px;
+        }
+
+        .card-tab-pane.active {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .card-tab-pane ul {
+            padding-left: 16px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .card-tab-pane p {
+            margin: 0;
+            line-height: 1.45;
+            font-size: 0.82rem;
+        }
+
+        .card-actions-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .btn-card-pay {
+            background: linear-gradient(135deg, #009ee3, #007eb5);
+            color: #ffffff !important;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.86rem;
+            box-shadow: 0 3px 8px rgba(0,158,227,0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-card-pay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,158,227,0.35);
+        }
     </style>
     <!-- Event snippet for WhatsApp Contact conversion page -->
     <script>
@@ -848,204 +939,437 @@
                 El secreto de un cabello verdaderamente sano y radiante no está en fórmulas mágicas, sino en darle a tu cuero cabelludo y a tu fibra capilar exactamente lo que necesitan. En <strong>JA By Julie Valencia</strong> desarrollamos una línea profesional especializada con fórmulas limpias, 100% libres de sal y parabenos, diseñada tanto para cuidar y prolongar tus alisados, como para transformar y embellecer el cabello natural, tinturado o maltratado con resultados de salón en casa.
             </p>
 
-            <div class="product-grid">
+                        <div class="product-grid">
                 <!-- COMBO 1. EXTRACTOS NATURALES -->
-                <div class="product-card-large" data-name="Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)" data-price="74000" data-img="combo extractos.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60" data-details="🌿 **DÚO BOTÁNICO PURIFICANTE Y CONTROL DE GRASA — MARCA JA BY JULIE VALENCIA (1000 ml c/u)**&#10;&#10;¿Sientes que tu raíz se engrasa rápido o tu cabello pierde movimiento? Este dúo profesional combina el poder de 12 extractos naturales botánicos para equilibrar el cuero cabelludo sin resecar las puntas. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cuero cabelludo de normal a graso, raíces que se ensucian rápido o con exceso de sudor y polución. Apto para cabellos naturales o con alisados.&#10;&#10;🍃 **Poder Botánico Activo (12 Extractos Seleccionados):**&#10;• **Romero:** Reactiva la microcirculación del folículo piloso, estimula el crecimiento y fortalece la raíz contra la caída.&#10;• **Aloe Vera (Sábila):** Hidrata a profundidad, aporta vitaminas A, C y E, y calma irritaciones o picores.&#10;• **Manzanilla:** Realza los reflejos dorados y el brillo natural del cabello con suavidad extrema.&#10;• **Ortiga:** Potente regulador sebáceo natural que purifica el folículo y previene la caspa.&#10;• **Cola de Caballo y Quina:** Ricas en silicio orgánico y minerales que aportan fuerza y elasticidad.&#10;• **Caléndula:** Regenerador celular natural que protege el cabello contra agresiones ambientales.&#10;• **Té Verde:** Escudo antioxidante que previene el envejecimiento capilar y elimina residuos de polución.&#10;&#10;✨ **Beneficios Extraordinarios para tu Cabello:**&#10;• **Raíz fresca, limpia y suelta por más días:** Dile adiós a la pesadez y a la grasa acumulada.&#10;• **Desenredo instantáneo sin tirones:** El acondicionador sella la cutícula y suaviza al instante sin dejar sensación pegajosa.&#10;• **Movimiento natural y soltura total:** Cabello liviano, sedoso y con volumen controlado.&#10;• **Protección del color y del alisado:** Su fórmula sin sal ni sulfatos agresivos prolonga la vida de tus tratamientos.&#10;• **Presentación Profesional de Alto Rendimiento:** 2.000 ml en total (1.000 ml c/u) para meses continuos de cuidado en casa." onclick="openProductModal(this)">
-                    <div class="product-image-container">
+                <div class="product-card-large" data-name="Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)" data-price="74000" data-img="combo extractos.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="combo extractos.jpeg" alt="Combo Shampoo + Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
                     <div class="product-info">
                         <h3>Combo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml c/u)</span></h3>
                         <span class="product-price">$74.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Dúo Botánico Purificante (2.000 ml en total)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌿 12 Extractos botánicos (Romero, Ortiga, Sábila, Té Verde).</li>
-                            <li>✨ Raíz fresca y limpia por más días sin resecar puntas.</li>
-                            <li>🚿 Desenredo instantáneo sin tirones y soltura total sin peso.</li>
-                            <li>💧 100% Libre de sal, sulfatos agresivos y parabenos.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">DÃºo BotÃ¡nico Purificante (2.000 ml)</p>
+                        
+                        <!-- PestaÃ±as en la Tarjeta -->
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ¿ 12 Extractos naturales (Romero, Ortiga, SÃ¡bila, TÃ© Verde).</li>
+                                <li>âœ¨ RaÃ­z fresca y limpia por mÃ¡s dÃ­as sin resecar puntas.</li>
+                                <li>ðŸš¿ Desenredo instantÃ¡neo sin tirones y soltura total.</li>
+                                <li>ðŸ’§ 100% Libre de sal, sulfatos pesados y parabenos.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p><strong>1. Shampoo:</strong> Masajea suavemente el cuero cabelludo mojado durante 2 min y enjuaga.<br><strong>2. Acondicionador:</strong> Aplica de medios a puntas, deja actuar 2 a 3 min para sellar y enjuaga al 100%.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>âœ¨ <strong>Ideal para:</strong> Cabellos con alisado o naturales. Su fÃ³rmula sin sal prolonga la duraciÃ³n del liso. Rinde de 3 a 5 meses de uso continuo (2.000 ml en total).</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- COMBO 2. ACEITE DE ARGÁN -->
-                <div class="product-card-large" data-name="Combo Aceite de Argán JA By Julie Valencia (500 ml c/u)" data-price="70000" data-img="combo argan.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260" data-details="✨ **DÚO DE RESCATE Y NUTRICIÓN INTENSIVA CON BIOTINA Y ÁCIDO HIALURÓNICO — MARCA JA BY JULIE VALENCIA (500 ml c/u)**&#10;&#10;El tratamiento restaurador definitivo para cabello seco, poroso o maltratado por químicos y calor. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cuero cabelludo de normal a seco, cabellos secos, quebradizos, deshidratados, opacos, decolorados, tinturados o con alisados continuos.&#10;&#10;💎 **Trilogía de Activos Magistrales:**&#10;• **Aceite de Argán Puro (Oro Líquido de Marruecos):** Rico en ácidos grasos esenciales (Omega 6 y 9) y Vitamina E; sella la cutícula, repara la aspereza y aporta brillo espejo.&#10;• **Biotina (Vitamina B7):** Reconstruye la estructura proteica del cabello, aumentando la resistencia y evitando el quiebre al cepillar.&#10;• **Ácido Hialurónico:** Atrapa la humedad interna, rellena las zonas porosas y elimina el encrespamiento por completo.&#10;&#10;✨ **Beneficios Extraordinarios para tu Cabello:**&#10;• **Brillo de Revista (Efecto Espejo):** Transforma el cabello opaco en un cabello radiante y luminoso.&#10;• **Fuerza Anti-Quiebre Inmediata:** Disminuye drásticamente los cabellos partidos al peinar o secar.&#10;• **Control Total del Frizz y la Porosidad:** Mantiene el cabello disciplinado y alineado incluso en climas húmedos.&#10;• **Tacto Aterciopelado:** Suavidad extrema de raíz a puntas desde la primera aplicación.&#10;• **Fórmula Concentrada:** Textura rica y nutritiva de alto rendimiento (1.000 ml en total)." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="combo argan.jpeg" alt="Combo Shampoo + Acondicionador Aceite de Argán JA By Julie Valencia">
+                <!-- COMBO 2. ACEITE DE ARGÃN -->
+                <div class="product-card-large" data-name="Combo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml c/u)" data-price="70000" data-img="combo argan.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="combo argan.jpeg" alt="Combo Shampoo + Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Combo Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml c/u)</span></h3>
+                        <h3>Combo Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml c/u)</span></h3>
                         <span class="product-price">$70.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Dúo Nutrición y Rescate Anti-Quiebre (1.000 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌰 Argán Puro + Biotina Fortalecedora + Ácido Hialurónico.</li>
-                            <li>🪞 Brillo efecto espejo de salón y tacto aterciopelado.</li>
-                            <li>🛡️ Frena el quiebre al cepillar y rellena la porosidad.</li>
-                            <li>💧 100% Libre de sal y parabenos (cuida tintes y alisados).</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">DÃºo NutriciÃ³n y Rescate Anti-Quiebre (1.000 ml)</p>
+                        
+                        <!-- PestaÃ±as en la Tarjeta -->
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ° ArgÃ¡n Puro + Biotina Fortalecedora + Ãcido HialurÃ³nico.</li>
+                                <li>ðŸªž Brillo efecto espejo de salÃ³n y tacto aterciopelado.</li>
+                                <li>ðŸ›¡ï¸ Frena el quiebre al cepillar y rellena la porosidad.</li>
+                                <li>ðŸ’§ 100% Libre de sal y parabenos (cuida tintes y alisados).</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p><strong>1. Shampoo:</strong> Aplica sobre raÃ­z hÃºmeda, masajea y enjuaga.<br><strong>2. Acondicionador:</strong> Aplica de medios a puntas, desenreda suavemente, deja 3 min y enjuaga.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸ’Ž <strong>Activos:</strong> El Ãcido HialurÃ³nico retiene la humedad mientras el ArgÃ¡n sella la cutÃ­cula contra la humedad y el frizz. Ideal para cabellos tinturados o con mechas.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 1. SHAMPOO EXTRACTOS -->
-                <div class="product-card-large" data-name="Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="38000" data-img="SHAMPOO EXTRACTOS ..jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f" data-details="🌿 **SHAMPOO BOTÁNICO PURIFICANTE Y CONTROL DE GRASA — MARCA JA BY JULIE VALENCIA (1000 ml)**&#10;&#10;Fórmula botánica con 12 extractos naturales diseñada para equilibrar el cuero cabelludo y oxigenar los poros sin resecar las puntas. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cuero cabelludo con tendencia de normal a graso, acumulación diaria de sudor, grasa o polución. Apto para todo tipo de cabello.&#10;&#10;🍃 **Ingredientes Botánicos Activos:**&#10;• **Romero y Ortiga:** Purifican la raíz, oxigenan los folículos y regulan la producción excesiva de grasa.&#10;• **Aloe Vera y Manzanilla:** Hidratan el cuero cabelludo y calman cualquier enrojecimiento o picor.&#10;• **Té Verde y Cola de Caballo:** Aportan antioxidantes y minerales que fortalecen el nacimiento del cabello.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Limpieza Profunda pero Amable:** Remueve impurezas sin dejar el cabello áspero ni reseco.&#10;• **Sensación de Frescura Prolongada:** Raíz limpia y suelta que dura más días.&#10;• **Cabello Liviano con Movimiento:** No apelmaza ni resta volumen natural.&#10;• **Protección Total:** Libre de sal para no degradar tratamientos ni tinturas.&#10;• **Presentación Profesional:** 1.000 ml de fórmula concentrada de alto rendimiento." onclick="openProductModal(this)">
-                    <div class="product-image-container">
+                <div class="product-card-large" data-name="Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="38000" data-img="SHAMPOO EXTRACTOS ..jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="SHAMPOO EXTRACTOS ..jpeg" alt="Shampoo Extractos Naturales JA By Julie Valencia">
                     </div>
                     <div class="product-info">
                         <h3>Shampoo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$38.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Purificante y Control Grasa (1.000 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌿 12 Extractos naturales (Romero, Ortiga, Sábila, Té Verde).</li>
-                            <li>🧼 Limpieza profunda y oxigenación sin resecar puntas.</li>
-                            <li>💨 Raíz fresca y suelta por más días sin sal ni parabenos.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Purificante y Control Grasa (1.000 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ¿ Romero, Ortiga, SÃ¡bila, TÃ© Verde y Manzanilla.</li>
+                                <li>ðŸ§¼ Limpieza profunda y oxigenaciÃ³n sin resecar puntas.</li>
+                                <li>ðŸ’¨ RaÃ­z fresca y suelta por mÃ¡s dÃ­as sin sal ni parabenos.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Aplica sobre cabello mojado. Realiza un suave masaje circular en el cuero cabelludo por 2 min y retira con abundante agua fresca.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸƒ FÃ³rmula de pH balanceado sin sal aÃ±adida. No barre los tratamientos de alisado ni deteriora tinturas.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 2. ACONDICIONADOR EXTRACTOS -->
-                <div class="product-card-large" data-name="Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6" data-details="🌿 **ACONDICIONADOR DESENREDO E HIDRATACIÓN LIGERA — MARCA JA BY JULIE VALENCIA (1000 ml)**&#10;&#10;Sella la cutícula, desenreda al instante y controla el frizz sin restar volumen ni aportar peso graso. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Todo tipo de cabello que requiera desenredo fácil, suavidad y control de frizz sin sensación pesada ni grasosa.&#10;&#10;🍃 **Ingredientes Botánicos Activos:**&#10;• **Extracto de Aloe Vera:** Hidratación equilibrada de medios a puntas.&#10;• **Caléndula y Manzanilla:** Suavizan la fibra capilar y potencian el brillo natural.&#10;• **Proteínas Vegetales Acondicionadoras:** Alisan la cutícula y previenen las puntas abiertas.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Desenredo Inmediato sin Dolor ni Tirones:** El cepillo resbala suavemente sin partir el cabello.&#10;• **Movimiento y Cero Peso:** Mantiene la ligereza y el movimiento natural de tu cabello.&#10;• **Control Efectivo del Frizz:** Sella la cutícula dejando el cabello disciplinado y sedoso.&#10;• **Presentación Profesional:** 1.000 ml de crema suave y rendidora." onclick="openProductModal(this)">
-                    <div class="product-image-container">
+                <div class="product-card-large" data-name="Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR EXTRACTOS.jpeg" alt="Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
                     <div class="product-info">
                         <h3>Acondicionador Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$39.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Desenredo Ligero y Cero Frizz (1.000 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌸 Con Aloe Vera, Caléndula y Manzanilla suavizante.</li>
-                            <li>🚿 Desenredo instantáneo sin tirones ni quiebre.</li>
-                            <li>✨ Sella cutícula y elimina el frizz sin aportar peso ni grasa.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Desenredo Ligero y Cero Frizz (1.000 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ¸ Con Aloe Vera, CalÃ©ndula y Manzanilla suavizante.</li>
+                                <li>ðŸš¿ Desenredo instantÃ¡neo sin tirones ni quiebre.</li>
+                                <li>âœ¨ Sella cutÃ­cula y elimina el frizz sin aportar peso ni grasa.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Tras el shampoo, retira el exceso de agua y aplica de medios a puntas. Deja actuar 2 a 3 min y enjuaga completamente con agua fresca.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>âœ¨ Previene la formaciÃ³n de horquillas y facilita el peinado diario dejando el cabello suave y liviano.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 3. SHAMPOO ARGÁN -->
-                <div class="product-card-large" data-name="Shampoo Aceite de Argán JA By Julie Valencia (500 ml)" data-price="36000" data-img="SHAMPOO DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96" data-details="✨ **SHAMPOO NUTRICIÓN ANTI-QUIEBRE CON BIOTINA Y ARGÁN — MARCA JA BY JULIE VALENCIA (500 ml)**&#10;&#10;Limpieza suave y reconstituyente formulada especialmente para cabellos secos o castigados por procesos químicos. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cuero cabelludo normal a seco, cabellos secos, quebradizos, tinturados, decolorados o con alisados continuos.&#10;&#10;💎 **Ingredientes Activos Magistrales:**&#10;• **Aceite de Argán Puro:** Aporta nutrición lipídica profunda y vitaminas para reparar el cabello reseco.&#10;• **Biotina Fortalecedora:** Refuerza los puentes proteicos para evitar la caída por quiebre al cepillar.&#10;• **Agentes Limpiadores Suaves:** Respetan y protegen la barrera lipídica del cuero cabelludo.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Lavado Nutritivo y Suave:** Limpia delicadamente sin agredir ni despojar la hidratación natural.&#10;• **Fibra Capilar Reforzada:** Mayor elasticidad y firmeza contra la rotura.&#10;• **Brillo y Vitalidad:** Devuelve la luz y suavidad al cabello opaco.&#10;• **Fórmula Concentrada:** Espuma cremosa de alto rendimiento (500 ml)." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="SHAMPOO DE ARGAN.jpeg" alt="Shampoo Aceite de Argán JA By Julie Valencia">
+                <!-- 3. SHAMPOO ARGÃN -->
+                <div class="product-card-large" data-name="Shampoo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)" data-price="36000" data-img="SHAMPOO DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="SHAMPOO DE ARGAN.jpeg" alt="Shampoo Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Shampoo Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$36.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Nutrición Anti-Quiebre con Biotina (500 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌰 Aceite de Argán Puro + Biotina fortalecedora.</li>
-                            <li>💪 Frena el quiebre al cepillar y fortalece la raíz.</li>
-                            <li>💧 Limpieza cremosa que hidrata el cuero cabelludo seco.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">NutriciÃ³n Anti-Quiebre con Biotina (500 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ° Aceite de ArgÃ¡n Puro + Biotina fortalecedora.</li>
+                                <li>ðŸ’ª Frena el quiebre al cepillar y fortalece la raÃ­z.</li>
+                                <li>ðŸ’§ Limpieza cremosa que hidrata el cuero cabelludo seco.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Aplica sobre cabello hÃºmedo, distribuye con suave masaje circular en el cuero cabelludo y enjuaga con abundante agua.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸŒ° La Biotina refuerza los puentes proteicos para evitar que el cabello se parta al desenredar o cepillar.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 4. ACONDICIONADOR ARGÁN -->
-                <div class="product-card-large" data-name="Acondicionador Aceite de Argán JA By Julie Valencia (500 ml)" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb" data-details="💎 **ACONDICIONADOR RECONSTRUCCIÓN CON ÁCIDO HIALURÓNICO Y ARGÁN — MARCA JA BY JULIE VALENCIA (500 ml)**&#10;&#10;Nutrición intensiva para reparar la porosidad y transformar cabellos secos o castigados. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cabellos secos, porosos, decolorados, tinturados o con frizz rebelde que necesitan máxima suavidad y nutrición.&#10;&#10;💎 **Ingredientes Activos Magistrales:**&#10;• **Ácido Hialurónico:** Rellena las micro-fisuras de la fibra capilar, atrapando la hidratación profunda.&#10;• **Aceite de Argán:** Nutre intensamente y sella las escamas de la cutícula para un brillo deslumbrante.&#10;• **Complejo Anti-Frizz:** Elimina la estática y la textura áspera.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Sellado de Cutículas y Puntas:** Acabado liso, uniforme y pulido sin puntas abiertas.&#10;• **Control Total del Frizz:** Mantiene el cabello alineado incluso en climas húmedos.&#10;• **Tacto Aterciopelado Inmediato:** El cabello se siente como seda al tacto.&#10;• **Brillo Espejo Radiante:** Refleja la luz de forma espectacular." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="ACONDICIONADOR ARGAN.jpeg" alt="Acondicionador Aceite de Argán JA By Julie Valencia">
+                <!-- 4. ACONDICIONADOR ARGÃN -->
+                <div class="product-card-large" data-name="Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="ACONDICIONADOR ARGAN.jpeg" alt="Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Acondicionador Aceite de Argán <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Acondicionador Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$37.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Reconstrucción y Ácido Hialurónico (500 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>💧 Ácido Hialurónico que rellena la fibra porosa.</li>
-                            <li>🌰 Argán que sella puntas abiertas y aporta brillo espejo.</li>
-                            <li>✨ Tacto aterciopelado y control total del encrespamiento.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">ReconstrucciÃ³n y Ãcido HialurÃ³nico (500 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸ’§ Ãcido HialurÃ³nico que rellena la fibra porosa.</li>
+                                <li>ðŸŒ° ArgÃ¡n que sella puntas abiertas y aporta brillo espejo.</li>
+                                <li>âœ¨ Tacto aterciopelado y control total del encrespamiento.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Aplica de medios a puntas sobre el cabello limpio y hÃºmedo. Deja actuar 3 a 5 min para nutriciÃ³n profunda y enjuaga.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸªž Sella las cutÃ­culas protegiendo la hidrataciÃ³n interna contra el clima frÃ­o y la humedad.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 5. MASCARILLA ORO LÍQUIDO -->
-                <div class="product-card-large" data-name="Mascarilla Capilar Oro Líquido JA By Julie Valencia (250 ml)" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8" data-details="👑 **TRATAMIENTO INTENSIVO Y PRE-SHAMPOO CON JOJOBA Y KERATINA — MARCA JA BY JULIE VALENCIA (250 ml)**&#10;&#10;El rescate semanal de spa en casa para devolverle la vida y elasticidad a cabellos maltratados o apagados. 100% LIBRE DE SAL Y PARABENOS.&#10;&#10;• **Para quién es:** Cualquier tipo de cabello que necesite nutrición profunda, rescate de elasticidad y sellado de puntas.&#10;&#10;🌟 **Ingredientes Activos Magistrales:**&#10;• **Aceite de Jojoba:** Aceite vegetal biomimético que penetra al corazón del cabello sin engrasar.&#10;• **Keratina Hidrolizada:** Reconstruye la estructura proteica desgastada por tintes o herramientas de calor.&#10;• **Vitamina E:** Potente escudo antioxidante que previene el envejecimiento capilar.&#10;&#10;👑 **Doble Uso Profesional (Máxima Versatilidad):**&#10;• **1. Como Pre-Shampoo Protector:** Aplica de medios a puntas 15 minutos antes de lavar para proteger las puntas de la fricción del agua y shampoo.&#10;• **2. Como Mascarilla Intensiva Semanal:** Aplica tras el lavado, deja actuar 20 minutos y enjuaga para una hidratación profunda de spa.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Recuperación de Elasticidad:** Previene el quiebre y fortalece la fibra.&#10;• **Suavidad Sedosa de Revista:** Acabado ultra suave y brillo luminoso de salón." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="MASCARILLA ORO LIQUIDO.jpeg" alt="Mascarilla Capilar Oro Líquido JA By Julie Valencia">
+                <!-- 5. MASCARILLA ORO LÃQUIDO -->
+                <div class="product-card-large" data-name="Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia (250 ml)" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="MASCARILLA ORO LIQUIDO.jpeg" alt="Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Mascarilla Capilar Oro Líquido <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
+                        <h3>Mascarilla Capilar Oro LÃ­quido <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Tratamiento Dual Jojoba y Keratina (250 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🥑 Aceite de Jojoba + Keratina Hidrolizada + Vitamina E.</li>
-                            <li>🛡️ Uso Pre-Shampoo (protege puntas) o Mascarilla de 20 min.</li>
-                            <li>👑 Devuelve la elasticidad perdida y elimina la aspereza.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Tratamiento Dual Jojoba y Keratina (250 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸ¥‘ Aceite de Jojoba + Keratina Hidrolizada + Vitamina E.</li>
+                                <li>ðŸ›¡ï¸ Uso Pre-Shampoo (protege puntas) o Mascarilla de 20 min.</li>
+                                <li>ðŸ‘‘ Devuelve la elasticidad perdida y elimina la aspereza.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p><strong>Semanal:</strong> Aplica de medios a puntas tras el shampoo, deja 15-20 min y enjuaga.<br><strong>Pre-Shampoo:</strong> Aplica en puntas secas 15 min antes de baÃ±arte.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸŒŸ Contiene micro-partÃ­culas doradas y aceite de jojoba puro que penetran al corazÃ³n de la fibra sin engrasar.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 6. TRATAMIENTO MULTIACTIVO -->
-                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)" data-price="36000" data-img="MASCARILLA MULTIACTIVA.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501" data-details="🌟 **ESCUDO MULTIBENEFICIOS CON 12 ACTIVOS PODEROSOS — MARCA JA BY JULIE VALENCIA (300 ml)**&#10;&#10;Fórmula inteligente todo en uno que acondiciona, protege y embellece cualquier tipo de cabello día tras día.&#10;&#10;• **Para quién es:** Todo tipo de cabello (natural, liso, ondulado, crespo o tinturado) para usar después de cada lavado.&#10;&#10;✨ **12 Activos Magistrales:**&#10;• **Keratina Hidrolizada + Colágeno Vegetal:** Reconstrucción, cuerpo y elasticidad.&#10;• **Aceite de Argán + Coco + Algodón + Manteca de Karité:** Nutrición intensiva y sellado anti-sequedad.&#10;• **Biotina + Pantenol (Pro-Vitamina B5):** Fuerza, crecimiento sano e hidratación prolongada.&#10;• **Aloe Vera + Té Verde + Vitamina E:** Antioxidantes y purificación botánica.&#10;• **Filtro Solar UV:** Escudo contra el daño solar y la pérdida de color.&#10;&#10;✨ **12 Beneficios Extraordinarios en 1 Solo Paso:**&#10;• 1. Desenredo instantáneo sin tirones.&#10;• 2. Control absoluto del encrespamiento (anti-frizz).&#10;• 3. Sellado y protección de puntas abiertas.&#10;• 4. Brillo radiante y luminosidad duradera.&#10;• 5. Protección térmica ligera antes del secador.&#10;• 6. Hidratación continua durante todo el día.&#10;• 7. Mayor elasticidad y resistencia anti-rotura.&#10;• 8. Suavidad sedosa al tacto.&#10;• 9. Protección solar contra rayos UV.&#10;• 10. Aporte de cuerpo y soltura sin apelmazar.&#10;• 11. Acción antioxidante contra la polución.&#10;• 12. Prevención del envejecimiento capilar." onclick="openProductModal(this)">
-                    <div class="product-image-container">
+                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)" data-price="36000" data-img="MASCARILLA MULTIACTIVA.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="MASCARILLA MULTIACTIVA.jpeg" alt="Tratamiento Multiactivo 12 Ingredientes JA By Julie Valencia">
                     </div>
                     <div class="product-info">
                         <h3>Tratamiento Multiactivo 12-en-1 <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(300 ml)</span></h3>
                         <span class="product-price">$36.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Crema Multibeneficios 12-en-1 (300 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌟 12 Activos (Keratina, Argán, Biotina, Colágeno, Filtro UV).</li>
-                            <li>✨ 12 Beneficios: desenreda, repara, nutre y frena el frizz.</li>
-                            <li>☀️ Protección diaria contra el sol, calor y polución.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Crema Multibeneficios 12-en-1 (300 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒŸ 12 Activos (Keratina, ArgÃ¡n, Biotina, ColÃ¡geno, Filtro UV).</li>
+                                <li>âœ¨ 12 Beneficios: desenreda, repara, nutre y frena el frizz.</li>
+                                <li>â˜€ï¸ ProtecciÃ³n diaria contra el sol, calor y poluciÃ³n.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Aplica una pequeÃ±a cantidad de medios a puntas sobre el cabello limpio y hÃºmedo despuÃ©s del lavado. Peina de forma habitual.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>â˜€ï¸ Su filtro solar UV previene el desgaste del color y la deshidrataciÃ³n producida por el sol y la poluciÃ³n.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 7. AMPOLLA REPARACIÓN S.O.S. -->
-                <div class="product-card-large" data-name="Ampolla de Reparación S.O.S. JA By Julie Valencia (20 ml)" data-price="16000" data-img="AMPOLLA SOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd" data-details="💉 **ELIXIR CONCENTRADO DE RESCATE CAPILAR INMEDIATO — MARCA JA BY JULIE VALENCIA (20 ml)**&#10;&#10;Dosis intensiva de choque para reconstruir la estructura capilar en minutos tras decoloraciones o abuso de calor.&#10;&#10;• **Para quién es:** Cabellos en estado de emergencia, elásticos, con efecto chicle, quebradizos, porosos o quemados por calor o químicos.&#10;&#10;🧬 **Ingredientes Activos Magistrales:**&#10;• **Complejo de Aminoácidos Concentrados (Arginina, Cisteína, Serina):** Moléculas microscópicas que rellenan el córtex capilar dañado al instante.&#10;• **Lípidos Restauradores:** Refuerzan la cutícula y reponen la masa perdida.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Rescate Inmediato en Minutos:** Devuelve la firmeza y elimina la textura gomosa o elástica.&#10;• **Freno Inmediato al Quiebre:** Evita que el cabello se siga partiendo.&#10;• **Sellado Profundo de Cutículas:** Restaura la suavidad y el brillo natural.&#10;• **Aplicación:** De 1 a 2 aplicaciones dependiendo del estado y tipo de cabello." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="AMPOLLA SOS.jpeg" alt="Ampolla de Reparación S.O.S. JA By Julie Valencia">
+                <!-- 7. AMPOLLA REPARACIÃ“N S.O.S. -->
+                <div class="product-card-large" data-name="Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia (20 ml)" data-price="16000" data-img="AMPOLLA SOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="AMPOLLA SOS.jpeg" alt="Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Ampolla de Reparación S.O.S. <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
+                        <h3>Ampolla de ReparaciÃ³n S.O.S. <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
                         <span class="product-price">$16.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Rescate de Emergencia Anti-Chicle (20 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🧬 Dosis concentrada de Aminoácidos (Arginina, Cisteína).</li>
-                            <li>🚨 Elimina el efecto chicle y frena el quiebre al instante.</li>
-                            <li>🧴 De 1 a 2 aplicaciones según el estado y tipo de cabello.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Rescate de Emergencia Anti-Chicle (20 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸ§¬ Dosis concentrada de AminoÃ¡cidos (Arginina, CisteÃ­na).</li>
+                                <li>ðŸš¨ Elimina el efecto chicle y frena el quiebre al instante.</li>
+                                <li>ðŸ§´ De 1 a 2 aplicaciones segÃºn el estado y tipo de cabello.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Lava con shampoo, retira exceso de agua y aplica de medios a puntas masajeando suavemente. Deja 10-15 min y enjuaga.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸ§¬ Tratamiento intensivo de rescate para aplicar cada 15 dÃ­as en cabellos sensibilizados por decoloraciÃ³n.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 8. TERMOPROTECTOR Y PERFUME -->
-                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)" data-price="35000" data-img="TERMOPROTECTOR.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2" data-details="🔥 **ESCUDO PROTECTOR ANTI-DAÑO + PERFUME CAPILAR DE LUJO — MARCA JA BY JULIE VALENCIA (250 ml)**&#10;&#10;Tu mejor aliado para reducir el daño térmico y ambiental mientras envuelve tu cabello en una fragancia irresistible.&#10;&#10;• **Para quién es:** Indispensable para toda persona que use secador, plancha, pinzas o se exponga al sol y a la polución.&#10;&#10;🛡️ **Propiedades y Beneficios Magistrales:**&#10;• **Reduce el Daño por Calor:** Ayuda a minimizar el impacto del calor de la plancha y el secador, protegiendo la fibra capilar de la resequedad y el quiebre.&#10;• **Protección contra el Sol y la Polución:** Su filtro UV y escudo protector previenen la oxidación del color, el marchitamiento y los efectos del ambiente.&#10;• **Perfume Capilar de Lujo:** Fragancia fina con tecnología anti-olor que neutraliza el humo, grasa o sudor dejando un aroma delicioso sin engrasar.&#10;• **Brillo y Suavidad Sedosa:** Facilita el deslizamiento del cepillo y la plancha, dejando un acabado sedoso y con movimiento natural.&#10;• **Modo de uso:** Rocía a 20 cm sobre el cabello húmedo antes de secar, o seco antes de planchar o salir al sol." onclick="openProductModal(this)">
-                    <div class="product-image-container">
+                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)" data-price="35000" data-img="TERMOPROTECTOR.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="TERMOPROTECTOR.jpeg" alt="Termoprotector y Perfume Capilar JA By Julie Valencia">
                     </div>
                     <div class="product-info">
                         <h3>Termoprotector y Perfume Capilar <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Protector Térmico y Solar + Perfume Fino (250 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🔥 Ayuda a reducir el daño por calor de la plancha y el secador.</li>
-                            <li>☀️ Escudo protector contra el sol y la polución diaria.</li>
-                            <li>🌸 Perfuma tu cabello y neutraliza olores todo el día sin engrasar.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Protector TÃ©rmico y Solar + Perfume Fino (250 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸ”¥ Ayuda a reducir el daÃ±o por calor de la plancha y el secador.</li>
+                                <li>â˜€ï¸ Escudo protector contra el sol y la poluciÃ³n diaria.</li>
+                                <li>ðŸŒ¸ Perfuma tu cabello y neutraliza olores todo el dÃ­a sin engrasar.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Atomiza a 20 cm sobre cabello hÃºmedo antes del secador, o sobre seco antes de planchar o salir a la calle.</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸŒ¸ TecnologÃ­a anti-humo y anti-grasa: mantiene tu cabello oliendo delicioso a reciÃ©n lavado sin aportar peso.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 9. ACEITE REPARADOR -->
-                <div class="product-card-large" data-name="Aceite Reparador de Argán y Macadamia JA By Julie Valencia (60 ml)" data-price="28000" data-img="ACEITE DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6" data-details="✨ **ELIXIR DE SELLADO, NUTRICIÓN Y BRILLO ESPEJO — MARCA JA BY JULIE VALENCIA (60 ml)**&#10;&#10;Gotas de nutrición seca que combinan el poder del Argán y la Nuez de Macadamia para el toque final perfecto de cualquier peinado.&#10;&#10;• **Para quién es:** Todo tipo de cabello para controlar el frizz, nutrir las puntas resecas y aportar brillo en cualquier momento del día.&#10;&#10;🌰 **Ingredientes y Propiedades Magistrales:**&#10;• **Aceite de Argán Puro Micro-Refinado:** Rico en Omega 6, 9 y Vitamina E; sella la cutícula y repara la aspereza.&#10;• **Aceite de Nuez de Macadamia (Omega 7):** Lípido biomimético que penetra al instante en el cabello sin dejar sensación grasa, aportando elasticidad y nutrición profunda.&#10;• **Siliconas Volátiles de Seda:** Aportan un acabado seco, ligero y sedoso sin dejar las manos ni el cabello grasoso.&#10;&#10;✨ **Beneficios Extraordinarios:**&#10;• **Brillo Espejo Deslumbrante:** Acabado de revista y luminosidad al instante.&#10;• **Sellado Visual y Reparador de Puntas Abiertas:** Disimula las horquillas y elimina la textura áspera.&#10;• **Escudo Anti-Frizz:** Elimina los cabellos rebeldes sueltos con solo 2 o 3 gotas.&#10;• **Fórmula Ultra Concentrada:** Rinde meses gracias a su alta pureza." onclick="openProductModal(this)">
-                    <div class="product-image-container">
-                        <img loading="lazy" decoding="async" src="ACEITE DE ARGAN.jpeg" alt="Aceite Reparador de Argán y Macadamia JA By Julie Valencia">
+                <div class="product-card-large" data-name="Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia (60 ml)" data-price="28000" data-img="ACEITE DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6">
+                    <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
+                        <img loading="lazy" decoding="async" src="ACEITE DE ARGAN.jpeg" alt="Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Aceite Reparador de Argán y Macadamia <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
+                        <h3>Aceite Reparador de ArgÃ¡n y Macadamia <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
                         <span class="product-price">$28.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 6px;">Sellador de Puntas, Nutrición y Brillo Espejo (60 ml)</p>
-                        <ul style="font-size: 0.88rem; color: var(--light-text); padding-left: 18px; margin-bottom: 12px; line-height: 1.4;">
-                            <li>🌰 Dúo de Argán Puro y Nuez de Macadamia con tacto seco.</li>
-                            <li>✂️ Sella puntas abiertas y disimula horquillas al instante.</li>
-                            <li>🪞 Brillo espejo deslumbrante y anti-frizz con solo 2 a 3 gotas.</li>
-                        </ul>
-                        <button class="btn-details-trigger" style="margin-top: 5px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Sellador de Puntas, NutriciÃ³n y Brillo Espejo (60 ml)</p>
+                        
+                        <div class="card-tabs-nav">
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                        </div>
+                        <div class="card-tab-pane active" data-pane="desc">
+                            <ul>
+                                <li>ðŸŒ° DÃºo de ArgÃ¡n Puro y Nuez de Macadamia con tacto seco.</li>
+                                <li>âœ‚ï¸ Sella puntas abiertas y disimula horquillas al instante.</li>
+                                <li>ðŸªž Brillo espejo deslumbrante y anti-frizz con solo 2 a 3 gotas.</li>
+                            </ul>
+                        </div>
+                        <div class="card-tab-pane" data-pane="usage">
+                            <p>Aplica 2 a 3 gotas en las palmas, frota para activar y distribuye en las puntas (con cabello hÃºmedo o seco).</p>
+                        </div>
+                        <div class="card-tab-pane" data-pane="more">
+                            <p>ðŸŒ° FÃ³rmula ultra concentrada de tacto seco: no engrasa las manos ni apelmaza el cabello.</p>
+                        </div>
+
+                        <div class="card-actions-wrapper">
+                            <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6" target="_blank" class="btn-card-pay">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                Pagar con PSE / Nequi / Addi
+                            </a>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1361,6 +1685,25 @@
                 more: "🌰 <strong>Te Contamos Más:</strong><br><br>• Fórmula ultra concentrada de tacto seco: no engrasa las manos ni deja el cabello pesado."
             }
         };
+
+                // FunciÃ³n para cambiar de pestaÃ±a directamente en la tarjeta de producto
+        function switchCardTab(button, tabKey) {
+            const card = button.closest('.product-card-large');
+            if (!card) return;
+
+            // Actualizar botones de esa tarjeta
+            card.querySelectorAll('.card-tab-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Actualizar paneles de esa tarjeta
+            card.querySelectorAll('.card-tab-pane').forEach(pane => {
+                if (pane.getAttribute('data-pane') === tabKey) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        }
 
         function switchProductTab(tabKey) {
             // Actualizar botones
@@ -1680,6 +2023,43 @@
             if (fill) fill.style.width = '33%';
         }
     </script>
+<script>
+        // Verificador AutomÃ¡tico de Pagos de Mercado Pago
+        (function checkMercadoPagoSuccess() {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('collection_status') || params.get('status');
+            const paymentId = params.get('collection_id') || params.get('payment_id') || 'N/A';
+            const paymentType = params.get('payment_type') || 'Mercado Pago';
+
+            if (status === 'approved') {
+                const toast = document.createElement('div');
+                toast.id = 'mpSuccessToast';
+                toast.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px;';
+                
+                const waMsg = encodeURIComponent(`Â¡Hola Julie Alisados! ðŸ‘‹ Acabo de realizar el pago de mi pedido por la pÃ¡gina web con Ã©xito a travÃ©s de Mercado Pago.\n\nðŸ’³ *ID de TransacciÃ³n:* ${paymentId}\nðŸ“¦ *Estado:* Aprobado âœ…\n\nAdjunto mis datos para el despacho:\nâ€¢ Nombre:\nâ€¢ CÃ©dula:\nâ€¢ TelÃ©fono:\nâ€¢ DirecciÃ³n y Ciudad:`);
+                
+                toast.innerHTML = `
+                    <div style="background: #ffffff; border-radius: 20px; max-width: 480px; width: 100%; padding: 35px 25px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 2px solid #D4AF37; animation: fadeIn 0.4s ease;">
+                        <span style="font-size: 3.5rem; display: block; margin-bottom: 10px;">ðŸŽ‰</span>
+                        <h3 style="font-family: 'Playfair Display', serif; color: #1a1a1a; font-size: 1.6rem; margin-bottom: 8px;">Â¡Pago Aprobado con Ã‰xito!</h3>
+                        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Tu transacciÃ³n ha sido confirmada por Mercado Pago.<br><strong>ID de Pago:</strong> ${paymentId}</p>
+                        
+                        <div style="background: #fdfbf7; border: 1px dashed #D4AF37; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: left;">
+                            <strong style="color: #843b56; font-size: 0.9rem; display: block; margin-bottom: 4px;">ðŸ“ Paso Final Obligatorio:</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Para despachar tu paquete inmediatamente, envÃ­a la confirmaciÃ³n y tus datos de envÃ­o al equipo de ventas por WhatsApp.</p>
+                        </div>
+
+                        <a href="https://wa.me/573043588180?text=${waMsg}" target="_blank" style="background: #25D366; color: #ffffff; padding: 14px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); margin-bottom: 12px;">
+                            ðŸ“² Confirmar Despacho por WhatsApp
+                        </a>
+
+                        <button onclick="document.getElementById('mpSuccessToast').remove()" style="background: none; border: none; color: #888; font-size: 0.85rem; cursor: pointer; text-decoration: underline;">Cerrar ventana</button>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+            }
+        })();
+</script>
 </body>
 
 </html>
