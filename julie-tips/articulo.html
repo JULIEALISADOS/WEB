@@ -285,6 +285,19 @@
             }
         }
     </script>
+    <script>
+        (function() {
+            const items = document.querySelectorAll('.top-announcement-bar .announcement-item');
+            if (items.length > 1) {
+                let currentIndex = 0;
+                setInterval(function() {
+                    items[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % items.length;
+                    items[currentIndex].classList.add('active');
+                }, 4000);
+            }
+        })();
+    </script>
 </body>
 
 </html>
