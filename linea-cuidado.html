@@ -670,6 +670,56 @@
                 justify-content: center;
             }
         }
+    
+        /* Estilos de Pestañas de Producto (Tabs) */
+        .product-tabs-nav {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0 12px;
+            flex-wrap: wrap;
+        }
+
+        .prod-tab-btn {
+            background: #ffffff;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: #666;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .prod-tab-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold-dark);
+            background: #faf7f2;
+        }
+
+        .prod-tab-btn.active {
+            background: linear-gradient(135deg, #a45a76, #843b56) !important;
+            color: #ffffff !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 12px rgba(164, 90, 118, 0.3) !important;
+        }
+
+        .prod-tab-pane {
+            display: none;
+            font-size: 0.92rem;
+            color: #444;
+            line-height: 1.6;
+            max-height: 240px;
+            overflow-y: auto;
+            padding-right: 6px;
+            margin-bottom: 12px;
+        }
+
+        .prod-tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
     </style>
     <!-- Event snippet for WhatsApp Contact conversion page -->
     <script>
@@ -752,7 +802,17 @@
                 <div class="modal-info-col">
                     <h3 id="modalProductName" class="modal-product-title"></h3>
                     <span id="modalProductPrice" class="modal-product-price"></span>
-                    <div id="modalProductDetails" class="modal-product-desc"></div>
+                                        <!-- Pestañas Interactivas de Producto (Tabs) -->
+                    <div class="product-tabs-nav">
+                        <button type="button" class="prod-tab-btn active" id="tabBtnDesc" onclick="switchProductTab('desc')">Descripción</button>
+                        <button type="button" class="prod-tab-btn" id="tabBtnUsage" onclick="switchProductTab('usage')">Modo de uso</button>
+                        <button type="button" class="prod-tab-btn" id="tabBtnMore" onclick="switchProductTab('more')">Te contamos más</button>
+                    </div>
+
+                    <!-- Contenido de las Pestañas -->
+                    <div class="prod-tab-pane active" id="tabPaneDesc"></div>
+                    <div class="prod-tab-pane" id="tabPaneUsage"></div>
+                    <div class="prod-tab-pane" id="tabPaneMore"></div>
                                         <div id="modalCrossSell" class="modal-cross-sell" style="display: none;">
                         <div class="cross-sell-info">
                             <span class="cross-sell-tag">💡 Recomendación Profesional</span>
@@ -1243,7 +1303,116 @@
             }
         })();
 
+                // Datos estructurados para las 3 pestañas de cada producto
+        const productTabsCatalog = {
+            "Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)": {
+                desc: "🌿 <strong>Dúo Botánico Purificante y Control de Grasa (1.000 ml c/u)</strong><br><br>Combina el poder de 12 extractos naturales (Romero, Ortiga, Sábila, Té Verde, Manzanilla, Cola de Caballo) para equilibrar el cuero cabelludo sin resecar las puntas. 100% libre de sal, sulfatos pesados y parabenos.<br><br>• <strong>Beneficios:</strong> Raíz fresca y limpia por más días, desenredo instantáneo sin tirones, brillo natural y soltura total sin peso.",
+                usage: "<strong>Modo de Uso Paso a Paso:</strong><br><br>1. <strong>Shampoo:</strong> Aplica sobre el cabello mojado y realiza un masaje suave en el cuero cabelludo con la yema de los dedos durante 2 minutos. Enjuaga con abundante agua.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, deja actuar de 2 a 3 minutos para sellar las cutículas y enjuaga completamente con agua fresca.",
+                more: "✨ <strong>Te Contamos Más:</strong><br><br>• <strong>Ideal para:</strong> Cabellos naturales o con alisados (su fórmula sin sal no barre los tratamientos).<br>• <strong>Rendimiento:</strong> Presentación profesional de 2.000 ml en total (1.000 ml c/u) que rinde entre 3 y 5 meses de cuidado en casa.<br>• <strong>Garantía JA:</strong> Fórmula balanceada que no apelmaza."
+            },
+            "Combo Aceite de Argán JA By Julie Valencia (500 ml c/u)": {
+                desc: "✨ <strong>Dúo de Rescate y Nutrición Intensiva con Biotina y Ácido Hialurónico (500 ml c/u)</strong><br><br>El tratamiento restaurador definitivo para cabello seco, poroso o maltratado por tintes y calor. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Brillo efecto espejo, fuerza anti-quiebre inmediata al cepillar, control total del frizz y tacto aterciopelado de raíz a puntas.",
+                usage: "<strong>Modo de Uso Paso a Paso:</strong><br><br>1. <strong>Shampoo:</strong> Aplica sobre cabello húmedo, masajea suavemente y enjuaga con abundante agua.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, desenreda suavemente con los dedos, deja actuar 3 minutos para nutrición profunda y enjuaga con agua fresca.",
+                more: "💎 <strong>Te Contamos Más:</strong><br><br>• <strong>Trilogía de Activos:</strong> Aceite de Argán Puro de Marruecos + Biotina (Vitamina B7) + Ácido Hialurónico atrapador de hidratación.<br>• <strong>Recomendado para:</strong> Cabellos con mechas, balayage, tinturas o alisados continuos."
+            },
+            "Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)": {
+                desc: "🌿 <strong>Shampoo Botánico Purificante y Control de Grasa (1000 ml)</strong><br><br>Fórmula botánica con 12 extractos naturales que oxigenan los folículos y regulan la producción sebácea sin resecar las puntas. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Limpieza profunda pero amable, raíz suelta y fresca por más días y protección total del color.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica una cantidad moderada sobre el cabello mojado. Realiza un suave masaje circular en el cuero cabelludo durante 2 minutos para activar la microcirculación y retira con abundante agua. Repite si lo consideras necesario.",
+                more: "🍃 <strong>Te Contamos Más:</strong><br><br>• <strong>Activos:</strong> Romero, Ortiga, Sábila, Té Verde y Caléndula.<br>• <strong>Libre de sal:</strong> No altera el pH ni barre tratamientos de alisado."
+            },
+            "Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)": {
+                desc: "🌿 <strong>Acondicionador Desenredo e Hidratación Ligera (1000 ml)</strong><br><br>Sella la cutícula, desenreda al instante y controla el frizz sin restar volumen ni aportar peso graso. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Desenredo sin dolor ni tirones, suavidad sedosa y protección contra puntas abiertas.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Tras lavar con shampoo, retira el exceso de agua y aplica el acondicionador de medios a puntas. Deja actuar de 2 a 3 minutos para encapsular los nutrientes y enjuaga por completo con agua fresca.",
+                more: "✨ <strong>Te Contamos Más:</strong><br><br>• Formulado con extractos de Aloe Vera y proteínas acondicionadoras que aportan soltura y movimiento natural."
+            },
+            "Shampoo Aceite de Argán JA By Julie Valencia (500 ml)": {
+                desc: "✨ <strong>Shampoo Nutrición Anti-Quiebre con Biotina y Argán (500 ml)</strong><br><br>Limpieza suave y reconstituyente diseñada especialmente para cabellos secos, decolorados o castigados por herramientas térmicas.<br><br>• <strong>Beneficios:</strong> Limpia delicadamente protegiendo la hidratación natural, refuerza la fibra y devuelve la vitalidad.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica sobre el cabello húmedo, distribuye con un suave masaje en el cuero cabelludo hasta formar espuma cremosa y enjuaga con abundante agua.",
+                more: "🌰 <strong>Te Contamos Más:</strong><br><br>• La Biotina refuerza la hebra para evitar que se parta durante el peinado diario."
+            },
+            "Acondicionador Aceite de Argán JA By Julie Valencia (500 ml)": {
+                desc: "💎 <strong>Acondicionador Reconstrucción con Ácido Hialurónico y Argán (500 ml)</strong><br><br>Nutrición intensiva para reparar la porosidad y transformar cabellos secos en seda pura.<br><br>• <strong>Beneficios:</strong> Sellado de cutículas, control total del frizz incluso en climas húmedos y brillo espejo radiante.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de medios a puntas sobre el cabello limpio y húmedo. Deja actuar de 3 a 5 minutos para una absorción profunda y enjuaga completamente.",
+                more: "🪞 <strong>Te Contamos Más:</strong><br><br>• El Ácido Hialurónico rellena las zonas porosas evitando el encrespamiento por humedad."
+            },
+            "Mascarilla Capilar Oro Líquido JA By Julie Valencia (250 ml)": {
+                desc: "👑 <strong>Tratamiento Intensivo de Spa con Jojoba y Keratina (250 ml)</strong><br><br>El rescate semanal en casa para devolverle la elasticidad, fuerza y nutrición a cabellos maltratados o apagados. 100% libre de sal.<br><br>• <strong>Beneficios:</strong> Recuperación de elasticidad, nutrición profunda y acabado ultra suave de salón.",
+                usage: "<strong>Modo de Uso (2 Formas de Aplicación):</strong><br><br>1. <strong>Como Mascarilla Semanal:</strong> 1 a 2 veces por semana, tras el shampoo, aplica de medios a puntas, deja actuar 15 minutos (ideal con gorro térmico) y enjuaga al 100%. Finaliza con acondicionador.<br><br>2. <strong>Como Pre-Shampoo:</strong> Aplica en puntas secas 15 minutos antes de la ducha para protegerlas de la fricción del lavado.",
+                more: "🌟 <strong>Te Contamos Más:</strong><br><br>• Contiene micro-partículas doradas y aceite de jojoba puro que penetran sin dejar sensación grasosa."
+            },
+            "Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)": {
+                desc: "🌟 <strong>Escudo Multibeneficios con 12 Activos Poderosos (300 ml)</strong><br><br>Fórmula inteligente todo en uno con Keratina, Colágeno, Argán, Karité, Biotina y Filtro UV.<br><br>• <strong>12 Beneficios:</strong> Desenredo, anti-frizz, brillo, protección térmica ligera, protección solar UV, elasticidad, suavidad y acción antioxidante.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica una pequeña cantidad de medios a puntas sobre el cabello limpio y húmedo después del lavado. Distribuye con peine y procede a peinar de forma habitual.",
+                more: "☀️ <strong>Te Contamos Más:</strong><br><br>• Su filtro solar UV previene el desgaste del color causado por el sol y la polución."
+            },
+            "Ampolla de Reparación S.O.S. JA By Julie Valencia (20 ml)": {
+                desc: "💉 <strong>Elixir Concentrado de Rescate Capilar Inmediato (20 ml)</strong><br><br>Dosis intensiva de choque con aminoácidos concentrados para recuperar cabellos elásticos, con efecto chicle o castigados por químicos.<br><br>• <strong>Beneficios:</strong> Freno inmediato al quiebre, recuperación de firmeza y sellado de cutículas en minutos.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Lava tu cabello con shampoo, retira el exceso de agua y aplica todo el contenido de la ampolla mechón a mechón de medios a puntas. Deja actuar de 10 a 15 minutos y enjuaga con abundante agua.",
+                more: "🧬 <strong>Te Contamos Más:</strong><br><br>• Tratamiento de emergencia recomendado cada 15 días en cabellos sensibilizados."
+            },
+            "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)": {
+                desc: "🔥 <strong>Escudo Protector Anti-Daño + Perfume Capilar de Lujo (250 ml)</strong><br><br>Tu mejor aliado para proteger el cabello del calor del secador y la plancha, envolviéndolo en una fragancia fina de larga duración.<br><br>• <strong>Beneficios:</strong> Reduce el daño térmico, facilita el planchado, neutraliza olores ambientales y aporta brillo sedoso.",
+                usage: "<strong>Modo de Uso:</strong><br><br>• <strong>Con secador:</strong> Atomiza uniformemente a 20 cm sobre el cabello húmedo antes de secar.<br>• <strong>Con plancha:</strong> Rocía ligeramente sobre cabello seco antes de pasar la plancha.<br>• <strong>Como perfume:</strong> Aplica a 25 cm para refrescar el aroma en cualquier momento.",
+                more: "🌸 <strong>Te Contamos Más:</strong><br><br>• Tecnología anti-humo y anti-grasa que mantiene tu cabello oliendo a recién lavado por horas."
+            },
+            "Aceite Reparador de Argán y Macadamia JA By Julie Valencia (60 ml)": {
+                desc: "✨ <strong>Gotas de Nutrición Seca y Brillo Espejo (60 ml)</strong><br><br>Elixir de tacto seco que combina el poder del Argán Puro y la Nuez de Macadamia para el toque final perfecto de cualquier peinado.<br><br>• <strong>Beneficios:</strong> Brillo espejo deslumbrante, sellado visual de puntas abiertas, control de frizz y suavidad sin residuo graso.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de 2 a 3 gotas en la palma de tus manos, frota para activar los aceites botánicos y distribuye uniformemente en las puntas (con cabello húmedo antes de secar o en seco como toque final).",
+                more: "🌰 <strong>Te Contamos Más:</strong><br><br>• Fórmula ultra concentrada de tacto seco: no engrasa las manos ni deja el cabello pesado."
+            }
+        };
+
+        function switchProductTab(tabKey) {
+            // Actualizar botones
+            document.getElementById('tabBtnDesc').classList.remove('active');
+            document.getElementById('tabBtnUsage').classList.remove('active');
+            document.getElementById('tabBtnMore').classList.remove('active');
+
+            if (tabKey === 'desc') document.getElementById('tabBtnDesc').classList.add('active');
+            if (tabKey === 'usage') document.getElementById('tabBtnUsage').classList.add('active');
+            if (tabKey === 'more') document.getElementById('tabBtnMore').classList.add('active');
+
+            // Actualizar paneles
+            document.getElementById('tabPaneDesc').classList.remove('active');
+            document.getElementById('tabPaneUsage').classList.remove('active');
+            document.getElementById('tabPaneMore').classList.remove('active');
+
+            if (tabKey === 'desc') document.getElementById('tabPaneDesc').classList.add('active');
+            if (tabKey === 'usage') document.getElementById('tabPaneUsage').classList.add('active');
+            if (tabKey === 'more') document.getElementById('tabPaneMore').classList.add('active');
+        }
+
         function openProductModal(card) {
+            const name = card.getAttribute("data-name") || "Producto";
+            const price = card.getAttribute("data-price") || "0";
+            const img = card.getAttribute("data-img") || card.querySelector("img")?.src;
+            const details = card.getAttribute("data-details") || "Detalles del producto de alta calidad Julie Alisados.";
+
+            modalImg.src = img;
+            modalName.textContent = name;
+            modalPrice.textContent = "$" + parseInt(price).toLocaleString("es-CO");
+            
+            // Poblar las 3 pestañas
+            const tabData = productTabsCatalog[name];
+            const paneDesc = document.getElementById("tabPaneDesc");
+            const paneUsage = document.getElementById("tabPaneUsage");
+            const paneMore = document.getElementById("tabPaneMore");
+
+            if (tabData) {
+                if (paneDesc) paneDesc.innerHTML = tabData.desc;
+                if (paneUsage) paneUsage.innerHTML = tabData.usage;
+                if (paneMore) paneMore.innerHTML = tabData.more;
+            } else {
+                let formattedDetails = details
+                    .replace(/\*\*(.*?)\*\*/g, '<strong></strong>')
+                    .replace(/\n/g, '<br>');
+                if (paneDesc) paneDesc.innerHTML = formattedDetails;
+                if (paneUsage) paneUsage.innerHTML = "<strong>Modo de Uso:</strong><br>Aplica de medios a puntas sobre cabello limpio y húmedo. Sigue las instrucciones del envase para mejores resultados.";
+                if (paneMore) paneMore.innerHTML = "✨ <strong>Te Contamos Más:</strong><br>Fórmula profesional libre de sal y parabenos desarrollada por Julie Valencia.";
+            }
+
+            // Resetear siempre a la pestaña 'Descripción' al abrir
+            switchProductTab('desc');
             const name = card.getAttribute("data-name") || "Producto";
             const price = card.getAttribute("data-price") || "0";
             const img = card.getAttribute("data-img") || card.querySelector("img")?.src;
