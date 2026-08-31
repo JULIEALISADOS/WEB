@@ -1122,7 +1122,10 @@
 
         <!-- Bloque de Sellos de Confianza y Calidad JA -->
         <section class="trust-badges-section">
-            <div class="container">
+            <div class="container" style="text-align: center;">
+                <p style="font-family: var(--font-heading); color: var(--gold-dark); font-size: 1.15rem; font-style: italic; margin-bottom: 20px; letter-spacing: 0.5px;">
+                    ✨ Todos nuestros productos son formulados bajo los más estrictos estándares de salud capilar:
+                </p>
                 <div class="trust-badges-grid">
                     <div class="trust-badge-item">
                         <span class="trust-badge-icon">🇨🇴</span>
@@ -1443,11 +1446,11 @@
     </div>
     <script>
         // Lógica del Diagnóstico Capilar Interactivo (CRO)
-        let quizAnswers = { state: '', goal: '', heat: '' };
+        var quizAnswers = { state: '', goal: '', heat: '' };
 
         function selectQuizOption(key, value) {
             quizAnswers[key] = value;
-            const fill = document.getElementById('quizProgressFill');
+            var fill = document.getElementById('quizProgressFill');
             
             if (key === 'state') {
                 document.getElementById('quizStep1').classList.remove('active');
@@ -1465,40 +1468,47 @@
         }
 
         function showQuizResult() {
-            let title = "Combo Extractos Naturales (1000ml)";
-            let price = ".000 COP";
-            let desc = "Fórmula botánica libre de sal y formol diseñada para mantener tu cabello ultra suave, con brillo espejo y sin alterar el cuero cabelludo.";
-            let includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
-            let payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
+            var title = "Combo Extractos Naturales (1000ml)";
+            var price = "$77.000 COP";
+            var desc = "Fórmula botánica libre de sal y formol diseñada para mantener tu cabello ultra suave, con brillo espejo y sin alterar el cuero cabelludo.";
+            var includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
+            var payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
 
             if (quizAnswers.state === 'alisado' && quizAnswers.heat === 'si') {
                 title = "Rutina Liso Blindado: Combo Extractos + Termoprotector";
-                price = ".000 COP";
+                price = "$112.000 COP";
                 desc = "La combinación perfecta para sellar tu alisado y proteger la fibra del calor del secador y la plancha.";
                 includes = "<strong>Incluye:</strong> Combo Extractos (1L) + Termoprotector Capilar Profesional";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
             } else if (quizAnswers.state === 'tinturado' || quizAnswers.goal === 'reparacion') {
                 title = "Rutina Reparación Oro: Combo Argán + Mascarilla Oro Líquido";
-                price = ".000 COP";
+                price = "$108.000 COP";
                 desc = "Nutrición intensiva con aceite de argán puro para regenerar hebras secas, tinturadas o con mechas.";
                 includes = "<strong>Incluye:</strong> Combo Argán 500ml + Mascarilla Capilar Oro Líquido (250ml)";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-4f364028-1124-4f27-9917-09d1e389e6e8";
             } else if (quizAnswers.state === 'frizz') {
                 title = "Rutina Control Frizz: Combo Extractos + Mascarilla Oro Líquido";
-                price = ".000 COP";
+                price = "$112.000 COP";
                 desc = "Alineación y peso molecular óptimo para disciplinar cabellos rebeldes y lograr un brillo espejo duradero.";
                 includes = "<strong>Incluye:</strong> Combo Extractos (1L) + Mascarilla Capilar Oro Líquido";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
             }
 
-            document.getElementById('quizResultTitle').textContent = title;
-            document.getElementById('quizResultPrice').textContent = price;
-            document.getElementById('quizResultDesc').textContent = desc;
-            document.getElementById('quizResultIncludes').innerHTML = includes;
-            document.getElementById('quizPayBtn').href = payLink;
+            var titleEl = document.getElementById('quizResultTitle');
+            var priceEl = document.getElementById('quizResultPrice');
+            var descEl = document.getElementById('quizResultDesc');
+            var incEl = document.getElementById('quizResultIncludes');
+            var payEl = document.getElementById('quizPayBtn');
+            var waEl = document.getElementById('quizWaBtn');
 
-            const waMsg = encodeURIComponent(Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: ** (). Deseo pedir esta rutina ✨);
-            document.getElementById('quizWaBtn').href = https://wa.me/573043588180?text=;
+            if (titleEl) titleEl.textContent = title;
+            if (priceEl) priceEl.textContent = price;
+            if (descEl) descEl.textContent = desc;
+            if (incEl) incEl.innerHTML = includes;
+            if (payEl) payEl.href = payLink;
+
+            var waText = "Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: *" + title + "* (" + price + "). Deseo pedir esta rutina ✨";
+            if (waEl) waEl.href = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
         }
 
         function restartQuiz() {
@@ -1507,7 +1517,7 @@
             document.getElementById('quizStep2').classList.remove('active');
             document.getElementById('quizStep3').classList.remove('active');
             document.getElementById('quizStep1').classList.add('active');
-            const fill = document.getElementById('quizProgressFill');
+            var fill = document.getElementById('quizProgressFill');
             if (fill) fill.style.width = '33%';
         }
     </script>
