@@ -267,7 +267,7 @@
             </div>
             <nav class="header-nav" role="navigation" aria-label="Navegación principal de escritorio">
                 <ul>
-                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#diagnostico-capilar" style="color: var(--gold-dark); font-weight: 700;">✨ Test Capilar</a></li>`n                    <li><a href="#diagnostico-capilar" style="color: var(--gold-dark); font-weight: 700;">✨ Test Capilar</a></li>`n            <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#resultados">Resultados</a></li>
                     <li><a href="./julie-tips/">Julie Tips</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
@@ -292,7 +292,7 @@
             <img decoding="async" src="logo 1.png" alt="Julie Alisados" loading="lazy">
         </div>
         <ul>
-            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#diagnostico-capilar" style="color: var(--gold-dark); font-weight: 700;">✨ Test Capilar</a></li>`n                    <li><a href="#diagnostico-capilar" style="color: var(--gold-dark); font-weight: 700;">✨ Test Capilar</a></li>`n            <li><a href="#servicios">Servicios</a></li>
             <li><a href="#resultados">Resultados</a></li>
             <li><a href="./julie-tips/">Julie Tips</a></li>
             <li><a href="#testimonios">Testimonios</a></li>
@@ -667,111 +667,38 @@
             </div>
         </section>
 
-                <!-- Sección de Diagnóstico Capilar Interactivo (CRO Funnel) -->
-        <section class="hair-quiz-section" id="diagnostico-capilar">
-            <div class="container">
-                <div class="hair-quiz-card">
-                    <span style="color: var(--gold-dark); font-weight: 800; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">✨ Test Capilar Personalizado</span>
-                    <h2 class="section-title" style="margin-bottom: 8px; font-size: 2.2rem;">Descubre la Rutina Ideal para tu Cabello</h2>
-                    <p style="font-size: 1.05rem; color: #555; max-width: 600px; margin: 0 auto 25px;">Responde 3 preguntas en 30 segundos y recibe la recomendación exacta formulada por Julie Valencia para tus necesidades.</p>
-                    
-                    <div class="quiz-progress-bar">
-                        <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                <!-- Hub de Diagnósticos Capilares (CRO Funnel) -->
+        <section class="hair-quiz-section" id="diagnostico-capilar" style="padding: 60px 0; background: linear-gradient(135deg, #fff7f9 0%, #ffffff 100%);">
+            <div class="container" style="text-align: center;">
+                <span style="color: var(--gold-dark); font-weight: 800; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">✨ Diagnóstico Inteligente JA</span>
+                <h2 class="section-title" style="margin-bottom: 12px; font-size: 2.4rem;">¿Qué Necesita tu Cabello Hoy?</h2>
+                <p style="font-size: 1.1rem; color: #555; max-width: 650px; margin: 0 auto 35px;">
+                    Elige el diagnóstico que mejor se adapte a tu necesidad y recibe una valoración personalizada en menos de 30 segundos:
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 900px; margin: 0 auto;">
+                    <!-- Opción 1: Productos y Rutina en Casa -->
+                    <div style="background: #ffffff; border: 2px solid var(--gold); border-radius: 20px; padding: 35px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; text-align: center; transition: transform 0.3s ease;">
+                        <div>
+                            <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🧴</span>
+                            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-dark); margin-bottom: 10px;">Test de Cuidado en Casa</h3>
+                            <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 20px;">
+                                Descubre la rutina de shampoos sin sal, mascarillas y aceites botánicos formulada para tu tipo de hebra.
+                            </p>
+                        </div>
+                        <a href="diagnostico-productos.html" class="btn-cross-sell" style="display: block; text-decoration: none; padding: 14px 20px; font-size: 0.95rem; border-radius: 10px;">Iniciar Test de Productos ⚡</a>
                     </div>
 
-                    <!-- Paso 1: Estado del Cabello -->
-                    <div class="quiz-step active" id="quizStep1">
-                        <h3 style="font-size: 1.3rem; color: var(--dark-text); margin-bottom: 5px;">Paso 1 de 3: ¿Cómo está tu cabello actualmente?</h3>
-                        <p style="font-size: 0.9rem; color: #777;">Selecciona la opción que mejor describa tu fibra capilar:</p>
-                        <div class="quiz-options-grid">
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'alisado')">
-                                <span class="quiz-opt-icon">✨</span>
-                                <span class="quiz-opt-title">Con Alisado o Tratamiento</span>
-                                <span class="quiz-opt-sub">Quiero prolongar el liso y mantenerlo suave y brillante</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'tinturado')">
-                                <span class="quiz-opt-icon">🎨</span>
-                                <span class="quiz-opt-title">Tinturado o Decolorado</span>
-                                <span class="quiz-opt-sub">Presenta resequedad, puntas abiertas o daño químico</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'frizz')">
-                                <span class="quiz-opt-icon">💧</span>
-                                <span class="quiz-opt-title">Seco, Opaco o con Frizz</span>
-                                <span class="quiz-opt-sub">Busco hidratación profunda, volumen controlado y brillo espejo</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'graso')">
-                                <span class="quiz-opt-icon">💆‍♀️</span>
-                                <span class="quiz-opt-title">Raíz Grasa / Puntas Secas</span>
-                                <span class="quiz-opt-sub">Busco limpieza purificante sin resecar las puntas</span>
-                            </button>
+                    <!-- Opción 2: Citas y Procedimientos en Salón -->
+                    <div style="background: #ffffff; border: 2px solid var(--gold); border-radius: 20px; padding: 35px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; text-align: center; transition: transform 0.3s ease;">
+                        <div>
+                            <span style="font-size: 3rem; display: block; margin-bottom: 12px;">💇‍♀️</span>
+                            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-dark); margin-bottom: 10px;">Valoración para Salón</h3>
+                            <p style="font-size: 0.95rem; color: #555; line-height: 1.5; margin-bottom: 20px;">
+                                Evalúa la resistencia de tu cabello antes de agendar tu Alisado Saludable o Terapia en <strong>Tunja o Moniquirá</strong>.
+                            </p>
                         </div>
-                    </div>
-
-                    <!-- Paso 2: Objetivo Principal -->
-                    <div class="quiz-step" id="quizStep2">
-                        <h3 style="font-size: 1.3rem; color: var(--dark-text); margin-bottom: 5px;">Paso 2 de 3: ¿Cuál es tu meta principal?</h3>
-                        <p style="font-size: 0.9rem; color: #777;">¿Qué resultado sueñas ver frente al espejo?</p>
-                        <div class="quiz-options-grid">
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('goal', 'liso_brillo')">
-                                <span class="quiz-opt-icon">🌟</span>
-                                <span class="quiz-opt-title">Liso Espejo & Cero Frizz</span>
-                                <span class="quiz-opt-sub">Mantener la fibra alineada, sedosa y ultra brillante</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('goal', 'reparacion')">
-                                <span class="quiz-opt-icon">🛡️</span>
-                                <span class="quiz-opt-title">Reparación y Fuerza</span>
-                                <span class="quiz-opt-sub">Sellar cutículas, eliminar horquilla y recuperar elasticidad</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('goal', 'nutricion_diaria')">
-                                <span class="quiz-opt-icon">🌿</span>
-                                <span class="quiz-opt-title">Cuidado Diario y Crecimiento</span>
-                                <span class="quiz-opt-sub">Fórmulas botánicas sin sal para lavado frecuente</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Paso 3: Uso de Calor -->
-                    <div class="quiz-step" id="quizStep3">
-                        <h3 style="font-size: 1.3rem; color: var(--dark-text); margin-bottom: 5px;">Paso 3 de 3: ¿Usas plancha o secador?</h3>
-                        <p style="font-size: 0.9rem; color: #777;">Esto define el nivel de blindaje térmico necesario:</p>
-                        <div class="quiz-options-grid">
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('heat', 'si')">
-                                <span class="quiz-opt-icon">🔥</span>
-                                <span class="quiz-opt-title">Sí, con frecuencia</span>
-                                <span class="quiz-opt-sub">Uso secador, plancha o cepillo térmico cada semana</span>
-                            </button>
-                            <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('heat', 'no')">
-                                <span class="quiz-opt-icon">🍃</span>
-                                <span class="quiz-opt-title">No o rara vez</span>
-                                <span class="quiz-opt-sub">Suelo dejarlo secar al aire libre de forma natural</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Resultado del Diagnóstico -->
-                    <div class="quiz-step" id="quizResultStep">
-                        <div class="quiz-result-box">
-                            <div class="quiz-result-header">
-                                <span style="font-size: 2.2rem;">👩‍🔬</span>
-                                <div>
-                                    <span class="quiz-result-badge">Diagnóstico Personalizado JA</span>
-                                    <h3 id="quizResultTitle" style="font-size: 1.4rem; color: var(--dark-text); margin: 4px 0 2px;">Tu Rutina Recomendada</h3>
-                                    <span id="quizResultPrice" style="font-size: 1.15rem; font-weight: 800; color: var(--gold-dark);"></span>
-                                </div>
-                            </div>
-                            <p id="quizResultDesc" style="font-size: 0.95rem; color: #444; line-height: 1.6; margin: 0;"></p>
-                            <div id="quizResultIncludes" style="background: #fff; padding: 14px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); font-size: 0.88rem; color: #333;"></div>
-                            <div class="quiz-result-actions">
-                                <a id="quizPayBtn" href="#" target="_blank" class="btn-quiz-pay">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                    Pagar Rutina con PSE / Nequi / Addi
-                                </a>
-                                <a id="quizWaBtn" href="#" target="_blank" class="btn-quiz-wa">
-                                    Pedir Rutina por WhatsApp 💬
-                                </a>
-                            </div>
-                            <button type="button" onclick="restartQuiz()" style="background: none; border: none; color: #888; text-decoration: underline; font-size: 0.82rem; cursor: pointer; align-self: center; margin-top: 5px;">🔄 Repetir el Test</button>
-                        </div>
+                        <a href="diagnostico-servicios.html" class="btn-cross-sell" style="display: block; text-decoration: none; padding: 14px 20px; font-size: 0.95rem; border-radius: 10px; background: linear-gradient(135deg, #1a1a1a, #333);">Iniciar Test de Salón 📍</a>
                     </div>
                 </div>
             </div>
