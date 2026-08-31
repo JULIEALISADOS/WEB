@@ -1,57 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://juliealisados.com/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://juliealisados.com/diagnostico-productos.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://juliealisados.com/diagnostico-servicios.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://juliealisados.com/linea-cuidado.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/linea-profesional.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/alisados.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/promociones-condiciones.html</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <!-- SECCIÓN JULIE TIPS -->
   <url>
     <loc>https://juliealisados.com/julie-tips/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/julie-tips/cuanto-dura-un-alisado</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/julie-tips/shampoo-ideal-despues-del-alisado</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/julie-tips/taninoplastia-vs-keratina-diferencias</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
