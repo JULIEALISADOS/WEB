@@ -4204,3 +4204,38 @@ header {
 .btn-quiz-wa:hover {
     transform: scale(1.02);
 }
+/* Boton Volver Global */
+.back-nav {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.btn-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #ffffff !important;
+    border: 1.5px solid var(--gold) !important;
+    color: var(--gold-dark) !important;
+    padding: 8px 18px !important;
+    border-radius: 50px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn-back:hover {
+    background: var(--gold) !important;
+    color: #ffffff !important;
+    transform: translateX(-3px) !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+}
+
+.btn-back svg {
+    width: 18px !important;
+    height: 18px !important;
+    stroke: currentColor !important;
+}
