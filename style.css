@@ -572,7 +572,7 @@ header {
 
 /* Adjust Hero for sticky header */
 .hero {
-    padding: 155px 0 20px;
+    padding: 180px 0 20px;
     /* Ajustado para que el título sea visible bajo el menú fijo */
     text-align: center;
     position: relative;
@@ -1933,7 +1933,7 @@ footer .section-title::after {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 130px;
+        padding-top: 150px;
         /* Reducido para móviles */
     }
 
