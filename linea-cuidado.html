@@ -671,58 +671,8 @@
             }
         }
     
-        /* Estilos de Pestañas de Producto (Tabs) */
-        .product-tabs-nav {
-            display: flex;
-            gap: 8px;
-            margin: 16px 0 12px;
-            flex-wrap: wrap;
-        }
-
-        .prod-tab-btn {
-            background: #ffffff;
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            color: #666;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .prod-tab-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold-dark);
-            background: #faf7f2;
-        }
-
-        .prod-tab-btn.active {
-            background: linear-gradient(135deg, #a45a76, #843b56) !important;
-            color: #ffffff !important;
-            border-color: transparent !important;
-            box-shadow: 0 4px 12px rgba(164, 90, 118, 0.3) !important;
-        }
-
-        .prod-tab-pane {
-            display: none;
-            font-size: 0.92rem;
-            color: #444;
-            line-height: 1.6;
-            max-height: 240px;
-            overflow-y: auto;
-            padding-right: 6px;
-            margin-bottom: 12px;
-        }
-
-        .prod-tab-pane.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-    
-        /* Estilos de PestaÃ±as directas en las Tarjetas de Producto */
-        .card-tabs-nav {
+        /* Estilos de Pesta&ntilde;as en Tarjetas y Modal */
+        .card-tabs-nav, .product-tabs-nav {
             display: flex;
             gap: 4px;
             margin: 10px 0 10px;
@@ -732,7 +682,7 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        .card-tab-btn {
+        .card-tab-btn, .prod-tab-btn {
             flex: 1;
             background: transparent;
             border: none;
@@ -748,17 +698,17 @@
             white-space: nowrap;
         }
 
-        .card-tab-btn:hover {
+        .card-tab-btn:hover, .prod-tab-btn:hover {
             color: var(--gold-dark);
         }
 
-        .card-tab-btn.active {
+        .card-tab-btn.active, .prod-tab-btn.active {
             background: linear-gradient(135deg, #a45a76, #843b56) !important;
             color: #ffffff !important;
             box-shadow: 0 2px 6px rgba(164, 90, 118, 0.3);
         }
 
-        .card-tab-pane {
+        .card-tab-pane, .prod-tab-pane {
             display: none;
             font-size: 0.85rem;
             color: var(--light-text);
@@ -766,7 +716,7 @@
             margin-bottom: 12px;
         }
 
-        .card-tab-pane.active {
+        .card-tab-pane.active, .prod-tab-pane.active {
             display: block;
             animation: fadeIn 0.25s ease;
         }
@@ -893,14 +843,14 @@
                 <div class="modal-info-col">
                     <h3 id="modalProductName" class="modal-product-title"></h3>
                     <span id="modalProductPrice" class="modal-product-price"></span>
-                                        <!-- Pestañas Interactivas de Producto (Tabs) -->
+                                        <!-- Pesta&ntilde;as Interactivas de Producto (Tabs) -->
                     <div class="product-tabs-nav">
-                        <button type="button" class="prod-tab-btn active" id="tabBtnDesc" onclick="switchProductTab('desc')">Descripción</button>
+                        <button type="button" class="prod-tab-btn active" id="tabBtnDesc" onclick="switchProductTab('desc')">Descripci&oacute;n</button>
                         <button type="button" class="prod-tab-btn" id="tabBtnUsage" onclick="switchProductTab('usage')">Modo de uso</button>
-                        <button type="button" class="prod-tab-btn" id="tabBtnMore" onclick="switchProductTab('more')">Te contamos más</button>
+                        <button type="button" class="prod-tab-btn" id="tabBtnMore" onclick="switchProductTab('more')">Beneficios JA</button>
                     </div>
 
-                    <!-- Contenido de las Pestañas -->
+                    <!-- Contenido de las Pesta&ntilde;as -->
                     <div class="prod-tab-pane active" id="tabPaneDesc"></div>
                     <div class="prod-tab-pane" id="tabPaneUsage"></div>
                     <div class="prod-tab-pane" id="tabPaneMore"></div>
@@ -948,27 +898,27 @@
                     <div class="product-info">
                         <h3>Combo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml c/u)</span></h3>
                         <span class="product-price">$74.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">DÃºo BotÃ¡nico Purificante (2.000 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">D&uacute;o Bot&aacute;nico Purificante (2.000 ml)</p>
                         
-                        <!-- PestaÃ±as en la Tarjeta -->
+                        <!-- Pesta&ntilde;as en la Tarjeta -->
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ¿ 12 Extractos naturales (Romero, Ortiga, SÃ¡bila, TÃ© Verde).</li>
-                                <li>âœ¨ RaÃ­z fresca y limpia por mÃ¡s dÃ­as sin resecar puntas.</li>
-                                <li>ðŸš¿ Desenredo instantÃ¡neo sin tirones y soltura total.</li>
-                                <li>ðŸ’§ 100% Libre de sal, sulfatos pesados y parabenos.</li>
+                                <li>12 Extractos bot&aacute;nicos (Romero, Ortiga, S&aacute;bila, T&eacute; Verde).</li>
+                                <li>Ra&iacute;z fresca y limpia por m&aacute;s d&iacute;as sin resecar puntas.</li>
+                                <li>Desenredo instant&aacute;neo sin tirones y soltura total sin peso.</li>
+                                <li>100% Libre de sal, sulfatos agresivos y parabenos.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
                             <p><strong>1. Shampoo:</strong> Masajea suavemente el cuero cabelludo mojado durante 2 min y enjuaga.<br><strong>2. Acondicionador:</strong> Aplica de medios a puntas, deja actuar 2 a 3 min para sellar y enjuaga al 100%.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>âœ¨ <strong>Ideal para:</strong> Cabellos con alisado o naturales. Su fÃ³rmula sin sal prolonga la duraciÃ³n del liso. Rinde de 3 a 5 meses de uso continuo (2.000 ml en total).</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> No altera el pH ni barre tratamientos de alisado. Presentaci&oacute;n rendidora de 2.000 ml en total que dura entre 3 y 5 meses en casa.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -976,7 +926,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -987,29 +937,29 @@
                         <img loading="lazy" decoding="async" src="combo argan.jpeg" alt="Combo Shampoo + Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Combo Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml c/u)</span></h3>
+                        <h3>Combo Aceite de Arg&aacute;n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml c/u)</span></h3>
                         <span class="product-price">$70.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">DÃºo NutriciÃ³n y Rescate Anti-Quiebre (1.000 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">D&uacute;o Nutrici&oacute;n y Rescate Anti-Quiebre (1.000 ml)</p>
                         
-                        <!-- PestaÃ±as en la Tarjeta -->
+                        <!-- Pesta&ntilde;as en la Tarjeta -->
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ° ArgÃ¡n Puro + Biotina Fortalecedora + Ãcido HialurÃ³nico.</li>
-                                <li>ðŸªž Brillo efecto espejo de salÃ³n y tacto aterciopelado.</li>
-                                <li>ðŸ›¡ï¸ Frena el quiebre al cepillar y rellena la porosidad.</li>
-                                <li>ðŸ’§ 100% Libre de sal y parabenos (cuida tintes y alisados).</li>
+                                <li>Arg&aacute;n Puro + Biotina Fortalecedora + &Aacute;cido Hialur&oacute;nico.</li>
+                                <li>Brillo efecto espejo de sal&oacute;n y tacto aterciopelado.</li>
+                                <li>Frena el quiebre al cepillar y rellena la porosidad.</li>
+                                <li>100% Libre de sal y parabenos (cuida tintes y alisados).</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p><strong>1. Shampoo:</strong> Aplica sobre raÃ­z hÃºmeda, masajea y enjuaga.<br><strong>2. Acondicionador:</strong> Aplica de medios a puntas, desenreda suavemente, deja 3 min y enjuaga.</p>
+                            <p><strong>1. Shampoo:</strong> Aplica sobre ra&iacute;z h&uacute;meda, masajea y enjuaga.<br><strong>2. Acondicionador:</strong> Aplica de medios a puntas, desenreda suavemente, deja 3 min y enjuaga.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸ’Ž <strong>Activos:</strong> El Ãcido HialurÃ³nico retiene la humedad mientras el ArgÃ¡n sella la cutÃ­cula contra la humedad y el frizz. Ideal para cabellos tinturados o con mechas.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> El &Aacute;cido Hialur&oacute;nico sella la hidrataci&oacute;n dentro de la fibra y el Arg&aacute;n bloquea la humedad externa y el frizz. Ideal para cabellos tinturados o con mechas.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1017,7 +967,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1033,22 +983,22 @@
                         <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Purificante y Control Grasa (1.000 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ¿ Romero, Ortiga, SÃ¡bila, TÃ© Verde y Manzanilla.</li>
-                                <li>ðŸ§¼ Limpieza profunda y oxigenaciÃ³n sin resecar puntas.</li>
-                                <li>ðŸ’¨ RaÃ­z fresca y suelta por mÃ¡s dÃ­as sin sal ni parabenos.</li>
+                                <li>Romero, Ortiga, S&aacute;bila, T&eacute; Verde y Manzanilla.</li>
+                                <li>Limpieza profunda y oxigenaci&oacute;n sin resecar puntas.</li>
+                                <li>Ra&iacute;z fresca y suelta por m&aacute;s d&iacute;as sin sal ni parabenos.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
                             <p>Aplica sobre cabello mojado. Realiza un suave masaje circular en el cuero cabelludo por 2 min y retira con abundante agua fresca.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸƒ FÃ³rmula de pH balanceado sin sal aÃ±adida. No barre los tratamientos de alisado ni deteriora tinturas.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> pH balanceado sin sal que no barre alisados ni reseca el cuero cabelludo.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1056,7 +1006,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1072,22 +1022,22 @@
                         <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Desenredo Ligero y Cero Frizz (1.000 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ¸ Con Aloe Vera, CalÃ©ndula y Manzanilla suavizante.</li>
-                                <li>ðŸš¿ Desenredo instantÃ¡neo sin tirones ni quiebre.</li>
-                                <li>âœ¨ Sella cutÃ­cula y elimina el frizz sin aportar peso ni grasa.</li>
+                                <li>Con Aloe Vera, Cal&eacute;ndula y Manzanilla suavizante.</li>
+                                <li>Desenredo instant&aacute;neo sin tirones ni quiebre.</li>
+                                <li>Sella cut&iacute;cula y elimina el frizz sin aportar peso ni grasa.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
                             <p>Tras el shampoo, retira el exceso de agua y aplica de medios a puntas. Deja actuar 2 a 3 min y enjuaga completamente con agua fresca.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>âœ¨ Previene la formaciÃ³n de horquillas y facilita el peinado diario dejando el cabello suave y liviano.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Previene las puntas abiertas y facilita el cepillado diario sin sensaci&oacute;n grasosa.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1095,7 +1045,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1106,27 +1056,27 @@
                         <img loading="lazy" decoding="async" src="SHAMPOO DE ARGAN.jpeg" alt="Shampoo Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Shampoo Aceite de Arg&aacute;n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$36.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">NutriciÃ³n Anti-Quiebre con Biotina (500 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Nutrici&oacute;n Anti-Quiebre con Biotina (500 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ° Aceite de ArgÃ¡n Puro + Biotina fortalecedora.</li>
-                                <li>ðŸ’ª Frena el quiebre al cepillar y fortalece la raÃ­z.</li>
-                                <li>ðŸ’§ Limpieza cremosa que hidrata el cuero cabelludo seco.</li>
+                                <li>Aceite de Arg&aacute;n Puro + Biotina fortalecedora.</li>
+                                <li>Frena el quiebre al cepillar y fortalece la ra&iacute;z.</li>
+                                <li>Limpieza cremosa que hidrata el cuero cabelludo seco.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Aplica sobre cabello hÃºmedo, distribuye con suave masaje circular en el cuero cabelludo y enjuaga con abundante agua.</p>
+                            <p>Aplica sobre cabello h&uacute;medo, distribuye con suave masaje circular en el cuero cabelludo y enjuaga con abundante agua.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸŒ° La Biotina refuerza los puentes proteicos para evitar que el cabello se parta al desenredar o cepillar.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Refuerza los puentes proteicos para evitar que el cabello se parta al desenredar.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1134,7 +1084,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1145,27 +1095,27 @@
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR ARGAN.jpeg" alt="Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Acondicionador Aceite de ArgÃ¡n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
+                        <h3>Acondicionador Aceite de Arg&aacute;n <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$37.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">ReconstrucciÃ³n y Ãcido HialurÃ³nico (500 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Reconstrucci&oacute;n y &Aacute;cido Hialur&oacute;nico (500 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸ’§ Ãcido HialurÃ³nico que rellena la fibra porosa.</li>
-                                <li>ðŸŒ° ArgÃ¡n que sella puntas abiertas y aporta brillo espejo.</li>
-                                <li>âœ¨ Tacto aterciopelado y control total del encrespamiento.</li>
+                                <li>&Aacute;cido Hialur&oacute;nico que rellena la fibra porosa.</li>
+                                <li>Arg&aacute;n que sella puntas abiertas y aporta brillo espejo.</li>
+                                <li>Tacto aterciopelado y control total del encrespamiento.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Aplica de medios a puntas sobre el cabello limpio y hÃºmedo. Deja actuar 3 a 5 min para nutriciÃ³n profunda y enjuaga.</p>
+                            <p>Aplica de medios a puntas sobre el cabello limpio y h&uacute;medo. Deja actuar 3 a 5 min para nutrici&oacute;n profunda y enjuaga.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸªž Sella las cutÃ­culas protegiendo la hidrataciÃ³n interna contra el clima frÃ­o y la humedad.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Sella cut&iacute;culas y protege contra la humedad y el clima fr&iacute;o de Boyac&aacute;.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1173,7 +1123,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1184,27 +1134,27 @@
                         <img loading="lazy" decoding="async" src="MASCARILLA ORO LIQUIDO.jpeg" alt="Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Mascarilla Capilar Oro LÃ­quido <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
+                        <h3>Mascarilla Capilar Oro L&iacute;quido <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
                         <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Tratamiento Dual Jojoba y Keratina (250 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸ¥‘ Aceite de Jojoba + Keratina Hidrolizada + Vitamina E.</li>
-                                <li>ðŸ›¡ï¸ Uso Pre-Shampoo (protege puntas) o Mascarilla de 20 min.</li>
-                                <li>ðŸ‘‘ Devuelve la elasticidad perdida y elimina la aspereza.</li>
+                                <li>Aceite de Jojoba + Keratina Hidrolizada + Vitamina E.</li>
+                                <li>Uso Pre-Shampoo (protege puntas) o Mascarilla de 20 min.</li>
+                                <li>Devuelve la elasticidad perdida y elimina la aspereza.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p><strong>Semanal:</strong> Aplica de medios a puntas tras el shampoo, deja 15-20 min y enjuaga.<br><strong>Pre-Shampoo:</strong> Aplica en puntas secas 15 min antes de baÃ±arte.</p>
+                            <p><strong>Semanal:</strong> Aplica de medios a puntas tras el shampoo, deja 15-20 min y enjuaga.<br><strong>Pre-Shampoo:</strong> Aplica en puntas secas 15 min antes de ba&ntilde;arte.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸŒŸ Contiene micro-partÃ­culas doradas y aceite de jojoba puro que penetran al corazÃ³n de la fibra sin engrasar.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Contiene micropart&iacute;culas doradas que devuelven suavidad sedosa de sal&oacute;n sin engrasar.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1212,7 +1162,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1228,22 +1178,22 @@
                         <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Crema Multibeneficios 12-en-1 (300 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒŸ 12 Activos (Keratina, ArgÃ¡n, Biotina, ColÃ¡geno, Filtro UV).</li>
-                                <li>âœ¨ 12 Beneficios: desenreda, repara, nutre y frena el frizz.</li>
-                                <li>â˜€ï¸ ProtecciÃ³n diaria contra el sol, calor y poluciÃ³n.</li>
+                                <li>12 Activos (Keratina, Arg&aacute;n, Biotina, Col&aacute;geno, Filtro UV).</li>
+                                <li>12 Beneficios: desenreda, repara, nutre y frena el frizz.</li>
+                                <li>Protecci&oacute;n diaria contra el sol, calor y poluci&oacute;n.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Aplica una pequeÃ±a cantidad de medios a puntas sobre el cabello limpio y hÃºmedo despuÃ©s del lavado. Peina de forma habitual.</p>
+                            <p>Aplica una peque&ntilde;a cantidad de medios a puntas sobre el cabello limpio y h&uacute;medo despu&eacute;s del lavado. Peina de forma habitual.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>â˜€ï¸ Su filtro solar UV previene el desgaste del color y la deshidrataciÃ³n producida por el sol y la poluciÃ³n.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Su filtro solar UV previene el desgaste del color y la deshidrataci&oacute;n causada por el sol y la poluci&oacute;n.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1251,7 +1201,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1262,27 +1212,27 @@
                         <img loading="lazy" decoding="async" src="AMPOLLA SOS.jpeg" alt="Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Ampolla de ReparaciÃ³n S.O.S. <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
+                        <h3>Ampolla de Reparaci&oacute;n S.O.S. <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
                         <span class="product-price">$16.000</span>
                         <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Rescate de Emergencia Anti-Chicle (20 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸ§¬ Dosis concentrada de AminoÃ¡cidos (Arginina, CisteÃ­na).</li>
-                                <li>ðŸš¨ Elimina el efecto chicle y frena el quiebre al instante.</li>
-                                <li>ðŸ§´ De 1 a 2 aplicaciones segÃºn el estado y tipo de cabello.</li>
+                                <li>Dosis concentrada de Amino&aacute;cidos (Arginina, Ciste&iacute;na).</li>
+                                <li>Elimina el efecto chicle y frena el quiebre al instante.</li>
+                                <li>De 1 a 2 aplicaciones seg&uacute;n el estado y tipo de cabello.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
                             <p>Lava con shampoo, retira exceso de agua y aplica de medios a puntas masajeando suavemente. Deja 10-15 min y enjuaga.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸ§¬ Tratamiento intensivo de rescate para aplicar cada 15 dÃ­as en cabellos sensibilizados por decoloraciÃ³n.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Tratamiento intensivo de rescate para aplicar cada 15 d&iacute;as en cabellos sensibilizados por decoloraci&oacute;n.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1290,7 +1240,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1303,25 +1253,25 @@
                     <div class="product-info">
                         <h3>Termoprotector y Perfume Capilar <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Protector TÃ©rmico y Solar + Perfume Fino (250 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Protector T&eacute;rmico y Solar + Perfume Fino (250 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸ”¥ Ayuda a reducir el daÃ±o por calor de la plancha y el secador.</li>
-                                <li>â˜€ï¸ Escudo protector contra el sol y la poluciÃ³n diaria.</li>
-                                <li>ðŸŒ¸ Perfuma tu cabello y neutraliza olores todo el dÃ­a sin engrasar.</li>
+                                <li>Ayuda a reducir el da&ntilde;o por calor de la plancha y el secador.</li>
+                                <li>Escudo protector contra el sol y la poluci&oacute;n diaria.</li>
+                                <li>Perfuma tu cabello y neutraliza olores todo el d&iacute;a sin engrasar.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Atomiza a 20 cm sobre cabello hÃºmedo antes del secador, o sobre seco antes de planchar o salir a la calle.</p>
+                            <p>Atomiza a 20 cm sobre cabello h&uacute;medo antes del secador, o sobre seco antes de planchar o salir a la calle.</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸŒ¸ TecnologÃ­a anti-humo y anti-grasa: mantiene tu cabello oliendo delicioso a reciÃ©n lavado sin aportar peso.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Tecnolog&iacute;a anti-humo y anti-grasa: mantiene tu cabello oliendo delicioso a reci&eacute;n lavado sin aportar peso.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1329,7 +1279,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1340,27 +1290,27 @@
                         <img loading="lazy" decoding="async" src="ACEITE DE ARGAN.jpeg" alt="Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Aceite Reparador de ArgÃ¡n y Macadamia <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
+                        <h3>Aceite Reparador de Arg&aacute;n y Macadamia <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
                         <span class="product-price">$28.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Sellador de Puntas, NutriciÃ³n y Brillo Espejo (60 ml)</p>
+                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Sellador de Puntas, Nutrici&oacute;n y Brillo Espejo (60 ml)</p>
                         
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">DescripciÃ³n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(this, 'desc')">Descripci&oacute;n</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'usage')">Modo de uso</button>
-                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Te contamos mÃ¡s</button>
+                            <button type="button" class="card-tab-btn" onclick="switchCardTab(this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>ðŸŒ° DÃºo de ArgÃ¡n Puro y Nuez de Macadamia con tacto seco.</li>
-                                <li>âœ‚ï¸ Sella puntas abiertas y disimula horquillas al instante.</li>
-                                <li>ðŸªž Brillo espejo deslumbrante y anti-frizz con solo 2 a 3 gotas.</li>
+                                <li>D&uacute;o de Arg&aacute;n Puro y Nuez de Macadamia con tacto seco.</li>
+                                <li>Sella puntas abiertas y disimula horquillas al instante.</li>
+                                <li>Brillo espejo deslumbrante y anti-frizz con solo 2 a 3 gotas.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Aplica 2 a 3 gotas en las palmas, frota para activar y distribuye en las puntas (con cabello hÃºmedo o seco).</p>
+                            <p>Aplica 2 a 3 gotas en las palmas, frota para activar y distribuye en las puntas (con cabello h&uacute;medo o seco).</p>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p>ðŸŒ° FÃ³rmula ultra concentrada de tacto seco: no engrasa las manos ni apelmaza el cabello.</p>
+                            <p><strong>F&oacute;rmula Exclusiva JA:</strong> Aceite ultra concentrado de tacto seco: no deja las manos grasosas ni apelmaza el cabello.</p>
                         </div>
 
                         <div class="card-actions-wrapper">
@@ -1368,7 +1318,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
                             </a>
-                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">ðŸ‘ï¸ Ver ficha completa</button>
+                            <button class="btn-details-trigger" onclick="openProductModal(this.closest('.product-card-large'))" style="background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">Ver ficha completa</button>
                         </div>
                     </div>
                 </div>
@@ -1627,75 +1577,12 @@
             }
         })();
 
-                // Datos estructurados para las 3 pestañas de cada producto
-        const productTabsCatalog = {
-            "Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)": {
-                desc: "🌿 <strong>Dúo Botánico Purificante y Control de Grasa (1.000 ml c/u)</strong><br><br>Combina el poder de 12 extractos naturales (Romero, Ortiga, Sábila, Té Verde, Manzanilla, Cola de Caballo) para equilibrar el cuero cabelludo sin resecar las puntas. 100% libre de sal, sulfatos pesados y parabenos.<br><br>• <strong>Beneficios:</strong> Raíz fresca y limpia por más días, desenredo instantáneo sin tirones, brillo natural y soltura total sin peso.",
-                usage: "<strong>Modo de Uso Paso a Paso:</strong><br><br>1. <strong>Shampoo:</strong> Aplica sobre el cabello mojado y realiza un masaje suave en el cuero cabelludo con la yema de los dedos durante 2 minutos. Enjuaga con abundante agua.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, deja actuar de 2 a 3 minutos para sellar las cutículas y enjuaga completamente con agua fresca.",
-                more: "✨ <strong>Te Contamos Más:</strong><br><br>• <strong>Ideal para:</strong> Cabellos naturales o con alisados (su fórmula sin sal no barre los tratamientos).<br>• <strong>Rendimiento:</strong> Presentación profesional de 2.000 ml en total (1.000 ml c/u) que rinde entre 3 y 5 meses de cuidado en casa.<br>• <strong>Garantía JA:</strong> Fórmula balanceada que no apelmaza."
-            },
-            "Combo Aceite de Argán JA By Julie Valencia (500 ml c/u)": {
-                desc: "✨ <strong>Dúo de Rescate y Nutrición Intensiva con Biotina y Ácido Hialurónico (500 ml c/u)</strong><br><br>El tratamiento restaurador definitivo para cabello seco, poroso o maltratado por tintes y calor. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Brillo efecto espejo, fuerza anti-quiebre inmediata al cepillar, control total del frizz y tacto aterciopelado de raíz a puntas.",
-                usage: "<strong>Modo de Uso Paso a Paso:</strong><br><br>1. <strong>Shampoo:</strong> Aplica sobre cabello húmedo, masajea suavemente y enjuaga con abundante agua.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, desenreda suavemente con los dedos, deja actuar 3 minutos para nutrición profunda y enjuaga con agua fresca.",
-                more: "💎 <strong>Te Contamos Más:</strong><br><br>• <strong>Trilogía de Activos:</strong> Aceite de Argán Puro de Marruecos + Biotina (Vitamina B7) + Ácido Hialurónico atrapador de hidratación.<br>• <strong>Recomendado para:</strong> Cabellos con mechas, balayage, tinturas o alisados continuos."
-            },
-            "Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)": {
-                desc: "🌿 <strong>Shampoo Botánico Purificante y Control de Grasa (1000 ml)</strong><br><br>Fórmula botánica con 12 extractos naturales que oxigenan los folículos y regulan la producción sebácea sin resecar las puntas. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Limpieza profunda pero amable, raíz suelta y fresca por más días y protección total del color.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Aplica una cantidad moderada sobre el cabello mojado. Realiza un suave masaje circular en el cuero cabelludo durante 2 minutos para activar la microcirculación y retira con abundante agua. Repite si lo consideras necesario.",
-                more: "🍃 <strong>Te Contamos Más:</strong><br><br>• <strong>Activos:</strong> Romero, Ortiga, Sábila, Té Verde y Caléndula.<br>• <strong>Libre de sal:</strong> No altera el pH ni barre tratamientos de alisado."
-            },
-            "Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)": {
-                desc: "🌿 <strong>Acondicionador Desenredo e Hidratación Ligera (1000 ml)</strong><br><br>Sella la cutícula, desenreda al instante y controla el frizz sin restar volumen ni aportar peso graso. 100% libre de sal y parabenos.<br><br>• <strong>Beneficios:</strong> Desenredo sin dolor ni tirones, suavidad sedosa y protección contra puntas abiertas.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Tras lavar con shampoo, retira el exceso de agua y aplica el acondicionador de medios a puntas. Deja actuar de 2 a 3 minutos para encapsular los nutrientes y enjuaga por completo con agua fresca.",
-                more: "✨ <strong>Te Contamos Más:</strong><br><br>• Formulado con extractos de Aloe Vera y proteínas acondicionadoras que aportan soltura y movimiento natural."
-            },
-            "Shampoo Aceite de Argán JA By Julie Valencia (500 ml)": {
-                desc: "✨ <strong>Shampoo Nutrición Anti-Quiebre con Biotina y Argán (500 ml)</strong><br><br>Limpieza suave y reconstituyente diseñada especialmente para cabellos secos, decolorados o castigados por herramientas térmicas.<br><br>• <strong>Beneficios:</strong> Limpia delicadamente protegiendo la hidratación natural, refuerza la fibra y devuelve la vitalidad.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Aplica sobre el cabello húmedo, distribuye con un suave masaje en el cuero cabelludo hasta formar espuma cremosa y enjuaga con abundante agua.",
-                more: "🌰 <strong>Te Contamos Más:</strong><br><br>• La Biotina refuerza la hebra para evitar que se parta durante el peinado diario."
-            },
-            "Acondicionador Aceite de Argán JA By Julie Valencia (500 ml)": {
-                desc: "💎 <strong>Acondicionador Reconstrucción con Ácido Hialurónico y Argán (500 ml)</strong><br><br>Nutrición intensiva para reparar la porosidad y transformar cabellos secos en seda pura.<br><br>• <strong>Beneficios:</strong> Sellado de cutículas, control total del frizz incluso en climas húmedos y brillo espejo radiante.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de medios a puntas sobre el cabello limpio y húmedo. Deja actuar de 3 a 5 minutos para una absorción profunda y enjuaga completamente.",
-                more: "🪞 <strong>Te Contamos Más:</strong><br><br>• El Ácido Hialurónico rellena las zonas porosas evitando el encrespamiento por humedad."
-            },
-            "Mascarilla Capilar Oro Líquido JA By Julie Valencia (250 ml)": {
-                desc: "👑 <strong>Tratamiento Intensivo de Spa con Jojoba y Keratina (250 ml)</strong><br><br>El rescate semanal en casa para devolverle la elasticidad, fuerza y nutrición a cabellos maltratados o apagados. 100% libre de sal.<br><br>• <strong>Beneficios:</strong> Recuperación de elasticidad, nutrición profunda y acabado ultra suave de salón.",
-                usage: "<strong>Modo de Uso (2 Formas de Aplicación):</strong><br><br>1. <strong>Como Mascarilla Semanal:</strong> 1 a 2 veces por semana, tras el shampoo, aplica de medios a puntas, deja actuar 15 minutos (ideal con gorro térmico) y enjuaga al 100%. Finaliza con acondicionador.<br><br>2. <strong>Como Pre-Shampoo:</strong> Aplica en puntas secas 15 minutos antes de la ducha para protegerlas de la fricción del lavado.",
-                more: "🌟 <strong>Te Contamos Más:</strong><br><br>• Contiene micro-partículas doradas y aceite de jojoba puro que penetran sin dejar sensación grasosa."
-            },
-            "Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)": {
-                desc: "🌟 <strong>Escudo Multibeneficios con 12 Activos Poderosos (300 ml)</strong><br><br>Fórmula inteligente todo en uno con Keratina, Colágeno, Argán, Karité, Biotina y Filtro UV.<br><br>• <strong>12 Beneficios:</strong> Desenredo, anti-frizz, brillo, protección térmica ligera, protección solar UV, elasticidad, suavidad y acción antioxidante.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Aplica una pequeña cantidad de medios a puntas sobre el cabello limpio y húmedo después del lavado. Distribuye con peine y procede a peinar de forma habitual.",
-                more: "☀️ <strong>Te Contamos Más:</strong><br><br>• Su filtro solar UV previene el desgaste del color causado por el sol y la polución."
-            },
-            "Ampolla de Reparación S.O.S. JA By Julie Valencia (20 ml)": {
-                desc: "💉 <strong>Elixir Concentrado de Rescate Capilar Inmediato (20 ml)</strong><br><br>Dosis intensiva de choque con aminoácidos concentrados para recuperar cabellos elásticos, con efecto chicle o castigados por químicos.<br><br>• <strong>Beneficios:</strong> Freno inmediato al quiebre, recuperación de firmeza y sellado de cutículas en minutos.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Lava tu cabello con shampoo, retira el exceso de agua y aplica todo el contenido de la ampolla mechón a mechón de medios a puntas. Deja actuar de 10 a 15 minutos y enjuaga con abundante agua.",
-                more: "🧬 <strong>Te Contamos Más:</strong><br><br>• Tratamiento de emergencia recomendado cada 15 días en cabellos sensibilizados."
-            },
-            "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)": {
-                desc: "🔥 <strong>Escudo Protector Anti-Daño + Perfume Capilar de Lujo (250 ml)</strong><br><br>Tu mejor aliado para proteger el cabello del calor del secador y la plancha, envolviéndolo en una fragancia fina de larga duración.<br><br>• <strong>Beneficios:</strong> Reduce el daño térmico, facilita el planchado, neutraliza olores ambientales y aporta brillo sedoso.",
-                usage: "<strong>Modo de Uso:</strong><br><br>• <strong>Con secador:</strong> Atomiza uniformemente a 20 cm sobre el cabello húmedo antes de secar.<br>• <strong>Con plancha:</strong> Rocía ligeramente sobre cabello seco antes de pasar la plancha.<br>• <strong>Como perfume:</strong> Aplica a 25 cm para refrescar el aroma en cualquier momento.",
-                more: "🌸 <strong>Te Contamos Más:</strong><br><br>• Tecnología anti-humo y anti-grasa que mantiene tu cabello oliendo a recién lavado por horas."
-            },
-            "Aceite Reparador de Argán y Macadamia JA By Julie Valencia (60 ml)": {
-                desc: "✨ <strong>Gotas de Nutrición Seca y Brillo Espejo (60 ml)</strong><br><br>Elixir de tacto seco que combina el poder del Argán Puro y la Nuez de Macadamia para el toque final perfecto de cualquier peinado.<br><br>• <strong>Beneficios:</strong> Brillo espejo deslumbrante, sellado visual de puntas abiertas, control de frizz y suavidad sin residuo graso.",
-                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de 2 a 3 gotas en la palma de tus manos, frota para activar los aceites botánicos y distribuye uniformemente en las puntas (con cabello húmedo antes de secar o en seco como toque final).",
-                more: "🌰 <strong>Te Contamos Más:</strong><br><br>• Fórmula ultra concentrada de tacto seco: no engrasa las manos ni deja el cabello pesado."
-            }
-        };
-
-                // FunciÃ³n para cambiar de pestaÃ±a directamente en la tarjeta de producto
+                // Funci&oacute;n para cambiar pesta&ntilde;a en tarjeta
         function switchCardTab(button, tabKey) {
             const card = button.closest('.product-card-large');
             if (!card) return;
-
-            // Actualizar botones de esa tarjeta
             card.querySelectorAll('.card-tab-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-
-            // Actualizar paneles de esa tarjeta
             card.querySelectorAll('.card-tab-pane').forEach(pane => {
                 if (pane.getAttribute('data-pane') === tabKey) {
                     pane.classList.add('active');
@@ -1705,8 +1592,65 @@
             });
         }
 
+        const productTabsCatalog = {
+            "Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)": {
+                desc: "<strong>D&uacute;o Bot&aacute;nico Purificante y Control de Grasa (1.000 ml c/u)</strong><br><br>Combina 12 extractos naturales (Romero, Ortiga, S&aacute;bila, T&eacute; Verde) para equilibrar el cuero cabelludo sin resecar las puntas. 100% libre de sal y parabenos.<br><br>&bull; <strong>Beneficios:</strong> Ra&iacute;z limpia por m&aacute;s d&iacute;as, desenredo r&aacute;pido sin tirones y soltura total sin peso.",
+                usage: "<strong>Modo de Uso:</strong><br><br>1. <strong>Shampoo:</strong> Masajea suavemente el cuero cabelludo mojado durante 2 min y enjuaga con abundante agua.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, deja actuar 2 a 3 min para sellar y enjuaga completamente.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; <strong>Ideal para:</strong> Cabellos con alisado o naturales. No barre tratamientos.<br>&bull; <strong>Rendimiento:</strong> 2.000 ml en total para 3 a 5 meses de cuidado en casa."
+            },
+            "Combo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml c/u)": {
+                desc: "<strong>D&uacute;o de Rescate y Nutrici&oacute;n Intensiva con Biotina y &Aacute;cido Hialur&oacute;nico (500 ml c/u)</strong><br><br>Tratamiento restaurador para cabello seco, poroso o tinturado. 100% libre de sal y parabenos.<br><br>&bull; <strong>Beneficios:</strong> Brillo efecto espejo, fuerza anti-quiebre, control de frizz y tacto sedoso.",
+                usage: "<strong>Modo de Uso:</strong><br><br>1. <strong>Shampoo:</strong> Lava suavemente la ra&iacute;z y enjuaga.<br><br>2. <strong>Acondicionador:</strong> Aplica de medios a puntas, deja actuar 3 min y enjuaga con agua fresca.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; <strong>Activos:</strong> Arg&aacute;n Puro + Biotina + &Aacute;cido Hialur&oacute;nico.<br>&bull; <strong>Recomendado para:</strong> Cabellos decolorados, con mechas o balayage."
+            },
+            "Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)": {
+                desc: "<strong>Shampoo Bot&aacute;nico Purificante (1000 ml)</strong><br><br>12 Extractos naturales que oxigenan los fol&iacute;culos y regulan la grasa sin resecar puntas.<br><br>&bull; <strong>Beneficios:</strong> Limpieza profunda y ra&iacute;z suelta por m&aacute;s d&iacute;as.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica sobre cabello mojado, realiza masaje circular de 2 min en el cuero cabelludo y retira con agua.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; pH balanceado sin sal para proteger tinturas y alisados."
+            },
+            "Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)": {
+                desc: "<strong>Acondicionador Desenredo e Hidrataci&oacute;n (1000 ml)</strong><br><br>Sella la cut&iacute;cula, desenreda al instante y controla el frizz sin restar volumen ni aportar peso graso.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de medios a puntas tras el lavado, deja actuar 2 a 3 min y enjuaga al 100%.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Con Aloe Vera y Cal&eacute;ndula para suavidad y movimiento natural."
+            },
+            "Shampoo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)": {
+                desc: "<strong>Shampoo Nutrici&oacute;n Anti-Quiebre con Biotina (500 ml)</strong><br><br>Limpieza suave para cabellos secos o castigados por calor y qu&iacute;micos.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica en cabello h&uacute;medo, masajea hasta formar espuma cremosa y enjuaga.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; La Biotina refuerza los puentes de queratina para evitar el quiebre."
+            },
+            "Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)": {
+                desc: "<strong>Acondicionador Reconstrucci&oacute;n con &Aacute;cido Hialur&oacute;nico (500 ml)</strong><br><br>Nutrici&oacute;n intensiva para sellar cut&iacute;culas y dar brillo espejo.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica de medios a puntas en cabello h&uacute;medo, deja 3 a 5 min y enjuaga.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Protege la hebra contra la humedad y el fr&iacute;o."
+            },
+            "Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia (250 ml)": {
+                desc: "<strong>Tratamiento Intensivo de Spa con Jojoba y Keratina (250 ml)</strong><br><br>Rescate semanal para devolver elasticidad y nutrici&oacute;n profunda.",
+                usage: "<strong>Modo de Uso:</strong><br><br>1 a 2 veces por semana tras el shampoo, deja actuar 15 min y enjuaga al 100%.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Con micropart&iacute;culas doradas de brillo sin engrasar."
+            },
+            "Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)": {
+                desc: "<strong>Escudo Multibeneficios 12-en-1 (300 ml)</strong><br><br>Keratina, Col&aacute;geno, Arg&aacute;n, Karit&eacute;, Biotina y Filtro Solar UV.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica una peque&ntilde;a cantidad de medios a puntas tras el lavado y peina de forma habitual.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Escudo diario contra el sol, calor y poluci&oacute;n."
+            },
+            "Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia (20 ml)": {
+                desc: "<strong>Elixir Concentrado de Rescate Inmediato (20 ml)</strong><br><br>Amino&aacute;cidos concentrados para cabellos el&aacute;sticos o sensibilizados.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica mech&oacute;n a mech&oacute;n de medios a puntas tras el shampoo, deja 10 a 15 min y enjuaga.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Tratamiento de choque para aplicar cada 15 d&iacute;as."
+            },
+            "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)": {
+                desc: "<strong>Escudo T&eacute;rmico + Perfume Capilar de Lujo (250 ml)</strong><br><br>Protege la fibra del calor del secador y la plancha y neutraliza olores.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Atomiza a 20 cm sobre cabello h&uacute;medo antes del secador, o seco antes de la plancha.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; Tecnolog&iacute;a anti-humo: mantiene el cabello perfumado todo el d&iacute;a."
+            },
+            "Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia (60 ml)": {
+                desc: "<strong>Gotas de Nutrici&oacute;n Seca y Brillo Espejo (60 ml)</strong><br><br>Arg&aacute;n Puro y Macadamia para sellar puntas abiertas y dar brillo.",
+                usage: "<strong>Modo de Uso:</strong><br><br>Aplica 2 a 3 gotas en las palmas, frota y distribuye exclusivamente en las puntas.",
+                more: "<strong>Beneficios Exclusivos JA:</strong><br><br>&bull; F&oacute;rmula de tacto seco: cero grasa en las manos y cabello liviano."
+            }
+        };
+
         function switchProductTab(tabKey) {
-            // Actualizar botones
             document.getElementById('tabBtnDesc').classList.remove('active');
             document.getElementById('tabBtnUsage').classList.remove('active');
             document.getElementById('tabBtnMore').classList.remove('active');
@@ -1715,7 +1659,6 @@
             if (tabKey === 'usage') document.getElementById('tabBtnUsage').classList.add('active');
             if (tabKey === 'more') document.getElementById('tabBtnMore').classList.add('active');
 
-            // Actualizar paneles
             document.getElementById('tabPaneDesc').classList.remove('active');
             document.getElementById('tabPaneUsage').classList.remove('active');
             document.getElementById('tabPaneMore').classList.remove('active');
@@ -1735,7 +1678,7 @@
             modalName.textContent = name;
             modalPrice.textContent = "$" + parseInt(price).toLocaleString("es-CO");
             
-            // Poblar las 3 pestañas
+            // Poblar las 3 pesta&ntilde;as
             const tabData = productTabsCatalog[name];
             const paneDesc = document.getElementById("tabPaneDesc");
             const paneUsage = document.getElementById("tabPaneUsage");
@@ -1750,11 +1693,10 @@
                     .replace(/\*\*(.*?)\*\*/g, '<strong></strong>')
                     .replace(/\n/g, '<br>');
                 if (paneDesc) paneDesc.innerHTML = formattedDetails;
-                if (paneUsage) paneUsage.innerHTML = "<strong>Modo de Uso:</strong><br>Aplica de medios a puntas sobre cabello limpio y húmedo. Sigue las instrucciones del envase para mejores resultados.";
-                if (paneMore) paneMore.innerHTML = "✨ <strong>Te Contamos Más:</strong><br>Fórmula profesional libre de sal y parabenos desarrollada por Julie Valencia.";
+                if (paneUsage) paneUsage.innerHTML = "<strong>Modo de Uso:</strong><br>Aplica de medios a puntas sobre cabello limpio y h&uacute;medo.";
+                if (paneMore) paneMore.innerHTML = "<strong>Beneficios Exclusivos JA:</strong><br>F&oacute;rmula profesional libre de sal y parabenos desarrollada por Julie Valencia.";
             }
 
-            // Resetear siempre a la pestaña 'Descripción' al abrir
             switchProductTab('desc');
             const name = card.getAttribute("data-name") || "Producto";
             const price = card.getAttribute("data-price") || "0";
@@ -2023,43 +1965,6 @@
             if (fill) fill.style.width = '33%';
         }
     </script>
-<script>
-        // Verificador AutomÃ¡tico de Pagos de Mercado Pago
-        (function checkMercadoPagoSuccess() {
-            const params = new URLSearchParams(window.location.search);
-            const status = params.get('collection_status') || params.get('status');
-            const paymentId = params.get('collection_id') || params.get('payment_id') || 'N/A';
-            const paymentType = params.get('payment_type') || 'Mercado Pago';
-
-            if (status === 'approved') {
-                const toast = document.createElement('div');
-                toast.id = 'mpSuccessToast';
-                toast.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px;';
-                
-                const waMsg = encodeURIComponent(`Â¡Hola Julie Alisados! ðŸ‘‹ Acabo de realizar el pago de mi pedido por la pÃ¡gina web con Ã©xito a travÃ©s de Mercado Pago.\n\nðŸ’³ *ID de TransacciÃ³n:* ${paymentId}\nðŸ“¦ *Estado:* Aprobado âœ…\n\nAdjunto mis datos para el despacho:\nâ€¢ Nombre:\nâ€¢ CÃ©dula:\nâ€¢ TelÃ©fono:\nâ€¢ DirecciÃ³n y Ciudad:`);
-                
-                toast.innerHTML = `
-                    <div style="background: #ffffff; border-radius: 20px; max-width: 480px; width: 100%; padding: 35px 25px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 2px solid #D4AF37; animation: fadeIn 0.4s ease;">
-                        <span style="font-size: 3.5rem; display: block; margin-bottom: 10px;">ðŸŽ‰</span>
-                        <h3 style="font-family: 'Playfair Display', serif; color: #1a1a1a; font-size: 1.6rem; margin-bottom: 8px;">Â¡Pago Aprobado con Ã‰xito!</h3>
-                        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Tu transacciÃ³n ha sido confirmada por Mercado Pago.<br><strong>ID de Pago:</strong> ${paymentId}</p>
-                        
-                        <div style="background: #fdfbf7; border: 1px dashed #D4AF37; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: left;">
-                            <strong style="color: #843b56; font-size: 0.9rem; display: block; margin-bottom: 4px;">ðŸ“ Paso Final Obligatorio:</strong>
-                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Para despachar tu paquete inmediatamente, envÃ­a la confirmaciÃ³n y tus datos de envÃ­o al equipo de ventas por WhatsApp.</p>
-                        </div>
-
-                        <a href="https://wa.me/573043588180?text=${waMsg}" target="_blank" style="background: #25D366; color: #ffffff; padding: 14px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); margin-bottom: 12px;">
-                            ðŸ“² Confirmar Despacho por WhatsApp
-                        </a>
-
-                        <button onclick="document.getElementById('mpSuccessToast').remove()" style="background: none; border: none; color: #888; font-size: 0.85rem; cursor: pointer; text-decoration: underline;">Cerrar ventana</button>
-                    </div>
-                `;
-                document.body.appendChild(toast);
-            }
-        })();
-</script>
 </body>
 
 </html>
