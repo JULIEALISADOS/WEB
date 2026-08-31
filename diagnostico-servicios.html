@@ -371,7 +371,11 @@
             var desc = "Tu cabello es perfectamente apto para nuestro procedimiento insignia. Lograrás un liso perfecto, sellado de cutículas y brillo espejo sin agredir tu salud.";
             var details = "<strong>Protocolo en Salón:</strong> Lavado de apertura + Aplicación de fórmula botánica + Aceleración con Fototerapia Láser + Cauterización térmica + Sellado de aminoácidos.";
 
-            if (serviceAnswers.elasticity === 'elastico' || serviceAnswers.history === 'decolorado') {
+                        if (serviceAnswers.history === 'natural') {
+                title = "Alisado Saludable Orgánico (Cabello Natural)";
+                desc = "Tu cabello es 100% virgen y resistente. Es el candidato ideal para lograr un liso perfecto de hasta el 100%, con máxima soltura, movimiento natural y brillo de espejo sin formol.";
+                details = "<strong>Protocolo en Salón:</strong> Lavado preparatorio + Alisado orgánico botánico con nanotecnología + Fototerapia capilar láser + Cauterización térmica sellante.";
+            } else if (serviceAnswers.elasticity === 'elastico' || serviceAnswers.history === 'decolorado') {
                 title = "Terapia Pre-Alisado + Reposición de Aminoácidos";
                 desc = "Debido a la decoloración o sensibilidad de tu hebra, te recomendamos realizar una sesión previa de reposición de aminoácidos o RCP para devolverle fuerza interna a tu cabello antes de alisar.";
                 details = "<strong>Protocolo Recomendado:</strong> Test de mechón en sede + Terapia de Restauración Profunda (RCP) + Crioterapia capilar para recuperar elasticidad.";
