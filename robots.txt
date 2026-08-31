@@ -1,7 +1,29 @@
-User-agent: *
+﻿User-agent: *
 Disallow: /sistema-fichas-2024/
 Disallow: /js/
 Disallow: /api/
+Allow: /
+
+# AI Crawlers & LLM Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://juliealisados.com/sitemap.xml
