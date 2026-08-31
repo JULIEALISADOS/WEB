@@ -384,32 +384,32 @@
         function showQuizResult() {
             var title = "Combo Extractos Naturales (1000ml)";
             var price = ".000 COP";
-            var desc = "Fórmula botánica libre de sal y formol diseñada para mantener tu cabello ultra suave, con brillo espejo y sin alterar el cuero cabelludo.";
+            var desc = "¡Tu cabello tiene el potencial de lucir un brillo espejo y una soltura de revista! Con esta rutina botánica 100% libre de sal, potenciarás su crecimiento sano, eliminarás el frizz y mantendrás tu raíz fresca y liviana por días. ¡Llévatela hoy y siente la transformación desde la primera lavada!";
             var includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
-            var payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
+            var payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60";
 
-                        if (quizAnswers.state === 'natural') {
+            if (quizAnswers.state === 'natural') {
                 title = "Rutina Botánica Natural: Combo Extractos (1000ml)";
                 price = ".000 COP";
-                desc = "Fórmula botánica 100% libre de sal y parabenos. Limpia suavemente el cuero cabelludo estimulando el crecimiento sano, mientras el acondicionador botánico deja tu cabello suelto, liviano y con un brillo natural deslumbrante.";
+                desc = "¡El match perfecto para tu cabello virgen! Fórmula botánica rica en 12 extractos naturales que nutre sin aportar peso, dándole a tu melena una suavidad, movimiento y brillo natural insuperables.";
                 includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60";
             } else if (quizAnswers.state === 'alisado' && quizAnswers.heat === 'si') {
                 title = "Rutina Liso Blindado: Combo Extractos + Termoprotector";
                 price = ".000 COP";
-                desc = "La combinación perfecta para sellar tu alisado y proteger la fibra del calor del secador y la plancha.";
+                desc = "¡La combinación dorada para proteger tu inversión y mantener tu alisado impecable! Sella la cutícula, blinda tu fibra capilar contra el calor de secadores y planchas y despierta todos los días peinada y radiante.";
                 includes = "<strong>Incluye:</strong> Combo Extractos (1L) + Termoprotector Capilar Profesional";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
             } else if (quizAnswers.state === 'tinturado' || quizAnswers.goal === 'reparacion') {
                 title = "Rutina Reparación Oro: Combo Argán + Mascarilla Oro Líquido";
                 price = ".000 COP";
-                desc = "Nutrición intensiva con aceite de argán puro para regenerar hebras secas, tinturadas o con mechas.";
+                desc = "¡La salvación y el renacer de tu cabello! Con el poder regenerador del Aceite de Argán Puro y la Mascarilla Oro Líquido, sellarás las puntas abiertas, eliminarás la porosidad y recuperarás el tacto de seda al instante.";
                 includes = "<strong>Incluye:</strong> Combo Argán 500ml + Mascarilla Capilar Oro Líquido (250ml)";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-4f364028-1124-4f27-9917-09d1e389e6e8";
             } else if (quizAnswers.state === 'frizz') {
                 title = "Rutina Control Frizz: Combo Extractos + Mascarilla Oro Líquido";
                 price = ".000 COP";
-                desc = "Alineación y peso molecular óptimo para disciplinar cabellos rebeldes y lograr un brillo espejo duradero.";
+                desc = "¡Dile adiós al encrespamiento y luce un cabello disciplinado y sedoso! Aporta el peso molecular y la hidratación botánica exacta para alinear cada hebra y lograr un acabado de salón en casa.";
                 includes = "<strong>Incluye:</strong> Combo Extractos (1L) + Mascarilla Capilar Oro Líquido";
                 payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
             }
@@ -427,7 +427,7 @@
             if (incEl) incEl.innerHTML = includes;
             if (payEl) payEl.href = payLink;
 
-            var waText = "Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: *" + title + "* (" + price + "). Deseo pedir esta rutina ✨";
+            var waText = "Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: *" + title + "* (" + price + "). ¡Deseo pedir esta rutina para transformar mi cabello! ✨";
             if (waEl) waEl.href = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
         }
 
