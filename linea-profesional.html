@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -680,6 +680,12 @@
 </head>
 
 <body>
+    <!-- Barra Superior de Anuncios Pro (Top Announcement Bar) -->
+    <div class="top-announcement-bar" role="region" aria-label="Anuncios destacados">
+        <div class="announcement-item active" data-index="0">💳 <strong>¡Paga fácil y seguro!</strong> Aceptamos PSE, Nequi, Tarjeta y Efecty en segundos.</div>
+        <div class="announcement-item" data-index="1">🌿 <strong>Fórmulas 100% Libres de Formol y Sal</strong> • Salud y Brillo Real para tu Cabello.</div>
+        <div class="announcement-item" data-index="2">📦 <strong>Despachos rápidos y seguros a toda Colombia</strong> • Asesoría personalizada por WhatsApp.</div>
+    </div>
     <!-- Distintivo Esquina: Bandera de Colombia (Corner Ribbon) -->
     <div class="colombia-corner-badge" style="position: fixed; top: 0; left: 0; width: 36px; height: 36px; z-index: 10000; pointer-events: none; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.25));" title="Orgullo Colombiano • Julie Alisados" aria-label="Bandera de Colombia">
         <svg viewBox="0 0 52 52" width="36" height="36" style="display: block; width: 36px; height: 36px;" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -737,10 +743,18 @@
                     <h3 id="modalProductName" class="modal-product-title"></h3>
                     <span id="modalProductPrice" class="modal-product-price"></span>
                     <div id="modalProductDetails" class="modal-product-desc"></div>
+                                        <div id="modalCrossSell" class="modal-cross-sell" style="display: none;">
+                        <div class="cross-sell-info">
+                            <span class="cross-sell-tag">💡 Recomendación Profesional</span>
+                            <strong id="crossSellTitle" class="cross-sell-title"></strong>
+                            <span id="crossSellDesc" class="cross-sell-desc"></span>
+                        </div>
+                        <button type="button" id="crossSellBtn" class="btn-cross-sell">Ver Sugerido ✨</button>
+                    </div>
                     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
                         <a id="modalPayBtn" href="#" target="_blank" class="modal-pay-btn" style="background: linear-gradient(135deg, #009ee3, #007eb5); color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 700; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,158,227,0.25);">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                            Pagar con PSE / Nequi / Tarjeta
+                            Pagar con PSE / Nequi / Tarjeta / Efecty
                         </a>
                         <a id="modalWaBtn" href="#" target="_blank" class="modal-wa-btn">Comprar por WhatsApp 💬</a>
                     </div>
@@ -898,6 +912,48 @@
         const modalWaBtn = document.getElementById("modalWaBtn");
         const span = document.getElementById("closeModal");
 
+                // Mapa de Venta Sugerida Profesional (Cross-Selling Inteligente)
+        const crossSellRecommendationsProf = {
+            "Kit Alisado Saludable 3 Pasos (1000ml)": {
+                name: "Repositor de Aminoácidos (Paso 3)",
+                desc: "Restaura cabellos procesados antes o después del alisado.",
+                targetCardIndex: 2
+            },
+            "Alisado Saludable - Paso 2 (1000ml)": {
+                name: "Shampoo Antirresiduos - Paso 1 (1000ml)",
+                desc: "Paso indispensable para preparar la fibra capilar antes del alisado.",
+                targetCardIndex: 0
+            },
+            "Shampoo Antirresiduos - Paso 1 (1000ml)": {
+                name: "Alisado Saludable - Paso 2 (1000ml)",
+                desc: "El alisado insignia para un liso perfecto y sin formol.",
+                targetCardIndex: 1
+            },
+            "Repositor de Aminoácidos - Paso 3 (1000ml)": {
+                name: "Kit Alisado Saludable 3 Pasos (1000ml)",
+                desc: "El sistema profesional completo para salones de belleza.",
+                targetCardIndex: 6
+            },
+            "Pre-Tratamiento Capilar (1000ml)": {
+                name: "Alisado Saludable - Paso 2 (1000ml)",
+                desc: "El alisado ideal para aplicar después del pre-tratamiento.",
+                targetCardIndex: 1
+            }
+        };
+
+        // Rotación de la Barra Superior de Anuncios
+        (function() {
+            const items = document.querySelectorAll('.top-announcement-bar .announcement-item');
+            if (items.length > 1) {
+                let currentIndex = 0;
+                setInterval(function() {
+                    items[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % items.length;
+                    items[currentIndex].classList.add('active');
+                }, 4000);
+            }
+        })();
+
         function openProductModal(card) {
             const name = card.getAttribute("data-name") || "Producto Profesional";
             const price = card.getAttribute("data-price") || "0";
@@ -924,6 +980,37 @@
                 modalPayBtn.style.display = "flex";
             }
 
+                        // Configurar Venta Sugerida (Cross-Selling)
+            const modalCrossSell = document.getElementById('modalCrossSell');
+            const crossSellTitle = document.getElementById('crossSellTitle');
+            const crossSellDesc = document.getElementById('crossSellDesc');
+            const crossSellBtn = document.getElementById('crossSellBtn');
+
+            if (modalCrossSell && crossSellRecommendationsProf[name]) {
+                const rec = crossSellRecommendationsProf[name];
+                crossSellTitle.textContent = rec.name;
+                crossSellDesc.textContent = rec.desc;
+                modalCrossSell.style.display = 'flex';
+                
+                crossSellBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    const allCards = document.querySelectorAll('.product-card-large');
+                    let targetCard = null;
+                    allCards.forEach(c => {
+                        if (c.getAttribute('data-name') && c.getAttribute('data-name').includes(rec.name.split(' ')[0])) {
+                            targetCard = c;
+                        }
+                    });
+                    if (!targetCard && allCards[rec.targetCardIndex]) {
+                        targetCard = allCards[rec.targetCardIndex];
+                    }
+                    if (targetCard) {
+                        openProductModal(targetCard);
+                    }
+                };
+            } else if (modalCrossSell) {
+                modalCrossSell.style.display = 'none';
+            }
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
         }
