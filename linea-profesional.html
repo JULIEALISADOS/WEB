@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -737,7 +737,13 @@
                     <h3 id="modalProductName" class="modal-product-title"></h3>
                     <span id="modalProductPrice" class="modal-product-price"></span>
                     <div id="modalProductDetails" class="modal-product-desc"></div>
-                    <a id="modalWaBtn" href="#" target="_blank" class="modal-wa-btn">Comprar por WhatsApp 💬</a>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                        <a id="modalPayBtn" href="#" target="_blank" class="modal-pay-btn" style="background: linear-gradient(135deg, #009ee3, #007eb5); color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 700; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,158,227,0.25);">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            Pagar con PSE / Nequi / Tarjeta
+                        </a>
+                        <a id="modalWaBtn" href="#" target="_blank" class="modal-wa-btn">Comprar por WhatsApp 💬</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -762,7 +768,7 @@
 
             <div class="product-grid">
                 <!-- 1. KIT 3 PASOS ALISADO SALUDABLE -->
-                <div class="product-card-large" data-name="Kit 3 Pasos Alisado Saludable JA By Julie Valencia" data-price="440000" data-img="KIT ALISADO.jpeg" data-details="💫 **Kit Profesional Alisado Saludable (3 Pasos) — Marca JA By Julie Valencia**&#10;&#10;El sistema profesional de alisado vegetal número uno en Colombia. Fórmulas libres de formol y amoníaco con Registro INVIMA.&#10;&#10;• Paso 1 - Shampoo Anti-Residuo (500 ml): Desintoxica y abre la cutícula de forma uniforme.&#10;• Paso 2 - Alisado Saludable (1100 g): Alinea el cabello desde la corteza con soltura y brillo espejado.&#10;• Paso 3 - Mascarilla Reparadora (500 ml): Sella el proceso térmico y fija suavidad extrema.&#10;• Garantía y seguridad total para el estilista y la clienta en el salón." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Kit 3 Pasos Alisado Saludable JA By Julie Valencia" data-price="440000" data-img="KIT ALISADO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-24baec33-4e8f-4600-af32-ae43d2fc5d64" data-details="💫 **Kit Profesional Alisado Saludable (3 Pasos) — Marca JA By Julie Valencia**&#10;&#10;El sistema profesional de alisado vegetal número uno en Colombia. Fórmulas libres de formol y amoníaco con Registro INVIMA.&#10;&#10;• Paso 1 - Shampoo Anti-Residuo (500 ml): Desintoxica y abre la cutícula de forma uniforme.&#10;• Paso 2 - Alisado Saludable (1100 g): Alinea el cabello desde la corteza con soltura y brillo espejado.&#10;• Paso 3 - Mascarilla Reparadora (500 ml): Sella el proceso térmico y fija suavidad extrema.&#10;• Garantía y seguridad total para el estilista y la clienta en el salón." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="KIT ALISADO.jpeg" alt="Kit 3 Pasos Alisado Saludable JA By Julie Valencia">
                     </div>
@@ -770,12 +776,12 @@
                         <h3>Kit 3 Pasos Alisado Saludable <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(Paso 1: 500 ml | Paso 2: 1100 g | Paso 3: 500 ml)</span></h3>
                         <span class="product-price">$440.000</span>
                         <p>Kit completo de 3 pasos para salones de belleza. Alisado orgánico vegetal 100% libre de formol con Registro INVIMA.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 2. PASO 1 - SHAMPOO ANTI-RESIDUO -->
-                <div class="product-card-large" data-name="Paso 1 - Shampoo Antiresiduos JA By Julie Valencia (500 ml)" data-price="22000" data-img="SHAMPOO ANTIRESIUDOS.jpeg" data-details="🧼 **Paso 01: Shampoo Anti-Residuo (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Preparador técnico desintoxicante indispensable para cualquier servicio de salón.&#10;&#10;• Purifica la fibra capilar eliminando acumulaciones de siliconas, grasa y químicos.&#10;• Abre las escamas de forma uniforme para una absorción perfecta.&#10;• No irrita el cuero cabelludo.&#10;• Libre de sal y parabenos." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Paso 1 - Shampoo Antiresiduos JA By Julie Valencia (500 ml)" data-price="22000" data-img="SHAMPOO ANTIRESIUDOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-bd1a3cb8-0236-4a17-b3e5-5d9cd4606cc7" data-details="🧼 **Paso 01: Shampoo Anti-Residuo (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Preparador técnico desintoxicante indispensable para cualquier servicio de salón.&#10;&#10;• Purifica la fibra capilar eliminando acumulaciones de siliconas, grasa y químicos.&#10;• Abre las escamas de forma uniforme para una absorción perfecta.&#10;• No irrita el cuero cabelludo.&#10;• Libre de sal y parabenos." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="SHAMPOO ANTIRESIUDOS.jpeg" alt="Paso 1 - Shampoo Antiresiduos JA By Julie Valencia">
                     </div>
@@ -783,12 +789,12 @@
                         <h3>Paso 1: Shampoo Antiresiduos <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$22.000</span>
                         <p>Limpieza profunda y apertura de cutícula en el lavacabezas. Prepara el cabello para el Paso 2 de alisado.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 3. PASO 2 - ALISADO SALUDABLE -->
-                <div class="product-card-large" data-name="Paso 2 - Alisado Saludable JA By Julie Valencia (1100 g)" data-price="380000" data-img="ALISADO PASO 2.jpeg" data-details="💫 **Paso 02: Alisado Saludable Orgánico (1100 g) — Marca JA By Julie Valencia**&#10;&#10;Tratamiento alisador orgánico vegetal para uso profesional en salón.&#10;&#10;• Liso 100% perfecto, natural, sano y brillante.&#10;• Registro INVIMA y fórmula 100% libre de formol o vapores molestos.&#10;• Restaura la fibra mientras alinea la cutícula.&#10;• Gran rendimiento para múltiples servicios en peluquería." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Paso 2 - Alisado Saludable JA By Julie Valencia (1100 g)" data-price="380000" data-img="ALISADO PASO 2.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1facd0fb-3d89-482e-ad49-28aa35f1869a" data-details="💫 **Paso 02: Alisado Saludable Orgánico (1100 g) — Marca JA By Julie Valencia**&#10;&#10;Tratamiento alisador orgánico vegetal para uso profesional en salón.&#10;&#10;• Liso 100% perfecto, natural, sano y brillante.&#10;• Registro INVIMA y fórmula 100% libre de formol o vapores molestos.&#10;• Restaura la fibra mientras alinea la cutícula.&#10;• Gran rendimiento para múltiples servicios en peluquería." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="ALISADO PASO 2.jpeg" alt="Paso 2 - Alisado Saludable JA By Julie Valencia">
                     </div>
@@ -796,12 +802,12 @@
                         <h3>Paso 2: Alisado Saludable <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1100 g)</span></h3>
                         <span class="product-price">$380.000</span>
                         <p>Alisado orgánico vegetal de alto rendimiento. Modifica la estructura capilar con suavidad aportando liso natural y brillo de espejo.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 4. PASO 3 - MASCARILLA REPARADORA -->
-                <div class="product-card-large" data-name="Paso 3 - Mascarilla Reparadora JA By Julie Valencia (500 ml)" data-price="52000" data-img="MASCARILLA PASO 3.jpeg" data-details="👑 **Paso 03: Mascarilla Reparadora y Selladora (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Broche de oro técnico para finalizar alisados y tratamientos profesionales.&#10;&#10;• Estabiliza el pH del cabello post-proceso térmico.&#10;• Sella la cutícula atrapando nutrientes e hidratación.&#10;• Repone lípidos y aporta una suavidad inolvidable.&#10;• Fija un brillo de espejo espectacular y prolonga la duración del liso." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Paso 3 - Mascarilla Reparadora JA By Julie Valencia (500 ml)" data-price="52000" data-img="MASCARILLA PASO 3.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-04ced529-f5cb-4a66-a61a-df882e20034b" data-details="👑 **Paso 03: Mascarilla Reparadora y Selladora (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Broche de oro técnico para finalizar alisados y tratamientos profesionales.&#10;&#10;• Estabiliza el pH del cabello post-proceso térmico.&#10;• Sella la cutícula atrapando nutrientes e hidratación.&#10;• Repone lípidos y aporta una suavidad inolvidable.&#10;• Fija un brillo de espejo espectacular y prolonga la duración del liso." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="MASCARILLA PASO 3.jpeg" alt="Paso 3 - Mascarilla Reparadora JA By Julie Valencia">
                     </div>
@@ -809,12 +815,12 @@
                         <h3>Paso 3: Mascarilla Reparadora <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$52.000</span>
                         <p>Sellador térmico y estabilizador de pH post-alisado. Cierra la cutícula atrapando la hidratación y fijando brillo espejo.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 5. REPOSICIÓN DE AMINOÁCIDOS -->
-                <div class="product-card-large" data-name="Reposición de Aminoácidos JA By Julie Valencia (500 ml)" data-price="168000" data-img="REPOSICION DE AMINOACIDOS.jpeg" data-details="🧬 **Reposición de Aminoácidos (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Recarga de energía y masa proteica para cabellos procesados o sensibilizados en salón.&#10;&#10;• Rellena los vacíos del cabello poroso y debilitado.&#10;• Elimina el efecto chicle y evita el quiebre.&#10;• Fortalece desde la corteza sin alterar la forma natural.&#10;• Con Registro INVIMA, libre de formol y sal." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Reposición de Aminoácidos JA By Julie Valencia (500 ml)" data-price="168000" data-img="REPOSICION DE AMINOACIDOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-a80f4319-9e88-4b78-af16-d43f255b255f" data-details="🧬 **Reposición de Aminoácidos (500 ml) — Marca JA By Julie Valencia**&#10;&#10;Recarga de energía y masa proteica para cabellos procesados o sensibilizados en salón.&#10;&#10;• Rellena los vacíos del cabello poroso y debilitado.&#10;• Elimina el efecto chicle y evita el quiebre.&#10;• Fortalece desde la corteza sin alterar la forma natural.&#10;• Con Registro INVIMA, libre de formol y sal." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="REPOSICION DE AMINOACIDOS.jpeg" alt="Reposición de Aminoácidos JA By Julie Valencia">
                     </div>
@@ -822,12 +828,12 @@
                         <h3>Reposición de Aminoácidos <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$168.000</span>
                         <p>Recuperación de masa capilar perdida por químicos o decoloraciones. Fortalece el cabello desde el interior eliminando el quiebre.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 6. R.C.P RESTAURACIÓN CAPILAR PROFUNDA -->
-                <div class="product-card-large" data-name="R.C.P - Restauración Capilar Profunda (500 ml)" data-price="145000" data-img="RCP.jpeg" data-details="🛡️ **R.C.P - Restauración Capilar Profunda (500 ml)**&#10;&#10;Tratamiento de impacto profesional para fibras sensibilizadas o deshidratadas.&#10;&#10;• Cierra la porosidad extrema y sella las escamas.&#10;• Devuelve la elasticidad y flexibilidad natural.&#10;• Brillo de espejo instantáneo en el lavacabezas.&#10;• Resultados visibles desde la primera sesión." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="R.C.P - Restauración Capilar Profunda (500 ml)" data-price="145000" data-img="RCP.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-79828735-57b4-4a22-8bc1-e020ef72fb02" data-details="🛡️ **R.C.P - Restauración Capilar Profunda (500 ml)**&#10;&#10;Tratamiento de impacto profesional para fibras sensibilizadas o deshidratadas.&#10;&#10;• Cierra la porosidad extrema y sella las escamas.&#10;• Devuelve la elasticidad y flexibilidad natural.&#10;• Brillo de espejo instantáneo en el lavacabezas.&#10;• Resultados visibles desde la primera sesión." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="RCP.jpeg" alt="R.C.P Restauración Capilar Profunda">
                     </div>
@@ -835,12 +841,12 @@
                         <h3>R.C.P - Restauración Capilar Profunda <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$145.000</span>
                         <p>Tratamiento de impacto profesional para cabellos porosos, deshidratados o muy sensibles. Brillo de espejo instantáneo.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
 
                 <!-- 7. EMULSIÓN ZERO -->
-                <div class="product-card-large" data-name="Emulsión Zero Restauradora (1000 g)" data-price="370000" data-img="EMULSION ZERO.jpeg" data-details="💧 **Emulsión Zero Restauradora (1000 g)**&#10;&#10;Fórmula disciplinante antifrizz de alta gama para fibras rebeldes o desnutridas.&#10;&#10;• Repone lípidos y proteínas esenciales.&#10;• Disciplina el volumen incontrolable y elimina el frizz.&#10;• Devuelve el brillo natural y la soltura.&#10;• Libre de formol con Registro INVIMA." onclick="openProductModal(this)">
+                <div class="product-card-large" data-name="Emulsión Zero Restauradora (1000 g)" data-price="370000" data-img="EMULSION ZERO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-334393ab-5e2d-428e-aa5d-c34c6935c2d9" data-details="💧 **Emulsión Zero Restauradora (1000 g)**&#10;&#10;Fórmula disciplinante antifrizz de alta gama para fibras rebeldes o desnutridas.&#10;&#10;• Repone lípidos y proteínas esenciales.&#10;• Disciplina el volumen incontrolable y elimina el frizz.&#10;• Devuelve el brillo natural y la soltura.&#10;• Libre de formol con Registro INVIMA." onclick="openProductModal(this)">
                     <div class="product-image-container">
                         <img loading="lazy" decoding="async" src="EMULSION ZERO.jpeg" alt="Emulsión Zero Restauradora">
                     </div>
@@ -848,7 +854,7 @@
                         <h3>Emulsión Zero Restauradora <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 g)</span></h3>
                         <span class="product-price">$370.000</span>
                         <p>Tratamiento disciplinante antifrizz de alta gama que repone lípidos y proteínas en fibras rebeldes o desnutridas.</p>
-                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles profesionales</button>
+                        <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
                 </div>
             </div>
@@ -910,6 +916,13 @@
 
             const waText = encodeURIComponent(`Hola 👋 soy estilista profesional, estoy viendo el producto *${name}* en la Línea Profesional de Julie Alisados y deseo solicitar más información para adquirirlo ✨`);
             modalWaBtn.href = `https://wa.me/573043588180?text=${waText}`;
+
+            const payLink = card.getAttribute("data-pay-link");
+            const modalPayBtn = document.getElementById("modalPayBtn");
+            if (modalPayBtn && payLink) {
+                modalPayBtn.href = payLink;
+                modalPayBtn.style.display = "flex";
+            }
 
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
