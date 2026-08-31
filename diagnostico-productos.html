@@ -136,6 +136,11 @@
                     <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 1 de 3: ¿Cuál es el estado actual de tu cabello?</h3>
                     <p style="font-size: 0.9rem; color: #777;">Toca la opción que mejor represente tu cabello:</p>
                     <div class="quiz-options-grid">
+                        <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'natural')">
+                            <span class="quiz-opt-icon">🌿</span>
+                            <span class="quiz-opt-title">Cabello 100% Natural / Virgen</span>
+                            <span class="quiz-opt-sub">Sin químicos ni alisados, busco limpieza botánica sin sal y brillo</span>
+                        </button>
                         <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'alisado')">
                             <span class="quiz-opt-icon">✨</span>
                             <span class="quiz-opt-title">Con Alisado o Tratamiento</span>
@@ -383,7 +388,13 @@
             var includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
             var payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-1bf7976e-346a-4d2c-af72-680459523098";
 
-            if (quizAnswers.state === 'alisado' && quizAnswers.heat === 'si') {
+                        if (quizAnswers.state === 'natural') {
+                title = "Rutina Botánica Natural: Combo Extractos (1000ml)";
+                price = ".000 COP";
+                desc = "Fórmula botánica 100% libre de sal y parabenos. Limpia suavemente el cuero cabelludo estimulando el crecimiento sano, mientras el acondicionador botánico deja tu cabello suelto, liviano y con un brillo natural deslumbrante.";
+                includes = "<strong>Incluye:</strong> Shampoo Extractos Naturales (1000ml) + Acondicionador Extractos Naturales (1000ml)";
+                payLink = "https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60";
+            } else if (quizAnswers.state === 'alisado' && quizAnswers.heat === 'si') {
                 title = "Rutina Liso Blindado: Combo Extractos + Termoprotector";
                 price = ".000 COP";
                 desc = "La combinación perfecta para sellar tu alisado y proteger la fibra del calor del secador y la plancha.";
