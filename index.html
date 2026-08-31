@@ -1605,6 +1605,42 @@
             if (fill) fill.style.width = '33%';
         }
     </script>
+    <!-- Verificador y Notificador AutomÃ¡tico de Pagos de Mercado Pago a WhatsApp -->
+    <script>
+        (function checkMercadoPagoSuccess() {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('collection_status') || params.get('status');
+            const paymentId = params.get('collection_id') || params.get('payment_id') || 'N/A';
+
+            if (status === 'approved') {
+                const toast = document.createElement('div');
+                toast.id = 'mpSuccessToast';
+                toast.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px;';
+                
+                const waMsg = encodeURIComponent(Â¡Hola Julie Alisados! ðŸ‘‹ Acabo de realizar el pago de mi pedido por la pÃ¡gina web con Ã©xito a travÃ©s de Mercado Pago.\n\nðŸ’³ *ID de TransacciÃ³n:* \nðŸ“¦ *Estado:* Aprobado âœ…\n\nAdjunto mis datos para el despacho:\nâ€¢ Nombre:\nâ€¢ CÃ©dula:\nâ€¢ TelÃ©fono:\nâ€¢ DirecciÃ³n y Ciudad:);
+                
+                toast.innerHTML = 
+                    <div style="background: #ffffff; border-radius: 20px; max-width: 480px; width: 100%; padding: 35px 25px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 2px solid #D4AF37; animation: fadeIn 0.4s ease;">
+                        <span style="font-size: 3.5rem; display: block; margin-bottom: 10px;">ðŸŽ‰</span>
+                        <h3 style="font-family: 'Playfair Display', serif; color: #1a1a1a; font-size: 1.6rem; margin-bottom: 8px;">Â¡Pago Aprobado con Ã‰xito!</h3>
+                        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Tu transacciÃ³n ha sido confirmada por Mercado Pago.<br><strong>ID de Pago:</strong> </p>
+                        
+                        <div style="background: #fdfbf7; border: 1px dashed #D4AF37; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: left;">
+                            <strong style="color: #843b56; font-size: 0.9rem; display: block; margin-bottom: 4px;">ðŸ“ Paso Final Obligatorio:</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Para despachar tu paquete inmediatamente, envÃ­a la confirmaciÃ³n y tus datos de envÃ­o al equipo de ventas por WhatsApp.</p>
+                        </div>
+
+                        <a href="https://wa.me/573043588180?text=" target="_blank" style="background: #25D366; color: #ffffff; padding: 14px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); margin-bottom: 12px;">
+                            ðŸ“² Confirmar Despacho por WhatsApp
+                        </a>
+
+                        <button onclick="document.getElementById('mpSuccessToast').remove()" style="background: none; border: none; color: #888; font-size: 0.85rem; cursor: pointer; text-decoration: underline;">Cerrar ventana</button>
+                    </div>
+                ;
+                document.body.appendChild(toast);
+            }
+        })();
+    </script>
 </body>
 
 </html>
