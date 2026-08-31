@@ -21,6 +21,9 @@ temp_*
 old_*
 new_faq.html
 files_list.txt
+# Demos y pruebas
+chatbot_demo.html
+chatbot-widget.css
 *.bak
 *.temp
 *.ps1
