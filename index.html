@@ -1119,6 +1119,15 @@
         let cardWidth = 0;
         let blockWidth = 0;
 
+                // Clonación automática de tarjetas para carrusel infinito continuo en PC
+        if (track) {
+            const originalCards = Array.from(track.children);
+            if (originalCards.length > 0 && originalCards.length < 12) {
+                // Clonamos las tarjetas 2 veces para asegurar cobertura total en pantallas ultra-anchas (PC)
+                originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+                originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+            }
+        }
         function updateDimensions() {
             const firstCard = track?.querySelector('.image-card');
             if (firstCard && track) {
