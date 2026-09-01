@@ -4248,3 +4248,26 @@ header {
     height: 18px !important;
     stroke: currentColor !important;
 }
+
+/* ==========================================================================
+   OPTIMIZACIONES DE VELOCIDAD & CORE WEB VITALS (PREMIUM PERFORMANCE)
+   ========================================================================== */
+.faq-section,
+.locations,
+.footer,
+.testimonials-section,
+.treatment-results,
+.product-line,
+.quiz-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+}
+
+/* Optimización GPU para animaciones fluidas a 60fps sin sobrecalentar el móvil */
+.image-banner-track,
+.modal-content,
+.video-card-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
