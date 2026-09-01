@@ -639,12 +639,14 @@ header {
 
 @media (max-width: 768px) {
     .banner-title h3 {
-        font-size: 1.25rem !important;
-        letter-spacing: 1px !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 12px !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 0.5px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        line-height: 1.3 !important;
+        margin-top: 5px !important;
+        margin-bottom: 8px !important;
+        padding-top: 5px !important;
     }
 }
 
