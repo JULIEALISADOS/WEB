@@ -628,17 +628,24 @@ header {
 .banner-title h3 {
     font-family: var(--font-heading);
     color: #C5A059 !important;
-    font-size: 2.2rem;
-    padding-top: 20px !important;
-    /* Espacio muerto eliminado */
-    line-height: 1.6 !important;
-    margin-bottom: 20px;
+    font-size: clamp(1.2rem, 4vw, 2.2rem);
+    padding-top: 15px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
     text-shadow: none !important;
-    text-align: center;
-    overflow: visible !important;
-    height: auto !important;
+}
+
+@media (max-width: 768px) {
+    .banner-title h3 {
+        font-size: 1.25rem !important;
+        letter-spacing: 1px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+    }
 }
 
 .image-banner-wrapper {
