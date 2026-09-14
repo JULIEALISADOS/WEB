@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -777,6 +777,375 @@
         return false;
       }
     </script>
+<style id="envia-breb-styles">
+    /* Estilos del Cotizador Envia y Modal de Pago */
+    .qty-control-label {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--dark-grey, #333);
+        margin-right: auto;
+    }
+    .qty-btns-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .card-actions-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    .product-card-large.selected {
+        border-color: var(--gold) !important;
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25) !important;
+    }
+
+    /* Modal de Checkout y Envio */
+    .checkout-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(17, 17, 17, 0.75);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 3000;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    .checkout-modal-overlay.active {
+        display: flex;
+    }
+    .checkout-modal-card {
+        background: #FFFFFF;
+        width: 100%;
+        max-width: 680px;
+        max-height: 92vh;
+        border-radius: 20px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: modalSlideUp 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    @keyframes modalSlideUp {
+        from { opacity: 0; transform: translateY(30px) scale(0.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .checkout-modal-header {
+        background: linear-gradient(135deg, #181818 0%, #29241e 100%);
+        color: #FFFFFF;
+        padding: 18px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--gold);
+    }
+    .checkout-modal-header h3 {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        color: var(--gold-light, #f5d77f);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .checkout-modal-close {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.8rem;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0 5px;
+        transition: color 0.2s;
+    }
+    .checkout-modal-close:hover {
+        color: var(--gold);
+    }
+    .checkout-modal-body {
+        padding: 22px 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .checkout-section-box {
+        background: #faf8f8;
+        border: 1px solid rgba(212, 175, 55, 0.22);
+        border-radius: 14px;
+        padding: 16px 18px;
+    }
+    .checkout-section-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--gold-dark);
+        margin: 0 0 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .order-items-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .order-item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.88rem;
+        border-bottom: 1px dashed rgba(0,0,0,0.08);
+        padding-bottom: 6px;
+    }
+    .order-item-title {
+        font-weight: 600;
+        color: #222;
+        flex: 1;
+        padding-right: 10px;
+    }
+    .order-item-meta {
+        font-size: 0.78rem;
+        color: #777;
+    }
+    .order-item-price {
+        font-weight: 700;
+        color: var(--gold-dark);
+        white-space: nowrap;
+    }
+    .order-weight-summary {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        background: rgba(212, 175, 55, 0.1);
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        color: #333;
+    }
+
+    /* Cotizador Envia */
+    .shipping-select-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    @media (max-width: 550px) {
+        .shipping-select-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .shipping-field-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #555;
+        margin-bottom: 4px;
+    }
+    .shipping-field-group select, .shipping-field-group input {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .shipping-field-group select:focus, .shipping-field-group input:focus {
+        border-color: var(--gold);
+    }
+    .envia-result-card {
+        background: #fff;
+        border: 1.5px solid var(--gold);
+        border-radius: 12px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .envia-header-tag {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .envia-badge {
+        background: #c4121a;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+    }
+    .envia-rate-highlight {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--gold-dark);
+    }
+    .envia-disclaimer {
+        font-size: 0.77rem;
+        color: #666;
+        line-height: 1.4;
+        margin: 4px 0 0 0;
+        background: #fffdf7;
+        border-left: 3px solid var(--gold);
+        padding: 6px 10px;
+        border-radius: 0 6px 6px 0;
+    }
+
+    /* Tabs de Pago */
+    .payment-tabs-nav {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    .pay-tab-btn {
+        flex: 1;
+        background: #f1f1f1;
+        border: 1px solid #ddd;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 0.86rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s;
+        color: #444;
+    }
+    .pay-tab-btn.active {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .pay-tab-btn.active .tab-icon-gold {
+        color: var(--gold);
+    }
+    .pay-tab-content {
+        display: none;
+    }
+    .pay-tab-content.active {
+        display: block;
+    }
+
+    /* Estilo Bre-B */
+    .breb-box {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+    }
+    .breb-logo-img {
+        height: 38px;
+        width: auto;
+        margin-bottom: 8px;
+        border-radius: 6px;
+    }
+    .breb-key-display {
+        background: #fdf5f8;
+        border: 1.5px dashed var(--gold);
+        border-radius: 10px;
+        padding: 12px;
+        margin: 12px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+    .breb-key-text {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #111;
+        letter-spacing: 1px;
+    }
+    .btn-copy-breb {
+        background: var(--gold);
+        color: #111;
+        border: none;
+        padding: 7px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .btn-copy-breb:hover {
+        background: var(--gold-dark);
+        color: #fff;
+    }
+    .btn-confirm-breb {
+        display: block;
+        width: 100%;
+        background: #25D366;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 13px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-top: 12px;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+    }
+    .btn-confirm-breb:hover {
+        background: #1ebc59;
+        transform: translateY(-2px);
+    }
+
+    /* Mercado Pago Box */
+    .mp-box {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+    }
+    .btn-pay-mp {
+        display: inline-block;
+        width: 100%;
+        background: #009ee3;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 13px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-top: 12px;
+        box-shadow: 0 4px 15px rgba(0, 158, 227, 0.35);
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+    }
+    .btn-pay-mp:hover {
+        background: #0087c2;
+        transform: translateY(-2px);
+    }
+</style>
 </head>
 
 <body>
@@ -891,7 +1260,7 @@
 
                                     <div class="product-grid">
                 <!-- COMBO 1. EXTRACTOS NATURALES -->
-                <div class="product-card-large" data-name="Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)" data-price="74000" data-img="combo extractos.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60">
+                <div class="product-card-large" data-name="Combo Extractos Naturales JA By Julie Valencia (1000 ml c/u)" data-weight="2200" data-price="74000" data-img="combo extractos.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="combo extractos.jpeg" alt="Combo Shampoo + Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -920,7 +1289,15 @@
                             <p><strong>Ra&iacute;z fresca y suelta:</strong> Elimina pesadez y exceso de sebo, aportando desenredo inmediato sin tirones y soltura total sin peso.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3a7ca524-d394-4567-a88a-5982840ddd60" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -931,7 +1308,7 @@
                 </div>
 
                 <!-- COMBO 2. ACEITE DE ARGÃN -->
-                <div class="product-card-large" data-name="Combo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml c/u)" data-price="70000" data-img="combo argan.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260">
+                <div class="product-card-large" data-name="Combo Aceite de Arg&aacute;n JA By Julie Valencia (500 ml c/u)" data-weight="1100" data-price="70000" data-img="combo argan.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="combo argan.jpeg" alt="Combo Shampoo + Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
@@ -960,7 +1337,15 @@
                             <p><strong>Brillo Espejo y Cero Frizz:</strong> El &Aacute;cido Hialur&oacute;nico retiene hidrataci&oacute;n interna mientras el Arg&aacute;n bloquea la humedad exterior para evitar que se esponje.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-dfa233b2-28ca-4b98-82b7-2610f0b12260" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -971,7 +1356,7 @@
                 </div>
 
                 <!-- 1. SHAMPOO EXTRACTOS -->
-                <div class="product-card-large" data-name="Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="38000" data-img="SHAMPOO EXTRACTOS ..jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f">
+                <div class="product-card-large" data-name="Shampoo Extractos Naturales JA By Julie Valencia (1000 ml)" data-weight="1100" data-price="38000" data-img="SHAMPOO EXTRACTOS ..jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="SHAMPOO EXTRACTOS ..jpeg" alt="Shampoo Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -999,7 +1384,15 @@
                             <p><strong>Ra&iacute;z limpia por m&aacute;s tiempo:</strong> Sensaci&oacute;n de frescura natural duradera sin alterar el pH del alisado ni del tinte.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-472ccdd7-ca40-41a5-8cd6-10606838eb1f" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1010,7 +1403,7 @@
                 </div>
 
                 <!-- 2. ACONDICIONADOR EXTRACTOS -->
-                <div class="product-card-large" data-name="Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6">
+                <div class="product-card-large" data-name="Acondicionador Extractos Naturales JA By Julie Valencia (1000 ml)" data-weight="1100" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR EXTRACTOS.jpeg" alt="Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -1038,7 +1431,15 @@
                             <p><strong>Desenredo sin tirones:</strong> Deja el cabello d&oacute;cil, brillante y protegido contra las puntas abiertas y el roce.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-9f1b5c66-9714-45c1-a131-4f1eedfccdf6" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1049,7 +1450,7 @@
                 </div>
 
                 <!-- 3. SHAMPOO ARGÃN -->
-                <div class="product-card-large" data-name="Shampoo Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)" data-price="36000" data-img="SHAMPOO DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96">
+                <div class="product-card-large" data-name="Shampoo Aceite de Arg&aacute;n JA By Julie Valencia (500 ml)" data-weight="550" data-price="36000" data-img="SHAMPOO DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="SHAMPOO DE ARGAN.jpeg" alt="Shampoo Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
@@ -1077,7 +1478,15 @@
                             <p><strong>Fibra capilar reforzada:</strong> Fortalece la estructura proteica del cabello para frenar la rotura y el desprendimiento al peinar.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-5a6df43f-5738-405f-913f-2126a2e10e96" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1088,7 +1497,7 @@
                 </div>
 
                 <!-- 4. ACONDICIONADOR ARGÃN -->
-                <div class="product-card-large" data-name="Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia (500 ml)" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb">
+                <div class="product-card-large" data-name="Acondicionador Aceite de Arg&aacute;n JA By Julie Valencia (500 ml)" data-weight="550" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR ARGAN.jpeg" alt="Acondicionador Aceite de ArgÃ¡n JA By Julie Valencia">
                     </div>
@@ -1116,7 +1525,15 @@
                             <p><strong>Efecto Seda Anti-Humedad:</strong> Encapsula los nutrientes y sella la fibra para mantener el cabello liso, disciplinado y suave.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-365a9ee1-3d08-4b88-ab3f-0305dacb27cb" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1127,7 +1544,7 @@
                 </div>
 
                 <!-- 5. MASCARILLA ORO LÃQUIDO -->
-                <div class="product-card-large" data-name="Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia (250 ml)" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8">
+                <div class="product-card-large" data-name="Mascarilla Capilar Oro L&iacute;quido JA By Julie Valencia (250 ml)" data-weight="275" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="MASCARILLA ORO LIQUIDO.jpeg" alt="Mascarilla Capilar Oro LÃ­quido JA By Julie Valencia">
                     </div>
@@ -1155,7 +1572,15 @@
                             <p><strong>Rescate profundo sin engrasar:</strong> Devuelve la flexibilidad a cabellos r&iacute;gidos o secos, transformando puntas abiertas en seda pura.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-3fcd0bb3-7818-4ff7-9266-defd356ebdb8" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1166,7 +1591,7 @@
                 </div>
 
                 <!-- 6. TRATAMIENTO MULTIACTIVO -->
-                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)" data-price="36000" data-img="MASCARILLA MULTIACTIVA.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501">
+                <div class="product-card-large" data-name="Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)" data-weight="330" data-price="36000" data-img="MASCARILLA MULTIACTIVA.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="MASCARILLA MULTIACTIVA.jpeg" alt="Tratamiento Multiactivo 12 Ingredientes JA By Julie Valencia">
                     </div>
@@ -1194,7 +1619,15 @@
                             <p><strong>12 Beneficios en 1 solo paso:</strong> Desenreda al instante, frena el encrespamiento, protege el color del sol y aporta suavidad continua todo el d&iacute;a.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-26e1769b-8f80-4ee0-ab44-8007e9186501" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1205,7 +1638,7 @@
                 </div>
 
                 <!-- 7. AMPOLLA REPARACIÃ“N S.O.S. -->
-                <div class="product-card-large" data-name="Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia (20 ml)" data-price="16000" data-img="AMPOLLA SOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd">
+                <div class="product-card-large" data-name="Ampolla de Reparaci&oacute;n S.O.S. JA By Julie Valencia (20 ml)" data-weight="22" data-price="16000" data-img="AMPOLLA SOS.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="AMPOLLA SOS.jpeg" alt="Ampolla de ReparaciÃ³n S.O.S. JA By Julie Valencia">
                     </div>
@@ -1233,7 +1666,15 @@
                             <p><strong>Rescate capilar express:</strong> Devuelve la consistencia y firmeza a cabellos severamente castigados por decoloraciones o sobreprocesos.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-aa0cd6d9-73e5-4838-b6be-616322fde0cd" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1244,7 +1685,7 @@
                 </div>
 
                 <!-- 8. TERMOPROTECTOR Y PERFUME -->
-                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)" data-price="35000" data-img="TERMOPROTECTOR.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2">
+                <div class="product-card-large" data-name="Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)" data-weight="275" data-price="35000" data-img="TERMOPROTECTOR.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="TERMOPROTECTOR.jpeg" alt="Termoprotector y Perfume Capilar JA By Julie Valencia">
                     </div>
@@ -1272,7 +1713,15 @@
                             <p><strong>Deslizamiento sedoso:</strong> Facilita el cepillado y el planchado sin apelmazar ni engrasar, dejando un aroma exquisito y duradero.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-37c916bc-b9ca-40f8-b1bd-52feb65eb6f2" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1283,7 +1732,7 @@
                 </div>
 
                 <!-- 9. ACEITE REPARADOR -->
-                <div class="product-card-large" data-name="Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia (60 ml)" data-price="28000" data-img="ACEITE DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6">
+                <div class="product-card-large" data-name="Aceite Reparador de Arg&aacute;n y Macadamia JA By Julie Valencia (60 ml)" data-weight="66" data-price="28000" data-img="ACEITE DE ARGAN.jpeg" data-pay-link="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACEITE DE ARGAN.jpeg" alt="Aceite Reparador de ArgÃ¡n y Macadamia JA By Julie Valencia">
                     </div>
@@ -1311,7 +1760,15 @@
                             <p><strong>Brillo Espejo y Suavidad de Revista:</strong> Disciplina el frizz al instante, dejando las puntas alineadas, suaves y radiantes.</p>
                         </div>
 
-                        <div class="card-actions-wrapper">
+                                                <div class="qty-selector-container">
+                            <span class="qty-control-label">A&ntilde;adir al pedido:</span>
+                            <div class="qty-btns-wrap">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1); event.stopPropagation();" aria-label="Restar una unidad">&minus;</button>
+                                <span class="qty-display">0</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1); event.stopPropagation();" aria-label="Aumentar una unidad">+</button>
+                            </div>
+                        </div>
+<div class="card-actions-wrapper">
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-2c1f218d-0827-4646-af30-be7db654b3a6" target="_blank" class="btn-card-pay" onclick="event.stopPropagation()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                 Pagar con PSE / Nequi / Addi
@@ -1640,108 +2097,171 @@
         });
     </script>
 
+    <!-- Cart Summary Floating Bar & Checkout Modal -->
+    <!-- MODAL DE CHECKOUT, COTIZADOR ENVIA Y PAGOS (BRE-B Y MERCADO PAGO) -->
+    <div class="checkout-modal-overlay" id="checkoutModalOverlay" onclick="closeCheckoutModal(event)">
+        <div class="checkout-modal-card" onclick="event.stopPropagation()">
+            <div class="checkout-modal-header">
+                <h3>🛍️ Tu Pedido &amp; Cotizador Env&iacute;a</h3>
+                <button type="button" class="checkout-modal-close" onclick="closeCheckoutModal(event)">&times;</button>
+            </div>
+            
+            <div class="checkout-modal-body">
+                <!-- Seccion 1: Resumen de Productos Seleccionados -->
+                <div class="checkout-section-box">
+                    <h4 class="checkout-section-title">📦 1. Resumen de Productos</h4>
+                    <ul class="order-items-list" id="checkoutItemsList">
+                        <!-- Se llena dinamicamente con JS -->
+                    </ul>
+                    <div class="order-weight-summary">
+                        <span>Subtotal Productos: <strong id="checkoutSubtotalDisplay" style="color: var(--gold-dark);">$0 COP</strong></span>
+                        <span>Peso Estimado: <strong id="checkoutWeightDisplay">0.00 kg</strong></span>
+                    </div>
+                </div>
+
+                <!-- Seccion 2: Cotizador de Envios con Envia Colvanes -->
+                <div class="checkout-section-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 6px;">
+                        <h4 class="checkout-section-title" style="margin: 0;">🚚 2. Destino y Cotizador de Env&iacute;o (Env&iacute;a)</h4>
+                        <span style="font-size: 0.76rem; background: rgba(212, 175, 55, 0.15); color: var(--gold-dark); font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(212, 175, 55, 0.3);">📍 Despacho: Bodega Moniquir&aacute; (Boyac&aacute;)</span>
+                    </div>
+                    <div class="shipping-select-grid">
+                        <div class="shipping-field-group">
+                            <label for="shippingDeptSelect">Departamento / Destino:</label>
+                            <select id="shippingDeptSelect" onchange="calculateEnviaShipping()">
+                                <option value="moniquira_local">Moniquir&aacute; (Urbano / Local)</option>
+                                <option value="boyaca_regional">Boyac&aacute; (Tunja, Duitama, Sogamoso)</option>
+                                <option value="santander_regional">Santander (Barbosa, Bucaramanga y &aacute;rea)</option>
+                                <option value="bogota_cundinamarca" selected>Bogot&aacute; D.C. / Cundinamarca</option>
+                                <option value="antioquia">Antioquia (Medell&iacute;n y municipios)</option>
+                                <option value="valle">Valle del Cauca (Cali y municipios)</option>
+                                <option value="atlantico">Atl&aacute;ntico (Barranquilla)</option>
+                                <option value="bolivar">Bol&iacute;var (Cartagena)</option>
+                                <option value="eje_cafetero">Eje Cafetero (Caldas / Risaralda / Quind&iacute;o)</option>
+                                <option value="tolima_huila">Tolima / Huila (Ibagu&eacute;, Neiva)</option>
+                                <option value="meta">Meta (Villavicencio)</option>
+                                <option value="nacional">Otros Departamentos (Nacional)</option>
+                                <option value="especial">Destino Especial / Trayecto Reexpedido</option>
+                            </select>
+                        </div>
+                        <div class="shipping-field-group">
+                            <label for="shippingCityInput">Ciudad / Municipio:</label>
+                            <input type="text" id="shippingCityInput" placeholder="Ej. Moniquir&aacute;, Bogot&aacute;, Medell&iacute;n..." oninput="calculateEnviaShipping()">
+                        </div>
+                    </div>
+
+                    <div class="envia-result-card">
+                        <div class="envia-header-tag">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <span class="envia-badge">ENV&Iacute;A</span>
+                                <strong style="font-size: 0.85rem; color: #333;">Env&iacute;a Colvanes S.A.S.</strong>
+                            </div>
+                            <span style="font-size: 0.78rem; color: #666;">⏱️ 1 a 3 d&iacute;as h&aacute;biles</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
+                            <span style="font-size: 0.85rem; font-weight: 600; color: #555;">Flete Estimado (Contraentrega):</span>
+                            <span class="envia-rate-highlight" id="enviaRateDisplay">~$12.500 COP aprox.</span>
+                        </div>
+                        <p class="envia-disclaimer">
+                            ⚠️ <strong>Flete Aproximado:</strong> El valor del transporte es una estimaci&oacute;n de referencia calculada seg&uacute;n el peso (~<span id="enviaWeightRef">0.0</span> kg) despachado desde Bodega Moniquir&aacute;. La tarifa exacta la liquida Env&iacute;a Colvanes en su b&aacute;scula y se <strong>cancela contraentrega directamente al mensajero</strong> al momento de recibir tu paquete en tu puerta.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Seccion 3: Metodos de Pago para los Productos -->
+                <div class="checkout-section-box">
+                    <h4 class="checkout-section-title">💳 3. Pagar Productos (Total: <span id="checkoutPayAmount" style="color: var(--gold-dark);">$0 COP</span>)</h4>
+                    <p style="font-size: 0.8rem; color: #666; margin: 0 0 10px 0;">Recuerda: En la web pagas &uacute;nicamente tus productos. El env&iacute;o viaja con flete contraentrega a cargo de Env&iacute;a.</p>
+
+                    <!-- Botones de Pestana -->
+                    <div class="payment-tabs-nav">
+                        <button type="button" class="pay-tab-btn active" onclick="switchPayTab('breb')">
+                            ⚡ Bre-B (Transferencia / QR)
+                        </button>
+                        <button type="button" class="pay-tab-btn" onclick="switchPayTab('mercadopago')">
+                            💳 Mercado Pago / PSE
+                        </button>
+                    </div>
+
+                    <!-- Contenido Pestana Bre-B -->
+                    <div class="pay-tab-content active" id="tabContentBreb">
+                        <div class="breb-box">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+                                <img src="breb.jpeg" alt="Logo Bre-B Banco de la República" class="breb-logo-img">
+                            </div>
+                            
+                            <!-- Codigo QR Oficial Bre-B Bold -->
+                            <div style="text-align: center; margin: 10px auto 14px auto; background: #ffffff; padding: 12px; border-radius: 12px; border: 1.5px solid rgba(212, 175, 55, 0.4); max-width: 250px; box-shadow: 0 4px 14px rgba(0,0,0,0.06);">
+                                <img src="qr-breb.png" alt="Código QR Bre-B Bold Julie Alisados" style="width: 100%; max-width: 210px; height: auto; border-radius: 8px; display: block; margin: 0 auto;">
+                                <p style="font-size: 0.76rem; color: #666; margin: 8px 0 0 0; line-height: 1.3;">
+                                    Escanea desde <strong>cualquier app bancaria o billetera digital</strong> (Bancolombia, Nequi, Daviplata, Dale!, Nu, BBVA, etc.)
+                                </p>
+                            </div>
+
+                            <p style="font-size: 0.84rem; color: #444; margin: 0 0 8px 0; text-align: center;">
+                                O si prefieres, transfiere directamente a nuestra Llave Bre-B:
+                            </p>
+                            
+                            <div class="breb-key-display">
+                                <div>
+                                    <div style="font-size: 0.75rem; color: #888; text-transform: uppercase;">Llave Comercial Bre-B:</div>
+                                    <div class="breb-key-text" id="brebKeyText">3150777443</div>
+                                </div>
+                                <button type="button" class="btn-copy-breb" id="btnCopyBreb" onclick="copyBrebKey()">📋 Copiar Llave</button>
+                            </div>
+
+                            <p style="font-size: 0.84rem; color: #444; margin: 8px 0; text-align: center;">
+                                Monto exacto a transferir: <strong id="brebAmountDisplay" style="color: var(--gold-dark); font-size: 1.05rem;">$0 COP</strong>
+                            </p>
+
+                            <button type="button" class="btn-confirm-breb" onclick="confirmBrebOrder()">
+                                📲 Ya transfer&iacute; por Bre-B &bull; Enviar Comprobante y Direcci&oacute;n
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contenido Pestana Mercado Pago -->
+                    <div class="pay-tab-content" id="tabContentMercadoPago">
+                        <div class="mp-box">
+                            <p style="font-size: 0.88rem; color: #333; margin: 0 0 10px 0;">
+                                Paga tus productos de forma 100% segura con <strong>Tarjeta de Cr&eacute;dito (hasta 36 cuotas), D&eacute;bito PSE o dinero en cuenta</strong>.
+                            </p>
+                            <p style="font-size: 0.8rem; color: #666; margin: 0 0 12px 0;">
+                                Total de productos a procesar: <strong id="mpAmountDisplay" style="color: var(--gold-dark); font-size: 1.05rem;">$0 COP</strong>
+                            </p>
+                            <button type="button" class="btn-pay-mp" onclick="proceedMercadoPagoCheckout()">
+                                💳 Continuar al Pago Seguro con Mercado Pago
+                            </button>
+                            <p style="font-size: 0.74rem; color: #888; margin-top: 8px;">
+                                Al completar tu pago ser&aacute;s redirigida para ingresar tu direcci&oacute;n de entrega y radicar tu gu&iacute;a con Env&iacute;a.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Cart Summary Floating Bar -->
     <div class="cart-floating-bar" id="cartFloatingBar">
         <div class="cart-bar-info">
             <span class="cart-bar-qty" id="cartBarQty">0 productos seleccionados</span>
-            <span class="cart-bar-total" id="cartBarTotal">$0</span>
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span class="cart-bar-total" id="cartBarTotal">$0</span>
+                <span id="cartBarWeightBadge" style="font-size: 0.78rem; color: #666; font-weight: 600;">(~0 kg)</span>
+            </div>
         </div>
-        <button class="btn-cart-checkout" onclick="enviarPedidoWhatsApp()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+        <button class="btn-cart-checkout" onclick="openCheckoutModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            Pedir por WhatsApp
+            Cotizar Env&iacute;o &amp; Pagar
         </button>
     </div>
 
-    <script>
-        let cart = {};
-
-        function changeQty(button, change) {
-            const card = button.closest('.product-card-large');
-            const productName = card.getAttribute('data-name');
-            const productPrice = parseInt(card.getAttribute('data-price') || "0");
-            const displayElement = button.parentElement.querySelector('.qty-display');
-            
-            let currentQty = cart[productName] ? cart[productName].qty : 0;
-            let newQty = currentQty + change;
-            
-            if (newQty < 0) newQty = 0;
-            if (newQty > 10) newQty = 10;
-            
-            if (newQty === 0) {
-                delete cart[productName];
-                card.classList.remove('selected');
-            } else {
-                cart[productName] = {
-                    qty: newQty,
-                    price: productPrice
-                };
-                card.classList.add('selected');
-            }
-            
-            displayElement.textContent = newQty;
-            updateFloatingBar();
-        }
-
-        function updateFloatingBar() {
-            const floatingBar = document.getElementById('cartFloatingBar');
-            const totalDisplay = document.getElementById('cartBarTotal');
-            const qtyDisplay = document.getElementById('cartBarQty');
-            
-            let totalItems = 0;
-            let totalPrice = 0;
-            
-            for (const item in cart) {
-                totalItems += cart[item].qty;
-                totalPrice += cart[item].qty * cart[item].price;
-            }
-            
-            if (totalItems > 0) {
-                const formattedPrice = new Intl.NumberFormat('es-CO', {
-                    style: 'currency',
-                    currency: 'COP',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0
-                }).format(totalPrice);
-                
-                qtyDisplay.textContent = `${totalItems} ${totalItems === 1 ? 'producto seleccionado' : 'productos seleccionados'}`;
-                totalDisplay.textContent = formattedPrice;
-                floatingBar.classList.add('active');
-            } else {
-                floatingBar.classList.remove('active');
-            }
-        }
-
-        function enviarPedidoWhatsApp() {
-            let totalItems = 0;
-            let totalPrice = 0;
-            
-            let message = "Hola Julie 💖! Me gustaría realizar un pedido de los siguientes productos de Cuidado Capilar:\n\n";
-            
-            for (const item in cart) {
-                const qty = cart[item].qty;
-                const price = cart[item].price;
-                totalItems += qty;
-                
-                const subtotal = qty * price;
-                totalPrice += subtotal;
-                const formattedSubtotal = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(subtotal);
-                message += `- ${qty}x ${item} (Subtotal: ${formattedSubtotal})\n`;
-            }
-            
-            message += `----------------------------------------\n`;
-            
-            const formattedTotal = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(totalPrice);
-            message += `Total a Invertir: ${formattedTotal} COP\n\n`;
-            message += `Quedo atenta para coordinar el pago y envío 😊`;
-            
-            const encodedText = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/573043588180?text=${encodedText}`;
-            
-            return gtag_report_conversion(whatsappUrl, totalPrice, 'COP');
-        }
-    </script>
+    <script src="js/shipping_checkout.js"></script>
 
     <!-- Floating WhatsApp Button -->
     <div class="whatsapp-floating-container">
