@@ -28,18 +28,33 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=20260821_modal_hd">
 
-    <!-- Google Consent Mode Default -->
+    <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         
-        let hasConsent = localStorage.getItem('privacyAccepted') === 'true';
         gtag('consent', 'default', {
-            'ad_storage': hasConsent ? 'granted' : 'denied',
-            'ad_user_data': hasConsent ? 'granted' : 'denied',
-            'ad_personalization': hasConsent ? 'granted' : 'denied',
-            'analytics_storage': hasConsent ? 'granted' : 'denied'
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
         });
+
+        // Restaurar consentimiento si el usuario ya lo otorgo previamente
+        try {
+            var savedConsent = localStorage.getItem('julie_privacy_consent') || (localStorage.getItem('privacyAccepted') === 'true' ? 'granted' : null);
+            if (savedConsent === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {
+            console.warn('Consent retrieval error:', e);
+        }
     </script>
     <!-- Meta Pixel Code -->
     <script>
@@ -87,7 +102,7 @@
     
     <!-- Central Analytics Tracker & Privacy Consent -->
     <script src="js/tracker.js" defer></script>
-    <script src="js/consent.js" defer></script>
+    <script src="js/consent.js?v=20260916_consent_v2" defer></script>
     <link rel="preload" as="image" href="logo 1.png" type="image/png" fetchpriority="high">
     <link rel="icon" type="image/png" href="logo 1.png">
     <link rel="apple-touch-icon" href="logo 1.png">
@@ -1677,6 +1692,12 @@
                 <span>&#127800;</span>
                 <span>Agendar mi Cita por WhatsApp &rarr;</span>
             </a>
+
+            
+            <!-- Micro-clausula de Habeas Data (Ley 1581 de 2012 & SIC) -->
+            <p style="font-size: 0.74rem; color: rgba(230, 223, 220, 0.8); line-height: 1.45; margin: 0 auto 14px auto; max-width: 480px; text-align: center; font-weight: 300;">
+                &#128274; Al agendar tu cita autorizas el tratamiento de tus datos bajo la Ley 1581 de 2012 y nuestras <a href="politica-servicio.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline; font-weight: 600;">Pol&iacute;ticas de Servicio</a> y <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline; font-weight: 600;">Privacidad</a>.
+            </p>
 
             <!-- Enlace secundario para continuar en la web -->
             <button onclick="closeBookingModal()" style="background: none; border: none; color: rgba(255, 255, 255, 0.65); font-size: 0.82rem; cursor: pointer; text-decoration: underline; padding: 6px 12px;">
