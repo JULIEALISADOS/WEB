@@ -2,14 +2,23 @@
 sistema-fichas-2024/
 JulieComisiones/
 
-# Archivos internos y de memoria AI
+# Archivos internos y de memoria AI (Confidenciales)
 GEMINI.md
 AI_MEMORY.md
+JULIE_MEMORY_CORE.md
 REBOOT_STATE.md
 ENTRENAMIENTO_GEMINI.txt
 SUPER_ENTRENAMIENTO_GEMINI.txt
 supabase_rls_security.sql
 audit*
+*.csv
+*.tsv
+*.sqlite
+*.db
+*.jsonl
+julie-core/
+julie-cockpit/
+
 
 # Backups locales (NO subir al repositorio)
 BACKUP_*/
