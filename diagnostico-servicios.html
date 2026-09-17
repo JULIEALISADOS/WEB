@@ -214,14 +214,14 @@
                         <p id="serviceResultDesc" style="font-size: 0.98rem; color: #444; line-height: 1.6; margin: 0;"></p>
                         <div id="serviceResultDetails" style="background: #fff; padding: 16px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.25); font-size: 0.9rem; color: #333;"></div>
                         <!-- Formulario VIP de Captura de Datos & Habeas Data Ley 1581 -->
-                        <div class="lead-capture-box" style="background: #ffffff; border: 1.5px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 22px 18px; margin: 22px 0 16px 0; text-align: left; box-shadow: 0 8px 25px rgba(0,0,0,0.03);">
-                            <div style="text-align: center; margin-bottom: 16px;">
-                                <span style="display: inline-block; font-size: 0.76rem; font-weight: 800; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1.2px; background: rgba(212,175,55,0.12); padding: 4px 14px; border-radius: 20px; margin-bottom: 6px;">✨ Desbloquea tu Diagnóstico VIP &amp; Cita Preferencial</span>
-                                <h4 style="font-family: var(--font-heading); font-size: 1.35rem; color: #1a1a1a; margin: 4px 0 2px 0;">¿A nombre de quién reservamos tu turno?</h4>
-                                <p style="font-size: 0.88rem; color: #666; margin: 0;">Déjanos tus datos para entregarte tu ficha capilar y asegurar tu valoración sin costo:</p>
+                        <div class="lead-capture-box" style="background: #ffffff; border: 1.5px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 20px 18px; margin: 20px 0 16px 0; text-align: left; box-shadow: 0 8px 25px rgba(0,0,0,0.03);">
+                            <div style="text-align: center; margin-bottom: 14px;">
+                                <span style="display: inline-block; font-size: 0.76rem; font-weight: 800; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1.2px; background: rgba(212,175,55,0.12); padding: 4px 14px; border-radius: 20px; margin-bottom: 6px;">✨ Valoración Capilar Gratuita &amp; Turno Preferencial</span>
+                                <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: #1a1a1a; margin: 4px 0 2px 0;">¿A nombre de quién registramos tu valoración?</h4>
+                                <p style="font-size: 0.88rem; color: #666; margin: 0;">Ingresa tus datos para confirmar tu diagnóstico y reservar tu espacio en salón:</p>
                             </div>
                             
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px;">
                                 <div>
                                     <label for="leadName" style="display: block; font-size: 0.8rem; font-weight: 700; color: #333; margin-bottom: 4px;">Tu Nombre Completo *</label>
                                     <input type="text" id="leadName" placeholder="Ej: Marcela Gómez" required style="width: 100%; padding: 11px 13px; border: 1.5px solid #dfd7cb; border-radius: 10px; font-size: 0.92rem; font-family: inherit; background: #faf8f5; box-sizing: border-box; outline: none;">
@@ -234,10 +234,6 @@
                                     <label for="leadEmail" style="display: block; font-size: 0.8rem; font-weight: 700; color: #333; margin-bottom: 4px;">Tu Correo Electrónico *</label>
                                     <input type="email" id="leadEmail" placeholder="Ej: marcela@correo.com" required style="width: 100%; padding: 11px 13px; border: 1.5px solid #dfd7cb; border-radius: 10px; font-size: 0.92rem; font-family: inherit; background: #faf8f5; box-sizing: border-box; outline: none;">
                                 </div>
-                                <div>
-                                    <label for="leadCity" style="display: block; font-size: 0.8rem; font-weight: 700; color: #333; margin-bottom: 4px;">Tu Ciudad / Municipio *</label>
-                                    <input type="text" id="leadCity" placeholder="Ej: Tunja, Duitama, Moniquirá..." required style="width: 100%; padding: 11px 13px; border: 1.5px solid #dfd7cb; border-radius: 10px; font-size: 0.92rem; font-family: inherit; background: #faf8f5; box-sizing: border-box; outline: none;">
-                                </div>
                             </div>
 
                             <div style="font-size: 0.76rem; color: #666; line-height: 1.45; display: flex; align-items: flex-start; gap: 8px;">
@@ -249,7 +245,7 @@
 
                         <div class="quiz-result-actions">
                             <button type="button" onclick="submitServiceBooking()" id="serviceWaBtn" class="btn-quiz-wa" style="font-size: 1.05rem; cursor: pointer; border: none; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 22px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; border-radius: 12px; font-weight: 700; box-shadow: 0 5px 18px rgba(37,211,102,0.35);">
-                                💖 ¡Quiero mi Cabello de Revista! Agendar Cita en WhatsApp 💬
+                                🌸 Agendar mi Valoración Capilar Gratuita en WhatsApp 💬
                             </button>
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-abono-cita-ja" target="_blank" class="btn-quiz-pay" style="background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 4px 14px rgba(212,175,55,0.35);">
                                 💳 Pagar Abono de Reserva (.000 / .000)
@@ -441,12 +437,11 @@
             var name = (document.getElementById('leadName').value || '').trim();
             var phone = (document.getElementById('leadPhone').value || '').trim();
             var email = (document.getElementById('leadEmail').value || '').trim();
-            var city = (document.getElementById('leadCity').value || '').trim();
             var consent = document.getElementById('leadConsent').checked;
             var err = document.getElementById('leadErrorMsg');
 
-            if (!name || !phone || !email || !city) {
-                err.textContent = "🌸 Por favor completa tu nombre, celular, correo y ciudad para entregarte tu diagnóstico y separar tu cita.";
+            if (!name || !phone || !email) {
+                err.textContent = "🌸 Por favor completa tu nombre, celular y correo para confirmar tu cita de valoración.";
                 err.style.display = "block";
                 return;
             }
@@ -473,7 +468,6 @@
                     name: name,
                     phone: phone,
                     email: email,
-                    city: city,
                     service: diag.title,
                     history: diag.history,
                     elasticity: diag.elasticity,
@@ -487,7 +481,7 @@
 
             // 2. Disparar eventos de conversión en Pixel y Analytics
             if (typeof fbq === 'function') {
-                fbq('track', 'Lead', { content_name: diag.title, city: city, sede: diag.location });
+                fbq('track', 'Lead', { content_name: diag.title, sede: diag.location });
             }
             if (typeof gtag === 'function') {
                 gtag('event', 'generate_lead', { event_category: 'SalonBooking', event_label: diag.location });
@@ -495,10 +489,10 @@
 
             // 3. Mapeo amigable y profesional de términos
             var histMap = {
-                'natural': 'Natural / Virgen (sin químicos)',
+                'natural': 'Natural / Virgen',
                 'alisado_previo': 'Alisado Previo (crecimiento de raíz)',
-                'tinturado': 'Tinturado (tonos medios/oscuros)',
-                'decolorado': 'Decolorado / Balayage / Mechas'
+                'tinturado': 'Tinturado',
+                'decolorado': 'Decolorado / Mechas'
             };
             var elastMap = {
                 'fuerte': 'Fuerte y resistente',
@@ -509,17 +503,16 @@
             var histText = histMap[diag.history] || diag.history;
             var elastText = elastMap[diag.elasticity] || diag.elasticity;
 
-            // 4. Mensaje cálido, hiper-comercial, empático y seductor (Beauty Luxury Standard)
-            var waMsg = "¡Hola Julie Alisados! 💖 Acabo de realizar mi Valoración Capilar en la web y ¡me muero de ganas de consentir mi cabello con ustedes! ✨\n\n" +
-                "🌸 *Mi Nombre:* " + name + "\n" +
-                "📱 *Mi WhatsApp:* " + phone + "\n" +
-                "💌 *Mi Correo:* " + email + "\n" +
-                "📍 *Mi Ubicación:* " + city + "\n" +
-                "💇‍♀️ *Mi Cabello es:* " + histText + "\n" +
-                "🌾 *Estado actual:* " + elastText + "\n" +
-                "🏛️ *Sede que deseo visitar:* Sede " + diag.location + "\n" +
-                "✨ *Tratamiento Sugerido:* " + diag.title + "\n\n" +
-                "Deseo asegurar mi cita para vivir la experiencia de Alisado Saludable 100% libre de formol y con brillo espejo. ¿Qué horarios tienen disponibles esta semana para mi valoración? 👑";
+            // 4. Mensaje natural, amable, profesional y enfocado en Valoración Capilar Gratuita
+            var waMsg = "¡Hola Julie Alisados! 👋🌸\n" +
+                "Realicé mi valoración capilar en su página web y me gustaría agendar una cita.\n\n" +
+                "• *Nombre:* " + name + "\n" +
+                "• *Celular:* " + phone + "\n" +
+                "• *Correo:* " + email + "\n" +
+                "• *Sede de interés:* Sede " + diag.location + "\n" +
+                "• *Diagnóstico sugerido:* " + diag.title + "\n" +
+                "• *Mi cabello es:* " + histText + " (" + elastText + ")\n\n" +
+                "¿Qué disponibilidad tienen esta semana para mi *Valoración Capilar Gratuita*? ✨";
 
             var waUrl = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
             window.open(waUrl, '_blank');
