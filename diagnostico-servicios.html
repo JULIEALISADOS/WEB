@@ -421,11 +421,12 @@
                 console.warn("Storage warning:", e);
             }
 
-            // 2. Disparar eventos de conversión en Pixel y Analytics
+            // 2. Disparar eventos de conversión en Pixel, Google Ads y Analytics
             if (typeof fbq === 'function') {
                 fbq('track', 'Lead', { content_name: serviceAnswers.goal, sede: serviceAnswers.location });
             }
             if (typeof gtag === 'function') {
+                gtag('event', 'conversion', { 'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD' });
                 gtag('event', 'generate_lead', { event_category: 'SalonBooking', event_label: serviceAnswers.location });
             }
 
