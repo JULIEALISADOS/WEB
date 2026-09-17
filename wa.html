@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectando con WhatsApp Oficial | Julie Alisados</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="logo%201.png">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1796200453804821');
+    fbq('track', 'PageView');
+    fbq('track', 'Contact');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1796200453804821&ev=PageView&noscript=1"/></noscript>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17986280702"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17986280702');
+      gtag('config', 'G-2BPKBTDBG5');
+      // Registrar evento de conversion oficial a WhatsApp
+      gtag('event', 'conversion', { 'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD' });
+      gtag('event', 'generate_lead', { 'event_category': 'WhatsApp', 'event_label': 'Click_WhatsApp_Redirect' });
+    </script>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.15);
+        }
+        .logo {
+            max-width: 160px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-top-color: #D4AF37;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h1 {
+            font-size: 20px;
+            color: #f3e5ab;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        p {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .btn-wa {
+            display: inline-block;
+            background: #25D366;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-wa:hover {
+            transform: scale(1.03);
+            background: #20ba59;
+        }
+        .security-badge {
+            margin-top: 25px;
+            font-size: 11px;
+            color: #888888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="logo%201.png" alt="Julie Alisados" class="logo">
+        <div class="spinner"></div>
+        <h1>Conectando con WhatsApp...</h1>
+        <p>Estamos transfiriendote de forma segura con una de nuestras asesoras expertas para atender tu solicitud.</p>
+        <a id="btnFallback" href="#" class="btn-wa">Abrir WhatsApp Directamente</a>
+        <div class="security-badge">
+            <span>ðŸ”’</span> Conexion Oficial y Verificada &bull; Julie Alisados S.A.S.
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cliente = urlParams.get('cliente') || urlParams.get('c') || '';
+            const origen = urlParams.get('origen') || urlParams.get('utm_source') || 'web';
+            const sede = urlParams.get('sede') || '';
+
+            let mensaje = "Hola, ";
+            if (cliente) {
+                mensaje += "soy " + decodeURIComponent(cliente) + ", ";
+            }
+            if (origen === 'email' || origen === 'email_siigo') {
+                mensaje += "recibi el correo de promociones de Julie Alisados y deseo agendar mi cita";
+            } else if (sede) {
+                mensaje += "deseo consultar sobre citas y valoraciones para la sede " + decodeURIComponent(sede);
+            } else {
+                mensaje += "deseo informacion sobre los alisados y tratamientos de Julie Alisados";
+            }
+
+            const waPhone = "573043588180";
+            const targetUrl = "https://wa.me/" + waPhone + "?text=" + encodeURIComponent(mensaje);
+
+            document.getElementById('btnFallback').href = targetUrl;
+
+            setTimeout(function() {
+                window.location.replace(targetUrl);
+            }, 300);
+        })();
+    </script>
+</body>
+</html>
