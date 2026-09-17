@@ -118,10 +118,10 @@
 
             <!-- Header de la Página -->
             <div style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
-                <span style="color: var(--gold-dark); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">💇‍♀️ Salón en Tunja & Moniquirá</span>
-                <h1 class="section-title" style="font-size: 2.6rem; margin-bottom: 12px;">Valoración Capilar para Citas en Salón</h1>
+                <span style="color: var(--gold-dark); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">💇‍♀️ Asesoría Personalizada Online</span>
+                <h1 class="section-title" style="font-size: 2.6rem; margin-bottom: 12px;">Valoración Capilar Gratuita por Foto</h1>
                 <p style="font-size: 1.1rem; color: #555; line-height: 1.6;">
-                    Antes de realizar cualquier procedimiento en nuestras sedes, evaluamos la salud y resistencia de tu fibra capilar para garantizar un resultado seguro, sin formol y con brillo de espejo.
+                    Envía una foto de tu cabello por WhatsApp para evaluar el estado de tu fibra capilar y darte una recomendación personalizada 100% libre de formol antes de tu cita en sede Tunja o Moniquirá.
                 </p>
             </div>
 
@@ -245,7 +245,7 @@
 
                         <div class="quiz-result-actions">
                             <button type="button" onclick="submitServiceBooking()" id="serviceWaBtn" class="btn-quiz-wa" style="font-size: 1.05rem; cursor: pointer; border: none; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 22px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; border-radius: 12px; font-weight: 700; box-shadow: 0 5px 18px rgba(37,211,102,0.35);">
-                                🌸 Agendar mi Valoración Capilar Gratuita en WhatsApp 💬
+                                📸 Enviar Foto para mi Valoración Capilar Gratuita 💬
                             </button>
                             <a href="https://www.mercadopago.com.co/checkout/v1/redirect?pref_id=2623048742-abono-cita-ja" target="_blank" class="btn-quiz-pay" style="background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 4px 14px rgba(212,175,55,0.35);">
                                 💳 Pagar Abono de Reserva (.000 / .000)
@@ -503,16 +503,16 @@
             var histText = histMap[diag.history] || diag.history;
             var elastText = elastMap[diag.elasticity] || diag.elasticity;
 
-            // 4. Mensaje natural, amable, profesional y enfocado en Valoración Capilar Gratuita
+            // 4. Mensaje natural, amable, profesional y enfocado en Valoración Capilar Gratuita por Foto
             var waMsg = "¡Hola Julie Alisados! 👋🌸\n" +
-                "Realicé mi valoración capilar en su página web y me gustaría agendar una cita.\n\n" +
+                "Realicé la valoración en su página web y aquí les comparto la foto de mi cabello para recibir su asesoría:\n\n" +
                 "• *Nombre:* " + name + "\n" +
                 "• *Celular:* " + phone + "\n" +
                 "• *Correo:* " + email + "\n" +
-                "• *Sede de interés:* Sede " + diag.location + "\n" +
-                "• *Diagnóstico sugerido:* " + diag.title + "\n" +
+                "• *Sede que deseo visitar:* Sede " + diag.location + "\n" +
+                "• *Tratamiento sugerido:* " + diag.title + "\n" +
                 "• *Mi cabello es:* " + histText + " (" + elastText + ")\n\n" +
-                "¿Qué disponibilidad tienen esta semana para mi *Valoración Capilar Gratuita*? ✨";
+                "¿Me confirman si recibieron mi foto para mi *Valoración Capilar Gratuita*? ✨";
 
             var waUrl = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
             window.open(waUrl, '_blank');
