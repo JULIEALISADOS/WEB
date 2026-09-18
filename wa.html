@@ -117,11 +117,6 @@
             background: #20ba59;
         }
         .security-badge {
-        <div style="margin-top: 15px; font-size: 0.72rem; color: #888; text-align: center;">
-            <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer" style="color: #aaa; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
-                <span>Vigilado por la Superintendencia de Industria y Comercio (SIC)</span>
-            </a>
-        </div>
             margin-top: 25px;
             font-size: 11px;
             color: #888888;
@@ -129,6 +124,24 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+        }
+        .sic-badge {
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+        }
+        .sic-badge a {
+            color: #aaa;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .sic-badge a:hover {
+            color: #D4AF37;
         }
     </style>
 </head>
@@ -140,7 +153,13 @@
         <p>Estamos transfiriendote de forma segura con una de nuestras asesoras expertas para atender tu solicitud.</p>
         <a id="btnFallback" href="#" class="btn-wa">Abrir WhatsApp Directamente</a>
         <div class="security-badge">
-            <span>ðŸ”’</span> Conexion Oficial y Verificada &bull; Julie Alisados S.A.S.
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Conexi&oacute;n Oficial y Verificada &bull; Julie Alisados S.A.S.</span>
+        </div>
+        <div class="sic-badge">
+            <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">
+                <span>Vigilado por la Superintendencia de Industria y Comercio (SIC)</span>
+            </a>
         </div>
     </div>
 
