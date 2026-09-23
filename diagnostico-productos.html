@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -261,15 +261,11 @@
                         <p id="quizResultDesc" style="font-size: 0.98rem; color: #444; line-height: 1.6; margin: 0;"></p>
                         <div id="quizResultIncludes" style="background: #fff; padding: 16px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.25); font-size: 0.9rem; color: #333;"></div>
                         <div class="quiz-result-actions">
-                            <a id="quizPayBtn" href="#" target="_blank" class="btn-quiz-pay">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                Pagar Rutina con PSE / Nequi / Addi
-                            </a>
-                            <a id="quizWaBtn" href="#" target="_blank" class="btn-quiz-wa">
-                                Pedir Rutina por WhatsApp 💬
+                            <a id="quizWaBtn" href="#" target="_blank" class="btn-quiz-wa" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px; font-size: 1.05rem; font-weight: 700; border-radius: 12px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);">
+                                🛍️ Pedir mi Rutina Personalizada por WhatsApp 💬
                             </a>
                         </div>
-                        <button type="button" onclick="restartQuiz()" style="background: none; border: none; color: #888; text-decoration: underline; font-size: 0.85rem; cursor: pointer; align-self: center; margin-top: 8px;">🔄 Repetir el Test</button>
+                        <button type="button" onclick="restartQuiz()" style="background: none; border: none; color: #888; text-decoration: underline; font-size: 0.85rem; cursor: pointer; align-self: center; margin-top: 10px;">🔄 Repetir el Test</button>
                     </div>
                 </div>
             </div>
@@ -466,14 +462,12 @@
             var priceEl = document.getElementById('quizResultPrice');
             var descEl = document.getElementById('quizResultDesc');
             var incEl = document.getElementById('quizResultIncludes');
-            var payEl = document.getElementById('quizPayBtn');
             var waEl = document.getElementById('quizWaBtn');
 
             if (titleEl) titleEl.textContent = title;
             if (priceEl) priceEl.textContent = price;
             if (descEl) descEl.textContent = desc;
             if (incEl) incEl.innerHTML = includes;
-            if (payEl) payEl.href = payLink;
 
             var waText = "Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: *" + title + "* (" + price + "). ¡Deseo pedir esta rutina para transformar mi cabello! ✨";
                         if (waEl) {
