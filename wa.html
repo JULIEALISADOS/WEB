@@ -174,61 +174,53 @@
             const sede = urlParams.get('sede') || '';
             const tipo = urlParams.get('tipo') || '';
 
-            // Generar código de referencia de trazabilidad para ManyChat
-            let refCode = 'WEB';
-            if (utmSource.includes('tiktok') || urlParams.get('origen') === 'tiktok') {
-                refCode = 'TT-VIP';
-            } else if (utmSource.includes('meta') || utmSource.includes('fb') || utmSource.includes('ig') || utmSource.includes('facebook') || utmSource.includes('instagram')) {
-                if (utmCampaign.includes('moni') || sede.toLowerCase().includes('moni')) {
-                    refCode = 'FB-MONI-VIP';
-                } else {
-                    refCode = 'FB-TUNJA-VIP';
-                }
-            } else if (utmSource.includes('google') || utmSource.includes('gads')) {
-                if (utmCampaign.includes('moni') || sede.toLowerCase().includes('moni')) {
-                    refCode = 'GOOG-MONI-VIP';
-                } else {
-                    refCode = 'GOOG-TUNJA-VIP';
-                }
-            } else if (utmSource.includes('email')) {
-                refCode = 'EMAIL-VIP';
+                        // Detectar sede de forma inteligente si viene en parámetros o campaña
+            let ciudadSede = '';
+            if (sede.toLowerCase().includes('moni') || utmCampaign.includes('moni')) {
+                ciudadSede = 'Moniquirá';
+            } else if (sede.toLowerCase().includes('tunj') || utmCampaign.includes('tunj')) {
+                ciudadSede = 'Tunja';
             }
 
-            let mensaje = "Hola Julie Alisados, ";
+            let mensaje = "Hola Julie Alisados 🌸 ";
             if (cliente) {
                 mensaje += "soy " + decodeURIComponent(cliente) + ", ";
             }
 
-            if (refCode.startsWith('TT')) {
+            // Frases 100% naturales, cálidas y elegantes (sin códigos técnicos visibles)
+            if (utmSource.includes('tiktok') || urlParams.get('origen') === 'tiktok') {
                 if (tipo === 'mayorista') {
-                    mensaje += "las vi en TikTok y me gustaría información para compras al por mayor y salones.";
+                    mensaje += "las vi en TikTok y me gustaría información para compras al por mayor y salones ✨";
                 } else if (tipo === 'seguidor' || tipo === 'live') {
-                    mensaje += "las sigo en TikTok y me gustaría unirme a la comunidad de los Lives y promociones.";
-                } else if (tipo === 'cliente' || sede) {
-                    mensaje += "las vi en TikTok y deseo agendar mi cita en salón" + (sede ? (" para la sede " + decodeURIComponent(sede)) : "") + ".";
+                    mensaje += "las sigo en TikTok y me gustaría unirme a la comunidad de los Lives y promociones ✨";
+                } else if (ciudadSede) {
+                    mensaje += "las vi en TikTok y deseo agendar mi valoración de alisado para la sede " + ciudadSede + " ✨";
                 } else {
-                    mensaje += "las vi en TikTok y deseo agendar mi valoración para alisado.";
+                    mensaje += "las vi en TikTok y deseo agendar mi cita de valoración para alisado ✨";
                 }
-            } else if (refCode.startsWith('GOOG')) {
-                mensaje += "vi su anuncio en Google y deseo agendar mi cita de valoración" + (sede ? (" en la sede " + decodeURIComponent(sede)) : "") + ".";
-            } else if (refCode.startsWith('FB')) {
-                mensaje += "vi su anuncio y deseo agendar mi cita de Alisado Saludable" + (sede ? (" en " + decodeURIComponent(sede)) : "") + ".";
-            } else if (refCode.startsWith('EMAIL')) {
-                mensaje += "recibí el correo de Julie Alisados y deseo aprovechar la promoción para mi cita.";
-            } else if (sede) {
-                mensaje += "deseo consultar sobre citas y valoraciones para la sede " + decodeURIComponent(sede) + ".";
+            } else if (utmSource.includes('google') || utmSource.includes('gads')) {
+                if (ciudadSede) {
+                    mensaje += "vi su información en Google y deseo agendar mi cita de valoración en la sede " + ciudadSede + " ✨";
+                } else {
+                    mensaje += "vi su información en Google y deseo agendar mi cita de valoración para alisado ✨";
+                }
+            } else if (utmSource.includes('meta') || utmSource.includes('fb') || utmSource.includes('ig') || utmSource.includes('facebook') || utmSource.includes('instagram')) {
+                if (ciudadSede) {
+                    mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable en la sede " + ciudadSede + " ✨";
+                } else {
+                    mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable ✨";
+                }
+            } else if (utmSource.includes('email')) {
+                mensaje += "recibí su correo de promociones y deseo agendar mi cita de alisado ✨";
+            } else if (ciudadSede) {
+                mensaje += "estoy en su página web y deseo consultar sobre citas para la sede " + ciudadSede + " ✨";
             } else {
-                mensaje += "deseo información sobre los alisados y tratamientos de Julie Alisados.";
+                mensaje += "estoy visitando su página web y deseo recibir asesoría para agendar mi cita ✨";
             }
 
-                        const customText = urlParams.get('text');
+            const customText = urlParams.get('text');
             if (customText) {
                 mensaje = decodeURIComponent(customText);
-            }
-
-            // Inyectar el código estructurado de referencia para ManyChat y asesoras humanas
-            if (!mensaje.includes('[REF:')) {
-                mensaje += " [REF:" + refCode + "]";
             }
 
             const waPhone = "573043588180";
