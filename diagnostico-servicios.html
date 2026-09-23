@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -58,6 +58,7 @@
         gtag('config', 'AW-17986280702');
         gtag('config', 'G-2BPKBTDBG5');
     </script>
+    <script src="js/julie-analytics.js" defer></script>
 </head>
 
 <body>
@@ -435,6 +436,10 @@
                 gtag('event', 'conversion', { 'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD' });
                 gtag('event', 'generate_lead', { event_category: 'SalonBooking', event_label: serviceAnswers.location });
             }
+            if (typeof ttq === 'function') {
+                ttq.track('SubmitForm', { content_name: serviceAnswers.goal });
+                ttq.track('CompleteRegistration');
+            }
 
             // 3. Mensaje amigable, cálido y enfocado en foto + lo que desea lograr
             var waMsg = "¡Hola Julie Alisados! 👋🌸\n" +
@@ -446,7 +451,8 @@
                 "• *Sede que deseo visitar:* Sede " + serviceAnswers.location + "\n\n" +
                 "¿Me confirman si recibieron mi foto y qué tratamiento me recomiendan? ✨";
 
-            var waUrl = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
+            var rawWa = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
+            var waUrl = (window.JulieAnalytics && typeof window.JulieAnalytics.buildWaUrlWithUtms === "function") ? window.JulieAnalytics.buildWaUrlWithUtms(rawWa) : ("wa.html?text=" + encodeURIComponent(waMsg));
             window.open(waUrl, '_blank');
         }
     </script>

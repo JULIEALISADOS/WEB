@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -99,6 +99,7 @@
       ]
     }
     </script>
+    <script src="js/julie-analytics.js" defer></script>
 </head>
 
 <body>
@@ -475,7 +476,15 @@
             if (payEl) payEl.href = payLink;
 
             var waText = "Hola Julie Alisados 👋 Acabo de hacer el Test Capilar en la web y mi resultado fue: *" + title + "* (" + price + "). ¡Deseo pedir esta rutina para transformar mi cabello! ✨";
-            if (waEl) waEl.href = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
+                        if (waEl) {
+                var waLinkRaw = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
+                waEl.href = (window.JulieAnalytics && typeof window.JulieAnalytics.buildWaUrlWithUtms === 'function') ? window.JulieAnalytics.buildWaUrlWithUtms(waLinkRaw) : ("wa.html?text=" + encodeURIComponent(waText));
+                waEl.onclick = function() {
+                    if (typeof window.gtag_report_conversion === 'function') {
+                        return window.gtag_report_conversion(this.href);
+                    }
+                };
+            }
         }
 
         function restartQuiz() {
