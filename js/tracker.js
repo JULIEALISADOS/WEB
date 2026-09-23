@@ -53,6 +53,9 @@ window.JulieTracker = {
         if (typeof fbq === 'function') {
             fbq('track', 'ViewContent', { content_name: productName, value: price || 0, currency: 'COP' });
         }
+        if (typeof ttq === 'function') {
+            ttq.track('ViewContent', { content_name: productName, value: price || 0, currency: 'COP' });
+        }
     },
 
     // 3. Inicio de Valoración / Captura de Lead (Lead Magnet)
