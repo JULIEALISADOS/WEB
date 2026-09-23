@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -45,6 +45,7 @@
       ttq.load('D80VAEJC77UDOFSGH9CG');
       ttq.page();
       ttq.track('Contact');
+      ttq.track('SubmitForm');
     }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
@@ -220,15 +221,25 @@
                 mensaje += "deseo información sobre los alisados y tratamientos de Julie Alisados.";
             }
 
+                        const customText = urlParams.get('text');
+            if (customText) {
+                mensaje = decodeURIComponent(customText);
+            }
+
+            // Inyectar el código estructurado de referencia para ManyChat y asesoras humanas
+            if (!mensaje.includes('[REF:')) {
+                mensaje += " [REF:" + refCode + "]";
+            }
+
             const waPhone = "573043588180";
             const targetUrl = "https://wa.me/" + waPhone + "?text=" + encodeURIComponent(mensaje);
 
             document.getElementById('btnFallback').href = targetUrl;
 
-            // Esperar 400ms para permitir que los píxeles (Meta, Google, TikTok) sincronicen el evento Contact
+            // Esperar 750ms para garantizar que los píxeles (Meta, Google, TikTok) sincronicen en redes móviles
             setTimeout(function() {
                 window.location.replace(targetUrl);
-            }, 400);
+            }, 750);
         })();
     </script>
 </body>
