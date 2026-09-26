@@ -1577,114 +1577,72 @@
             }
         })();
     </script>
-    <!-- MODAL ELEGANTE DE BIENVENIDA Y AGENDAMIENTO JULIE ALISADOS -->
-    <div id="bookingWelcomeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background: rgba(10, 8, 8, 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 18px; opacity: 0; transition: opacity 0.35s ease;">
-        <div style="background: linear-gradient(145deg, #1A1A1A 0%, #292020 50%, #151313 100%); border: 1.5px solid rgba(212, 175, 55, 0.55); border-radius: 24px; max-width: 580px; width: 100%; padding: 36px 28px 30px 28px; text-align: center; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.15); position: relative; overflow: hidden; transform: scale(0.92); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);">
+    <!-- BARRA INFERIOR FLOTANTE DE LUJO (NO INVASIVA) - JULIE ALISADOS -->
+    <div id="bookingBottomBar" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; width: 100%; z-index: 99990; background: rgba(14, 12, 12, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1.5px solid rgba(212, 175, 55, 0.5); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.6), 0 -2px 12px rgba(212, 175, 55, 0.15); transform: translateY(100%); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);">
+        <div style="max-width: 1240px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
             
-            <!-- Boton X Elegante para Cerrar -->
-            <button onclick="closeBookingModal()" aria-label="Cerrar ventana" style="position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.4); color: #F2D06B; font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 10;" onmouseover="this.style.background='rgba(212, 175, 55, 0.25)'; this.style.transform='rotate(90deg)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.transform='rotate(0deg)';">
-                &#10005;
-            </button>
-
-            <!-- Resplandores dorados sutiles -->
-            <div style="position: absolute; top: -50px; right: -50px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, transparent 70%); pointer-events: none;"></div>
-            <div style="position: absolute; bottom: -50px; left: -50px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, transparent 70%); pointer-events: none;"></div>
-
-            <!-- Tag distintivo -->
-            <div style="display: inline-block; background: rgba(212, 175, 55, 0.14); border: 1px solid rgba(212, 175, 55, 0.45); color: #F2D06B; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2.2px; padding: 5px 16px; border-radius: 25px; margin-bottom: 16px;">
-                &#10022; EXPERIENCIA SALUDABLE &amp; RESTAURACI&Oacute;N CAPILAR &#10022;
-            </div>
-
-            <!-- Titulo Principal -->
-            <h2 style="font-family: 'Playfair Display', Georgia, serif; color: #FFFFFF; font-size: clamp(1.45rem, 4vw, 1.95rem); font-weight: 700; margin: 0 0 12px 0; line-height: 1.3;">
-                Reg&aacute;late el brillo y la libertad que tu cabello merece
-            </h2>
-
-            <!-- Texto Descriptivo Calido y Elegante -->
-            <p style="color: #E6DFDC; font-size: clamp(0.92rem, 2vw, 1rem); margin: 0 auto 20px auto; line-height: 1.65; font-weight: 300;">
-                En nuestras sedes de <strong style="color: #F2D06B;">Tunja y Moniquir&aacute;</strong> cuidamos cada hebra con f&oacute;rmulas 100% libres de formol, fototerapia l&aacute;ser y atenci&oacute;n personalizada. Agenda tu valoraci&oacute;n y disfruta la tranquilidad de un liso impecable todos los d&iacute;as.
-            </p>
-
-            <!-- Pildoras de Valor -->
-            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; text-align: left; background: rgba(0, 0, 0, 0.25); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2);">
-                <div style="color: #FDF9F7; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #D4AF37;">&#10022;</span> Diagn&oacute;stico capilar previo y personalizado sin costo
+            <!-- Contenido Informativo y Marca -->
+            <div style="display: flex; align-items: center; gap: 14px; flex: 1; min-width: 280px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.4); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+                    ✨
                 </div>
-                <div style="color: #FDF9F7; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #D4AF37;">&#10022;</span> Sedes confortables y exclusivas en Tunja y Moniquir&aacute;
-                </div>
-                <div style="color: #FDF9F7; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: #D4AF37;">&#10022;</span> Financiaci&oacute;n c&oacute;moda con Addi, tarjetas y Bre-B
+                <div>
+                    <div style="font-family: 'Playfair Display', Georgia, serif; color: #FFFFFF; font-size: clamp(0.95rem, 2vw, 1.12rem); font-weight: 700; line-height: 1.25;">
+                        Vive la Experiencia de <span style="color: #F2D06B;">Alisado Saludable</span>
+                    </div>
+                    <div style="color: #D6CFC9; font-size: clamp(0.78rem, 1.5vw, 0.85rem); font-weight: 300; margin-top: 2px;">
+                        Sedes exclusivas en <strong>Tunja y Moniquir&aacute;</strong> &bull; 100% libre de formol &bull; Fototerapia l&aacute;ser
+                    </div>
+                    <!-- Micro-clausula legal SIC & Habeas Data -->
+                    <div style="font-size: 0.68rem; color: rgba(230, 223, 220, 0.65); margin-top: 3px;">
+                        &#128274; Datos protegidos bajo Ley 1581 de 2012 (SIC). Conoce nuestra <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline;">pol&iacute;tica de privacidad</a> y <a href="politica-garantia.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline;">garant&iacute;a</a>.
+                    </div>
                 </div>
             </div>
 
-            <!-- Boton Principal de WhatsApp -->
-            <a href="https://wa.me/573043588180?text=Hola%2C%20estoy%20visitando%20la%20pagina%20web%20de%20Julie%20Alisados%20y%20deseo%20agendar%20una%20cita%20de%20valoracion%20y%20alisado%20en%20el%20salon." 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               onclick="gtag_report_conversion(this.href); closeBookingModal();"
-               style="background: linear-gradient(135deg, #D4AF37 0%, #A68612 100%); color: #1A1A1A; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.98rem; text-decoration: none; padding: 14px 28px; border-radius: 30px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); margin-bottom: 12px; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;">
-                <span>&#127800;</span>
-                <span>Agendar mi Cita por WhatsApp &rarr;</span>
-            </a>
+            <!-- Boton Principal de Accion y Boton X -->
+            <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+                <a href="https://wa.me/573043588180?text=Hola%2C%20estoy%20en%20la%20pagina%20web%20y%20deseo%20agendar%20mi%20cita%20de%20alisado%20saludable%20en%20salon." 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   onclick="if(typeof gtag_report_conversion==='function'){gtag_report_conversion(this.href);}"
+                   style="background: linear-gradient(135deg, #D4AF37 0%, #A68612 100%); color: #121010; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.88rem; text-decoration: none; padding: 10px 22px; border-radius: 25px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; white-space: nowrap; cursor: pointer;">
+                    <span>🌸 Agendar Cita en Sal&oacute;n &rarr;</span>
+                </a>
+                
+                <button onclick="closeBottomBar()" aria-label="Cerrar barra informativa" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); color: #F2D06B; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(212, 175, 55, 0.25)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.08)';">
+                    &#10005;
+                </button>
+            </div>
 
-            
-            <!-- Micro-clausula de Habeas Data (Ley 1581 de 2012 & SIC) -->
-            <p style="font-size: 0.74rem; color: rgba(230, 223, 220, 0.8); line-height: 1.45; margin: 0 auto 14px auto; max-width: 480px; text-align: center; font-weight: 300;">
-                &#128274; Al agendar tu cita autorizas el tratamiento de tus datos bajo la Ley 1581 de 2012 y nuestras <a href="politica-servicio.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline; font-weight: 600;">Pol&iacute;ticas de Servicio</a> y <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" style="color: #F2D06B; text-decoration: underline; font-weight: 600;">Privacidad</a>.
-            </p>
-
-            <!-- Enlace secundario para continuar en la web -->
-            <button onclick="closeBookingModal()" style="background: none; border: none; color: rgba(255, 255, 255, 0.65); font-size: 0.82rem; cursor: pointer; text-decoration: underline; padding: 6px 12px;">
-                Continuar explorando la p&aacute;gina web
-            </button>
         </div>
     </div>
 
-    <!-- Script de Inicializacion del Modal al Ingresar a la Pagina -->
+    <!-- Script Inteligente con Memoria de Sesion -->
     <script>
-        function openBookingModal() {
-            var modal = document.getElementById('bookingWelcomeModal');
-            if (!modal) return;
-            modal.style.display = 'flex';
+        function openBottomBar() {
+            if (sessionStorage.getItem('ja_bottom_bar_closed') === 'true') return;
+            var bar = document.getElementById('bookingBottomBar');
+            if (!bar) return;
+            bar.style.display = 'block';
             setTimeout(function() {
-                modal.style.opacity = '1';
-                var box = modal.firstElementChild;
-                if (box) box.style.transform = 'scale(1)';
-            }, 50);
+                bar.style.transform = 'translateY(0)';
+            }, 60);
         }
 
-        function closeBookingModal() {
-            var modal = document.getElementById('bookingWelcomeModal');
-            if (!modal) return;
-            modal.style.opacity = '0';
-            var box = modal.firstElementChild;
-            if (box) box.style.transform = 'scale(0.92)';
+        function closeBottomBar() {
+            var bar = document.getElementById('bookingBottomBar');
+            if (!bar) return;
+            bar.style.transform = 'translateY(100%)';
+            sessionStorage.setItem('ja_bottom_bar_closed', 'true');
             setTimeout(function() {
-                modal.style.display = 'none';
-            }, 350);
+                bar.style.display = 'none';
+            }, 450);
         }
 
-        // Mostrar automaticamente al ingresar (con 1.2 segundos de gracia para entrada elegante)
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(openBookingModal, 1200);
-
-            // Cerrar al hacer clic fuera del contenido
-            var modal = document.getElementById('bookingWelcomeModal');
-            if (modal) {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        closeBookingModal();
-                    }
-                });
-            }
-
-            // Cerrar con tecla Escape
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeBookingModal();
-                }
-            });
+            // Entrada suave a los 3.5 segundos sin interrumpir la lectura inicial
+            setTimeout(openBottomBar, 3500);
         });
     </script>
 </body>
