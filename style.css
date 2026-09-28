@@ -1518,7 +1518,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    animation: scrollVertical 25s linear infinite;
+    animation: scrollVertical 50s linear infinite;
 }
 
 .testimonials-infinite-container:hover .testimonials-infinite-track {
