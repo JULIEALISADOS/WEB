@@ -350,28 +350,28 @@
             width: 100% !important;
             max-width: 100% !important;
             margin: 25px auto 0 !important;
-            overflow: hidden !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
             position: relative !important;
             padding: 15px 0 25px !important;
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%) !important;
-            mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%) !important;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important;
+            mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%) !important;
             cursor: grab !important;
             user-select: none !important;
             -webkit-user-select: none !important;
-            touch-action: pan-y !important;
+            touch-action: pan-x pan-y !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
             height: auto !important;
             min-height: 250px !important;
         }
 
-        .testimonials-infinite-container:active {
-            cursor: grabbing !important;
+        .testimonials-infinite-container::-webkit-scrollbar {
+            display: none !important;
         }
 
-        .testimonials-infinite-container,
-        .testimonials-infinite-container * {
-            user-select: none !important;
-            -webkit-user-select: none !important;
-            -webkit-user-drag: none !important;
+        .testimonials-infinite-container:active {
+            cursor: grabbing !important;
         }
 
         .testimonials-infinite-track {
@@ -380,12 +380,7 @@
             align-items: stretch !important;
             gap: 20px !important;
             width: max-content !important;
-            animation: scrollHorizontal 65s linear infinite;
-            will-change: transform;
-        }
-
-        .testimonials-infinite-track.is-dragging {
-            animation: none !important;
+            will-change: scroll-position;
         }
 
         .testimonials-infinite-track .testimonial-card {
@@ -415,21 +410,6 @@
                 max-width: 290px !important;
                 padding: 18px 16px !important;
                 border-radius: 16px !important;
-            }
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .testimonials-infinite-container:hover .testimonials-infinite-track:not(.is-dragging) {
-                animation-play-state: paused;
-            }
-        }
-
-        @keyframes scrollHorizontal {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-            100% {
-                transform: translate3d(-50%, 0, 0);
             }
         }
     </style>
@@ -759,6 +739,72 @@
                                 <div class="user-avatar">D</div>
                                 <strong>Doris Castellanos Rondón</strong>
                                 <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Puente Nacional ➔ Moniquirá</span>
+                            </div>
+                        </div>
+
+                        <!-- 13. Diana Marcela Cárdenas (Paipa -> Tunja) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Vivo en Paipa y coordiné mi cita un sábado en la sede Tunja. Tenía el cabello procesado con balayage y me daba pánico que se me reventara. La prueba de mechón y la atención personalizada me dieron total seguridad. Mi cabello quedó liso tabla, brillante y super hidratado."</p>
+                            <div class="google-user">
+                                <div class="user-avatar">D</div>
+                                <strong>Diana Marcela Cárdenas</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Paipa ➔ Tunja</span>
+                            </div>
+                        </div>
+
+                        <!-- 14. Angie Tatiana Becerra (Chiquinquirá -> Moniquirá) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Viajé desde Chiquinquirá buscando una solución real para mi frizz. En Moniquirá me aplicaron el Alisado Saludable combinado con la Terapia Choco Fix. Es increíble levantarse por las mañanas y estar lista en 3 minutos. La atención del equipo de Julie es insuperable."</p>
+                            <div class="google-user">
+                                <div class="user-avatar">A</div>
+                                <strong>Angie Tatiana Becerra</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Chiquinquirá ➔ Moniquirá</span>
+                            </div>
+                        </div>
+
+                        <!-- 15. Marcela Santamaría (Tunja) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Llevo 2 años haciéndome el retoque en Tunja. Lo que más valoro es que con el paso del tiempo las puntas no se adelgazan ni se queman como me pasaba con las keratinas convencionales. La línea de shampoo y acondicionador de Extractos rinde muchísimo y mantiene el brillo intacto."</p>
+                            <div class="google-user">
+                                <div class="user-avatar">M</div>
+                                <strong>Marcela Santamaría</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Sede Tunja · Google Maps</span>
+                            </div>
+                        </div>
+
+                        <!-- 16. Yudy Andrea Castillo (Arcabuco -> Moniquirá) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Trabajo en Arcabuco y bajar a Moniquirá fue la mejor decisión. El ambiente del salón en el Edificio Mónaco es súper tranquilo y relajante. El Alisado Saludable no pica, no huele a químico fuerte y los resultados en mi hebra afro ondulada fueron mágicos."</p>
+                            <div class="google-user">
+                                <div class="user-avatar">Y</div>
+                                <strong>Yudy Andrea Castillo</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Arcabuco ➔ Moniquirá</span>
+                            </div>
+                        </div>
+
+                        <!-- 17. Sonia Milena Fonseca (Cómbita -> Tunja) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Vine recomendada por mi hermana desde Cómbita. Me realizaron corte de horquilla con máquina Split-Ender y reposición de aminoácidos antes de alisar. El cabello me quedó con peso, caída natural y un brillo espejo que todo el mundo me elogia."</p>
+                            <div class="google-user">
+                                <div class="user-avatar">S</div>
+                                <strong>Sonia Milena Fonseca</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Cómbita ➔ Tunja</span>
+                            </div>
+                        </div>
+
+                        <!-- 18. Lina María Guío (Moniquirá) -->
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="quote">"Aproveché la opción de pago con Addi en 3 cuotas en la sede Moniquirá, un trámite súper rápido en el celular. El servicio incluye lavado técnico y oreado frente al espejo para verificar que queda perfecto sin necesidad de plancharlo después. ¡Feliz con mi cabello!"</p>
+                            <div class="google-user">
+                                <div class="user-avatar">L</div>
+                                <strong>Lina María Guío</strong>
+                                <span style="font-size: 0.72rem; background: rgba(212, 175, 55, 0.15); color: #8a6d1c; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap;">Sede Moniquirá · Google Maps</span>
                             </div>
                         </div>
                     </div>
@@ -1644,164 +1690,7 @@
             });
         }
 
-        // ======================== TESTIMONIALS INFINITE HORIZONTAL REEL & TOUCH INTERACTIVITY ========================
-        function initInfiniteTestimonials() {
-            const track = document.querySelector('.testimonials-infinite-track');
-            const container = document.querySelector('.testimonials-infinite-container');
-            if (!track || !container) return;
-
-            track.style.display = 'flex';
-            track.style.flexDirection = 'row';
-            track.style.width = 'max-content';
-
-            // Duplicamos las tarjetas para mantener el scroll horizontal continuo
-            const allCards = Array.from(track.children);
-            allCards.forEach(card => {
-                const clone = card.cloneNode(true);
-                track.appendChild(clone);
-            });
-
-            // Función ultra-robusta para leer la posición X actual (2D y 3D)
-            function getCurrentX() {
-                const style = window.getComputedStyle(track);
-                const transform = style.transform || style.webkitTransform;
-                if (!transform || transform === 'none') return 0;
-                
-                const match = transform.match(/^matrix(?:3d)?\((.+)\)$/);
-                if (!match) return 0;
-                
-                const parts = match[1].split(',').map(s => parseFloat(s.trim()));
-                if (parts.length === 6) return parts[4] || 0; // 2D matrix
-                if (parts.length === 16) return parts[12] || 0; // 3D matrix
-                return 0;
-            }
-
-            let isPointerDown = false;
-            let isDragging = false;
-            let directionLocked = null; // 'horizontal' | 'vertical' | null
-            let startX = 0;
-            let startY = 0;
-            let startXPos = 0;
-            let currentDragX = 0;
-            let autoResumeTimer = null;
-            const ANIMATION_DURATION = 65; // Duración en segundos
-
-            function getHalfWidth() {
-                return (track.scrollWidth / 2) || 2000;
-            }
-
-            function handleStart(clientX, clientY) {
-                if (autoResumeTimer) clearTimeout(autoResumeTimer);
-                isPointerDown = true;
-                isDragging = false;
-                directionLocked = null;
-                startX = clientX;
-                startY = clientY;
-                startXPos = getCurrentX();
-                currentDragX = startXPos;
-                track.style.animationPlayState = 'paused';
-            }
-
-            function handleMove(clientX, clientY, e) {
-                if (!isPointerDown) return;
-                const deltaX = clientX - startX;
-                const deltaY = clientY - startY;
-
-                // Discriminador de dirección:
-                if (!directionLocked) {
-                    // Si el movimiento es vertical (scroll de la página), liberamos de inmediato
-                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 6) {
-                        directionLocked = 'vertical';
-                        isPointerDown = false;
-                        track.style.animationPlayState = 'running';
-                        return;
-                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 6) {
-                        directionLocked = 'horizontal';
-                        isDragging = true;
-                        // Desactivamos la animación CSS con clase de alta especificidad
-                        track.classList.add('is-dragging');
-                    }
-                }
-
-                if (directionLocked === 'horizontal' && isDragging) {
-                    if (e && e.cancelable) {
-                        e.preventDefault(); // Prioridad total al arrastre horizontal sobre gestos del navegador
-                    }
-                    const halfWidth = getHalfWidth();
-                    let newX = startXPos + deltaX;
-                    while (newX > 0) newX -= halfWidth;
-                    while (newX < -halfWidth) newX += halfWidth;
-                    currentDragX = newX;
-                    track.style.transform = `translate3d(${newX}px, 0, 0)`;
-                }
-            }
-
-            function handleEnd() {
-                if (!isPointerDown && !isDragging) return;
-                isPointerDown = false;
-
-                if (autoResumeTimer) clearTimeout(autoResumeTimer);
-
-                autoResumeTimer = setTimeout(() => {
-                    const halfWidth = getHalfWidth();
-                    let finalX = isDragging ? currentDragX : getCurrentX();
-
-                    while (finalX > 0) finalX -= halfWidth;
-                    while (finalX < -halfWidth) finalX += halfWidth;
-
-                    const fraction = Math.abs(finalX) / halfWidth;
-                    const delay = -(fraction * ANIMATION_DURATION);
-
-                    track.classList.remove('is-dragging');
-                    track.style.animation = `scrollHorizontal ${ANIMATION_DURATION}s linear infinite`;
-                    track.style.animationDelay = `${delay}s`;
-                    track.style.animationPlayState = 'running';
-                    isDragging = false;
-                    directionLocked = null;
-                }, 300);
-            }
-
-            // Prevenir drag & drop nativo de imágenes o enlaces en el contenedor
-            container.addEventListener('dragstart', (e) => e.preventDefault());
-
-            // Eventos Touch (móviles): passive: false permite preventDefault() en arrastre horizontal
-            container.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    handleStart(e.touches[0].clientX, e.touches[0].clientY);
-                }
-            }, { passive: true });
-
-            container.addEventListener('touchmove', (e) => {
-                if (e.touches.length === 1) {
-                    handleMove(e.touches[0].clientX, e.touches[0].clientY, e);
-                }
-            }, { passive: false });
-
-            container.addEventListener('touchend', handleEnd, { passive: true });
-            container.addEventListener('touchcancel', handleEnd, { passive: true });
-
-            // Eventos Mouse para arrastrar fluidamente en PC
-            container.addEventListener('mousedown', (e) => {
-                if (e.button === 0) {
-                    e.preventDefault(); // Previene selección de texto
-                    handleStart(e.clientX, e.clientY);
-                }
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (isPointerDown) {
-                    handleMove(e.clientX, e.clientY, e);
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (isPointerDown || isDragging) {
-                    handleEnd();
-                }
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', initInfiniteTestimonials);
+        // Testimonials handled by master controller below
 
         // Lógica de texto alternante en el botón de WhatsApp
         const dynamicLabel = document.getElementById('whatsapp-dynamic-label');
@@ -1875,7 +1764,7 @@
         })();
     </script>
 
-    <!-- Verificador y Notificador AutomÃ¡tico de Pagos de Mercado Pago a WhatsApp -->
+    <!-- Verificador y Notificador Automático de Pagos de Mercado Pago a WhatsApp -->
     <script>
         (function checkMercadoPagoSuccess() {
             const params = new URLSearchParams(window.location.search);
@@ -2019,7 +1908,7 @@
     <!-- Script de Control: Carrusel Táctil y Selector de Sede -->
     <script>
         // =======================================================
-        // CARRUSEL DE TESTIMONIOS: LOOP INFINITO REAL Y FLUIDO
+        // CARRUSEL DE TESTIMONIOS: LOOP INFINITO REAL Y FLUIDO (TRIPLE BUFFER)
         // =======================================================
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector('.testimonials-infinite-container');
@@ -2033,56 +1922,83 @@
             const originalCards = Array.from(track.querySelectorAll('.testimonial-card'));
             if (!originalCards.length) return;
 
-            // 1. Clonar tarjetas para crear un bucle infinito continuo e imperceptible
-            originalCards.forEach(function(card) {
-                const clone = card.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                track.appendChild(clone);
-            });
+            // 1. Clonar 2 sets completos adicionales para conformar [Set 1, Set 2, Set 3]
+            for (let s = 0; s < 2; s++) {
+                originalCards.forEach(function(card) {
+                    const clone = card.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    track.appendChild(clone);
+                });
+            }
 
-            // Medir el ancho de un set completo de tarjetas
             let singleSetWidth = 0;
             function calculateWidths() {
-                singleSetWidth = track.scrollWidth / 2;
+                singleSetWidth = track.scrollWidth / 3;
             }
             calculateWidths();
-            window.addEventListener('resize', calculateWidths);
 
-            // Generar dots indicadores (6 dots representativos de las opiniones)
+            // Centrar el viewport en el Set 2 (centro exacto)
+            container.style.scrollBehavior = 'auto';
+            container.scrollLeft = singleSetWidth;
+
+            window.addEventListener('resize', function() {
+                if (singleSetWidth <= 0) return;
+                const currentFraction = (container.scrollLeft % singleSetWidth) / singleSetWidth;
+                calculateWidths();
+                container.style.scrollBehavior = 'auto';
+                container.scrollLeft = singleSetWidth + (currentFraction * singleSetWidth);
+            });
+
+            // Ancho dinámico de tarjeta + gap para avance limpio
+            function getCardStep() {
+                const firstCard = track.querySelector('.testimonial-card');
+                return firstCard ? firstCard.offsetWidth + 20 : 360;
+            }
+
+            // 2. Dots de progreso
             const totalDots = 6;
             if (dotsContainer) {
                 dotsContainer.innerHTML = '';
                 for (let i = 0; i < totalDots; i++) {
                     const dot = document.createElement('div');
                     dot.className = 'testimonials-dot' + (i === 0 ? ' active' : '');
-                    dot.addEventListener('click', function() {
-                        const targetPos = (i / totalDots) * singleSetWidth;
-                        container.scrollTo({ left: targetPos, behavior: 'smooth' });
-                    });
+                    (function(idx) {
+                        dot.addEventListener('click', function() {
+                            pauseAutoPlay();
+                            const targetPos = singleSetWidth + (idx / totalDots) * singleSetWidth;
+                            container.scrollTo({ left: targetPos, behavior: 'smooth' });
+                            resumeAutoPlayLater();
+                        });
+                    })(i);
                     dotsContainer.appendChild(dot);
                 }
             }
-
             const dots = dotsContainer ? dotsContainer.querySelectorAll('.testimonials-dot') : [];
 
-            // 2. Control de Re-posicionamiento Infinito Transparente
+            // 3. Re-centrado transparente en eventos de scroll
             let isAdjusting = false;
             function onScrollLoop() {
                 if (isAdjusting || singleSetWidth <= 0) return;
 
-                if (container.scrollLeft >= singleSetWidth) {
+                // Al desplazarse hacia la derecha y sobrepasar el Set 2
+                if (container.scrollLeft >= singleSetWidth * 2) {
                     isAdjusting = true;
+                    container.style.scrollBehavior = 'auto';
                     container.scrollLeft -= singleSetWidth;
                     isAdjusting = false;
-                } else if (container.scrollLeft <= 5) {
+                }
+                // Al desplazarse hacia la izquierda y salir antes del Set 2
+                else if (container.scrollLeft < singleSetWidth * 0.5) {
                     isAdjusting = true;
+                    container.style.scrollBehavior = 'auto';
                     container.scrollLeft += singleSetWidth;
                     isAdjusting = false;
                 }
 
+                // Actualizar dot activo
                 if (dots.length) {
-                    const normalizedScroll = container.scrollLeft % singleSetWidth;
-                    const progress = normalizedScroll / singleSetWidth;
+                    const normalized = container.scrollLeft % singleSetWidth;
+                    const progress = normalized / singleSetWidth;
                     const activeIdx = Math.min(Math.floor(progress * totalDots), totalDots - 1);
                     dots.forEach(function(d, idx) {
                         d.classList.toggle('active', idx === activeIdx);
@@ -2092,29 +2008,43 @@
 
             container.addEventListener('scroll', onScrollLoop, { passive: true });
 
-            // 3. Botones Prev / Next con salto suave de 1 tarjeta
-            const CARD_STEP = 360;
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function() {
-                    pauseAutoPlay();
-                    container.scrollBy({ left: -CARD_STEP, behavior: 'smooth' });
-                });
+            // 4. Navegación con Botones Siguiente / Anterior (NUNCA SE TRABA)
+            function goNext() {
+                pauseAutoPlay();
+                const step = getCardStep();
+                // Si estamos cerca del límite del Set 3, reajustamos al Set 2 instantáneamente antes de animar
+                if (container.scrollLeft >= singleSetWidth * 2 - step * 1.5) {
+                    container.style.scrollBehavior = 'auto';
+                    container.scrollLeft -= singleSetWidth;
+                }
+                container.style.scrollBehavior = 'smooth';
+                container.scrollBy({ left: step, behavior: 'smooth' });
+                resumeAutoPlayLater();
             }
 
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function() {
-                    pauseAutoPlay();
-                    container.scrollBy({ left: CARD_STEP, behavior: 'smooth' });
-                });
+            function goPrev() {
+                pauseAutoPlay();
+                const step = getCardStep();
+                // Si estamos cerca del límite del Set 1, reajustamos al Set 2 instantáneamente antes de animar
+                if (container.scrollLeft <= singleSetWidth * 0.8) {
+                    container.style.scrollBehavior = 'auto';
+                    container.scrollLeft += singleSetWidth;
+                }
+                container.style.scrollBehavior = 'smooth';
+                container.scrollBy({ left: -step, behavior: 'smooth' });
+                resumeAutoPlayLater();
             }
 
-            // 4. Arrastre fluido con Mouse en Desktop
+            if (nextBtn) nextBtn.addEventListener('click', goNext);
+            if (prevBtn) prevBtn.addEventListener('click', goPrev);
+
+            // 5. Arrastre fluido con Mouse en Desktop
             let isMouseDown = false;
             let startX = 0;
             let startScroll = 0;
 
             container.addEventListener('mousedown', function(e) {
+                if (e.button !== 0) return;
                 isMouseDown = true;
                 pauseAutoPlay();
                 startX = e.pageX - container.offsetLeft;
@@ -2126,7 +2056,6 @@
             window.addEventListener('mouseup', function() {
                 if (isMouseDown) {
                     isMouseDown = false;
-                    container.style.scrollBehavior = 'smooth';
                     container.style.cursor = 'grab';
                     resumeAutoPlayLater();
                 }
@@ -2136,11 +2065,11 @@
                 if (!isMouseDown) return;
                 e.preventDefault();
                 const x = e.pageX - container.offsetLeft;
-                const walk = (x - startX) * 1.4;
+                const walk = (x - startX) * 1.3;
                 container.scrollLeft = startScroll - walk;
             });
 
-            // 5. Auto-avance continuo y suave cuando no hay interacción
+            // 6. Auto-Play Suave y Continuo cuando no hay interacción
             let autoInterval = null;
             let resumeTimeout = null;
 
@@ -2148,8 +2077,14 @@
                 if (autoInterval) clearInterval(autoInterval);
                 autoInterval = setInterval(function() {
                     if (isMouseDown) return;
-                    container.scrollBy({ left: CARD_STEP, behavior: 'smooth' });
-                }, 5000);
+                    const step = getCardStep();
+                    if (container.scrollLeft >= singleSetWidth * 2 - step * 1.5) {
+                        container.style.scrollBehavior = 'auto';
+                        container.scrollLeft -= singleSetWidth;
+                    }
+                    container.style.scrollBehavior = 'smooth';
+                    container.scrollBy({ left: step, behavior: 'smooth' });
+                }, 4500);
             }
 
             function pauseAutoPlay() {
@@ -2157,12 +2092,15 @@
                     clearInterval(autoInterval);
                     autoInterval = null;
                 }
-                if (resumeTimeout) clearTimeout(resumeTimeout);
+                if (resumeTimeout) {
+                    clearTimeout(resumeTimeout);
+                    resumeTimeout = null;
+                }
             }
 
             function resumeAutoPlayLater() {
                 pauseAutoPlay();
-                resumeTimeout = setTimeout(startAutoPlay, 4000);
+                resumeTimeout = setTimeout(startAutoPlay, 5000);
             }
 
             container.addEventListener('mouseenter', pauseAutoPlay);
