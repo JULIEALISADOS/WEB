@@ -577,16 +577,6 @@
                         </div>
                     </div>
                 
-                <!-- Controles de Navegación del Carrusel -->
-                <div class="testimonials-controls-wrapper">
-                    <button class="testimonials-nav-btn" id="prevTestimonial" aria-label="Testimonio anterior">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-                    </button>
-                    <div class="testimonials-dots" id="testimonialsDots"></div>
-                    <button class="testimonials-nav-btn" id="nextTestimonial" aria-label="Testimonio siguiente">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -772,6 +762,17 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Controles de Navegación del Carrusel de Testimonios -->
+                <div class="testimonials-controls-wrapper">
+                    <button class="testimonials-nav-btn" id="prevTestimonial" aria-label="Testimonio anterior">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <div class="testimonials-dots" id="testimonialsDots"></div>
+                    <button class="testimonials-nav-btn" id="nextTestimonial" aria-label="Testimonio siguiente">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
                 </div>
             </div>
         </section>
@@ -1953,7 +1954,9 @@
 
     <!-- Script Inteligente con Memoria de Sesion -->
     <script>
-        function openBottomBar() {
+        window.openBottomBar = function() {
+            // No competir ni tapar el banner legal de cookies si el usuario aun no ha decidido
+            if (!localStorage.getItem('julie_privacy_consent')) return;
             if (sessionStorage.getItem('ja_bottom_bar_closed') === 'true') return;
             var bar = document.getElementById('bookingBottomBar');
             if (!bar) return;
