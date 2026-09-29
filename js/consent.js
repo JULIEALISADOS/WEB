@@ -24,7 +24,7 @@
                 -webkit-backdrop-filter: blur(14px);
                 color: #FDF9F7;
                 padding: 16px 24px;
-                z-index: 99990;
+                z-index: 999999;
                 box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.35);
                 border-top: 1.5px solid rgba(212, 175, 55, 0.55);
                 box-sizing: border-box;
@@ -138,10 +138,7 @@
                     font-size: 0.82rem;
                     line-height: 1.5;
                 }
-                .julie-consent-actions {
-                    flex-direction: column-reverse;
-                    gap: 10px;
-                }
+                .julie-consent-actions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; }
                 .julie-consent-btn {
                     width: 100%;
                     padding: 12px 18px;
