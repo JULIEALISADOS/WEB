@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260821_modal_hd">
+    <link rel="stylesheet" href="style.css?v=20260928_horizontal_reel_v1">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -344,6 +344,84 @@
     </script>
     <!-- Julie Analytics Universal Tracking -->
     <script src="js/julie-analytics.js" defer></script>
+    <!-- Blindaje anti-cache: Garantiza carrusel horizontal en todos los navegadores móviles -->
+    <style id="testimonials-horizontal-styles">
+        .testimonials-infinite-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 25px auto 0 !important;
+            overflow: hidden !important;
+            position: relative !important;
+            padding: 15px 0 25px !important;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%) !important;
+            mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%) !important;
+            cursor: grab !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            touch-action: pan-y !important;
+            height: auto !important;
+            min-height: 250px !important;
+        }
+
+        .testimonials-infinite-container:active {
+            cursor: grabbing !important;
+        }
+
+        .testimonials-infinite-track {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            gap: 20px !important;
+            width: max-content !important;
+            animation: scrollHorizontal 65s linear infinite !important;
+            will-change: transform !important;
+        }
+
+        .testimonials-infinite-track .testimonial-card {
+            background: rgba(255, 255, 255, 0.94) !important;
+            padding: 24px 22px !important;
+            border-radius: 20px !important;
+            border: 1px solid var(--gold) !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
+            text-align: left !important;
+            width: 340px !important;
+            min-width: 340px !important;
+            max-width: 340px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            gap: 14px !important;
+            position: relative !important;
+            backdrop-filter: blur(8px) !important;
+            box-sizing: border-box !important;
+            flex-shrink: 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-infinite-track .testimonial-card {
+                width: 290px !important;
+                min-width: 290px !important;
+                max-width: 290px !important;
+                padding: 18px 16px !important;
+                border-radius: 16px !important;
+            }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .testimonials-infinite-container:hover .testimonials-infinite-track {
+                animation-play-state: paused !important;
+            }
+        }
+
+        @keyframes scrollHorizontal {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -1550,7 +1628,12 @@
             const container = document.querySelector('.testimonials-infinite-container');
             if (!track || !container) return;
 
-            // Duplicamos las tarjetas para mantener el scroll horizontal infinito
+            // Asegurar presentación horizontal directa por JS
+            track.style.display = 'flex';
+            track.style.flexDirection = 'row';
+            track.style.width = 'max-content';
+
+            // Duplicamos las tarjetas para mantener el scroll horizontal continuo
             const allCards = Array.from(track.children);
             allCards.forEach(card => {
                 const clone = card.cloneNode(true);
@@ -1564,7 +1647,7 @@
                 if (!transform || transform === 'none') return 0;
                 if (window.DOMMatrixReadOnly || window.DOMMatrix) {
                     const MatrixClass = window.DOMMatrixReadOnly || window.DOMMatrix;
-                    return new MatrixClass(transform).m41; // m41 = translateX en 2D/3D
+                    return new MatrixClass(transform).m41;
                 }
                 const values = transform.split('(')[1].split(')')[0].split(',');
                 if (values.length === 6) return parseFloat(values[4]);
@@ -1580,7 +1663,7 @@
             let startXPos = 0;
             let currentDragX = 0;
             let autoResumeTimer = null;
-            const ANIMATION_DURATION = 65; // 65 segundos para un deslizamiento horizontal suave
+            const ANIMATION_DURATION = 65; // Duración en segundos
 
             function getHalfWidth() {
                 return (track.scrollWidth / 2) || 2000;
@@ -1595,6 +1678,8 @@
                 startY = clientY;
                 startXPos = getCurrentX();
                 currentDragX = startXPos;
+                // Pausamos suavemente
+                track.style.animationPlayState = 'paused';
             }
 
             function handleMove(clientX, clientY) {
@@ -1602,17 +1687,19 @@
                 const deltaX = clientX - startX;
                 const deltaY = clientY - startY;
 
-                // Discriminador de dirección: si el usuario mueve el dedo verticalmente,
-                // liberamos el carrusel de inmediato para que la pantalla del celular se mueva libremente.
+                // Discriminador de gestos:
+                // Si el movimiento es predominantemente vertical, liberamos de inmediato
+                // el carrusel para que la pantalla del celular suba o baje sin resistencia.
                 if (!directionLocked) {
-                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 6) {
+                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 7) {
                         directionLocked = 'vertical';
-                        isPointerDown = false; // Cede el control total al scroll vertical de la página
+                        isPointerDown = false;
+                        track.style.animationPlayState = 'running'; // Reanudamos para no dejarlo trabado
                         return;
-                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 6) {
+                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 7) {
                         directionLocked = 'horizontal';
                         isDragging = true;
-                        track.style.animation = 'none'; // Control manual horizontal 1:1
+                        track.style.animation = 'none'; // Control manual 1:1 con el dedo
                     }
                 }
 
@@ -1632,31 +1719,26 @@
 
                 if (autoResumeTimer) clearTimeout(autoResumeTimer);
 
-                if (directionLocked === 'horizontal') {
-                    // Si el usuario deslizó las opiniones, esperamos 400ms y reanudamos el movimiento continuo
-                    autoResumeTimer = setTimeout(() => {
-                        const halfWidth = getHalfWidth();
-                        let finalX = isDragging ? currentDragX : getCurrentX();
+                // Reanudación garantizada en cualquier caso (arrastre o simple toque)
+                autoResumeTimer = setTimeout(() => {
+                    const halfWidth = getHalfWidth();
+                    let finalX = isDragging ? currentDragX : getCurrentX();
 
-                        while (finalX > 0) finalX -= halfWidth;
-                        while (finalX < -halfWidth) finalX += halfWidth;
+                    while (finalX > 0) finalX -= halfWidth;
+                    while (finalX < -halfWidth) finalX += halfWidth;
 
-                        const fraction = Math.abs(finalX) / halfWidth;
-                        const delay = -(fraction * ANIMATION_DURATION);
+                    const fraction = Math.abs(finalX) / halfWidth;
+                    const delay = -(fraction * ANIMATION_DURATION);
 
-                        track.style.animation = `scrollHorizontal ${ANIMATION_DURATION}s linear infinite`;
-                        track.style.animationDelay = `${delay}s`;
-                        track.style.animationPlayState = 'running';
-                        isDragging = false;
-                        directionLocked = null;
-                    }, 400);
-                } else {
-                    directionLocked = null;
+                    track.style.animation = `scrollHorizontal ${ANIMATION_DURATION}s linear infinite`;
+                    track.style.animationDelay = `${delay}s`;
+                    track.style.animationPlayState = 'running';
                     isDragging = false;
-                }
+                    directionLocked = null;
+                }, 350);
             }
 
-            // Eventos Touch: passive: true garantiza que el scroll nativo de la pantalla nunca se bloquee
+            // Eventos Touch: passive: true garantiza fluidez total en el scroll vertical del sitio
             container.addEventListener('touchstart', (e) => {
                 if (e.touches.length === 1) {
                     handleStart(e.touches[0].clientX, e.touches[0].clientY);
