@@ -1544,15 +1544,136 @@
             });
         }
 
-        // ======================== TESTIMONIALS INFINITE SCROLL ========================
+        // ======================== TESTIMONIALS INFINITE SCROLL & TOUCH/DRAG INTERACTIVITY ========================
         function initInfiniteTestimonials() {
             const track = document.querySelector('.testimonials-infinite-track');
-            if (!track) return;
+            const container = document.querySelector('.testimonials-infinite-container');
+            if (!track || !container) return;
+
             // Duplicamos las tarjetas para mantener el scroll vertical infinito fluido de CSS
             const allCards = Array.from(track.children);
             allCards.forEach(card => {
                 const clone = card.cloneNode(true);
                 track.appendChild(clone);
+            });
+
+            // Función para leer la posición Y actual de la animación de forma precisa
+            function getCurrentY() {
+                const style = window.getComputedStyle(track);
+                const transform = style.transform || style.webkitTransform;
+                if (!transform || transform === 'none') return 0;
+                if (window.DOMMatrixReadOnly || window.DOMMatrix) {
+                    const MatrixClass = window.DOMMatrixReadOnly || window.DOMMatrix;
+                    return new MatrixClass(transform).m42;
+                }
+                const values = transform.split('(')[1].split(')')[0].split(',');
+                if (values.length === 6) return parseFloat(values[5]);
+                if (values.length === 16) return parseFloat(values[13]);
+                return 0;
+            }
+
+            let isPointerDown = false;
+            let isDragging = false;
+            let startY = 0;
+            let startYPos = 0;
+            let currentDragY = 0;
+            let autoResumeTimer = null;
+            const ANIMATION_DURATION = 50; // Duración total en segundos
+
+            function getHalfHeight() {
+                return (track.scrollHeight / 2) || 1200;
+            }
+
+            function handleStart(clientY) {
+                if (autoResumeTimer) clearTimeout(autoResumeTimer);
+                isPointerDown = true;
+                isDragging = false;
+                startY = clientY;
+                startYPos = getCurrentY();
+                currentDragY = startYPos;
+                // Pausamos inmediatamente mientras el dedo o cursor esté en contacto
+                track.style.animationPlayState = 'paused';
+            }
+
+            function handleMove(clientY) {
+                if (!isPointerDown) return;
+                const deltaY = clientY - startY;
+
+                // Umbral para detectar intención de arrastre
+                if (!isDragging && Math.abs(deltaY) > 4) {
+                    isDragging = true;
+                    // Desactivamos la animación CSS para dar control 1:1 al dedo
+                    track.style.animation = 'none';
+                }
+
+                if (isDragging) {
+                    const halfHeight = getHalfHeight();
+                    let newY = startYPos + deltaY;
+                    while (newY > 0) newY -= halfHeight;
+                    while (newY < -halfHeight) newY += halfHeight;
+                    currentDragY = newY;
+                    track.style.transform = `translate3d(0, ${newY}px, 0)`;
+                }
+            }
+
+            function handleEnd() {
+                if (!isPointerDown) return;
+                isPointerDown = false;
+
+                if (autoResumeTimer) clearTimeout(autoResumeTimer);
+
+                // Esperamos 400ms después de soltar el dedo para reanudar el scroll automático suavemente
+                autoResumeTimer = setTimeout(() => {
+                    const halfHeight = getHalfHeight();
+                    let finalY = isDragging ? currentDragY : getCurrentY();
+
+                    while (finalY > 0) finalY -= halfHeight;
+                    while (finalY < -halfHeight) finalY += halfHeight;
+
+                    const fraction = Math.abs(finalY) / halfHeight;
+                    const delay = -(fraction * ANIMATION_DURATION);
+
+                    // Reanudamos la animación CSS desde el punto exacto donde se soltó el dedo
+                    track.style.animation = `scrollVertical ${ANIMATION_DURATION}s linear infinite`;
+                    track.style.animationDelay = `${delay}s`;
+                    track.style.animationPlayState = 'running';
+                    isDragging = false;
+                }, 400);
+            }
+
+            // Eventos Touch para móviles y tablets
+            container.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    handleStart(e.touches[0].clientY);
+                }
+            }, { passive: true });
+
+            container.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) {
+                    handleMove(e.touches[0].clientY);
+                }
+            }, { passive: true });
+
+            container.addEventListener('touchend', handleEnd, { passive: true });
+            container.addEventListener('touchcancel', handleEnd, { passive: true });
+
+            // Eventos Mouse para arrastrar en escritorio
+            container.addEventListener('mousedown', (e) => {
+                if (e.button === 0) {
+                    handleStart(e.clientY);
+                }
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isPointerDown) {
+                    handleMove(e.clientY);
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isPointerDown) {
+                    handleEnd();
+                }
             });
         }
 

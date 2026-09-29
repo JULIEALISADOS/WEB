@@ -1512,6 +1512,14 @@ header {
     /* Máscara de difuminado arriba y abajo */
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+}
+
+.testimonials-infinite-container:active {
+    cursor: grabbing;
 }
 
 .testimonials-infinite-track {
@@ -1519,10 +1527,13 @@ header {
     flex-direction: column;
     gap: 15px;
     animation: scrollVertical 50s linear infinite;
+    will-change: transform;
 }
 
-.testimonials-infinite-container:hover .testimonials-infinite-track {
-    animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+    .testimonials-infinite-container:hover .testimonials-infinite-track {
+        animation-play-state: paused;
+    }
 }
 
 @keyframes scrollVertical {
