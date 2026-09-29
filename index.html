@@ -1544,134 +1544,149 @@
             });
         }
 
-        // ======================== TESTIMONIALS INFINITE SCROLL & TOUCH/DRAG INTERACTIVITY ========================
+        // ======================== TESTIMONIALS INFINITE HORIZONTAL REEL & TOUCH INTERACTIVITY ========================
         function initInfiniteTestimonials() {
             const track = document.querySelector('.testimonials-infinite-track');
             const container = document.querySelector('.testimonials-infinite-container');
             if (!track || !container) return;
 
-            // Duplicamos las tarjetas para mantener el scroll vertical infinito fluido de CSS
+            // Duplicamos las tarjetas para mantener el scroll horizontal infinito
             const allCards = Array.from(track.children);
             allCards.forEach(card => {
                 const clone = card.cloneNode(true);
                 track.appendChild(clone);
             });
 
-            // Función para leer la posición Y actual de la animación de forma precisa
-            function getCurrentY() {
+            // Función para leer la posición X actual de la animación sin saltos
+            function getCurrentX() {
                 const style = window.getComputedStyle(track);
                 const transform = style.transform || style.webkitTransform;
                 if (!transform || transform === 'none') return 0;
                 if (window.DOMMatrixReadOnly || window.DOMMatrix) {
                     const MatrixClass = window.DOMMatrixReadOnly || window.DOMMatrix;
-                    return new MatrixClass(transform).m42;
+                    return new MatrixClass(transform).m41; // m41 = translateX en 2D/3D
                 }
                 const values = transform.split('(')[1].split(')')[0].split(',');
-                if (values.length === 6) return parseFloat(values[5]);
-                if (values.length === 16) return parseFloat(values[13]);
+                if (values.length === 6) return parseFloat(values[4]);
+                if (values.length === 16) return parseFloat(values[12]);
                 return 0;
             }
 
             let isPointerDown = false;
             let isDragging = false;
+            let directionLocked = null; // 'horizontal' | 'vertical' | null
+            let startX = 0;
             let startY = 0;
-            let startYPos = 0;
-            let currentDragY = 0;
+            let startXPos = 0;
+            let currentDragX = 0;
             let autoResumeTimer = null;
-            const ANIMATION_DURATION = 50; // Duración total en segundos
+            const ANIMATION_DURATION = 65; // 65 segundos para un deslizamiento horizontal suave
 
-            function getHalfHeight() {
-                return (track.scrollHeight / 2) || 1200;
+            function getHalfWidth() {
+                return (track.scrollWidth / 2) || 2000;
             }
 
-            function handleStart(clientY) {
+            function handleStart(clientX, clientY) {
                 if (autoResumeTimer) clearTimeout(autoResumeTimer);
                 isPointerDown = true;
                 isDragging = false;
+                directionLocked = null;
+                startX = clientX;
                 startY = clientY;
-                startYPos = getCurrentY();
-                currentDragY = startYPos;
-                // Pausamos inmediatamente mientras el dedo o cursor esté en contacto
-                track.style.animationPlayState = 'paused';
+                startXPos = getCurrentX();
+                currentDragX = startXPos;
             }
 
-            function handleMove(clientY) {
+            function handleMove(clientX, clientY) {
                 if (!isPointerDown) return;
+                const deltaX = clientX - startX;
                 const deltaY = clientY - startY;
 
-                // Umbral para detectar intención de arrastre
-                if (!isDragging && Math.abs(deltaY) > 4) {
-                    isDragging = true;
-                    // Desactivamos la animación CSS para dar control 1:1 al dedo
-                    track.style.animation = 'none';
+                // Discriminador de dirección: si el usuario mueve el dedo verticalmente,
+                // liberamos el carrusel de inmediato para que la pantalla del celular se mueva libremente.
+                if (!directionLocked) {
+                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 6) {
+                        directionLocked = 'vertical';
+                        isPointerDown = false; // Cede el control total al scroll vertical de la página
+                        return;
+                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 6) {
+                        directionLocked = 'horizontal';
+                        isDragging = true;
+                        track.style.animation = 'none'; // Control manual horizontal 1:1
+                    }
                 }
 
-                if (isDragging) {
-                    const halfHeight = getHalfHeight();
-                    let newY = startYPos + deltaY;
-                    while (newY > 0) newY -= halfHeight;
-                    while (newY < -halfHeight) newY += halfHeight;
-                    currentDragY = newY;
-                    track.style.transform = `translate3d(0, ${newY}px, 0)`;
+                if (directionLocked === 'horizontal' && isDragging) {
+                    const halfWidth = getHalfWidth();
+                    let newX = startXPos + deltaX;
+                    while (newX > 0) newX -= halfWidth;
+                    while (newX < -halfWidth) newX += halfWidth;
+                    currentDragX = newX;
+                    track.style.transform = `translate3d(${newX}px, 0, 0)`;
                 }
             }
 
             function handleEnd() {
-                if (!isPointerDown) return;
+                if (!isPointerDown && !isDragging) return;
                 isPointerDown = false;
 
                 if (autoResumeTimer) clearTimeout(autoResumeTimer);
 
-                // Esperamos 400ms después de soltar el dedo para reanudar el scroll automático suavemente
-                autoResumeTimer = setTimeout(() => {
-                    const halfHeight = getHalfHeight();
-                    let finalY = isDragging ? currentDragY : getCurrentY();
+                if (directionLocked === 'horizontal') {
+                    // Si el usuario deslizó las opiniones, esperamos 400ms y reanudamos el movimiento continuo
+                    autoResumeTimer = setTimeout(() => {
+                        const halfWidth = getHalfWidth();
+                        let finalX = isDragging ? currentDragX : getCurrentX();
 
-                    while (finalY > 0) finalY -= halfHeight;
-                    while (finalY < -halfHeight) finalY += halfHeight;
+                        while (finalX > 0) finalX -= halfWidth;
+                        while (finalX < -halfWidth) finalX += halfWidth;
 
-                    const fraction = Math.abs(finalY) / halfHeight;
-                    const delay = -(fraction * ANIMATION_DURATION);
+                        const fraction = Math.abs(finalX) / halfWidth;
+                        const delay = -(fraction * ANIMATION_DURATION);
 
-                    // Reanudamos la animación CSS desde el punto exacto donde se soltó el dedo
-                    track.style.animation = `scrollVertical ${ANIMATION_DURATION}s linear infinite`;
-                    track.style.animationDelay = `${delay}s`;
-                    track.style.animationPlayState = 'running';
+                        track.style.animation = `scrollHorizontal ${ANIMATION_DURATION}s linear infinite`;
+                        track.style.animationDelay = `${delay}s`;
+                        track.style.animationPlayState = 'running';
+                        isDragging = false;
+                        directionLocked = null;
+                    }, 400);
+                } else {
+                    directionLocked = null;
                     isDragging = false;
-                }, 400);
+                }
             }
 
-            // Eventos Touch para móviles y tablets
+            // Eventos Touch: passive: true garantiza que el scroll nativo de la pantalla nunca se bloquee
             container.addEventListener('touchstart', (e) => {
                 if (e.touches.length === 1) {
-                    handleStart(e.touches[0].clientY);
+                    handleStart(e.touches[0].clientX, e.touches[0].clientY);
                 }
             }, { passive: true });
 
             container.addEventListener('touchmove', (e) => {
                 if (e.touches.length === 1) {
-                    handleMove(e.touches[0].clientY);
+                    handleMove(e.touches[0].clientX, e.touches[0].clientY);
                 }
             }, { passive: true });
 
             container.addEventListener('touchend', handleEnd, { passive: true });
             container.addEventListener('touchcancel', handleEnd, { passive: true });
 
-            // Eventos Mouse para arrastrar en escritorio
+            // Eventos Mouse para arrastrar horizontalmente en PC
             container.addEventListener('mousedown', (e) => {
                 if (e.button === 0) {
-                    handleStart(e.clientY);
+                    handleStart(e.clientX, e.clientY);
                 }
             });
 
             window.addEventListener('mousemove', (e) => {
                 if (isPointerDown) {
-                    handleMove(e.clientY);
+                    handleMove(e.clientX, e.clientY);
                 }
             });
 
             window.addEventListener('mouseup', () => {
-                if (isPointerDown) {
+                if (isPointerDown || isDragging) {
                     handleEnd();
                 }
             });
