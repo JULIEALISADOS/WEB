@@ -1500,20 +1500,38 @@ header {
 }
 
 
-/* Testimonials Infinite Horizontal Reel */
+/* Testimonials Modern Responsive Scroll-Snap Carousel - Julie Alisados */
 .testimonials-infinite-container {
     width: 100%;
     max-width: 100%;
-    margin: 25px auto 0;
-    overflow: hidden;
+    margin: 20px auto 0;
+    overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
-    padding: 15px 0 25px;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    padding: 20px 20px 30px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y; /* Permite scroll vertical fluido de la pagina y desplazamiento horizontal suave */
+    scroll-behavior: smooth;
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: pan-y;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 175, 55, 0.4) transparent;
+}
+
+.testimonials-infinite-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.testimonials-infinite-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+}
+
+.testimonials-infinite-container::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.45);
+    border-radius: 10px;
 }
 
 .testimonials-infinite-container:active {
@@ -1526,23 +1544,262 @@ header {
     align-items: stretch;
     gap: 20px;
     width: max-content;
-    animation: scrollHorizontal 65s linear infinite;
-    will-change: transform;
+    will-change: scroll-position;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .testimonials-infinite-container:hover .testimonials-infinite-track {
-        animation-play-state: paused;
-    }
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 26px 22px;
+    border-radius: 20px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    width: 340px;
+    min-width: 320px;
+    max-width: 85vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    position: relative;
+    backdrop-filter: blur(8px);
+    box-sizing: border-box;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-@keyframes scrollHorizontal {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-50%, 0, 0);
-    }
+.testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+}
+
+/* Controles de Navegacion Testimonios (Flechas y Dots) */
+.testimonials-controls-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 15px;
+    padding: 0 20px;
+}
+
+.testimonials-nav-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid var(--gold);
+    color: var(--black, #111);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+}
+
+.testimonials-nav-btn:hover {
+    background: var(--gold-gradient, linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%));
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+.testimonials-nav-btn:active {
+    transform: scale(0.95);
+}
+
+.testimonials-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.testimonials-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.testimonials-dot.active {
+    width: 22px;
+    border-radius: 10px;
+    background: var(--gold, #D4AF37);
+}
+
+/* Modal Selector de Sede WhatsApp */
+.sede-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.sede-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sede-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 12, 12, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.sede-modal-card {
+    position: relative;
+    background: rgba(18, 16, 16, 0.98);
+    border: 1.5px solid rgba(212, 175, 55, 0.55);
+    border-radius: 24px;
+    max-width: 440px;
+    width: 100%;
+    padding: 28px 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.15);
+    transform: translateY(20px) scale(0.96);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+    text-align: center;
+}
+
+.sede-modal.active .sede-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.sede-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #F2D06B;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.sede-modal-close:hover {
+    background: rgba(212, 175, 55, 0.25);
+}
+
+.sede-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.15);
+    color: #F2D06B;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.sede-modal-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #FFFFFF;
+    font-size: 1.35rem;
+    margin: 0 0 8px;
+}
+
+.sede-modal-card p {
+    color: #D6CFC9;
+    font-size: 0.88rem;
+    margin: 0 0 22px;
+    line-height: 1.4;
+}
+
+.sede-options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sede-option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    padding: 14px 18px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    text-align: left;
+}
+
+.sede-option-btn:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.08) 100%);
+    border-color: #D4AF37;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sede-option-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.sede-option-text {
+    flex: 1;
+}
+
+.sede-option-text strong {
+    display: block;
+    color: #FFFFFF;
+    font-size: 1.02rem;
+    margin-bottom: 2px;
+}
+
+.sede-option-text span {
+    display: block;
+    color: #b5ada8;
+    font-size: 0.78rem;
+}
+
+.sede-option-arrow {
+    color: #D4AF37;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.sede-option-btn:hover .sede-option-arrow {
+    transform: translateX(4px);
 }
 
 .testimonial-card {
