@@ -180,6 +180,49 @@
         }, 400);
     }
 
+    
+    const SUPABASE_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
+
+    function logConsentToCloud(decision) {
+        const proofId = 'proof_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
+        try {
+            localStorage.setItem('julie_consent_proof_id', proofId);
+        } catch (e) {}
+
+        const payload = {
+            pc_origen: 'WEB_CLIENT',
+            categoria: 'TECH',
+            accion: decision === 'granted' ? 'CONSENTIMIENTO_COOKIES_ACEPTAR_TODAS' : 'CONSENTIMIENTO_COOKIES_SOLO_NECESARIAS',
+            resultado: 'EXITO',
+            detalles: {
+                proof_id: proofId,
+                decision: decision,
+                tipo_consentimiento: decision === 'granted' ? 'ACEPTAR_TODAS' : 'SOLO_NECESARIAS',
+                politica_version: 'Politica_Privacidad_v2_2026_SIC_HabeasData',
+                timestamp_colombia: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
+                timestamp_iso: new Date().toISOString(),
+                user_agent: (navigator && navigator.userAgent) ? navigator.userAgent : 'Desconocido',
+                idioma: (navigator && navigator.language) ? navigator.language : 'es-CO',
+                pantalla: (window.screen ? window.screen.width + 'x' + window.screen.height : 'N/A'),
+                origen: window.location.href || 'https://juliealisados.com/'
+            }
+        };
+
+        try {
+            fetch(SUPABASE_URL + '/rest/v1/cerebro_bitacora', {
+                method: 'POST',
+                headers: {
+                    'apikey': ANON_KEY,
+                    'Authorization': 'Bearer ' + ANON_KEY,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload),
+                keepalive: true
+            }).catch(function () {});
+        } catch (err) {}
+    }
+
     function showConsentBanner() {
         const existing = document.getElementById('julie-consent-banner');
         if (existing) return;
@@ -230,6 +273,7 @@
                     localStorage.setItem(CONSENT_KEY, 'granted');
                     localStorage.setItem(PRIVACY_ACCEPTED_KEY, 'true');
                     localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
+                    logConsentToCloud('granted');
                 } catch (e) {
                     console.warn('Error al almacenar consentimiento:', e);
                 }
@@ -244,6 +288,7 @@
                     localStorage.setItem(CONSENT_KEY, 'denied');
                     localStorage.setItem(PRIVACY_ACCEPTED_KEY, 'false');
                     localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
+                    logConsentToCloud('denied');
                 } catch (e) {
                     console.warn('Error al almacenar consentimiento:', e);
                 }
