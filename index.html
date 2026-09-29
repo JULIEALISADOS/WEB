@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260928_horizontal_reel_v1">
+    <link rel="stylesheet" href="style.css?v=20260928_horizontal_reel_v2">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -367,14 +367,25 @@
             cursor: grabbing !important;
         }
 
+        .testimonials-infinite-container,
+        .testimonials-infinite-container * {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -webkit-user-drag: none !important;
+        }
+
         .testimonials-infinite-track {
             display: flex !important;
             flex-direction: row !important;
             align-items: stretch !important;
             gap: 20px !important;
             width: max-content !important;
-            animation: scrollHorizontal 65s linear infinite !important;
-            will-change: transform !important;
+            animation: scrollHorizontal 65s linear infinite;
+            will-change: transform;
+        }
+
+        .testimonials-infinite-track.is-dragging {
+            animation: none !important;
         }
 
         .testimonials-infinite-track .testimonial-card {
@@ -408,8 +419,8 @@
         }
 
         @media (hover: hover) and (pointer: fine) {
-            .testimonials-infinite-container:hover .testimonials-infinite-track {
-                animation-play-state: paused !important;
+            .testimonials-infinite-container:hover .testimonials-infinite-track:not(.is-dragging) {
+                animation-play-state: paused;
             }
         }
 
@@ -1628,7 +1639,6 @@
             const container = document.querySelector('.testimonials-infinite-container');
             if (!track || !container) return;
 
-            // Asegurar presentación horizontal directa por JS
             track.style.display = 'flex';
             track.style.flexDirection = 'row';
             track.style.width = 'max-content';
@@ -1640,18 +1650,18 @@
                 track.appendChild(clone);
             });
 
-            // Función para leer la posición X actual de la animación sin saltos
+            // Función ultra-robusta para leer la posición X actual (2D y 3D)
             function getCurrentX() {
                 const style = window.getComputedStyle(track);
                 const transform = style.transform || style.webkitTransform;
                 if (!transform || transform === 'none') return 0;
-                if (window.DOMMatrixReadOnly || window.DOMMatrix) {
-                    const MatrixClass = window.DOMMatrixReadOnly || window.DOMMatrix;
-                    return new MatrixClass(transform).m41;
-                }
-                const values = transform.split('(')[1].split(')')[0].split(',');
-                if (values.length === 6) return parseFloat(values[4]);
-                if (values.length === 16) return parseFloat(values[12]);
+                
+                const match = transform.match(/^matrix(?:3d)?\((.+)\)$/);
+                if (!match) return 0;
+                
+                const parts = match[1].split(',').map(s => parseFloat(s.trim()));
+                if (parts.length === 6) return parts[4] || 0; // 2D matrix
+                if (parts.length === 16) return parts[12] || 0; // 3D matrix
                 return 0;
             }
 
@@ -1678,32 +1688,34 @@
                 startY = clientY;
                 startXPos = getCurrentX();
                 currentDragX = startXPos;
-                // Pausamos suavemente
                 track.style.animationPlayState = 'paused';
             }
 
-            function handleMove(clientX, clientY) {
+            function handleMove(clientX, clientY, e) {
                 if (!isPointerDown) return;
                 const deltaX = clientX - startX;
                 const deltaY = clientY - startY;
 
-                // Discriminador de gestos:
-                // Si el movimiento es predominantemente vertical, liberamos de inmediato
-                // el carrusel para que la pantalla del celular suba o baje sin resistencia.
+                // Discriminador de dirección:
                 if (!directionLocked) {
-                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 7) {
+                    // Si el movimiento es vertical (scroll de la página), liberamos de inmediato
+                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 6) {
                         directionLocked = 'vertical';
                         isPointerDown = false;
-                        track.style.animationPlayState = 'running'; // Reanudamos para no dejarlo trabado
+                        track.style.animationPlayState = 'running';
                         return;
-                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 7) {
+                    } else if (Math.abs(deltaX) >= Math.abs(deltaY) && Math.abs(deltaX) > 6) {
                         directionLocked = 'horizontal';
                         isDragging = true;
-                        track.style.animation = 'none'; // Control manual 1:1 con el dedo
+                        // Desactivamos la animación CSS con clase de alta especificidad
+                        track.classList.add('is-dragging');
                     }
                 }
 
                 if (directionLocked === 'horizontal' && isDragging) {
+                    if (e && e.cancelable) {
+                        e.preventDefault(); // Prioridad total al arrastre horizontal sobre gestos del navegador
+                    }
                     const halfWidth = getHalfWidth();
                     let newX = startXPos + deltaX;
                     while (newX > 0) newX -= halfWidth;
@@ -1719,7 +1731,6 @@
 
                 if (autoResumeTimer) clearTimeout(autoResumeTimer);
 
-                // Reanudación garantizada en cualquier caso (arrastre o simple toque)
                 autoResumeTimer = setTimeout(() => {
                     const halfWidth = getHalfWidth();
                     let finalX = isDragging ? currentDragX : getCurrentX();
@@ -1730,15 +1741,19 @@
                     const fraction = Math.abs(finalX) / halfWidth;
                     const delay = -(fraction * ANIMATION_DURATION);
 
+                    track.classList.remove('is-dragging');
                     track.style.animation = `scrollHorizontal ${ANIMATION_DURATION}s linear infinite`;
                     track.style.animationDelay = `${delay}s`;
                     track.style.animationPlayState = 'running';
                     isDragging = false;
                     directionLocked = null;
-                }, 350);
+                }, 300);
             }
 
-            // Eventos Touch: passive: true garantiza fluidez total en el scroll vertical del sitio
+            // Prevenir drag & drop nativo de imágenes o enlaces en el contenedor
+            container.addEventListener('dragstart', (e) => e.preventDefault());
+
+            // Eventos Touch (móviles): passive: false permite preventDefault() en arrastre horizontal
             container.addEventListener('touchstart', (e) => {
                 if (e.touches.length === 1) {
                     handleStart(e.touches[0].clientX, e.touches[0].clientY);
@@ -1747,23 +1762,24 @@
 
             container.addEventListener('touchmove', (e) => {
                 if (e.touches.length === 1) {
-                    handleMove(e.touches[0].clientX, e.touches[0].clientY);
+                    handleMove(e.touches[0].clientX, e.touches[0].clientY, e);
                 }
-            }, { passive: true });
+            }, { passive: false });
 
             container.addEventListener('touchend', handleEnd, { passive: true });
             container.addEventListener('touchcancel', handleEnd, { passive: true });
 
-            // Eventos Mouse para arrastrar horizontalmente en PC
+            // Eventos Mouse para arrastrar fluidamente en PC
             container.addEventListener('mousedown', (e) => {
                 if (e.button === 0) {
+                    e.preventDefault(); // Previene selección de texto
                     handleStart(e.clientX, e.clientY);
                 }
             });
 
             window.addEventListener('mousemove', (e) => {
                 if (isPointerDown) {
-                    handleMove(e.clientX, e.clientY);
+                    handleMove(e.clientX, e.clientY, e);
                 }
             });
 
