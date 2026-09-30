@@ -4280,7 +4280,7 @@ footer .section-title::after {
    Paleta: Rosado casi blanco translúcido con dorado elegante y brillos luxury
    ========================================================================== */
 .top-announcement-bar {
-    background: linear-gradient(90deg, rgba(255, 250, 252, 0.82) 0%, rgba(255, 240, 246, 0.86) 50%, rgba(255, 250, 252, 0.82) 100%);
+    background: linear-gradient(90deg, rgba(255, 250, 252, 0.76) 0%, rgba(255, 240, 246, 0.80) 50%, rgba(255, 250, 252, 0.76) 100%);
     color: #2D2024;
     font-size: 0.82rem;
     font-weight: 600;
@@ -4291,10 +4291,10 @@ footer .section-title::after {
     left: 0;
     width: 100%;
     z-index: 10002;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 2px 14px rgba(212, 175, 55, 0.22), 0 1px 4px rgba(0, 0, 0, 0.04);
-    border-bottom: 1.5px solid rgba(212, 175, 55, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 16px rgba(212, 175, 55, 0.25), 0 0 14px rgba(255, 255, 255, 0.4);
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.65);
     height: 36px;
     display: flex;
     align-items: center;
@@ -4302,7 +4302,7 @@ footer .section-title::after {
     overflow: hidden;
 }
 
-/* Efecto de Brillos / Destello de Luz Dorada (Luxury Shimmer) */
+/* Efecto de Brillos Diamante / Destello de Luz Dorada (Luxury Shimmer) */
 .top-announcement-bar::after {
     content: '';
     position: absolute;
@@ -4310,9 +4310,9 @@ footer .section-title::after {
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 40%, rgba(212, 175, 55, 0.45) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.85) 40%, rgba(212, 175, 55, 0.55) 55%, transparent 100%);
     transform: skewX(-25deg);
-    animation: topBarShimmer 5s infinite ease-in-out;
+    animation: topBarShimmer 4.8s infinite ease-in-out;
     pointer-events: none;
 }
 
@@ -4363,7 +4363,7 @@ footer .section-title::after {
 
 /* ==========================================================================
    Barra Inferior Flotante de Lujo (Booking Bottom Bar) - Identidad Julie Alisados
-   Paleta: Rosado casi blanco perlado, translúcido con dorado de alta gama
+   Paleta: Rosado casi blanco translúcido con brillos diamante y dorado de alta gama
    ========================================================================== */
 .booking-bottom-bar {
     position: fixed;
@@ -4372,14 +4372,35 @@ footer .section-title::after {
     right: 0;
     width: 100%;
     z-index: 99990;
-    background: linear-gradient(180deg, rgba(255, 250, 252, 0.96) 0%, rgba(255, 240, 245, 0.94) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1.5px solid rgba(212, 175, 55, 0.6);
-    box-shadow: 0 -8px 30px rgba(184, 134, 11, 0.12), 0 -2px 10px rgba(0, 0, 0, 0.04);
+    background: linear-gradient(180deg, rgba(255, 250, 252, 0.82) 0%, rgba(255, 240, 246, 0.78) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1.5px solid rgba(212, 175, 55, 0.65);
+    box-shadow: 0 -8px 32px rgba(184, 134, 11, 0.16), 0 -2px 10px rgba(0, 0, 0, 0.05), 0 0 20px rgba(255, 255, 255, 0.35);
     transform: translateY(100%);
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     padding-bottom: max(0px, env(safe-area-inset-bottom));
+    overflow: hidden;
+}
+
+/* Efecto de Brillos Diamante / Destello de Luz Flotante en Barra de Agendamiento */
+.booking-bottom-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.85) 40%, rgba(212, 175, 55, 0.55) 55%, transparent 100%);
+    transform: skewX(-25deg);
+    animation: diamondShimmer 5.2s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes diamondShimmer {
+    0% { left: -100%; }
+    30% { left: 160%; }
+    100% { left: 160%; }
 }
 
 .booking-bottom-bar-inner {
@@ -4391,6 +4412,8 @@ footer .section-title::after {
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .booking-bottom-bar-brand {
@@ -4402,17 +4425,23 @@ footer .section-title::after {
 }
 
 .booking-bottom-bar-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(255, 240, 245, 0.85));
-    border: 1.5px solid rgba(212, 175, 55, 0.55);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 235, 240, 0.85) 50%, rgba(212, 175, 55, 0.35) 100%);
+    border: 1.5px solid rgba(212, 175, 55, 0.65);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
+    font-size: 21px;
     flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 16px rgba(212, 175, 55, 0.4), 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: diamondPulse 3s infinite ease-in-out;
+}
+
+@keyframes diamondPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 14px rgba(212, 175, 55, 0.35); }
+    50% { transform: scale(1.08); box-shadow: 0 0 22px rgba(212, 175, 55, 0.65), 0 0 12px rgba(255, 255, 255, 0.9); }
 }
 
 .booking-bottom-bar-title {
@@ -4426,6 +4455,7 @@ footer .section-title::after {
 .booking-bottom-bar-title .gold-accent {
     color: #9E7412;
     font-style: italic;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
 }
 
 .booking-bottom-bar-desc {
@@ -4460,8 +4490,10 @@ footer .section-title::after {
 }
 
 .booking-bottom-bar-cta {
-    background: linear-gradient(135deg, #E5C365 0%, #D4AF37 50%, #A68612 100%);
-    color: #121010 !important;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #FDF4D4 0%, #D4AF37 45%, #AA820A 100%);
+    color: #1a1202 !important;
     font-family: 'Lato', sans-serif;
     font-weight: 800;
     font-size: 0.88rem;
@@ -4471,17 +4503,38 @@ footer .section-title::after {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45), 0 0 12px rgba(255, 255, 255, 0.5);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     white-space: nowrap;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
 
+/* Brillo diamante continuo en el botón CTA */
+.booking-bottom-bar-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -70%;
+    width: 45%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.85) 50%, transparent 100%);
+    transform: rotate(25deg);
+    animation: ctaDiamondGlow 3.5s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes ctaDiamondGlow {
+    0% { left: -70%; }
+    30% { left: 170%; }
+    100% { left: 170%; }
+}
+
 .booking-bottom-bar-cta:hover,
 .booking-bottom-bar-cta:active {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.6), 0 0 18px rgba(255, 255, 255, 0.8);
 }
 
 .booking-bottom-bar-close {
