@@ -1,4 +1,4 @@
-﻿/* Julie Alisados - Estilos Premium v1.1 */
+/* Julie Alisados - Estilos Premium v1.1 */
 :root {
     --pearl-white: #FFFFFF;
     --soft-cream: #FFF0F5;
@@ -807,9 +807,76 @@ header {
     }
 }
 
-/* Estilos para placeholders de video */
+/* Estilos para tarjetas de video promocionales */
 .video-card-container {
     position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.video-card-container video.lazy-img-clickable {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.video-card-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(14, 12, 12, 0.88);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: var(--gold-light, #F5D77F);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 16px;
+    letter-spacing: 0.5px;
+    z-index: 4;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.video-play-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(166, 134, 18, 0.95));
+    color: #121010;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 20px;
+    z-index: 4;
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.3px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-play-badge .badge-icon {
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+.video-card-container:hover .video-play-badge {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 .play-overlay {
@@ -912,75 +979,244 @@ header {
     opacity: 1;
 }
 
-/* Modal de Video y Promociones (Lightbox HD) */
+/* Modal de Video y Promociones (Lightbox HD & Story Mode Fullscreen) */
 .video-modal {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(10, 8, 8, 0.95);
     display: none;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     z-index: 200000;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 15px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: max(10px, env(safe-area-inset-top)) 16px max(14px, env(safe-area-inset-bottom)) 16px;
     box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
 .video-modal.active {
     display: flex;
+    opacity: 1;
 }
 
-.modal-content {
-    width: auto;
-    max-width: 95vw;
-    height: auto;
-    max-height: 88vh;
-    max-height: 88dvh;
-    border: 2px solid var(--gold);
-    border-radius: 16px;
+/* Barra superior del Modal */
+.modal-top-bar {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 2px 8px 2px;
+    flex-shrink: 0;
+    z-index: 200005;
+}
+
+.modal-promo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold-light, #F5D77F);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    max-width: 68%;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-promo-badge .sparkle {
+    font-size: 0.9rem;
+}
+
+.modal-close-btn {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    -webkit-tap-highlight-color: transparent;
+    min-height: 40px;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:active {
+    background: rgba(212, 175, 55, 0.35);
+    border-color: var(--gold);
+    color: var(--gold-light, #F5D77F);
+    transform: scale(1.04);
+}
+
+.modal-close-btn .close-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* Contenido Central: Video e Imagen */
+.modal-content {
     position: relative;
-    background: #000;
+    width: 100%;
+    max-width: 440px;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(212, 175, 55, 0.65);
+    border-radius: 18px;
+    background: #000000;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.25);
+    max-height: calc(85dvh - 120px);
+    margin: auto 0;
 }
 
-#modal-video,
-#modal-image {
-    max-width: 92vw;
-    max-height: 82vh;
-    max-height: 82dvh;
-    width: auto;
-    height: auto;
-    object-fit: contain; /* CERO RECORTES en el modal */
+#modal-video {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
     display: block;
-    margin: 0 auto;
+    background: #000;
+    border-radius: 16px;
 }
 
-.modal-close {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    color: #fff;
-    font-size: 44px;
-    font-weight: bold;
-    cursor: pointer;
+#modal-image {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: 16px;
+}
+
+/* Barra Inferior del Modal: Botón "Yo lo quiero" */
+.modal-bottom-bar {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 4px 4px 4px;
+    flex-shrink: 0;
     z-index: 200005;
-    transition: color 0.3s, transform 0.2s;
-    line-height: 1;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
-.modal-close:hover {
-    color: var(--gold);
-    transform: scale(1.1);
+.modal-cta-button {
+    width: 100%;
+    background: linear-gradient(135deg, #F3D27E 0%, #D4AF37 50%, #9B7811 100%);
+    color: #120F0C !important;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-decoration: none !important;
+    padding: 14px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    box-sizing: border-box;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.modal-cta-button:hover,
+.modal-cta-button:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.65);
+    background: linear-gradient(135deg, #FFF0B8 0%, #E5BE4A 50%, #AA8518 100%);
+}
+
+.modal-cta-button .cta-emoji-left,
+.modal-cta-button .cta-emoji-right {
+    font-size: 1.15rem;
+}
+
+.modal-cta-button .cta-arrow {
+    font-size: 1.15rem;
+    font-weight: 900;
+    transition: transform 0.2s ease;
+}
+
+.modal-cta-button:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+.modal-cta-caption {
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    letter-spacing: 0.3px;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Soporte para pantallas móviles pequeñas (<= 480px) */
+@media (max-width: 480px) {
+    .video-modal {
+        padding: max(8px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom)) 10px;
+    }
+    .modal-top-bar {
+        max-width: 100%;
+        padding-bottom: 6px;
+    }
+    .modal-promo-badge {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+        max-width: 62%;
+    }
+    .modal-close-btn {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+        min-height: 36px;
+    }
+    .modal-content {
+        max-width: 100%;
+        max-height: calc(82dvh - 105px);
+        border-radius: 14px;
+    }
+    .modal-bottom-bar {
+        max-width: 100%;
+        padding-top: 8px;
+    }
+    .modal-cta-button {
+        font-size: 0.96rem;
+        padding: 12px 16px;
+        border-radius: 25px;
+    }
+    .modal-cta-caption {
+        font-size: 0.7rem;
+    }
 }
 
 /* Ajuste específico para la Línea de Productos - OPTIMIZADO PREMIUM */
