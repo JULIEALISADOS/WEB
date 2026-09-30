@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261001_translucent_glance_v6">
+    <link rel="stylesheet" href="style.css?v=20261001_perf_optimized_v7">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -528,7 +528,7 @@
                              data-title="Alisado Saludable + Crioterapia + Kit Dúo Gratis"
                              data-price="250000"
                              data-msg="Hola Julie Alisados! ✨ Vi la promo de Alisado Saludable con Crioterapia y Kit Dúo Gratis de Octubre ($250.000) y 💖 ¡Lo quiero! ¿Qué fechas tienen disponibles en sede Tunja o Moniquirá?">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-alisado-saludable-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-saludable-octubre.mp4"></video>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-saludable-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-saludable-octubre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -536,7 +536,7 @@
                              data-title="Emulsión Zero + Termoprotector Gratis"
                              data-price="170000"
                              data-msg="Hola Julie Alisados! ✨ Vi la promo de Emulsión Zero ($170.000) con Termoprotector Gratis de Octubre y 💖 ¡Lo quiero! Me gustaría agendar mi cita en salón.">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-emulsion-zero-octubre.mp4" class="lazy-img-clickable" src="promo-emulsion-zero-octubre.mp4"></video>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-emulsion-zero-octubre.mp4" class="lazy-img-clickable" src="promo-emulsion-zero-octubre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -544,7 +544,7 @@
                              data-title="Reposición de Aminoácidos ($150.000)"
                              data-price="150000"
                              data-msg="Hola Julie Alisados! ✨ Vi la promo de Reposición de Aminoácidos ($150.000) de Octubre y 💖 ¡Lo quiero! ¿Cómo puedo agendar mi cita?">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-reposicion-aminoacidos-octubre.mp4" class="lazy-img-clickable" src="promo-reposicion-aminoacidos-octubre.mp4"></video>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-reposicion-aminoacidos-octubre.mp4" class="lazy-img-clickable" src="promo-reposicion-aminoacidos-octubre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -552,7 +552,7 @@
                              data-title="Hidra Complex - Plan Amigas (2 x $110.000)"
                              data-price="110000"
                              data-msg="Hola Julie Alisados! ✨ Vi el Plan Amigas de Hidra Complex (2 personas por $110.000) de Octubre y 💖 ¡Lo quiero! Queremos agendar nuestra cita en salón.">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-hidracomplex-octubre.mp4" class="lazy-img-clickable" src="promo-hidracomplex-octubre.mp4"></video>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-hidracomplex-octubre.mp4" class="lazy-img-clickable" src="promo-hidracomplex-octubre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -560,7 +560,7 @@
                              data-title="Alisado Classic ($160.000)"
                              data-price="160000"
                              data-msg="Hola Julie Alisados! ✨ Vi la promo de Alisado Classic ($160.000) de Octubre y 💖 ¡Lo quiero! ¿Qué disponibilidad de agenda tienen?">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-alisado-classic-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-classic-octubre.mp4"></video>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-classic-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-classic-octubre.mp4"></video>
                         </div>
                     </div>
                 </div></section>
@@ -1356,13 +1356,19 @@
         let cardWidth = 0;
         let blockWidth = 0;
 
-                // Clonación automática de tarjetas para carrusel infinito continuo en PC
+        // Clonación automática optimizada: Solo 1 conjunto de clones para PC sin duplicar decodificación de video
         if (track) {
             const originalCards = Array.from(track.children);
-            if (originalCards.length > 0 && originalCards.length < 12) {
-                // Clonamos las tarjetas 2 veces para asegurar cobertura total en pantallas ultra-anchas (PC)
-                originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
-                originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+            if (originalCards.length > 0 && originalCards.length <= 6) {
+                originalCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    const v = clone.querySelector('video');
+                    if (v) {
+                        v.preload = 'none';
+                        v.removeAttribute('autoplay');
+                    }
+                    track.appendChild(clone);
+                });
             }
         }
         function updateDimensions() {
@@ -1371,7 +1377,8 @@
                 const cardStyle = window.getComputedStyle(firstCard);
                 const marginRight = parseFloat(cardStyle.marginRight) || 0;
                 cardWidth = firstCard.offsetWidth + marginRight;
-                const uniqueCards = track.querySelectorAll('.image-card').length / 2;
+                const totalCards = track.querySelectorAll('.image-card').length;
+                const uniqueCards = totalCards > 6 ? 6 : totalCards;
                 blockWidth = cardWidth * uniqueCards; 
             }
         }
@@ -1385,6 +1392,22 @@
                 track.style.transform = `translateX(${currentX}px)`;
             }
             requestAnimationFrame(animate);
+        }
+
+        // Pausar reproducción de videos del carrusel cuando salgan de pantalla (Ahorro de batería y datos en móvil)
+        if ('IntersectionObserver' in window) {
+            const promoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const vids = entry.target.querySelectorAll('video');
+                    if (entry.isIntersecting) {
+                        vids.forEach(v => { if (v.paused && !isPaused) v.play().catch(() => {}); });
+                    } else {
+                        vids.forEach(v => { if (!v.paused) v.pause(); });
+                    }
+                });
+            }, { threshold: 0.1 });
+            const promoContainer = document.getElementById('promo-slider-container');
+            if (promoContainer) promoObserver.observe(promoContainer);
         }
 
         // CONTROL TÁCTIL PARA CELULARES (SWIPE / DEDO)
@@ -1963,8 +1986,7 @@
             <div class="booking-bottom-bar-actions">
                 <a href="javascript:void(0)" onclick="openSedeModal(); if(typeof gtag_report_conversion==='function'){gtag_report_conversion('#sedeModal');}" 
                    class="booking-bottom-bar-cta"
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                   aria-label="Abrir selector de sedes para agendar cita">
                     <span>🌸 Agendar Cita en Sal&oacute;n &rarr;</span>
                 </a>
                 
