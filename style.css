@@ -4351,13 +4351,14 @@ footer .section-title::after {
 
 
 /* ==========================================================================
-   Barra Superior de Anuncios Pro (Top Announcement Bar)
+   Barra Superior de Anuncios Pro (Top Announcement Bar) - Identidad de Marca
+   Paleta: Rosado casi blanco translúcido con dorado elegante y tipografía de lujo
    ========================================================================== */
 .top-announcement-bar {
-    background: linear-gradient(90deg, #141414 0%, #2a2215 50%, #141414 100%);
-    color: #f5f5f5;
+    background: linear-gradient(90deg, rgba(255, 248, 250, 0.95) 0%, rgba(255, 238, 243, 0.97) 50%, rgba(255, 248, 250, 0.95) 100%);
+    color: #2D2024;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     padding: 0 15px;
     position: fixed;
@@ -4365,8 +4366,10 @@ footer .section-title::after {
     left: 0;
     width: 100%;
     z-index: 10002;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 12px rgba(212, 175, 55, 0.16), 0 1px 4px rgba(0, 0, 0, 0.04);
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.45);
     height: 36px;
     display: flex;
     align-items: center;
@@ -4385,13 +4388,187 @@ footer .section-title::after {
 }
 
 .announcement-item strong {
-    color: #F2D06B;
+    color: #9E7412;
+    font-weight: 800;
+}
+
+.announcement-item u {
+    color: #8C6409;
     font-weight: 700;
+    text-underline-offset: 2px;
 }
 
 @keyframes fadeInAnnouncement {
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Barra Inferior Flotante de Lujo (Booking Bottom Bar) - Identidad Julie Alisados
+   Paleta: Rosado casi blanco perlado, translúcido con dorado de alta gama
+   ========================================================================== */
+.booking-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99990;
+    background: linear-gradient(180deg, rgba(255, 250, 252, 0.96) 0%, rgba(255, 240, 245, 0.94) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1.5px solid rgba(212, 175, 55, 0.6);
+    box-shadow: 0 -8px 30px rgba(184, 134, 11, 0.12), 0 -2px 10px rgba(0, 0, 0, 0.04);
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+.booking-bottom-bar-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.booking-bottom-bar-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.booking-bottom-bar-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(255, 240, 245, 0.85));
+    border: 1.5px solid rgba(212, 175, 55, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.booking-bottom-bar-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #1F171A;
+    font-size: clamp(0.96rem, 2vw, 1.14rem);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.booking-bottom-bar-title .gold-accent {
+    color: #9E7412;
+    font-style: italic;
+}
+
+.booking-bottom-bar-desc {
+    color: #4A3A40;
+    font-size: clamp(0.78rem, 1.5vw, 0.86rem);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.booking-bottom-bar-desc strong {
+    color: #1F171A;
+    font-weight: 700;
+}
+
+.booking-bottom-bar-legal {
+    font-size: 0.68rem;
+    color: #7A6970;
+    margin-top: 3px;
+}
+
+.booking-bottom-bar-legal a {
+    color: #9E7412;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.booking-bottom-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.booking-bottom-bar-cta {
+    background: linear-gradient(135deg, #E5C365 0%, #D4AF37 50%, #A68612 100%);
+    color: #121010 !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+    font-size: 0.88rem;
+    text-decoration: none !important;
+    padding: 10px 22px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.booking-bottom-bar-cta:hover,
+.booking-bottom-bar-cta:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
+}
+
+.booking-bottom-bar-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(45, 32, 36, 0.06);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #6E5A62;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.booking-bottom-bar-close:hover,
+.booking-bottom-bar-close:active {
+    background: rgba(212, 175, 55, 0.25);
+    color: #1F171A;
+    border-color: #D4AF37;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .booking-bottom-bar-inner {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+    .booking-bottom-bar-brand {
+        min-width: 100%;
+        gap: 10px;
+    }
+    .booking-bottom-bar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .booking-bottom-bar-cta {
+        flex: 1;
+        justify-content: center;
+        padding: 9px 16px;
+        font-size: 0.84rem;
+    }
 }
 
 header {
