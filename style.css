@@ -813,7 +813,14 @@ header {
     overflow: hidden;
     cursor: pointer;
     background: #000;
+    border-radius: 16px;
     -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card-container:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
 }
 
 .video-card-container video.lazy-img-clickable {
@@ -824,59 +831,6 @@ header {
     display: block;
     cursor: pointer;
     pointer-events: auto;
-}
-
-.video-card-tag {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(14, 12, 12, 0.88);
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    color: var(--gold-light, #F5D77F);
-    font-family: 'Lato', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 16px;
-    letter-spacing: 0.5px;
-    z-index: 4;
-    pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-
-.video-play-badge {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(166, 134, 18, 0.95));
-    color: #121010;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 6px 14px;
-    border-radius: 20px;
-    z-index: 4;
-    pointer-events: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    letter-spacing: 0.3px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.video-play-badge .badge-icon {
-    font-size: 0.7rem;
-    display: inline-block;
-}
-
-.video-card-container:hover .video-play-badge {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 .play-overlay {
@@ -979,21 +933,21 @@ header {
     opacity: 1;
 }
 
-/* Modal de Video y Promociones (Lightbox HD & Story Mode Fullscreen) */
+/* Modal de Video y Promociones (Paleta Clara: Rosado casi blanco translúcido con dorado) */
 .video-modal {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background: rgba(10, 8, 8, 0.95);
+    background: linear-gradient(135deg, rgba(255, 252, 254, 0.96) 0%, rgba(255, 240, 245, 0.94) 100%);
     display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     z-index: 200000;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: max(10px, env(safe-area-inset-top)) 16px max(14px, env(safe-area-inset-bottom)) 16px;
     box-sizing: border-box;
     overflow-y: auto;
@@ -1010,71 +964,45 @@ header {
 /* Barra superior del Modal */
 .modal-top-bar {
     width: 100%;
-    max-width: 460px;
+    max-width: 440px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 4px 2px 8px 2px;
     flex-shrink: 0;
     z-index: 200005;
 }
 
-.modal-promo-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    color: var(--gold-light, #F5D77F);
-    font-family: 'Playfair Display', serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    max-width: 68%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-.modal-promo-badge .sparkle {
-    font-size: 0.9rem;
-}
-
 .modal-close-btn {
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(212, 175, 55, 0.5);
+    color: #2D2024;
     font-family: 'Lato', sans-serif;
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     font-weight: 700;
-    padding: 6px 14px;
+    padding: 7px 18px;
     border-radius: 25px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     transition: all 0.2s ease;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.18);
     -webkit-tap-highlight-color: transparent;
     min-height: 40px;
 }
 
 .modal-close-btn:hover,
 .modal-close-btn:active {
-    background: rgba(212, 175, 55, 0.35);
+    background: #FFFFFF;
     border-color: var(--gold);
-    color: var(--gold-light, #F5D77F);
+    color: #9E7412;
     transform: scale(1.04);
+    box-shadow: 0 5px 16px rgba(212, 175, 55, 0.3);
 }
 
 .modal-close-btn .close-icon {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1;
 }
 
@@ -1087,12 +1015,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(212, 175, 55, 0.65);
+    border: 2px solid rgba(212, 175, 55, 0.7);
     border-radius: 18px;
     background: #000000;
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.25);
-    max-height: calc(85dvh - 120px);
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.22), 0 4px 18px rgba(0, 0, 0, 0.08);
+    max-height: calc(85dvh - 110px);
     margin: auto 0;
 }
 
@@ -1115,14 +1043,14 @@ header {
     border-radius: 16px;
 }
 
-/* Barra Inferior del Modal: Botón "Yo lo quiero" */
+/* Barra Inferior del Modal: Botón "¡Lo quiero!" */
 .modal-bottom-bar {
     width: 100%;
     max-width: 440px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     padding: 10px 4px 4px 4px;
     flex-shrink: 0;
     z-index: 200005;
@@ -1130,36 +1058,36 @@ header {
 
 .modal-cta-button {
     width: 100%;
-    background: linear-gradient(135deg, #F3D27E 0%, #D4AF37 50%, #9B7811 100%);
-    color: #120F0C !important;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F8 50%, #FDE4EC 100%);
+    border: 2px solid #D4AF37;
+    color: #8C6409 !important;
     font-family: 'Lato', sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     font-weight: 800;
     letter-spacing: 0.5px;
     text-decoration: none !important;
-    padding: 14px 20px;
+    padding: 13px 24px;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
     transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
     box-sizing: border-box;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
     -webkit-tap-highlight-color: transparent;
 }
 
 .modal-cta-button:hover,
 .modal-cta-button:active {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.65);
-    background: linear-gradient(135deg, #FFF0B8 0%, #E5BE4A 50%, #AA8518 100%);
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+    background: linear-gradient(135deg, #FFF0F5 0%, #FADBD8 100%);
+    border-color: #B8860B;
 }
 
-.modal-cta-button .cta-emoji-left,
-.modal-cta-button .cta-emoji-right {
+.modal-cta-button .cta-emoji-left {
     font-size: 1.15rem;
 }
 
@@ -1173,14 +1101,6 @@ header {
     transform: translateX(4px);
 }
 
-.modal-cta-caption {
-    font-size: 0.74rem;
-    color: rgba(255, 255, 255, 0.75);
-    text-align: center;
-    letter-spacing: 0.3px;
-    font-family: 'Lato', sans-serif;
-}
-
 /* Soporte para pantallas móviles pequeñas (<= 480px) */
 @media (max-width: 480px) {
     .video-modal {
@@ -1188,21 +1108,16 @@ header {
     }
     .modal-top-bar {
         max-width: 100%;
-        padding-bottom: 6px;
-    }
-    .modal-promo-badge {
-        font-size: 0.78rem;
-        padding: 5px 10px;
-        max-width: 62%;
+        padding-bottom: 4px;
     }
     .modal-close-btn {
-        padding: 5px 12px;
-        font-size: 0.8rem;
+        padding: 5px 14px;
+        font-size: 0.82rem;
         min-height: 36px;
     }
     .modal-content {
         max-width: 100%;
-        max-height: calc(82dvh - 105px);
+        max-height: calc(82dvh - 95px);
         border-radius: 14px;
     }
     .modal-bottom-bar {
@@ -1210,12 +1125,9 @@ header {
         padding-top: 8px;
     }
     .modal-cta-button {
-        font-size: 0.96rem;
-        padding: 12px 16px;
+        font-size: 1rem;
+        padding: 12px 18px;
         border-radius: 25px;
-    }
-    .modal-cta-caption {
-        font-size: 0.7rem;
     }
 }
 
