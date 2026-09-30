@@ -4277,10 +4277,10 @@ footer .section-title::after {
 
 /* ==========================================================================
    Barra Superior de Anuncios Pro (Top Announcement Bar) - Identidad de Marca
-   Paleta: Rosado casi blanco translúcido con dorado elegante y tipografía de lujo
+   Paleta: Rosado casi blanco translúcido con dorado elegante y brillos luxury
    ========================================================================== */
 .top-announcement-bar {
-    background: linear-gradient(90deg, rgba(255, 248, 250, 0.95) 0%, rgba(255, 238, 243, 0.97) 50%, rgba(255, 248, 250, 0.95) 100%);
+    background: linear-gradient(90deg, rgba(255, 250, 252, 0.82) 0%, rgba(255, 240, 246, 0.86) 50%, rgba(255, 250, 252, 0.82) 100%);
     color: #2D2024;
     font-size: 0.82rem;
     font-weight: 600;
@@ -4291,10 +4291,10 @@ footer .section-title::after {
     left: 0;
     width: 100%;
     z-index: 10002;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 2px 12px rgba(212, 175, 55, 0.16), 0 1px 4px rgba(0, 0, 0, 0.04);
-    border-bottom: 1.5px solid rgba(212, 175, 55, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 14px rgba(212, 175, 55, 0.22), 0 1px 4px rgba(0, 0, 0, 0.04);
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.6);
     height: 36px;
     display: flex;
     align-items: center;
@@ -4302,10 +4302,32 @@ footer .section-title::after {
     overflow: hidden;
 }
 
+/* Efecto de Brillos / Destello de Luz Dorada (Luxury Shimmer) */
+.top-announcement-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 40%, rgba(212, 175, 55, 0.45) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    animation: topBarShimmer 5s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes topBarShimmer {
+    0% { left: -100%; }
+    30% { left: 160%; }
+    100% { left: 160%; }
+}
+
 .announcement-item {
     display: none;
     animation: fadeInAnnouncement 0.6s ease forwards;
     letter-spacing: 0.2px;
+    position: relative;
+    z-index: 1;
 }
 
 .announcement-item.active {
@@ -4315,12 +4337,18 @@ footer .section-title::after {
 .announcement-item strong {
     color: #9E7412;
     font-weight: 800;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
 }
 
 .announcement-item u {
     color: #8C6409;
     font-weight: 700;
     text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+.announcement-item:hover u {
+    color: #B8860B;
 }
 
 @keyframes fadeInAnnouncement {
