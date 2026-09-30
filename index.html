@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261001_light_modal_clean_v3">
+    <link rel="stylesheet" href="style.css?v=20261001_story_fullscreen_v1">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -1338,32 +1338,33 @@
         </a>
     </div>
 
-    <!-- Media Modal (Reproductor Pantalla Completa & Story Mode de Promociones) -->
-    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true">
-        <!-- Barra Superior: Botón Cerrar -->
-        <div class="modal-top-bar">
-            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar video">
-                <span class="close-icon" aria-hidden="true">&times;</span>
-                <span class="close-text">Cerrar</span>
-            </button>
-        </div>
-
-        <!-- Contenedor Central del Video / Imagen -->
-        <div class="modal-content" id="modal-content">
-            <video id="modal-video" controls playsinline webkit-playsinline preload="auto">
-                <source src="" type="video/mp4">
-                Tu navegador no soporta reproducción de video.
-            </video>
+    <!-- Media Modal (Reproductor Pantalla Completa Inmersivo Estilo Story / WhatsApp) -->
+    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-label="Reproductor de video a pantalla completa">
+        <!-- Contenedor Pantalla Completa Inmersivo -->
+        <div class="modal-story-container" id="modal-content">
+            <!-- Video en pantalla completa edge-to-edge -->
+            <video id="modal-video" playsinline webkit-playsinline preload="auto" loop></video>
             <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
-        </div>
+            
+            <!-- Barra Superior Flotante: Indicador de Sonido y Botón Cerrar -->
+            <div class="modal-floating-top">
+                <button type="button" class="modal-audio-btn" id="modal-audio-btn" aria-label="Activar o desactivar sonido">
+                    <span id="audio-icon">🔊</span>
+                </button>
+                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar video">
+                    <span class="close-icon" aria-hidden="true">✕</span>
+                    <span class="close-text">Cerrar</span>
+                </button>
+            </div>
 
-        <!-- Barra Inferior de Conversión: Botón "💖 ¡Lo quiero! →" en Paleta Clara -->
-        <div class="modal-bottom-bar" id="modal-bottom-bar">
-            <a href="https://wa.me/573043588180" id="modal-cta-btn" class="modal-cta-button" target="_blank" rel="noopener noreferrer" onclick="return handlePromoCtaClick(event);">
-                <span class="cta-emoji-left">💖</span>
-                <span class="cta-main-text">¡Lo quiero!</span>
-                <span class="cta-arrow">→</span>
-            </a>
+            <!-- Botón Flotante Inferior de Conversión en Paleta Clara (Rosado Perlado + Moldura Dorada) -->
+            <div class="modal-floating-bottom" id="modal-bottom-bar">
+                <a href="https://wa.me/573043588180" id="modal-cta-btn" class="modal-cta-button" target="_blank" rel="noopener noreferrer" onclick="return handlePromoCtaClick(event);">
+                    <span class="cta-emoji-left">💖</span>
+                    <span class="cta-main-text">¡Yo lo quiero!</span>
+                    <span class="cta-arrow">🌸 →</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1627,13 +1628,13 @@
         // Repara dimensiones al cambiar tamaño de pantalla
         window.addEventListener('resize', updateDimensions);
 
-        // Lógica de Modales de Video e Imágenes de Promoción (Pantalla Completa & Tracking Omnicanal)
+        // Lógica de Modales de Video e Imágenes de Promoción (Pantalla Completa Inmersiva & Tracking Omnicanal)
         const modal = document.getElementById('video-modal');
         const modalVideo = document.getElementById('modal-video');
         const modalImage = document.getElementById('modal-image');
-        const modalSource = modalVideo ? modalVideo.querySelector('source') : null;
         const modalCloseBtn = document.getElementById('modal-close-btn');
-        const modalPromoTitle = document.getElementById('modal-promo-title');
+        const modalAudioBtn = document.getElementById('modal-audio-btn');
+        const audioIcon = document.getElementById('audio-icon');
         const modalCtaBtn = document.getElementById('modal-cta-btn');
 
         let currentPromoContext = {
@@ -1647,7 +1648,7 @@
 
             const finalTitle = title || (isVideo ? 'Promoción Exclusiva de Octubre' : 'Resultado Salón');
             const finalPrice = price || 250000;
-            const finalMsg = msg || `Hola Julie Alisados! ✨ Vi ${finalTitle} en su página web y 💖 ¡Lo quiero! ¿Me podrían brindar asesoría para agendar mi cita?`;
+            const finalMsg = msg || `Hola Julie Alisados! ✨ Vi ${finalTitle} en su página web y 💖 ¡Yo lo quiero! ¿Me podrían brindar asesoría para agendar mi cita?`;
             const waUrl = `https://wa.me/573043588180?text=${encodeURIComponent(finalMsg)}`;
 
             currentPromoContext = {
@@ -1655,6 +1656,33 @@
                 price: finalPrice,
                 url: waUrl
             };
+
+            // 1. MEDICIÓN OCULTA (Tracking Invisible de Impresión / Visualización)
+            try {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'view_item', {
+                        event_category: 'Promociones Octubre',
+                        event_label: finalTitle,
+                        value: finalPrice,
+                        currency: 'COP'
+                    });
+                }
+                if (typeof fbq === 'function') {
+                    fbq('track', 'ViewContent', {
+                        content_name: finalTitle,
+                        content_category: 'Promociones Octubre',
+                        value: finalPrice,
+                        currency: 'COP'
+                    });
+                }
+                if (typeof ttq !== 'undefined') {
+                    ttq.track('ViewContent', {
+                        content_name: finalTitle,
+                        value: finalPrice,
+                        currency: 'COP'
+                    });
+                }
+            } catch (err) {}
 
             if (modalCtaBtn) {
                 modalCtaBtn.href = waUrl;
@@ -1665,17 +1693,17 @@
 
             if (isVideo) {
                 if (modalImage) modalImage.style.display = 'none';
-                if (modalVideo && modalSource) {
+                if (modalVideo) {
                     modalVideo.style.display = 'block';
-                    modalSource.src = src;
-                    modalVideo.load();
-                    modalVideo.muted = false;
-                    modalVideo.volume = 1.0;
+                    modalVideo.src = src;
+                    modalVideo.muted = false; // Intentamos reproducir con sonido
+                    if (audioIcon) audioIcon.textContent = '🔊';
                     const playPromise = modalVideo.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(() => {
-                            // Si la política del navegador exige interacción previa para sonido
+                            // Políticas de autoplay móvil (iOS Safari / Android Chrome)
                             modalVideo.muted = true;
+                            if (audioIcon) audioIcon.textContent = '🔇';
                             modalVideo.play().catch(() => {});
                         });
                     }
@@ -1684,6 +1712,7 @@
                 if (modalVideo) {
                     modalVideo.pause();
                     modalVideo.style.display = 'none';
+                    modalVideo.src = "";
                 }
                 if (modalImage) {
                     modalImage.src = src;
@@ -1703,8 +1732,8 @@
             if (modalVideo) {
                 modalVideo.pause();
                 modalVideo.currentTime = 0;
+                modalVideo.src = "";
                 modalVideo.style.display = 'none';
-                if (modalSource) modalSource.src = "";
             }
             if (modalImage) {
                 modalImage.style.display = 'none';
@@ -1712,6 +1741,30 @@
             }
             isPaused = false;
         };
+
+        // Control de Sonido (Mute / Unmute)
+        if (modalAudioBtn && modalVideo) {
+            modalAudioBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                modalVideo.muted = !modalVideo.muted;
+                if (audioIcon) {
+                    audioIcon.textContent = modalVideo.muted ? '🔇' : '🔊';
+                }
+            });
+        }
+
+        // Tocar el video para pausar o reanudar
+        if (modalVideo) {
+            modalVideo.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (modalVideo.paused) {
+                    modalVideo.play();
+                } else {
+                    modalVideo.pause();
+                }
+            });
+        }
 
         // Manejador del Botón "💖 ¡Yo lo quiero! 🌸 →" Conectado a la Maquinaria Publicitaria
         window.handlePromoCtaClick = function(e) {
