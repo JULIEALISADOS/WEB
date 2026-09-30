@@ -16,7 +16,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Security Hardening Policies -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260928_horizontal_reel_v2">
+    <link rel="stylesheet" href="style.css?v=20261001_modal_fullscreen_cta">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -511,24 +511,65 @@
 
                 <div class="image-banner-wrapper promo-slider-wrapper">
                     <div class="image-banner-track manual-track" id="promo-track">
-                        <!-- PROMOCIONES OCTUBRE 2026 (VIDEOS OFICIALES) -->
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-octubre-intro.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-octubre-intro.mp4"></video>
+                        <!-- PROMOCIONES OCTUBRE 2026 (VIDEOS OFICIALES OPTIMIZADOS) -->
+                        <div class="image-card video-card-container"
+                             data-video="promo-octubre-intro.mp4"
+                             data-title="Promociones del Mes de Octubre 2026"
+                             data-price="250000"
+                             data-msg="Hola Julie Alisados! ✨ Vi el video de las promociones de Octubre en su página web y 💖 ¡Yo lo quiero! Me gustaría agendar mi cita o recibir asesoría personalizada.">
+                            <span class="video-card-tag">🔥 PROMOS OCTUBRE</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-octubre-intro.mp4" class="lazy-img-clickable" src="promo-octubre-intro.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-alisado-saludable-octubre.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-alisado-saludable-octubre.mp4"></video>
+
+                        <div class="image-card video-card-container"
+                             data-video="promo-alisado-saludable-octubre.mp4"
+                             data-title="Alisado Saludable + Crioterapia + Kit Dúo Gratis"
+                             data-price="250000"
+                             data-msg="Hola Julie Alisados! ✨ Vi la promo de Alisado Saludable con Crioterapia y Kit Dúo Gratis de Octubre ($250.000) y 💖 ¡Yo lo quiero! ¿Qué fechas tienen disponibles en sede Tunja o Moniquirá?">
+                            <span class="video-card-tag">✨ ALISADO SALUDABLE</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-alisado-saludable-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-saludable-octubre.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-emulsion-zero-octubre.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-emulsion-zero-octubre.mp4"></video>
+
+                        <div class="image-card video-card-container"
+                             data-video="promo-emulsion-zero-octubre.mp4"
+                             data-title="Emulsión Zero + Termoprotector Gratis"
+                             data-price="170000"
+                             data-msg="Hola Julie Alisados! ✨ Vi la promo de Emulsión Zero ($170.000) con Termoprotector Gratis de Octubre y 💖 ¡Yo lo quiero! Me gustaría agendar mi cita en salón.">
+                            <span class="video-card-tag">🌸 EMULSIÓN ZERO</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-emulsion-zero-octubre.mp4" class="lazy-img-clickable" src="promo-emulsion-zero-octubre.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-reposicion-aminoacidos-octubre.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-reposicion-aminoacidos-octubre.mp4"></video>
+
+                        <div class="image-card video-card-container"
+                             data-video="promo-reposicion-aminoacidos-octubre.mp4"
+                             data-title="Reposición de Aminoácidos ($150.000)"
+                             data-price="150000"
+                             data-msg="Hola Julie Alisados! ✨ Vi la promo de Reposición de Aminoácidos ($150.000) de Octubre y 💖 ¡Yo lo quiero! ¿Cómo puedo agendar mi cita?">
+                            <span class="video-card-tag">🌿 REPOSICIÓN AMINOÁCIDOS</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-reposicion-aminoacidos-octubre.mp4" class="lazy-img-clickable" src="promo-reposicion-aminoacidos-octubre.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-hidracomplex-octubre.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-hidracomplex-octubre.mp4"></video>
+
+                        <div class="image-card video-card-container"
+                             data-video="promo-hidracomplex-octubre.mp4"
+                             data-title="Hidra Complex - Plan Amigas (2 x $110.000)"
+                             data-price="110000"
+                             data-msg="Hola Julie Alisados! ✨ Vi el Plan Amigas de Hidra Complex (2 personas por $110.000) de Octubre y 💖 ¡Yo lo quiero! Queremos agendar nuestra cita en salón.">
+                            <span class="video-card-tag">👭 PLAN AMIGAS 2x1</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-hidracomplex-octubre.mp4" class="lazy-img-clickable" src="promo-hidracomplex-octubre.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
-                        <div class="image-card video-card-container">
-                            <video autoplay muted loop playsinline preload="metadata" data-video="promo-alisado-classic-octubre.mp4" class="lazy-img-clickable" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 12px;" src="promo-alisado-classic-octubre.mp4"></video>
+
+                        <div class="image-card video-card-container"
+                             data-video="promo-alisado-classic-octubre.mp4"
+                             data-title="Alisado Classic ($160.000)"
+                             data-price="160000"
+                             data-msg="Hola Julie Alisados! ✨ Vi la promo de Alisado Classic ($160.000) de Octubre y 💖 ¡Yo lo quiero! ¿Qué disponibilidad de agenda tienen?">
+                            <span class="video-card-tag">💎 ALISADO CLASSIC</span>
+                            <video autoplay muted loop playsinline webkit-playsinline preload="metadata" data-video="promo-alisado-classic-octubre.mp4" class="lazy-img-clickable" src="promo-alisado-classic-octubre.mp4"></video>
+                            <div class="video-play-badge"><span class="badge-icon">▶</span> Toca para ver con audio</div>
                         </div>
                     </div>
                 </div></section>
@@ -1307,14 +1348,40 @@
         </a>
     </div>
 
-    <!-- Media Modal (En Grande al hacer click en promociones o videos) -->
-    <div id="video-modal" class="video-modal" style="position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 200000; padding: 15px; box-sizing: border-box;">
-        <span class="modal-close" style="position: fixed; top: 15px; right: 20px; color: #ffffff; font-size: 44px; font-weight: bold; cursor: pointer; z-index: 200005; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.8);" aria-label="Cerrar modal">&times;</span>
-        <div class="modal-content" style="position: relative; width: auto; max-width: 95vw; height: auto; max-height: 88vh; max-height: 88dvh; background: #000000; border: 2px solid var(--gold); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
-            <video id="modal-video" controls playsinline style="display: none; max-width: 92vw; max-height: 82vh; max-height: 82dvh; width: auto; height: auto; object-fit: contain; margin: 0 auto;">
+    <!-- Media Modal (Reproductor Pantalla Completa & Story Mode de Promociones) -->
+    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-promo-title">
+        <!-- Barra Superior: Insignia de Tratamiento y Botón Cerrar -->
+        <div class="modal-top-bar">
+            <div class="modal-promo-badge">
+                <span class="sparkle">✨</span>
+                <span id="modal-promo-title">Promoción Exclusiva</span>
+            </div>
+            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar video">
+                <span class="close-icon" aria-hidden="true">&times;</span>
+                <span class="close-text">Cerrar</span>
+            </button>
+        </div>
+
+        <!-- Contenedor Central del Video / Imagen -->
+        <div class="modal-content" id="modal-content">
+            <video id="modal-video" controls playsinline webkit-playsinline preload="auto">
                 <source src="" type="video/mp4">
+                Tu navegador no soporta reproducción de video.
             </video>
-            <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none; max-width: 92vw; max-height: 82vh; max-height: 82dvh; width: auto; height: auto; object-fit: contain; margin: 0 auto;">
+            <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
+        </div>
+
+        <!-- Barra Inferior de Conversión: Botón "💖 ¡Yo lo quiero! 🌸 →" Conectado a la Maquinaria Publicitaria -->
+        <div class="modal-bottom-bar" id="modal-bottom-bar">
+            <a href="https://wa.me/573043588180" id="modal-cta-btn" class="modal-cta-button" target="_blank" rel="noopener noreferrer" onclick="return handlePromoCtaClick(event);">
+                <span class="cta-emoji-left">💖</span>
+                <span class="cta-main-text">¡Yo lo quiero!</span>
+                <span class="cta-emoji-right">🌸</span>
+                <span class="cta-arrow">→</span>
+            </a>
+            <div class="modal-cta-caption">
+                🔒 Cupos limitados por agenda · Asesoría personalizada al instante
+            </div>
         </div>
     </div>
 
@@ -1578,22 +1645,59 @@
         // Repara dimensiones al cambiar tamaño de pantalla
         window.addEventListener('resize', updateDimensions);
 
-        // Lógica de Modales de Video e Imágenes de Promoción
+        // Lógica de Modales de Video e Imágenes de Promoción (Pantalla Completa & Tracking Omnicanal)
         const modal = document.getElementById('video-modal');
         const modalVideo = document.getElementById('modal-video');
         const modalImage = document.getElementById('modal-image');
         const modalSource = modalVideo ? modalVideo.querySelector('source') : null;
-        const modalClose = document.querySelector('.modal-close');
-        
-        const openModal = (src, isVideo = false) => {
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const modalPromoTitle = document.getElementById('modal-promo-title');
+        const modalCtaBtn = document.getElementById('modal-cta-btn');
+
+        let currentPromoContext = {
+            title: 'Promociones de Octubre 2026',
+            price: 250000,
+            url: 'https://wa.me/573043588180'
+        };
+
+        const openModal = (src, isVideo = false, title = '', msg = '', price = 250000) => {
             if (!src || !modal) return;
+
+            const finalTitle = title || (isVideo ? 'Promoción Exclusiva de Octubre' : 'Resultado Salón');
+            const finalPrice = price || 250000;
+            const finalMsg = msg || `Hola Julie Alisados! ✨ Vi ${finalTitle} en su página web y 💖 ¡Yo lo quiero! ¿Me podrían brindar asesoría para agendar mi cita?`;
+            const waUrl = `https://wa.me/573043588180?text=${encodeURIComponent(finalMsg)}`;
+
+            currentPromoContext = {
+                title: finalTitle,
+                price: finalPrice,
+                url: waUrl
+            };
+
+            if (modalPromoTitle) modalPromoTitle.textContent = finalTitle;
+            if (modalCtaBtn) {
+                modalCtaBtn.href = waUrl;
+                modalCtaBtn.setAttribute('data-url', waUrl);
+                modalCtaBtn.setAttribute('data-title', finalTitle);
+                modalCtaBtn.setAttribute('data-price', finalPrice);
+            }
+
             if (isVideo) {
                 if (modalImage) modalImage.style.display = 'none';
                 if (modalVideo && modalSource) {
                     modalVideo.style.display = 'block';
                     modalSource.src = src;
                     modalVideo.load();
-                    modalVideo.play().catch(() => {});
+                    modalVideo.muted = false;
+                    modalVideo.volume = 1.0;
+                    const playPromise = modalVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            // Si la política del navegador exige interacción previa para sonido
+                            modalVideo.muted = true;
+                            modalVideo.play().catch(() => {});
+                        });
+                    }
                 }
             } else {
                 if (modalVideo) {
@@ -1605,15 +1709,19 @@
                     modalImage.style.display = 'block';
                 }
             }
+
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
             isPaused = true;
         };
 
         const closeModalFunc = () => {
             if (!modal) return;
             modal.classList.remove('active');
+            document.body.style.overflow = '';
             if (modalVideo) {
                 modalVideo.pause();
+                modalVideo.currentTime = 0;
                 modalVideo.style.display = 'none';
                 if (modalSource) modalSource.src = "";
             }
@@ -1624,77 +1732,150 @@
             isPaused = false;
         };
 
-        // Clicks en imágenes del banner de promociones (lazy-img-clickable)
-        document.querySelectorAll('.lazy-img-clickable').forEach(item => {
-            item.addEventListener('click', (e) => {
-                // Si el usuario estaba arrastrando con el dedo, no abrir modal por accidente
+        // Manejador del Botón "💖 ¡Yo lo quiero! 🌸 →" Conectado a la Maquinaria Publicitaria
+        window.handlePromoCtaClick = function(e) {
+            if (e) e.preventDefault();
+            const targetUrl = currentPromoContext.url || (modalCtaBtn ? modalCtaBtn.href : 'https://wa.me/573043588180');
+            const promoTitle = currentPromoContext.title || 'Promoción Octubre';
+            const promoPrice = currentPromoContext.price || 250000;
+
+            // 1. Google Ads & GA4 Tracking
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-17986280702/NpjPCLC27J0cEP65w4BD'
+                });
+                gtag('event', 'generate_lead', {
+                    'event_category': 'engagement',
+                    'event_label': 'Modal Video CTA - ' + promoTitle,
+                    'value': promoPrice,
+                    'currency': 'COP'
+                });
+            }
+
+            // 2. Meta Pixel Tracking (Facebook & Instagram)
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', {
+                    content_name: 'Modal Video - ' + promoTitle,
+                    content_category: 'Promociones Octubre',
+                    value: promoPrice,
+                    currency: 'COP'
+                });
+                fbq('track', 'Contact', {
+                    content_name: 'WhatsApp Modal Video',
+                    value: promoPrice,
+                    currency: 'COP'
+                });
+            }
+
+            // 3. TikTok Pixel Tracking
+            if (typeof ttq !== 'undefined') {
+                ttq.track('ClickButton', {
+                    content_name: 'Yo lo quiero - ' + promoTitle
+                });
+                ttq.track('Contact', {
+                    contents: [{
+                        content_id: 'modal_promo_video',
+                        content_name: promoTitle
+                    }],
+                    value: promoPrice,
+                    currency: 'COP'
+                });
+                ttq.track('SubmitForm');
+            }
+
+            // 4. Fallback universal conversion
+            if (typeof gtag_report_conversion === 'function') {
+                try {
+                    gtag_report_conversion(targetUrl, promoPrice, 'COP');
+                } catch (err) {}
+            }
+
+            // 5. Apertura directa e instantánea de WhatsApp
+            setTimeout(() => {
+                window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            }, 100);
+
+            return false;
+        };
+
+        // Delegación de clics y toques táctiles en el carrusel de promociones
+        if (track) {
+            track.addEventListener('click', (e) => {
+                // Si el usuario estaba deslizando con el dedo, evitar apertura accidental
                 if (dragDistance > 10) {
                     e.preventDefault();
                     e.stopPropagation();
                     return;
                 }
+                const card = e.target.closest('.video-card-container');
+                if (!card) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                const video = card.querySelector('video') || card;
+                const videoSrc = card.dataset.video || video.dataset.video || video.getAttribute('src');
+                const title = card.dataset.title || '';
+                const msg = card.dataset.msg || '';
+                const price = card.dataset.price ? parseInt(card.dataset.price, 10) : 250000;
+
+                if (videoSrc) {
+                    openModal(videoSrc, true, title, msg, price);
+                }
+            });
+        }
+
+        // Clicks en imágenes con clase lazy-img-clickable fuera del track principal
+        document.querySelectorAll('.lazy-img-clickable').forEach(item => {
+            if (item.closest('#promo-track')) return; // Ya manejado por delegación
+            item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const videoSrc = item.dataset.video;
                 if (videoSrc) {
                     openModal(videoSrc, true);
                 } else if (item.src) {
                     openModal(item.src, false);
-                }
-            });
-        });
-
-        // Clicks en el overlay de play (el botón de play sobre la imagen)
-        document.querySelectorAll('.play-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (dragDistance > 10) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return;
-                }
-                e.stopPropagation();
-                const container = overlay.closest('.video-card-container');
-                const img = container?.querySelector('.lazy-img-clickable');
-                const videoSrc = img?.dataset.video;
-                if (videoSrc) {
-                    openModal(videoSrc, true);
-                } else if (img?.src) {
-                    openModal(img.src, false);
                 }
             });
         });
 
         // Clicks en videos de resultados (antes/después)
-        document.querySelectorAll('.result-video').forEach(item => {
-            item.addEventListener('click', () => {
-                const src = item.querySelector('source')?.src || item.src;
-                openModal(src, true);
-            });
-        });
-
-        // Clicks en las imágenes de resultados con data-video
         document.querySelectorAll('.result-video-thumb').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const videoSrc = item.dataset.video;
+                const title = 'Antes y Después - Alisado Saludable';
+                const msg = 'Hola Julie Alisados! ✨ Vi el video de Resultados de Antes y Después en su página web y 💖 ¡Yo lo quiero! ¿Me podrían brindar asesoría para mi tipo de cabello?';
+                const price = 250000;
                 if (videoSrc) {
-                    openModal(videoSrc, true);
-                } else if (item.src) {
-                    openModal(item.src, false);
+                    openModal(decodeURIComponent(videoSrc), true, title, msg, price);
                 }
             });
         });
 
-        if (modalClose) {
-            modalClose.addEventListener('click', closeModalFunc);
+        // Eventos de Cierre del Modal
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closeModalFunc();
+            });
         }
 
         if (modal) {
             modal.addEventListener('click', (e) => {
-                if (e.target === modal || e.target === modalClose) {
+                // Cerrar si hace clic en el backdrop oscuro
+                if (e.target === modal || e.target.id === 'video-modal') {
                     closeModalFunc();
                 }
             });
         }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                closeModalFunc();
+            }
+        });
 
         // Testimonials handled by master controller below
 
