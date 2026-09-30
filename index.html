@@ -39,7 +39,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261001_story_fullscreen_v1">
+    <link rel="stylesheet" href="style.css?v=20261001_modal_luxury_v2">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -1254,11 +1254,7 @@
     <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-label="Reproductor de video a pantalla completa">
         <!-- Contenedor Pantalla Completa Inmersivo -->
         <div class="modal-story-container" id="modal-content">
-            <!-- Video en pantalla completa edge-to-edge -->
-            <video id="modal-video" playsinline webkit-playsinline preload="auto" loop></video>
-            <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
-            
-            <!-- Barra Superior Flotante: Indicador de Sonido y Botón Cerrar -->
+            <!-- Barra Superior: Indicador de Sonido y Botón Cerrar -->
             <div class="modal-floating-top">
                 <button type="button" class="modal-audio-btn" id="modal-audio-btn" aria-label="Activar o desactivar sonido">
                     <span id="audio-icon">🔊</span>
@@ -1269,7 +1265,13 @@
                 </button>
             </div>
 
-            <!-- Botón Flotante Inferior de Conversión en Paleta Clara (Rosado Perlado + Moldura Dorada) -->
+            <!-- Wrapper del Video e Imagen: Enmarcado 100% visible sin recortes de texto ni precio -->
+            <div class="modal-video-wrapper">
+                <video id="modal-video" playsinline webkit-playsinline preload="auto" loop></video>
+                <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
+            </div>
+
+            <!-- Barra Inferior de Conversión: Botón "¡Yo lo quiero!" en Paleta Clara (Rosado Perlado + Moldura Dorada) -->
             <div class="modal-floating-bottom" id="modal-bottom-bar">
                 <a href="https://wa.me/573043588180" id="modal-cta-btn" class="modal-cta-button" target="_blank" rel="noopener noreferrer" onclick="return handlePromoCtaClick(event);">
                     <span class="cta-emoji-left">💖</span>
