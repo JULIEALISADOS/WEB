@@ -4965,7 +4965,7 @@ header {
 .announcement-item .bar-short { display: none; }
 .announcement-item .bar-full { display: inline; }
 .top-announcement-bar .announcement-item:focus-visible { outline: 2px solid #9E7412; outline-offset: 2px; border-radius: 6px; }
-@media (max-width: 640px) {
+@media (max-width: 760px) {
     .announcement-item .bar-full { display: none; }
     .announcement-item .bar-short { display: inline; }
     .announcement-item { max-width: calc(100vw - 20px); }
