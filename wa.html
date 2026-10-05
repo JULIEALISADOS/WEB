@@ -29,7 +29,17 @@
     <!-- Rastreo SOLO con consentimiento previo (Ley 1581 / SIC).
          Se lee el consentimiento que js/consent.js guarda en este mismo dominio (julie_privacy_consent).
          Sin "granted" NO se carga ningún píxel ni etiqueta de terceros; la redirección a WhatsApp funciona igual. -->
+        <!-- Google Consent Mode v2 Default (Ley 1581 de 2012) -->
     <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied', 'wait_for_update': 500 });
+        try {
+            var savedConsent = localStorage.getItem('julie_privacy_consent') || (localStorage.getItem('privacyAccepted') === 'true' ? 'granted' : null);
+            if (savedConsent === 'granted') { gtag('consent', 'update', { 'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted', 'analytics_storage': 'granted' }); }
+        } catch (e) {}
+    </script>
+<script>
     (function () {
       var consent = null;
       try { consent = localStorage.getItem('julie_privacy_consent'); } catch (e) {}
@@ -44,7 +54,8 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1796200453804821');
+      fbq('consent', (function(){try{return localStorage.getItem('julie_privacy_consent')==='granted'}catch(e){return false}})() ? 'grant' : 'revoke');
+    fbq('init', '1796200453804821');
       fbq('track', 'PageView');
       fbq('track', 'Contact');
 
@@ -66,7 +77,9 @@
         w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
         var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
         ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-        ttq.load('D80VAEJC77UDOFSGH9CG');
+        ttq.holdConsent();
+      ttq.load('D80VAEJC77UDOFSGH9CG');
+      try { if (localStorage.getItem('julie_privacy_consent') === 'granted') { ttq.grantConsent(); } } catch (e) {}
         ttq.page();
         ttq.track('Contact');
         ttq.track('SubmitForm');

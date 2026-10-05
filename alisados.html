@@ -15,7 +15,17 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; frame-ancestors 'none';">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <!-- Meta Pixel Code -->
+        <!-- Google Consent Mode v2 Default (Ley 1581 de 2012) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied', 'wait_for_update': 500 });
+        try {
+            var savedConsent = localStorage.getItem('julie_privacy_consent') || (localStorage.getItem('privacyAccepted') === 'true' ? 'granted' : null);
+            if (savedConsent === 'granted') { gtag('consent', 'update', { 'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted', 'analytics_storage': 'granted' }); }
+        } catch (e) {}
+    </script>
+<!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -25,12 +35,11 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('consent', (function(){try{return localStorage.getItem('julie_privacy_consent')==='granted'}catch(e){return false}})() ? 'grant' : 'revoke');
     fbq('init', '1796200453804821');
     fbq('track', 'PageView');
     </script>
-    <noscript><img loading="lazy" decoding="async" height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1796200453804821&ev=PageView&noscript=1"
-    /></noscript>
+    
     <!-- End Meta Pixel Code -->
 
     <!-- TikTok Pixel Code Start -->
@@ -39,7 +48,9 @@
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
     var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
     ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.holdConsent();
       ttq.load('D80VAEJC77UDOFSGH9CG');
+      try { if (localStorage.getItem('julie_privacy_consent') === 'granted') { ttq.grantConsent(); } } catch (e) {}
       ttq.page();
     }(window, document, 'ttq');
     </script>
@@ -147,6 +158,7 @@
     <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
     <!-- Julie Analytics Universal Tracking -->
     <script src="js/julie-analytics.js" defer></script>
+    <script src="js/consent.js?v=20260916_consent_v2" defer></script>
 </head>
 
 <body>

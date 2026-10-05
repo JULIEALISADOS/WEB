@@ -159,6 +159,7 @@
             });
         }
         // Sincronizacion preventiva con TikTok Pixel
+        if (typeof window.fbq === 'function') { try { window.fbq('consent', status === 'granted' ? 'grant' : 'revoke'); } catch (e) {} }
         if (window.ttq) {
             try {
                 if (status === 'granted' && typeof window.ttq.grantConsent === 'function') {
