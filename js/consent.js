@@ -200,7 +200,7 @@
                 proof_id: proofId,
                 decision: decision,
                 tipo_consentimiento: decision === 'granted' ? 'ACEPTAR_TODAS' : 'SOLO_NECESARIAS',
-                politica_version: 'Politica_Privacidad_v2_2026_SIC_HabeasData',
+                politica_version: 'Politica_Privacidad_y_Cookies_v3_2026-10-05',
                 timestamp_colombia: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
                 timestamp_iso: new Date().toISOString(),
                 user_agent: (navigator && navigator.userAgent) ? navigator.userAgent : 'Desconocido',
