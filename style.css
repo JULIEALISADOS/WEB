@@ -4960,3 +4960,17 @@ header {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
+
+/* Franja de promociones: texto largo en computador, corto en celular (js/promo-bar.js) */
+.announcement-item .bar-short { display: none; }
+.announcement-item .bar-full { display: inline; }
+.top-announcement-bar .announcement-item:focus-visible { outline: 2px solid #9E7412; outline-offset: 2px; border-radius: 6px; }
+@media (max-width: 640px) {
+    .announcement-item .bar-full { display: none; }
+    .announcement-item .bar-short { display: inline; }
+    .announcement-item { max-width: calc(100vw - 20px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .top-announcement-bar::after { animation: none; display: none; }
+    .announcement-item { animation: none; }
+}
