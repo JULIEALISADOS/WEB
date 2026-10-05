@@ -142,7 +142,7 @@ function initArticlePage(articles) {
     // Actualizar Head Metadata SEO
     const articleTitle = article.seo?.title || article.title;
     const articleDesc = article.seo?.description || article.summary;
-    const articleUrl = `https://juliealisados.com/julie-tips/${article.slug}`;
+    const articleUrl = `https://juliealisados.com/julie-tips/articulo.html?slug=${article.slug}`;
     const articleImg = article.image ? `https://juliealisados.com/${article.image.replace('../', '')}` : 'https://juliealisados.com/logo%201.png';
 
     document.title = articleTitle;
@@ -227,7 +227,7 @@ function initArticlePage(articles) {
     if (prevNav) {
         if (currentIndex > 0) {
             const prevArticle = articles[currentIndex - 1];
-            prevNav.innerHTML = `<a href="./${prevArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">← Anterior: ${prevArticle.title}</a>`;
+            prevNav.innerHTML = `<a href="./articulo.html?slug=${prevArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">← Anterior: ${prevArticle.title}</a>`;
         } else {
             prevNav.innerHTML = '';
         }
@@ -235,7 +235,7 @@ function initArticlePage(articles) {
     if (nextNav) {
         if (currentIndex >= 0 && currentIndex < articles.length - 1) {
             const nextArticle = articles[currentIndex + 1];
-            nextNav.innerHTML = `<a href="./${nextArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">Siguiente: ${nextArticle.title} →</a>`;
+            nextNav.innerHTML = `<a href="./articulo.html?slug=${nextArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">Siguiente: ${nextArticle.title} →</a>`;
         } else {
             nextNav.innerHTML = '';
         }
