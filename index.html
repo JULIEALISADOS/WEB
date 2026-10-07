@@ -44,7 +44,7 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=20261007_sedes">
-    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes5">
+    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes6">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -2403,8 +2403,12 @@
 
             container.addEventListener('mouseenter', pauseAutoPlay);
             container.addEventListener('mouseleave', resumeAutoPlayLater);
-            container.addEventListener('touchstart', pauseAutoPlay, { passive: true });
-            container.addEventListener('touchend', resumeAutoPlayLater, { passive: true });
+            // Celular: al deslizar con el dedo el navegador cancela el toque (touchcancel) y a veces no manda touchend.
+            // Por eso cada gesto (touchstart/touchmove/touchend/touchcancel/scroll) reinicia una cuenta de 2,5 s y, al terminar, el movimiento sigue solo.
+            ['touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointerup', 'pointercancel'].forEach(function (ev) {
+                container.addEventListener(ev, resumeAutoPlayLater, { passive: true });
+            });
+            container.addEventListener('scroll', function () { if (!raf) resumeAutoPlayLater(); }, { passive: true });
 
             startAutoPlay();
         });
