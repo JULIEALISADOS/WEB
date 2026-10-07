@@ -55,7 +55,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=20261007_sedes2">
-    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes5">
+    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes6">
 
     <!-- Google Consent Mode v2 Default -->
     <script>
@@ -620,10 +620,15 @@
             }
             function seguir() { if (!raf) { tick.last = performance.now(); raf = requestAnimationFrame(tick); } }
             function parar() { if (raf) { cancelAnimationFrame(raf); raf = null; } clearTimeout(tReanudar); }
-            ['mouseenter', 'focusin'].forEach(function (e) { r.addEventListener(e, parar); });
-            ['mouseleave', 'focusout'].forEach(function (e) { r.addEventListener(e, function () { tReanudar = setTimeout(seguir, 1500); }); });
-            r.addEventListener('touchstart', parar, { passive: true });
-            r.addEventListener('touchend', function () { clearTimeout(tReanudar); tReanudar = setTimeout(seguir, 2500); }, { passive: true });
+            // Celular: al deslizar, el navegador cancela el toque y a veces no avisa que se solto el dedo.
+            // Cada gesto reinicia una cuenta de 2,5 s y, al terminar, el movimiento sigue solo.
+            function pausaYReanuda(ms) { parar(); tReanudar = setTimeout(seguir, ms); }
+            ['touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointerup', 'pointercancel'].forEach(function (e) {
+                r.addEventListener(e, function () { pausaYReanuda(2500); }, { passive: true });
+            });
+            r.addEventListener('scroll', function () { if (!raf) { clearTimeout(tReanudar); tReanudar = setTimeout(seguir, 2500); } }, { passive: true });
+            r.addEventListener('mouseenter', parar);
+            r.addEventListener('mouseleave', function () { tReanudar = setTimeout(seguir, 1500); });
             seguir();
         })();
     </script>
