@@ -44,7 +44,7 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=20261007_sedes">
-    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes4">
+    <link rel="stylesheet" href="css/sedes.css?v=20261007_sedes5">
 
     <!-- Google Consent Mode v2 Default (Ley 1581 de 2012 & Google Ads 2024-2026) -->
     <script>
@@ -2363,38 +2363,42 @@
                 container.scrollLeft = startScroll - walk;
             });
 
-            // 6. Auto-Play Suave y Continuo cuando no hay interacción
-            let autoInterval = null;
+            // 6. Auto-Play CONTINUO y suave (como un noticiero); se detiene al tocar o pasar el mouse
+            let raf = null;
             let resumeTimeout = null;
+            let acc = 0;
+            const reducir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             function startAutoPlay() {
-                if (autoInterval) clearInterval(autoInterval);
-                autoInterval = setInterval(function() {
-                    if (isMouseDown) return;
-                    const step = getCardStep();
-                    if (container.scrollLeft >= singleSetWidth * 2 - step * 1.5) {
-                        container.style.scrollBehavior = 'auto';
-                        container.scrollLeft -= singleSetWidth;
+                if (raf || reducir) return;
+                container.style.scrollBehavior = 'auto';
+                container.style.scrollSnapType = 'none';
+                let last = performance.now();
+                function tick(now) {
+                    const dt = Math.min(now - last, 100);
+                    last = now;
+                    if (!isMouseDown && !document.hidden) {
+                        acc += dt * 0.045; // ~45 px por segundo: lento para poder leer
+                        const px = Math.floor(acc);
+                        if (px >= 1) {
+                            acc -= px;
+                            container.scrollLeft += px;
+                            if (container.scrollLeft >= singleSetWidth * 2) container.scrollLeft -= singleSetWidth;
+                        }
                     }
-                    container.style.scrollBehavior = 'smooth';
-                    container.scrollBy({ left: step, behavior: 'smooth' });
-                }, 4500);
+                    raf = requestAnimationFrame(tick);
+                }
+                raf = requestAnimationFrame(tick);
             }
 
             function pauseAutoPlay() {
-                if (autoInterval) {
-                    clearInterval(autoInterval);
-                    autoInterval = null;
-                }
-                if (resumeTimeout) {
-                    clearTimeout(resumeTimeout);
-                    resumeTimeout = null;
-                }
+                if (raf) { cancelAnimationFrame(raf); raf = null; }
+                if (resumeTimeout) { clearTimeout(resumeTimeout); resumeTimeout = null; }
             }
 
             function resumeAutoPlayLater() {
                 pauseAutoPlay();
-                resumeTimeout = setTimeout(startAutoPlay, 5000);
+                resumeTimeout = setTimeout(startAutoPlay, 2500);
             }
 
             container.addEventListener('mouseenter', pauseAutoPlay);
