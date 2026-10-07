@@ -312,7 +312,7 @@ function confirmBrebOrder() {
     window.open(waUrl, '_blank');
 }
 
-// 8. Procesar Pago con Mercado Pago
+// 8. Pago asistido: el pedido se envia al WhatsApp de la linea de atencion (sin tarjetas en la web por ahora)
 function proceedMercadoPagoCheckout() {
     const cartKeys = Object.keys(cart);
     const cityInput = document.getElementById('shippingCityInput');
@@ -325,14 +325,8 @@ function proceedMercadoPagoCheckout() {
         totalPrice += cart[item].qty * cart[item].price;
     }
 
-    // Si es un producto único y 1 unidad, podemos usar su link de Mercado Pago directo
-    if (cartKeys.length === 1 && cart[cartKeys[0]].qty === 1 && cart[cartKeys[0]].payLink) {
-        window.open(cart[cartKeys[0]].payLink, '_blank');
-        return;
-    }
-
     // Para múltiples productos o unidades: coordinar link unificado de Mercado Pago vía WhatsApp
-    let message = "Hola Julie 💖! Deseo pagar con *Mercado Pago / Tarjetas de Crédito* mi pedido de Cuidado Capilar:\n\n";
+    let message = "Hola Julie 💖! Deseo hacer mi pedido de Cuidado Capilar y que me ayuden con el pago:\n\n";
     message += "🛍️ *PRODUCTOS:*\n";
 
     for (const item in cart) {
@@ -351,7 +345,7 @@ function proceedMercadoPagoCheckout() {
     message += `• Destino: ${cityName} (${deptLabel})\n`;
     message += `📦 *Peso estimado:* ~${currentWeightKg} kg\n`;
     message += `🚚 *Flete estimado contraentrega Envía:* ~${formattedShipping} COP aprox.\n\n`;
-    message += `Por favor envíenme el link de Mercado Pago por este valor para procesar mi pago seguro ✨`;
+    message += `Por favor confírmenme el total, el envío y las formas de pago disponibles ✨`;
 
     const encoded = encodeURIComponent(message);
     const waUrl = `https://wa.me/573043588180?text=${encoded}`;

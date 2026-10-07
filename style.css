@@ -9,6 +9,7 @@
     --light-text: #444444;
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
     --shadow-gold: 0 4px 15px rgba(212, 175, 55, 0.3);
+    --gold-gradient: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
 }
@@ -4973,4 +4974,54 @@ header {
 @media (prefers-reduced-motion: reduce) {
     .top-announcement-bar::after { animation: none; display: none; }
     .announcement-item { animation: none; }
+}
+
+
+/* === PAGINAS DE SEDE (Tunja / Moniquira): encabezado y menu === */
+header.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 250, 252, 0.96);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+}
+header.header .logo { display: flex; align-items: center; }
+header.header .logo img { height: 60px; width: auto; display: block; }
+header.header .nav { display: flex; align-items: center; gap: 26px; }
+.nav-link {
+    color: #2b2b2b;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+.nav-link:hover,
+.nav-link:focus-visible { color: var(--gold-dark); border-bottom-color: var(--gold); }
+.btn-gold-nav {
+    background: var(--gold-gradient);
+    color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1;
+    box-shadow: var(--shadow-gold);
+}
+@media (max-width: 900px) {
+    header.header .nav { gap: 14px; }
+    header.header .nav .nav-link { display: none; }
+    header.header .logo img { height: 46px; }
+    .btn-gold-nav { padding: 11px 18px; font-size: 0.8rem; }
 }
