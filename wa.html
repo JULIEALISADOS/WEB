@@ -197,6 +197,7 @@
         </div>
     </div>
 
+    <script src="js/consent.js?v=20261007_wa" defer></script>
     <script>
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -238,7 +239,9 @@
                     mensaje += "vi su información en Google y deseo agendar mi cita de valoración para alisado ✨";
                 }
             } else if (utmSource.includes('meta') || utmSource.includes('fb') || utmSource.includes('ig') || utmSource.includes('facebook') || utmSource.includes('instagram')) {
-                if (ciudadSede) {
+                if (tipo === 'asesora') {
+                    mensaje += "vi su publicación y quiero hablar con una asesora ✨";
+                } else if (ciudadSede) {
                     mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable en la sede " + ciudadSede + " ✨";
                 } else {
                     mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable ✨";
@@ -251,6 +254,18 @@
                 mensaje += "estoy visitando su página web y deseo recibir asesoría para agendar mi cita ✨";
             }
 
+            if (tipo === 'asesora' && !/meta|fb|ig|facebook|instagram/.test(utmSource)) {
+                mensaje = "Hola Julie Alisados 🌸 quiero hablar con una asesora ✨";
+            }
+
+            // MEDICION: evento propio por boton/origen/campana (solo se dispara si hay consentimiento, porque los pixeles solo existen con consentimiento)
+            try {
+                const datos = { origen: utmSource, campana: utmCampaign || 'sin_campana', sede: ciudadSede || 'sin_sede', tipo: tipo || 'cita', medio: (urlParams.get('utm_medium') || '').toLowerCase() };
+                if (typeof fbq === 'function') fbq('trackCustom', 'WhatsAppClick', datos);
+                if (typeof ttq !== 'undefined' && ttq.track) ttq.track('ClickButton', { content_name: datos.campana, description: datos.origen + '|' + datos.sede + '|' + datos.tipo });
+                if (typeof gtag === 'function') gtag('event', 'whatsapp_click', datos);
+            } catch (e) {}
+
             const customText = urlParams.get('text');
             if (customText) {
                 mensaje = decodeURIComponent(customText);
@@ -261,10 +276,26 @@
 
             document.getElementById('btnFallback').href = targetUrl;
 
-            // Esperar 750ms para garantizar que los píxeles (Meta, Google, TikTok) sincronicen en redes móviles
-            setTimeout(function() {
-                window.location.replace(targetUrl);
-            }, 750);
+            // PUERTA DE CONSENTIMIENTO (Ley 1581 / SIC): quien llega por primera vez elige "Aceptar todas" o "Solo necesarias" ANTES de abrir WhatsApp.
+            // Con "Aceptar todas" se recarga la pagina para que los pixeles carguen con permiso y midan el clic. Con "Solo necesarias" se abre WhatsApp sin medir.
+            const decidido = function () { try { var c = localStorage.getItem('julie_privacy_consent'); return c === 'granted' || c === 'denied'; } catch (e) { return true; } };
+            const ir = function () { setTimeout(function () { window.location.replace(targetUrl); }, 750); };
+            if (decidido()) {
+                ir();   // Esperar 750ms para garantizar que los pixeles (Meta, Google, TikTok) sincronicen en redes moviles
+            } else {
+                var h1 = document.querySelector('h1'), p = document.querySelector('.card p'), sp = document.querySelector('.spinner');
+                if (h1) h1.textContent = 'Un paso antes de abrir WhatsApp';
+                if (p) p.textContent = 'Elige tu preferencia de privacidad abajo. Con "Aceptar todas" podemos medir y mejorar nuestra publicidad; con "Solo necesarias" no. En ambos casos te conectamos con una asesora.';
+                if (sp) sp.style.display = 'none';
+                var t0 = Date.now();
+                var iv = setInterval(function () {
+                    if (decidido()) {
+                        clearInterval(iv);
+                        var c = null; try { c = localStorage.getItem('julie_privacy_consent'); } catch (e) {}
+                        if (c === 'granted') { window.location.reload(); } else { ir(); }
+                    } else if (Date.now() - t0 > 120000) { clearInterval(iv); ir(); }
+                }, 400);
+            }
         })();
     </script>
 </body>
