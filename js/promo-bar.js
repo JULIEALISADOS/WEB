@@ -1,53 +1,84 @@
 /* ==========================================================================
-   Franja superior de promociones — Julie Alisados
-   >>> ACTUALIZAR UNA VEZ AL MES (solo este archivo; aplica a todas las páginas) <<<
-   Cada promoción tiene dos textos: "full" (computador) y "short" (celular, máx. ~45 caracteres).
-   Reglas de la marca: Emulsión Zero y Aminoácidos son TERAPIAS (no se anuncian como alisado);
+   Franja superior de promociones - Julie Alisados (estilo noticiero)
+   >>> ACTUALIZAR UNA VEZ AL MES (solo este archivo; aplica a todas las paginas) <<<
+   Los mensajes pasan de derecha a izquierda sin parar; al tocar o pasar el mouse se detienen.
+   Reglas de la marca: Emulsion Zero y Aminoacidos son TERAPIAS (no se anuncian como alisado);
    las promociones aplican con pago directo, no con Addi; sin promesas absolutas.
+   Solo el Alisado Saludable incluye regalos (Crioterapia, Reposicion Hidrolipidica y kit).
+   Precios de referencia usados: kit mas costoso $74.000 y Termoprotector $35.000 (precios de venta).
    ========================================================================== */
 (function () {
     var BASE = 'https://juliealisados.com/promociones-condiciones.html';
+    var WA = 'https://wa.me/573043588180?text=' + encodeURIComponent('Hola Julie Alisados! Quiero agendar mi cita.');
     var PROMOS = [
-        { href: BASE, full: '🔥 <strong>Promos de octubre</strong> con cupos limitados por agenda · vigentes hasta el 31 <u>Ver</u>', short: '🔥 <strong>Promos de octubre</strong> · cupos limitados <u>Ver</u>' },
-        { href: BASE + '#alisado-saludable', full: '💎 <strong>Alisado Saludable $250.000</strong> · incluye Kit Dúo post-cuidado ✨ <u>Ver</u>', short: '💎 <strong>Liso espejo $250.000</strong> + Kit de regalo <u>Ver</u>' },
-        { href: BASE + '#alisado-classic', full: '👑 <strong>Alisado Classic $160.000</strong> · liso natural de 4 a 6 meses ✨ <u>Ver</u>', short: '👑 <strong>Alisado Classic $160.000</strong> · dura 4-6 meses <u>Ver</u>' },
-        { href: BASE + '#emulsion-zero', full: '🌸 <strong>Terapia Emulsión Zero $170.000</strong> · para cabello sensible y niñas, con Termoprotector de regalo 🎁 <u>Ver</u>', short: '🌸 <strong>Emulsión Zero $170.000</strong> + regalo 🎁 <u>Ver</u>' },
-        { href: BASE + '#reposicion-aminoacidos', full: '🌿 <strong>Reposición de Aminoácidos $150.000</strong> · terapia que ayuda a controlar el frizz sin alisar <u>Ver</u>', short: '🌿 <strong>Menos frizz</strong> · Aminoácidos $150.000 <u>Ver</u>' },
-        { href: BASE + '#hidra-complex', full: '👭 <strong>Plan Amigas 2x1 $110.000</strong> · 2 hidrataciones profundas para ti y tu amiga 💕 <u>Ver</u>', short: '👭 <strong>Trae a tu amiga</strong> · 2x1 por $110.000 <u>Ver</u>' },
-        { href: 'https://wa.me/573043588180?text=' + encodeURIComponent('Hola Julie Alisados! Quiero agendar mi cita.'), full: '📲 <strong>Agenda tu cita por WhatsApp</strong> · promos con pago directo (efectivo, Bre-B o transferencia) <u>Agendar</u>', short: '📲 <strong>Agenda tu cita</strong> por WhatsApp <u>Ver</u>' }
+        { href: BASE, t: '✨ <strong>Tu liso perfecto, a precio de promo</strong> · solo hasta el 31 de octubre' },
+        { href: BASE + '#alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
+        { href: BASE + '#alisado-saludable', t: '🎁 Con tu Alisado Saludable, <strong>kit de regalo de hasta $74.000</strong>' },
+        { href: BASE + '#alisado-classic', t: '👑 <strong>Alisado Classic $160.000</strong> · liso que dura de 4 a 6 meses' },
+        { href: BASE + '#alisado-classic', t: '🌿 <strong>Liso sin formol</strong> desde $160.000' },
+        { href: BASE + '#reposicion-aminoacidos', t: '💫 <strong>Menos frizz</strong> · Reposición de Aminoácidos $150.000' },
+        { href: BASE + '#emulsion-zero', t: '🌸 <strong>Emulsión Zero $170.000</strong> + Termoprotector de $35.000 de regalo' },
+        { href: BASE + '#hidra-complex', t: '👭 <strong>Trae a tu amiga</strong> · 2x1 hidratación profunda $110.000' },
+        { href: BASE, t: '💖 <strong>10% de descuento</strong> en terapias del día 8 al 10 de tu alisado' },
+        { href: WA, t: '📲 <strong>Agenda tu cita</strong> por WhatsApp · cupos limitados por agenda' }
     ];
-    var INTERVALO_MS = 5000;
+    var VELOCIDAD_PX_S = 70; // lenta, para que se alcance a leer
+
+    function estilos() {
+        if (document.getElementById('promo-ticker-css')) return;
+        var s = document.createElement('style');
+        s.id = 'promo-ticker-css';
+        s.textContent =
+            '.top-announcement-bar.ticker{display:block !important;text-align:left !important;padding:0 !important;white-space:nowrap;overflow:hidden}' +
+            '.top-announcement-bar.ticker .tk-track{display:inline-flex;align-items:center;height:36px;will-change:transform;animation:tkMove var(--tk-dur,60s) linear infinite}' +
+            '.top-announcement-bar.ticker.tk-pausa .tk-track{animation-play-state:paused}' +
+            '.top-announcement-bar.ticker .announcement-item{display:inline-flex !important;align-items:center;animation:none !important;max-width:none !important;overflow:visible !important;text-overflow:clip !important;padding:0 22px;cursor:pointer;flex:0 0 auto}' +
+            '.top-announcement-bar.ticker .announcement-item::after{content:"\\2726";margin-left:44px;color:#D4AF37;font-weight:400}' +
+            '@keyframes tkMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
+            '@media (prefers-reduced-motion: reduce){.top-announcement-bar.ticker{overflow-x:auto}.top-announcement-bar.ticker .tk-track{animation:none}}';
+        document.head.appendChild(s);
+    }
 
     function iniciar() {
         var bar = document.querySelector('.top-announcement-bar');
-        if (!bar || bar.getAttribute('data-promo-bar') === 'ok') return;
-        bar.setAttribute('data-promo-bar', 'ok');
-        bar.setAttribute('aria-live', 'polite');
+        if (!bar || bar.getAttribute('data-promo-bar') === 'ticker') return;
+        bar.setAttribute('data-promo-bar', 'ticker');
+        estilos();
+        bar.classList.add('ticker');
+        bar.setAttribute('role', 'region');
+        bar.setAttribute('aria-label', 'Promociones de octubre');
         bar.innerHTML = '';
-        PROMOS.forEach(function (p, i) {
-            var d = document.createElement('div');
-            d.className = 'announcement-item' + (i === 0 ? ' active' : '');
-            d.setAttribute('data-index', String(i));
-            d.setAttribute('role', 'link');
-            d.setAttribute('tabindex', '0');
-            d.style.cursor = 'pointer';
-            d.innerHTML = '<span class="bar-full">' + p.full + '</span><span class="bar-short">' + p.short + '</span>';
-            var ir = function () { window.location.href = p.href; };
-            d.addEventListener('click', ir);
-            d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ir(); } });
-            bar.appendChild(d);
+        var track = document.createElement('div');
+        track.className = 'tk-track';
+        // dos copias seguidas para que el movimiento sea continuo, sin saltos
+        for (var copia = 0; copia < 2; copia++) {
+            PROMOS.forEach(function (p) {
+                var d = document.createElement('a');
+                d.className = 'announcement-item';
+                d.href = p.href;
+                if (p.href.indexOf('wa.me') > -1) { d.target = '_blank'; d.rel = 'noopener noreferrer'; }
+                d.style.color = 'inherit';
+                d.style.textDecoration = 'none';
+                d.innerHTML = p.t;
+                if (copia === 1) { d.setAttribute('aria-hidden', 'true'); d.tabIndex = -1; }
+                track.appendChild(d);
+            });
+        }
+        bar.appendChild(track);
+        // duracion segun el ancho real: velocidad constante en cualquier pantalla
+        requestAnimationFrame(function () {
+            var mitad = track.scrollWidth / 2;
+            if (mitad > 0) track.style.setProperty('--tk-dur', Math.round(mitad / VELOCIDAD_PX_S) + 's');
         });
-        var items = bar.querySelectorAll('.announcement-item'), actual = 0, pausa = false;
-        bar.addEventListener('mouseenter', function () { pausa = true; });
-        bar.addEventListener('mouseleave', function () { pausa = false; });
-        bar.addEventListener('focusin', function () { pausa = true; });
-        bar.addEventListener('focusout', function () { pausa = false; });
-        setInterval(function () {
-            if (pausa || document.hidden) return;
-            items[actual].classList.remove('active');
-            actual = (actual + 1) % items.length;
-            items[actual].classList.add('active');
-        }, INTERVALO_MS);
+        var reanudar;
+        function pausar() { clearTimeout(reanudar); bar.classList.add('tk-pausa'); }
+        function seguir(ms) { clearTimeout(reanudar); reanudar = setTimeout(function () { bar.classList.remove('tk-pausa'); }, ms); }
+        bar.addEventListener('mouseenter', pausar);
+        bar.addEventListener('mouseleave', function () { seguir(0); });
+        bar.addEventListener('focusin', pausar);
+        bar.addEventListener('focusout', function () { seguir(0); });
+        bar.addEventListener('touchstart', pausar, { passive: true });
+        bar.addEventListener('touchend', function () { seguir(2500); }, { passive: true });
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
 })();
