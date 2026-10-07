@@ -8,13 +8,13 @@
 (function () {
     var BASE = 'https://juliealisados.com/promociones-condiciones.html';
     var PROMOS = [
-        { href: BASE, full: '🔥 <strong>Promos de octubre</strong> con cupos limitados por agenda · vigentes hasta el 31 <u>Ver</u>', short: '🔥 <strong>Promos de octubre</strong> · hasta el 31 <u>Ver</u>' },
-        { href: BASE + '#alisado-saludable', full: '💎 <strong>Alisado Saludable $250.000</strong> · incluye Kit Dúo post-cuidado ✨ <u>Ver</u>', short: '💎 <strong>Alisado Saludable $250.000</strong> + Kit <u>Ver</u>' },
-        { href: BASE + '#alisado-classic', full: '👑 <strong>Alisado Classic $160.000</strong> · liso natural de 4 a 6 meses ✨ <u>Ver</u>', short: '👑 <strong>Alisado Classic $160.000</strong> <u>Ver</u>' },
-        { href: BASE + '#emulsion-zero', full: '🌸 <strong>Terapia Emulsión Zero $170.000</strong> · para cabello sensible y niñas, con Termoprotector de regalo 🎁 <u>Ver</u>', short: '🌸 <strong>Terapia Emulsión Zero $170.000</strong> 🎁 <u>Ver</u>' },
-        { href: BASE + '#reposicion-aminoacidos', full: '🌿 <strong>Reposición de Aminoácidos $150.000</strong> · terapia que ayuda a controlar el frizz sin alisar <u>Ver</u>', short: '🌿 <strong>Aminoácidos $150.000</strong> · menos frizz <u>Ver</u>' },
-        { href: BASE + '#hidra-complex', full: '👭 <strong>Plan Amigas 2x1 $110.000</strong> · 2 hidrataciones profundas para ti y tu amiga 💕 <u>Ver</u>', short: '👭 <strong>Plan Amigas 2x1 $110.000</strong> <u>Ver</u>' },
-        { href: BASE + '#condiciones-addi', full: '💳 <strong>Promos con pago directo</strong> (efectivo, Bre-B o transferencia) · con Addi aplica la tarifa regular <u>Ver</u>', short: '💳 <strong>Pago directo</strong> · con Addi, tarifa regular <u>Ver</u>' }
+        { href: BASE, full: '🔥 <strong>Promos de octubre</strong> con cupos limitados por agenda · vigentes hasta el 31 <u>Ver</u>', short: '🔥 <strong>Promos de octubre</strong> · cupos limitados <u>Ver</u>' },
+        { href: BASE + '#alisado-saludable', full: '💎 <strong>Alisado Saludable $250.000</strong> · incluye Kit Dúo post-cuidado ✨ <u>Ver</u>', short: '💎 <strong>Liso espejo $250.000</strong> + Kit de regalo <u>Ver</u>' },
+        { href: BASE + '#alisado-classic', full: '👑 <strong>Alisado Classic $160.000</strong> · liso natural de 4 a 6 meses ✨ <u>Ver</u>', short: '👑 <strong>Alisado Classic $160.000</strong> · dura 4-6 meses <u>Ver</u>' },
+        { href: BASE + '#emulsion-zero', full: '🌸 <strong>Terapia Emulsión Zero $170.000</strong> · para cabello sensible y niñas, con Termoprotector de regalo 🎁 <u>Ver</u>', short: '🌸 <strong>Emulsión Zero $170.000</strong> + regalo 🎁 <u>Ver</u>' },
+        { href: BASE + '#reposicion-aminoacidos', full: '🌿 <strong>Reposición de Aminoácidos $150.000</strong> · terapia que ayuda a controlar el frizz sin alisar <u>Ver</u>', short: '🌿 <strong>Menos frizz</strong> · Aminoácidos $150.000 <u>Ver</u>' },
+        { href: BASE + '#hidra-complex', full: '👭 <strong>Plan Amigas 2x1 $110.000</strong> · 2 hidrataciones profundas para ti y tu amiga 💕 <u>Ver</u>', short: '👭 <strong>Trae a tu amiga</strong> · 2x1 por $110.000 <u>Ver</u>' },
+        { href: 'https://wa.me/573043588180?text=' + encodeURIComponent('Hola Julie Alisados! Quiero agendar mi cita.'), full: '📲 <strong>Agenda tu cita por WhatsApp</strong> · promos con pago directo (efectivo, Bre-B o transferencia) <u>Agendar</u>', short: '📲 <strong>Agenda tu cita</strong> por WhatsApp <u>Ver</u>' }
     ];
     var INTERVALO_MS = 5000;
 
