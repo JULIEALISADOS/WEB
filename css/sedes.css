@@ -135,3 +135,45 @@
 @media (prefers-reduced-motion: reduce) {
     .sd-btn, .sd-fam a { transition: none; }
 }
+
+/* MOVIL v2 */
+@media (max-width: 860px) {
+    .sd-wrap { padding: 0 16px; }
+    .sd-hero { padding: 26px 0 40px; }
+    .sd-hero h1 { font-size: 2rem; margin: 10px 0 12px; }
+    .sd-lead { font-size: 1rem; line-height: 1.65; margin-bottom: 16px; }
+    .sd-rating { font-size: .88rem; padding: 8px 14px; margin-bottom: 16px; }
+    .sd-cta-row { gap: 10px; margin-bottom: 18px; }
+    .sd-chips { gap: 8px; }
+    .sd-chips li { font-size: .78rem; padding: 6px 11px; }
+    .sd-photo { max-width: 300px; border-radius: 150px 150px 22px 22px; }
+    .sd-h2 { font-size: 1.65rem; }
+    .sd-sub { font-size: .95rem; margin-bottom: 24px; }
+    .sd-section { padding: 40px 0; }
+    /* familias: 2 columnas compactas */
+    .sd-fam { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sd-fam a { padding: 16px 14px; border-radius: 16px; }
+    .sd-fam .ic { font-size: 1.4rem; margin-bottom: 6px; }
+    .sd-fam h3 { font-size: 1rem; margin-bottom: 4px; }
+    .sd-fam p { display: none; }
+    .sd-fam .more { font-size: .78rem; }
+    /* galeria y opiniones: carrusel horizontal */
+    .sd-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 4px 16px 14px; margin: 0 -16px; max-width: none; -webkit-overflow-scrolling: touch; }
+    .sd-gallery figure { flex: 0 0 62%; scroll-snap-align: center; }
+    .sd-gallery figcaption { font-size: .8rem; }
+    .sd-reviews { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 4px 16px 14px; margin: 0 -16px; max-width: none; }
+    .sd-review { flex: 0 0 84%; scroll-snap-align: center; padding: 22px 18px; }
+    .sd-review p { font-size: .94rem; line-height: 1.65; }
+    .sd-promo { flex-basis: 78%; }
+    .sd-promos { gap: 12px; }
+    .sd-steps { grid-template-columns: 1fr 1fr; gap: 26px 12px; }
+    .sd-step { padding: 26px 14px 18px; }
+    .sd-step h3 { font-size: 1rem; }
+    .sd-step p { font-size: .86rem; }
+    .sd-card { padding: 20px 18px; }
+    .sd-final { padding: 48px 16px 90px; }
+    .sd-faq details { padding: 15px 16px; }
+    .sd-btn { padding: 14px 22px; }
+    /* el boton flotante no tapa el contenido final */
+    footer .copyright { padding-bottom: 80px; }
+}
