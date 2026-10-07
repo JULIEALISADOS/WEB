@@ -11,18 +11,28 @@
     var BASE = 'https://juliealisados.com/promociones-condiciones.html';
     var WA = 'https://wa.me/573043588180?text=' + encodeURIComponent('Hola Julie Alisados! Quiero agendar mi cita.');
     var PROMOS = [
-        { href: BASE, t: '✨ <strong>Tu liso perfecto, a precio de promo</strong> · solo hasta el 31 de octubre' },
-        { href: BASE + '#alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
-        { href: BASE + '#alisado-saludable', t: '🎁 Con tu Alisado Saludable, <strong>kit de regalo de hasta $74.000</strong>' },
-        { href: BASE + '#alisado-classic', t: '👑 <strong>Alisado Classic $160.000</strong> · liso que dura de 4 a 6 meses' },
-        { href: BASE + '#alisado-classic', t: '🌿 <strong>Liso sin formol</strong> desde $160.000' },
-        { href: BASE + '#reposicion-aminoacidos', t: '💫 <strong>Menos frizz</strong> · Reposición de Aminoácidos $150.000' },
-        { href: BASE + '#emulsion-zero', t: '🌸 <strong>Emulsión Zero $170.000</strong> + Termoprotector de $35.000 de regalo' },
-        { href: BASE + '#hidra-complex', t: '👭 <strong>Trae a tu amiga</strong> · 2x1 hidratación profunda $110.000' },
-        { href: BASE, t: '💖 <strong>10% de descuento</strong> en terapias del día 8 al 10 de tu alisado' },
+        { href: BASE, loc: 'promociones', t: '✨ <strong>Tu liso perfecto, a precio de promo</strong> · solo hasta el 31 de octubre' },
+        { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
+        { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '🎁 Con tu Alisado Saludable, <strong>kit de regalo de hasta $74.000</strong>' },
+        { href: BASE + '#alisado-classic', loc: 'alisado-classic', t: '👑 <strong>Alisado Classic $160.000</strong> · liso que dura de 4 a 6 meses' },
+        { href: BASE + '#alisado-classic', loc: 'alisado-classic', t: '🌿 <strong>Liso sin formol</strong> desde $160.000' },
+        { href: BASE + '#reposicion-aminoacidos', loc: 'reposicion-aminoacidos', t: '💫 <strong>Menos frizz</strong> · Reposición de Aminoácidos $150.000' },
+        { href: BASE + '#emulsion-zero', loc: 'emulsion-zero', t: '🌸 <strong>Emulsión Zero $170.000</strong> + Termoprotector de $35.000 de regalo' },
+        { href: BASE + '#hidra-complex', loc: 'hidra-complex', t: '👭 <strong>Trae a tu amiga</strong> · 2x1 hidratación profunda $110.000' },
+        { href: BASE, loc: 'promociones', t: '💖 <strong>10% de descuento</strong> en terapias del día 8 al 10 de tu alisado' },
         { href: WA, t: '📲 <strong>Agenda tu cita</strong> por WhatsApp · cupos limitados por agenda' }
     ];
     var VELOCIDAD_PX_S = 70; // lenta, para que se alcance a leer
+
+    // En las paginas de sede, cada mensaje baja a su propia tarjeta de promocion en esa misma pagina
+    function destino(p) {
+        if (!p.loc) return p.href;
+        var ids = [p.loc + '-t', p.loc + '-m', p.loc];
+        for (var i = 0; i < ids.length; i++) {
+            if (document.getElementById(ids[i]) && document.querySelector('.sd-promos')) return '#' + ids[i];
+        }
+        return p.href;
+    }
 
     function estilos() {
         if (document.getElementById('promo-ticker-css')) return;
@@ -55,7 +65,7 @@
             PROMOS.forEach(function (p) {
                 var d = document.createElement('a');
                 d.className = 'announcement-item';
-                d.href = p.href;
+                d.href = destino(p);
                 if (p.href.indexOf('wa.me') > -1) { d.target = '_blank'; d.rel = 'noopener noreferrer'; }
                 d.style.color = 'inherit';
                 d.style.textDecoration = 'none';

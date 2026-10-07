@@ -202,3 +202,5 @@
 .sd-reviews { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding: 6px 4px 18px; max-width: 1100px; margin: 0 auto; scrollbar-width: thin; scrollbar-color: var(--sd-gold) transparent; -webkit-overflow-scrolling: touch; }
 .sd-review { flex: 0 0 340px; scroll-snap-align: start; }
 @media (max-width: 860px) { .sd-reviews { padding: 4px 16px 14px; margin: 0 -16px; max-width: none; } .sd-review { flex: 0 0 84%; scroll-snap-align: center; } }
+
+.sd-promo, #promociones { scroll-margin-top: 130px; }
