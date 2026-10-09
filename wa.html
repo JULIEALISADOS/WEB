@@ -266,10 +266,24 @@
                 if (typeof gtag === 'function') gtag('event', 'whatsapp_click', datos);
             } catch (e) {}
 
+            // urlParams.get() ya devuelve el texto decodificado; no se vuelve a decodificar (un "%" en el texto daba error).
             const customText = urlParams.get('text');
             if (customText) {
-                mensaje = decodeURIComponent(customText);
+                mensaje = customText;
             }
+
+            // CODIGO DE ORIGEN al inicio del saludo: lo lee ManyChat para etiquetar origen y sede (acta 17_ACTA_ACUERDO_WEB_VENTAS.md).
+            // Sin utm_source el valor es 'web' -> (WEB). Si la persona borra el codigo, ManyChat lo toma como ORIGEN_DIRECTO.
+            const codigoOrigen = (function () {
+                const s = utmSource;
+                if (/^(google|gads|gbp)/.test(s)) return ciudadSede === 'Tunja' ? 'G-TUNJA' : (ciudadSede === 'Moniquirá' ? 'G-MONIQUIRA' : 'G');
+                if (/^tiktok/.test(s)) return 'TT';
+                if (/^(ig|instagram)/.test(s)) return 'IG';
+                if (/^(fb|facebook|meta)/.test(s)) return 'FB';
+                if (/^(email|correo|mail)/.test(s)) return 'EM';
+                return 'WEB';
+            })();
+            mensaje = '(' + codigoOrigen + ') ' + mensaje;
 
             const waPhone = "573043588180";
             const targetUrl = "https://wa.me/" + waPhone + "?text=" + encodeURIComponent(mensaje);
