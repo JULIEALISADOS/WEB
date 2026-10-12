@@ -27,7 +27,7 @@
   // ---- HTML del banner (mismas clases que style.css de la pagina central)
   var cards = PROMOS.map(function (p, i) {
     return '<div class="image-card video-card-container" data-i="' + i + '" role="button" tabindex="0" aria-label="Ver video: ' + esc(p.t) + '">' +
-      '<video muted loop playsinline webkit-playsinline preload="' + (i === 0 ? 'metadata' : 'none') + '" src="' + p.v + '" class="lazy-img-clickable"></video></div>';
+      '<video muted loop playsinline webkit-playsinline preload="metadata" src="' + p.v + '" class="lazy-img-clickable"></video></div>';
   }).join('');
   host.className = 'hero-image-banner fade-in visible';
   host.innerHTML =
@@ -91,7 +91,7 @@
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
         var v = en.target.querySelector('video'); if (!v) return;
-        if (en.isIntersecting) { if (v.preload === 'none') v.preload = 'metadata'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        if (en.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
         else if (!v.paused) v.pause();
       });
     }, { root: null, threshold: 0.35 });
