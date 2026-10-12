@@ -204,3 +204,16 @@
 @media (max-width: 860px) { .sd-reviews { padding: 4px 16px 14px; margin: 0 -16px; max-width: none; } .sd-review { flex: 0 0 84%; scroll-snap-align: center; } }
 
 .sd-promo, #promociones { scroll-margin-top: 130px; }
+
+/* Encabezado sin foto lateral (misma logica de la pagina central: el banner de promociones va debajo) */
+.sd-hero-solo { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 0; }
+.sd-hero-solo .sd-lead { margin-left: auto; margin-right: auto; }
+.sd-hero-solo .sd-cta-row, .sd-hero-solo .sd-chips { justify-content: center; }
+.sd-hero:has(.sd-hero-solo) { padding: 40px 0 30px; }
+@media (max-width: 640px) {
+    .sd-hero:has(.sd-hero-solo) { padding: 20px 0 12px; }
+    .sd-hero-solo .sd-chips { display: none; }
+    .sd-hero-solo .sd-rating { margin-bottom: 12px; }
+    .sd-hero-solo .sd-cta-row { margin-bottom: 0; }
+    .sd-hero-solo .sd-btn-ghost { display: none; }
+}
