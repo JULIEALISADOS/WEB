@@ -18,6 +18,10 @@
   var qs = new URLSearchParams(window.location.search);
   if (qs.get('utm_source')) { CLAVES.forEach(function (k) { guardar('ja_' + k, (qs.get(k) || '').toLowerCase()); }); }
 
+  // La sede y la campana tambien se recuerdan aunque la persona entre sin utm_source (p. ej. enlaces de Google Business con sede).
+  if (qs.get('sede')) guardar('ja_sede', qs.get('sede'));
+  if (qs.get('utm_campaign') && !qs.get('utm_source')) guardar('ja_utm_campaign', (qs.get('utm_campaign') || '').toLowerCase());
+
   var pagina = (window.location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
 
   function sedeDe(texto) {
@@ -35,6 +39,23 @@
     if (a.getAttribute('data-wa-ok') === '1') return;
     var u;
     try { u = new URL(href, window.location.href); } catch (e) { return; }
+    // Enlaces que ya apuntan a wa.html en el HTML: solo se les agrega el origen de la visita (si llego con utm) y se evita contar la conversion doble.
+    if (u.origin === window.location.origin && /(^|\/)wa\.html$/.test(u.pathname)) {
+      var o0 = leer('ja_utm_source');
+      if (o0) {
+        u.searchParams.set('utm_source', o0);
+        if (leer('ja_utm_medium')) u.searchParams.set('utm_medium', leer('ja_utm_medium'));
+        if (leer('ja_utm_campaign')) u.searchParams.set('utm_campaign', leer('ja_utm_campaign'));
+        if (leer('ja_utm_content')) u.searchParams.set('utm_content', leer('ja_utm_content'));
+      }
+      // Sede: la del enlace; si no trae, la de la pagina; si no, la recordada de la entrada.
+      if (!u.searchParams.get('sede')) { var s0 = sedeDe('') || leer('ja_sede'); if (s0) u.searchParams.set('sede', s0); }
+      if (!o0 && leer('ja_utm_campaign') && !u.searchParams.get('utm_campaign')) u.searchParams.set('utm_campaign', leer('ja_utm_campaign'));
+      a.setAttribute('href', u.pathname + u.search);
+      a.setAttribute('data-wa-ok', '1');
+      a.removeAttribute('onclick');
+      return;
+    }
     var esWa = (u.hostname === 'wa.me' && u.pathname.replace(/\//g, '') === TEL) ||
                (u.hostname === 'api.whatsapp.com' && u.searchParams.get('phone') === TEL);
     if (!esWa) return;
@@ -43,7 +64,7 @@
     var origen = leer('ja_utm_source') || 'web';
     var medio = leer('ja_utm_medium') || 'boton';
     var campana = leer('ja_utm_campaign') || ('web-' + pagina);
-    var sede = sedeDe(texto);
+    var sede = sedeDe(texto) || leer('ja_sede');
     var tipo = pagina === 'linea-profesional' ? 'mayorista' : 'cita';
 
     var d = new URL('wa.html', window.location.origin + '/');
@@ -63,7 +84,7 @@
   }
 
   function barrer(raiz) {
-    var l = (raiz || document).querySelectorAll('a[href*="wa.me/' + TEL + '"], a[href*="api.whatsapp.com"]');
+    var l = (raiz || document).querySelectorAll('a[href*="wa.me/' + TEL + '"], a[href*="api.whatsapp.com"], a[href^="wa.html"], a[href^="/wa.html"]');
     for (var i = 0; i < l.length; i++) aWa(l[i]);
   }
 
