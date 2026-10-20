@@ -251,9 +251,11 @@
         banner.innerHTML = `
             <div class="julie-consent-container">
                 <div class="julie-consent-text">
-                    \u{1F338} Usamos cookies para que la web funcione y para mostrarte ofertas que sí te interesan.
-                    Ver <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Política de Cookies</a>
-                    y <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Datos</a> (Ley 1581).
+                    \u{1F338} En <strong>Julie Alisados</strong> cuidamos tu cabello y también tu privacidad.
+                    Usamos cookies para que la web funcione bien, saber qué te gusta y mostrarte promociones que de verdad te interesen.
+                    Puedes aceptarlas o ajustar cuáles permites. Tus datos se tratan con respeto y conforme a la Ley 1581 de 2012.
+                    Lee nuestra <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Política de Cookies</a>
+                    y nuestra <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Política de Datos</a>.
                 </div>
                 <div class="julie-consent-actions">
                     <button type="button" id="btn-consent-adjust" class="julie-consent-btn julie-consent-btn-adjust" aria-expanded="false" aria-controls="julie-consent-panel">Ajustar</button>
