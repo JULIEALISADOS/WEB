@@ -1,7 +1,9 @@
 /**
  * Julie Alisados - Consent & Privacy Manager
  * Blindaje Legal: Ley 1581 de 2012 (SIC) y Google Consent Mode v2 (Google Ads 2024-2026)
- * Paleta de Diseno: Obsidian & Gold (#1A1A1A, #D4AF37, #F2D06B)
+ * Paleta Libro de Marca (claro): Blanco nieve #FFF0F5, Oro antiguo #D4AF37, Negro obsidiana #111111, Rosa suave #FFD1DC
+ * Opciones: "Aceptar" (todas) o "Ajustar" (panel por categorias: necesarias fijas, analiticas, publicidad).
+ * Valores guardados en julie_privacy_consent: granted | denied | analytics | ads
  */
 
 (function () {
@@ -16,190 +18,181 @@
         style.textContent = `
             .julie-consent-banner {
                 position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(180deg, rgba(26, 26, 26, 0.98) 0%, rgba(18, 16, 16, 0.99) 100%);
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
-                color: #FDF9F7;
-                padding: 16px 24px;
+                left: 50%;
+                bottom: 16px;
+                width: calc(100% - 32px);
+                max-width: 760px;
+                background: rgba(255, 240, 245, 0.82);
+                backdrop-filter: blur(16px) saturate(140%);
+                -webkit-backdrop-filter: blur(16px) saturate(140%);
+                color: #111111;
+                padding: 16px 20px;
                 z-index: 999999;
-                box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.35);
-                border-top: 1.5px solid rgba(212, 175, 55, 0.55);
+                border-radius: 18px;
+                border: 1px solid rgba(212, 175, 55, 0.45);
+                box-shadow: 0 10px 34px rgba(17, 17, 17, 0.14);
                 box-sizing: border-box;
                 font-family: var(--font-body, 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-                transform: translateY(100%);
+                transform: translate(-50%, 130%);
                 opacity: 0;
                 transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             }
-            .julie-consent-banner.is-visible {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            .julie-consent-banner.is-visible { transform: translate(-50%, 0); opacity: 1; }
             .julie-consent-container {
-                max-width: 1200px;
-                margin: 0 auto;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 24px;
+                gap: 18px;
             }
-            .julie-consent-content {
-                display: flex;
-                align-items: flex-start;
-                gap: 12px;
+            .julie-consent-text {
                 flex: 1;
                 font-size: 0.86rem;
-                line-height: 1.55;
-                color: #E6DFDC;
+                line-height: 1.5;
+                color: #333333;
             }
-            .julie-consent-icon {
-                font-size: 1.2rem;
-                flex-shrink: 0;
-                margin-top: 2px;
-            }
-            .julie-consent-text strong {
-                color: #FFFFFF;
+            .julie-consent-text strong { color: #111111; }
+            .julie-consent-link {
+                color: #8A6D12;
+                text-decoration: underline;
                 font-weight: 700;
             }
-            .julie-consent-link {
-                color: #F2D06B;
-                text-decoration: underline;
-                font-weight: 600;
-                transition: color 0.2s ease, text-decoration-color 0.2s ease;
-            }
-            .julie-consent-link:hover,
-            .julie-consent-link:focus-visible {
-                color: #FFE699;
-                text-decoration-color: #FFE699;
-            }
-            .julie-consent-actions {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                flex-shrink: 0;
-            }
+            .julie-consent-link:hover, .julie-consent-link:focus-visible { color: #111111; }
+            .julie-consent-actions { display: flex; gap: 10px; flex-shrink: 0; }
             .julie-consent-btn {
                 border-radius: 26px;
                 padding: 10px 22px;
                 font-family: inherit;
-                font-size: 0.86rem;
+                font-size: 0.88rem;
                 cursor: pointer;
-                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                transition: all 0.25s ease;
                 white-space: nowrap;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                outline: none;
             }
             .julie-consent-btn-accept {
-                background: linear-gradient(135deg, #D4AF37 0%, #A68612 100%);
-                color: #1A1A1A;
+                background: #D4AF37;
+                color: #111111;
                 font-weight: 700;
-                border: 1px solid rgba(255, 230, 153, 0.5);
-                box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+                border: 1px solid #D4AF37;
+                box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
             }
-            .julie-consent-btn-accept:hover,
-            .julie-consent-btn-accept:focus-visible {
-                background: linear-gradient(135deg, #E5C358 0%, #CFA528 100%);
-                transform: translateY(-2px);
-                box-shadow: 0 6px 22px rgba(212, 175, 55, 0.55);
+            .julie-consent-btn-accept:hover, .julie-consent-btn-accept:focus-visible {
+                background: #C9A22C;
+                transform: translateY(-1px);
             }
-            .julie-consent-btn-reject {
-                background: transparent;
-                color: #F2D06B;
+            .julie-consent-btn-adjust {
+                background: rgba(255, 255, 255, 0.6);
+                color: #111111;
                 font-weight: 600;
-                border: 1.5px solid rgba(212, 175, 55, 0.55);
+                border: 1px solid rgba(17, 17, 17, 0.25);
             }
-            .julie-consent-btn-reject:hover,
-            .julie-consent-btn-reject:focus-visible {
-                background: rgba(212, 175, 55, 0.12);
+            .julie-consent-btn-adjust:hover, .julie-consent-btn-adjust:focus-visible {
+                background: #FFD1DC;
                 border-color: #D4AF37;
-                color: #FFFFFF;
-                transform: translateY(-2px);
             }
-            @media (max-width: 900px) {
-                .julie-consent-container {
-                    flex-direction: column;
-                    align-items: stretch;
-                    gap: 16px;
-                }
-                .julie-consent-actions {
-                    justify-content: flex-end;
-                    width: 100%;
-                }
+            .julie-consent-panel { display: none; margin-top: 14px; border-top: 1px solid rgba(212, 175, 55, 0.35); padding-top: 12px; }
+            .julie-consent-banner.is-adjusting .julie-consent-panel { display: block; }
+            .julie-consent-banner.is-adjusting .julie-consent-actions { display: none; }
+            .julie-consent-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 14px;
+                padding: 8px 0;
+                font-size: 0.84rem;
+                color: #333333;
             }
-            @media (max-width: 540px) {
-                .julie-consent-banner {
-                    padding: 16px 18px 20px 18px;
-                }
-                .julie-consent-content {
-                    font-size: 0.82rem;
-                    line-height: 1.5;
-                }
-                .julie-consent-actions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; }
-                .julie-consent-btn {
-                    width: 100%;
-                    padding: 12px 18px;
-                    font-size: 0.88rem;
-                }
+            .julie-consent-row strong { display: block; color: #111111; font-size: 0.88rem; }
+            .julie-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+            .julie-switch input { opacity: 0; width: 0; height: 0; }
+            .julie-switch span {
+                position: absolute; inset: 0; cursor: pointer;
+                background: rgba(17, 17, 17, 0.2); border-radius: 24px; transition: 0.2s;
+            }
+            .julie-switch span::before {
+                content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px;
+                background: #FFFFFF; border-radius: 50%; transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            }
+            .julie-switch input:checked + span { background: #D4AF37; }
+            .julie-switch input:checked + span::before { transform: translateX(20px); }
+            .julie-switch input:disabled + span { opacity: 0.6; cursor: not-allowed; }
+            .julie-switch input:focus-visible + span { outline: 2px solid #111111; outline-offset: 2px; }
+            .julie-consent-panel-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+            @media (max-width: 640px) {
+                .julie-consent-banner { bottom: 10px; width: calc(100% - 20px); padding: 14px 16px; }
+                .julie-consent-container { flex-direction: column; align-items: stretch; gap: 12px; }
+                .julie-consent-text { font-size: 0.82rem; }
+                .julie-consent-actions, .julie-consent-panel-actions { display: grid; grid-template-columns: 1fr 1fr; }
+                .julie-consent-btn { width: 100%; padding: 12px 10px; }
             }
         `;
         document.head.appendChild(style);
     }
 
-    function applyGtagConsent(status) {
+    // choice: { analytics: bool, ads: bool }
+    function applyConsent(choice) {
+        const ad = choice.ads ? 'granted' : 'denied';
+        const an = choice.analytics ? 'granted' : 'denied';
         if (typeof window.gtag === 'function') {
             window.gtag('consent', 'update', {
-                'ad_storage': status,
-                'ad_user_data': status,
-                'ad_personalization': status,
-                'analytics_storage': status
+                'ad_storage': ad,
+                'ad_user_data': ad,
+                'ad_personalization': ad,
+                'analytics_storage': an
             });
         }
-        // Sincronizacion preventiva con TikTok Pixel
-        if (typeof window.fbq === 'function') { try { window.fbq('consent', status === 'granted' ? 'grant' : 'revoke'); } catch (e) {} }
+        if (typeof window.fbq === 'function') { try { window.fbq('consent', choice.ads ? 'grant' : 'revoke'); } catch (e) {} }
         if (window.ttq) {
             try {
-                if (status === 'granted' && typeof window.ttq.grantConsent === 'function') {
+                if (choice.ads && typeof window.ttq.grantConsent === 'function') {
                     window.ttq.grantConsent();
-                } else if (status === 'denied' && typeof window.ttq.revokeConsent === 'function') {
+                } else if (!choice.ads && typeof window.ttq.revokeConsent === 'function') {
                     window.ttq.revokeConsent();
                 }
-            } catch (e) {
-                // Silencioso
-            }
+            } catch (e) {}
         }
+    }
+
+    function choiceToValue(choice) {
+        if (choice.analytics && choice.ads) return 'granted';
+        if (choice.analytics) return 'analytics';
+        if (choice.ads) return 'ads';
+        return 'denied';
+    }
+
+    function valueToChoice(value) {
+        return {
+            analytics: value === 'granted' || value === 'analytics',
+            ads: value === 'granted' || value === 'ads'
+        };
     }
 
     function removeBanner(banner) {
         if (!banner) return;
         banner.classList.remove('is-visible');
-        setTimeout(() => {
-            banner.remove();
-        }, 400);
+        setTimeout(() => { banner.remove(); }, 400);
     }
 
-    
     const SUPABASE_URL = 'https://hzvwruiybynkifqsekkp.supabase.co';
     const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dndydWl5Ynlua2lmcXNla2twIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NTE3MDgsImV4cCI6MjA5MDEyNzcwOH0.MmpGISOawK0LLg4roJMzHgdDkRZ6XwRxO3InbOHFYXw';
 
-    function logConsentToCloud(decision) {
+    function logConsentToCloud(value) {
         const proofId = 'proof_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
-        try {
-            localStorage.setItem('julie_consent_proof_id', proofId);
-        } catch (e) {}
+        try { localStorage.setItem('julie_consent_proof_id', proofId); } catch (e) {}
 
+        const tipos = {
+            granted: 'ACEPTAR_TODAS',
+            analytics: 'AJUSTE_SOLO_ANALITICAS',
+            ads: 'AJUSTE_SOLO_PUBLICIDAD',
+            denied: 'SOLO_NECESARIAS'
+        };
         const payload = {
             pc_origen: 'WEB_CLIENT',
             categoria: 'TECH',
-            accion: decision === 'granted' ? 'CONSENTIMIENTO_COOKIES_ACEPTAR_TODAS' : 'CONSENTIMIENTO_COOKIES_SOLO_NECESARIAS',
+            accion: 'CONSENTIMIENTO_COOKIES_' + tipos[value],
             resultado: 'EXITO',
             detalles: {
                 proof_id: proofId,
-                decision: decision,
-                tipo_consentimiento: decision === 'granted' ? 'ACEPTAR_TODAS' : 'SOLO_NECESARIAS',
+                decision: value,
+                tipo_consentimiento: tipos[value],
                 politica_version: 'Politica_Privacidad_y_Cookies_v3_2026-10-05',
                 timestamp_colombia: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
                 timestamp_iso: new Date().toISOString(),
@@ -224,99 +217,112 @@
         } catch (err) {}
     }
 
-    function showConsentBanner() {
-        const existing = document.getElementById('julie-consent-banner');
-        if (existing) return;
+    function saveChoice(choice, banner) {
+        const value = choiceToValue(choice);
+        try {
+            localStorage.setItem(CONSENT_KEY, value);
+            localStorage.setItem(PRIVACY_ACCEPTED_KEY, value === 'granted' ? 'true' : 'false');
+            localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
+            logConsentToCloud(value);
+        } catch (e) {
+            console.warn('Error al almacenar consentimiento:', e);
+        }
+        applyConsent(choice);
+        removeBanner(banner);
+    }
+
+    function showConsentBanner(openAdjust) {
+        if (document.getElementById('julie-consent-banner')) return;
 
         injectStyles();
+
+        let previous = { analytics: false, ads: false };
+        try {
+            const saved = localStorage.getItem(CONSENT_KEY);
+            if (saved) previous = valueToChoice(saved);
+        } catch (e) {}
 
         const banner = document.createElement('section');
         banner.id = 'julie-consent-banner';
         banner.className = 'julie-consent-banner';
         banner.setAttribute('role', 'region');
-        banner.setAttribute('aria-label', 'Consentimiento de cookies y protecci\u00F3n de datos');
+        banner.setAttribute('aria-label', 'Consentimiento de cookies y protección de datos');
 
         banner.innerHTML = `
             <div class="julie-consent-container">
-                <div class="julie-consent-content">
-                    <span class="julie-consent-icon" aria-hidden="true">&#128274;</span>
-                    <div class="julie-consent-text">
-                        En <strong>Julie Alisados</strong> respetamos tu privacidad y protegemos tus datos (Ley 1581 de 2012 y SIC). Empleamos cookies t\u00E9cnicas esenciales para el funcionamiento seguro del sitio, y cookies anal\u00EDticas y publicitarias para optimizar tu navegaci\u00F3n y personalizar ofertas. Puedes aceptar todas las cookies o continuar solo con las necesarias. Consulta nuestra 
-                        <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Pol\u00EDtica de Datos</a> y nuestra 
-                        <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Pol\u00EDtica de Cookies</a>.
-                    </div>
+                <div class="julie-consent-text">
+                    \u{1F338} Usamos cookies para que la web funcione y para mostrarte ofertas que sí te interesan.
+                    Ver <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Política de Cookies</a>
+                    y <a href="politica-datos.html" target="_blank" rel="noopener noreferrer" class="julie-consent-link">Datos</a> (Ley 1581).
                 </div>
                 <div class="julie-consent-actions">
-                    <button type="button" id="btn-consent-reject" class="julie-consent-btn julie-consent-btn-reject" aria-label="Rechazar cookies no esenciales">
-                        Solo Necesarias
-                    </button>
-                    <button type="button" id="btn-consent-accept" class="julie-consent-btn julie-consent-btn-accept" aria-label="Aceptar todas las cookies">
-                        Aceptar Todas
-                    </button>
+                    <button type="button" id="btn-consent-adjust" class="julie-consent-btn julie-consent-btn-adjust" aria-expanded="false" aria-controls="julie-consent-panel">Ajustar</button>
+                    <button type="button" id="btn-consent-accept" class="julie-consent-btn julie-consent-btn-accept">Aceptar</button>
+                </div>
+            </div>
+            <div class="julie-consent-panel" id="julie-consent-panel">
+                <div class="julie-consent-row">
+                    <div><strong>Necesarias</strong>Para que la web funcione. Siempre activas.</div>
+                    <label class="julie-switch"><input type="checkbox" checked disabled aria-label="Cookies necesarias, siempre activas"><span></span></label>
+                </div>
+                <div class="julie-consent-row">
+                    <div><strong>Analíticas</strong>Nos dicen qué páginas se visitan para mejorar la web.</div>
+                    <label class="julie-switch"><input type="checkbox" id="julie-consent-analytics" aria-label="Cookies analíticas"><span></span></label>
+                </div>
+                <div class="julie-consent-row">
+                    <div><strong>Publicidad</strong>Para mostrarte promociones en Facebook, Instagram, TikTok y Google.</div>
+                    <label class="julie-switch"><input type="checkbox" id="julie-consent-ads" aria-label="Cookies de publicidad"><span></span></label>
+                </div>
+                <div class="julie-consent-panel-actions">
+                    <button type="button" id="btn-consent-save" class="julie-consent-btn julie-consent-btn-adjust">Guardar</button>
+                    <button type="button" id="btn-consent-accept-all" class="julie-consent-btn julie-consent-btn-accept">Aceptar todas</button>
                 </div>
             </div>
         `;
 
         document.body.appendChild(banner);
 
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                banner.classList.add('is-visible');
-            }, 50);
+        const chkAnalytics = document.getElementById('julie-consent-analytics');
+        const chkAds = document.getElementById('julie-consent-ads');
+        chkAnalytics.checked = previous.analytics;
+        chkAds.checked = previous.ads;
+
+        const btnAdjust = document.getElementById('btn-consent-adjust');
+        function openPanel() {
+            banner.classList.add('is-adjusting');
+            btnAdjust.setAttribute('aria-expanded', 'true');
+            chkAnalytics.focus();
+        }
+        btnAdjust.addEventListener('click', openPanel);
+        if (openAdjust) openPanel();
+
+        const all = { analytics: true, ads: true };
+        document.getElementById('btn-consent-accept').addEventListener('click', () => saveChoice(all, banner));
+        document.getElementById('btn-consent-accept-all').addEventListener('click', () => saveChoice(all, banner));
+        document.getElementById('btn-consent-save').addEventListener('click', () => {
+            saveChoice({ analytics: chkAnalytics.checked, ads: chkAds.checked }, banner);
         });
 
-        const btnAccept = document.getElementById('btn-consent-accept');
-        const btnReject = document.getElementById('btn-consent-reject');
-
-        if (btnAccept) {
-            btnAccept.addEventListener('click', () => {
-                try {
-                    localStorage.setItem(CONSENT_KEY, 'granted');
-                    localStorage.setItem(PRIVACY_ACCEPTED_KEY, 'true');
-                    localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
-                    logConsentToCloud('granted');
-                } catch (e) {
-                    console.warn('Error al almacenar consentimiento:', e);
-                }
-                applyGtagConsent('granted');
-                removeBanner(banner);
-            });
-        }
-
-        if (btnReject) {
-            btnReject.addEventListener('click', () => {
-                try {
-                    localStorage.setItem(CONSENT_KEY, 'denied');
-                    localStorage.setItem(PRIVACY_ACCEPTED_KEY, 'false');
-                    localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
-                    logConsentToCloud('denied');
-                } catch (e) {
-                    console.warn('Error al almacenar consentimiento:', e);
-                }
-                applyGtagConsent('denied');
-                removeBanner(banner);
-            });
-        }
+        requestAnimationFrame(() => {
+            setTimeout(() => { banner.classList.add('is-visible'); }, 50);
+        });
     }
 
     // Funcion publica global para reabrir el panel desde enlaces del footer o politicas
     window.openJulieConsentBanner = function () {
-        showConsentBanner();
+        showConsentBanner(true);
     };
 
     function init() {
         try {
             const consent = localStorage.getItem(CONSENT_KEY);
             if (!consent) {
-                // Sin decision previa: mostrar banner
-                showConsentBanner();
-            } else if (consent === 'granted') {
-                applyGtagConsent('granted');
-            } else if (consent === 'denied') {
-                applyGtagConsent('denied');
+                showConsentBanner(false);
+            } else {
+                applyConsent(valueToChoice(consent));
             }
         } catch (e) {
-            showConsentBanner();
+            showConsentBanner(false);
         }
     }
 
