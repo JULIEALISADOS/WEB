@@ -216,7 +216,8 @@
                 ciudadSede = 'Tunja';
             }
 
-            let mensaje = "Hola Julie Alisados 🌸 ";
+            let mensaje = "¡Hola, Julie Alisados! 💜 ";
+            const frase = function (t) { return cliente ? t : t.charAt(0).toUpperCase() + t.slice(1); };
             if (cliente) {
                 mensaje += "soy " + decodeURIComponent(cliente) + ", ";
             }
@@ -224,38 +225,38 @@
             // Frases 100% naturales, cálidas y elegantes (sin códigos técnicos visibles)
             if (utmSource.includes('tiktok') || urlParams.get('origen') === 'tiktok') {
                 if (tipo === 'mayorista') {
-                    mensaje += "las vi en TikTok y me gustaría información para compras al por mayor y salones ✨";
+                    mensaje += frase("las vi en TikTok y me gustaría información para compras al por mayor y salones ✨");
                 } else if (tipo === 'seguidor' || tipo === 'live') {
-                    mensaje += "las sigo en TikTok y me gustaría unirme a la comunidad de los Lives y promociones ✨";
+                    mensaje += frase("las sigo en TikTok y me gustaría unirme a la comunidad de los Lives y promociones ✨");
                 } else if (ciudadSede) {
-                    mensaje += "las vi en TikTok y deseo agendar mi valoración de alisado para la sede " + ciudadSede + " ✨";
+                    mensaje += frase("las vi en TikTok y quiero más información ✨");
                 } else {
-                    mensaje += "las vi en TikTok y deseo agendar mi cita de valoración para alisado ✨";
+                    mensaje += frase("las vi en TikTok y quiero más información ✨");
                 }
             } else if (utmSource.includes('google') || utmSource.includes('gads')) {
                 if (ciudadSede) {
-                    mensaje += "vi su información en Google y deseo agendar mi cita de valoración en la sede " + ciudadSede + " ✨";
+                    mensaje += frase("las encontré en Google y quiero más información ✨");
                 } else {
-                    mensaje += "vi su información en Google y deseo agendar mi cita de valoración para alisado ✨";
+                    mensaje += frase("las encontré en Google y quiero más información ✨");
                 }
             } else if (utmSource.includes('meta') || utmSource.includes('fb') || utmSource.includes('ig') || utmSource.includes('facebook') || utmSource.includes('instagram')) {
                 if (tipo === 'asesora') {
-                    mensaje += "vi su publicación y quiero hablar con una asesora ✨";
+                    mensaje += frase("vi su publicación y quiero hablar con una asesora ✨");
                 } else if (ciudadSede) {
-                    mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable en la sede " + ciudadSede + " ✨";
+                    mensaje += frase("las vi en " + (/^(ig|instagram)/.test(utmSource) ? "Instagram" : "Facebook") + " y quiero más información ✨");
                 } else {
-                    mensaje += "vi su publicación y deseo agendar mi cita de Alisado Saludable ✨";
+                    mensaje += frase("las vi en " + (/^(ig|instagram)/.test(utmSource) ? "Instagram" : "Facebook") + " y quiero más información ✨");
                 }
             } else if (utmSource.includes('email')) {
-                mensaje += "recibí su correo de promociones y deseo agendar mi cita de alisado ✨";
+                mensaje += frase("vi su correo y quiero más información ✨");
             } else if (ciudadSede) {
-                mensaje += "estoy en su página web y deseo consultar sobre citas para la sede " + ciudadSede + " ✨";
+                mensaje += frase("vi su página y quiero más información ✨");
             } else {
-                mensaje += "estoy visitando su página web y deseo recibir asesoría para agendar mi cita ✨";
+                mensaje += frase("vi su página y quiero más información ✨");
             }
 
             if (tipo === 'asesora' && !/meta|fb|ig|facebook|instagram/.test(utmSource)) {
-                mensaje = "Hola Julie Alisados 🌸 quiero hablar con una asesora ✨";
+                mensaje = "¡Hola, Julie Alisados! 💜 quiero hablar con una asesora ✨";
             }
 
             // MEDICION: evento propio por boton/origen/campana (solo se dispara si hay consentimiento, porque los pixeles solo existen con consentimiento)
