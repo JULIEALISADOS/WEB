@@ -9,7 +9,7 @@
    ========================================================================== */
 (function () {
     var BASE = 'https://juliealisados.com/promociones-condiciones.html';
-    var WA = 'https://wa.me/573043588180?text=' + encodeURIComponent('Hola Julie Alisados! Quiero agendar mi cita.');
+    var WA = 'https://wa.me/573043588180?text=' + encodeURIComponent('¡Hola, Julie Alisados! Quiero más información');
     var PROMOS = [
         { href: BASE, loc: 'promociones', t: '✨ <strong>Tu liso perfecto, a precio de promo</strong> · solo hasta el 31 de octubre' },
         { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
