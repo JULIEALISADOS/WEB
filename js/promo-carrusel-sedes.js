@@ -14,12 +14,12 @@
   var enSede = sede ? ' en la sede ' + sede : '';
 
   var PROMOS = [
-    { v: 'promo-octubre-intro.mp4', t: 'Promociones del Mes de Octubre 2026', m: 'Hola Julie Alisados! ✨ Vi el video de las promociones de Octubre en su página web y 💖 ¡Lo quiero! Me gustaría agendar mi cita' + enSede + '.' },
-    { v: 'promo-alisado-saludable-octubre.mp4', t: 'Alisado Saludable + Crioterapia + Kit Dúo Gratis', m: 'Hola Julie Alisados! ✨ Vi la promo de Alisado Saludable con Crioterapia y Kit Dúo Gratis de Octubre ($250.000) y 💖 ¡Lo quiero! ¿Qué fechas tienen disponibles' + enSede + '?' },
-    { v: 'promo-emulsion-zero-octubre.mp4', t: 'Emulsión Zero + Termoprotector Gratis', m: 'Hola Julie Alisados! ✨ Vi la promo de Emulsión Zero ($170.000) con Termoprotector Gratis de Octubre y 💖 ¡Lo quiero! Me gustaría agendar mi cita' + enSede + '.' },
-    { v: 'promo-reposicion-aminoacidos-octubre.mp4', t: 'Reposición de Aminoácidos ($150.000)', m: 'Hola Julie Alisados! ✨ Vi la promo de Reposición de Aminoácidos ($150.000) de Octubre y 💖 ¡Lo quiero! ¿Cómo puedo agendar mi cita' + enSede + '?' },
-    { v: 'promo-hidracomplex-octubre.mp4', t: 'Hidra Complex - Plan Amigas (2 x $110.000)', m: 'Hola Julie Alisados! ✨ Vi el Plan Amigas de Hidra Complex (2 personas por $110.000) de Octubre y 💖 ¡Lo quiero! Queremos agendar nuestra cita' + enSede + '.' },
-    { v: 'promo-alisado-classic-octubre.mp4', t: 'Alisado Classic ($160.000)', m: 'Hola Julie Alisados! ✨ Vi la promo de Alisado Classic ($160.000) de Octubre y 💖 ¡Lo quiero! ¿Qué disponibilidad de agenda tienen' + enSede + '?' }
+    { v: 'promo-octubre-intro.mp4', t: 'Promociones del Mes de Octubre 2026', m: '¡Hola, Julie Alisados! Vi las promociones de octubre en su página y quiero más información' + enSede },
+    { v: 'promo-alisado-saludable-octubre.mp4', t: 'Alisado Saludable + Crioterapia + Kit Dúo Gratis', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Saludable y quiero más información' + enSede },
+    { v: 'promo-emulsion-zero-octubre.mp4', t: 'Emulsión Zero + Termoprotector Gratis', m: '¡Hola, Julie Alisados! Vi la promo de Emulsión Zero y quiero más información' + enSede },
+    { v: 'promo-reposicion-aminoacidos-octubre.mp4', t: 'Reposición de Aminoácidos ($150.000)', m: '¡Hola, Julie Alisados! Vi la promo de Reposición de Aminoácidos y quiero más información' + enSede },
+    { v: 'promo-hidracomplex-octubre.mp4', t: 'Hidra Complex - Plan Amigas (2 x $110.000)', m: '¡Hola, Julie Alisados! Vi el Plan Amigas de Hidra Complex y quiero más información' + enSede },
+    { v: 'promo-alisado-classic-octubre.mp4', t: 'Alisado Classic ($160.000)', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Classic y quiero más información' + enSede }
   ];
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
