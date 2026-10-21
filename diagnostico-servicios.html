@@ -475,14 +475,14 @@
             }
 
             // 3. Mensaje amigable, cálido y enfocado en foto + lo que desea lograr
-            var waMsg = "¡Hola Julie Alisados! 👋🌸\n" +
-                "Deseo mi valoración capilar personalizada. Aquí les comparto la foto de mi cabello y lo que deseo lograr:\n\n" +
+            var waMsg = "¡Hola, Julie Alisados! 👋🌸\n" +
+                "Quiero más información. Te comparto mi foto y lo que deseo lograr:\n\n" +
                 "• *Nombre:* " + name + "\n" +
                 "• *Celular:* " + phone + "\n" +
                 "• *Correo:* " + email + "\n" +
                 "• *Lo que deseo lograr:* " + serviceAnswers.goal + "\n" +
                 "• *Sede que deseo visitar:* Sede " + serviceAnswers.location + "\n\n" +
-                "¿Me confirman si recibieron mi foto y qué tratamiento me recomiendan? ✨";
+                "¿Me confirman si recibieron mi foto? ✨";
 
             var rawWa = "https://wa.me/573043588180?text=" + encodeURIComponent(waMsg);
             var waUrl = (window.JulieAnalytics && typeof window.JulieAnalytics.buildWaUrlWithUtms === "function") ? window.JulieAnalytics.buildWaUrlWithUtms(rawWa) : ("wa.html?text=" + encodeURIComponent(waMsg));
