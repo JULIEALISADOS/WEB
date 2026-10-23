@@ -747,10 +747,19 @@
             animation: fadeIn 0.25s ease;
         }
 
+        .card-tab-pane { text-align: left; }
+
         .card-tab-pane ul {
-            padding-left: 16px;
+            list-style: none;
+            padding: 0;
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.45;
+        }
+
+        .card-tab-pane li {
+            padding-left: 1.7em;
+            text-indent: -1.7em;
+            margin-bottom: 7px;
         }
 
         .card-tab-pane p {
@@ -787,6 +796,25 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 12px rgba(0,158,227,0.35);
         }
+        /* Ficha de extractos (mismo estilo que la ficha de formula de alisados.html) */
+        .ext-tag { display: inline-block; align-self: center; background: #FFF9FB; border: 1px solid rgba(212, 175, 55, 0.65); color: #7A5B0B; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; margin-bottom: 6px; }
+        .ext-motto { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: #5c5c5c; margin: 0 0 8px; line-height: 1.3; }
+        .ext-facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #eee; border-left: 1px solid #eee; margin: 12px 0; }
+        .ext-fact { padding: 8px 10px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; text-align: left; }
+        .ext-fact b { display: block; font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #A8862A; font-weight: 700; }
+        .ext-fact span { display: block; font-size: 0.68rem; color: #5c5c5c; text-transform: uppercase; letter-spacing: 0.06em; }
+        .ext-fact.wide { grid-column: 1 / -1; }
+        .ext-sheet { border: 1px solid rgba(212, 175, 55, 0.55); background: #fff; margin: 4px 0 10px; text-align: left; }
+        .ext-head { display: flex; justify-content: space-between; gap: 8px; padding: 7px 10px; background: #FFF0F5; border-bottom: 1px solid rgba(212, 175, 55, 0.55); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: #7A5B0B; }
+        .ext-grid { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
+        .ext-cell { padding: 9px 10px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .ext-cell:nth-child(2n) { border-right: 0; }
+        .ext-cell:nth-last-child(-n+2) { border-bottom: 0; }
+        .ext-cell dt { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #111; margin: 0 0 3px; line-height: 1.2; }
+        .ext-cell dt i { font-family: 'Lato', Arial, sans-serif; font-style: normal; font-size: 0.62rem; letter-spacing: 0.1em; color: #A8862A; font-weight: 700; margin-right: 6px; }
+        .ext-cell dd { margin: 0; font-size: 0.78rem; line-height: 1.4; color: #4a3d12; }
+        .ext-assure { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 8px; font-size: 0.76rem; color: #5c5c5c; text-align: left; }
+        .ext-assure span::before { content: "✓ "; color: #A8862A; font-weight: 700; }
     </style>
     <style id="envia-breb-styles">
     /* Estilos del Cotizador Envia y Modal de Pago */
@@ -1161,7 +1189,7 @@
     <script src="//widget.manychat.com/4938301_bb894.js" defer="defer"></script>
     <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
     <script src="js/julie-analytics.js" defer></script>
-    <script src="js/consent.js?v=20261020_texto" defer></script>
+    <script src="js/consent.js?v=20260916_consent_v2" defer></script>
     <script src="js/promo-bar.js?v=20261022_mensaje" defer></script>
 </head>
 
@@ -1272,7 +1300,7 @@
                 </a>
                    <h2 class="section-title">Línea de Cuidado Capilar JA By Julie Valencia</h2>
             <p class="product-intro">
-                El secreto de un cabello verdaderamente sano y radiante no está en fórmulas mágicas, sino en darle a tu cuero cabelludo y a tu fibra capilar exactamente lo que necesitan. En <strong>JA By Julie Valencia</strong> desarrollamos una línea profesional especializada con fórmulas limpias, 100% libres de sal y parabenos, diseñada tanto para cuidar y prolongar tus alisados, como para transformar y embellecer el cabello natural, tinturado o maltratado con resultados de salón en casa.
+                El secreto de un cabello bonito no está en fórmulas mágicas: está en darle a tu cuero cabelludo y a tu cabello lo que de verdad necesitan. En <strong>JA By Julie Valencia</strong> creamos una línea propia, hecha en Colombia y con Registro Sanitario INVIMA vigente, para que lleves a casa el cuidado del salón: extractos de plantas, argán y macadamia que limpian, acondicionan y dejan tu cabello suave, brillante y fácil de peinar, tengas alisado, tintura o cabello natural.
             </p>
 
                                     <div class="product-grid">
@@ -1370,27 +1398,70 @@
                         <img loading="lazy" decoding="async" src="SHAMPOO EXTRACTOS ..webp" alt="Shampoo Extractos Naturales JA By Julie Valencia">
                     </div>
                     <div class="product-info">
-                        <h3>Shampoo Extractos Naturales <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
+                        <h3>Shampoo Extractos Naturales JA <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$38.000</span>
-                        <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 4px;">Purificante y Control Grasa (1.000 ml)</p>
-                        
+                        <span class="ext-tag">Shampoo de 8 plantas</span>
+                        <p class="ext-motto">Un ba&ntilde;o de plantas para tu cabello.</p>
+                        <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Ocho extractos naturales en una espuma cremosa que deja tu ra&iacute;z <strong>fresca y liviana</strong> y tu cabello <strong>suave, brillante y con aroma delicioso</strong>, lavado tras lavado.</p>
+                        <div class="ext-facts">
+                            <div class="ext-fact"><b>8</b><span>Extractos naturales</span></div>
+                            <div class="ext-fact"><b>1 litro</b><span>Rinde para muchos lavados</span></div>
+                            <div class="ext-fact wide"><b>Sin sal y sin parabenos</b><span>Hecho en Colombia &middot; apto para toda la familia</span></div>
+                        </div>
+                        <div class="ext-sheet" role="group" aria-label="Los 8 extractos del shampoo">
+                            <div class="ext-head"><span>Extractos</span><span>Lo que hace cada planta</span></div>
+                            <dl class="ext-grid">
+                                <div class="ext-cell"><dt><i>01</i>Romero</dt><dd>Frescura y vitalidad para la ra&iacute;z.</dd></div>
+                                <div class="ext-cell"><dt><i>02</i>Ortiga</dt><dd>Ayuda a controlar la grasa del cuero cabelludo.</dd></div>
+                                <div class="ext-cell"><dt><i>03</i>Cola de caballo</dt><dd>Cabello con cuerpo y sensaci&oacute;n de fuerza.</dd></div>
+                                <div class="ext-cell"><dt><i>04</i>Manzanilla</dt><dd>Suavidad, brillo y un cuero cabelludo tranquilo.</dd></div>
+                                <div class="ext-cell"><dt><i>05</i>Salvia</dt><dd>Ra&iacute;z ligera y purificada.</dd></div>
+                                <div class="ext-cell"><dt><i>06</i>Casta&ntilde;o de Indias</dt><dd>Frescura tonificante en cada masaje.</dd></div>
+                                <div class="ext-cell"><dt><i>07</i>Cidr&oacute;n</dt><dd>Aroma delicado que se queda contigo.</dd></div>
+                                <div class="ext-cell"><dt><i>08</i>Tusilago</dt><dd>Suavidad al peinar.</dd></div>
+                            </dl>
+                        </div>
+                        <p class="ext-assure"><span>Registro Sanitario INVIMA vigente</span><span>Ideal de cabello normal a graso</span></p>
+
                         <div class="card-tabs-nav">
-                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(event, this, 'desc')">Descripci&oacute;n</button>
+                            <button type="button" class="card-tab-btn active" onclick="switchCardTab(event, this, 'desc')">Para qui&eacute;n es</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(event, this, 'usage')">Modo de uso</button>
                             <button type="button" class="card-tab-btn" onclick="switchCardTab(event, this, 'more')">Beneficios JA</button>
                         </div>
                         <div class="card-tab-pane active" data-pane="desc">
                             <ul>
-                                <li>Romero, Ortiga, S&aacute;bila, T&eacute; Verde y Cal&eacute;ndula activa.</li>
-                                <li>Desintoxica y oxigena fol&iacute;culos regulando el exceso de grasa.</li>
-                                <li>F&oacute;rmula sin sal que no reseca los largos ni irrita • Registro INVIMA.</li>
+                                <li>💆‍♀️ <strong>&iquest;Tu cabello es de normal a graso?</strong> Este shampoo es para ti: limpia la grasa y la suciedad sin dejarte el cabello pesado.</li>
+                                <li>🤍 <strong>&iquest;Con o sin alisado?</strong> Da igual. Lo puede usar cualquier persona, hombre o mujer, joven o adulta.</li>
+                                <li>🌿 <strong>&iquest;Te encantan los productos con plantas?</strong> Tiene 8 extractos naturales que se sienten desde la ducha.</li>
+                                <li>⏰ <strong>&iquest;Te lavas el cabello seguido?</strong> Perfecto para tu rutina: espuma cremosa que rinde y te deja la ra&iacute;z fresca y liviana.</li>
+                                <li>✨ <strong>&iquest;Quieres sentirte linda desde el primer lavado?</strong> Cabello suave, brillante y con un aroma delicioso que se queda contigo.</li>
                             </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="usage">
-                            <p>Aplica sobre cuero cabelludo mojado, realiza masaje circular con las yemas durante 2 min y retira con abundante agua.</p>
+                            <ul>
+                                <li>💦 <strong>1. Moja bien tu cabello</strong> con agua fr&iacute;a o, como m&aacute;ximo, templada: el agua caliente da&ntilde;a la fibra capilar. Empapa de ra&iacute;z a puntas.</li>
+                                <li>🤲 <strong>2. Sirve en la palma de tu mano</strong> la cantidad suficiente para toda la cabeza y fr&oacute;tala un momento para que empiece a hacer espuma.</li>
+                                <li>💆‍♀️ <strong>3. Aplica solo en el cuero cabelludo,</strong> que es donde se acumula la grasa. Las puntas no necesitan m&aacute;s: la espuma que baja al enjuagar las limpia suave.</li>
+                                <li>⏱️ <strong>4. Date tu masaje de 3 minutos</strong> con la yema de los dedos, nunca con las u&ntilde;as, en c&iacute;rculos suaves. Es tu momento de spa y deja que los extractos hagan su trabajo.</li>
+                                <li>🚿 <strong>5. Enjuaga completo,</strong> hasta que no quede nada de espuma. As&iacute; tu cabello queda liviano y sin residuos.</li>
+                                <li>🔁 <strong>&iquest;Mucha grasa o suciedad?</strong> Repite el lavado una segunda vez: la primera quita la suciedad y la segunda deja la espuma trabajar de verdad.</li>
+                                <li>📅 <strong>&iquest;Cada cu&aacute;nto?</strong> Depende de tu cuero cabelludo. Lo ideal es lavarlo a diario o, como m&aacute;ximo, cada 2 d&iacute;as, para que la ra&iacute;z se mantenga limpia y liviana.</li>
+                                <li>⚠️ Evita el contacto con los ojos. Si te cae, enjuaga con abundante agua.</li>
+                            </ul>
                         </div>
                         <div class="card-tab-pane" data-pane="more">
-                            <p><strong>Ra&iacute;z limpia por m&aacute;s tiempo:</strong> Sensaci&oacute;n de frescura natural duradera sin alterar el pH del alisado ni del tinte.</p>
+                            <ul>
+                                <li>🌿 <strong>8 plantas en cada lavado:</strong> romero, ortiga, cola de caballo, manzanilla, salvia, casta&ntilde;o de Indias, cidr&oacute;n y tusilago. Nada de un solo ingrediente estrella: aqu&iacute; trabaja todo el jard&iacute;n.</li>
+                                <li>☁️ <strong>Espuma cremosa y abundante:</strong> la bata&iacute;na de coco y el lauril gluc&oacute;sido limpian con suavidad y se sienten delicioso en la ducha.</li>
+                                <li>💨 <strong>Ra&iacute;z fresca y liviana:</strong> quita la grasa y la suciedad sin dejar esa sensaci&oacute;n de cabello pesado.</li>
+                                <li>✨ <strong>Suavidad y brillo:</strong> la glucosa suma suavidad y tu cabello queda f&aacute;cil de peinar y con un brillo que se nota.</li>
+                                <li>🌸 <strong>Aroma que enamora:</strong> perfume delicado que se queda contigo despu&eacute;s del lavado.</li>
+                                <li>⚖️ <strong>Cuidado con tu cuero cabelludo:</strong> el &aacute;cido c&iacute;trico ayuda a equilibrar el pH para un lavado amable.</li>
+                                <li>💛 <strong>1 litro que rinde:</strong> m&aacute;s lavados por tu plata, un precio que se siente justo.</li>
+                                <li>🤍 <strong>Para toda la familia:</strong> ideal para cabello de normal a graso, con o sin alisado.</li>
+                                <li>🇨🇴 <strong>Sin sal y sin parabenos,</strong> hecho en Colombia. Registro Sanitario INVIMA vigente.</li>
+                                <li>💬 <strong>P&iacute;delo hoy por WhatsApp, hermosa,</strong> y te lo llevamos a casa.</li>
+                            </ul>
                         </div>
 
                                                 <div class="qty-selector-container">
