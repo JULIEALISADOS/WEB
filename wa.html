@@ -223,7 +223,11 @@
             }
 
             // Frases 100% naturales, cálidas y elegantes (sin códigos técnicos visibles)
-            if (utmSource.includes('tiktok') || urlParams.get('origen') === 'tiktok') {
+            if (/^producto/.test(utmSource)) {
+                mensaje += frase("quiero información de los productos de cuidado capilar.");
+            } else if (/^mayorista/.test(utmSource)) {
+                mensaje += frase("soy profesional y quiero información para compra al por mayor.");
+            } else if (utmSource.includes('tiktok') || urlParams.get('origen') === 'tiktok') {
                 if (tipo === 'mayorista') {
                     mensaje += frase("las vi en TikTok y me gustaría información para compras al por mayor y salones ✨");
                 } else if (tipo === 'seguidor' || tipo === 'live') {
@@ -279,6 +283,8 @@
                 const s = utmSource;
                 if (/^(google|gads|gbp)/.test(s)) return ciudadSede === 'Tunja' ? 'G-TUNJA' : (ciudadSede === 'Moniquirá' ? 'G-MONIQUIRA' : 'G');
                 if (/^tiktok/.test(s)) return 'TT';
+                if (/^producto/.test(s)) return 'PROD';
+                if (/^mayorista/.test(s)) return 'MAY';
                 if (/^(ig|instagram)/.test(s)) return 'IG';
                 if (/^(fb|facebook|meta)/.test(s)) return 'FB';
                 if (/^(email|correo|mail)/.test(s)) return 'EM';
