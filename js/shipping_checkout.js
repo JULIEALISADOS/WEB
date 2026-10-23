@@ -4,7 +4,7 @@
  * 
  * Reglas de cálculo:
  * - Origen oficial de despacho: Bodega Central Moniquirá, Boyacá
- * - Líquidos y cremas (ml): 1.1 g/ml
+ * - Líquidos y cremas (ml): 1 g por ml (orden del Director)
  * - Sólidos (g): peso directo en gramos
  * - Flete: aproximado, a pagar contraentrega a Envía Colvanes
  * - Productos: a pagar en la web vía Bre-B o Mercado Pago
@@ -37,7 +37,7 @@ function changeQty(button, change) {
         cart[productName] = {
             qty: newQty,
             price: productPrice,
-            weight: productWeight, // en gramos (1.1 g/ml o g)
+            weight: productWeight, // en gramos (1 g por ml)
             img: productImg,
             payLink: productPayLink
         };
@@ -99,56 +99,41 @@ function updateFloatingBar() {
     }
 }
 
-// 3. Matriz de Tarifas Estimadas Envía Colvanes (Origen: Bodega Moniquirá, Boyacá)
-// Tarifas de referencia aproximadas (el flete se liquida en báscula y se paga contraentrega)
-const ENVIA_TARIFAS = {
-    moniquira_local: { base: 7500, kgExtra: 2000, label: "Moniquirá (Urbano / Local)" },
-    boyaca_regional: { base: 9500, kgExtra: 2500, label: "Boyacá (Tunja, Duitama, Sogamoso, etc.)" },
-    santander_regional: { base: 11000, kgExtra: 3000, label: "Santander (Barbosa, Bucaramanga y área)" },
-    bogota_cundinamarca: { base: 12500, kgExtra: 3500, label: "Bogotá D.C. / Cundinamarca" },
-    antioquia: { base: 15500, kgExtra: 4500, label: "Antioquia (Medellín y municipios)" },
-    valle: { base: 15500, kgExtra: 4500, label: "Valle del Cauca (Cali y municipios)" },
-    atlantico: { base: 16500, kgExtra: 4800, label: "Atlántico (Barranquilla)" },
-    bolivar: { base: 16500, kgExtra: 4800, label: "Bolívar (Cartagena)" },
-    eje_cafetero: { base: 15500, kgExtra: 4500, label: "Eje Cafetero (Caldas / Risaralda / Quindío)" },
-    tolima_huila: { base: 14500, kgExtra: 4000, label: "Tolima / Huila (Ibagué, Neiva)" },
-    meta: { base: 15500, kgExtra: 4500, label: "Meta (Villavicencio)" },
-    nacional: { base: 16500, kgExtra: 4800, label: "Nacional General" },
-    especial: { base: 24000, kgExtra: 6500, label: "Destino Especial / Trayecto Reexpedido" }
-};
+// 3. Tarifas: ver js/envia-tarifas.js (simulador oficial de Envia, origen Moniquira)
 
 let currentEstimatedShipping = 12500;
 let currentWeightKg = "1.00";
 
 function calculateEnviaShipping() {
     const deptSelect = document.getElementById('shippingDeptSelect');
-    const deptKey = deptSelect ? deptSelect.value : 'bogota_cundinamarca';
-    const rateInfo = ENVIA_TARIFAS[deptKey] || ENVIA_TARIFAS.bogota_cundinamarca;
+    const deptKey = deptSelect ? deptSelect.value : 'bogota';
 
     let totalWeightGrams = 0;
+    let totalPrice = 0;
     for (const item in cart) {
         totalWeightGrams += cart[item].qty * (cart[item].weight || 500);
+        totalPrice += cart[item].qty * cart[item].price;
     }
     if (totalWeightGrams === 0) totalWeightGrams = 1000;
 
     const weightInKg = Math.max(0.1, totalWeightGrams / 1000);
     currentWeightKg = weightInKg.toFixed(2);
-    const billableKg = Math.max(1, Math.ceil(weightInKg));
 
-    // Cálculo: Base primer kilo + (Kilos extra * tarifa adicional)
-    const shippingCost = rateInfo.base + ((billableKg - 1) * rateInfo.kgExtra);
-    currentEstimatedShipping = shippingCost;
+    // Tarifa real de Envía desde Moniquirá (por kilo completo) + 1 % del valor declarado
+    currentEstimatedShipping = window.JulieEnvio.fleteAprox(deptKey, totalWeightGrams, totalPrice);
 
     const formattedShipping = new Intl.NumberFormat('es-CO', {
         style: 'currency',
         currency: 'COP',
         maximumFractionDigits: 0
-    }).format(shippingCost);
+    }).format(currentEstimatedShipping);
 
     const displayEl = document.getElementById('enviaRateDisplay');
     const refEl = document.getElementById('enviaWeightRef');
     if (displayEl) displayEl.textContent = `~${formattedShipping} aprox.`;
     if (refEl) refEl.textContent = currentWeightKg;
+    const grandEl = document.getElementById('enviaGrandTotal');
+    if (grandEl) grandEl.textContent = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(totalPrice + currentEstimatedShipping);
 }
 
 // 4. Abrir y Cerrar Modal de Checkout
@@ -298,7 +283,7 @@ function confirmBrebOrder() {
     message += `📍 *DATOS PARA DESPACHO CON ENVÍA:*\n`;
     message += `• Origen: Bodega Moniquirá (Boyacá)\n`;
     message += `• Destino: ${cityName} (${deptLabel})\n`;
-    message += `• Peso neto estimado: ~${currentWeightKg} kg (Densidad 1.1 g/ml)\n`;
+    message += `• Peso neto estimado: ~${currentWeightKg} kg (1 g por ml)\n`;
     message += `• Flete estimado Envía (Contraentrega aprox.): ~${formattedShipping} COP\n`;
     message += `  _(Se cancela directamente al mensajero de Envía al recibir)_\n\n`;
     message += `Adjunto mi comprobante de transferencia Bre-B y datos de entrega completos para generar la guía 😊`;
@@ -355,3 +340,8 @@ function proceedMercadoPagoCheckout() {
     }
     window.open(waUrl, '_blank');
 }
+
+// Lista completa de departamentos (tarifas de js/envia-tarifas.js)
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.JulieEnvio) window.JulieEnvio.llenarSelect(document.getElementById('shippingDeptSelect'), '', 'bogota');
+});

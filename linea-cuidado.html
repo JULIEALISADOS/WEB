@@ -1187,7 +1187,50 @@
         background: #0087c2;
         transform: translateY(-2px);
     }
-</style>
+
+    /* Pedido y envío: mismo estilo de las fichas JA */
+    .checkout-modal-overlay { background: rgba(17, 17, 17, 0.6); }
+    .checkout-modal-card { max-width: 640px; border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.65); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25); }
+    .checkout-modal-header { background: #FFF0F5; color: #111; padding: 16px 22px; border-bottom: 1px solid rgba(212, 175, 55, 0.55); }
+    .checkout-modal-header h3 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 1.4rem; color: #111; }
+    .checkout-modal-close { color: #7A5B0B; }
+    .checkout-modal-close:hover { color: #A8862A; }
+    .checkout-modal-body { padding: 18px 22px 24px; gap: 16px; background: #fff; }
+    .checkout-section-box { background: #fff; border: 1px solid rgba(212, 175, 55, 0.55); border-radius: 0; padding: 16px 18px; }
+    .checkout-section-title { margin: -16px -18px 14px; padding: 7px 12px; background: #FFF0F5; border-bottom: 1px solid rgba(212, 175, 55, 0.55); font-size: 0.62rem; letter-spacing: 0.18em; font-weight: 700; color: #7A5B0B; text-transform: uppercase; }
+    .checkout-section-title i { font-style: normal; color: #A8862A; margin-right: 4px; }
+    .order-item-row { border-bottom: 1px solid #eee; padding-bottom: 8px; }
+    .order-item-title { font-weight: 400; color: #111; }
+    .order-item-meta { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.66rem; color: #5c5c5c; }
+    .order-item-price { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #A8862A; }
+    .order-weight-summary { background: #FFF9FB; border: 1px solid #eee; border-radius: 0; font-weight: 400; font-size: 0.82rem; color: #5c5c5c; gap: 10px; flex-wrap: wrap; }
+    .order-weight-summary strong { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #A8862A; }
+    .envia-origin { margin: 0 0 12px; font-size: 0.82rem; color: #5c5c5c; }
+    .shipping-field-group label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #7A5B0B; }
+    .shipping-field-group select, .shipping-field-group input { border: 1px solid rgba(212, 175, 55, 0.65); border-radius: 0; background: #fff; padding: 10px 12px; }
+    .envia-result-card { background: #FFF9FB; border: 1px solid #eee; border-radius: 0; padding: 14px; }
+    .envia-badge { background: #fff; color: #7A5B0B; border: 1px solid rgba(212, 175, 55, 0.65); border-radius: 0; font-size: 0.62rem; letter-spacing: 0.14em; font-weight: 700; padding: 3px 8px; text-transform: uppercase; }
+    .envia-rate-highlight { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: #A8862A; }
+    .envia-total-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 4px; padding-top: 8px; border-top: 1px solid rgba(212, 175, 55, 0.45); font-size: 0.85rem; color: #111; }
+    .envia-total-row span:last-child { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #A8862A; }
+    .envia-disclaimer { background: #fff; border-left: 2px solid rgba(212, 175, 55, 0.65); border-radius: 0; font-size: 0.74rem; color: #5c5c5c; }
+    .pay-tab-btn { background: #fff; border: 1px solid rgba(212, 175, 55, 0.55); border-radius: 0; color: #5c5c5c; font-weight: 700; font-size: 0.8rem; }
+    .pay-tab-btn.active { background: #FFF0F5; color: #7A5B0B; border-color: rgba(212, 175, 55, 0.9); box-shadow: none; }
+    .breb-box, .mp-box { border: 1px solid #eee; border-radius: 0; background: #FFF9FB; }
+    .breb-key-display { background: #fff; border: 1px dashed rgba(212, 175, 55, 0.7); border-radius: 0; }
+    .breb-key-text { font-family: 'Playfair Display', serif; color: #A8862A; }
+    .btn-copy-breb { background: #fff; color: #7A5B0B; border: 1px solid rgba(212, 175, 55, 0.65); border-radius: 0; }
+    .btn-copy-breb:hover { background: #FFF0F5; color: #7A5B0B; }
+    .btn-confirm-breb, .btn-pay-mp { border-radius: 4px; }
+    /* Acceso al test de productos */
+    .quiz-cta { max-width: 760px; margin: 22px auto 30px; padding: 18px 20px; background: #FFF9FB; border: 1px solid rgba(212, 175, 55, 0.65); text-align: center; }
+    .quiz-cta b { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 1.3rem; color: #111; margin-bottom: 4px; }
+    .quiz-cta p { margin: 0 0 12px; font-size: 0.92rem; color: #5c5c5c; }
+    .quiz-cta a { display: inline-block; padding: 12px 26px; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; }
+    .quiz-cta a:hover { filter: brightness(1.05); }
+    .envia-header-tag { flex-wrap: wrap; gap: 6px 12px; }
+    .envia-header-tag strong { white-space: nowrap; }
+    @media (max-width: 480px) { .checkout-modal-body { padding: 14px 14px 20px; } .checkout-section-box { padding: 14px; } .checkout-section-title { margin: -14px -14px 12px; } }    </style>
     <!-- Manychat Pixel -->
     <script src="//widget.manychat.com/4938301_bb894.js" defer="defer"></script>
     <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
@@ -1306,9 +1349,14 @@
                 El secreto de un cabello bonito no está en fórmulas mágicas: está en darle a tu cuero cabelludo y a tu cabello lo que de verdad necesitan. En <strong>JA By Julie Valencia</strong> creamos una línea propia, hecha en Colombia y con Registro Sanitario INVIMA vigente, para que lleves a casa el cuidado del salón: extractos de plantas, argán y macadamia que limpian, acondicionan y dejan tu cabello suave, brillante y fácil de peinar, tengas alisado, tintura o cabello natural.
             </p>
 
+            <div class="quiz-cta">
+                <b>&iquest;No sabes qu&eacute; elegir?</b>
+                <p>Responde 3 preguntas y te armamos la lista de productos para tu cabello, con el total y el env&iacute;o.</p>
+                <a href="diagnostico-productos.html">Hacer el test de productos</a>
+            </div>
                                     <div class="product-grid">
                 <!-- COMBO 1. EXTRACTOS NATURALES -->
-                <div class="product-card-large" id="shampoo-extractos" data-name="Shampoo Extractos Naturales JA (1000 ml)" data-weight="1100" data-price="38000" data-img="SHAMPOO EXTRACTOS ..webp">
+                <div class="product-card-large" id="shampoo-extractos" data-name="Shampoo Extractos Naturales JA (1000 ml)" data-weight="1000" data-price="38000" data-img="SHAMPOO EXTRACTOS ..webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="SHAMPOO EXTRACTOS ..webp" alt="Shampoo Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -1391,7 +1439,7 @@
                 </div>
 
                 <!-- 2. ACONDICIONADOR EXTRACTOS -->
-                <div class="product-card-large" id="acondicionador-extractos" data-name="Acondicionador Extractos Naturales JA (1000 ml)" data-weight="1100" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg">
+                <div class="product-card-large" id="acondicionador-extractos" data-name="Acondicionador Extractos Naturales JA (1000 ml)" data-weight="1000" data-price="39000" data-img="ACONDICIONADOR EXTRACTOS.jpeg">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR EXTRACTOS.jpeg" alt="Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -1470,7 +1518,7 @@
                 </div>
 
                 <!-- 3. SHAMPOO ARGÁN -->
-                <div class="product-card-large" id="combo-extractos" data-name="Combo Extractos Naturales JA (1000 ml c/u)" data-weight="2200" data-price="74000" data-img="combo extractos.webp">
+                <div class="product-card-large" id="combo-extractos" data-name="Combo Extractos Naturales JA (1000 ml c/u)" data-weight="2000" data-price="74000" data-img="combo extractos.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="combo extractos.webp" alt="Combo Shampoo + Acondicionador Extractos Naturales JA By Julie Valencia">
                     </div>
@@ -1543,7 +1591,7 @@
                 </div>
 
                 <!-- COMBO 2. ACEITE DE ARGÃ N -->
-                <div class="product-card-large" id="shampoo-argan" data-name="Shampoo L&iacute;nea Arg&aacute;n JA (500 ml)" data-weight="550" data-price="36000" data-img="SHAMPOO DE ARGAN.webp">
+                <div class="product-card-large" id="shampoo-argan" data-name="Shampoo L&iacute;nea Arg&aacute;n JA (500 ml)" data-weight="500" data-price="36000" data-img="SHAMPOO DE ARGAN.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="SHAMPOO DE ARGAN.webp" alt="Shampoo Aceite de Argán JA By Julie Valencia">
                     </div>
@@ -1623,7 +1671,7 @@
                 </div>
 
                 <!-- 4. ACONDICIONADOR ARGÁN -->
-                <div class="product-card-large" id="acondicionador-argan" data-name="Acondicionador L&iacute;nea Arg&aacute;n JA (500 ml)" data-weight="550" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg">
+                <div class="product-card-large" id="acondicionador-argan" data-name="Acondicionador L&iacute;nea Arg&aacute;n JA (500 ml)" data-weight="500" data-price="37000" data-img="ACONDICIONADOR ARGAN.jpeg">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACONDICIONADOR ARGAN.jpeg" alt="Acondicionador Aceite de Argán JA By Julie Valencia">
                     </div>
@@ -1705,7 +1753,7 @@
                 </div>
 
                 <!-- 5. MASCARILLA ORO LÍQUIDO -->
-                <div class="product-card-large" id="combo-argan" data-name="Combo L&iacute;nea Arg&aacute;n JA (500 ml c/u)" data-weight="1100" data-price="70000" data-img="combo argan.webp">
+                <div class="product-card-large" id="combo-argan" data-name="Combo L&iacute;nea Arg&aacute;n JA (500 ml c/u)" data-weight="1000" data-price="70000" data-img="combo argan.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="combo argan.webp" alt="Combo Shampoo + Acondicionador Aceite de Argán JA By Julie Valencia">
                     </div>
@@ -1780,7 +1828,7 @@
                 </div>
 
                 <!-- 1. SHAMPOO EXTRACTOS -->
-                <div class="product-card-large" id="mascarilla-oro" data-name="Mascarilla Capilar Oro L&iacute;quido 3 en 1 JA (250 ml)" data-weight="275" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.webp">
+                <div class="product-card-large" id="mascarilla-oro" data-name="Mascarilla Capilar Oro L&iacute;quido 3 en 1 JA (250 ml)" data-weight="250" data-price="35000" data-img="MASCARILLA ORO LIQUIDO.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="MASCARILLA ORO LIQUIDO.webp" alt="Mascarilla Capilar Oro Líquido JA By Julie Valencia">
                     </div>
@@ -1859,7 +1907,7 @@
                 </div>
 
                 <!-- 6. TRATAMIENTO MULTIACTIVO -->
-                <div class="product-card-large" id="tratamiento-multiactivo" data-name="Tratamiento Multiactivo 12-en-1 JA (300 ml)" data-weight="330" data-price="36000" data-img="MASCARILLA MULTIACTIVA.webp">
+                <div class="product-card-large" id="tratamiento-multiactivo" data-name="Tratamiento Multiactivo 12-en-1 JA (300 ml)" data-weight="300" data-price="36000" data-img="MASCARILLA MULTIACTIVA.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="MASCARILLA MULTIACTIVA.webp" alt="Tratamiento Multiactivo 12-en-1 JA">
                     </div>
@@ -1946,7 +1994,7 @@
                 </div>
 
                 <!-- 7. AMPOLLA REPARACIÓN S.O.S. -->
-                <div class="product-card-large" id="ampolla-sos" data-name="Ampolla de Reparaci&oacute;n S.O.S. JA (20 ml)" data-weight="22" data-price="16000" data-img="AMPOLLA SOS.webp">
+                <div class="product-card-large" id="ampolla-sos" data-name="Ampolla de Reparaci&oacute;n S.O.S. JA (20 ml)" data-weight="20" data-price="16000" data-img="AMPOLLA SOS.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="AMPOLLA SOS.webp" alt="Ampolla de Reparación S.O.S. JA By Julie Valencia">
                     </div>
@@ -2025,7 +2073,7 @@
                 </div>
 
                 <!-- 8. TERMOPROTECTOR Y PERFUME -->
-                <div class="product-card-large" id="termoprotector" data-name="Termoprotector y Perfume Capilar JA (250 ml)" data-weight="275" data-price="35000" data-img="TERMOPROTECTOR.webp">
+                <div class="product-card-large" id="termoprotector" data-name="Termoprotector y Perfume Capilar JA (250 ml)" data-weight="250" data-price="35000" data-img="TERMOPROTECTOR.webp">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="TERMOPROTECTOR.webp" alt="Termoprotector y Perfume Capilar JA">
                     </div>
@@ -2095,7 +2143,7 @@
                 </div>
 
                 <!-- 9. ACEITE REPARADOR -->
-                <div class="product-card-large" id="aceite-argan" data-name="Aceite Reparador de Arg&aacute;n y Macadamia JA (60 ml)" data-weight="66" data-price="28000" data-img="ACEITE DE ARGAN.jpeg">
+                <div class="product-card-large" id="aceite-argan" data-name="Aceite Reparador de Arg&aacute;n y Macadamia JA (60 ml)" data-weight="60" data-price="28000" data-img="ACEITE DE ARGAN.jpeg">
                     <div class="product-image-container" onclick="openProductModal(this.closest('.product-card-large'))" style="cursor: pointer;">
                         <img loading="lazy" decoding="async" src="ACEITE DE ARGAN.jpeg" alt="Aceite Reparador de Argán y Macadamia JA By Julie Valencia">
                     </div>
@@ -2439,47 +2487,31 @@
     <div class="checkout-modal-overlay" id="checkoutModalOverlay" onclick="closeCheckoutModal(event)">
         <div class="checkout-modal-card" onclick="event.stopPropagation()">
             <div class="checkout-modal-header">
-                <h3>🛍️ Tu Pedido &amp; Cotizador Env&iacute;a</h3>
+                <h3>Tu pedido y env&iacute;o</h3>
                 <button type="button" class="checkout-modal-close" onclick="closeCheckoutModal(event)">&times;</button>
             </div>
             
             <div class="checkout-modal-body">
                 <!-- Seccion 1: Resumen de Productos Seleccionados -->
                 <div class="checkout-section-box">
-                    <h4 class="checkout-section-title">📦 1. Resumen de Productos</h4>
+                    <h4 class="checkout-section-title"><i>01</i> Tu pedido</h4>
                     <ul class="order-items-list" id="checkoutItemsList">
                         <!-- Se llena dinamicamente con JS -->
                     </ul>
                     <div class="order-weight-summary">
-                        <span>Subtotal Productos: <strong id="checkoutSubtotalDisplay" style="color: var(--gold-dark);">$0 COP</strong></span>
-                        <span>Peso Estimado: <strong id="checkoutWeightDisplay">0.00 kg</strong></span>
+                        <span>Subtotal: <strong id="checkoutSubtotalDisplay" style="color: var(--gold-dark);">$0 COP</strong></span>
+                        <span>Peso aprox. (1 g por ml): <strong id="checkoutWeightDisplay">0.00 kg</strong></span>
                     </div>
                 </div>
 
                 <!-- Seccion 2: Cotizador de Envios con Envia Colvanes -->
                 <div class="checkout-section-box">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 6px;">
-                        <h4 class="checkout-section-title" style="margin: 0;">🚚 2. Destino y Cotizador de Env&iacute;o (Env&iacute;a)</h4>
-                        <span style="font-size: 0.76rem; background: rgba(212, 175, 55, 0.15); color: var(--gold-dark); font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(212, 175, 55, 0.3);">📍 Despacho: Bodega Moniquir&aacute; (Boyac&aacute;)</span>
-                    </div>
+                    <h4 class="checkout-section-title"><i>02</i> Env&iacute;o desde Moniquir&aacute;</h4>
+                    <p class="envia-origin">Despachamos desde nuestra bodega en Moniquir&aacute; (Boyac&aacute;) con Env&iacute;a Colvanes.</p>
                     <div class="shipping-select-grid">
                         <div class="shipping-field-group">
                             <label for="shippingDeptSelect">Departamento / Destino:</label>
-                            <select id="shippingDeptSelect" onchange="calculateEnviaShipping()">
-                                <option value="moniquira_local">Moniquir&aacute; (Urbano / Local)</option>
-                                <option value="boyaca_regional">Boyac&aacute; (Tunja, Duitama, Sogamoso)</option>
-                                <option value="santander_regional">Santander (Barbosa, Bucaramanga y &aacute;rea)</option>
-                                <option value="bogota_cundinamarca" selected>Bogot&aacute; D.C. / Cundinamarca</option>
-                                <option value="antioquia">Antioquia (Medell&iacute;n y municipios)</option>
-                                <option value="valle">Valle del Cauca (Cali y municipios)</option>
-                                <option value="atlantico">Atl&aacute;ntico (Barranquilla)</option>
-                                <option value="bolivar">Bol&iacute;var (Cartagena)</option>
-                                <option value="eje_cafetero">Eje Cafetero (Caldas / Risaralda / Quind&iacute;o)</option>
-                                <option value="tolima_huila">Tolima / Huila (Ibagu&eacute;, Neiva)</option>
-                                <option value="meta">Meta (Villavicencio)</option>
-                                <option value="nacional">Otros Departamentos (Nacional)</option>
-                                <option value="especial">Destino Especial / Trayecto Reexpedido</option>
-                            </select>
+                            <select id="shippingDeptSelect" onchange="calculateEnviaShipping()"></select>
                         </div>
                         <div class="shipping-field-group">
                             <label for="shippingCityInput">Ciudad / Municipio:</label>
@@ -2493,30 +2525,31 @@
                                 <span class="envia-badge">ENV&Iacute;A</span>
                                 <strong style="font-size: 0.85rem; color: #333;">Env&iacute;a Colvanes S.A.S.</strong>
                             </div>
-                            <span style="font-size: 0.78rem; color: #666;">⏱️ 1 a 3 d&iacute;as h&aacute;biles</span>
+                            <span style="font-size: 0.78rem; color: #666;">⏱️ 1 a 5 d&iacute;as h&aacute;biles seg&uacute;n destino</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
-                            <span style="font-size: 0.85rem; font-weight: 600; color: #555;">Flete Estimado (Contraentrega):</span>
+                            <span style="font-size: 0.85rem; font-weight: 600; color: #555;">Env&iacute;o aproximado (se paga al recibir):</span>
                             <span class="envia-rate-highlight" id="enviaRateDisplay">~$12.500 COP aprox.</span>
                         </div>
+                        <div class="envia-total-row"><span>Total con env&iacute;o aprox.</span><span id="enviaGrandTotal">$0</span></div>
                         <p class="envia-disclaimer">
-                            ⚠️ <strong>Flete Aproximado:</strong> El valor del transporte es una estimaci&oacute;n de referencia calculada seg&uacute;n el peso (~<span id="enviaWeightRef">0.0</span> kg) despachado desde Bodega Moniquir&aacute;. La tarifa exacta la liquida Env&iacute;a Colvanes en su b&aacute;scula y se <strong>cancela contraentrega directamente al mensajero</strong> al momento de recibir tu paquete en tu puerta.
+                            ⚠️ <strong>Flete Aproximado:</strong> El valor sale de las tarifas de Env&iacute;a desde Bodega Moniquir&aacute;, seg&uacute;n el peso (~<span id="enviaWeightRef">0.0</span> kg, a 1 g por ml) y el valor de tu pedido. La tarifa exacta la liquida Env&iacute;a Colvanes en su b&aacute;scula y se <strong>cancela contraentrega directamente al mensajero</strong> al momento de recibir tu paquete en tu puerta. Para confirmar el valor en tu municipio usa el <a href="https://envia.co/quotation?origin=Moniquir%C3%A1+%28Boyac%C3%A1%29" target="_blank" rel="noopener noreferrer" style="color:#7A5B0B;text-decoration:underline;">simulador de Env&iacute;a</a> (el remitente siempre es Moniquir&aacute;).
                         </p>
                     </div>
                 </div>
 
                 <!-- Seccion 3: Metodos de Pago para los Productos -->
                 <div class="checkout-section-box">
-                    <h4 class="checkout-section-title">💳 3. Pagar Productos (Total: <span id="checkoutPayAmount" style="color: var(--gold-dark);">$0 COP</span>)</h4>
+                    <h4 class="checkout-section-title"><i>03</i> Pago de los productos &middot; <span id="checkoutPayAmount">$0 COP</span></h4>
                     <p style="font-size: 0.8rem; color: #666; margin: 0 0 10px 0;">Recuerda: Una asesora te ayuda a cerrar tu pedido por WhatsApp. El env&iacute;o viaja con flete contraentrega a cargo de Env&iacute;a.</p>
 
                     <!-- Botones de Pestana -->
                     <div class="payment-tabs-nav">
                         <button type="button" class="pay-tab-btn" onclick="switchPayTab('breb')">
-                            ⚡ Bre-B (Transferencia / QR)
+                            Bre-B (QR o llave)
                         </button>
                         <button type="button" class="pay-tab-btn active" onclick="switchPayTab('whatsapp')">
-                            💬 Pagar con una asesora (WhatsApp)
+                            Con una asesora (WhatsApp)
                         </button>
                     </div>
 
@@ -2544,7 +2577,7 @@
                                     <div style="font-size: 0.75rem; color: #888; text-transform: uppercase;">Llave Comercial Bre-B:</div>
                                     <div class="breb-key-text" id="brebKeyText">3150777443</div>
                                 </div>
-                                <button type="button" class="btn-copy-breb" id="btnCopyBreb" onclick="copyBrebKey()">📋 Copiar Llave</button>
+                                <button type="button" class="btn-copy-breb" id="btnCopyBreb" onclick="copyBrebKey()">Copiar llave</button>
                             </div>
 
                             <p style="font-size: 0.84rem; color: #444; margin: 8px 0; text-align: center;">
@@ -2552,7 +2585,7 @@
                             </p>
 
                             <button type="button" class="btn-confirm-breb" onclick="confirmBrebOrder()">
-                                📲 Ya transfer&iacute; por Bre-B &bull; Enviar Comprobante y Direcci&oacute;n
+                                Ya transfer&iacute; por Bre-B: enviar comprobante y direcci&oacute;n
                             </button>
                         </div>
                     </div>
@@ -2567,7 +2600,7 @@
                                 Total de productos de tu pedido: <strong id="mpAmountDisplay" style="color: var(--gold-dark); font-size: 1.05rem;">$0 COP</strong>
                             </p>
                             <button type="button" class="btn-pay-mp" onclick="proceedMercadoPagoCheckout()">
-                                💬 Continuar por WhatsApp con una asesora
+                                Continuar por WhatsApp con una asesora
                             </button>
                             <p style="font-size: 0.74rem; color: #888; margin-top: 8px;">
                                 Te enviaremos tu pedido ya armado, con el flete estimado de Env&iacute;a.
@@ -2598,7 +2631,8 @@
         </button>
     </div>
 
-    <script src="js/shipping_checkout.js"></script>
+    <script src="js/envia-tarifas.js?v=20261023"></script>
+    <script src="js/shipping_checkout.js?v=20261023"></script>
 
     <!-- Floating WhatsApp Button -->
     <div class="whatsapp-floating-container">
