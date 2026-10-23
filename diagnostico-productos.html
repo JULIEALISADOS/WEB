@@ -592,7 +592,7 @@
             var grandEl = document.getElementById('quizGrandValue');
             if (grandEl) grandEl.textContent = quizFormatCOP(total + flete) + " COP";
             var weightEl = document.getElementById('quizWeightNote');
-            if (weightEl) weightEl.innerHTML = chosen.length ? ("Peso aproximado del pedido: " + (grams / 1000).toFixed(2) + " kg (1 g por cada ml). Despachamos siempre desde Moniquirá con Envía; la tarifa exacta la liquida Envía. Para confirmar el valor en tu municipio usa el " + window.JulieEnvio.enlaceSimulador + ".") : "";
+            if (weightEl) weightEl.innerHTML = chosen.length ? ("Peso aproximado del pedido: " + (grams / 1000).toFixed(2) + " kg (1 g por cada ml). Despachamos siempre desde Moniquirá con Envía; la tarifa exacta la liquida Envía. Para confirmar el valor en tu municipio usa el " + window.JulieEnvio.enlaceSimulador + ". Lee nuestra <a href=\"politica-envios.html\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:#7A5B0B;text-decoration:underline;\">política de envíos</a>.") : "";
             var noteEl = document.getElementById('quizTotalNote');
             if (noteEl) {
                 if (changed && changed.getAttribute) {
