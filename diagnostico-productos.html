@@ -592,7 +592,8 @@
             var grandEl = document.getElementById('quizGrandValue');
             if (grandEl) grandEl.textContent = quizFormatCOP(total + flete) + " COP";
             var weightEl = document.getElementById('quizWeightNote');
-            if (weightEl) weightEl.innerHTML = chosen.length ? ("Peso aproximado del pedido: " + (grams / 1000).toFixed(2) + " kg (1 g por cada ml). Despachamos siempre desde Moniquirá con Envía; la tarifa exacta la liquida Envía. Para confirmar el valor en tu municipio usa el " + window.JulieEnvio.enlaceSimulador + ". Lee nuestra <a href=\"politica-envios.html\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:#7A5B0B;text-decoration:underline;\">política de envíos</a>.") : "";
+            var tiempoTxt = (dest && window.JulieEnvio) ? window.JulieEnvio.tiempoEntrega(dest) : "";
+            if (weightEl) weightEl.innerHTML = chosen.length ? ((tiempoTxt ? ("<strong>Entrega estimada por Envía: " + tiempoTxt + ".</strong> ") : "") + "Peso aproximado del pedido: " + (grams / 1000).toFixed(2) + " kg (1 g por cada ml). Despachamos siempre desde Moniquirá con Envía; la tarifa exacta la liquida Envía. Para confirmar el valor en tu municipio usa el " + window.JulieEnvio.enlaceSimulador + ". Lee nuestra <a href=\"politica-envios.html\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:#7A5B0B;text-decoration:underline;\">política de envíos</a>.") : "";
             var noteEl = document.getElementById('quizTotalNote');
             if (noteEl) {
                 if (changed && changed.getAttribute) {
@@ -611,10 +612,10 @@
             if (!waEl) return;
             waEl.style.opacity = chosen.length ? "1" : "0.5";
             waEl.style.pointerEvents = chosen.length ? "auto" : "none";
-            var waText = "Hola Julie Alisados 👋 Hice el Test Capilar en la web y quiero pedir:\n" +
+            var waText = "Hola Julie Alisados 👋 Hice el Test de Productos en la web y quiero pedir:\n" +
                 chosen.map(function (p) { return "• " + p.name + " (" + quizFormatCOP(p.price) + ")"; }).join("\n") +
                 "\nTotal productos: " + quizFormatCOP(total) + " COP" +
-                (dest ? ("\nEnvío a: " + destLabel + " (aprox. " + quizFormatCOP(flete) + ", se paga al recibir)\nPeso aprox.: " + (grams / 1000).toFixed(2) + " kg") : "") + " ✨";
+                (dest ? ("\nEnvío a: " + destLabel + " (aprox. " + quizFormatCOP(flete) + ", se paga al recibir)\nEntrega estimada por Envía: " + tiempoTxt + "\nPeso aprox.: " + (grams / 1000).toFixed(2) + " kg") : "") + " ✨";
             var waLinkRaw = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
             waEl.href = (window.JulieAnalytics && typeof window.JulieAnalytics.buildWaUrlWithUtms === 'function') ? window.JulieAnalytics.buildWaUrlWithUtms(waLinkRaw) : ("wa.html?text=" + encodeURIComponent(waText));
             waEl.onclick = function () {

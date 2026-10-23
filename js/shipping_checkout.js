@@ -132,6 +132,8 @@ function calculateEnviaShipping() {
     const refEl = document.getElementById('enviaWeightRef');
     if (displayEl) displayEl.textContent = `~${formattedShipping} aprox.`;
     if (refEl) refEl.textContent = currentWeightKg;
+    const tiempoEl = document.getElementById('enviaTiempo');
+    if (tiempoEl) tiempoEl.textContent = '⏱️ Entrega estimada por Envía: ' + window.JulieEnvio.tiempoEntrega(deptKey);
     const grandEl = document.getElementById('enviaGrandTotal');
     if (grandEl) grandEl.textContent = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(totalPrice + currentEstimatedShipping);
 }
@@ -285,7 +287,8 @@ function confirmBrebOrder() {
     message += `• Destino: ${cityName} (${deptLabel})\n`;
     message += `• Peso neto estimado: ~${currentWeightKg} kg (1 g por ml)\n`;
     message += `• Flete estimado Envía (Contraentrega aprox.): ~${formattedShipping} COP\n`;
-    message += `  _(Se cancela directamente al mensajero de Envía al recibir)_\n\n`;
+    message += `  _(Se cancela directamente al mensajero de Envía al recibir)_\n`;
+    message += `• Entrega estimada por Envía: ${window.JulieEnvio.tiempoEntrega(deptSelect ? deptSelect.value : '')}\n\n`;
     message += `Adjunto mi comprobante de transferencia Bre-B y datos de entrega completos para generar la guía 😊`;
 
     const encoded = encodeURIComponent(message);
