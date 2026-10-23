@@ -56,6 +56,18 @@ window.JulieEnvio = (function () {
     var ZONA_DE = {};
     DESTINOS.forEach(function (d) { ZONA_DE[d[0]] = d[2]; });
 
+    // Tiempo de entrega (días hábiles) que muestra el simulador de Envía desde Moniquirá, consultado el 23-oct-2026 (capital de cada departamento)
+    var TIEMPO = {
+        amazonas: '4 a 5', antioquia: '2 a 3', arauca: '8 a 9', atlantico: '2 a 3', bogota: '1 a 2', bolivar: '2 a 3',
+        boyaca: '1 a 2', caldas: '2 a 3', caqueta: '3 a 4', casanare: '2 a 3', cauca: '5 a 6', cesar: '2 a 3',
+        choco: '8 a 9', cordoba: '3 a 4', cundinamarca: '1 a 2', guainia: '1 a 2', guaviare: '8 a 9', huila: '2 a 3',
+        la_guajira: '3 a 4', magdalena: '3 a 4', meta: '2 a 3', narino: '4 a 5', norte_santander: '2 a 3', putumayo: '8 a 9',
+        quindio: '2 a 3', risaralda: '2 a 3', san_andres: '4 a 5', santander: '1 a 2', sucre: '3 a 4', tolima: '2 a 3',
+        valle: '3 a 4', vaupes: '8 a 9', vichada: '8 a 9'
+    };
+    function tiempoEntrega(destino) {
+        return TIEMPO[destino] ? (TIEMPO[destino] + ' días hábiles') : '';
+    }
     var URL_SIMULADOR = 'https://envia.co/quotation?origin=' + encodeURIComponent('Moniquirá (Boyacá)');
 
     function fleteAprox(destino, gramos, valorDeclarado) {
@@ -79,5 +91,5 @@ window.JulieEnvio = (function () {
     // Texto con el enlace al simulador de Envía (el remitente siempre es Moniquirá)
     var ENLACE_SIMULADOR = '<a href="' + URL_SIMULADOR + '" target="_blank" rel="noopener noreferrer" style="color:#7A5B0B;text-decoration:underline;">simulador de Env&iacute;a</a>';
 
-    return { fleteAprox: fleteAprox, llenarSelect: llenarSelect, destinos: DESTINOS, urlSimulador: URL_SIMULADOR, enlaceSimulador: ENLACE_SIMULADOR };
+    return { tiempoEntrega: tiempoEntrega, fleteAprox: fleteAprox, llenarSelect: llenarSelect, destinos: DESTINOS, urlSimulador: URL_SIMULADOR, enlaceSimulador: ENLACE_SIMULADOR };
 })();
