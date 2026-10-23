@@ -815,7 +815,10 @@
         .ext-cell dd { margin: 0; font-size: 0.78rem; line-height: 1.4; color: #4a3d12; }
         .ext-assure { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 8px; font-size: 0.76rem; color: #5c5c5c; text-align: left; }
         .ext-assure span::before { content: "✓ "; color: #A8862A; font-weight: 700; }
-    </style>
+            /* Simetría: botón y cantidad siempre al pie de la tarjeta */
+        .product-card-large .product-info > .qty-selector-container { margin-top: auto; }
+        .product-card-large .product-info > .card-tab-pane { margin-bottom: 15px; }
+</style>
     <style id="envia-breb-styles">
     /* Estilos del Cotizador Envia y Modal de Pago */
     .qty-control-label {
