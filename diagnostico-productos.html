@@ -426,6 +426,7 @@
         </div>
     </footer>
 
+    <script src="js/envia-tarifas.js?v=20261023"></script>
     <!-- Lógica del Quiz y Rotación de Anuncios -->
     <script>
         (function() {
@@ -462,13 +463,13 @@
         }
 
         var QUIZ_PRODUCTS = {
-            comboExt:   { img: "combo extractos.webp", name: "Combo Extractos Naturales JA (1000 ml c/u)", price: 74000, why: "Shampoo de 8 plantas para una raíz fresca y liviana, más acondicionador con aloe, aguacate y coco que suaviza y da brillo." },
-            comboArgan: { img: "combo argan.webp", name: "Combo Línea Argán JA (500 ml c/u)", price: 70000, why: "Shampoo y acondicionador con argán, biotina y mango: limpian con suavidad, desenredan y dan brillo a un cabello de normal a seco o procesado." },
-            mascarilla: { img: "MASCARILLA ORO LIQUIDO.webp", name: "Mascarilla Capilar Oro Líquido 3 en 1 JA (250 ml)", price: 35000, why: "Nutre e hidrata. Se usa antes del shampoo, después del shampoo o como crema para peinar." },
-            multi:      { img: "MASCARILLA MULTIACTIVA.webp", name: "Tratamiento Multiactivo 12-en-1 JA (300 ml)", price: 36000, why: "Tratamiento premium que hidrata, nutre y repara en una sola aplicación. Es el que más se nota en cabello muy maltratado." },
-            ampolla:    { img: "AMPOLLA SOS.webp", name: "Ampolla de Reparación S.O.S. JA (20 ml)", price: 16000, why: "Auxilio para cuando sientes el cabello seco, opaco o sin vida. Se mezcla con agua o con el Multiactivo." },
-            termo:      { img: "TERMOPROTECTOR.webp", name: "Termoprotector y Perfume Capilar JA (250 ml)", price: 35000, why: "Protege tu cabello del calor de la plancha y el secador, y le deja una fragancia delicada." },
-            aceite:     { img: "ACEITE DE ARGAN.jpeg", name: "Aceite Reparador de Argán y Macadamia JA (60 ml)", price: 28000, why: "El toque final de tu peinado: brillo, suavidad y control del frizz." }
+            comboExt:   { g: 2000, img: "combo extractos.webp", name: "Combo Extractos Naturales JA (1000 ml c/u)", price: 74000, why: "Shampoo de 8 plantas para una raíz fresca y liviana, más acondicionador con aloe, aguacate y coco que suaviza y da brillo." },
+            comboArgan: { g: 1000, img: "combo argan.webp", name: "Combo Línea Argán JA (500 ml c/u)", price: 70000, why: "Shampoo y acondicionador con argán, biotina y mango: limpian con suavidad, desenredan y dan brillo a un cabello de normal a seco o procesado." },
+            mascarilla: { g: 250, img: "MASCARILLA ORO LIQUIDO.webp", name: "Mascarilla Capilar Oro Líquido 3 en 1 JA (250 ml)", price: 35000, why: "Nutre e hidrata. Se usa antes del shampoo, después del shampoo o como crema para peinar." },
+            multi:      { g: 300, img: "MASCARILLA MULTIACTIVA.webp", name: "Tratamiento Multiactivo 12-en-1 JA (300 ml)", price: 36000, why: "Tratamiento premium que hidrata, nutre y repara en una sola aplicación. Es el que más se nota en cabello muy maltratado." },
+            ampolla:    { g: 20, img: "AMPOLLA SOS.webp", name: "Ampolla de Reparación S.O.S. JA (20 ml)", price: 16000, why: "Auxilio para cuando sientes el cabello seco, opaco o sin vida. Se mezcla con agua o con el Multiactivo." },
+            termo:      { g: 250, img: "TERMOPROTECTOR.webp", name: "Termoprotector y Perfume Capilar JA (250 ml)", price: 35000, why: "Protege tu cabello del calor de la plancha y el secador, y le deja una fragancia delicada." },
+            aceite:     { g: 60, img: "ACEITE DE ARGAN.jpeg", name: "Aceite Reparador de Argán y Macadamia JA (60 ml)", price: 28000, why: "El toque final de tu peinado: brillo, suavidad y control del frizz." }
         };
         var quizSelection = [];
 
@@ -552,23 +553,46 @@
                     '<span style="flex:1;"><strong>' + p.name + '</strong> <span style="color:var(--gold-dark);font-weight:800;white-space:nowrap;">' + quizFormatCOP(p.price) + '</span>' + etiqueta +
                     '<br><span style="font-size:0.85rem;color:#555;"><b>Por qué:</b> ' + quizWhy(k, a) + '</span></span></label>';
             });
-            if (listEl) listEl.innerHTML = html + '<div style="border-top:2px solid rgba(212,175,55,0.5);margin-top:6px;padding-top:12px;"><div style="display:flex;justify-content:space-between;gap:10px;font-size:1.1rem;font-weight:800;"><span>Total de tu pedido</span><span id="quizTotalValue" style="color:var(--gold-dark);"></span></div><div id="quizTotalNote" style="font-size:0.85rem;color:#7A5B0B;margin-top:4px;"></div></div>';
+            if (listEl) listEl.innerHTML = html +
+                '<div style="border-top:2px solid rgba(212,175,55,0.5);margin-top:6px;padding-top:12px;">' +
+                '<label for="quizDest" style="font-weight:700;font-size:0.9rem;">¿A dónde lo enviamos?</label>' +
+                '<select id="quizDest" onchange="updateQuizTotal()" style="width:100%;padding:10px;margin:4px 0 12px;border-radius:10px;border:1px solid rgba(212,175,55,0.5);font-size:0.95rem;background:#fff;">' +
+                
+                '</select>' +
+                '<div style="display:flex;justify-content:space-between;gap:10px;font-size:0.95rem;"><span>Productos</span><strong id="quizTotalValue"></strong></div>' +
+                '<div style="display:flex;justify-content:space-between;gap:10px;font-size:0.95rem;margin-top:4px;"><span>Envío aproximado <small style="color:#777;">(se paga al recibir)</small></span><strong id="quizShipValue"></strong></div>' +
+                '<div style="display:flex;justify-content:space-between;gap:10px;font-size:1.1rem;font-weight:800;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(212,175,55,0.5);"><span>Total con envío aprox.</span><span id="quizGrandValue" style="color:var(--gold-dark);"></span></div>' +
+                '<div id="quizTotalNote" style="font-size:0.85rem;color:#7A5B0B;margin-top:6px;"></div>' +
+                '<div id="quizWeightNote" style="font-size:0.78rem;color:#888;margin-top:2px;"></div></div>';
+            if (window.JulieEnvio) window.JulieEnvio.llenarSelect(document.getElementById('quizDest'), 'Elige tu departamento');
             updateQuizTotal();
         }
 
         function updateQuizTotal(changed) {
             var chosen = [];
             var total = 0;
+            var grams = 0;
             document.querySelectorAll('#quizResultIncludes input[data-quiz-key]').forEach(function (cb) {
                 if (cb.checked) {
                     var p = QUIZ_PRODUCTS[cb.getAttribute('data-quiz-key')];
                     chosen.push(p);
                     total += p.price;
+                    grams += p.g;
                 }
             });
-            var priceEl = document.getElementById('quizResultPrice');
+            var destEl = document.getElementById('quizDest');
+            var dest = destEl ? destEl.value : '';
+            var destLabel = (destEl && destEl.selectedIndex > 0) ? destEl.options[destEl.selectedIndex].text : '';
+            var flete = (dest && chosen.length && window.JulieEnvio) ? window.JulieEnvio.fleteAprox(dest, grams, total) : 0;
+
             var totalEl = document.getElementById('quizTotalValue');
             if (totalEl) totalEl.textContent = quizFormatCOP(total) + " COP";
+            var shipEl = document.getElementById('quizShipValue');
+            if (shipEl) shipEl.textContent = !chosen.length ? "" : (dest ? ("~" + quizFormatCOP(flete) + " aprox.") : "Elige tu destino");
+            var grandEl = document.getElementById('quizGrandValue');
+            if (grandEl) grandEl.textContent = quizFormatCOP(total + flete) + " COP";
+            var weightEl = document.getElementById('quizWeightNote');
+            if (weightEl) weightEl.innerHTML = chosen.length ? ("Peso aproximado del pedido: " + (grams / 1000).toFixed(2) + " kg (1 g por cada ml). Despachamos siempre desde Moniquirá con Envía; la tarifa exacta la liquida Envía. Para confirmar el valor en tu municipio usa el " + window.JulieEnvio.enlaceSimulador + ".") : "";
             var noteEl = document.getElementById('quizTotalNote');
             if (noteEl) {
                 if (changed && changed.getAttribute) {
@@ -580,6 +604,7 @@
                     noteEl.textContent = "Cada producto que marques suma su precio al total.";
                 }
             }
+            var priceEl = document.getElementById('quizResultPrice');
             if (priceEl) priceEl.textContent = chosen.length ? ("Tu selección: " + quizFormatCOP(total) + " COP") : "Marca al menos un producto";
 
             var waEl = document.getElementById('quizWaBtn');
@@ -588,7 +613,8 @@
             waEl.style.pointerEvents = chosen.length ? "auto" : "none";
             var waText = "Hola Julie Alisados 👋 Hice el Test Capilar en la web y quiero pedir:\n" +
                 chosen.map(function (p) { return "• " + p.name + " (" + quizFormatCOP(p.price) + ")"; }).join("\n") +
-                "\nTotal: " + quizFormatCOP(total) + " COP ✨";
+                "\nTotal productos: " + quizFormatCOP(total) + " COP" +
+                (dest ? ("\nEnvío a: " + destLabel + " (aprox. " + quizFormatCOP(flete) + ", se paga al recibir)\nPeso aprox.: " + (grams / 1000).toFixed(2) + " kg") : "") + " ✨";
             var waLinkRaw = "https://wa.me/573043588180?text=" + encodeURIComponent(waText);
             waEl.href = (window.JulieAnalytics && typeof window.JulieAnalytics.buildWaUrlWithUtms === 'function') ? window.JulieAnalytics.buildWaUrlWithUtms(waLinkRaw) : ("wa.html?text=" + encodeURIComponent(waText));
             waEl.onclick = function () {
