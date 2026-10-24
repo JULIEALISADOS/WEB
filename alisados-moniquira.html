@@ -736,9 +736,13 @@
             color: #111111 !important;
         }
             .logo-link { position: relative; display: inline-block; overflow: hidden; border-radius: 10px; }
+        .light-hero { background: rgba(255,255,255,.88) !important; padding-top: 40px !important; }
+        .hero { padding-bottom: 0; }
         .logo-link::after { content: ""; position: absolute; top: 0; left: -80%; width: 45%; height: 100%; background: linear-gradient(115deg, transparent 0%, rgba(212,175,55,.55) 50%, transparent 100%); transform: skewX(-20deg); animation: logoBrillo 4.5s ease-in-out infinite; pointer-events: none; }
         @keyframes logoBrillo { 0%, 55% { left: -80%; } 100% { left: 140%; } }
-        @media (prefers-reduced-motion: reduce) { .logo-link::after { animation: none; display: none; } }
+        @media (prefers-reduced-motion: reduce) { .light-hero { background: rgba(255,255,255,.88) !important; padding-top: 40px !important; }
+        .hero { padding-bottom: 0; }
+        .logo-link::after { animation: none; display: none; } }
     </style>
 
     <!-- Manychat Pixel -->
@@ -750,7 +754,7 @@
     <script src="js/promo-bar.js?v=20261022_mensaje" defer></script>
 </head>
 
-<body class="light-brand-page">
+<body>
     <!-- Barra Superior de Anuncios Pro (Top Announcement Bar) -->
     <div class="top-announcement-bar" role="region" aria-label="Anuncios destacados">
         <div class="announcement-item active" data-index="0" style="cursor: pointer;" onclick="window.location.href='https://juliealisados.com/promociones-condiciones.html';">🌸 <strong>¡Promo Alisado Saludable!</strong> Por solo <strong>$250.000</strong> + Crioterapia, Reposición Hidrolipídica y Kit Dúo Gratis 👉 <u>Ver Oferta</u></div>
@@ -777,6 +781,7 @@
                 <div class="header-titles">
                     <div class="header-title" style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem;">JULIE ALISADOS <span>By Julie Valencia</span></div>
                     <p class="header-subtitle">Más que un liso, una transformación</p>
+                    <a href="#sede-ubicacion" class="header-location-link">📍 Sede Moniquirá</a>
                 </div>
             </div>
 
@@ -797,6 +802,8 @@
     </header>
 
     <main>
+        <section class="hero"><div id="promo-sede-banner" data-sede="Moniquirá"></div></section>
+
         <!-- 1. HERO -->
         <section class="light-hero">
             <div class="light-hero-inner">
@@ -818,8 +825,6 @@
                         <p class="wa-aviso">Al escribirnos por WhatsApp, tus datos se tratan según nuestras <a href="index.html#legal">políticas y términos</a>.</p>
             </div>
         </section>
-
-<div id="promo-sede-banner" data-sede="Moniquirá"></div>
 
         <!-- 2. TARJETAS POR SERVICIO -->
         <section class="section-light" id="catalogo-alisados">
@@ -1177,7 +1182,7 @@
         </section>
 
         <!-- 6. CIERRE Y SEDES -->
-        <section class="section-light" style="padding-top: 10px;">
+        <section class="section-light" id="sede-ubicacion" style="padding-top: 10px;">
             <div class="sedes-closing">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3vw, 2.3rem); color: #111111; margin: 0 0 10px;">
                     Agenda hoy en Julie Alisados Moniquirá
@@ -1298,7 +1303,7 @@
         })();
     </script>
     <script src="js/wa-enlaces.js?v=20261020_origen" defer></script>
-    <script src="js/promo-carrusel-sedes.js?v=20261024_tarjeta5" defer></script>
+    <script src="js/promo-carrusel-sedes.js?v=20261024_tarjeta6" defer></script>
 </body>
 
 </html>
