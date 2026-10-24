@@ -126,6 +126,7 @@
     if (p.n) h += '<p class="n">' + esc(p.n) + '</p>';
     h += '<a class="c" href="promociones-condiciones.html">Ver condiciones completas</a>';
     card.innerHTML = h; card.hidden = false;
+    cta.removeAttribute('data-wa-ok'); // js/wa-enlaces.js lo vuelve a pasar por wa.html (codigo de origen + medicion)
     cta.href = 'https://wa.me/573043588180?text=' + encodeURIComponent(p.m);
     m.classList.add('on'); document.body.style.overflow = 'hidden'; modalAbierto = true;
     }

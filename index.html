@@ -1792,7 +1792,9 @@
             } catch (err) {}
 
             if (modalCtaBtn) {
-                modalCtaBtn.href = waUrl;
+                // Pasa por wa.html: ahi se antepone el codigo de origen (WEB) que lee ManyChat y se miden los clics.
+                modalCtaBtn.removeAttribute('data-wa-ok');
+                modalCtaBtn.href = 'wa.html?utm_source=web&utm_medium=boton&utm_campaign=web-index&tipo=cita&text=' + encodeURIComponent(finalMsg);
                 modalCtaBtn.setAttribute('data-url', waUrl);
                 modalCtaBtn.setAttribute('data-title', finalTitle);
                 modalCtaBtn.setAttribute('data-price', finalPrice);
