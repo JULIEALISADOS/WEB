@@ -408,7 +408,10 @@
         @media (prefers-reduced-motion: reduce) { .logo-link::after { animation: none; display: none; } }
         .sede-local { padding: 50px 0 20px; }
         .sede-local .section-subtitle { text-align: center; }
-        .sede-local-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; max-width: 1000px; margin: 26px auto 0; align-items: stretch; }
+        .sede-local-grid { display: grid; grid-template-columns: 1fr; gap: 22px; max-width: 620px; margin: 26px auto 0; }
+        .footer-sedes { grid-template-columns: 1fr !important; max-width: 620px !important; }
+        .footer-sedes .map-wrapper { height: 230px; }
+        .footer-sedes .sede-address { font-size: 0.9rem; }
         .sede-local-card { background: rgba(255,255,255,.95); border: 1px solid var(--gold); border-radius: 18px; padding: 22px; box-shadow: 0 6px 18px rgba(0,0,0,.05); text-align: left; }
         .sede-local-card p { margin: 0 0 10px; line-height: 1.5; color: #222; }
         .sede-local-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
@@ -1091,12 +1094,8 @@
                     <div class="sede-local-links">
                         <a class="btn-gps" href="https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
                         <a class="btn-gps" style="background: var(--gold-gradient); color: #fff; border: none;" href="wa.html?utm_source=web&utm_medium=boton&utm_campaign=web-alisados-tunja&sede=Tunja&tipo=cita&text=%C2%A1Hola%2C%20Julie%20Alisados!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20alisado%20en%20la%20sede%20Tunja" target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
-                        <a class="btn-gps" href="alisados-moniquira.html">Ver sede Moniquirá</a>
                         <a class="btn-gps" href="julie-tips/articulo.html?slug=cuanto-dura-un-alisado">¿Cuánto dura un alisado?</a>
                     </div>
-                </div>
-                <div class="sede-local-map">
-                    <iframe title="Mapa de Julie Alisados Tunja" src="https://maps.google.com/maps?q=Julie%20Alisados%20Tunja%2C%20Avenida%20Ol%C3%ADmpica%20%23190%2C%20Pasaje%20Boulevard%2C%20Local%20140&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="320" style="border:0; display:block; border-radius:14px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -1279,44 +1278,21 @@
 
     <footer id="sedes">
         <div class="container footer-content">
-            <h3 class="section-title">NUESTROS CENTROS DE EXPERIENCIA</h3>
+            <h3 class="section-title">NUESTRO CENTRO DE EXPERIENCIA</h3>
             <div class="footer-sedes">
-                <div class="footer-sede">
-                    <h4>Moniquirá</h4>
-                    <div class="map-wrapper">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Julie%20Alisados%20Moniquira&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
-                    </div>
-                    <p class="sede-address">Carrera 6 # 18 - 68<br><span style="font-size: 0.82rem; color: var(--gold-dark); font-weight: 600;">Lunes a Sábado: 8:00 AM - 7:00 PM</span></p>
-                    <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Julie+Alisados+Moniquira+Edificio+Monaco"
-                            class="btn-gps" target="_blank" rel="noopener noreferrer">Abrir en GPS</a>
-                        <a href="alisados-moniquira.html" class="btn-gps" style="background: var(--gold-gradient); color: #fff; border: none;">Ver Sede Moniquirá ↗</a>
-                    </div>
-                </div>
                 <div class="footer-sede">
                     <h4>Tunja</h4>
                     <div class="map-wrapper">
-                        <iframe
+                        <iframe title="Mapa de Julie Alisados Tunja"
                             src="https://maps.google.com/maps?q=Julie%20Alisados%20Tunja%2C%20Avenida%20Ol%C3%ADmpica%20%23190%2C%20Pasaje%20Boulevard%2C%20Local%20140&t=&z=16&ie=UTF8&iwloc=&output=embed"
                             width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
                         </iframe>
                     </div>
-                    <p class="sede-address">Avenida Olímpica #190, Centro Comercial Pasaje Boulevard, Local 140<br><span style="font-size: 0.82rem; color: var(--gold-dark); font-weight: 600;">Lunes a Sábado: 8:00 AM - 7:00 PM</span></p>
+                    <p class="sede-address">Avenida Olímpica #190, Centro Comercial Pasaje Boulevard, Local 140, Tunja, Boyacá<br><span style="font-size: 0.82rem; color: var(--gold-dark); font-weight: 600;">Lunes a Sábado: 8:00 AM - 7:00 PM</span></p>
                     <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                        <a href="https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6" class="btn-gps" target="_blank"
-                            rel="noopener noreferrer">Abrir en GPS</a>
-                        <a href="alisados-tunja.html" class="btn-gps" style="background: var(--gold-gradient); color: #fff; border: none;">Ver Sede Tunja ↗</a>
+                        <a href="https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6" class="btn-gps" target="_blank" rel="noopener noreferrer">Abrir en GPS</a>
+                        <a href="wa.html?utm_source=web&utm_medium=pie&utm_campaign=web-alisados-tunja&sede=Tunja&tipo=cita&text=%C2%A1Hola%2C%20Julie%20Alisados!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20alisado%20en%20la%20sede%20Tunja" class="btn-gps" style="background: var(--gold-gradient); color: #fff; border: none;" target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
                     </div>
-                </div>
-                <div class="footer-sede">
-                    <h4>Bogotá</h4>
-                    <div class="map-wrapper proximamente-map" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #111, #222); border-radius: 8px;">
-                        <span style="color: var(--gold); font-size: 1.4rem; font-weight: bold; text-align: center; text-transform: uppercase; letter-spacing: 2px;">¡Próximamente!</span>
-                    </div>
-                    <p class="sede-address" style="text-align: center; font-style: italic; color: #666;">Nuestra nueva experiencia está en camino.</p>
                 </div>
             </div>
             <div class="footer-legal" id="legal">
@@ -2218,40 +2194,6 @@
             setTimeout(openBottomBar, 3500);
         });
     </script>
-
-    <!-- Modal Selector de Sede VIP WhatsApp - Julie Alisados -->
-    <div id="sedeSelectModal" class="sede-modal" style="display:none;" aria-hidden="true">
-        <div class="sede-modal-backdrop" onclick="closeSedeModal()"></div>
-        <div class="sede-modal-card">
-            <button class="sede-modal-close" onclick="closeSedeModal()" aria-label="Cerrar">&times;</button>
-            <div class="sede-badge">Atención Prioritaria WhatsApp</div>
-            <h3>¿En cuál sede deseas tu cita?</h3>
-            <p>Selecciona tu ciudad para asignarte turno y disponibilidad inmediata:</p>
-            <div class="sede-options">
-                <a href="https://wa.me/573043588180?text=%C2%A1Hola%2C%20Julie%20Alisados!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Alisado%20Saludable%20en%20la%20sede%20Tunja" 
-                   class="sede-option-btn" target="_blank" rel="noopener noreferrer" onclick="trackSedeClick('Tunja')">
-                    <div class="sede-option-icon">📍</div>
-                    <div class="sede-option-text">
-                        <strong>Sede Tunja</strong>
-                        <span>Centro Comercial Pasaje Boulevard, Local 140 (Av. Olímpica)</span>
-                    </div>
-                    <div class="sede-option-arrow">➔</div>
-                </a>
-                <a href="https://wa.me/573043588180?text=%C2%A1Hola%2C%20Julie%20Alisados!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Alisado%20Saludable%20en%20la%20sede%20Moniquir%C3%A1" 
-                   class="sede-option-btn" target="_blank" rel="noopener noreferrer" onclick="trackSedeClick('Moniquira')">
-                    <div class="sede-option-icon">📍</div>
-                    <div class="sede-option-text">
-                        <strong>Sede Moniquirá</strong>
-                        <span>Edificio Mónaco, Centro (Carrera 6 # 18-68)</span>
-                    </div>
-                    <div class="sede-option-arrow">➔</div>
-                </a>
-            </div>
-            <div style="margin-top: 18px; font-size: 0.72rem; color: rgba(212, 175, 55, 0.85); font-weight: 600;">
-                ✨ Procedimiento profesional &bull; libre de formol
-            </div>
-        </div>
-    </div>
 
     <!-- Script de Control: Carrusel Táctil y Selector de Sede -->
     <script>
