@@ -14,12 +14,12 @@
   var enSede = sede ? ' en la sede ' + sede : '';
 
   var PROMOS = [
-    { v: 'promo-octubre-intro.mp4', t: 'Promociones del Mes de Octubre 2026', m: '¡Hola, Julie Alisados! Vi las promociones de octubre en su página y quiero más información' + enSede },
-    { v: 'promo-alisado-saludable-octubre.mp4', t: 'Alisado Saludable + Crioterapia + Kit Dúo Gratis', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Saludable y quiero más información' + enSede },
-    { v: 'promo-emulsion-zero-octubre.mp4', t: 'Emulsión Zero + Termoprotector Gratis', m: '¡Hola, Julie Alisados! Vi la promo de Emulsión Zero y quiero más información' + enSede },
-    { v: 'promo-reposicion-aminoacidos-octubre.mp4', t: 'Reposición de Aminoácidos ($150.000)', m: '¡Hola, Julie Alisados! Vi la promo de Reposición de Aminoácidos y quiero más información' + enSede },
-    { v: 'promo-hidracomplex-octubre.mp4', t: 'Hidra Complex - Plan Amigas (2 x $110.000)', m: '¡Hola, Julie Alisados! Vi el Plan Amigas de Hidra Complex y quiero más información' + enSede },
-    { v: 'promo-alisado-classic-octubre.mp4', t: 'Alisado Classic ($160.000)', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Classic y quiero más información' + enSede }
+    { v: 'promo-octubre-intro.mp4', t: 'Promociones del Mes de Octubre 2026', n: 'Promociones oficiales válidas del 1 al 31 de octubre de 2026, con cupos limitados por agenda. Todas incluyen valoración técnica previa en el salón.', m: '¡Hola, Julie Alisados! Vi las promociones de octubre en su página y quiero más información' + enSede },
+    { v: 'promo-alisado-saludable-octubre.mp4', t: 'Alisado Saludable + Crioterapia + Kit Dúo Gratis', pr: '$250.000', d: 'Tecnología enjuagable, libre de formol, con más de 14 proteínas y aminoácidos.', g: 'Incluye Crioterapia, Reposición Hidrolipídica y Kit de Shampoo y Acondicionador según tu necesidad.', n: 'Cabello abundante o muy largo: +$40.000.', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Saludable y quiero más información' + enSede },
+    { v: 'promo-emulsion-zero-octubre.mp4', t: 'Emulsión Zero + Termoprotector Gratis', pr: '$170.000', d: 'Terapia con proteínas, aminoácidos y ácido hialurónico para suavidad y brillo.', g: 'Incluye Termoprotector de regalo.', n: 'Cabello abundante o muy largo: +$20.000.', m: '¡Hola, Julie Alisados! Vi la promo de Emulsión Zero y quiero más información' + enSede },
+    { v: 'promo-reposicion-aminoacidos-octubre.mp4', t: 'Reposición de Aminoácidos ($150.000)', pr: '$150.000', d: 'Terapia disciplinante: hidratación profunda, brillo espejo y menos frizz.', g: 'No alisa: disciplina la fibra capilar.', n: 'Cabello abundante o muy largo: +$20.000.', m: '¡Hola, Julie Alisados! Vi la promo de Reposición de Aminoácidos y quiero más información' + enSede },
+    { v: 'promo-hidracomplex-octubre.mp4', t: 'Hidra Complex - Plan Amigas (2 x $110.000)', pr: '$110.000', d: 'Hidratación intensiva con aguacate y aloe vera. 2x1: vienes con una amiga.', g: 'Cualquier largo y cantidad de cabello.', m: '¡Hola, Julie Alisados! Vi el Plan Amigas de Hidra Complex y quiero más información' + enSede },
+    { v: 'promo-alisado-classic-octubre.mp4', t: 'Alisado Classic ($160.000)', pr: '$160.000', d: 'Liso suave y con movimiento, personalizado para ti.', g: 'Fórmula libre de formol, enriquecida con lípidos nutritivos.', n: 'Cabello afro, abundante o muy largo: +$30.000.', m: '¡Hola, Julie Alisados! Vi la promo del Alisado Classic y quiero más información' + enSede }
   ];
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
@@ -103,7 +103,8 @@
   st.textContent =
     '.jps-modal{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;background:rgba(10,10,10,.88);padding:16px}' +
     '.jps-modal.on{display:flex}.jps-box{position:relative;width:min(92vw,380px);max-height:94vh;display:flex;flex-direction:column;gap:12px;align-items:center}' +
-    '.jps-box video{width:100%;max-height:72vh;border-radius:16px;background:#000;object-fit:contain}' +
+    '.jps-box{overflow-y:auto}.jps-box video{width:100%;max-height:46vh;flex:0 0 auto;border-radius:16px;background:#000;object-fit:contain}' +
+    '.jps-card{width:100%;box-sizing:border-box;background:#fff;border-radius:16px;padding:14px 16px;text-align:left;color:#222}.jps-card .pr{font-size:1.5rem;font-weight:700;color:#7A5B0B;margin:0 0 4px}.jps-card p{margin:0 0 8px;font-size:.92rem;line-height:1.4}.jps-card .g{background:#FFF9FB;border:1px solid rgba(212,175,55,.5);border-radius:10px;padding:8px 10px;font-weight:700}.jps-card .n{font-size:.8rem;color:#555}.jps-card a.c{color:#7A5B0B;font-weight:700;font-size:.8rem}' +
     '.jps-t{color:#fff;font-weight:700;text-align:center;font-size:1rem;line-height:1.3}' +
     '.jps-cta{display:block;width:100%;text-align:center;padding:14px 16px;border-radius:30px;font-weight:700;text-decoration:none;color:#3a2a00;background:linear-gradient(135deg,#f3d77a,#d4af37);box-shadow:0 8px 20px rgba(212,175,55,.35)}' +
     '.jps-x{position:absolute;top:-6px;right:-6px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#222;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}' +
@@ -111,12 +112,19 @@
   document.head.appendChild(st);
   var m = document.createElement('div');
   m.className = 'jps-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Video de promoción');
-  m.innerHTML = '<div class="jps-box"><button class="jps-x" aria-label="Cerrar">✕</button><video playsinline loop muted></video><button class="jps-snd" aria-label="Activar sonido">🔇</button><div class="jps-t"></div><a class="jps-cta" href="#">💖 ¡Lo quiero! Agendar por WhatsApp</a></div>';
+  m.innerHTML = '<div class="jps-box"><button class="jps-x" aria-label="Cerrar">✕</button><video playsinline loop muted></video><button class="jps-snd" aria-label="Activar sonido">🔇</button><div class="jps-t"></div><div class="jps-card" hidden></div><a class="jps-cta" href="#">💖 ¡Lo quiero! Agendar por WhatsApp</a></div>';
   document.body.appendChild(m);
-  var mv = m.querySelector('video'), mt = m.querySelector('.jps-t'), cta = m.querySelector('.jps-cta'), snd = m.querySelector('.jps-snd');
+  var mv = m.querySelector('video'), mt = m.querySelector('.jps-t'), cta = m.querySelector('.jps-cta'), card = m.querySelector('.jps-card'), snd = m.querySelector('.jps-snd');
   function abrir(i) {
     var p = PROMOS[i]; if (!p) return;
     mv.src = p.v; mv.muted = true; snd.textContent = '🔇'; mt.textContent = p.t;
+    var h = '';
+    if (p.pr) h += '<div class="pr">' + esc(p.pr) + '</div>';
+    if (p.d) h += '<p>' + esc(p.d) + '</p>';
+    if (p.g) h += '<p class="g">' + esc(p.g) + '</p>';
+    if (p.n) h += '<p class="n">' + esc(p.n) + '</p>';
+    h += '<a class="c" href="promociones-condiciones.html">Ver condiciones completas</a>';
+    card.innerHTML = h; card.hidden = false;
     cta.href = 'https://wa.me/573043588180?text=' + encodeURIComponent(p.m);
     m.classList.add('on'); document.body.style.overflow = 'hidden'; modalAbierto = true;
     var pr = mv.play(); if (pr && pr.catch) pr.catch(function () {});
