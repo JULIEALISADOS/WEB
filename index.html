@@ -1403,6 +1403,7 @@
             <div class="modal-video-wrapper">
                 <video id="modal-video" playsinline webkit-playsinline preload="auto" loop></video>
                 <img loading="lazy" decoding="async" id="modal-image" src="" alt="Promoción en detalle" style="display: none;">
+                <div id="modal-promo-card" class="modal-promo-card" style="display: none;"></div>
             </div>
 
             <!-- Barra Inferior de Conversión: Botón "¡Yo lo quiero!" en Paleta Clara (Rosado Perlado + Moldura Dorada) -->
@@ -1416,6 +1417,19 @@
         </div>
     </div>
 
+
+    <style>
+        .modal-promo-card { width: 92%; max-height: 94%; overflow-y: auto; box-sizing: border-box; background: #fff; border-radius: 18px; padding: 22px 20px; text-align: left; color: #222; border: 1.5px solid rgba(212,175,55,.6); }
+        .modal-promo-card .pc-tag { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #7A5B0B; background: #FFF4D6; border-radius: 20px; padding: 4px 10px; margin-bottom: 8px; }
+        .modal-promo-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.25; margin: 0 0 6px; color: #111; }
+        .modal-promo-card .pc-price { font-size: 2.3rem; font-weight: 800; color: #7A5B0B; line-height: 1.1; margin: 0 0 8px; }
+        .modal-promo-card p { margin: 0 0 10px; font-size: .95rem; line-height: 1.45; }
+        .modal-promo-card .pc-incluye { background: #FFF9FB; border: 1px solid rgba(212,175,55,.55); border-radius: 12px; padding: 10px 12px; font-weight: 700; }
+        .modal-promo-card .pc-valor { color: #7A5B0B; font-weight: 700; }
+        .modal-promo-card .pc-nota { font-size: .8rem; color: #555; }
+        .modal-promo-card ul { margin: 0 0 10px; padding-left: 18px; font-size: .95rem; line-height: 1.6; }
+        .modal-promo-card a.pc-cond { color: #7A5B0B; font-weight: 700; font-size: .82rem; }
+    </style>
 
     <script>
 
@@ -1707,6 +1721,28 @@
         const modalAudioBtn = document.getElementById('modal-audio-btn');
         const audioIcon = document.getElementById('audio-icon');
         const modalCtaBtn = document.getElementById('modal-cta-btn');
+        const promoCard = document.getElementById('modal-promo-card');
+
+        // Al tocar un video del banner de promociones se abre solo la tarjeta comercial (sin video).
+        // Valores de regalo: solo los de venta ya publicados en la franja superior ($74.000 kit, $35.000 termoprotector).
+        const PROMO_CARDS = {
+            'promo-octubre-intro.mp4': { lista: ['Alisado Saludable: $250.000, con regalos incluidos', 'Alisado Classic: $160.000', 'Emulsión Zero: $170.000, con Termoprotector de regalo', 'Reposición de Aminoácidos: $150.000', 'Plan Amigas Hidra Complex: $110.000 (2x1)'], n: 'Válidas del 1 al 31 de octubre de 2026, con cupos limitados por agenda. Todas incluyen valoración técnica previa en el salón.' },
+            'promo-alisado-saludable-octubre.mp4': { pr: '$250.000', d: 'Tecnología enjuagable, libre de formol, con más de 14 proteínas y aminoácidos.', g: 'Incluye Crioterapia, Reposición Hidrolipídica y Kit de Shampoo y Acondicionador según tu necesidad.', gv: 'Kit de shampoo y acondicionador de regalo: valor de hasta $74.000.', n: 'Cabello abundante o muy largo: +$40.000.' },
+            'promo-emulsion-zero-octubre.mp4': { pr: '$170.000', d: 'Terapia con proteínas, aminoácidos y ácido hialurónico para suavidad y brillo.', g: 'Incluye Termoprotector de regalo.', gv: 'Termoprotector de regalo: valor $35.000.', n: 'Cabello abundante o muy largo: +$20.000.' },
+            'promo-reposicion-aminoacidos-octubre.mp4': { pr: '$150.000', d: 'Terapia disciplinante: hidratación profunda, brillo espejo y menos frizz.', g: 'No alisa: disciplina la fibra capilar.', n: 'Cabello abundante o muy largo: +$20.000.' },
+            'promo-hidracomplex-octubre.mp4': { pr: '$110.000', d: 'Hidratación intensiva con aguacate y aloe vera. 2x1: vienes con una amiga.', g: 'Cualquier largo y cantidad de cabello.' },
+            'promo-alisado-classic-octubre.mp4': { pr: '$160.000', d: 'Liso suave y con movimiento, personalizado para ti.', g: 'Fórmula libre de formol, enriquecida con lípidos nutritivos.', n: 'Cabello afro, abundante o muy largo: +$30.000.' }
+        };
+        const promoCardHtml = (title, c) => {
+            let h = '<span class="pc-tag">Promo octubre</span><h3>' + title + '</h3>';
+            if (c.pr) h += '<div class="pc-price">' + c.pr + '</div>';
+            if (c.d) h += '<p>' + c.d + '</p>';
+            if (c.lista) h += '<ul>' + c.lista.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+            if (c.g) h += '<p class="pc-incluye">' + c.g + '</p>';
+            if (c.gv) h += '<p class="pc-valor">🎁 ' + c.gv + '</p>';
+            if (c.n) h += '<p class="pc-nota">' + c.n + '</p>';
+            return h + '<a class="pc-cond" href="https://juliealisados.com/promociones-condiciones.html" target="_blank" rel="noopener noreferrer">Ver condiciones completas</a>';
+        };
 
         let currentPromoContext = {
             title: 'Promociones de Octubre 2026',
@@ -1714,7 +1750,7 @@
             url: 'https://wa.me/573043588180'
         };
 
-        const openModal = (src, isVideo = false, title = '', msg = '', price = 250000) => {
+        const openModal = (src, isVideo = false, title = '', msg = '', price = 250000, cardHtml = '') => {
             if (!src || !modal) return;
 
             const finalTitle = title || (isVideo ? 'Promoción Exclusiva de Octubre' : 'Resultado Salón');
@@ -1762,7 +1798,21 @@
                 modalCtaBtn.setAttribute('data-price', finalPrice);
             }
 
-            if (isVideo) {
+            if (promoCard) promoCard.style.display = 'none';
+            if (modalAudioBtn) modalAudioBtn.style.visibility = '';
+
+            if (cardHtml && promoCard) {
+                if (modalImage) modalImage.style.display = 'none';
+                if (modalVideo) {
+                    modalVideo.pause();
+                    modalVideo.style.display = 'none';
+                    modalVideo.src = "";
+                }
+                promoCard.innerHTML = cardHtml;
+                promoCard.scrollTop = 0;
+                promoCard.style.display = 'block';
+                if (modalAudioBtn) modalAudioBtn.style.visibility = 'hidden';
+            } else if (isVideo) {
                 if (modalImage) modalImage.style.display = 'none';
                 if (modalVideo) {
                     modalVideo.style.display = 'block';
@@ -1810,6 +1860,8 @@
                 modalImage.style.display = 'none';
                 modalImage.src = "";
             }
+            if (promoCard) { promoCard.style.display = 'none'; promoCard.innerHTML = ''; }
+            if (modalAudioBtn) modalAudioBtn.style.visibility = '';
             isPaused = false;
         };
 
@@ -1925,7 +1977,8 @@
                 const price = card.dataset.price ? parseInt(card.dataset.price, 10) : 250000;
 
                 if (videoSrc) {
-                    openModal(videoSrc, true, title, msg, price);
+                    const info = PROMO_CARDS[videoSrc];
+                    openModal(videoSrc, true, title, msg, price, info ? promoCardHtml(title, info) : '');
                 }
             });
         }
