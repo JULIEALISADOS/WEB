@@ -512,16 +512,17 @@
                 base: base,
                 rec: {
                     mascarilla: nutre,
-                    multi: cuidado || a.goal === 'nutricion',
+                    multi: nutre,
                     ampolla: cuidado,
                     termo: calor,
-                    aceite: (a.state === 'frizz' || a.goal === 'brillo')
+                    aceite: (a.state === 'frizz' || a.state === 'alisado' || a.goal === 'brillo')
                 }
             };
         }
 
         function quizWhy(k, a) {
             var cuidado = (a.state === 'tinturado' || a.state === 'frizz');
+            var nutre = cuidado || a.goal === 'nutricion';
             var calor = (a.heat === 'si');
             switch (k) {
                 case 'comboExt':
@@ -538,24 +539,45 @@
                 case 'shampArg':
                     return "Tu cuero cabelludo es de normal a seco: este shampoo con argán y biotina limpia con suavidad, sin dejar la sensación de cabello tieso.";
                 case 'acondExt':
-                    return "Tu cabello no necesita una nutrición intensa, así que el acondicionador es el de aloe, aguacate y coco: lo suaviza, lo desenreda y le da brillo sin sobrecargarlo.";
+                    return "Para tu cabello, con uso en cada lavado, te basta un acondicionador ligero de aloe, aguacate y coco: suaviza, desenreda y da brillo sin sobrecargarlo.";
                 case 'mascarilla':
-                    return (cuidado || a.goal === 'nutricion')
-                        ? "Le da nutrición e hidratación a tu cabello. La usas antes o después del shampoo, o como crema para peinar."
-                        : "Si quieres un cuidado extra: nutre e hidrata y la usas antes o después del shampoo, o como crema para peinar.";
+                    if (nutre) return "Tu cabello pide nutrición e hidratación: aquí la tiene. Úsala antes del shampoo (así el lavado no lo reseca más) o después, o como crema para peinar.";
+                    if (a.state === 'alisado') return "El alisado alinea tu cabello, pero no lo nutre: la nutrición la ponen los tratamientos y el poscuidado. Esta mascarilla es ese poscuidado, y también sirve como crema para peinar.";
+                    return "Un cuidado extra que cualquier cabello agradece: nutre e hidrata, y se usa antes o después del shampoo o como crema para peinar.";
                 case 'multi':
-                    return "Un tratamiento completo que hidrata, nutre y repara en una sola aplicación, para cuando quieras darle un cuidado intensivo.";
+                    if (cuidado) return "Tu cabello está procesado o con frizz, y este tratamiento es el que más se nota en un cabello así: hidrata, nutre y repara en una sola aplicación. Va después del shampoo y antes del acondicionador.";
+                    if (nutre) return "Pediste nutrición e hidratación: un tratamiento completo, en una sola aplicación, que va después del shampoo y antes del acondicionador.";
+                    return "Para cuando quieras un cuidado intensivo: hidrata, nutre y repara en una sola aplicación.";
                 case 'ampolla':
-                    return "Un auxilio rápido para cuando lo sientes seco, opaco o sin vida.";
+                    if (cuidado) return "Tu cabello lo pide: es el rescate para cuando lo sientes seco, opaco o sin vida. Se mezcla con agua, o con el Multiactivo para un tratamiento intensivo.";
+                    return "Un rescate de 20 ml para tener a mano si un día sientes tu cabello seco, opaco o sin vida.";
                 case 'termo':
-                    return calor ? "Usas secador o plancha: lo protege del calor y lo perfuma."
-                                 : "Para los días que uses secador o plancha y quieras protegerlo del calor.";
+                    return calor ? "Usas secador o plancha: protégelo del calor antes de usarlos. Además lo perfuma y ayuda a controlar el frizz."
+                                 : "Para los días que uses secador o plancha, y también como perfume capilar para oler delicioso.";
                 case 'aceite':
-                    return (a.state === 'frizz' || a.goal === 'brillo')
-                        ? "Ayuda a controlar el frizz y deja brillo en el peinado."
-                        : "El toque final de tu peinado: brillo y suavidad en medios y puntas.";
+                    if (a.state === 'frizz' || a.goal === 'brillo') return "Quieres brillo y control del frizz: es tu toque final, en medios y puntas con el cabello ya seco.";
+                    if (a.state === 'alisado') return "Para que tu alisado se vea con más brillo y suavidad: es tu toque final, en medios y puntas con el cabello ya seco.";
+                    return "El toque final de tu peinado: suavidad, brillo y control del frizz en medios y puntas.";
             }
             return "";
+        }
+
+        function quizRitual(keys) {
+            var has = function (k) { return keys.indexOf(k) !== -1; };
+            var shamp = has('comboExt') || has('comboArgan') || has('shampExt') || has('shampArg');
+            var acond = has('comboExt') || has('comboArgan') || has('acondExt') || has('acondArg');
+            var steps = [];
+            if (has('mascarilla')) steps.push(has('multi') ? "Mascarilla Oro Líquido, antes del shampoo (20 minutos), para que el lavado no reseque tu cabello." : (shamp ? "Mascarilla Oro Líquido, antes o después del shampoo." : "Mascarilla Oro Líquido sobre el cabello limpio."));
+            if (shamp) steps.push("Shampoo solo en el cuero cabelludo, con masaje de 3 minutos y doble lavado.");
+            if (has('multi') && has('ampolla')) steps.push("Tratamiento Multiactivo mezclado con la Ampolla S.O.S., de medios a puntas (tratamiento intensivo).");
+            else if (has('multi')) steps.push("Tratamiento Multiactivo de medios a puntas, de 5 a 10 minutos.");
+            else if (has('ampolla')) steps.push("Ampolla S.O.S. mezclada con agua, de 20 a 25 minutos.");
+            if (acond) steps.push("Acondicionador de medios a puntas, siempre de último.");
+            if (has('termo')) steps.push("Termoprotector antes de usar secador o plancha.");
+            if (has('aceite')) steps.push("Aceite de Argán y Macadamia en medios y puntas para terminar.");
+            if (!steps.length) return "";
+            return '<div style="font-weight:800;font-size:0.95rem;color:#7A5B0B;margin-bottom:4px;">Tu ritual, paso a paso, en el orden correcto</div><ol style="margin:0;padding-left:20px;font-size:0.85rem;color:#444;line-height:1.5;">' +
+                steps.map(function (s) { return "<li>" + s + "</li>"; }).join("") + "</ol>";
         }
 
         function showQuizResult() {
@@ -571,7 +593,7 @@
             var descEl = document.getElementById('quizResultDesc');
             var listEl = document.getElementById('quizResultIncludes');
             if (titleEl) titleEl.textContent = "Tu lista de productos JA";
-            if (descEl) descEl.textContent = "Esta es la rutina completa para tu cabello. Dejamos marcado el producto principal; marca con el chulito los demás que quieras añadir a tu pedido y debajo de cada uno te explicamos por qué te lo recomendamos.";
+            if (descEl) descEl.textContent = "Esta es la rutina completa para tu cabello. Dejamos marcados tu producto principal y los que te recomendamos según tus respuestas; desmarca los que no quieras. Debajo de cada uno te explicamos por qué.";
 
             quizSelection = keys;
             var html = "";
@@ -583,12 +605,12 @@
                 else if (plan.rec[k]) etiqueta = ' <em style="font-size:0.75rem;color:#7A5B0B;">Recomendado para ti</em>';
                 else etiqueta = ' <em style="font-size:0.75rem;color:#888;">Complemento</em>';
                 html += '<label style="display:flex;gap:12px;align-items:flex-start;padding:12px 4px;cursor:pointer;' + (i ? 'border-top:1px solid rgba(212,175,55,0.25);' : '') + '">' +
-                    '<input type="checkbox" data-quiz-key="' + k + '"' + (esBase ? ' checked' : '') + ' style="width:22px;height:22px;margin-top:2px;accent-color:#B8941F;flex-shrink:0;" onchange="updateQuizTotal(this)">' + '<img src="' + encodeURI(p.img) + '" alt="' + p.name + '" loading="lazy" style="width:68px;height:68px;object-fit:cover;border-radius:12px;border:1px solid rgba(212,175,55,0.35);background:#FFF9FB;flex-shrink:0;">' +
+                    '<input type="checkbox" data-quiz-key="' + k + '"' + ((esBase || plan.rec[k]) ? ' checked' : '') + ' style="width:22px;height:22px;margin-top:2px;accent-color:#B8941F;flex-shrink:0;" onchange="updateQuizTotal(this)">' + '<img src="' + encodeURI(p.img) + '" alt="' + p.name + '" loading="lazy" style="width:68px;height:68px;object-fit:cover;border-radius:12px;border:1px solid rgba(212,175,55,0.35);background:#FFF9FB;flex-shrink:0;">' +
                     '<span style="flex:1;"><strong>' + p.name + '</strong> <span style="color:var(--gold-dark);font-weight:800;white-space:nowrap;">' + quizFormatCOP(p.price) + '</span>' + etiqueta +
                     '<br><span style="font-size:0.85rem;color:#555;"><b>Por qué:</b> ' + quizWhy(k, a) + '</span></span></label>';
             });
             if (listEl) listEl.innerHTML = html +
-                '<div style="border-top:2px solid rgba(212,175,55,0.5);margin-top:6px;padding-top:12px;">' +
+                '<div id="quizRitual" style="background:#FFF9FB;border:1px solid rgba(212,175,55,0.35);border-radius:10px;padding:12px;margin-top:10px;"></div>' + '<div style="border-top:2px solid rgba(212,175,55,0.5);margin-top:10px;padding-top:12px;">' +
                 '<label for="quizDest" style="font-weight:700;font-size:0.9rem;">¿A dónde lo enviamos?</label>' +
                 '<select id="quizDest" onchange="updateQuizTotal()" style="width:100%;padding:10px;margin:4px 0 12px;border-radius:10px;border:1px solid rgba(212,175,55,0.5);font-size:0.95rem;background:#fff;">' +
                 
@@ -603,17 +625,18 @@
         }
 
         function updateQuizTotal(changed) {
-            var chosen = [];
+            var chosen = []; var chosenKeys = [];
             var total = 0;
             var grams = 0;
             document.querySelectorAll('#quizResultIncludes input[data-quiz-key]').forEach(function (cb) {
                 if (cb.checked) {
                     var p = QUIZ_PRODUCTS[cb.getAttribute('data-quiz-key')];
-                    chosen.push(p);
+                    chosen.push(p); chosenKeys.push(cb.getAttribute('data-quiz-key'));
                     total += p.price;
                     grams += p.g;
                 }
             });
+            var ritualEl = document.getElementById('quizRitual'); if (ritualEl) { ritualEl.innerHTML = quizRitual(chosenKeys); ritualEl.style.display = chosenKeys.length ? 'block' : 'none'; }
             var destEl = document.getElementById('quizDest');
             var dest = destEl ? destEl.value : '';
             var destLabel = (destEl && destEl.selectedIndex > 0) ? destEl.options[destEl.selectedIndex].text : '';
