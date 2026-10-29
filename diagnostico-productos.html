@@ -280,7 +280,7 @@
 
 <!-- Paso 3 -->
                 <div class="quiz-step" id="quizStep3">
-                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 4 de 4: ¿Usas secador?</h3>
+                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 4 de 4: ¿Usas secador o plancha?</h3>
                     <p style="font-size: 0.9rem; color: #777;">Esto nos ayuda a saber si tu cabello necesita protección contra el calor:</p>
                     <div class="quiz-options-grid">
                         <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('heat', 'si')">
@@ -344,7 +344,7 @@
                     <div style="background: #fff; border: 1px solid rgba(212,175,55,0.25); border-radius: 16px; padding: 25px 20px; text-align: center;">
                         <span style="display: inline-block; background: var(--gold); color: #fff; width: 36px; height: 36px; border-radius: 50%; line-height: 36px; font-weight: 800; margin-bottom: 12px;">4</span>
                         <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--gold-dark); margin-bottom: 6px;">Protección y Brillo</h4>
-                        <p style="font-size: 0.88rem; color: #555;">Antes del secador, aspersa el Termoprotector. Para terminar tu peinado, usa el Aceite de Argán y Macadamia de medios a puntas.</p>
+                        <p style="font-size: 0.88rem; color: #555;">Antes de secador o plancha, aspersa el Termoprotector. Para terminar tu peinado, usa el Aceite de Argán y Macadamia de medios a puntas.</p>
                     </div>
                 </div>
             </section>
@@ -489,7 +489,7 @@
             mascarilla: { g: 250, img: "MASCARILLA ORO LIQUIDO.webp", name: "Mascarilla Capilar Oro Líquido 3 en 1 JA By Julie Valencia (250 ml)", price: 35000, why: "Nutre e hidrata. Se usa antes del shampoo, después del shampoo o como crema para peinar." },
             multi:      { g: 300, img: "MASCARILLA MULTIACTIVA.webp", name: "Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)", price: 36000, why: "Tratamiento premium que hidrata, nutre y repara en una sola aplicación. Es el que más se nota en cabello muy maltratado." },
             ampolla:    { g: 20, img: "AMPOLLA SOS.webp", name: "Ampolla de Reparación S.O.S. JA By Julie Valencia (20 ml)", price: 16000, why: "Auxilio para cuando sientes el cabello seco, opaco o sin vida. Se mezcla con agua o con el Multiactivo." },
-            termo:      { g: 250, img: "TERMOPROTECTOR.webp", name: "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)", price: 35000, why: "Protege tu cabello del calor del secador, y le deja una fragancia delicada." },
+            termo:      { g: 250, img: "TERMOPROTECTOR.webp", name: "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)", price: 35000, why: "Protege tu cabello del calor del secador y la plancha, y le deja una fragancia delicada." },
             aceite:     { g: 60, img: "ACEITE DE ARGAN.jpeg", name: "Aceite Reparador de Argán y Macadamia JA By Julie Valencia (60 ml)", price: 28000, why: "El toque final de tu peinado: brillo, suavidad y control del frizz." }
         };
         var quizSelection = [];
@@ -548,8 +548,8 @@
                 case 'ampolla':
                     return "Un auxilio rápido para cuando lo sientes seco, opaco o sin vida.";
                 case 'termo':
-                    return calor ? "Usas secador: lo protege del calor y lo perfuma."
-                                 : "Para los días que uses secador y quieras protegerlo del calor.";
+                    return calor ? "Usas secador o plancha: lo protege del calor y lo perfuma."
+                                 : "Para los días que uses secador o plancha y quieras protegerlo del calor.";
                 case 'aceite':
                     return (a.state === 'frizz' || a.goal === 'brillo')
                         ? "Ayuda a controlar el frizz y deja brillo en el peinado."
