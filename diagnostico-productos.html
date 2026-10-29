@@ -199,19 +199,19 @@
                 <span style="color: var(--gold-dark); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">🧴 Test de Cuidado en Casa</span>
                 <h1 class="section-title" style="font-size: 2.6rem; margin-bottom: 12px;">Encuentra tu Rutina Capilar Ideal</h1>
                 <p style="font-size: 1.1rem; color: #555; line-height: 1.6;">
-                    No todos los cabellos necesitan lo mismo. Responde 3 preguntas rápidas y te armamos la lista de productos JA que le sirven a tu cabello. Para todo tipo de cabello, de hombre o de mujer.
+                    No todos los cabellos necesitan lo mismo. Responde 4 preguntas rápidas y te armamos la lista de productos JA que le sirven a tu cabello. Para todo tipo de cabello, de hombre o de mujer.
                 </p>
             </div>
 
             <!-- Card del Test Interactivo -->
             <div class="hair-quiz-card" style="margin-bottom: 60px;">
                 <div class="quiz-progress-bar">
-                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                    <div class="quiz-progress-fill" id="quizProgressFill" style="width: 25%;"></div>
                 </div>
 
                 <!-- Paso 1 -->
                 <div class="quiz-step active" id="quizStep1">
-                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 1 de 3: ¿Cómo está tu cabello?</h3>
+                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 1 de 4: ¿Cómo está tu cabello?</h3>
                     <p style="font-size: 0.9rem; color: #777;">Toca la opción que mejor represente tu cabello:</p>
                     <div class="quiz-options-grid">
                         <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'natural')">
@@ -234,17 +234,30 @@
                             <span class="quiz-opt-title">Seco, Opaco o con Mucho Frizz</span>
                             <span class="quiz-opt-sub">Busco suavidad, brillo y control del frizz</span>
                         </button>
-                        <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('state', 'graso')">
+                    </div>
+                </div>
+
+                <!-- Paso 2: cuero cabelludo -->
+                <div class="quiz-step" id="quizStepScalp">
+                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 2 de 4: ¿Cómo está tu cuero cabelludo?</h3>
+                    <p style="font-size: 0.9rem; color: #777;">El shampoo trabaja sobre la raíz y el acondicionador sobre el cabello, por eso los elegimos por separado:</p>
+                    <div class="quiz-options-grid">
+                        <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('scalp', 'seco')">
+                            <span class="quiz-opt-icon">🤍</span>
+                            <span class="quiz-opt-title">De normal a seco</span>
+                            <span class="quiz-opt-sub">La raíz no se engrasa rápido, incluso puede sentirse tirante</span>
+                        </button>
+                        <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('scalp', 'graso')">
                             <span class="quiz-opt-icon">💆‍♀️</span>
-                            <span class="quiz-opt-title">Raíz Grasa / Puntas Secas</span>
-                            <span class="quiz-opt-sub">Busco limpieza equilibrada sin maltratar las puntas</span>
+                            <span class="quiz-opt-title">De normal a graso</span>
+                            <span class="quiz-opt-sub">La raíz se engrasa pronto, aunque las puntas estén secas</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Paso 2 -->
+                <!-- Paso 3 -->
                 <div class="quiz-step" id="quizStep2">
-                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 2 de 3: ¿Qué quieres lograr?</h3>
+                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 3 de 4: ¿Qué quieres lograr?</h3>
                     <p style="font-size: 0.9rem; color: #777;">Elige lo que más te importa:</p>
                     <div class="quiz-options-grid">
                         <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('goal', 'brillo')">
@@ -267,7 +280,7 @@
 
 <!-- Paso 3 -->
                 <div class="quiz-step" id="quizStep3">
-                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 3 de 3: ¿Usas secador o plancha?</h3>
+                    <h3 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 6px;">Paso 4 de 4: ¿Usas secador o plancha?</h3>
                     <p style="font-size: 0.9rem; color: #777;">Esto nos ayuda a saber si tu cabello necesita protección contra el calor:</p>
                     <div class="quiz-options-grid">
                         <button type="button" class="quiz-opt-btn" onclick="selectQuizOption('heat', 'si')">
@@ -441,7 +454,7 @@
             }
         })();
 
-        var quizAnswers = { state: '', heat: '' };
+        var quizAnswers = { state: '', scalp: '', goal: '', heat: '' };
 
         function selectQuizOption(key, value) {
             quizAnswers[key] = value;
@@ -449,8 +462,12 @@
 
             if (key === 'state') {
                 document.getElementById('quizStep1').classList.remove('active');
+                document.getElementById('quizStepScalp').classList.add('active');
+                if (fill) fill.style.width = '50%';
+            } else if (key === 'scalp') {
+                document.getElementById('quizStepScalp').classList.remove('active');
                 document.getElementById('quizStep2').classList.add('active');
-                if (fill) fill.style.width = '66%';
+                if (fill) fill.style.width = '75%';
             } else if (key === 'goal') {
                 document.getElementById('quizStep2').classList.remove('active');
                 document.getElementById('quizStep3').classList.add('active');
@@ -465,6 +482,10 @@
         var QUIZ_PRODUCTS = {
             comboExt:   { g: 2000, img: "combo extractos.webp", name: "Combo Extractos Naturales JA (1000 ml c/u)", price: 74000, why: "Shampoo de 8 plantas para una raíz fresca y liviana, más acondicionador con aloe, aguacate y coco que suaviza y da brillo." },
             comboArgan: { g: 1000, img: "combo argan.webp", name: "Combo Línea Argán JA (500 ml c/u)", price: 70000, why: "Shampoo y acondicionador con argán, biotina y mango: el shampoo limpia con suavidad un cuero cabelludo de normal a seco y el acondicionador desenreda y da brillo a un cabello de normal a seco o procesado." },
+            shampExt:   { g: 1000, img: "SHAMPOO EXTRACTOS ..webp", name: "Shampoo Extractos Naturales JA (1000 ml)", price: 38000, why: "" },
+            acondExt:   { g: 1000, img: "ACONDICIONADOR EXTRACTOS.jpeg", name: "Acondicionador Extractos Naturales JA (1000 ml)", price: 39000, why: "" },
+            shampArg:   { g: 500, img: "SHAMPOO DE ARGAN.webp", name: "Shampoo Línea Argán JA (500 ml)", price: 36000, why: "" },
+            acondArg:   { g: 500, img: "ACONDICIONADOR ARGAN.jpeg", name: "Acondicionador Línea Argán JA (500 ml)", price: 37000, why: "" },
             mascarilla: { g: 250, img: "MASCARILLA ORO LIQUIDO.webp", name: "Mascarilla Capilar Oro Líquido 3 en 1 JA (250 ml)", price: 35000, why: "Nutre e hidrata. Se usa antes del shampoo, después del shampoo o como crema para peinar." },
             multi:      { g: 300, img: "MASCARILLA MULTIACTIVA.webp", name: "Tratamiento Multiactivo 12-en-1 JA (300 ml)", price: 36000, why: "Tratamiento premium que hidrata, nutre y repara en una sola aplicación. Es el que más se nota en cabello muy maltratado." },
             ampolla:    { g: 20, img: "AMPOLLA SOS.webp", name: "Ampolla de Reparación S.O.S. JA (20 ml)", price: 16000, why: "Auxilio para cuando sientes el cabello seco, opaco o sin vida. Se mezcla con agua o con el Multiactivo." },
@@ -480,10 +501,15 @@
         function quizPlan(a) {
             var cuidado = (a.state === 'tinturado' || a.state === 'frizz');
             var nutre = cuidado || a.goal === 'nutricion';
-            var usaArgan = (a.state !== 'graso') && nutre;
+            var shampArg = (a.scalp !== 'graso');   // shampoo: segun el cuero cabelludo
+            var acondArg = nutre;                    // acondicionador: segun la fibra del cabello
             var calor = (a.heat === 'si');
+            var base;
+            if (shampArg && acondArg) base = ['comboArgan'];
+            else if (!shampArg && !acondArg) base = ['comboExt'];
+            else base = [shampArg ? 'shampArg' : 'shampExt', acondArg ? 'acondArg' : 'acondExt'];
             return {
-                base: usaArgan ? 'comboArgan' : 'comboExt',
+                base: base,
                 rec: {
                     mascarilla: nutre,
                     multi: cuidado || a.goal === 'nutricion',
@@ -499,13 +525,20 @@
             var calor = (a.heat === 'si');
             switch (k) {
                 case 'comboExt':
-                    if (a.state === 'graso') return "El shampoo de 8 plantas limpia la grasa de la raíz y el acondicionador va solo en medios y puntas, para no engrasar.";
-                    if (a.state === 'alisado') return "Limpia sin cargar tu cabello y el acondicionador lo deja suave, brillante y fácil de peinar.";
-                    return "Es la base de toda rutina: una limpieza que no deja el cabello pesado y un acondicionador que lo suaviza.";
+                    if (a.state === 'alisado') return "Dijiste que tu raíz se engrasa: el shampoo de 8 plantas la deja fresca y liviana, y el acondicionador cuida tu alisado, suave y brillante, aplicado solo en medios y puntas.";
+                    return "Dijiste que tu raíz se engrasa: el shampoo de 8 plantas la deja fresca y liviana, y el acondicionador de aloe, aguacate y coco suaviza el cabello, aplicado solo en medios y puntas.";
                 case 'comboArgan':
-                    if (a.state === 'tinturado') return "La tintura y la decoloración suelen dejar el cabello seco; el argán lo suaviza, lo desenreda y le da brillo.";
-                    if (a.state === 'frizz') return "Para un cabello seco, opaco o con frizz: suavidad, desenredo y brillo desde el lavado.";
-                    return "Pediste nutrición e hidratación: el argán y el mango suavizan y desenredan desde el lavado.";
+                    if (a.state === 'tinturado') return "Tu cuero cabelludo es de normal a seco y la tintura o decoloración suele dejar el cabello seco: el shampoo limpia con suavidad y el acondicionador de argán lo suaviza, lo desenreda y le da brillo.";
+                    if (a.state === 'frizz') return "Para un cuero cabelludo de normal a seco y un cabello seco, opaco o con frizz: suavidad, desenredo y brillo desde el lavado.";
+                    return "Pediste nutrición e hidratación y tu cuero cabelludo es de normal a seco: el argán y el mango suavizan y desenredan desde el lavado.";
+                case 'shampExt':
+                    return "Tu raíz se engrasa, así que el shampoo es el de 8 plantas: limpia la grasa y la deja fresca y liviana. Se aplica solo en el cuero cabelludo.";
+                case 'acondArg':
+                    return "Tu cabello pide más nutrición y suavidad que tu raíz: por eso el acondicionador es el de argán, que desenreda y da brillo. Va solo en medios y puntas, para no engrasar la raíz. Esta combinación es la ideal para raíz grasa con cabello procesado, seco o con frizz.";
+                case 'shampArg':
+                    return "Tu cuero cabelludo es de normal a seco: este shampoo con argán y biotina limpia con suavidad, sin dejar la sensación de cabello tieso.";
+                case 'acondExt':
+                    return "Tu cabello no necesita una nutrición intensa, así que el acondicionador es el de aloe, aguacate y coco: lo suaviza, lo desenreda y le da brillo sin sobrecargarlo.";
                 case 'mascarilla':
                     return (cuidado || a.goal === 'nutricion')
                         ? "Le da nutrición e hidratación a tu cabello. La usas antes o después del shampoo, o como crema para peinar."
@@ -529,7 +562,7 @@
             var a = quizAnswers;
             var plan = quizPlan(a);
             var resto = ['mascarilla', 'multi', 'ampolla', 'termo', 'aceite'];
-            var keys = [plan.base].concat(
+            var keys = plan.base.concat(
                 resto.filter(function (k) { return plan.rec[k]; }),
                 resto.filter(function (k) { return !plan.rec[k]; })
             );
@@ -545,11 +578,12 @@
             keys.forEach(function (k, i) {
                 var p = QUIZ_PRODUCTS[k];
                 var etiqueta = '';
-                if (i === 0) etiqueta = ' <em style="font-size:0.75rem;color:#7A5B0B;">Principal</em>';
+                var esBase = plan.base.indexOf(k) !== -1;
+                if (esBase) etiqueta = ' <em style="font-size:0.75rem;color:#7A5B0B;">Principal</em>';
                 else if (plan.rec[k]) etiqueta = ' <em style="font-size:0.75rem;color:#7A5B0B;">Recomendado para ti</em>';
                 else etiqueta = ' <em style="font-size:0.75rem;color:#888;">Complemento</em>';
                 html += '<label style="display:flex;gap:12px;align-items:flex-start;padding:12px 4px;cursor:pointer;' + (i ? 'border-top:1px solid rgba(212,175,55,0.25);' : '') + '">' +
-                    '<input type="checkbox" data-quiz-key="' + k + '"' + (i === 0 ? ' checked' : '') + ' style="width:22px;height:22px;margin-top:2px;accent-color:#B8941F;flex-shrink:0;" onchange="updateQuizTotal(this)">' + '<img src="' + encodeURI(p.img) + '" alt="' + p.name + '" loading="lazy" style="width:68px;height:68px;object-fit:cover;border-radius:12px;border:1px solid rgba(212,175,55,0.35);background:#FFF9FB;flex-shrink:0;">' +
+                    '<input type="checkbox" data-quiz-key="' + k + '"' + (esBase ? ' checked' : '') + ' style="width:22px;height:22px;margin-top:2px;accent-color:#B8941F;flex-shrink:0;" onchange="updateQuizTotal(this)">' + '<img src="' + encodeURI(p.img) + '" alt="' + p.name + '" loading="lazy" style="width:68px;height:68px;object-fit:cover;border-radius:12px;border:1px solid rgba(212,175,55,0.35);background:#FFF9FB;flex-shrink:0;">' +
                     '<span style="flex:1;"><strong>' + p.name + '</strong> <span style="color:var(--gold-dark);font-weight:800;white-space:nowrap;">' + quizFormatCOP(p.price) + '</span>' + etiqueta +
                     '<br><span style="font-size:0.85rem;color:#555;"><b>Por qué:</b> ' + quizWhy(k, a) + '</span></span></label>';
             });
@@ -626,15 +660,15 @@
         }
 
         function restartQuiz() {
-            quizAnswers = { state: '', goal: '', heat: '' };
+            quizAnswers = { state: '', scalp: '', goal: '', heat: '' };
             quizSelection = [];
-            ['quizStep2', 'quizStep3', 'quizResultStep'].forEach(function (id) {
+            ['quizStepScalp', 'quizStep2', 'quizStep3', 'quizResultStep'].forEach(function (id) {
                 var el = document.getElementById(id);
                 if (el) el.classList.remove('active');
             });
             document.getElementById('quizStep1').classList.add('active');
             var fill = document.getElementById('quizProgressFill');
-            if (fill) fill.style.width = '33%';
+            if (fill) fill.style.width = '25%';
             var listEl = document.getElementById('quizResultIncludes');
             if (listEl) listEl.innerHTML = '';
             var priceEl = document.getElementById('quizResultPrice');
