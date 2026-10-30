@@ -292,6 +292,12 @@
             })();
             mensaje = '(' + codigoOrigen + ') ' + mensaje;
 
+            // Campana Google Performance Max: utm_medium=pmax (wa-enlaces.js lo recuerda en sessionStorage y lo pasa aqui) agrega (G-PMAX) al FINAL del saludo.
+            // Sin utm_medium=pmax todo queda igual (codigo normal al inicio).
+            if (/^(google|gads)/.test(utmSource) && (urlParams.get('utm_medium') || '').toLowerCase() === 'pmax') {
+                mensaje += ' (G-PMAX)';
+            }
+
             // WhatsApp (wa.me) daña los emojis del texto precargado y la clienta ve un rombo con "?". Se retiran antes de abrir el chat.
             // Se conservan tildes, ¿ ¡ y guiones. (Prueba real VENTAS 12-oct.)
             mensaje = mensaje.replace(/[\u{1F000}-\u{1FFFF}\u{2190}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]/gu, '').replace(/[ \t]{2,}/g, ' ').replace(/ +([.,!?])/g, '$1').replace(/(Hola Julie Alisados) (?=[a-záéíóúñ])/, '$1, ').trim();
