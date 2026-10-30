@@ -1211,6 +1211,12 @@
     .envia-result-card { background: #FFF9FB; border: 1px solid #eee; border-radius: 0; padding: 14px; }
     .envia-badge { background: #fff; color: #7A5B0B; border: 1px solid rgba(212, 175, 55, 0.65); border-radius: 0; font-size: 0.62rem; letter-spacing: 0.14em; font-weight: 700; padding: 3px 8px; text-transform: uppercase; }
     .envia-rate-highlight { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: #A8862A; }
+    .stock-badge { display: inline-flex; align-self: center; width: fit-content; align-items: center; gap: 7px; margin: 6px 0 10px; padding: 5px 12px; background: #EAF7EF; color: #17653A; border: 1px solid rgba(30, 140, 80, 0.35); border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .stock-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1FA45B; box-shadow: 0 0 0 0 rgba(31, 164, 91, 0.55); animation: stockPulse 2s infinite; }
+    .stock-badge.agotado { background: #F3F3F3; color: #666; border-color: #d4d4d4; }
+    .stock-badge.agotado::before { background: #999; animation: none; }
+    @keyframes stockPulse { 70% { box-shadow: 0 0 0 7px rgba(31, 164, 91, 0); } 100% { box-shadow: 0 0 0 0 rgba(31, 164, 91, 0); } }
+    @media (prefers-reduced-motion: reduce) { .stock-badge::before { animation: none; } }
     .envia-total-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 4px; padding-top: 8px; border-top: 1px solid rgba(212, 175, 55, 0.45); font-size: 0.85rem; color: #111; }
     .envia-total-row span:last-child { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #A8862A; }
     .envia-disclaimer { background: #fff; border-left: 2px solid rgba(212, 175, 55, 0.65); border-radius: 0; font-size: 0.74rem; color: #5c5c5c; }
@@ -1363,6 +1369,7 @@
                     <div class="product-info">
                         <h3>Shampoo Extractos Naturales JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$38.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Shampoo de 8 plantas</span>
                         <p class="ext-motto">Un ba&ntilde;o de plantas para tu cabello.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Ocho extractos naturales en una espuma cremosa que deja tu ra&iacute;z <strong>fresca y liviana</strong> y tu cabello <strong>suave, brillante y con aroma delicioso</strong>, lavado tras lavado.</p>
@@ -1445,6 +1452,7 @@
                     <div class="product-info">
                         <h3>Acondicionador Extractos Naturales JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml)</span></h3>
                         <span class="product-price">$39.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Con aloe, aguacate y coco</span>
                         <p class="ext-motto">Suavidad que se siente y se ve.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Una crema con <strong>aloe vera, aceite de aguacate y aceite de coco</strong>, m&aacute;s vitamina E y provitamina B5, que desenreda, suaviza y da <strong>brillo</strong> para un cabello f&aacute;cil de peinar, lavado tras lavado.</p>
@@ -1524,6 +1532,7 @@
                     <div class="product-info">
                         <h3>Combo Extractos Naturales JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 ml c/u)</span></h3>
                         <span class="product-price">$74.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Shampoo + Acondicionador</span>
                         <p class="ext-motto">La rutina completa, en una sola compra.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">El <strong>shampoo de 8 plantas</strong> deja tu ra&iacute;z fresca y liviana; el <strong>acondicionador con aloe, aguacate y coco</strong> suaviza y da brillo. Juntos, un cabello <strong>limpio, suave y f&aacute;cil de peinar</strong>, con 2 litros para much&iacute;simos lavados.</p>
@@ -1598,6 +1607,7 @@
                     <div class="product-info">
                         <h3>Shampoo L&iacute;nea Arg&aacute;n JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$36.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Con arg&aacute;n y biotina</span>
                         <p class="ext-motto">Limpieza suave para un cabello con brillo.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Un shampoo con <strong>aceite de arg&aacute;n y biotina</strong> que limpia con suavidad y deja tu cabello <strong>brillante, suave y f&aacute;cil de peinar</strong>. Ideal para cuero cabelludo de normal a seco, con o sin alisado.</p>
@@ -1678,6 +1688,7 @@
                     <div class="product-info">
                         <h3>Acondicionador L&iacute;nea Arg&aacute;n JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$37.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Arg&aacute;n, mango y &aacute;cido hialur&oacute;nico</span>
                         <p class="ext-motto">Suavidad con brillo, d&iacute;a tras d&iacute;a.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Un acondicionador de uso diario con <strong>aceite de arg&aacute;n, mantequilla de mango, biotina, vitamina E y hialuronato de sodio</strong> que suaviza, desenreda y da <strong>brillo</strong> para un cabello con apariencia m&aacute;s sana y f&aacute;cil de peinar.</p>
@@ -1760,6 +1771,7 @@
                     <div class="product-info">
                         <h3>Combo L&iacute;nea Arg&aacute;n JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml c/u)</span></h3>
                         <span class="product-price">$70.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Shampoo + Acondicionador</span>
                         <p class="ext-motto">La rutina de arg&aacute;n completa, en una sola compra.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">El shampoo limpia con suavidad y el acondicionador sella con <strong>arg&aacute;n, mantequilla de mango y biotina</strong>. Juntos dejan tu cabello <strong>suave, brillante y f&aacute;cil de peinar</strong>, lavado tras lavado.</p>
@@ -1833,6 +1845,7 @@
                     <div class="product-info">
                         <h3>Mascarilla Capilar Oro L&iacute;quido 3 en 1 JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Nutre e hidrata</span>
                         <p class="ext-motto">Oro l&iacute;quido para tu cabello.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Una mascarilla con <strong>aceite de arg&aacute;n, aceite de jojoba, karit&eacute;, keratina hidrolizada y quitosano</strong> que <strong>nutre e hidrata</strong> y <strong>se usa de 3 formas</strong>: pre-shampoo (prepoo), mascarilla despu&eacute;s del shampoo o crema para peinar. Deja tu cabello <strong>suave, sedoso, f&aacute;cil de peinar y con brillo intenso</strong>.</p>
@@ -1912,6 +1925,7 @@
                     <div class="product-info">
                         <h3>Tratamiento Multiactivo 12-en-1 JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(300 ml)</span></h3>
                         <span class="product-price">$36.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Hidrata, nutre y repara</span>
                         <p class="ext-motto">Nuestro tratamiento premium: 3 beneficios en 1 sola aplicación.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Nuestro tratamiento premium que <strong>hidrata, nutre y repara en una sola aplicación</strong>, con <strong>12 ingredientes reconocidos</strong>: colágeno, biotina, aceite de argán, coco, aguacate, karité y aloe vera, entre otros. Deja tu cabello <strong>más brillante, suave y manejable</strong>.</p>
@@ -1998,6 +2012,7 @@
                     <div class="product-info">
                         <h3>Ampolla de Reparación S.O.S. JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(20 ml)</span></h3>
                         <span class="product-price">$16.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Aceites, fitoesteroles y vitamina E</span>
                         <p class="ext-motto">Auxilio para tu cabello, en 20 ml.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Una ampolla en aceite con <strong>aceite de oliva, aceite de sapucaia, fitoesteroles y vitamina E</strong> para darle a tu cabello <strong>suavidad y brillo</strong>.</p>
@@ -2077,6 +2092,7 @@
                     <div class="product-info">
                         <h3>Termoprotector y Perfume Capilar JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(250 ml)</span></h3>
                         <span class="product-price">$35.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Protege, perfuma y controla el frizz</span>
                         <p class="ext-motto">Secador o plancha, sin sufrir.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Un spray dise&ntilde;ado para <strong>proteger tu cabello del da&ntilde;o del calor</strong> del secador y la plancha. Si tienes nuestro alisado, es ideal para tu secado. Adem&aacute;s deja <strong>una delicada fragancia</strong>, le da <strong>movimiento y brillo</strong> a la fibra capilar y ayuda a <strong>controlar el frizz</strong>.</p>
@@ -2149,6 +2165,7 @@
                     <div class="product-info">
                         <h3>Aceite Reparador de Argán y Macadamia JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(60 ml)</span></h3>
                         <span class="product-price">$28.000</span>
+                        <span class="stock-badge">En stock</span>
                         <span class="ext-tag">Control del frizz, brillo y protecci&oacute;n</span>
                         <p class="ext-motto">El toque final que tu cabello necesita.</p>
                         <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px;">Un aceite en spray con <strong>aceite de argán y aceite de macadamia</strong> que aporta <strong>nutrición intensa, suavidad y brillo</strong>, deja el cabello sin encrespado y sin enredos, y lo protege de los rayos UVA. De absorción rápida y profunda.</p>

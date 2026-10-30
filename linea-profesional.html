@@ -687,7 +687,14 @@
                 justify-content: center;
             }
         }
-    </style>
+    
+    .stock-badge { display: inline-flex; align-self: center; width: fit-content; align-items: center; gap: 7px; margin: 6px 0 10px; padding: 5px 12px; background: #EAF7EF; color: #17653A; border: 1px solid rgba(30, 140, 80, 0.35); border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .stock-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1FA45B; box-shadow: 0 0 0 0 rgba(31, 164, 91, 0.55); animation: stockPulse 2s infinite; }
+    .stock-badge.agotado { background: #F3F3F3; color: #666; border-color: #d4d4d4; }
+    .stock-badge.agotado::before { background: #999; animation: none; }
+    @keyframes stockPulse { 70% { box-shadow: 0 0 0 7px rgba(31, 164, 91, 0); } 100% { box-shadow: 0 0 0 0 rgba(31, 164, 91, 0); } }
+    @media (prefers-reduced-motion: reduce) { .stock-badge::before { animation: none; } }
+</style>
     <script src="js/julie-analytics.js" defer></script>
     <script src="js/consent.js?v=20261020_texto" defer></script>
     <script src="js/promo-bar.js?v=20261022_mensaje" defer></script>
@@ -803,6 +810,7 @@
                     <div class="product-info">
                         <h3>Kit 3 Pasos Alisado Saludable JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(Paso 1: 500 ml | Paso 2: 1100 g | Paso 3: 500 ml)</span></h3>
                         <span class="product-price">$440.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Kit completo de 3 pasos para salones de belleza. Alisado vegetal libre de formol con Registro INVIMA.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -816,6 +824,7 @@
                     <div class="product-info">
                         <h3>Paso 1: Shampoo Antiresiduos JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$22.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Limpieza profunda y apertura de cutícula en el lavacabezas. Prepara el cabello para el Paso 2 de alisado.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -829,6 +838,7 @@
                     <div class="product-info">
                         <h3>Paso 2: Alisado Saludable JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1100 g)</span></h3>
                         <span class="product-price">$380.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Alisado vegetal de alto rendimiento. Modifica la estructura capilar con suavidad aportando liso natural y brillo de espejo.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -842,6 +852,7 @@
                     <div class="product-info">
                         <h3>Paso 3: Mascarilla Reparadora JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$52.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Sellador térmico y estabilizador de pH post-alisado. Cierra la cutícula atrapando la hidratación y fijando brillo espejo.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -855,6 +866,7 @@
                     <div class="product-info">
                         <h3>Reposición de Aminoácidos JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$168.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Recuperación de masa capilar perdida por químicos o decoloraciones. Fortalece el cabello desde el interior eliminando el quiebre.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -868,6 +880,7 @@
                     <div class="product-info">
                         <h3>R.C.P - Restauración Capilar Profunda JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(500 ml)</span></h3>
                         <span class="product-price">$145.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Tratamiento de impacto profesional para cabellos porosos, deshidratados o muy sensibles. Brillo de espejo instantáneo.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
@@ -881,6 +894,7 @@
                     <div class="product-info">
                         <h3>Emulsión Zero Restauradora JA<br><img class="by-julie" src="firma-by-julie-valencia.png?v=2" alt="By Julie Valencia" width="120" height="30" style="display: block; height: 30px; width: auto; max-width: none; margin: 2px auto 4px;"> <span style="font-size: 0.82em; font-weight: 600; color: var(--gold-dark);">(1000 g)</span></h3>
                         <span class="product-price">$370.000</span>
+                        <span class="stock-badge">En stock</span>
                         <p>Tratamiento disciplinante antifrizz de alta gama que repone lípidos y proteínas en fibras rebeldes o desnutridas.</p>
                         <button class="btn-details-trigger" style="margin-top: 10px; background: none; border: 1px solid var(--gold); color: var(--gold-dark); padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">👁️ Ver detalles y Pagar</button>
                     </div>
