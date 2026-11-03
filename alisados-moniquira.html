@@ -528,7 +528,7 @@
                              data-title="Alisado Saludable + Crioterapia + Kit Dúo Gratis"
                              data-price="250000"
                              data-msg="¡Hola, Julie Alisados! Vi la promo del Alisado Saludable en la sede Moniquirá">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-saludable-noviembre.mp4" class="lazy-img-clickable" src="promo-alisado-saludable-noviembre.mp4"></video>
+                            <video muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-saludable-noviembre.mp4" class="lazy-img-clickable" src="promo-alisado-saludable-noviembre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -536,7 +536,7 @@
                              data-title="Emulsión Zero ($170.000, un solo precio)"
                              data-price="170000"
                              data-msg="¡Hola, Julie Alisados! Vi la promo de Emulsión Zero en la sede Moniquirá">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-emulsion-zero-noviembre.mp4" class="lazy-img-clickable" src="promo-emulsion-zero-noviembre.mp4"></video>
+                            <video muted loop playsinline webkit-playsinline preload="none" data-video="promo-emulsion-zero-noviembre.mp4" class="lazy-img-clickable" src="promo-emulsion-zero-noviembre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -544,7 +544,7 @@
                              data-title="Reposición de Aminoácidos ($160.000)"
                              data-price="160000"
                              data-msg="¡Hola, Julie Alisados! Vi la promo de Reposición de Aminoácidos en la sede Moniquirá">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-reposicion-aminoacidos-noviembre.mp4" class="lazy-img-clickable" src="promo-reposicion-aminoacidos-noviembre.mp4"></video>
+                            <video muted loop playsinline webkit-playsinline preload="none" data-video="promo-reposicion-aminoacidos-noviembre.mp4" class="lazy-img-clickable" src="promo-reposicion-aminoacidos-noviembre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -552,7 +552,7 @@
                              data-title="R.C.P. Restauración Capilar Profunda ($110.000)"
                              data-price="110000"
                              data-msg="¡Hola, Julie Alisados! Vi la promo de R.C.P. Restauración Capilar Profunda">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-rcp-restauracion-capilar-profunda-noviembre.mp4" class="lazy-img-clickable" src="promo-rcp-restauracion-capilar-profunda-noviembre.mp4"></video>
+                            <video muted loop playsinline webkit-playsinline preload="none" data-video="promo-rcp-restauracion-capilar-profunda-noviembre.mp4" class="lazy-img-clickable" src="promo-rcp-restauracion-capilar-profunda-noviembre.mp4"></video>
                         </div>
 
                         <div class="image-card video-card-container"
@@ -560,7 +560,7 @@
                              data-title="Alisado Classic ($160.000)"
                              data-price="160000"
                              data-msg="¡Hola, Julie Alisados! Vi la promo del Alisado Classic en la sede Moniquirá">
-                            <video autoplay muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-classic-noviembre.mp4" class="lazy-img-clickable" src="promo-alisado-classic-noviembre.mp4"></video>
+                            <video muted loop playsinline webkit-playsinline preload="none" data-video="promo-alisado-classic-noviembre.mp4" class="lazy-img-clickable" src="promo-alisado-classic-noviembre.mp4"></video>
                         </div>
                     </div>
                 </div></section>
@@ -2426,6 +2426,7 @@
     </script>
     <script src="js/wa-enlaces.js?v=20261020_origen" defer></script>
     <script src="js/anclas-estables.js?v=20261009_a" defer></script>
+<script id="lazy-video-promos">(function(){var v=document.querySelectorAll("video[data-video]");if(!("IntersectionObserver" in window)){v.forEach(function(x){x.setAttribute("autoplay","")});return}var io=new IntersectionObserver(function(es){es.forEach(function(e){var x=e.target;if(e.isIntersecting){var p=x.play();if(p&&p.catch)p.catch(function(){})}else if(!x.paused){x.pause()}})},{rootMargin:"200px"});v.forEach(function(x){io.observe(x)})})();</script>
 </body>
 
 </html>
