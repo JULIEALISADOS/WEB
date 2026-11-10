@@ -1,0 +1,16 @@
+/* Solo el banner de cookies en el nuevo estilo */
+:root{--gold:#A98A3F;--font-body:'Lato',Arial,sans-serif;--ja-neon:#FF3D9A;--ja-ink:#141414}
+/* BANNER DE COOKIES (Ley 1581): mismo texto y mismos botones, nuevo estilo */
+#julie-consent-banner.julie-consent-banner{background:rgba(255,255,255,.9)!important;backdrop-filter:blur(16px) saturate(140%)!important;border:1px solid rgba(169,138,63,.55)!important;border-radius:0!important;box-shadow:0 22px 50px -22px rgba(0,0,0,.4)!important;font-family:var(--font-body)!important}
+#julie-consent-banner .julie-consent-text{color:#2b2926!important}
+#julie-consent-banner .julie-consent-link{color:var(--gold)!important}
+#julie-consent-banner .julie-consent-btn{border-radius:0!important;font-size:.72rem!important;letter-spacing:.16em!important;text-transform:uppercase!important;font-weight:700!important;padding:13px 24px!important;box-shadow:none!important}
+#julie-consent-banner .julie-consent-btn-accept{background:var(--ja-ink)!important;color:#fff!important;border:1px solid var(--ja-ink)!important}
+#julie-consent-banner .julie-consent-btn-accept:hover,#julie-consent-banner .julie-consent-btn-accept:focus-visible{background:var(--ja-ink)!important;transform:none!important;box-shadow:0 0 0 3px rgba(255,61,154,.22),0 10px 26px -10px var(--ja-neon)!important}
+#julie-consent-banner .julie-consent-btn-adjust{background:transparent!important;color:var(--ja-ink)!important;border:1px solid var(--ja-ink)!important}
+#julie-consent-banner .julie-consent-btn-adjust:hover{background:var(--ja-ink)!important;color:#fff!important}
+#julie-consent-banner .julie-switch input:checked+span{background:var(--ja-neon)!important}
+
+
+/* compacto en movil y tablet */
+@media(max-width:900px){#julie-consent-banner .julie-consent-text{font-size:12px!important;line-height:1.4!important}#julie-consent-banner .julie-consent-btn{padding:10px 16px!important;font-size:.66rem!important}#julie-consent-banner.julie-consent-banner{padding:12px 14px!important;gap:10px!important}}
