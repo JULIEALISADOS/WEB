@@ -67,6 +67,12 @@
             '.marq.ticker strong{color:#FF3D9A;font-weight:700;text-shadow:0 0 8px rgba(255,61,154,.45)}' +
             '.marq.ticker em{font-style:italic;color:#D9CFC2}' +
             '.marq.ticker .announcement-item::after{margin-left:36px}' +
+            /* Barra fucsia con letras blancas en todo el sitio (orden del Director 10-nov-2026) */
+            '.marq.ticker{background:#FF3D9A !important;color:#fff !important;border-bottom:0 !important}' +
+            '.marq.ticker .announcement-item,.marq.ticker em,.marq.ticker strong{color:#fff !important;text-shadow:none !important}' +
+            '.marq.ticker .announcement-item span[style]{color:#fff !important}' +
+            '.marq.ticker .announcement-item::after{color:#fff !important}' +
+            '.marq.ticker .announcement-item:hover{text-decoration-color:#fff !important}' +
             '@keyframes tkMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
             '@media (prefers-reduced-motion: reduce){.top-announcement-bar.ticker{overflow-x:auto}.top-announcement-bar.ticker .tk-track{animation:none}}';
         document.head.appendChild(s);

@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://juliealisados.com/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/diagnostico-productos.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/diagnostico-servicios.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/linea-cuidado.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/linea-profesional.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/alisados.html</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/promociones-condiciones.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <!-- SECCIÓN JULIE TIPS -->
   <url>
     <loc>https://juliealisados.com/julie-tips/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
@@ -57,32 +57,20 @@
   </url>
 <url>
     <loc>https://juliealisados.com/alisados-tunja.html</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/alisados-moniquira.html</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://juliealisados.com/legal.html</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/politica-envios.html</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/politica-garantia.html</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.40</priority>
   </url>
 </urlset>
