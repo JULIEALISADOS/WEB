@@ -404,10 +404,12 @@ details{border-top:1px solid var(--line)}details:last-of-type{border-bottom:1px 
 <script src="js/julie-analytics.js" defer></script>
 <style id="optimizar-movil">@media(max-width:900px){.fade{opacity:1!important;transform:none!important;transition:none!important}}
 @media(max-width:700px){
-html,body{max-width:100%;overflow-x:hidden}
-.marq{position:static!important;height:32px!important;font-size:10.5px!important;letter-spacing:.14em!important}
+html,body{max-width:100%;overflow-x:clip}
+.marq{position:sticky!important;top:0!important;z-index:80!important;height:32px!important;font-size:10.5px!important;letter-spacing:.14em!important}
 .marq a{padding:6px 0!important}
-.minibar{top:0!important}
+.minibar{top:32px!important}
+section{padding-top:34px;padding-bottom:34px}
+.dx{padding:40px 0}
 .wa-float{display:none!important}
 .mbar{padding:8px 12px calc(8px + env(safe-area-inset-bottom))!important;gap:10px!important;box-shadow:0 -10px 28px -18px rgba(0,0,0,.35)}
 .mbar .btn{padding:13px 8px!important;font-size:11.5px!important;letter-spacing:.07em!important;white-space:nowrap;display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px}
