@@ -77,6 +77,9 @@
             '.booking-bottom-bar,#julie-consent-banner.julie-consent-banner{background:linear-gradient(120deg,rgba(255,255,255,.62),rgba(253,236,242,.55) 45%,rgba(246,236,220,.58)) !important;-webkit-backdrop-filter:blur(22px) saturate(160%) !important;backdrop-filter:blur(22px) saturate(160%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 18px 44px -20px rgba(0,0,0,.35) !important}' +
             '#julie-consent-banner.julie-consent-banner{border:1px solid rgba(255,255,255,.75) !important}' +
             '.booking-bottom-bar{border-top:1px solid rgba(255,255,255,.8) !important}' +
+            /* Boton X de la barra "Armar mi rutina": redondo y perlado como el boton rosa (orden del Director 11-nov-2026) */
+            '.booking-bottom-bar-close{width:40px !important;height:40px !important;padding:0 !important;border-radius:50% !important;border:1px solid rgba(255,61,154,.35) !important;background:rgba(255,255,255,.55) !important;color:#C2185B !important;font-size:15px !important;line-height:1 !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;flex:0 0 auto;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 12px -6px rgba(255,61,154,.45) !important;transition:background .2s,border-color .2s,box-shadow .2s}' +
+            '.booking-bottom-bar-close:hover,.booking-bottom-bar-close:focus-visible{background:#fff !important;border-color:#FF3D9A !important;box-shadow:0 0 0 3px rgba(255,61,154,.16),0 0 14px rgba(255,61,154,.3) !important;outline:none}' +
             '@keyframes tkMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
             '@media (prefers-reduced-motion: reduce){.top-announcement-bar.ticker{overflow-x:auto}.top-announcement-bar.ticker .tk-track{animation:none}}';
         document.head.appendChild(s);
