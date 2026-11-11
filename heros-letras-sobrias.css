@@ -16,3 +16,6 @@ html body .hero-liso::before{background:linear-gradient(90deg,rgba(255,255,255,.
 /* Tablet vertical (601-900 px): el hero 9x16 no puede pasar del alto de la pantalla; se muestra completo, sin recorte, sobre fondo blanco */
 @media (min-width:601px) and (max-width:900px){html body :not(.hs-promo)>picture>img.bimg.bimg.bimg.bimg{max-height:calc(100svh - 190px) !important;height:auto !important;aspect-ratio:auto !important;width:100% !important;object-fit:contain !important;background:#fff !important}html body .lc-heros,html body .bhero,html body .hslider{background:#fff !important}}
 @media (max-width:900px){html body .hero-liso::before{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,.92) 50%,#fff 58%) !important}}
+
+/* promo v4 (Contenido 11-nov): Julie a la derecha, texto a la izquierda solo en PC */
+@media(min-width:901px){.bhero .hslider .hs-promo .hsp-txt{right:auto;left:6%}}
