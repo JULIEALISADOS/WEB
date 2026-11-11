@@ -73,6 +73,10 @@
             '.marq.ticker .announcement-item span[style]{color:#fff !important}' +
             '.marq.ticker .announcement-item::after{color:#fff !important}' +
             '.marq.ticker .announcement-item:hover{text-decoration-color:#fff !important}' +
+            /* Avisos emergentes en translucido perlado/satinado (orden del Director 11-nov-2026) */
+            '.booking-bottom-bar,#julie-consent-banner.julie-consent-banner{background:linear-gradient(120deg,rgba(255,255,255,.62),rgba(253,236,242,.55) 45%,rgba(246,236,220,.58)) !important;-webkit-backdrop-filter:blur(22px) saturate(160%) !important;backdrop-filter:blur(22px) saturate(160%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 18px 44px -20px rgba(0,0,0,.35) !important}' +
+            '#julie-consent-banner.julie-consent-banner{border:1px solid rgba(255,255,255,.75) !important}' +
+            '.booking-bottom-bar{border-top:1px solid rgba(255,255,255,.8) !important}' +
             '@keyframes tkMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
             '@media (prefers-reduced-motion: reduce){.top-announcement-bar.ticker{overflow-x:auto}.top-announcement-bar.ticker .tk-track{animation:none}}';
         document.head.appendChild(s);
