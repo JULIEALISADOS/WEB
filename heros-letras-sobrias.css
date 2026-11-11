@@ -1,0 +1,18 @@
+/* Letras de los heros en estilo sobrio (11-nov-2026). Solo borrador. Regla: Playfair regular, máximo 2 colores (tinta #141414 + fucsia #FF3D9A), fondos blancos, sin oro ni rosa pálido. */
+html body .hsp-txt{color:#141414 !important}
+html body .hsp-k{color:#FF3D9A !important;font-weight:700 !important;letter-spacing:.22em !important}
+html body .hsp-h{font-weight:400 !important;color:#141414 !important}
+html body .hsp-s{color:#141414 !important;opacity:.8 !important}
+html body .hsp-b{border:1.5px solid #FF3D9A !important;background:#FF3D9A !important;color:#fff !important;box-shadow:none !important;border-radius:2px !important}
+html body .hsp-b i{color:#fff !important}
+html body .hero-liso .spark{color:#FF3D9A !important}
+html body .hero-liso h1{font-weight:400 !important;color:#141414 !important}
+html body .hero-liso .sub{color:#333 !important;opacity:1 !important}
+html body .hero-liso .trust,html body .hero-liso .trust b{color:#141414 !important}
+html body .hero-liso .btn{background:#FF3D9A !important;border-color:#FF3D9A !important;color:#fff !important;border-radius:2px !important;box-shadow:none !important}
+html body .hero-liso .btn.ghost{background:#fff !important;color:#141414 !important;border:1.5px solid #141414 !important}
+html body .hero-liso{background-color:#fff !important}
+html body .hero-liso::before{background:linear-gradient(90deg,rgba(255,255,255,.7),rgba(255,255,255,.3) 45%,rgba(255,255,255,0) 60%) !important}
+/* Tablet vertical (601-900 px): el hero 9x16 no puede pasar del alto de la pantalla; se muestra completo, sin recorte, sobre fondo blanco */
+@media (min-width:601px) and (max-width:900px){html body :not(.hs-promo)>picture>img.bimg.bimg.bimg.bimg{max-height:calc(100svh - 190px) !important;height:auto !important;aspect-ratio:auto !important;width:100% !important;object-fit:contain !important;background:#fff !important}html body .lc-heros,html body .bhero,html body .hslider{background:#fff !important}}
+@media (max-width:900px){html body .hero-liso::before{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,.92) 50%,#fff 58%) !important}}
