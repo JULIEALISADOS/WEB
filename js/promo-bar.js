@@ -3,7 +3,7 @@
    >>> ACTUALIZAR UNA VEZ AL MES (solo este archivo; aplica a todas las paginas) <<<
    Los mensajes pasan de derecha a izquierda sin parar; al tocar o pasar el mouse se detienen.
    Reglas de la marca: Emulsion Zero y Aminoacidos son TERAPIAS (no se anuncian como alisado);
-   las promociones aplican con pago directo, no con Addi; sin promesas absolutas.
+   con Addi se paga la tarifa regular, pero se conservan los regalos de la promo; sin promesas absolutas.
    Solo el Alisado Saludable incluye regalos (Crioterapia, Reposicion Hidrolipidica y kit).
    Precios de referencia usados: kit mas costoso $74.000 y Termoprotector $35.000 (precios de venta).
    ========================================================================== */
@@ -11,7 +11,7 @@
     var BASE = '/promociones-condiciones.html';
     var WA = '/wa.html?utm_source=web&utm_medium=franja&utm_campaign=web-promos&tipo=cita&text=' + encodeURIComponent('¡Hola, Julie Alisados! Quiero más información');
     var PROMOS = [
-        { href: BASE, loc: 'promociones', t: '✨ <strong>Tu liso perfecto, a precio de promo</strong> · solo hasta el 30 de noviembre' },
+        { href: BASE, loc: 'promociones', t: '✨ <strong>Adiós frizz, a precio de promo</strong> · solo hasta el 30 de noviembre' },
         { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
         { href: 'https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Ame mi alisado, sin duda alguno los mejores resultados y me enamore de como sus productos han mejorado mi pelo. Super recomendado en Tunja”</em> · Olga M. · Reseña en Google" }, /*op*/
         { href: '/linea-cuidado.html#shampoo-extractos', t: "🧴 <strong>Shampoo Extractos Naturales JA $38.000</strong> · Ayuda a controlar la grasa del cuero cabelludo" }, /*op*/
