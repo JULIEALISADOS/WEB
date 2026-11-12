@@ -14,25 +14,13 @@
         { href: BASE, loc: 'promociones', t: '✨ <strong>Adiós frizz, a precio de promo</strong> · solo hasta el 30 de noviembre' },
         { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '💎 <strong>Alisado Saludable $250.000</strong> + Crioterapia, Reposición Hidrolipídica y kit de regalo' },
         { href: 'https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Ame mi alisado, sin duda alguno los mejores resultados y me enamore de como sus productos han mejorado mi pelo. Super recomendado en Tunja”</em> · Olga M. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#shampoo-extractos', t: "🧴 <strong>Shampoo Extractos Naturales JA $38.000</strong> · Ayuda a controlar la grasa del cuero cabelludo" }, /*op*/
         { href: BASE + '#alisado-saludable', loc: 'alisado-saludable', t: '🎁 Con tu Alisado Saludable, <strong>kit de regalo de hasta $74.000</strong>' },
         { href: BASE + '#alisado-classic', loc: 'alisado-classic', t: '👑 <strong>Alisado Classic $160.000</strong> · liso que dura de 4 a 6 meses' },
-        { href: 'https://maps.app.goo.gl/WpeYPMuyPrf6tCqq6', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Excelente  servicio y excelentes productos  muy profesional el personal que atiende la sede especialmente  la señorita  Maria Fernanda”</em> · Camila A. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#acondicionador-extractos', t: "🧴 <strong>Acondicionador Extractos Naturales JA $39.000</strong> · desenreda, suaviza y da brillo" }, /*op*/
-        { href: BASE + '#alisado-classic', loc: 'alisado-classic', t: '🌿 <strong>Liso sin formol</strong> desde $160.000' },
         { href: BASE + '#reposicion-aminoacidos', loc: 'reposicion-aminoacidos', t: '💫 <strong>Menos frizz</strong> · Reposición de Aminoácidos $160.000' },
-        { href: 'https://maps.google.com/maps?cid=16783253677649927441', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Excelente producto y atención recomendado.”</em> · Diana C. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#combo-extractos', t: "🎀 <strong>Combo Extractos Naturales JA $74.000</strong> · La rutina completa, en una sola compra" }, /*op*/
                 { href: BASE + '#emulsion-zero', loc: 'emulsion-zero', t: '🌸 <strong>Emulsión Zero $170.000</strong> · un solo precio, sin importar el largo ni la cantidad' },
                 { href: BASE + '#rcp-restauracion', loc: 'rcp-restauracion', t: '✨ <strong>R.C.P. Restauración Capilar Profunda $110.000</strong> · un solo precio' },
-        { href: 'https://maps.google.com/maps?cid=16783253677649927441', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Me encantó! Amo el alisado, los productos calidad 100 de 💯”</em> · July G. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#mascarilla-oro', t: "✨ <strong>Mascarilla Oro Líquido 3 en 1 $35.000</strong> · nutre e hidrata" }, /*op*/
-        { href: BASE, loc: 'promociones', t: '💖 <strong>10% de descuento</strong> en terapias del día 8 al 10 de tu alisado' },
-        { href: WA, t: '📲 <strong>Agenda tu cita</strong> por WhatsApp · cupos limitados por agenda' },
-        { href: 'https://maps.google.com/maps?cid=16783253677649927441', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Los mejores en alizsdos excelente atención y los productos son geniales”</em> · Jessica P. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#termoprotector', t: "🌸 <strong>Termoprotector y Perfume Capilar $35.000</strong> · proteger tu cabello del daño del calor del secador y la plancha" }, /*op*/
-        { href: 'https://maps.google.com/maps?cid=16783253677649927441', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Es un lugar bonito, fui a recoger unos productos que me han parecido excelentes, el shampoo, el acondicionador, el termo protector”</em> · Carolina L. · Reseña en Google" }, /*op*/
-        { href: '/linea-cuidado.html#aceite-argan', t: "💧 <strong>Aceite de Argán y Macadamia $28.000</strong> · deja el cabello sin encrespado y sin enredos" }, /*op*/
+        { href: BASE, loc: 'promociones', t: '💖 <strong>10% de descuento</strong> en terapias del día 8 al 10 después de tu alisado' },
+        { href: WA, t: '📲 <strong>Agenda tu cita</strong> por WhatsApp · te respondemos y apartamos tu día' },
         { href: 'https://maps.google.com/maps?cid=16783253677649927441', t: "<span style=\"color:#C9A24A;letter-spacing:2px\">★★★★★</span> <em>“Excelentes resultados ! Sus productos son muy buenos ! Estoy muy feliz con el resultado del alisado al lavar mi cabello. Bendiciones !”</em> · María E. · Reseña en Google" } /*op*/
     ];
     var VELOCIDAD_PX_S = 70; // lenta, para que se alcance a leer
