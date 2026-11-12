@@ -190,6 +190,7 @@ function initArticlePage(articles) {
 
     // Generar Tabla de Contenidos Automática
     generateTableOfContents();
+    if (location.hash) { const objetivo = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (objetivo) setTimeout(() => objetivo.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300); }
 
     // Renderizar FAQ
     const faqContainer = document.getElementById('art-faqs');
