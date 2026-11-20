@@ -309,7 +309,7 @@
 
             // PUERTA DE CONSENTIMIENTO (Ley 1581 / SIC): quien llega por primera vez elige "Aceptar todas" o "Solo necesarias" ANTES de abrir WhatsApp.
             // Con "Aceptar todas" se recarga la pagina para que los pixeles carguen con permiso y midan el clic. Con "Solo necesarias" se abre WhatsApp sin medir.
-            const decidido = function () { try { var c = localStorage.getItem('julie_privacy_consent'); return c === 'granted' || c === 'denied'; } catch (e) { return true; } };
+            const decidido = function () { try { var c = localStorage.getItem('julie_privacy_consent'); return !!c; } catch (e) { return true; } };
             const ir = function () { setTimeout(function () { window.location.replace(targetUrl); }, 750); };
             if (decidido()) {
                 ir();   // Esperar 750ms para garantizar que los pixeles (Meta, Google, TikTok) sincronicen en redes moviles

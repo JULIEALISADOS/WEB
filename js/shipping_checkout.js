@@ -346,7 +346,7 @@ function confirmBrebOrder() {
     const waUrl = `https://wa.me/573043588180?text=${encoded}`;
     
     if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion(waUrl, totalPrice, 'COP');
+        gtag_report_conversion(undefined, totalPrice, 'COP');
     }
     window.open(waUrl, '_blank');
 }
@@ -390,7 +390,7 @@ function proceedMercadoPagoCheckout() {
     const waUrl = `https://wa.me/573043588180?text=${encoded}`;
 
     if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion(waUrl, totalPrice, 'COP');
+        gtag_report_conversion(undefined, totalPrice, 'COP');
     }
     window.open(waUrl, '_blank');
 }
