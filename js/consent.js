@@ -199,7 +199,7 @@
                 user_agent: (navigator && navigator.userAgent) ? navigator.userAgent : 'Desconocido',
                 idioma: (navigator && navigator.language) ? navigator.language : 'es-CO',
                 pantalla: (window.screen ? window.screen.width + 'x' + window.screen.height : 'N/A'),
-                origen: window.location.href || 'https://juliealisados.com/'
+                origen: (window.location.origin + window.location.pathname) || 'https://juliealisados.com/'
             }
         };
 
@@ -224,6 +224,7 @@
             localStorage.setItem(PRIVACY_ACCEPTED_KEY, value === 'granted' ? 'true' : 'false');
             localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
             logConsentToCloud(value);
+            try { window.dispatchEvent(new Event('julie-consent-changed')); } catch (e2) {}
         } catch (e) {
             console.warn('Error al almacenar consentimiento:', e);
         }

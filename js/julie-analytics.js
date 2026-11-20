@@ -39,25 +39,49 @@
     return params;
   }
 
-  function saveUtmsToSession() {
-    const currentParams = getUrlParams();
-    let stored = {};
+  // Consentimiento (Ley 1581): solo se guardan clics publicitarios si la visitante
+  // aceptó "todas" o "publicidad". Valores de julie_privacy_consent: granted|denied|analytics|ads
+  var UTM_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 días
+
+  function adsConsentGranted() {
     try {
-      const raw = sessionStorage.getItem('ja_utm_data');
-      if (raw) stored = JSON.parse(raw);
-    } catch (e) {
-      stored = {};
-    }
+      var v = localStorage.getItem('julie_privacy_consent');
+      return v === 'granted' || v === 'ads';
+    } catch (e) { return false; }
+  }
+
+  function clearStoredUtms() {
+    try { sessionStorage.removeItem('ja_utm_data'); } catch (e) {}
+    try { localStorage.removeItem('ja_utm_data'); } catch (e) {}
+  }
+
+  function readStored(storage) {
+    try {
+      var raw = storage.getItem('ja_utm_data');
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (!data || !data._last_updated || (Date.now() - data._last_updated) > UTM_TTL_MS) {
+        storage.removeItem('ja_utm_data');
+        return null;
+      }
+      return data;
+    } catch (e) { return null; }
+  }
+
+  function saveUtmsToSession() {
+    if (!adsConsentGranted()) { clearStoredUtms(); return; }
+    const currentParams = getUrlParams();
+    const stored = readStored(sessionStorage) || readStored(localStorage) || {};
 
     // Si la URL actual trae parámetros, sobreescribir o enriquecer
     if (Object.keys(currentParams).length > 0) {
       const merged = Object.assign({}, stored, currentParams, {
         _last_updated: Date.now(),
-        _entry_url: window.location.href
+        _entry_url: window.location.origin + window.location.pathname // sin parámetros
       });
       try {
         sessionStorage.setItem('ja_utm_data', JSON.stringify(merged));
-        // Respaldo en localStorage por 30 días para atribución multi-sesión
+        // Respaldo en localStorage por 30 días (con vencimiento al leer) para atribución multi-sesión
         localStorage.setItem('ja_utm_data', JSON.stringify(merged));
       } catch (e) {
         // Fallback silencioso si cookies/almacenamiento están restringidos
@@ -66,15 +90,15 @@
   }
 
   function getStoredUtms() {
-    try {
-      const fromSession = sessionStorage.getItem('ja_utm_data');
-      if (fromSession) return JSON.parse(fromSession);
-      const fromLocal = localStorage.getItem('ja_utm_data');
-      if (fromLocal) return JSON.parse(fromLocal);
-    } catch (e) {}
-    return getUrlParams();
+    if (adsConsentGranted()) {
+      var s = readStored(sessionStorage) || readStored(localStorage);
+      if (s) return s;
+    }
+    return getUrlParams(); // sin consentimiento: solo lo de la página actual, nada guardado
   }
 
+  // Si la visitante cambia su elección, guardar o borrar al instante
+  window.addEventListener('julie-consent-changed', saveUtmsToSession);
   // Guardar inmediatamente al cargar el script
   saveUtmsToSession();
 

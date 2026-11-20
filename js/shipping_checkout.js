@@ -91,12 +91,53 @@ function updateFloatingBar() {
         
         if (floatingBar) {
             floatingBar.classList.add('active');
+            floatingBar.classList.toggle('minimized', cartBarMinimized);
+        }
+        const pill = document.getElementById('cartMiniPill');
+        if (pill) {
+            pill.classList.toggle('active', cartBarMinimized);
+            const pc = document.getElementById('cartMiniCount');
+            if (pc) pc.textContent = totalItems;
         }
     } else {
+        cartBarMinimized = false;
         if (floatingBar) {
             floatingBar.classList.remove('active');
+            floatingBar.classList.remove('minimized');
         }
+        const pill = document.getElementById('cartMiniPill');
+        if (pill) pill.classList.remove('active');
     }
+}
+
+// Minimizar / restaurar la barra del carrito (no borra el carrito)
+let cartBarMinimized = false;
+function setCartBarMinimized(min) {
+    cartBarMinimized = !!min;
+    updateFloatingBar();
+}
+
+// Editar cantidades desde el resumen del pedido (modal)
+function cartAdjust(name, change) {
+    const p = cart[name];
+    if (!p) return;
+    let q = p.qty + change;
+    if (q > 20) q = 20;
+    const card = Array.from(document.querySelectorAll('.product-card-large'))
+        .find(c => c.getAttribute('data-name') === name);
+    if (q <= 0) {
+        delete cart[name];
+        if (card) { card.classList.remove('selected'); const d = card.querySelector('.qty-display'); if (d) d.textContent = 0; }
+    } else {
+        p.qty = q;
+        if (card) { const d = card.querySelector('.qty-display'); if (d) d.textContent = q; }
+    }
+    updateFloatingBar();
+    if (Object.keys(cart).length === 0) {
+        closeCheckoutModal();
+        return;
+    }
+    openCheckoutModal();
 }
 
 // 3. Tarifas: ver js/envia-tarifas.js (simulador oficial de Envia, origen Moniquira)
@@ -170,11 +211,21 @@ function openCheckoutModal() {
         li.className = 'order-item-row';
         li.innerHTML = `
             <div class="order-item-title">
-                ${p.qty}x ${item}
+                ${item}
                 <div class="order-item-meta">Peso: ~${weightInKg} kg</div>
+                <div class="order-item-edit">
+                    <button type="button" class="oie-btn" aria-label="Quitar una unidad" data-act="minus">&minus;</button>
+                    <span class="oie-qty">${p.qty}</span>
+                    <button type="button" class="oie-btn" aria-label="Agregar una unidad" data-act="plus">+</button>
+                    <button type="button" class="oie-del" data-act="del">Quitar</button>
+                </div>
             </div>
             <span class="order-item-price">${formattedSub}</span>
         `;
+        li.querySelectorAll('button[data-act]').forEach(b => b.addEventListener('click', () => {
+            const a = b.getAttribute('data-act');
+            cartAdjust(item, a === 'plus' ? 1 : a === 'minus' ? -1 : -999);
+        }));
         listEl.appendChild(li);
     }
 
