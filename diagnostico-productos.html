@@ -684,7 +684,7 @@ a,button{-webkit-tap-highlight-color:rgba(255,61,154,.18)}
         </div>
         <div class="qz-ing">
           <strong>Aceite de Macadamia</strong>
-          <p>Aporta nutrición y suavidad en medios y puntas. Está en el Aceite Reparador de Argán y Macadamia.</p>
+          <p>Aporta nutrición y suavidad en medios y puntas. Está en el Aceite de Argán y Macadamia.</p>
         </div>
         <div class="qz-ing">
           <strong>Keratina hidrolizada</strong>
@@ -750,9 +750,9 @@ var quizAnswers = { state: '', scalp: '', goal: '', heat: '' };
             acondArg:   { g: 500, img: "tienda-acondicionador-argan-v1-1x1.webp", name: "Acondicionador Línea Argán JA By Julie Valencia (500 ml)", price: 37000, why: "" },
             mascarilla: { g: 250, img: "tienda-mascarilla-oro-liquido-v1-1x1.webp", name: "Mascarilla Capilar Oro Líquido 3 en 1 JA By Julie Valencia (250 ml)", price: 35000, why: "Nutre e hidrata. Se usa antes del shampoo, después del shampoo o como crema para peinar." },
             multi:      { g: 300, img: "tienda-tratamiento-multiactivo-v1-1x1.webp", name: "Tratamiento Multiactivo 12-en-1 JA By Julie Valencia (300 ml)", price: 36000, why: "Tratamiento premium que hidrata, nutre y repara en una sola aplicación. Es el que más se nota en cabello muy maltratado." },
-            ampolla:    { g: 20, img: "tienda-ampolla-reparacion-sos-v1-1x1.webp", name: "Ampolla de Reparación S.O.S. JA By Julie Valencia (20 ml)", price: 16000, why: "Auxilio para cuando sientes el cabello seco, opaco o sin vida. Se mezcla con agua o con el Multiactivo." },
+            ampolla:    { g: 20, img: "tienda-ampolla-reparacion-sos-v1-1x1.webp", name: "Ampolla S.O.S. JA By Julie Valencia (20 ml)", price: 16000, why: "Un shot de nutrición para cuando sientes el cabello seco u opaco. Se mezcla con agua o con el Multiactivo." },
             termo:      { g: 250, img: "tienda-termoprotector-perfume-capilar-v1-1x1.webp", name: "Termoprotector y Perfume Capilar JA By Julie Valencia (250 ml)", price: 35000, why: "Protege tu cabello del calor del secador y la plancha, y le deja una fragancia delicada." },
-            aceite:     { g: 60, img: "tienda-aceite-argan-macadamia-v1-1x1.webp", name: "Aceite Reparador de Argán y Macadamia JA By Julie Valencia (60 ml)", price: 28000, why: "El toque final de tu peinado: brillo, suavidad y control del frizz." }
+            aceite:     { g: 60, img: "tienda-aceite-argan-macadamia-v1-1x1.webp", name: "Aceite de Argán y Macadamia JA By Julie Valencia (60 ml)", price: 28000, why: "El toque final de tu peinado: brillo, suavidad y control del frizz." }
         };
         var quizSelection = [];
 
@@ -811,8 +811,8 @@ var quizAnswers = { state: '', scalp: '', goal: '', heat: '' };
                     if (nutre) return "Pediste nutrición e hidratación: un tratamiento completo, en una sola aplicación, que va después del shampoo y antes del acondicionador.";
                     return "Para cuando quieras un cuidado intensivo: hidrata, nutre y repara en una sola aplicación.";
                 case 'ampolla':
-                    if (cuidado) return "Tu cabello lo pide: es el rescate para cuando lo sientes seco, opaco o sin vida. Se mezcla con agua, o con el Multiactivo para un tratamiento intensivo.";
-                    return "Un rescate de 20 ml para tener a mano si un día sientes tu cabello seco, opaco o sin vida.";
+                    if (cuidado) return "Tu cabello lo pide: es el shot de nutrición para cuando lo sientes seco u opaco. Se mezcla con agua, o con el Multiactivo para un tratamiento intensivo.";
+                    return "Un shot de nutrición de 20 ml para tener a mano si un día sientes tu cabello seco u opaco.";
                 case 'termo':
                     return calor ? "Usas secador o plancha: protégelo del calor antes de usarlos. Además lo perfuma y ayuda a controlar el frizz."
                                  : "Para los días que uses secador o plancha, y también como perfume capilar para oler delicioso.";
