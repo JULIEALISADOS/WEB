@@ -1,6 +1,6 @@
 /* Banner deslizable V3: dedo (celular/tableta), arrastre con mouse (PC), cambio solo, puntos. */
 .bn{position:relative;width:100%;background:#F7F7F7}
-.bn__track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom}
+.bn__track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom}
 .bn__track::-webkit-scrollbar{display:none}
 .bn__track.arrastrando{scroll-snap-type:none;cursor:grabbing;scroll-behavior:auto}
 .bn__s{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;margin:0;position:relative}

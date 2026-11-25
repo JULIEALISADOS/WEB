@@ -92,3 +92,5 @@ img,video,iframe{max-width:100%}
   .cab .burger,.v3-cab .v3-burger{order:3;margin-left:auto}
 }
 .wa-flot3 a,.wa-float a{background:#FF3D9A!important;box-shadow:0 6px 18px -6px rgba(255,61,154,.6)!important}
+/* 25-nov: en celular el banner 9x16 no se recorta (antes max-height:78svh cortaba la cabeza de Julie en pantallas cortas) */
+@media (max-width:767px){.bn__s img{max-height:none!important;object-position:center top}}
