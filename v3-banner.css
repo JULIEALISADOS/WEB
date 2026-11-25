@@ -16,3 +16,5 @@
 .bn__nav.izq{left:14px}.bn__nav.der{right:14px}
 @media (hover:hover) and (pointer:fine){.bn__nav{display:flex;opacity:0;transition:opacity .2s}.bn:hover .bn__nav,.bn:focus-within .bn__nav{opacity:1}.bn__track{cursor:grab}}
 @media (prefers-reduced-motion:reduce){.bn__track{scroll-behavior:auto}}
+/* 25-nov: laminas del banner clicables hacia su producto */
+.bn__l{display:block;-webkit-user-drag:none}

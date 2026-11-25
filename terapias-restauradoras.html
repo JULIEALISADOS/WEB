@@ -537,12 +537,12 @@ html body .product-card-large .qty-btn{border-radius:0!important;background:#111
 /* 25-nov: en celular el contenido de la tarjeta se salía y quedaba recortado (informe Antigravity n.º 1) */
 @media(max-width:767px){html body .product-card-large .product-info>*{min-width:0;max-width:100%}html body .product-card-large .ext-facts,html body .product-card-large .ext-grid{grid-template-columns:minmax(0,1fr)!important}html body .product-card-large .ext-fact,html body .product-card-large .ext-fact.wide,html body .product-card-large .ext-cell{grid-column:auto!important;min-width:0!important;width:auto!important;padding-left:8px!important;padding-right:8px!important;overflow-wrap:anywhere}html body .product-card-large .ext-fact *,html body .product-card-large .ext-cell *{min-width:0;overflow-wrap:anywhere}html body .product-card-large .ext-head{flex-wrap:wrap!important}html body .product-card-large .ext-head>*{min-width:0}html body .product-card-large .card-tabs-nav{flex-wrap:wrap!important;gap:4px!important}html body .product-card-large .card-tab-btn{flex:1 1 auto!important;min-width:0!important;font-size:11px!important;padding:6px 4px!important;white-space:normal!important}html body .product-card-large .qty-selector-container{flex-wrap:wrap!important;gap:6px!important}html body .product-card-large .qty-btns-wrap{min-width:0!important;max-width:100%}html body .product-card-large .qty-btn{width:30px!important;min-width:30px!important;height:30px!important}}
 </style>
-<link rel="stylesheet" href="v3-ajustes.css?v=202611251416">
+<link rel="stylesheet" href="v3-ajustes.css?v=202611251435">
 </head>
 <body>
 <div class="v3-cab">
   <button class="v3-burger" id="v3-burger" aria-label="Abrir menú"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#111" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-  <a class="v3-logo" href="index.html"><img class="v3-sello" src="logo%201.webp" alt="Julie Alisados" width="60" height="55"><img class="v3-firma" src="firma-by-julie-valencia.png" alt="By Julie Valencia" width="118" height="30"></a>
+  <a class="v3-logo" href="index.html"><img class="v3-sello" src="logo%201.webp" alt="Julie Alisados" width="60" height="55"><span class="wm">JULIE ALISADOS</span><img class="v3-firma" src="firma-by-julie-valencia.png" alt="By Julie Valencia" width="118" height="30"></a>
   <div class="v3-nav"><a href="promociones-condiciones.html">Promociones</a><a href="alisados.html">Servicios</a><a href="linea-cuidado.html">Línea de Cuidado</a><a href="linea-profesional.html">Línea Profesional</a><a href="julie-tips/index.html">Julie Tips</a><a href="index.html#sedes">Sedes</a><a class="v3-pildora" href="https://wa.me/573043588180?text=Hola%2C%20quiero%20agendar%20mi%20cita">Agenda por WhatsApp</a></div>
   <div class="v3-der"></div>
 </div>
@@ -727,6 +727,7 @@ document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
 </script>
 <script src="/js/promo-bar.js" defer></script>
 <script>(function(){var s=document.querySelectorAll("#v3-anuncio span"),i=0;if(s.length>1)setInterval(function(){s[i].classList.remove("on");i=(i+1)%s.length;s[i].classList.add("on")},5000);var d=document.getElementById("v3-drawer"),b=document.getElementById("v3-burger"),c=document.getElementById("v3-cerrar");if(b&&d){b.onclick=function(){d.classList.add("open")};c.onclick=function(){d.classList.remove("open")};d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){d.classList.remove("open")})})}})();</script>
+<script src="js/cabecera-compacta.js?v=202611251435" defer></script>
 </body></html>
 
 <script>(function(){var h=document.getElementById("minibar");function f(){if(h)h.classList.toggle("on",window.scrollY>280)}window.addEventListener("scroll",f,{passive:true});f()})();</script>
