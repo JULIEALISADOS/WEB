@@ -14,7 +14,7 @@
 
   function abrir(origen) {
     if (abierto) return;
-    var src = (origen.currentSrc || origen.src || '').split('#')[0];
+    var src = (origen.currentSrc || origen.src || origen.dataset.src || '').split('#')[0];
     if (!src) return;
     reproduciendo = [];
     Array.prototype.forEach.call(document.querySelectorAll('video'), function (v) {

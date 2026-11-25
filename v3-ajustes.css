@@ -151,3 +151,90 @@ img,video,iframe{max-width:100%}
   html.cab-compacta .cab .firma,html.cab-compacta .v3-cab .v3-firma{width:80px!important}
 }
 @media (prefers-reduced-motion:reduce){header.cab,.v3-cab,.cab .sello,.v3-cab .v3-sello{transition:none!important}}
+
+/* 25-nov (Director: "acortar el inicio sin perder informacion"): en celular los bloques apilados pasan a filas deslizables y lo largo se pliega. Ningun texto se borra. */
+.plg-btn{display:none}
+@media (max-width:767px){
+  #cuidado .duo3,#porque .lista2,#test .testgrid,#sedes .sedes2{display:flex!important;grid-template-columns:none!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #cuidado .duo3::-webkit-scrollbar,#porque .lista2::-webkit-scrollbar,#test .testgrid::-webkit-scrollbar,#sedes .sedes2::-webkit-scrollbar,#comunidad .sellos3::-webkit-scrollbar{display:none}
+  #cuidado .duo3>*,#porque .lista2>*,#test .testgrid>*,#sedes .sedes2>*{flex:0 0 84%;scroll-snap-align:start;min-width:0}
+  #comunidad .sellos3{display:flex!important;grid-template-columns:none!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:10px;scrollbar-width:none}
+  #comunidad .sellos3>*{flex:0 0 46%;scroll-snap-align:start}
+  .plg-btn{display:flex;width:100%;align-items:center;justify-content:space-between;background:none;border:0;border-bottom:1px solid rgba(127,127,127,.35);padding:14px 2px;font:700 13px/1.2 Lato,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:inherit;cursor:pointer;text-align:left}
+  .plg-btn i{font-style:normal;font-size:20px;line-height:1;transition:transform .2s}
+  .plg.abierto>.plg-btn i{transform:rotate(45deg)}
+  .plg:not(.abierto)>.plg-cuerpo{display:none}
+  .plg-titulo-orig{display:none!important}
+  .plg-jahs{margin:18px 0 6px}
+}
+/* 25-nov (Director: "en movil el hero debe quedar ajustado a la pantalla y la barra de titulo mas pequena") */
+@media (max-width:767px){
+  header.cab,.v3-cab{height:58px!important}
+  .cab .sello,.v3-cab .v3-sello{width:40px!important;height:auto!important}
+  .logo .wm,.v3-logo .wm{font-size:12px;letter-spacing:.13em}
+  .logo .firma,.v3-logo .v3-firma{width:82px!important}
+  html.cab-compacta header.cab,html.cab-compacta .v3-cab{height:48px!important}
+  html.cab-compacta .cab .sello,html.cab-compacta .v3-cab .v3-sello{width:34px!important}
+  html.cab-compacta .cab .wm,html.cab-compacta .v3-cab .wm{font-size:11px}
+  html.cab-compacta .cab .firma,html.cab-compacta .v3-cab .v3-firma{width:70px!important}
+  /* hero: nunca mas alto que lo que queda de pantalla bajo el encabezado; se recorta lo vacio de abajo, no la cabeza */
+  .bn__s img{max-height:calc(100svh - 58px)!important;min-height:480px;object-fit:cover;object-position:center top}
+}
+/* 25-nov (Director: "la barra de titulo esta desordenada" en PC ~1280 px): el menu nunca parte palabras en dos lineas */
+@media (min-width:1200px){
+  .cab nav,.v3-nav{position:static!important;transform:none!important;margin:0 auto;flex-wrap:nowrap}
+  .cab nav a,.v3-nav a{white-space:nowrap}
+  .cab .der,.v3-der{flex-shrink:0}
+  .cab .logo,.v3-logo{flex-shrink:0}
+}
+@media (min-width:1200px) and (max-width:1439px){
+  .cab nav,.v3-nav{gap:16px!important}
+  .cab nav a,.v3-nav a{font-size:13px!important;line-height:15px!important}
+  header.cab,.v3-cab{padding:0 32px!important}
+  .cab .pildora,.v3-cab .v3-pildora{padding:10px 13px!important;font-size:13px}
+}
+/* 25-nov auditoria: en tableta/PC pequeno (768-1199 px) la seccion "Alisado a tu medida" se salia 13 px a la derecha (video de ancho fijo 659 px) */
+@media (min-width:768px) and (max-width:1199px){
+  .dividida{grid-template-columns:minmax(0,55%) minmax(0,1fr)!important}
+  .dividida video{width:100%!important;height:auto!important;aspect-ratio:16/9}
+  .dividida .t{padding-left:32px!important;min-width:0}
+  .dividida h2{font-size:34px!important;line-height:1.15!important;margin-bottom:28px!important}
+}
+/* 25-nov (Director: "aplicalo a todo el sitio"): en celular los bloques de tarjetas apiladas pasan a filas deslizables (la siguiente tarjeta asoma a la derecha). Ningun texto se borra. */
+@media (max-width:767px){
+  .sedes3,div.svc,.why,.duo,.quizcards,.redes{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;flex-direction:row!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:12px!important;padding-bottom:12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .sedes3::-webkit-scrollbar,div.svc::-webkit-scrollbar,.why::-webkit-scrollbar,.duo::-webkit-scrollbar,.quizcards::-webkit-scrollbar,.redes::-webkit-scrollbar{display:none}
+  .sedes3>*,div.svc>*,.why>*,.duo>*,.quizcards>*{flex:0 0 84%!important;max-width:84%;min-width:0;scroll-snap-align:start;margin:0!important}
+  .redes>*{flex:0 0 72%!important;max-width:72%;min-width:0;scroll-snap-align:start;margin:0!important}
+  .v3-pie .v3-cols{gap:0!important}
+}@media (max-width:767px){
+  html body #porque-elegirnos .why{display:flex!important}
+  html body #porque-elegirnos .why>div{flex:0 0 84%!important;max-width:84%;scroll-snap-align:start}
+}/* 25-nov (todo el sitio, celular): catalogos y listas mas cortos sin quitar texto */
+@media (max-width:767px){
+  /* Julie Tips: cada articulo en fila (foto a la izquierda, texto a la derecha) */
+  .articles-grid{grid-template-columns:1fr!important;gap:12px!important}
+  .articles-grid .article-card{flex-direction:row!important;align-items:stretch}
+  .articles-grid .card-img-wrap{flex:0 0 112px;width:112px;aspect-ratio:auto!important;min-height:112px}
+  .articles-grid .card-img-wrap img{height:100%!important;object-fit:cover}
+  .articles-grid .article-card>*:not(.card-img-wrap){padding:10px 12px!important;min-width:0}
+  /* Alisados: las 4 tarjetas de servicio en 2 columnas */
+  .pickgrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important}
+  .pickgrid .pickimg,.pickgrid .pickimg img{height:auto!important;aspect-ratio:1/1;object-fit:cover;width:100%}
+  /* Linea Profesional: productos en 2 columnas, igual que Linea de Cuidado */
+  .pro-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important}
+  /* Terapias: cuadros vacios "Video en camino" no ocupan pantalla en celular */
+  .video-container:not(:has(video,iframe,img)){display:none!important}
+}/* 25-nov auditoria: circulo blanco decorativo (resto de V2) en "Por que elegirnos" de las sedes; V3 no lleva burbujas */
+#porque-elegirnos::before{display:none!important}@media (max-width:767px){
+  .pro-grid .pro-media{padding:14px!important}
+  .pro-grid .pro-media img{width:100%!important;height:auto!important;max-width:130px;margin:0 auto;display:block}
+  .pro-grid .pro-body{padding:14px 12px 14px!important}
+  .pro-grid .pro-body h3{font-size:16px!important;line-height:1.25!important}
+  .pro-grid .pro-meta{display:flex!important;flex-wrap:wrap!important;align-items:center;gap:6px!important}
+  .pro-grid .stock-badge{white-space:nowrap;padding:3px 8px!important;font-size:10px!important}
+  .pro-grid .pro-body>p{font-size:13.5px!important;line-height:1.45!important}
+  .pro-grid .btn-details-trigger{width:100%;padding:12px 8px!important;font-size:11px!important}
+  .pro-grid>.pro-card:first-child{grid-column:1/-1}
+}@media (max-width:767px){.pro-grid .pro-tag{position:relative!important;z-index:2;display:inline-block;margin-bottom:8px}.pro-grid .pro-media{display:flex!important;flex-direction:column;align-items:flex-start}}/* 25-nov sedes con plantilla del inicio: botones del bloque local */
+.sede-local-acc{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
