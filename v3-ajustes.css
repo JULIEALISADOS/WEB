@@ -65,3 +65,23 @@ img,video,iframe{max-width:100%}
   .bn__cap strong{display:block;font:400 29px/1.18 'Playfair Display',Georgia,serif;margin-bottom:18px}
   .bn__cap a{display:inline-block;background:#111;color:#fff;font:700 12px/1 Lato,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:15px 24px;text-decoration:none}
 }
+
+/* 25-nov (Director: "heros sin letras, solo imagen y mucho espacio"): la 1.ª lamina en PC/tableta tambien lleva texto encima */
+@media (min-width:768px){
+  .bn__s{position:relative}
+  .bn__cap{display:block;position:absolute;left:7%;top:50%;transform:translateY(-50%);max-width:44%;text-align:left;color:#111}
+  .bn__cap small{display:block;font:700 clamp(11px,1.1vw,15px)/1.4 Lato,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+  .bn__cap strong{display:block;font:400 clamp(26px,3.9vw,58px)/1.12 'Playfair Display',Georgia,serif;margin-bottom:26px}
+  .bn__cap a{display:inline-block;background:#111;color:#fff;font:700 clamp(11px,1vw,14px)/1 Lato,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:16px 30px;text-decoration:none}
+}
+/* zona de toque de los puntos del banner (sin cambiar su tamano visible) */
+.bn__dot{position:relative}
+.bn__dot::after{content:"";position:absolute;inset:-12px -4px}
+/* enlaces pequenos en celular: mas alto para el dedo */
+@media (max-width:767px){
+  a.masinfo,a.vsede{display:inline-block;padding:8px 0;min-height:32px;box-sizing:border-box}
+  .pie a{display:inline-block;padding:7px 0;min-height:32px;box-sizing:border-box}
+}
+@media (min-width:768px) and (max-width:1024px){.bn__s:first-child img{object-position:right center}}
+/* 25-nov: a 1024-1199 px el menu se montaba sobre el logo: se usa el boton de menu hasta 1199 px */
+@media (min-width:1024px) and (max-width:1199px){.cab nav,.cab .der .t,.v3-nav,.v3-der .v3-t{display:none}.cab .burger,.v3-burger{display:block}header.cab{height:83px;padding:0 24px}.v3-cab{height:83px;padding:0 24px}}
