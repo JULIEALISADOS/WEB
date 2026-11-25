@@ -85,3 +85,10 @@ img,video,iframe{max-width:100%}
 @media (min-width:768px) and (max-width:1024px){.bn__s:first-child img{object-position:right center}}
 /* 25-nov: a 1024-1199 px el menu se montaba sobre el logo: se usa el boton de menu hasta 1199 px */
 @media (min-width:1024px) and (max-width:1199px){.cab nav,.cab .der .t,.v3-nav,.v3-der .v3-t{display:none}.cab .burger,.v3-burger{display:block}header.cab{height:83px;padding:0 24px}.v3-cab{height:83px;padding:0 24px}}
+
+/* 25-nov (Director): celular = logo a la izquierda y boton de menu a la derecha; boton flotante de WhatsApp en fucsia de marca */
+@media (max-width:1199px){
+  .cab .logo,.v3-cab .v3-logo{order:1}
+  .cab .burger,.v3-cab .v3-burger{order:3;margin-left:auto}
+}
+.wa-flot3 a,.wa-float a{background:#FF3D9A!important;box-shadow:0 6px 18px -6px rgba(255,61,154,.6)!important}
