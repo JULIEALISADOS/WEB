@@ -42,3 +42,26 @@ html body .rev,html body mark{background:transparent!important;padding:0!importa
 img,video,iframe{max-width:100%}
 /* Botón único de WhatsApp en el encabezado: fucsia, legible, sin partirse en dos líneas */
 .pildora{white-space:nowrap}
+/* 25-nov (Director: "la web en móvil no está optimizada"): en celular
+   1) título de cada sección centrado igual que su texto (antes título a la izquierda y texto centrado)
+   2) tarjetas deslizables (pasos, alisados/terapias, videos) con su propia altura: sin hueco en blanco
+   3) primera foto del carrusel: texto sobre la parte vacía de la imagen */
+@media (max-width:767px){
+  section.sec>h2,section.sec>.wrap>h2,section.sec .kick,section.sec>.lead,section.sec>.wrap>.lead,.vc__titulo,.dividida h2{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+  .pasos,.terap{align-items:flex-start!important}
+  .paso,.ter{min-height:0!important;height:auto!important}
+  .ter{justify-content:flex-start!important;gap:14px}
+  .vc__stage,.vc__track{height:auto!important}
+  .vc__track{align-items:flex-start!important}
+  /* las secciones aparecían con desvanecido de 0,8 s al bajar: en celular dejaba huecos blancos */
+  .fx{opacity:1!important;transform:none!important;transition:none!important}
+}
+@media (prefers-reduced-motion:reduce){.fx{opacity:1!important;transform:none!important;transition:none!important}}
+.bn__cap{display:none}
+@media (max-width:767px){
+  .bn__s{position:relative}
+  .bn__cap{display:block;position:absolute;left:22px;right:22px;bottom:64px;text-align:center;color:#111}
+  .bn__cap small{display:block;font:700 11px/1.4 Lato,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+  .bn__cap strong{display:block;font:400 29px/1.18 'Playfair Display',Georgia,serif;margin-bottom:18px}
+  .bn__cap a{display:inline-block;background:#111;color:#fff;font:700 12px/1 Lato,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:15px 24px;text-decoration:none}
+}
