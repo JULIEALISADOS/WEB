@@ -1,0 +1,18 @@
+/* Banner deslizable V3: dedo (celular/tableta), arrastre con mouse (PC), cambio solo, puntos. */
+.bn{position:relative;width:100%;background:#F7F7F7}
+.bn__track{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom}
+.bn__track::-webkit-scrollbar{display:none}
+.bn__track.arrastrando{scroll-snap-type:none;cursor:grabbing;scroll-behavior:auto}
+.bn__s{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;margin:0;position:relative}
+.bn__s picture,.bn__s img{display:block;width:100%}
+.bn__s img{aspect-ratio:3/1;object-fit:cover;-webkit-user-drag:none;user-select:none}
+@media (max-width:767px){.bn__s img{aspect-ratio:9/16;max-height:78svh}}
+@media (min-width:768px) and (max-width:1024px){.bn__s img{aspect-ratio:2/1}}
+.bn__dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px;pointer-events:none}
+.bn__dot{pointer-events:auto;width:10px;height:10px;padding:0;border:1px solid #111;border-radius:50%;background:rgba(255,255,255,.85);cursor:pointer;transition:width .25s,background .25s}
+.bn__dot[aria-current="true"]{width:26px;border-radius:6px;background:#111}
+.bn__dot:focus-visible,.bn__nav:focus-visible{outline:2px solid #FF3D9A;outline-offset:2px}
+.bn__nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#111;font:700 20px/1 Lato,Arial,sans-serif;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.bn__nav.izq{left:14px}.bn__nav.der{right:14px}
+@media (hover:hover) and (pointer:fine){.bn__nav{display:flex;opacity:0;transition:opacity .2s}.bn:hover .bn__nav,.bn:focus-within .bn__nav{opacity:1}.bn__track{cursor:grab}}
+@media (prefers-reduced-motion:reduce){.bn__track{scroll-behavior:auto}}

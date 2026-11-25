@@ -41,6 +41,16 @@
     fijar(id);
   });
 
+  // 25-nov (V3): anclas viejas del inicio que pueden venir de anuncios, Google o mensajes -> sección nueva equivalente
+  var ALIAS = { servicios: 'terapias', testimonios: 'opiniones', pagos: 'promociones', diagnostico: 'test', 'cuidado-ja': 'cuidado', 'ven-a-vernos': 'sedes', 'porque-elegirnos': 'porque' };
+  if (window.location.hash.length > 1) {
+    var h0 = decodeURIComponent(window.location.hash.slice(1));
+    if (!document.getElementById(h0)) {
+      if (h0 === 'legal' && !/legal\.html$/.test(window.location.pathname)) { window.location.replace('/legal.html'); return; }
+      if (ALIAS[h0]) { try { history.replaceState(null, '', '#' + ALIAS[h0]); } catch (e) {} }
+    }
+  }
+
   // Visita que llega ya con #legal en el enlace (por ejemplo desde un mensaje de WhatsApp)
   if (window.location.hash.length > 1) {
     var id0 = decodeURIComponent(window.location.hash.slice(1));

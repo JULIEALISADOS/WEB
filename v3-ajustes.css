@@ -1,0 +1,44 @@
+/* Ajustes V3 comunes a las 26 páginas: tableta, celular y toques con el dedo. */
+/* Pie de página: columnas flexibles (antes 320px+498px fijas = desborde de 229px en tableta) */
+@media (min-width:768px) and (max-width:1100px){
+  .pie .cols,.v3-pie .v3-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 32px}
+}
+@media (max-width:767px){
+  .v3-pie .v3-cols{grid-template-columns:1fr}
+  .v3-pie h2{font-size:24px;line-height:26.4px}
+}
+@media (min-width:1101px){
+  .pie .cols,.v3-pie .v3-cols{grid-template-columns:minmax(220px,320px) minmax(0,498px) minmax(0,1fr)}
+}
+.pie .cols>div,.v3-pie .v3-cols>div{min-width:0}
+.pie a,.v3-pie a{overflow-wrap:anywhere}
+/* Zonas táctiles de al menos 44 px en enlaces del pie y del menú móvil */
+@media (pointer:coarse),(max-width:1024px){
+  .pie .cols a[href],.v3-pie .v3-cols a[href]{padding:11px 0}
+  #drawer a{min-height:44px;display:flex;align-items:center}
+}
+/* Tablas anchas (cookies, políticas): se deslizan con el dedo, no rompen la página */
+@media (max-width:767px){
+  main table,.sec table,.contenido table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+/* UNA sola franja superior: fucsia, letras blancas, en movimiento (orden del Director 21-nov). La franja fija de texto se retira. */
+.anuncio,.v3-anuncio{display:none!important}
+/* 21-nov (Director): la franja "quita elegancia", se retira del todo. Para volver a mostrarla, borrar la regla siguiente. */
+html body .marq,html body .marq.ticker,.marquee{display:none!important}
+html body .marq,html body .marq.ticker{background:#FF3D9A!important;color:#fff!important;border:0!important;min-height:36px}
+html body .marq .announcement-item,html body .marq a,html body .marq strong,html body .marq em,html body .marq span{color:#fff!important;text-shadow:none!important}
+html body .marq .announcement-item::after{color:#fff!important}
+/* Cierre de "JA Hair System": de párrafo suelto a bloque editorial (mismo texto, mejor presentación) */
+.cierre{max-width:820px;margin:40px auto 0!important;padding:28px 24px!important;border-top:1px solid #111;border-bottom:1px solid #111;text-align:center;font:400 clamp(17px,2vw,21px)/1.6 'Playfair Display',Georgia,serif!important;color:#111}
+.cierre .btn{display:flex!important;width:max-content!important;margin:22px auto 0}
+.cierre b{display:block;margin-bottom:10px;font:700 12px/1.4 Lato,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#111}
+@media (max-width:767px){.cierre{margin-top:28px!important;padding:22px 4px!important}}
+/* Párrafos "lead" seguidos: no se montan uno sobre otro (el -18px solo sirve justo debajo de un título) */
+.lead+.lead,.lead+p,p+.lead{margin-top:14px!important;position:static}
+.sec .lead{line-height:1.65}
+/* 21-nov (Director): "sin formol" ya no va resaltado en amarillo. (El amarillo era marca de revisión; la condición legal del certificado sigue pendiente.) */
+html body .rev,html body mark{background:transparent!important;padding:0!important;color:inherit!important}
+/* Imágenes y videos nunca más anchos que su caja */
+img,video,iframe{max-width:100%}
+/* Botón único de WhatsApp en el encabezado: fucsia, legible, sin partirse en dos líneas */
+.pildora{white-space:nowrap}
