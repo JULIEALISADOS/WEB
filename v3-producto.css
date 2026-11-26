@@ -1,0 +1,52 @@
+/* Pagina por producto (borrador 26-nov-2026). Estructura estilo K18, marca V3: blanco/negro, fucsia solo acento, Playfair + Lato. */
+.pp .wrap{max-width:1200px;margin-left:auto;margin-right:auto;padding-left:16px;padding-right:16px;box-sizing:border-box}
+.pp>section{margin-top:44px;margin-bottom:44px}
+.pp h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,3.2vw,38px);line-height:1.15;text-align:center;margin:0 0 22px;color:#111}
+.pp-migas{font-size:13px;color:#6b6b6b;padding-top:18px}
+.pp-migas a{color:#111;text-decoration:underline}
+.pp-migas span{margin:0 4px}
+/* bloque de compra */
+.pp .pp-top{margin-top:14px}
+.pp-top .product-card-large.pp-card{border:0!important;box-shadow:none!important;background:transparent}
+.pp-top .product-card-large.pp-card:hover .product-image-container img{transform:none}
+.pp-top .pp-card .product-image-container{background:#F7F7F7}
+.pp-h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.1;margin:10px 0 8px;color:#111}
+.pp-h1 .by-julie{display:block;margin-top:8px}
+.pp-top .product-price{font-size:24px}
+.pp-top .ext-motto{font-size:17px}
+@media (min-width:900px){
+  .pp-top .product-card-large.pp-card{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+  .pp-top .pp-card .product-image-container{position:sticky;top:96px;aspect-ratio:1/1;height:auto!important}
+}
+@media (max-width:899px){ /* celular: precio y boton de compra visibles sin bajar */
+  .pp .pp-top{margin-top:6px}
+  .pp-migas{padding-top:10px;font-size:12px}
+  .pp-top .pp-card .product-image-container{height:250px!important;min-height:0!important;aspect-ratio:auto!important;padding:10px!important}
+  .pp-top .pp-card .product-image-container img{max-height:230px!important}
+  .pp-top .pp-card .product-info{padding-top:10px!important}
+  .pp-h1{font-size:26px;margin:4px 0}
+  .pp-h1 .by-julie{margin-top:2px;height:22px;width:auto}
+  .pp-top .ext-motto{font-size:15px;margin:6px 0!important}
+}
+/* dolores */
+.pp-dolores{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.pp-dol{background:#F7F7F7;padding:20px 18px;border-left:3px solid #111}
+.pp-dol b{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:19px;line-height:1.25;color:#111;margin-bottom:6px}
+.pp-dol span{font-size:15px;line-height:1.45;color:#333}
+/* hero del producto */
+.pp-hero{max-width:1440px;margin-left:auto;margin-right:auto}
+.pp-hero img{display:block;width:100%;height:auto}
+/* relacionados */
+.pp-rel .product-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px;max-width:820px;margin:0 auto}
+.pp-rel-a{color:inherit;text-decoration:none}
+.pp-rel-a:hover{text-decoration:underline}
+@media (max-width:599px){.pp-rel .product-grid{gap:10px}}
+.pp-mas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;text-align:center}
+.pp-nota{font-size:12px;line-height:1.4;color:#6b6b6b;text-align:center;margin:-20px auto 32px}
+/* linea de cuidado: puntos del carrusel debajo de la imagen (no encima de la nota *) */
+.lc-heros .lch-dots{position:static!important;transform:none!important;margin:10px auto 0!important;justify-content:center}
+/* linea de cuidado: enlace a la pagina del producto */
+.lc-ver{display:inline-block;margin:6px 0 10px;font-size:14px;font-weight:700;color:#111;text-decoration:underline;text-underline-offset:3px}
+.lc-ver:hover{color:#FF3D9A}
+.lc-ver-n{color:inherit;text-decoration:none}
+.lc-ver-n:hover{text-decoration:underline}
