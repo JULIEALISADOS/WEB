@@ -238,3 +238,12 @@ img,video,iframe{max-width:100%}
   .pro-grid>.pro-card:first-child{grid-column:1/-1}
 }@media (max-width:767px){.pro-grid .pro-tag{position:relative!important;z-index:2;display:inline-block;margin-bottom:8px}.pro-grid .pro-media{display:flex!important;flex-direction:column;align-items:flex-start}}/* 25-nov sedes con plantilla del inicio: botones del bloque local */
 .sede-local-acc{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+/* 26-nov (Director): firma "By Julie Valencia" pegada a JULIE ALISADOS; la barra se esconde al bajar y vuelve al subir solo con JULIE ALISADOS */
+@media (max-width:1199px){
+  .logo .firma,.v3-logo .v3-firma{margin-top:-8px!important}
+  header.cab,.v3-cab{transition:transform .28s ease,height .25s ease,box-shadow .25s ease!important;will-change:transform}
+  html.cab-oculta header.cab,html.cab-oculta .v3-cab{transform:translateY(-110%)}
+  html.cab-compacta .cab .firma,html.cab-compacta .v3-cab .v3-firma{display:none!important}
+  html.cab-compacta .logo .wm,html.cab-compacta .v3-logo .wm{grid-row:1/3!important;align-self:center!important;font-size:13px!important}
+}
+@media (prefers-reduced-motion:reduce){header.cab,.v3-cab{transition:none!important}}
