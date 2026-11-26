@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isHubPage = document.body.classList.contains('julie-tips-hub');
 
     try {
-        const response = await fetch('./data/articles.json');
+        const response = await fetch('./data/articles.json?v=20261126c');
         if (!response.ok) {
             throw new Error('Error al cargar articles.json');
         }
