@@ -62,9 +62,6 @@ img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
 .spark{color:var(--gold);letter-spacing:.3em;font-size:12px;margin:0 0 4px}.head[style*="text-align:center"] .spark{margin-left:auto;margin-right:auto}
 .serif,h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:400}
 .borrador{background:var(--ink);color:#e5e8e8;text-align:center;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px}
-.marq{background:var(--neon);color:#ffffff;overflow:hidden;white-space:nowrap;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:10px 0}
-.mtrack{display:inline-block;animation:mq 46s linear infinite}.mtrack span{margin:0 26px}.mtrack i{font-style:normal;opacity:.85}
-@keyframes mq{to{transform:translateX(-50%)}}
 header{position:sticky;top:0;z-index:50;background:rgba(247,247,247,0.8);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
 .logo{display:flex;align-items:center;gap:12px;font-family:'Playfair Display',Georgia,serif;font-size:19px;letter-spacing:.28em;font-weight:500;white-space:nowrap}
@@ -82,7 +79,7 @@ nav.menu a{padding:6px 0;border-bottom:1px solid transparent}nav.menu a:hover{bo
 .bk{position:absolute;z-index:1;border-radius:50%;pointer-events:none;filter:blur(1.5px);background:rgba(231,231,231,0.95);animation:flota 16s ease-in-out infinite}
 .bk.r{background:rgba(247,247,247,0.95)}
 @keyframes flota{0%,100%{transform:translate(0,0) scale(1);opacity:.75}50%{transform:translate(14px,-26px) scale(1.12);opacity:1}}
-@media(prefers-reduced-motion:reduce){.luz:after,.bk,.mtrack,.neon{animation:none}}
+@media(prefers-reduced-motion:reduce){.luz:after,.bk,.neon{animation:none}}
 .bhero{position:relative;overflow:hidden;display:flex;align-items:center;min-height:clamp(520px,62vw,720px);background:#f7f7f7}
 .bimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
 .bhero:before{content:"";position:absolute;inset:0;z-index:1;background:rgba(247,247,247,0.94)}
@@ -223,15 +220,10 @@ header.scrolled .brandlogo img{width:64px}header.scrolled .hloc{display:none}hea
 @media(max-width:1240px){.hdr nav.menu{display:none}.hdr .hbtn{display:none}.hdr .hamb{display:flex;margin-left:auto}}
 @media(max-width:700px){.brandlogo img{width:104px}.wordmark{font-size:14px;letter-spacing:.16em}.neonby{font-size:13px}.hdr .hloc{flex-wrap:wrap;gap:2px 6px;font-size:10px}.hdr .hloc .lp{font-size:11.5px}.hdr .hloc a{font-size:9px;letter-spacing:.06em}header.scrolled .brandlogo img{width:52px}}
 /* barra de anuncios: siempre visible (pegada arriba), en movimiento continuo, cada anuncio es un enlace; se pausa al pasar el cursor para poder hacer clic */
-.marq{position:sticky;top:0;z-index:80;height:38px;display:flex;align-items:center;padding:0}
-.marq .mtrack{display:inline-flex;align-items:center;white-space:nowrap;animation-duration:60s}
-.marq:hover .mtrack,.marq:focus-within .mtrack{animation-play-state:paused}
-.marq a{display:inline-block;padding:9px 0;color:#ffffff;text-decoration:none;cursor:pointer}.marq a:hover{text-decoration:underline}
 header{position:relative!important;top:auto!important}
 .legal2{text-align:center;margin:26px auto 0}
 .neonlink{display:inline-block;padding:12px 22px;border:1.5px solid var(--ink);color:var(--ink)!important;text-decoration:none!important;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;transition:border-color .25s,box-shadow .25s}
 .neonlink:hover{border-color:var(--neon);box-shadow:0 0 0 3px rgba(0,0,0,0.035),0 0 16px rgba(0,0,0,0.087)}
-.marq .mtrack{will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
 /* barra compacta fija que aparece al bajar (sin cambiar el alto de la pagina, para que nada salte) */
 .minibar{position:fixed;top:38px;left:0;right:0;z-index:70;background:rgba(247,247,247,0.94);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .35s ease;box-shadow:0 14px 30px -24px rgba(0,0,0,0.4)}
 .minibar.on{transform:none}
@@ -244,7 +236,6 @@ header{position:relative!important;top:auto!important}
 @media(max-width:1180px){.mbnav,.mbcta{display:none}.mbham{display:flex!important}}
 /* en pantallas medianas el boton de WhatsApp del encabezado se oculta para que el menu no se monte sobre el nombre */
 @media(max-width:1520px){.hdr .hbtn{display:none}nav.menu{gap:16px}}
-.marq a{color:#ffffff}.marq u{text-decoration:underline}.marq strong{font-weight:700}
 .legal2{font-size:12.5px;color:var(--mute);margin-top:6px}
 .strip{position:relative;height:230px;overflow:hidden;margin:0 0 30px}.strip img{width:100%;height:100%;object-fit:cover;filter:blur(.6px)}
 .bocetotag{position:absolute;right:10px;top:10px;background:rgba(0,0,0,0.55);color:#ffffff;font:700 10px Lato,Arial;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;font-style:normal;z-index:3}
@@ -443,8 +434,6 @@ details{border-top:1px solid var(--line)}details:last-of-type{border-bottom:1px 
 <style id="optimizar-movil">@media(max-width:900px){.fade{opacity:1!important;transform:none!important;transition:none!important}}
 @media(max-width:700px){
 html,body{max-width:100%;overflow-x:clip}
-.marq{position:sticky!important;top:0!important;z-index:80!important;height:32px!important;font-size:10.5px!important;letter-spacing:.14em!important}
-.marq a{padding:6px 0!important}
 .minibar{top:32px!important}
 section{padding-top:34px;padding-bottom:34px}
 .dx{padding:40px 0}
@@ -526,7 +515,6 @@ html body{background:#fff;color:#111;font-family:Lato,Arial,sans-serif}
 main h1,main h2,body>section h1,body>section h2{font-family:'Playfair Display',Georgia,serif}
 html body input,html body button,html body select,html body textarea{font-family:Lato,Arial,sans-serif}
 html body a.btn:not(.ghost),html body button.btn:not(.ghost),html body .hsp-b{background:#111!important;background-image:none!important;color:#fff!important;border:1px solid #111!important;border-radius:0!important;box-shadow:none!important}
-html body .marq.ticker{background:#F4F4F4!important;background-image:none!important;color:#111!important}html body .marq.ticker *{color:#111!important}html body .marq.ticker a.announcement-item,html body .marq.ticker .announcement-item *,html body .marq.ticker span,html body .marq.ticker b,html body .marq.ticker strong{color:#111!important;-webkit-text-fill-color:#111!important;text-shadow:none!important}
 html body .lc-cta-band{background:#F4F4F4!important;background-image:none!important;color:#111!important}html body .lc-cta-band h2,html body .lc-cta-band p{color:#111!important}
 html body .quiz-progress-fill{background:#111!important;background-image:none!important}
 /* 21-nov (Director): sin arcos, neón ni burbujas decorativas; marcos rectos y fondos limpios, el color lo pone la foto (guía V3 regla 4) */
@@ -575,7 +563,7 @@ html body .product-card-large .qty-btn{border-radius:0!important;background:#111
 /* 25-nov: en celular el contenido de la tarjeta se salía y quedaba recortado (informe Antigravity n.º 1) */
 @media(max-width:767px){html body .product-card-large .product-info>*{min-width:0;max-width:100%}html body .product-card-large .ext-facts,html body .product-card-large .ext-grid{grid-template-columns:minmax(0,1fr)!important}html body .product-card-large .ext-fact,html body .product-card-large .ext-fact.wide,html body .product-card-large .ext-cell{grid-column:auto!important;min-width:0!important;width:auto!important;padding-left:8px!important;padding-right:8px!important;overflow-wrap:anywhere}html body .product-card-large .ext-fact *,html body .product-card-large .ext-cell *{min-width:0;overflow-wrap:anywhere}html body .product-card-large .ext-head{flex-wrap:wrap!important}html body .product-card-large .ext-head>*{min-width:0}html body .product-card-large .card-tabs-nav{flex-wrap:wrap!important;gap:4px!important}html body .product-card-large .card-tab-btn{flex:1 1 auto!important;min-width:0!important;font-size:11px!important;padding:6px 4px!important;white-space:normal!important}html body .product-card-large .qty-selector-container{flex-wrap:wrap!important;gap:6px!important}html body .product-card-large .qty-btns-wrap{min-width:0!important;max-width:100%}html body .product-card-large .qty-btn{width:30px!important;min-width:30px!important;height:30px!important}}
 </style>
-<link rel="stylesheet" href="v3-ajustes.css?v=202611260921">
+<link rel="stylesheet" href="v3-ajustes.css?v=20261126depura">
 </head>
 <body>
 <div class="v3-cab">
@@ -587,7 +575,6 @@ html body .product-card-large .qty-btn{border-radius:0!important;background:#111
 <div class="v3-drawer" id="v3-drawer"><button id="v3-cerrar" aria-label="Cerrar">×</button><a href="promociones-condiciones.html">Promociones</a><a href="alisados.html">Servicios</a><a href="linea-cuidado.html">Línea de Cuidado</a><a href="linea-profesional.html">Línea Profesional</a><a href="julie-tips/index.html">Julie Tips</a><a href="index.html#sedes">Sedes</a><a href="https://wa.me/573043588180">WhatsApp VIP</a></div>
 
 
-<div class="marq"><div class="mtrack" id="mt"><span><a href="promociones-condiciones.html#alisado-saludable">💎 <strong>Alisado Saludable:</strong> Cero plancha en casa + Crioterapia, Reposición Hidrolipídica y Kit Dúo de regalo por <strong>$250.000</strong> ✨ <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#alisado-classic">👑 <strong>Alisado Classic:</strong> Liso natural 4-6 meses por solo <strong>$160.000</strong> ✨ <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#emulsion-zero">🌸 <strong>Emulsión Zero:</strong> Suavidad y brillo con un solo precio, sin sorpresas: <strong>$170.000</strong> 🎁 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#reposicion-aminoacidos">🌿 <strong>Aminoácidos:</strong> Adiós al frizz rebelde por solo <strong>$160.000</strong> 💫 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#rcp-restauracion">✨ <strong>R.C.P.:</strong> recupera tu cabello desde la raíz, un solo precio de <strong>$110.000</strong> 💕 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html">💳 <strong>Paga a Cuotas:</strong> Tu alisado hoy con <strong>Addi</strong> sin tarjeta ✨ <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#alisado-saludable">💎 <strong>Alisado Saludable:</strong> Cero plancha en casa + Crioterapia, Reposición Hidrolipídica y Kit Dúo de regalo por <strong>$250.000</strong> ✨ <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#alisado-classic">👑 <strong>Alisado Classic:</strong> Liso natural 4-6 meses por solo <strong>$160.000</strong> ✨ <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#emulsion-zero">🌸 <strong>Emulsión Zero:</strong> Suavidad y brillo con un solo precio, sin sorpresas: <strong>$170.000</strong> 🎁 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#reposicion-aminoacidos">🌿 <strong>Aminoácidos:</strong> Adiós al frizz rebelde por solo <strong>$160.000</strong> 💫 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html#rcp-restauracion">✨ <strong>R.C.P.:</strong> recupera tu cabello desde la raíz, un solo precio de <strong>$110.000</strong> 💕 <u>Ver</u></a></span><i>&#10022;</i><span><a href="promociones-condiciones.html">💳 <strong>Paga a Cuotas:</strong> Tu alisado hoy con <strong>Addi</strong> sin tarjeta ✨ <u>Ver</u></a></span><i>&#10022;</i></div></div>
 <header><div class="wrap hdr">
   <a class="brandlogo" href="index.html"><img data-im="logo 1.webp" alt="Julie Alisados By Julie Valencia"></a><div class="brandtext"><a class="wordmark" href="index.html">JULIE ALISADOS</a><div class="neonby">By Julie Valencia</div><small class="hloc"><span class="lp">cabello que enamora</span><span class="hdot">&middot;</span><a href="index.html#sedes"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Sedes en Tunja y Moniquirá</a></small></div>
   <nav class="menu"><a href="alisados.html">Servicios</a><a href="index.html#resultados">Resultados</a><a href="julie-tips/">Julie Tips</a><a href="index.html#opiniones">Testimonios</a><a href="index.html#dudas">Preguntas Frecuentes</a><a href="legal.html">Legal</a></nav>
@@ -1169,7 +1156,6 @@ function rail(d){var r=document.getElementById('rail');r.scrollBy({left:d*330,be
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
 </script>
-<script src="/js/promo-bar.js" defer></script>
 <script>(function(){var s=document.querySelectorAll("#v3-anuncio span"),i=0;if(s.length>1)setInterval(function(){s[i].classList.remove("on");i=(i+1)%s.length;s[i].classList.add("on")},5000);var d=document.getElementById("v3-drawer"),b=document.getElementById("v3-burger"),c=document.getElementById("v3-cerrar");if(b&&d){b.onclick=function(){d.classList.add("open")};c.onclick=function(){d.classList.remove("open")};d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){d.classList.remove("open")})})}})();</script>
 <script src="js/cabecera-compacta.js?v=202611260130" defer></script>
 <script src="/js/sitio-compacto.js?v=202611260804" defer></script>
