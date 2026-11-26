@@ -21,7 +21,7 @@
       while (titulo.nextSibling) cuerpo.appendChild(titulo.nextSibling);
       var b = boton(titulo.textContent.trim(), id);
       titulo.classList.add('plg-titulo-orig');
-      col.appendChild(b); col.appendChild(cuerpo); col.classList.add('plg');
+      col.appendChild(b); col.appendChild(cuerpo); col.classList.add('plg'); if (/legal/i.test(titulo.textContent)) { col.classList.add('abierto'); b.setAttribute('aria-expanded', 'true'); }
       b.addEventListener('click', function () {
         var abierto = col.classList.toggle('abierto'); b.setAttribute('aria-expanded', abierto ? 'true' : 'false');
       });
