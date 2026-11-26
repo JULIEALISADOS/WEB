@@ -1,502 +1,113 @@
 [
   {
-    "id": "cuanto-dura-un-alisado",
-    "slug": "cuanto-dura-un-alisado",
-    "title": "¿Cuánto dura un alisado? Lo que necesitas saber",
-    "subtitle": "Entre 4 y 6 meses, según tu cabello y tus cuidados. Te contamos de qué depende y cómo hacer que te dure más.",
-    "summary": "Nuestro Alisado Saludable dura entre 4 y 6 meses, según el estado de tu cabello y tus cuidados en casa. Te explicamos de qué depende, en 2 minutos.",
-    "content": "<p>Es la primera pregunta que nos hacen en el salón, y es normal: quieres saber cuánto te va a durar tu inversión. Nuestro <a href=\"../alisados.html\">Alisado Saludable</a> dura <strong>entre 4 y 6 meses</strong>, según el estado de tu cabello y los cuidados que le des en casa.</p><h2>¿De qué depende?</h2><ul><li><strong>Tu tipo de cabello:</strong> grosor, porosidad y forma natural del rizo.</li><li><strong>Tu historial químico:</strong> tintes, decoloraciones o alisados anteriores.</li><li><strong>Tus cuidados en casa:</strong> el shampoo que usas, cómo lo secas y si lo proteges del calor.</li></ul><p>Por eso, antes de alisarte hacemos tu <a href=\"../alisados.html\">diagnóstico capilar, incluido sin costo con tu servicio</a>, y te decimos qué puedes esperar en tu caso.</p><h2>Cuando todo se hace bien, el liso se queda</h2><p>Tenemos clientas que cuidan tan bien su alisado que <strong>el largo se les mantiene liso hasta que lo cortan</strong>: con el tiempo solo tratamos el cabello nuevo que crece, con el <a href=\"articulo.html?slug=retoque-de-raiz-cuando-hacerlo\">Retoque de Raíz</a>.</p><p>Mira este caso real, <strong>un año después</strong>: la raíz creció con su forma natural y el largo sigue liso. <a href=\"https://www.facebook.com/reel/1507424677297790/\" target=\"_blank\" rel=\"noopener\">Ver el video en Facebook ↗</a></p><p>No es suerte ni magia. Es lo que logramos cuando todo va junto: tu diagnóstico capilar, un alisado bien hecho, buenos productos como los de nuestra <a href=\"../linea-cuidado.html\">Línea de Cuidado</a>, nuestras recomendaciones en casa y tu cronograma capilar con <a href=\"../terapias-nutritivas.html\">terapias</a>. Cada cabello es distinto: en tu diagnóstico te decimos qué esperar en tu caso.</p><h2>Los 3 hábitos que más ayudan</h2><ul><li>Lava tu cabello mínimo cada 2 días (ideal a diario) con <a href=\"articulo.html?slug=que-shampoo-usar-despues-del-alisado\">shampoo sin sal</a>.</li><li><a href=\"articulo.html?slug=por-que-secar-el-alisado-con-secador\">Sécalo con secador</a> después de cada lavado.</li><li>Usa protector de calor antes del secador o la plancha.</li></ul><h2>Sigue leyendo</h2><ul><li><a href=\"articulo.html?slug=como-funciona-un-alisado\">Cómo funciona un alisado, explicado fácil</a></li><li><a href=\"articulo.html?slug=por-que-el-alisado-dura-mas-en-unas-personas\">¿Por qué a unas les dura más que a otras?</a></li><li><a href=\"articulo.html?slug=errores-que-acortan-tu-alisado\">Los errores que acortan tu alisado</a></li><li><a href=\"articulo.html?slug=retoque-de-raiz-cuando-hacerlo\">Retoque de raíz: cuándo hacerlo</a></li></ul><p>¿Quieres saber qué esperar en tu caso? Agenda tu cita en <a href=\"../alisados-tunja.html\">Tunja</a> o <a href=\"../alisados-moniquira.html\">Moniquirá</a>.</p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados",
-      "Cuidado capilar",
-      "Guías completas"
-    ],
-    "date": "2026-07-22",
-    "readTime": "2 min de lectura",
     "featured": true,
-    "image": "../KIT%20ALISADO.webp",
-    "alt": "Kit de cuidado para después del alisado de Julie Alisados",
-    "author": "Julie Valencia",
+    "seo": {
+      "title": "¿Cuánto dura un alisado? Meses o semanas: de qué depende | Julie Tips",
+      "description": "¿Cuánto dura un alisado sin formol? Depende de tu cabello y de tus cuidados. Guía con errores comunes, el shampoo ideal y dónde agendar en Tunja o Moniquirá.",
+      "keywords": [
+        "cuanto dura un alisado",
+        "duración alisado sin formol",
+        "cuidados alisado sin formol",
+        "mantenimiento del alisado",
+        "shampoo sin sal"
+      ]
+    },
+    "date": "2026-07-22",
+    "subtitle": "Qué hace que tu alisado dure más o menos, cómo funciona un alisado sin formol y los cuidados en casa para mantener tu liso suave y con brillo.",
+    "slug": "cuanto-dura-un-alisado",
+    "id": "cuanto-dura-un-alisado",
+    "views": 0,
     "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [
+    "readTime": "11 min de lectura",
+    "author": "Julie Valencia",
+    "relatedProducts": [
       {
-        "question": "¿Cuánto tiempo dura el resultado y qué cuidados debo tener?",
-        "answer": "La duración aproximada es de 4 a 6 meses, según el estado de tu cabello y tus cuidados. Lava tu cabello como mínimo cada 2 días (ideal a diario) con shampoo sin sal y sécalo con secador después de cada lavado."
+        "link": "../combo-extractos.html",
+        "name": "Combo Extractos Naturales JA",
+        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
+        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
       },
+      {
+        "link": "../termoprotector.html",
+        "name": "Termoprotector y Perfume Capilar JA",
+        "desc": "Ayuda a proteger tu cabello del calor del secador y la plancha",
+        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
+      }
+    ],
+    "alt": "Cabello liso, suave y con brillo tras un Alisado Saludable de Julie Alisados",
+    "relatedServices": [
+      {
+        "link": "../alisado-saludable.html",
+        "name": "Alisado Saludable",
+        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
+        "image": "../KIT%20ALISADO.webp"
+      }
+    ],
+    "faqs": [
       {
         "question": "¿Sus productos contienen formol?",
         "answer": "No. Nuestro alisado es libre de formol y nuestros productos cuentan con Registro Sanitario INVIMA vigente."
+      },
+      {
+        "question": "¿Puedo realizarme el alisado si tengo tinte, decoloración o mechas?",
+        "answer": "Sí, pero el orden depende del proceso. Si es tinte normal (sin decoloración), primero se hace el Alisado Saludable y a los 20 días la tintura (de preferencia libre de amoníaco). Si es decoloración (balayage, mechas o aclaramiento), primero la decoloración y a los 30 días (un mes) el alisado, siempre que el cabello tenga la resistencia adecuada tras el diagnóstico capilar, incluido con tu servicio."
       },
       {
         "question": "¿Es seguro para mujeres embarazadas o en periodo de lactancia?",
         "answer": "Si estás embarazada o lactando, cuéntanoslo antes de agendar, igual que cualquier alergia, medicamento o condición médica. Así evaluamos tu caso con cuidado antes de cualquier procedimiento."
       },
       {
-        "question": "¿Tienen promociones especiales o facilidades de pago?",
-        "answer": "Sí. Cada mes publicamos promociones en servicios y productos. También puedes pagar a cuotas con Addi en nuestras sedes de Tunja y Moniquirá; con Addi pagas la tarifa regular de salón e incluimos todos los obsequios de la promoción."
-      }
-    ],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
-      },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "¿Cuánto dura un alisado? Lo que necesitas saber | Julie Tips",
-      "description": "Nuestro Alisado Saludable dura entre 4 y 6 meses según tu cabello y tus cuidados. De qué depende y los 3 hábitos que más ayudan. Tunja y Moniquirá.",
-      "keywords": [
-        "cuanto dura un alisado",
-        "duración alisado sin formol",
-        "cuidados alisado",
-        "alisado Tunja",
-        "alisado Moniquirá"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "como-funciona-un-alisado",
-    "slug": "como-funciona-un-alisado",
-    "title": "Cómo funciona un alisado, explicado fácil",
-    "subtitle": "Qué le pasa a tu cabello cuando lo alisamos y por qué el alisado alinea, pero no nutre.",
-    "summary": "Tu cabello está hecho de queratina y la mantienen unida tres tipos de enlaces. Te explicamos, sin palabras raras, cómo el alisado los alinea.",
-    "content": "<p>Para entender por qué un alisado dura más o menos, ayuda saber cómo está hecho tu cabello. Es casi todo <strong>queratina</strong>, una proteína fuerte, unida por tres tipos de enlaces:</p><ul><li><strong>Puentes disulfuro:</strong> los fuertes. Definen la forma con la que naciste: liso, ondulado, rizado o afro.</li><li><strong>Puentes de hidrógeno:</strong> los débiles. Se sueltan al mojar el cabello y se moldean con el calor del secador.</li><li><strong>Puentes salinos:</strong> cambian con el pH de los productos que usas.</li></ul><h2>¿Y el formol?</h2><p>Muchas keratinas de antes usaban formol (formaldehído), que endurece la fibra por fuera y suelta vapores. Nuestro <a href=\"../alisados.html\">Alisado Saludable</a> es libre de formol: con calor controlado y plancha profesional, la fibra se alinea para verse lisa, suave y con brillo.</p><h2>Lo que el alisado hace (y lo que no)</h2><p>El alisado <strong>alinea</strong> tu cabello. No lo nutre ni lo repara. Lo que nutre e hidrata son las <a href=\"../terapias-nutritivas.html\">terapias capilares</a> y tu rutina de cuidado en casa. Por eso, alisado más buenos cuidados es lo que mantiene tu cabello con mejor aspecto.</p><h2>¿Y si tengo canas?</h2><p>Como nuestra fórmula es libre de formol, el calor de la plancha durante el procedimiento puede generar una oxidación temporal en las canas. Te lo explicamos en el diagnóstico, antes de empezar.</p><p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">← ¿Cuánto dura un alisado?</a></p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados",
-      "Mitos y verdades"
-    ],
-    "date": "2026-11-24",
-    "readTime": "2 min de lectura",
-    "featured": false,
-    "image": "../antes%20despues%201.jpg",
-    "alt": "Resultado real de un alisado en Julie Alisados",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [
-      {
-        "question": "¿El alisado nutre el cabello?",
-        "answer": "No. El alisado alinea la fibra para que se vea lisa, suave y con brillo. Lo que nutre e hidrata son las terapias capilares y tu rutina de cuidado en casa."
+        "question": "¿Cuánto tiempo dura el resultado y qué cuidados debo tener?",
+        "answer": "La duración aproximada es de 4 a 6 meses, según el estado de tu cabello y tus cuidados. Lava tu cabello como mínimo cada 2 días (ideal a diario) con shampoo sin sal y sécalo con secador después de cada lavado."
       },
       {
         "question": "¿Qué pasa si tengo canas durante el procedimiento?",
         "answer": "Como nuestra fórmula es libre de formol, el calor de la plancha durante el procedimiento puede generar una oxidación temporal en las canas. Te lo explicamos en el diagnóstico antes de empezar."
-      }
-    ],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
       },
       {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "Cómo funciona un alisado, explicado fácil | Julie Tips",
-      "description": "Qué le pasa a tu cabello cuando lo alisamos, qué son los puentes de la queratina y por qué el alisado alinea pero no nutre.",
-      "keywords": [
-        "como funciona un alisado",
-        "alisado sin formol",
-        "alisado nutre el cabello",
-        "alisado y canas"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "por-que-el-alisado-dura-mas-en-unas-personas",
-    "slug": "por-que-el-alisado-dura-mas-en-unas-personas",
-    "title": "¿Por qué el alisado le dura más a unas que a otras?",
-    "subtitle": "Dos clientas, el mismo servicio y duraciones distintas. Estas son las 3 razones.",
-    "summary": "La porosidad, la forma natural del rizo y la cantidad de cabello cambian cuánto te dura el liso. Te contamos cómo influye cada una.",
-    "content": "<p>Pasa mucho: dos amigas se hacen el mismo alisado y a una le dura más. No es suerte. Influyen tres cosas:</p><h2>1. La porosidad y lo que le has hecho a tu cabello</h2><p>La porosidad es qué tanto absorbe y retiene agua tu cabello. Un cabello muy poroso (común si está decolorado, con mechas o con tintes frecuentes) tiene la cutícula más abierta y pierde hidratación fácil. Por eso necesita una rutina constante de hidratación en casa.</p><h2>2. La forma natural del rizo y la raíz que crece</h2><p>En cabellos ondulados o finos, el resultado suele mantenerse por más tiempo. En cabellos afro o de rizo muy cerrado, medios y puntas siguen lisos, pero la raíz nueva crece con su forma natural (alrededor de 1 a 1,5 cm por mes). Con el tiempo, esa diferencia se nota en la raíz; para eso existe el <a href=\"articulo.html?slug=retoque-de-raiz-cuando-hacerlo\">Retoque de Raíz</a>.</p><h2>3. El grosor y la cantidad de cabello</h2><p>Las hebras gruesas y abundantes necesitan más tiempo de trabajo en el salón, mecha a mecha. Por eso el tiempo de servicio y el cuidado en cada paso dependen de tu diagnóstico.</p><p>¿Quieres saber cómo es tu caso? Tu <a href=\"../alisados.html\">diagnóstico capilar va incluido sin costo con tu servicio</a>.</p><p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">← ¿Cuánto dura un alisado?</a></p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados",
-      "Cuidado capilar"
-    ],
-    "date": "2026-11-24",
-    "readTime": "2 min de lectura",
-    "featured": false,
-    "image": "../antes%20despues%202.jpg",
-    "alt": "Antes y después de un alisado en Julie Alisados",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
+        "question": "¿Tienen promociones especiales o facilidades de pago?",
+        "answer": "Sí. Cada mes publicamos promociones en servicios y productos. También puedes pagar a cuotas con Addi en nuestras sedes de Tunja y Moniquirá; con Addi pagas la tarifa regular de salón e incluimos todos los obsequios de la promoción."
       },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "¿Por qué el alisado le dura más a unas que a otras? | Julie Tips",
-      "description": "Porosidad, forma del rizo y cantidad de cabello: las 3 razones por las que el alisado dura distinto en cada persona.",
-      "keywords": [
-        "por que no me dura el alisado",
-        "porosidad del cabello",
-        "alisado cabello afro",
-        "duración alisado"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "errores-que-acortan-tu-alisado",
-    "slug": "errores-que-acortan-tu-alisado",
-    "title": "Los errores que hacen que tu alisado dure menos",
-    "subtitle": "Agua caliente, shampoo con sal, dormir con el cabello húmedo… Evítalos y disfruta tu liso por más tiempo.",
-    "summary": "Estos hábitos hacen que el liso se pierda antes de tiempo. La buena noticia: todos tienen solución fácil.",
-    "content": "<h2>Hábitos que acortan tu alisado</h2><ul><li><strong>Lavar con agua muy caliente:</strong> abre la cutícula y reseca la fibra.</li><li><strong>Usar shampoo con sal o sulfatos fuertes:</strong> arrastran la grasa natural que protege tu cabello y alteran el efecto del alisado.</li><li><strong>Secador o plancha sin protector de calor:</strong> el calor directo reseca la hebra.</li><li><strong>Cloro de piscina y agua de mar:</strong> la sal y el cloro resecan el cabello (mira <a href=\"articulo.html?slug=alisado-playa-piscina-ejercicio\">cómo cuidarlo en la playa</a>).</li><li><strong>Roce al dormir:</strong> acostarte con el cabello húmedo o sobre fundas ásperas genera frizz y enredos.</li></ul><h2>Los 7 errores más comunes</h2><ul><li>Usar shampoo anticaspa o clarificante comercial.</li><li>Acostarte a dormir con el cabello húmedo.</li><li>Amarrar el cabello húmedo con ligas muy apretadas.</li><li>Planchar el cabello sucio o sin protector de calor.</li><li>Entrar al mar o a la piscina sin proteger el cabello.</li><li>Frotar el cabello con fuerza con la toalla.</li><li>Olvidar la mascarilla semanal en casa.</li></ul><h2>Mito: «El alisado sin formol se cae en el primer lavado»</h2><p>Falso. Con los cuidados indicados, el resultado dura aproximadamente de 4 a 6 meses, según el estado de tu cabello. Lo importante es lavar con shampoo sin sal y <a href=\"articulo.html?slug=por-que-secar-el-alisado-con-secador\">secar con secador</a> después de cada lavado.</p><p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">← ¿Cuánto dura un alisado?</a></p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados",
-      "Cuidado capilar",
-      "Mitos y verdades"
-    ],
-    "date": "2026-11-24",
-    "readTime": "2 min de lectura",
-    "featured": false,
-    "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp",
-    "alt": "Termoprotector y Perfume Capilar JA",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [
       {
         "question": "¿Por qué mi alisado anterior no duró nada?",
         "answer": "Las causas más comunes son usar champús con sal o sulfatos fuertes, lavar con agua muy caliente, no secar con secador después del lavado o no proteger el cabello del calor."
-      }
-    ],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
       },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "Los errores que hacen que tu alisado dure menos | Julie Tips",
-      "description": "Agua caliente, shampoo con sal, dormir con el cabello húmedo y otros errores que acortan tu alisado, y cómo evitarlos.",
-      "keywords": [
-        "errores alisado",
-        "por que se cae el alisado",
-        "cuidados alisado sin formol",
-        "shampoo sin sal"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "que-shampoo-usar-despues-del-alisado",
-    "slug": "que-shampoo-usar-despues-del-alisado",
-    "title": "¿Qué shampoo usar después del alisado? (y qué evitar)",
-    "subtitle": "Sin sal, suave y con acondicionador. Cada cuánto lavar y qué productos te ayudan a mantener tu liso.",
-    "summary": "Lava mínimo cada 2 días con shampoo sin sal y seca con secador. Esto es lo que te recomendamos usar y lo que mejor evitas.",
-    "content": "<h2>¿Cada cuánto lavo mi cabello alisado?</h2><p>Como dice nuestra <a href=\"../politica-garantia.html\">Política de Garantía</a>, lava tu cabello <strong>mínimo cada 2 días</strong> (lo ideal es a diario) con un shampoo sin sal, y sécalo con secador después de cada lavado. El calor del secador es lo que le devuelve a tu cabello el acabado liso y con brillo.</p><h2>Lo que te recomendamos</h2><ul><li><strong>Shampoo y acondicionador sin sal:</strong> limpian con suavidad. Prueba nuestra <a href=\"../linea-cuidado.html\">Línea Extractos</a> o nuestra <a href=\"../linea-cuidado.html\">Línea Argán JA</a>.</li><li><strong>Mascarilla de hidratación y nutrición cada semana:</strong> por ejemplo, la <a href=\"../linea-cuidado.html\">Mascarilla Capilar Oro Líquido</a>, para mantener tu cabello suave y con brillo.</li><li><strong>Protector de calor siempre</strong> antes del secador o la plancha: nuestro <a href=\"../linea-cuidado.html\">Termoprotector y Perfume Capilar JA</a>.</li></ul><h2>Lo que mejor evitas</h2><ul><li>Shampoo anticaspa comercial o de limpieza profunda (clarificante).</li><li>Productos con sal (cloruro de sodio).</li><li>Aceites minerales pesados (parafina líquida o vaselina): dejan el cabello pesado.</li></ul><p>¿No sabes cuál es para ti? Haz nuestro <a href=\"../diagnostico-productos.html\">test de rutina en casa</a>: 4 preguntas y te armamos tu lista.</p><p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">← ¿Cuánto dura un alisado?</a></p>",
-    "category": "Cuidado capilar",
-    "categories": [
-      "Cuidado capilar",
-      "Alisados"
-    ],
-    "date": "2026-11-24",
-    "readTime": "2 min de lectura",
-    "featured": false,
-    "image": "../tienda-shampoo-extractos-v1-1x1.webp",
-    "alt": "Shampoo Extractos Naturales JA sin sal",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
-      },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "¿Qué shampoo usar después del alisado? | Julie Tips",
-      "description": "Shampoo sin sal, mascarilla semanal y protector de calor: qué usar y qué evitar para mantener tu alisado, y cada cuánto lavar.",
-      "keywords": [
-        "shampoo sin sal",
-        "shampoo para alisado",
-        "cada cuanto lavar el cabello alisado",
-        "productos después del alisado"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "alisado-playa-piscina-ejercicio",
-    "slug": "alisado-playa-piscina-ejercicio",
-    "title": "Tu alisado en la playa, la piscina y el gimnasio",
-    "subtitle": "Vacaciones y ejercicio sin perder tu liso: lo que debes hacer antes y después.",
-    "summary": "La sal, el cloro y el sudor resecan el cabello. Con estos pasos sencillos disfrutas el plan sin descuidar tu alisado.",
-    "content": "<h2>Playa y piscina</h2><ul><li>Moja tu cabello con agua dulce antes de entrar al mar o a la piscina: así absorbe menos sal o cloro.</li><li>Aplica un producto de protección de medios a puntas.</li><li>Al terminar el día, lava tu cabello con <a href=\"articulo.html?slug=que-shampoo-usar-despues-del-alisado\">shampoo sin sal</a> y sécalo con secador.</li></ul><h2>Ejercicio y sudor</h2><p>El sudor tiene sales que pueden resecar la raíz. Si haces ejercicio a diario, lava tu cabello seguido con shampoo sin sal y aplica acondicionador de medios a puntas.</p><p>¿Te vas de viaje? Lleva tu rutina: nuestra <a href=\"../linea-cuidado.html\">Línea de Cuidado</a> te acompaña.</p><p><a href=\"articulo.html?slug=errores-que-acortan-tu-alisado\">← Los errores que acortan tu alisado</a></p>",
-    "category": "Cuidado capilar",
-    "categories": [
-      "Cuidado capilar",
-      "Alisados"
-    ],
-    "date": "2026-11-24",
-    "readTime": "1 min de lectura",
-    "featured": false,
-    "image": "../tienda-acondicionador-argan-v1-1x1.webp",
-    "alt": "Acondicionador Línea Argán JA",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
-      },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "Tu alisado en la playa, la piscina y el gimnasio | Julie Tips",
-      "description": "Cómo cuidar tu alisado del agua de mar, el cloro y el sudor: lo que debes hacer antes y después.",
-      "keywords": [
-        "alisado y piscina",
-        "alisado y playa",
-        "alisado y ejercicio",
-        "cuidar alisado vacaciones"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "tinte-mechas-y-alisado",
-    "slug": "tinte-mechas-y-alisado",
-    "title": "Tinte, mechas y alisado: ¿qué va primero?",
-    "subtitle": "El orden correcto depende de si es tinte normal o decoloración. Así lo hacemos.",
-    "summary": "Si es tinte normal, primero el alisado. Si es decoloración, primero la decoloración. Te explicamos los tiempos.",
-    "content": "<h2>Tinte normal (sin decoloración)</h2><p>Primero se hace el <a href=\"../alisados.html\">Alisado Saludable</a> y <strong>a los 20 días</strong> la tintura (de preferencia libre de amoníaco).</p><h2>Decoloración (balayage, mechas o aclaramiento)</h2><p>Primero la decoloración y <strong>a los 30 días (un mes)</strong> el alisado, siempre que el cabello haya quedado con la resistencia adecuada según tu <a href=\"../alisados.html\">diagnóstico capilar, incluido sin costo con tu servicio</a>.</p><p>Si la fibra está muy sensibilizada por la decoloración, en lugar del alisado te ofrecemos primero terapias de recuperación como Emulsión Zero o R.C.P.</p><h2>Ojo con esto</h2><p>Los tintes y decoloraciones hechos después del alisado pueden alterar el resultado y anular la garantía. Consúltanos antes de hacerlos.</p><p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">← ¿Cuánto dura un alisado?</a></p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados",
-      "Color"
-    ],
-    "date": "2026-11-24",
-    "readTime": "1 min de lectura",
-    "featured": false,
-    "image": "../antes%20despues%203.jpg",
-    "alt": "Cabello liso con color después del alisado",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [
-      {
-        "question": "¿Puedo realizarme el alisado si tengo tinte, decoloración o mechas?",
-        "answer": "Sí, pero el orden depende del proceso. Si es tinte normal (sin decoloración), primero se hace el Alisado Saludable y a los 20 días la tintura (de preferencia libre de amoníaco). Si es decoloración (balayage, mechas o aclaramiento), primero la decoloración y a los 30 días (un mes) el alisado, siempre que el cabello tenga la resistencia adecuada tras el diagnóstico capilar, incluido con tu servicio."
-      }
-    ],
-    "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
-      },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "Tinte, mechas y alisado: ¿qué va primero? | Julie Tips",
-      "description": "El orden correcto entre tinte, decoloración y alisado, y cuántos días esperar entre uno y otro.",
-      "keywords": [
-        "tinte y alisado",
-        "mechas y alisado",
-        "decoloracion y alisado",
-        "que va primero tinte o alisado"
-      ]
-    },
-    "views": 0
-  },
-  {
-    "id": "retoque-de-raiz-cuando-hacerlo",
-    "slug": "retoque-de-raiz-cuando-hacerlo",
-    "title": "Retoque de raíz: cuándo y cómo hacerlo",
-    "subtitle": "Mantén tu liso parejo sin volver a alisar todo el cabello.",
-    "summary": "El Retoque de Raíz es para clientas de Alisado Saludable y se hace solo en el crecimiento nuevo, hasta el mes 4 exacto.",
-    "content": "<p>Tu cabello sigue creciendo (alrededor de 1 a 1,5 cm por mes) y la raíz nueva sale con su forma natural. Para que tu liso se vea parejo existe el <a href=\"../retoque-de-raiz.html\">Retoque de Raíz</a>.</p><h2>¿Cómo funciona?</h2><ul><li>Es para clientas de <strong>Alisado Saludable</strong>.</li><li>El producto se aplica <strong>solo en el crecimiento nuevo</strong> de la raíz, sin volver a trabajar el resto del cabello.</li><li>Se puede hacer <strong>hasta el mes 4 exacto</strong> después de tu último alisado.</li></ul><p>Agenda a tiempo y mantén tu liso: escríbenos y te decimos qué fecha te sirve.</p><p><a href=\"articulo.html?slug=por-que-el-alisado-dura-mas-en-unas-personas\">← ¿Por qué el alisado le dura más a unas que a otras?</a></p>",
-    "category": "Alisados",
-    "categories": [
-      "Alisados"
-    ],
-    "date": "2026-11-24",
-    "readTime": "1 min de lectura",
-    "featured": false,
-    "image": "../KIT%20ALISADO.webp",
-    "alt": "Kit de cuidado de Julie Alisados",
-    "author": "Julie Valencia",
-    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
-    "faqs": [
       {
         "question": "¿Cuándo debo hacerme el retoque de raíz?",
         "answer": "El Retoque de Raíz es para clientas de Alisado Saludable: se aplica solo en el crecimiento nuevo y se puede hacer hasta el mes 4 exacto después de tu último alisado."
       }
     ],
+    "categories": [
+      "Alisados",
+      "Cuidado capilar",
+      "Mitos y verdades",
+      "Guías completas",
+      "Shampoo",
+      "Cabello teñido",
+      "Productos"
+    ],
+    "summary": "¿Te preguntas cuánto te durará el alisado y cómo cuidarlo? Te explicamos de forma sencilla cómo funciona un alisado sin formol, los cuidados en casa que más ayudan y los errores que debes evitar.",
+    "image": "../KIT%20ALISADO.webp",
+    "category": "Alisados",
+    "title": "¿Cuánto dura un alisado? Lo que hace que el tuyo dure meses… o semanas",
     "sources": [],
-    "relatedProducts": [
-      {
-        "link": "../linea-cuidado.html#combo-extractos",
-        "name": "Combo Extractos Naturales JA",
-        "desc": "Shampoo y acondicionador sin sal para cuidar tu alisado",
-        "image": "../tienda-combo-natural-system-11-v1-1x1.webp"
-      },
-      {
-        "link": "../linea-cuidado.html#termoprotector",
-        "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
-        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
-      }
-    ],
-    "relatedServices": [
-      {
-        "link": "../alisados.html",
-        "name": "Alisado Saludable",
-        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
-        "image": "../KIT%20ALISADO.webp"
-      }
-    ],
-    "seo": {
-      "title": "Retoque de raíz: cuándo y cómo hacerlo | Julie Tips",
-      "description": "El Retoque de Raíz se aplica solo en el crecimiento nuevo y se puede hacer hasta el mes 4 después de tu Alisado Saludable.",
-      "keywords": [
-        "retoque de raiz alisado",
-        "cuando hacer retoque de raiz",
-        "mantenimiento alisado",
-        "alisado Tunja"
-      ]
-    },
-    "views": 0
+    "content": "<p class=\"lead-text\">Decidir transformar la textura de tu melena para lucir una apariencia suave, disciplinada y reluciente plantea una inquietud fundamental: <strong>¿cuánto dura un alisado?</strong> Para la mayoría de las mujeres que visitan nuestro salón, el tiempo que el cabello se mantiene liso define el valor real de su inversión. Nuestro Alisado Saludable tiene una duración aproximada de <strong>4 a 6 meses</strong>, según el estado de tu cabello y los cuidados que le des en casa. La duración no es una cifra fija: depende de tu tipo de cabello, de su historial químico y de tus hábitos de cuidado diario.</p>\n\n<p>En <strong>Julie Alisados</strong>, con sedes en Tunja y Moniquirá, recibimos clientas con cabellos muy distintos. En esta guía te explicamos de forma sencilla cómo funciona un alisado, qué hace que dure más o menos, y qué cuidados te ayudan a conservar el resultado sin descuidar la salud de tu cabello.</p>\n\n<h2 id=\"que-es-y-como-funciona-quimicamente\">1. ¿Qué es un alisado y cómo funciona en la hebra capilar?</h2>\n<p>Para entender por qué un alisado dura más o menos, conviene conocer la fibra capilar. El cabello está formado en su mayor parte por <strong>queratina</strong>, una proteína fibrosa y resistente. Dentro de la hebra, esa queratina se mantiene unida por tres tipos de enlaces:</p>\n\n<ul>\n  <li><strong>Puentes disulfuro:</strong> enlaces fuertes que definen la forma heredada del cabello (liso, ondulado, rizado o afro).</li>\n  <li><strong>Puentes de hidrógeno:</strong> enlaces débiles que se rompen al mojar el cabello y se moldean con el calor del secador.</li>\n  <li><strong>Puentes salinos:</strong> enlaces sensibles al pH de los productos que usas.</li>\n</ul>\n\n<p>Muchas keratinas tradicionales usaban formol (formaldehído), que endurece la fibra desde afuera y libera vapores. Nuestro <a href=\"../alisados.html\">Alisado Saludable</a> es <strong>libre de formol</strong>: con calor controlado y plancha profesional, la fibra se <strong>alinea</strong> para lucir lisa, suave y con brillo. Es importante saberlo: el alisado <strong>alinea</strong> el cabello; no lo nutre ni lo repara. La nutrición y la hidratación vienen de las terapias capilares y de tu rutina de cuidado en casa.</p>\n\n<h2 id=\"duracion-promedio-segun-tratamiento\">2. ¿Cuánto dura nuestro alisado?</h2>\n<p>Nuestro Alisado Saludable tiene una duración aproximada de <strong>4 a 6 meses</strong>. Ese rango cambia según:</p>\n<ul>\n  <li><strong>El estado y el tipo de tu cabello:</strong> grosor, porosidad y forma natural del rizo.</li>\n  <li><strong>Tu historial químico:</strong> tintes, decoloraciones o alisados anteriores.</li>\n  <li><strong>Tus cuidados en casa:</strong> el shampoo que usas, el secado y la protección del calor.</li>\n</ul>\n<p>Por eso, antes del procedimiento hacemos un <a href=\"../alisados.html\">diagnóstico capilar</a>, incluido con tu servicio, para decirte qué puedes esperar en tu caso.</p>\n\n<h3>Cuando todo se hace bien, el liso se queda</h3><p>Tenemos clientas que cuidan tan bien su alisado que <strong>el largo se les mantiene liso hasta que lo cortan</strong>: con el tiempo solo tratamos el cabello nuevo que crece, con el <a href=\"../retoque-de-raiz.html\">Retoque de Raíz</a>.</p><p>Mira este caso real, <strong>un año después</strong>: la raíz creció con su forma natural y el largo sigue liso. <a href=\"https://www.facebook.com/reel/1507424677297790/\" target=\"_blank\" rel=\"noopener\">Ver el video en Facebook ↗</a></p><p>No es suerte ni magia. Es lo que logramos cuando todo va junto: tu diagnóstico capilar, un alisado bien hecho, buenos productos como los de nuestra <a href=\"../linea-cuidado.html\">Línea de Cuidado</a>, nuestras recomendaciones en casa y tu cronograma capilar con <a href=\"../terapias-nutritivas.html\">terapias</a>. Cada cabello es distinto: en tu diagnóstico te decimos qué esperar en tu caso.</p><div class=\"jt-cita\"><p class=\"jt-nom\">¿Quieres saber cuánto te va a durar a ti?</p><p>En tu diagnóstico miramos porosidad, historial de color y forma de tu rizo, y te decimos qué esperar. Va incluido sin costo con tu servicio, en Tunja o Moniquirá.</p><a class=\"btn jt-btn\" href=\"https://wa.me/573043588180?text=Hola%2C%20quiero%20mi%20cita%20de%20alisado%20con%20diagn%C3%B3stico.%20Quiero%20saber%20cu%C3%A1nto%20me%20puede%20durar.\" target=\"_blank\" rel=\"noopener\">Agendar por WhatsApp</a></div><h2 id=\"factores-biologicos-duracion\">3. ¿Por qué un alisado dura más en unas personas que en otras?</h2>\n<p>Es frecuente que dos clientas con el mismo servicio tengan duraciones distintas. Influyen tres factores:</p>\n\n<h3 id=\"porosidad-capilar\">A. La porosidad y el historial químico de la fibra</h3>\n<p>La porosidad es la capacidad del cabello para absorber y retener agua. Un cabello muy poroso (común en cabellos decolorados, con mechas o con tintes frecuentes) tiene la cutícula más abierta y pierde hidratación con facilidad. Por eso necesita una rutina constante de hidratación en casa.</p>\n\n<h3 id=\"patron-rizo-crecimiento\">B. La forma natural del rizo y el crecimiento de la raíz</h3>\n<p>En cabellos ondulados o finos, el resultado suele mantenerse por más tiempo. En cabellos afro o de rizo muy cerrado, los medios y puntas siguen lisos, pero la raíz nueva crece con su forma natural (alrededor de 1 a 1,5 cm por mes). Por eso, con el tiempo, se nota la diferencia en la raíz.</p>\n\n<h3 id=\"grosor-densidad\">C. El grosor y la cantidad de cabello</h3>\n<p>Las hebras gruesas y abundantes necesitan más tiempo de trabajo en el salón, mecha a mecha. Por eso el tiempo de servicio y el cuidado en cada paso dependen del diagnóstico.</p>\n\n<h2 id=\"factores-ambientales-degradacion\">4. Hábitos que acortan la duración del alisado</h2>\n<p>Estos hábitos hacen que el liso se pierda antes de tiempo:</p>\n\n<ol>\n  <li><strong>Lavar con agua muy caliente:</strong> abre la cutícula y reseca la fibra.</li>\n  <li><strong>Usar champús con sal o sulfatos fuertes:</strong> arrastran la grasa natural que protege el cabello y alteran el efecto del alisado.</li>\n  <li><strong>Usar secador o plancha sin protector de calor:</strong> el calor directo reseca la hebra.</li>\n  <li><strong>Cloro de piscina, agua de mar y aguas termales:</strong> resecan el cabello. Lo mejor es no exponer tu alisado.</li>\n  <li><strong>Roce al dormir:</strong> acostarse con el cabello húmedo o dormir sobre fundas ásperas genera frizz y enredos.</li>\n</ol>\n\n<h2 id=\"politica-higiene-lavado\">5. ¿Cada cuánto se debe lavar el cabello alisado?</h2>\n\n<div class=\"info-box\" style=\"background:#F7F7F7; border-left:3px solid #111; padding:18px 20px; margin:24px 0;\">\n  <h4 style=\"color:#111; margin:0 0 8px;\">💧 Recomendación de Julie Alisados:</h4>\n  <p style=\"font-size: 0.95rem; margin: 0; line-height: 1.6;\">Como dice nuestra <a href=\"../politica-garantia.html\">Política de Garantía</a>, <strong>lava tu cabello como mínimo cada 2 días, siendo ideal el lavado diario</strong>, con un shampoo sin sal, y <strong>sécalo con secador después de cada lavado</strong>. Tu cabello seca liso también al aire, pero el calor del secador le da más brillo y la caída de salón. <a href=\"articulo.html?slug=por-que-secar-el-alisado-con-secador\"><strong>¿Por qué secar con secador y cómo hacerlo bien? →</strong></a></p>\n</div>\n\n<h3>Tu lavado en 6 pasos</h3><ol><li><strong>Agua fría o, como máximo, templada.</strong> El agua muy caliente reseca la fibra.</li><li><strong>Shampoo solo en el cuero cabelludo.</strong> Las puntas se limpian con la espuma que baja al enjuagar.</li><li><strong>Masaje de 3 minutos</strong> con la yema de los dedos, nunca con las uñas. Enjuaga y repite una segunda vez.</li><li><strong>Quita el exceso de agua</strong> sin frotar.</li><li><strong>Acondicionador de medios a puntas,</strong> evitando la raíz. Déjalo el tiempo que indica tu producto y enjuaga completo.</li><li><strong>Protector de calor y secador,</strong> a unos 15 cm y siempre en movimiento.</li></ol>\n<h3>¿Cuál shampoo es para ti?</h3>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../shampoo-extractos.html\" aria-label=\"Ver Shampoo Extractos Naturales JA · 1000 ml\"><img src=\"../tienda-shampoo-extractos-v1-1x1.webp\" alt=\"Shampoo Extractos Naturales JA · 1000 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Cabello pesado por la tarde?</p><p class=\"jt-nom\">Shampoo Extractos Naturales JA · 1000 ml</p><p>Raíz fresca y cabello liviano, con <strong>Botanic Fresh⁸</strong>: romero, ortiga, cola de caballo, manzanilla, salvia, castaño de Indias, toronjil y tusílago. Ideal para cuero cabelludo de normal a graso.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> doble lavado, a diario o interdiario según tu cuero cabelludo.</p><a class=\"btn jt-btn\" href=\"../shampoo-extractos.html\">Ver producto · $38.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../shampoo-argan.html\" aria-label=\"Ver Shampoo Línea Argán JA · 500 ml\"><img src=\"../tienda-shampoo-argan-v1-1x1.webp\" alt=\"Shampoo Línea Argán JA · 500 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Tu cabello está maltratado?</p><p class=\"jt-nom\">Shampoo Línea Argán JA · 500 ml</p><p>Lávalo con suavidad, con <strong>Argan Soft³</strong>: argán, keratina hidrolizada y biotina. Espuma cremosa que limpia sin dejar el cabello tieso. Ideal para cuero cabelludo de normal a seco.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> doble lavado, con masaje en el cuero cabelludo.</p><a class=\"btn jt-btn\" href=\"../shampoo-argan.html\">Ver producto · $36.000</a></div></div>\n<h2 id=\"guia-productos-mantenimiento\">6. ¿Qué usar y qué evitar en casa?</h2>\n\n<h3 id=\"productos-indispensables\">Lo que te recomendamos:</h3>\n<ul>\n  <li><strong>Shampoo y acondicionador sin sal:</strong> limpian con suavidad. Te sugerimos nuestra <a href=\"../combo-extractos.html\">Línea Extractos</a> o nuestra <a href=\"../combo-argan.html\">Línea Argán JA</a>.</li>\n  <li><strong>Mascarilla de hidratación y nutrición:</strong> úsala cada semana, por ejemplo la <a href=\"../mascarilla-oro.html\">Mascarilla Capilar Oro Líquido</a>, para mantener el cabello suave y con brillo.</li>\n  <li><strong>Protector de calor:</strong> aplícalo siempre antes del secador o la plancha. Nuestro <a href=\"../termoprotector.html\">Termoprotector y Perfume Capilar JA</a> ayuda a proteger tu cabello del calor.</li>\n</ul>\n\n<h3 id=\"productos-prohibidos\">Lo que debes evitar:</h3>\n<ul>\n  <li>Champús anticaspa comerciales o de limpieza profunda (clarificantes).</li>\n  <li>Productos con sal (cloruro de sodio).</li>\n  <li>Aceites minerales pesados (parafina líquida o vaselina), que dejan el cabello pesado.</li>\n</ul>\n\n<h3>Elige según lo que le pasa a tu cabello</h3><p>Un alisado alinea; lo que hidrata y nutre es el cuidado que le das en casa. Busca tu caso:</p>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../acondicionador-extractos.html\" aria-label=\"Ver Acondicionador Extractos Naturales JA · 1000 ml\"><img src=\"../tienda-acondicionador-extractos-v1-1x1.webp\" alt=\"Acondicionador Extractos Naturales JA · 1000 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Nudos en el cepillo cada mañana?</p><p class=\"jt-nom\">Acondicionador Extractos Naturales JA · 1000 ml</p><p>Desenreda fácil y deja suavidad y brillo, con <strong>Botanic Silk⁵</strong>: aloe vera, provitamina B5, aguacate, coco y vitamina E.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> en cada lavado, de medios a puntas, de 1 a 3 minutos.</p><a class=\"btn jt-btn\" href=\"../acondicionador-extractos.html\">Ver producto · $39.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../tratamiento-multiactivo.html\" aria-label=\"Ver Tratamiento Multiactivo 12-en-1 JA · 300 ml\"><img src=\"../tienda-tratamiento-multiactivo-v1-1x1.webp\" alt=\"Tratamiento Multiactivo 12-en-1 JA · 300 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Se quiebra y se esponja?</p><p class=\"jt-nom\">Tratamiento Multiactivo 12-en-1 JA · 300 ml</p><p>Restaura su apariencia, nutre e hidrata en un solo paso, con <strong>Tri-Care Balance¹²</strong>: colágeno, proteínas de soya, maíz y trigo, aceites, aloe vera, pantenol y biotina.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> después del shampoo, de 5 a 10 minutos; termina con acondicionador.</p><a class=\"btn jt-btn\" href=\"../tratamiento-multiactivo.html\">Ver producto · $36.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../mascarilla-oro.html\" aria-label=\"Ver Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\"><img src=\"../tienda-mascarilla-oro-liquido-v1-1x1.webp\" alt=\"Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Opaco y con puntas abiertas a la vista?</p><p class=\"jt-nom\">Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml</p><p>Nutre, ayuda a proteger y da brillo, con <strong>Triphasic System</strong>: argán, jojoba, karité, keratina hidrolizada y quitosano. Un tubo, tres usos.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> antes del shampoo (20 minutos), después como mascarilla (5 a 10 minutos) o sin enjuague como crema para peinar.</p><a class=\"btn jt-btn\" href=\"../mascarilla-oro.html\">Ver producto · $35.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../ampolla-sos.html\" aria-label=\"Ver Ampolla S.O.S. JA · 20 ml\"><img src=\"../tienda-ampolla-reparacion-sos-v1-1x1.webp\" alt=\"Ampolla S.O.S. JA · 20 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Áspero y sin brillo?</p><p class=\"jt-nom\">Ampolla S.O.S. JA · 20 ml</p><p>Un shot de nutrición en aceites, con <strong>Gold Shot⁴</strong>: oliva, nuez de Magdalena, fitoesteroles y vitamina E.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> mezclada con igual cantidad de agua o de Multiactivo, de 20 a 25 minutos.</p><a class=\"btn jt-btn\" href=\"../ampolla-sos.html\">Ver producto · $16.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../termoprotector.html\" aria-label=\"Ver Termoprotector y Perfume Capilar JA · 250 ml\"><img src=\"../tienda-termoprotector-perfume-capilar-v1-1x1.webp\" alt=\"Termoprotector y Perfume Capilar JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Plancha o secador a diario?</p><p class=\"jt-nom\">Termoprotector y Perfume Capilar JA · 250 ml</p><p><strong>Thermo Scent</strong> ayuda a proteger tu cabello del calor y a controlar el frizz, da brillo y deja perfume.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> en spray sobre todo el cabello, siempre antes del calor.</p><a class=\"btn jt-btn\" href=\"../termoprotector.html\">Ver producto · $35.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../aceite-argan.html\" aria-label=\"Ver Aceite de Argán y Macadamia JA · 60 ml\"><img src=\"../tienda-aceite-argan-macadamia-v1-1x1.webp\" alt=\"Aceite de Argán y Macadamia JA · 60 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Frizz y puntas opacas?</p><p class=\"jt-nom\">Aceite de Argán y Macadamia JA · 60 ml</p><p>Menos frizz y más brillo, con <strong>Nutra Glow²</strong>: aceite de argán y de macadamia en spray de absorción rápida.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> con el cabello seco, unas gotas en las manos y de medios a puntas.</p><a class=\"btn jt-btn\" href=\"../aceite-argan.html\">Ver producto · $28.000</a></div></div>\n<h3>Tu semana de cuidado</h3><ul><li><strong>Cada 1 o 2 días:</strong> shampoo, acondicionador, protector de calor y secador.</li><li><strong>Una vez por semana:</strong> mascarilla. Si tu cabello está tratado o se quiebra, alterna con el Multiactivo.</li><li><strong>Cuando lo sientas áspero:</strong> Ampolla S.O.S.</li><li><strong>Al final de cada peinado:</strong> unas gotas de aceite en medios y puntas.</li></ul>\n<p>¿No sabes por dónde empezar? <a href=\"../diagnostico-productos.html\">Responde 4 preguntas y arma tu rutina</a>.</p>\n<h2 id=\"playa-piscina-ejercicio\">7. Alisado en la playa, la piscina y el ejercicio</h2>\n\n<p>Lo recomendable es no exponer tu alisado al cloro, al agua de mar ni a las aguas termales. Si el plan no se negocia, cuídalo así:</p><h3 id=\"protocolo-playa\">A. Cuidados para playa y piscina</h3>\n<ol>\n  <li>Moja tu cabello con agua dulce antes de entrar al mar o a la piscina, para que absorba menos sal o cloro.</li>\n  <li>Aplica un producto de protección de medios a puntas.</li>\n  <li>Al terminar el día, lava tu cabello con shampoo sin sal y sécalo con secador.</li>\n</ol>\n\n<h3 id=\"protocolo-ejercicio\">B. Ejercicio y sudor</h3>\n<p>El sudor contiene sales que pueden resecar la raíz. Si haces ejercicio a diario, lava tu cabello con frecuencia con shampoo sin sal y aplica acondicionador de medios a puntas.</p>\n\n<p>Guía completa: <a href=\"./articulo.html?slug=alisado-piscina-mar\">¿piscina o mar con tu alisado? Lee esto antes de lanzarte</a>.</p><p><strong>Para tu maleta:</strong> con la <a href=\"../mascarilla-oro.html\">Mascarilla Oro Líquido</a> como crema para peinar, de medios a puntas y sin enjuague, ayudas a proteger tu cabello de las agresiones externas. Al final del día, lava y seca.</p>\n<h2 id=\"tinte-decoloracion-balayage\">8. Tinte, decoloración y mechas: ¿cómo combinarlos con el alisado?</h2>\n\n<div class=\"warning-box\" style=\"background:#F7F7F7; border-left:3px solid #111; padding:18px 20px; margin:24px 0;\">\n  <h4 style=\"color:#111; margin:0 0 8px;\">⚠️ El orden correcto según tu caso:</h4>\n  <p style=\"font-size: 0.95rem; margin: 0; line-height: 1.6;\"><strong>1. Tinte normal (sin decoloración):</strong> se realiza primero el <a href=\"../alisados.html\">Alisado Saludable</a> y a los <strong>20 días</strong> se aplica la tintura (de preferencia libre de amoníaco).<br><strong>2. Decoloración (balayage, mechas o aclaramiento):</strong> primero se realiza la decoloración y a los <strong>30 días (un mes)</strong> se puede aplicar el alisado, siempre y cuando el cabello haya quedado con la resistencia adecuada tras el <a href=\"../alisados.html\">diagnóstico capilar</a>, incluido con tu servicio. Si la fibra está muy sensibilizada por la decoloración, en lugar del alisado te ofreceremos terapias de recuperación como Emulsión Zero o R.C.P. antes de alisar.<br>Recuerda: los tintes y decoloraciones hechos después del alisado pueden alterar el resultado y anular la garantía. Consúltanos antes de hacerlos.</p>\n</div>\n\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../combo-argan.html\" aria-label=\"Ver Combo Línea Argán JA · 1 litro\"><img src=\"../tienda-combo-linea-argan-v1-1x1.webp\" alt=\"Combo Línea Argán JA · 1 litro\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Pasaste por tinte, decoloración o alisado?</p><p class=\"jt-nom\">Combo Línea Argán JA · 1 litro</p><p>Lava con suavidad y nutre de medios a puntas, con <strong>Argan Complete⁶</strong>. Es la rutina pensada para el cabello maltratado, a mejor precio que comprando por separado.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> shampoo en el cuero cabelludo y acondicionador de medios a puntas durante 5 minutos.</p><a class=\"btn jt-btn\" href=\"../combo-argan.html\">Ver producto · $70.000</a></div></div>\n<h2 id=\"cuando-hacer-retoque\">9. ¿Cuándo y cómo se hace el retoque de raíz?</h2>\n<p>El <a href=\"../retoque-de-raiz.html\">Retoque de Raíz</a> es para clientas de Alisado Saludable y se puede hacer <strong>hasta el mes 4 exacto</strong> después de tu último alisado. El producto se aplica solo en el crecimiento nuevo de la raíz, sin volver a trabajar el resto del cabello.</p>\n\n<h2 id=\"mitos-y-realidades\">10. Mitos y realidades sobre la duración del alisado</h2>\n\n<div class=\"info-box\" style=\"background:#F7F7F7; border-left:3px solid #111; padding:18px 20px; margin:24px 0;\">\n  <h4 style=\"color:#111; margin:0 0 5px;\">Mito 1: \"El alisado sin formol se cae en el primer lavado\"</h4>\n  <p style=\"font-size: 0.92rem; margin: 0;\"><strong>Falso.</strong> Con los cuidados indicados, el resultado dura aproximadamente de 4 a 6 meses, según el estado de tu cabello. Lo importante es lavar con shampoo sin sal y secar con secador después de cada lavado.</p>\n</div>\n\n<div class=\"info-box\" style=\"background:#F7F7F7; border-left:3px solid #111; padding:18px 20px; margin:24px 0;\">\n  <h4 style=\"color:#111; margin:0 0 5px;\">Mito 2: \"El alisado nutre y repara el cabello\"</h4>\n  <p style=\"font-size: 0.92rem; margin: 0;\"><strong>Falso.</strong> El alisado alinea la fibra para que se vea lisa, suave y con brillo. Lo que nutre e hidrata son las <a href=\"../terapias-nutritivas.html\">terapias capilares</a> y tu rutina de cuidado en casa. Por eso, combinar el alisado con buenos cuidados es lo que mantiene tu cabello con mejor aspecto.</p>\n</div>\n\n<h2 id=\"errores-frecuentes-durabilidad\">11. Los 7 errores más comunes que acortan tu alisado</h2>\n<ol>\n  <li>Usar champús anticaspa o clarificantes comerciales.</li>\n  <li>Acostarse a dormir con el cabello húmedo.</li>\n  <li>Amarrar el cabello húmedo con ligas muy apretadas.</li>\n  <li>Planchar el cabello sucio o sin protector de calor.</li>\n  <li>Entrar al mar o a la piscina sin proteger el cabello.</li>\n  <li>Frotar con fuerza el cabello con la toalla al salir de la ducha.</li>\n  <li>Olvidar la mascarilla semanal en casa.</li>\n</ol>\n\n<h2 id=\"conclusion-asesoria\">12. Conclusión y asesoría en Julie Alisados</h2>\n<p>Saber <strong>cuánto dura un alisado</strong> te ayuda a planear tu rutina con tranquilidad. Con un alisado libre de formol y una rutina constante en casa (shampoo sin sal, secado después de cada lavado y protección del calor), podrás disfrutar por más tiempo de un cabello suave, con brillo y con menos frizz.</p>\n\n<p>Si quieres saber qué esperar en tu caso, agenda tu cita en nuestra sede de <a href=\"../alisados-tunja.html\">Tunja</a> o de <a href=\"../alisados-moniquira.html\">Moniquirá</a>. El diagnóstico capilar va incluido con tu servicio.</p><div class=\"jt-cita\"><p class=\"jt-nom\">Tu liso empieza con un diagnóstico</p><p>Primero miramos tu cabello y después decidimos: alisado, terapia de recuperación o rutina en casa. Te atendemos en Tunja y Moniquirá.</p><a class=\"btn jt-btn\" href=\"https://wa.me/573043588180?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20capilar%20con%20el%20servicio%20de%20alisado.\" target=\"_blank\" rel=\"noopener\">Agendar por WhatsApp</a></div>"
   },
   {
     "featured": false,
     "seo": {
-      "title": "¿Por qué secar tu alisado con secador? | Julie Tips",
-      "description": "Tu alisado seca liso al aire, pero 5 minutos de secador bien usado le dan más brillo. Qué dice la ciencia y cómo hacerlo bien.",
+      "title": "¿Secar el cabello al aire o con secador? Lo que te pierdes | Julie Tips",
+      "description": "El cabello mojado es más frágil. Qué dice la ciencia sobre secar al aire o con secador, y cómo hacerlo bien en 5 minutos, con o sin alisado.",
       "keywords": [
-        "secar alisado con secador",
+        "secar el cabello al aire",
         "secador o secar al aire",
-        "alisado sin formol cuidados",
-        "alisado Tunja",
-        "alisado Moniquirá"
+        "es malo el secador",
+        "secar alisado con secador",
+        "protector de calor"
       ]
     },
     "date": "2026-11-12",
-    "subtitle": "Seca liso igual al aire, pero con 5 minutos de secador bien usado tu alisado luce más brillante.",
+    "subtitle": "Secar al natural no siempre es lo más suave. Con 5 minutos de secador bien usado, tu cabello luce más brillante y se maltrata menos.",
     "slug": "por-que-secar-el-alisado-con-secador",
     "id": "por-que-secar-el-alisado-con-secador",
     "views": 0,
@@ -505,22 +116,26 @@
     "author": "Julie Valencia",
     "relatedProducts": [
       {
-        "link": "../linea-cuidado.html#termoprotector",
+        "link": "../termoprotector.html",
         "name": "Termoprotector y Perfume Capilar JA",
-        "desc": "Protege tu cabello del calor del secador y la plancha",
+        "desc": "Ayuda a proteger tu cabello del calor del secador y la plancha",
         "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
       }
     ],
-    "alt": "Cabello liso y con brillo después de secarlo con secador",
+    "alt": "Termoprotector y Perfume Capilar JA para secar el cabello con secador",
     "relatedServices": [
       {
-        "link": "../alisados.html",
+        "link": "../alisado-saludable.html",
         "name": "Alisado Saludable",
         "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
         "image": "../KIT%20ALISADO.webp"
       }
     ],
     "faqs": [
+      {
+        "question": "¿Es malo secar el cabello con secador?",
+        "answer": "No, si lo usas bien. Un estudio de Annals of Dermatology (2011) encontró que el secador a unos 15 cm y en movimiento causó menos daño que el secado al natural. Lo que maltrata es el calor muy alto y pegado al cabello."
+      },
       {
         "question": "¿Si no uso secador se me cae el alisado?",
         "answer": "No. Tu cabello seca liso igual al aire. El secador es lo que le da más brillo y la caída de salón."
@@ -535,19 +150,174 @@
       }
     ],
     "categories": [
+      "Cuidado capilar",
       "Alisados",
-      "Cuidado capilar"
+      "Mitos y verdades",
+      "Frizz",
+      "Productos"
     ],
-    "summary": "Tu alisado seca liso al aire, pero 5 minutos de secador hacen la diferencia. Te contamos por qué y cómo hacerlo bien.",
-    "image": "../KIT%20ALISADO.webp",
-    "category": "Alisados",
-    "title": "¿Por qué secar tu alisado con secador? Solo toma 5 minutos",
+    "summary": "El cabello mojado es más frágil. Te contamos qué dice la ciencia sobre secar al aire o con secador, y cómo hacerlo bien en 5 minutos.",
+    "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp",
+    "category": "Cuidado capilar",
+    "title": "¿Dejas secar tu cabello al aire? Esto es lo que te estás perdiendo",
     "sources": [
       {
         "title": "Lee Y, Kim YD, Hyun HJ, Pi LQ, Jin X, Lee WS. Hair Shaft Damage from Heat and Drying Time of Hair Dryer. Ann Dermatol. 2011;23(4):455-462.",
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3229938/"
       }
     ],
-    "content": "<h2 id=\"seca-liso-igual\">Tu alisado seca liso igual</h2>\n<p>Si un día no tienes tiempo, tranquila: tu cabello seca liso al aire. Pero nuestro alisado es termoactivado, y en solo unos 5 minutos el calor del secador le saca <strong>más brillo y la caída de salón</strong>.</p>\n\n<h2 id=\"lo-que-dice-la-ciencia\">Lo que dice la ciencia</h2>\n<p>El cabello mojado es más frágil: se hincha y roza más con la toalla, la almohada o el peine. Por eso dejarlo húmedo mucho tiempo tampoco es inocuo.</p>\n<p>Un estudio publicado en <em>Annals of Dermatology</em> (Lee y colaboradores, 2011) encontró que <strong>el secador a unos 15 cm y en movimiento causó menos daño que el secado al natural</strong>. Lo que sí maltrata es el calor muy alto y pegado al cabello. La clave no es secador sí o no: es usarlo bien.</p>\n\n<h2 id=\"como-hacerlo-bien\">Cómo hacerlo bien en 5 minutos</h2>\n<ol>\n  <li><strong>Quita el exceso de agua</strong> con la toalla, sin frotar.</li>\n  <li><strong>Protector de calor:</strong> nuestro <a href=\"../linea-cuidado.html#termoprotector\">Termoprotector y Perfume Capilar JA</a>.</li>\n  <li><strong>Calor bajo o medio</strong>, a unos 15 cm y siempre en movimiento.</li>\n  <li><strong>Si tu cabello está decolorado o muy sensible</strong>, usa calor bajo o aire frío.</li>\n</ol>\n\n<h2 id=\"sigue-leyendo\">Sigue leyendo</h2>\n<p><a href=\"articulo.html?slug=cuanto-dura-un-alisado\"><strong>¿Cuánto dura un alisado? Guía de cuidados para conservar tu liso →</strong></a></p>\n"
+    "content": "<p class=\"lead-text\">Dejar el cabello secar solo parece lo más suave: sin calor, sin daño. Pero el cabello mojado es más frágil de lo que crees, y la ciencia dice algo que sorprende. Esto aplica a cualquier cabello: liso, ondulado, rizado, con color o con alisado.</p>\n<h2 id=\"lo-que-dice-la-ciencia\">Lo que dice la ciencia</h2>\n<p>El cabello mojado es más frágil: se hincha y roza más con la toalla, la almohada o el peine. Por eso dejarlo húmedo mucho tiempo tampoco es inocuo.</p>\n<p>Un estudio publicado en <em>Annals of Dermatology</em> (Lee y colaboradores, 2011) encontró que <strong>el secador a unos 15 cm y en movimiento causó menos daño que el secado al natural</strong>. Lo que sí maltrata es el calor muy alto y pegado al cabello. La clave no es secador sí o no: es usarlo bien.</p>\n\n<h2 id=\"como-hacerlo-bien\">Cómo hacerlo bien en 5 minutos</h2>\n<ol>\n  <li><strong>Quita el exceso de agua</strong> con la toalla, sin frotar.</li>\n  <li><strong>Protector de calor:</strong> nuestro <a href=\"../termoprotector.html\">Termoprotector y Perfume Capilar JA</a>.</li>\n  <li><strong>Calor bajo o medio</strong>, a unos 15 cm y siempre en movimiento.</li>\n  <li><strong>Si tu cabello está decolorado o muy sensible</strong>, usa calor bajo o aire frío.</li>\n</ol>\n\n<h2>Los 5 errores que le quitan brillo</h2><ul><li><strong>Frotar con la toalla.</strong> Mejor presiona suave para retirar el agua.</li><li><strong>Secador pegado al cabello.</strong> Déjalo a unos 15 cm.</li><li><strong>Quedarte quieta en un solo mechón.</strong> El aire siempre en movimiento.</li><li><strong>Usar calor sin protector.</strong> El calor repetido fragiliza la fibra.</li><li><strong>Acostarte con el cabello húmedo.</strong> El roce genera frizz y enredos.</li></ul>\n<h2 id=\"seca-liso-igual\">¿Y si tienes alisado?</h2>\n<p>Si un día no tienes tiempo, tranquila: tu cabello seca liso al aire. Pero nuestro alisado es termoactivado, y en solo unos 5 minutos el calor del secador le saca <strong>más brillo y la caída de salón</strong>.</p>\n\n<h2>Tu kit de secado: antes y después</h2>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../termoprotector.html\" aria-label=\"Ver Termoprotector y Perfume Capilar JA · 250 ml\"><img src=\"../tienda-termoprotector-perfume-capilar-v1-1x1.webp\" alt=\"Termoprotector y Perfume Capilar JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">Antes: protege</p><p class=\"jt-nom\">Termoprotector y Perfume Capilar JA · 250 ml</p><p><strong>Thermo Scent</strong> ayuda a proteger tu cabello del calor del secador y la plancha y a controlar el frizz, da brillo y deja perfume.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> en spray sobre todo el cabello; peina para repartir y seca.</p><a class=\"btn jt-btn\" href=\"../termoprotector.html\">Ver producto · $35.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../aceite-argan.html\" aria-label=\"Ver Aceite de Argán y Macadamia JA · 60 ml\"><img src=\"../tienda-aceite-argan-macadamia-v1-1x1.webp\" alt=\"Aceite de Argán y Macadamia JA · 60 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">Después: brilla</p><p class=\"jt-nom\">Aceite de Argán y Macadamia JA · 60 ml</p><p><strong>Nutra Glow²</strong>, aceite de argán y de macadamia, suaviza, da brillo y ayuda a controlar el frizz. Absorbe rápido.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> con el cabello ya seco, de medios a puntas, abriendo los dedos como una garra.</p><a class=\"btn jt-btn\" href=\"../aceite-argan.html\">Ver producto · $28.000</a></div></div>\n<h2>Si tu cabello está maltratado</h2><p>Antes del secador dale lo que le falta en la ducha. Así llega al calor más suave y se peina sin tirones.</p>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../tratamiento-multiactivo.html\" aria-label=\"Ver Tratamiento Multiactivo 12-en-1 JA · 300 ml\"><img src=\"../tienda-tratamiento-multiactivo-v1-1x1.webp\" alt=\"Tratamiento Multiactivo 12-en-1 JA · 300 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Se quiebra y se esponja?</p><p class=\"jt-nom\">Tratamiento Multiactivo 12-en-1 JA · 300 ml</p><p>Restaura su apariencia, nutre e hidrata, con <strong>Tri-Care Balance¹²</strong>.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> después del shampoo, de 5 a 10 minutos; termina con acondicionador.</p><a class=\"btn jt-btn\" href=\"../tratamiento-multiactivo.html\">Ver producto · $36.000</a></div></div>\n<div class=\"jt-cita\"><p class=\"jt-nom\">¿Quieres que te enseñemos?</p><p>En tu cita en el salón te mostramos cómo secar tu cabello y qué productos le convienen, según tu diagnóstico.</p><a class=\"btn jt-btn\" href=\"https://wa.me/573043588180?text=Hola%2C%20quiero%20agendar%20mi%20cita%20y%20aprender%20a%20cuidar%20mi%20cabello%20en%20casa.\" target=\"_blank\" rel=\"noopener\">Agendar por WhatsApp</a></div>\n<h2>Sigue leyendo</h2><ul><li><a href=\"articulo.html?slug=cuanto-dura-un-alisado\">¿Cuánto dura un alisado? Lo que hace que el tuyo dure meses… o semanas</a></li><li><a href=\"articulo.html?slug=por-que-mi-alisado-no-dura\">¿Por qué mi alisado no dura? Los 8 culpables que tienes en casa</a></li><li><a href=\"articulo.html?slug=alisado-piscina-mar\">¿Piscina o mar con tu alisado recién hecho? Lee esto antes de lanzarte</a></li></ul>\n"
+  },
+  {
+    "id": "por-que-mi-alisado-no-dura",
+    "slug": "por-que-mi-alisado-no-dura",
+    "title": "¿Por qué mi alisado no dura? Los 8 culpables que tienes en casa",
+    "subtitle": "Si tu liso se fue antes de tiempo, la respuesta casi siempre está en la ducha, la almohada o el paseo del fin de semana.",
+    "summary": "Shampoo con sal, agua caliente, piscina, dormir con el cabello mojado… Revisa los 8 hábitos que más acortan un alisado y qué hacer con cada uno.",
+    "content": "<p class=\"lead-text\">Te alisaste, saliste feliz del salón y a las pocas semanas tu cabello ya no se ve igual. Antes de pensar que el alisado “no sirvió”, revisa esta lista. En casi todos los casos que vemos en el salón, el culpable está en la ducha, en la almohada o en el paseo de fin de semana.</p>\n<p>Nuestro Alisado Saludable dura entre <strong>4 y 6 meses</strong>, según el estado de tu cabello y los cuidados que le des en casa. Estos son los 8 hábitos que más lo acortan, y qué hacer con cada uno.</p>\n<h2>1. Tu shampoo tiene sal</h2>\n<p>La sal (cloruro de sodio) y los sulfatos fuertes arrastran la grasa natural que protege tu cabello y alteran el efecto del alisado. Lo mismo pasa con los shampoos anticaspa o clarificantes comerciales: limpian de más.</p>\n<p><strong>Qué hacer:</strong> busca en la etiqueta que diga “sin sal”, con pH balanceado.</p>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../shampoo-extractos.html\" aria-label=\"Ver Shampoo Extractos Naturales JA · 1000 ml\"><img src=\"../tienda-shampoo-extractos-v1-1x1.webp\" alt=\"Shampoo Extractos Naturales JA · 1000 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Raíz que se engrasa rapidísimo?</p><p class=\"jt-nom\">Shampoo Extractos Naturales JA · 1000 ml</p><p>Raíz fresca y cabello liviano, con <strong>Botanic Fresh⁸</strong>: 8 extractos de plantas. Sin sal. Un litro que rinde para muchísimos lavados.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> solo en el cuero cabelludo, con masaje de 3 minutos y doble lavado.</p><a class=\"btn jt-btn\" href=\"../shampoo-extractos.html\">Ver producto · $38.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../shampoo-argan.html\" aria-label=\"Ver Shampoo Línea Argán JA · 500 ml\"><img src=\"../tienda-shampoo-argan-v1-1x1.webp\" alt=\"Shampoo Línea Argán JA · 500 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Cabello maltratado o cuero cabelludo seco?</p><p class=\"jt-nom\">Shampoo Línea Argán JA · 500 ml</p><p>Limpia con suavidad, con <strong>Argan Soft³</strong>: argán, keratina hidrolizada y biotina. Sin sal.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> doble lavado, con masaje en el cuero cabelludo.</p><a class=\"btn jt-btn\" href=\"../shampoo-argan.html\">Ver producto · $36.000</a></div></div>\n<h2>2. Te bañas con agua muy caliente</h2>\n<p>El agua muy caliente abre la cutícula y reseca la fibra. Tu cabello pierde agua y empieza a esponjarse.</p>\n<p><strong>Qué hacer:</strong> agua fría o, como máximo, templada, sobre todo en el enjuague final.</p>\n<h2>3. Lo lavas muy poco</h2>\n<p>Parece lógico pensar que lavar menos cuida el alisado, pero es al revés: la grasa y el sudor acumulados pesan y marcan el cabello. Lávalo <strong>como mínimo cada 2 días</strong>; lo ideal es a diario.</p>\n<h2>4. Te duermes con el cabello mojado</h2>\n<p>Dormir con el cabello húmedo, amarrarlo mojado con ligas apretadas, usar ganchos o casco de moto todo el día deja marcas y ondas. La buena noticia: son temporales y se van con un buen lavado y secado. La mala: si se repiten todos los días, tu liso se ve menos parejo.</p>\n<p><strong>Qué hacer:</strong> sécalo antes de dormir, usa una funda suave y no lo amarres siempre en el mismo punto.</p>\n<h2>5. Planchas sin protector</h2>\n<p>El calor repetido, sin protección, reseca y fragiliza la fibra. El cabello se quiebra y pierde brillo.</p>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../termoprotector.html\" aria-label=\"Ver Termoprotector y Perfume Capilar JA · 250 ml\"><img src=\"../tienda-termoprotector-perfume-capilar-v1-1x1.webp\" alt=\"Termoprotector y Perfume Capilar JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Plancha o secador a diario?</p><p class=\"jt-nom\">Termoprotector y Perfume Capilar JA · 250 ml</p><p><strong>Thermo Scent</strong> ayuda a proteger tu cabello del calor del secador y la plancha y a controlar el frizz. Deja brillo y un perfume que se queda.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> en spray sobre todo el cabello, siempre antes del calor.</p><a class=\"btn jt-btn\" href=\"../termoprotector.html\">Ver producto · $35.000</a></div></div>\n<h2>6. Te metiste a la piscina o al mar</h2>\n<p>El cloro, la sal del mar y las aguas termales resecan el cabello y alteran el efecto del alisado. Es de lo que más lo acorta. Lo recomendable es no exponerlo; si vas a hacerlo, lee <a href=\"./articulo.html?slug=alisado-piscina-mar\">cómo protegerlo antes, durante y después</a>.</p>\n<h2>7. Te pintaste o decoloraste después del alisado</h2>\n<p>Los tintes y decoloraciones hechos después del alisado pueden alterar el resultado. El orden importa: si es tinte normal, primero el alisado y a los 20 días la tintura (de preferencia libre de amoníaco). Si es decoloración, primero la decoloración y a los 30 días el alisado, si tu diagnóstico muestra que el cabello está listo. Consúltanos antes.</p>\n<h2>8. No le das hidratación ni nutrición</h2>\n<p>El alisado alinea tu cabello; no lo nutre ni lo repara. Si no le das lo que le falta, se ve opaco, áspero y con frizz, aunque siga liso.</p>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../tratamiento-multiactivo.html\" aria-label=\"Ver Tratamiento Multiactivo 12-en-1 JA · 300 ml\"><img src=\"../tienda-tratamiento-multiactivo-v1-1x1.webp\" alt=\"Tratamiento Multiactivo 12-en-1 JA · 300 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Se quiebra y se esponja?</p><p class=\"jt-nom\">Tratamiento Multiactivo 12-en-1 JA · 300 ml</p><p>Restaura su apariencia, nutre e hidrata en un solo paso, con <strong>Tri-Care Balance¹²</strong>: 12 activos entre colágeno, proteínas, aceites, aloe vera, pantenol y biotina.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> después del shampoo, de 5 a 10 minutos; termina con acondicionador.</p><a class=\"btn jt-btn\" href=\"../tratamiento-multiactivo.html\">Ver producto · $36.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../mascarilla-oro.html\" aria-label=\"Ver Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\"><img src=\"../tienda-mascarilla-oro-liquido-v1-1x1.webp\" alt=\"Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Opaco y con puntas abiertas a la vista?</p><p class=\"jt-nom\">Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml</p><p>Nutre, ayuda a proteger y da brillo, con <strong>Triphasic System</strong>. Un tubo, tres usos: antes del shampoo, como mascarilla o como crema para peinar.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> una vez por semana como mascarilla, de 5 a 10 minutos.</p><a class=\"btn jt-btn\" href=\"../mascarilla-oro.html\">Ver producto · $35.000</a></div></div>\n<h2>¿Y si no es nada de esto?</h2>\n<p>Hay dos cosas que no son culpa de tu rutina:</p>\n<ul><li><strong>La raíz que crece.</strong> Tu cabello crece alrededor de 1 a 1,5 cm por mes y sale con su forma natural. Eso no es que el alisado se cayó: es cabello nuevo. Para eso existe el <a href=\"../retoque-de-raiz.html\">Retoque de Raíz</a>, hasta el mes 4.</li><li><strong>Tu tipo de cabello.</strong> La porosidad, el grosor y la forma natural del rizo cambian cuánto dura. Por eso, antes de alisarte, hacemos tu diagnóstico capilar y te decimos qué esperar.</li></ul>\n<div class=\"jt-cita\"><p class=\"jt-nom\">¿Tu alisado anterior no te duró?</p><p>Cuéntanos qué pasó. En tu diagnóstico, incluido sin costo con tu servicio, revisamos tu cabello y te decimos qué hacer distinto esta vez.</p><a class=\"btn jt-btn\" href=\"https://wa.me/573043588180?text=Hola%2C%20mi%20alisado%20anterior%20no%20me%20dur%C3%B3.%20Quiero%20mi%20diagn%C3%B3stico%20y%20agendar%20mi%20cita.\" target=\"_blank\" rel=\"noopener\">Agendar por WhatsApp</a></div>",
+    "category": "Alisados",
+    "categories": [
+      "Alisados",
+      "Cuidado capilar",
+      "Mitos y verdades",
+      "Shampoo",
+      "Cabello teñido",
+      "Productos"
+    ],
+    "date": "2026-11-26",
+    "readTime": "4 min de lectura",
+    "featured": false,
+    "image": "../tienda-shampoo-extractos-v1-1x1.webp",
+    "alt": "Shampoo sin sal Extractos Naturales JA para cuidar el alisado",
+    "author": "Julie Valencia",
+    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
+    "faqs": [
+      {
+        "question": "¿Por qué mi alisado anterior no duró nada?",
+        "answer": "Las causas más comunes son usar champús con sal o sulfatos fuertes, lavar con agua muy caliente, no secar con secador después del lavado o no proteger el cabello del calor."
+      },
+      {
+        "question": "¿Cuánto dura el Alisado Saludable?",
+        "answer": "Entre 4 y 6 meses, según el estado de tu cabello y tus cuidados en casa."
+      },
+      {
+        "question": "Mi raíz ya no está lisa, ¿se cayó el alisado?",
+        "answer": "No. Es cabello nuevo que crece con su forma natural, alrededor de 1 a 1,5 cm por mes. Para eso existe el Retoque de Raíz, que se puede hacer hasta el mes 4 después de tu último alisado."
+      }
+    ],
+    "sources": [],
+    "relatedProducts": [
+      {
+        "link": "../shampoo-extractos.html",
+        "name": "Shampoo Extractos Naturales JA",
+        "desc": "Shampoo sin sal con 8 extractos de plantas",
+        "image": "../tienda-shampoo-extractos-v1-1x1.webp"
+      },
+      {
+        "link": "../termoprotector.html",
+        "name": "Termoprotector y Perfume Capilar JA",
+        "desc": "Ayuda a proteger tu cabello del calor",
+        "image": "../tienda-termoprotector-perfume-capilar-v1-1x1.webp"
+      },
+      {
+        "link": "../tratamiento-multiactivo.html",
+        "name": "Tratamiento Multiactivo 12-en-1 JA",
+        "desc": "Restaura su apariencia, nutre e hidrata",
+        "image": "../tienda-tratamiento-multiactivo-v1-1x1.webp"
+      }
+    ],
+    "relatedServices": [
+      {
+        "link": "../alisado-saludable.html",
+        "name": "Alisado Saludable",
+        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
+        "image": "../KIT%20ALISADO.webp"
+      }
+    ],
+    "seo": {
+      "title": "¿Por qué mi alisado no dura? 8 causas y qué hacer | Julie Tips",
+      "description": "Shampoo con sal, agua caliente, piscina, dormir con el cabello mojado: los 8 hábitos que más acortan un alisado y cómo evitarlos. Tunja y Moniquirá.",
+      "keywords": [
+        "por qué mi alisado no dura",
+        "alisado se cae rápido",
+        "cuidados alisado",
+        "shampoo sin sal",
+        "alisado Tunja"
+      ]
+    },
+    "views": 0
+  },
+  {
+    "id": "alisado-piscina-mar",
+    "slug": "alisado-piscina-mar",
+    "title": "¿Piscina o mar con tu alisado recién hecho? Lee esto antes de lanzarte",
+    "subtitle": "Lo mejor es no exponerlo. Si el plan no se negocia, así lo cuidas antes, durante y después.",
+    "summary": "El cloro, el agua de mar y las aguas termales son de lo que más acorta un alisado. Te contamos cómo protegerlo si vas a la piscina o a la playa.",
+    "content": "<p class=\"lead-text\">Diciembre, vacaciones, piscina, playa… y tu alisado recién hecho. Te lo decimos claro desde el principio: <strong>lo mejor para tu liso es no exponerlo</strong> al cloro, al agua de mar ni a las aguas termales. Son de lo que más acorta un alisado. Pero si el plan no se negocia, aquí está cómo cuidarlo para que sufra lo menos posible.</p>\n<h2>¿Qué le hacen el cloro y el mar a tu alisado?</h2>\n<ul><li><strong>Cloro:</strong> reseca la fibra y le quita brillo.</li><li><strong>Agua de mar:</strong> la sal arrastra la hidratación del cabello, igual que un shampoo con sal.</li><li><strong>Aguas termales y agua muy caliente:</strong> abren la cutícula y resecan.</li><li><strong>Sol todo el día:</strong> el cabello se ve opaco y áspero.</li></ul>\n<p>Resultado: frizz, opacidad y un liso que dura menos.</p>\n<h2>Antes de entrar</h2>\n<ol><li><strong>Moja tu cabello con agua dulce.</strong> Un cabello ya mojado absorbe menos cloro o sal.</li><li><strong>Aplica un producto sin enjuague de medios a puntas.</strong> Así tu cabello no entra al agua desprotegido.</li><li><strong>Recógelo en una trenza o un moño suelto.</strong> Sin ligas apretadas: dejan marca.</li><li><strong>Si puedes, gorro de natación.</strong> Es lo que más protege tu cabello en la piscina.</li></ol>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../mascarilla-oro.html\" aria-label=\"Ver Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\"><img src=\"../tienda-mascarilla-oro-liquido-v1-1x1.webp\" alt=\"Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">Antes del agua: tu barrera</p><p class=\"jt-nom\">Mascarilla Capilar Oro Líquido 3 en 1 JA · 250 ml</p><p>Usada como crema para peinar, sin enjuague, la Mascarilla Oro Líquido con <strong>Triphasic System</strong> (argán, jojoba, karité, keratina hidrolizada y quitosano) nutre y ayuda a proteger tu cabello de las agresiones externas.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> una porción de medios a puntas con el cabello húmedo, antes de entrar al agua.</p><a class=\"btn jt-btn\" href=\"../mascarilla-oro.html\">Ver producto · $35.000</a></div></div>\n<h2>Durante el día</h2>\n<ul><li>Sal del agua y enjuágate con agua dulce cada vez que puedas.</li><li>Sombrero o gorra cuando estés al sol.</li><li>Evita estar horas seguidas en el agua: menos tiempo, menos resequedad.</li></ul>\n<h2>Al llegar: el paso que más importa</h2>\n<ol><li><strong>Lava ese mismo día</strong> con shampoo sin sal. No dejes el cloro o la sal toda la noche en tu cabello.</li><li><strong>Hidrata.</strong> Mascarilla o tratamiento después del shampoo.</li><li><strong>Acondicionador de medios a puntas.</strong></li><li><strong>Protector de calor y secador.</strong> Nunca te duermas con el cabello mojado.</li></ol>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../shampoo-argan.html\" aria-label=\"Ver Shampoo Línea Argán JA · 500 ml\"><img src=\"../tienda-shampoo-argan-v1-1x1.webp\" alt=\"Shampoo Línea Argán JA · 500 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">Después del agua: limpia sin resecar</p><p class=\"jt-nom\">Shampoo Línea Argán JA · 500 ml</p><p>Espuma cremosa con <strong>Argan Soft³</strong>: argán, keratina hidrolizada y biotina. Limpia con suavidad después del cloro o la sal.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> doble lavado, con masaje de 3 minutos en el cuero cabelludo.</p><a class=\"btn jt-btn\" href=\"../shampoo-argan.html\">Ver producto · $36.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../tratamiento-multiactivo.html\" aria-label=\"Ver Tratamiento Multiactivo 12-en-1 JA · 300 ml\"><img src=\"../tienda-tratamiento-multiactivo-v1-1x1.webp\" alt=\"Tratamiento Multiactivo 12-en-1 JA · 300 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">Después del agua: devuélvele lo que perdió</p><p class=\"jt-nom\">Tratamiento Multiactivo 12-en-1 JA · 300 ml</p><p>Restaura su apariencia, nutre e hidrata, con <strong>Tri-Care Balance¹²</strong>. Si lo sientes muy áspero, mézclalo con la Ampolla S.O.S.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> después del shampoo, de 5 a 10 minutos.</p><a class=\"btn jt-btn\" href=\"../tratamiento-multiactivo.html\">Ver producto · $36.000</a></div></div>\n<div class=\"jt-prod\"><a class=\"btn jt-foto\" href=\"../acondicionador-argan.html\" aria-label=\"Ver Acondicionador Línea Argán JA · 500 ml\"><img src=\"../tienda-acondicionador-argan-v1-1x1.webp\" alt=\"Acondicionador Línea Argán JA · 500 ml\" width=\"600\" height=\"600\" loading=\"lazy\" decoding=\"async\"></a><div class=\"jt-txt\"><p class=\"jt-dolor\">¿Se enreda después de la piscina?</p><p class=\"jt-nom\">Acondicionador Línea Argán JA · 500 ml</p><p>Menos quiebre y más suavidad, con <strong>Argan Smooth⁶</strong>: argán, mantequilla de mango, hialuronato, keratina, biotina y vitamina E.</p><p class=\"jt-uso\"><strong>Cómo se usa:</strong> de medios a puntas, durante 5 minutos; siempre de último.</p><a class=\"btn jt-btn\" href=\"../acondicionador-argan.html\">Ver producto · $37.000</a></div></div>\n<h2>¿Y el gimnasio?</h2>\n<p>El sudor tiene sales que pueden resecar la raíz. Si haces ejercicio a diario, lava tu cabello seguido con shampoo sin sal y aplica acondicionador de medios a puntas.</p>\n<h2>Tu maleta de viaje</h2>\n<ul><li>Shampoo sin sal.</li><li>Acondicionador.</li><li>Mascarilla Oro Líquido (hace de crema para peinar).</li><li>Termoprotector.</li><li>Gorro y una liga suave.</li></ul>\n<p>¿No sabes cuál es para ti? <a href=\"../diagnostico-productos.html\">Responde 4 preguntas y arma tu rutina</a>.</p>\n<div class=\"jt-cita\"><p class=\"jt-nom\">¿Te vas de viaje con el alisado recién hecho?</p><p>Escríbenos antes de irte y te armamos tu kit según tu cabello. Te lo llevamos a casa.</p><a class=\"btn jt-btn\" href=\"https://wa.me/573043588180?text=Hola%2C%20me%20voy%20de%20viaje%20y%20quiero%20armar%20mi%20kit%20para%20cuidar%20mi%20alisado.\" target=\"_blank\" rel=\"noopener\">Agendar por WhatsApp</a></div>",
+    "category": "Cuidado capilar",
+    "categories": [
+      "Cuidado capilar",
+      "Alisados",
+      "Frizz",
+      "Productos"
+    ],
+    "date": "2026-11-26",
+    "readTime": "3 min de lectura",
+    "featured": false,
+    "image": "../tienda-mascarilla-oro-liquido-v1-1x1.webp",
+    "alt": "Mascarilla Capilar Oro Líquido JA para proteger el cabello antes de la piscina",
+    "author": "Julie Valencia",
+    "authorRole": "Especialista en Alisado Saludable y Salud Capilar",
+    "faqs": [
+      {
+        "question": "¿Puedo meterme a la piscina con alisado?",
+        "answer": "Lo recomendable es no exponerlo al cloro, al agua de mar ni a las aguas termales, porque resecan el cabello y acortan el alisado. Si lo haces, moja tu cabello con agua dulce antes, aplica un producto sin enjuague y lávalo ese mismo día con shampoo sin sal."
+      },
+      {
+        "question": "¿Qué hago después de la playa?",
+        "answer": "Lava tu cabello ese mismo día con shampoo sin sal, hidrátalo con mascarilla o tratamiento, aplica acondicionador y sécalo con secador. No te duermas con el cabello mojado."
+      }
+    ],
+    "sources": [],
+    "relatedProducts": [
+      {
+        "link": "../mascarilla-oro.html",
+        "name": "Mascarilla Capilar Oro Líquido 3 en 1 JA",
+        "desc": "Úsala sin enjuague antes de entrar al agua",
+        "image": "../tienda-mascarilla-oro-liquido-v1-1x1.webp"
+      },
+      {
+        "link": "../shampoo-argan.html",
+        "name": "Shampoo Línea Argán JA",
+        "desc": "Limpia con suavidad después del cloro o la sal",
+        "image": "../tienda-shampoo-argan-v1-1x1.webp"
+      },
+      {
+        "link": "../tratamiento-multiactivo.html",
+        "name": "Tratamiento Multiactivo 12-en-1 JA",
+        "desc": "Devuélvele suavidad e hidratación",
+        "image": "../tienda-tratamiento-multiactivo-v1-1x1.webp"
+      }
+    ],
+    "relatedServices": [
+      {
+        "link": "../alisado-saludable.html",
+        "name": "Alisado Saludable",
+        "desc": "Liso libre de formol, con diagnóstico capilar incluido con tu servicio",
+        "image": "../KIT%20ALISADO.webp"
+      }
+    ],
+    "seo": {
+      "title": "¿Piscina o mar con alisado? Cómo cuidarlo | Julie Tips",
+      "description": "El cloro, el mar y las aguas termales acortan el alisado. Lo mejor es no exponerlo; si lo haces, así lo cuidas antes, durante y después. Tunja y Moniquirá.",
+      "keywords": [
+        "alisado y piscina",
+        "alisado y mar",
+        "cloro alisado",
+        "cuidar alisado vacaciones",
+        "alisado Tunja"
+      ]
+    },
+    "views": 0
   }
 ]

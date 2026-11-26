@@ -67,6 +67,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=por-que-mi-alisado-no-dura</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=alisado-piscina-mar</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 <url>
     <loc>https://juliealisados.com/alisados-tunja.html</loc>
     <lastmod>2026-11-10</lastmod>
@@ -114,48 +126,6 @@
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=como-funciona-un-alisado</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=por-que-el-alisado-dura-mas-en-unas-personas</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=errores-que-acortan-tu-alisado</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=que-shampoo-usar-despues-del-alisado</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=alisado-playa-piscina-ejercicio</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=tinte-mechas-y-alisado</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://juliealisados.com/julie-tips/articulo.html?slug=retoque-de-raiz-cuando-hacerlo</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url><loc>https://juliealisados.com/shampoo-extractos.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://juliealisados.com/acondicionador-extractos.html</loc><lastmod>2026-11-26</lastmod></url>
