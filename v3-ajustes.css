@@ -272,3 +272,7 @@ html body .jt-cita p.jt-nom{font:700 21px/1.3 'Playfair Display',Georgia,serif;c
 #ja-hair-system .pasos{margin-bottom:28px!important}
 .estrellas,.op-stars,.op-top-head b,.op-mini b,[class*="star"],[class*="estrella"]{color:#FF3D9A!important}
 .pp-dol span{color:#FF3D9A;font-weight:700}
+
+/* 26-nov (Director, aprobado): esquinas rectas estilo K18 en tarjetas, cajas, botones y fotos.
+   Quedan redondos solo: flechas y puntos de carruseles, botón flotante de WhatsApp, etiquetas de color, logos y casillas. */
+html body *:not(input):not(textarea):not(select):not(svg):not(svg *):not(.bn__nav):not(.bn__dot):not(.pc__flecha):not(.vc__fl):not(.vc__btn):not(.opin__fl):not(.lch-nav):not(.lch-dots button):not(.wa-flot3):not(.wa-flot3 *):not(.wa-float):not(.wa-float *):not(.cat-chips i):not(.nx__ch i):not(.nx__p i):not(.co__l li):not(.cart-bar-close):not(.vbrand img):not(.bk):not([class*="logo"]):not([class*="logo"] *):not([class*="switch"]):not([class*="switch"] *):not([class*="toggle"]):not([class*="toggle"] *):not([class*="dot"]):not([class*="chip"]):not([class*="avatar"]){border-radius:0!important}
