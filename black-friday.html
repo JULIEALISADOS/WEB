@@ -730,10 +730,28 @@ html body .product-card-large .qty-btn{border-radius:0!important;background:#111
 .bf-sube{font-size:.84rem;margin:2px 0 8px;font-weight:700;color:#111}.bf-sube a{color:#FF3D9A}
 .bf-terminos{max-width:900px;margin:30px auto;padding:0 16px;font-size:.92rem;line-height:1.55}
 .bf-terminos li{margin:6px 0}
+.bf-terminos ul{padding-left:20px!important;margin-left:0}
 .bf-antes .qty-selector-container{opacity:.4;pointer-events:none}
 .bf-antes .qty-selector-container::after{content:"Disponible desde las 00:00 del viernes 27";display:block;font-size:.78rem;color:#555;margin-top:6px}
 .bf-fin{display:none;max-width:700px;margin:40px auto;padding:24px;text-align:center;border:1px solid #111}
 .bf-cerrada .bf-sec,.bf-cerrada .cart-bar{display:none!important}.bf-cerrada .bf-fin{display:block}
+/* orden fijo de la tarjeta: etiqueta, nombre, texto, precio, ahorro, siguiente escalón, botón */
+.bf-card .product-info{display:flex!important;flex-direction:column}
+.bf-card .product-info>*{order:8}
+.bf-card .product-info>.ext-tag{order:1!important}.bf-card .product-info>h3{order:2!important;margin:6px 0 4px}
+.bf-card .product-info>.ext-motto{order:3!important}.bf-card .product-info>.bf-precios{order:4!important}
+.bf-card .product-info>.bf-ahorro{order:5!important}.bf-card .product-info>.bf-sube{order:6!important}
+.bf-card .product-info>.qty-selector-container{order:7!important}
+/* fotos sin franja gris: cada foto cuadrada, el marco toma su alto */
+.bf-foto{aspect-ratio:auto!important;grid-template-rows:auto!important;align-items:start}.bf-foto img{aspect-ratio:1/1;height:auto;display:block}
+.bf-reloj .l2{display:block;font-weight:400}
+@media(max-width:700px){
+ .bf-esc,.bf-sec>h2,.bf-sec>p,.bf-terminos>h2,.bf-fin{text-align:center}
+ .bf-esc a{text-align:center}
+ .bf-card .product-info{text-align:center;align-items:center}
+ .bf-card .product-info>.ext-tag{align-self:center;text-align:center}
+ .bf-card .qty-selector-container{width:100%}
+}
 </style>
 </head>
 <body>
@@ -1529,7 +1547,7 @@ document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
     }
     document.body.classList.remove('bf-antes');
     var s=Math.max(0,Math.floor((fin-now)/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60);
-    el.textContent='Termina hoy a las 23:59 · quedan '+h+' h '+m+' min';
+    el.innerHTML='Termina hoy a las 23:59<span class="l2">quedan '+h+' h '+m+' min</span>';
   }
   tick(); setInterval(tick,30000);
   // pago: transferencia (Bre-B) o efectivo con asesora (la web no cobra con tarjeta)
