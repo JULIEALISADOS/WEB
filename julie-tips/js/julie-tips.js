@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isHubPage = document.body.classList.contains('julie-tips-hub');
 
     try {
-        const response = await fetch('./data/articles.json?v=20261126e');
+        const response = await fetch('./data/articles.json?v=20261127seo');
         if (!response.ok) {
             throw new Error('Error al cargar articles.json');
         }
@@ -142,7 +142,7 @@ function initArticlePage(articles) {
     // Actualizar Head Metadata SEO
     const articleTitle = article.seo?.title || article.title;
     const articleDesc = article.seo?.description || article.summary;
-    const articleUrl = `https://juliealisados.com/julie-tips/articulo.html?slug=${article.slug}`;
+    const articleUrl = `https://juliealisados.com/julie-tips/${article.slug}.html`;
     const articleImg = article.image ? `https://juliealisados.com/${article.image.replace('../', '')}` : 'https://juliealisados.com/logo%201.png';
 
     document.title = articleTitle;
@@ -228,7 +228,7 @@ function initArticlePage(articles) {
     if (prevNav) {
         if (currentIndex > 0) {
             const prevArticle = articles[currentIndex - 1];
-            prevNav.innerHTML = `<a href="./articulo.html?slug=${prevArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">← Anterior: ${prevArticle.title}</a>`;
+            prevNav.innerHTML = `<a href="./${prevArticle.slug}.html" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">← Anterior: ${prevArticle.title}</a>`;
         } else {
             prevNav.innerHTML = '';
         }
@@ -236,7 +236,7 @@ function initArticlePage(articles) {
     if (nextNav) {
         if (currentIndex >= 0 && currentIndex < articles.length - 1) {
             const nextArticle = articles[currentIndex + 1];
-            nextNav.innerHTML = `<a href="./articulo.html?slug=${nextArticle.slug}" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">Siguiente: ${nextArticle.title} →</a>`;
+            nextNav.innerHTML = `<a href="./${nextArticle.slug}.html" style="color: var(--gold-dark); text-decoration: none; font-weight:700; font-size: 0.9rem;">Siguiente: ${nextArticle.title} →</a>`;
         } else {
             nextNav.innerHTML = '';
         }
@@ -349,7 +349,7 @@ function injectSchemas(article) {
         "datePublished": article.date,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://juliealisados.com/julie-tips/${article.slug}`
+            "@id": `https://juliealisados.com/julie-tips/${article.slug}.html`
         }
     };
 
@@ -374,7 +374,7 @@ function injectSchemas(article) {
                 "@type": "ListItem",
                 "position": 3,
                 "name": article.title,
-                "item": `https://juliealisados.com/julie-tips/${article.slug}`
+                "item": `https://juliealisados.com/julie-tips/${article.slug}.html`
             }
         ]
     };
@@ -456,14 +456,14 @@ function createFeaturedCardHTML(article) {
             </div>
             <div class="featured-content">
                 <span class="article-cat">${article.category}</span>
-                <h2><a href="./articulo.html?slug=${article.slug}">${article.title}</a></h2>
+                <h2><a href="./${article.slug}.html">${article.title}</a></h2>
                 <p>${article.summary}</p>
                 <div class="article-meta">
                     <span>${article.author}</span> • 
                     <span>${formatDate(article.date)}</span> • 
                     <span>${article.readTime}</span>
                 </div>
-                <a href="./articulo.html?slug=${article.slug}" class="btn-gold-fill btn-read">Leer artículo completo</a>
+                <a href="./${article.slug}.html" class="btn-gold-fill btn-read">Leer artículo completo</a>
             </div>
         </div>
     `;
@@ -477,13 +477,13 @@ function createArticleCardHTML(article) {
                 <span class="badge-cat">${article.category}</span>
             </div>
             <div class="card-body">
-                <h3><a href="./articulo.html?slug=${article.slug}">${article.title}</a></h3>
+                <h3><a href="./${article.slug}.html">${article.title}</a></h3>
                 <p>${article.summary}</p>
                 <div class="card-footer-meta">
                     <span class="date">${formatDate(article.date)}</span>
                     <span class="read-time">${article.readTime}</span>
                 </div>
-                <a href="./articulo.html?slug=${article.slug}" class="btn-secondary-gold card-btn">Leer artículo</a>
+                <a href="./${article.slug}.html" class="btn-secondary-gold card-btn">Leer artículo</a>
             </div>
         </article>
     `;
@@ -494,7 +494,7 @@ function createPopularItemHTML(article, index) {
         <li class="popular-item">
             <span class="popular-num">0${index + 1}</span>
             <div class="popular-info">
-                <h4><a href="./articulo.html?slug=${article.slug}">${article.title}</a></h4>
+                <h4><a href="./${article.slug}.html">${article.title}</a></h4>
                 <span class="popular-cat">${article.category}</span>
             </div>
         </li>
