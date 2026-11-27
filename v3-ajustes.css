@@ -43,8 +43,12 @@ img,video,iframe{max-width:100%}
    1) título de cada sección centrado igual que su texto (antes título a la izquierda y texto centrado)
    2) tarjetas deslizables (pasos, alisados/terapias, videos) con su propia altura: sin hueco en blanco
    3) primera foto del carrusel: texto sobre la parte vacía de la imagen */
+/* 27-nov: "Ver producto completo" iba primero en la tarjeta (antes del nombre); va al final, debajo del botón */
+.product-card-large .product-info>a.lc-ver{order:9!important;margin-top:10px}
 @media (max-width:767px){
   section.sec>h2,section.sec>.wrap>h2,section.sec .kick,section.sec>.lead,section.sec>.wrap>.lead,.vc__titulo,.dividida h2{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+  .co h2,.co p,.teaser3,.teaser3 h3,.teaser3 p{text-align:center!important}
+  section.sec>a.masinfo,section.sec>.wrap>a.masinfo{display:table!important;margin-left:auto!important;margin-right:auto!important}
   .pasos,.terap{align-items:flex-start!important}
   .paso,.ter{min-height:0!important;height:auto!important}
   .ter{justify-content:flex-start!important;gap:14px}
