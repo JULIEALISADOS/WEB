@@ -1513,11 +1513,13 @@ document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
     el.textContent='Termina hoy a las 23:59 · quedan '+h+' h '+m+' min';
   }
   tick(); setInterval(tick,30000);
-  // sin tarjeta: ocultar la pestaña de Mercado Pago/tarjeta y dejar solo Bre-B
+  // pago: transferencia (Bre-B) o efectivo con asesora (la web no cobra con tarjeta)
+  // despacho: el carrito dice lo mismo que los Términos (hasta 7 días)
   document.addEventListener('DOMContentLoaded',function(){
-    var b=document.querySelectorAll('.pay-tab-btn'); if(b[1]) b[1].style.display='none';
-    var mp=document.getElementById('tabContentMercadoPago'); if(mp) mp.style.display='none';
-    if(window.switchPayTab) switchPayTab('breb');
+    var p=document.querySelector('#tabContentMercadoPago p');
+    if(p) p.innerHTML='Una asesora te confirma <strong class="rs">el total y el envío</strong> por WhatsApp. En Black Friday pagas por transferencia o en efectivo.';
+    var e=window.JulieEnvio;
+    if(e){var t=e.tiempoEntrega;e.tiempoEntrega=function(d){return t(d)+' después del despacho (hasta 7 días por Black Friday)'};}
   });
 })();
 </script>
