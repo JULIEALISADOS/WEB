@@ -719,6 +719,7 @@ document.querySelectorAll('.fade').forEach(function(el){io.observe(el)});
 <script>(function(){var s=document.querySelectorAll("#v3-anuncio span"),i=0;if(s.length>1)setInterval(function(){s[i].classList.remove("on");i=(i+1)%s.length;s[i].classList.add("on")},5000);var d=document.getElementById("v3-drawer"),b=document.getElementById("v3-burger"),c=document.getElementById("v3-cerrar");if(b&&d){b.onclick=function(){d.classList.add("open")};c.onclick=function(){d.classList.remove("open")};d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){d.classList.remove("open")})})}})();</script>
 <script src="js/cabecera-compacta.js?v=202611260130" defer></script>
 <script src="/js/sitio-compacto.js?v=202611260804" defer></script>
+<script src="/js/bf-popup.js?v=20261127franja" defer></script>
 </body></html>
 
 <script>(function(){var h=document.getElementById("minibar");function f(){if(h)h.classList.toggle("on",window.scrollY>280)}window.addEventListener("scroll",f,{passive:true});f()})();</script>

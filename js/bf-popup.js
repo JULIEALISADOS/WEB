@@ -9,10 +9,28 @@
   var preview = /[?&]bf(=|&|$)/.test(location.search);
   var now = Date.now();
   if (!preview && now >= FIN) return;
+  if (/black-friday\.html/.test(location.pathname)) return;
   var antes = now < INI;   // antes de las 00:00 del viernes: se avisa que empieza a esa hora
-  try { if (!preview && sessionStorage.getItem('bf_popup_visto')) return; } catch (e) {}
 
-  var DEST = 'black-friday.html?utm_source=web&utm_medium=aviso&utm_campaign=black-friday' + (preview ? '&preview' : '');
+  var DEST = '/black-friday.html?utm_source=web&utm_medium=aviso&utm_campaign=black-friday' + (preview ? '&preview' : '');
+
+  // Franja fija arriba de la página (no se cierra): siempre hay un camino a la promo aunque cierren el aviso.
+  function franja() {
+    if (document.getElementById('bf-franja')) return;
+    var s = document.createElement('style');
+    s.textContent = '.bf-franja{display:block;background:#111;color:#fff;text-align:center;text-decoration:none;font:700 13px/1.35 Lato,Arial,sans-serif;letter-spacing:.06em;padding:11px 16px}' +
+      '.bf-franja b{color:#FF3D9A}.bf-franja u{text-underline-offset:3px}.bf-franja:hover u{color:#FF3D9A}';
+    document.head.appendChild(s);
+    var a = document.createElement('a');
+    a.id = 'bf-franja'; a.className = 'bf-franja';
+    a.href = DEST.replace('medium=aviso', 'medium=franja');
+    a.innerHTML = 'BLACK FRIDAY · <b>' + (antes ? 'EMPIEZA A LAS 00:00' : 'SOLO HOY') + '</b> · hasta 21,5 % en combos · <u>Ver la promoción →</u>';
+    var m = document.querySelector('main') || document.body;
+    m.insertBefore(a, m.firstChild);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', franja); else franja();
+
+  try { if (!preview && sessionStorage.getItem('bf_popup_visto')) return; } catch (e) {}
   var previo = null;
 
   function css() {
