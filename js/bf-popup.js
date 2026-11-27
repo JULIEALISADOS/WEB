@@ -21,7 +21,7 @@
     s.textContent =
       '.bfp-ov{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .25s}' +
       '.bfp-ov.on{opacity:1}' +
-      '.bfp{position:relative;max-width:440px;width:100%;background:#111;color:#fff;padding:34px 28px 24px;text-align:center;border-radius:0;box-shadow:0 18px 60px rgba(0,0,0,.5);font-family:Lato,Arial,sans-serif}' +
+      '.bfp{cursor:pointer;position:relative;max-width:440px;width:100%;background:#111;color:#fff;padding:34px 28px 24px;text-align:center;border-radius:0;box-shadow:0 18px 60px rgba(0,0,0,.5);font-family:Lato,Arial,sans-serif}' +
       '.bfp .k{display:block;color:#FF3D9A;letter-spacing:.16em;font-weight:700;font-size:.78rem;margin-bottom:10px}' +
       '.bfp h2{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.9rem;line-height:1.15;margin:0 0 10px;color:#fff}' +
       '.bfp .n{display:block;font-size:3rem;font-weight:700;color:#FF3D9A;line-height:1;margin:6px 0}' +
@@ -69,6 +69,8 @@
     ov.querySelector('.no').addEventListener('click', function () { cerrar(ov); });
     go.addEventListener('click', function () { try { sessionStorage.setItem('bf_popup_visto', '1'); } catch (e) {} });
     ov.addEventListener('click', function (e) { if (e.target === ov) cerrar(ov); });
+    // todo el aviso lleva a la promoción (menos la X y "Ahora no")
+    ov.querySelector('.bfp').addEventListener('click', function (e) { if (!e.target.closest('a,button')) go.click(); });
     ov._k = function (e) {
       if (e.key === 'Escape') { cerrar(ov); return; }
       if (e.key === 'Tab') {            // el foco se queda dentro del aviso
